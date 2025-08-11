@@ -43,7 +43,6 @@ jobs:
             print(f'SUCCESS: duvc_ctl {duvc_ctl.__version__} imported'); 
             devices = duvc_ctl.list_devices(); 
             print(f'Found {len(devices)} devices')"
-          CIBW_BEFORE_BUILD: "pip install --upgrade pip setuptools wheel"
           CIBW_BUILD_VERBOSITY: 1
           CIBW_PRERELEASE_PYTHONS: true
 
