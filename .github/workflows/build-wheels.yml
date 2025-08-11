@@ -103,7 +103,8 @@ jobs:
 
       - name: Test wheel installation
         run: |
-          python -m pip install wheels/*.whl
+          $wheel = Get-ChildItem wheels\*.whl | Select-Object -First 1
+          python -m pip install $wheel.FullName
           python -c "
           import duvc_ctl
           print(f'SUCCESS: duvc_ctl {duvc_ctl.__version__}')
