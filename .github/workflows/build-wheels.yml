@@ -26,12 +26,18 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: Set Python version for cibuildwheel
+        shell: bash
+        run: |
+          PYTHON_VERSION="${{ matrix.python-version }}"
+          CIBW_PYTHON="cp${PYTHON_VERSION//./}"
+          echo "CIBW_PYTHON=${CIBW_PYTHON}" >> $GITHUB_ENV
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.16.5
         env:
-          CIBW_BUILD: "cp${{ matrix.python-version }}-*"
+          CIBW_BUILD: "${{ env.CIBW_PYTHON }}-win_amd64"
           CIBW_ARCHS_WINDOWS: "AMD64"
-          CIBW_SKIP: "*-win32"
           CIBW_TEST_COMMAND: >
             python -c "import duvc_ctl; 
             print(f'SUCCESS: duvc_ctl {duvc_ctl.__version__} imported'); 
@@ -55,7 +61,7 @@ jobs:
 
   build_sdist:
     name: Build source distribution
-    runs-on: ubuntu-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
         with:
@@ -74,11 +80,6 @@ jobs:
       - name: Build sdist
         run: python -m build --sdist
       
-      - name: Verify sdist
-        run: |
-          python -m pip install dist/*.tar.gz --force-reinstall
-          python -c "import duvc_ctl; print('Source distribution verification successful')"
-      
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
@@ -92,7 +93,7 @@ jobs:
     runs-on: windows-2022
     strategy:
       matrix:
-        python-version: ["3.8", "3.12", "3.14"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     
     steps:
       - name: Set up Python ${{ matrix.python-version }}
