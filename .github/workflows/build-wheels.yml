@@ -1,0 +1,174 @@
+name: Build and publish
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_wheels:
+    name: Build wheels for Python ${{ matrix.python-version }} 
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16.5
+        env:
+          CIBW_BUILD: "cp${{ matrix.python-version | replace('.', '') }}-*"
+          CIBW_ARCHS_WINDOWS: "AMD64"
+          CIBW_SKIP: "*-win32"
+          CIBW_TEST_COMMAND: >
+            python -c "import duvc_ctl; 
+            print(f'SUCCESS: duvc_ctl {duvc_ctl.__version__} imported'); 
+            devices = duvc_ctl.list_devices(); 
+            print(f'Found {len(devices)} devices')"
+          CIBW_BEFORE_BUILD: "pip install --upgrade pip setuptools wheel"
+          CIBW_BUILD_VERBOSITY: 1
+          CIBW_PRERELEASE_PYTHONS: true
+
+      - name: Verify wheel contents
+        run: |
+          python -m pip install wheelhouse/*.whl --force-reinstall
+          python -c "import duvc_ctl; print('Wheel verification successful')"
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheels-py${{ matrix.python-version }}
+          path: ./wheelhouse/*.whl
+          retention-days: 30
+
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build
+      
+      - name: Build sdist
+        run: python -m build --sdist
+      
+      - name: Verify sdist
+        run: |
+          python -m pip install dist/*.tar.gz --force-reinstall
+          python -c "import duvc_ctl; print('Source distribution verification successful')"
+      
+      - name: Upload sdist
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist/*.tar.gz
+          retention-days: 30
+
+  test_install:
+    name: Test installation
+    needs: [build_wheels]
+    runs-on: windows-2022
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.12", "3.14"]
+    
+    steps:
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Download wheels
+        uses: actions/download-artifact@v4
+        with:
+          name: wheels-py${{ matrix.python-version }}
+          path: wheels
+
+      - name: Test wheel installation
+        run: |
+          python -m pip install wheels/*.whl
+          python -c "
+          import duvc_ctl
+          print(f'SUCCESS: duvc_ctl {duvc_ctl.__version__}')
+          devices = duvc_ctl.list_devices()
+          print(f'Found {len(devices)} devices')
+          "
+
+  upload_testpypi:
+    name: Upload to TestPyPI
+    needs: [build_wheels, build_sdist, test_install]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    environment: 
+      name: testpypi
+      url: https://test.pypi.org/p/duvc-ctl
+    permissions:
+      id-token: write
+    
+    steps:
+      - name: Download all wheels
+        uses: actions/download-artifact@v4
+        with:
+          pattern: wheels-*
+          path: dist
+          merge-multiple: true
+
+      - name: Download sdist
+        uses: actions/download-artifact@v4
+        with:
+          name: sdist
+          path: dist
+
+      - name: List artifacts to upload
+        run: |
+          ls -la dist/
+          echo "Uploading $(ls dist/ | wc -l) files to TestPyPI"
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          print-hash: true
+
+  create_release:
+    name: Create GitHub Release
+    needs: [upload_testpypi]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: "*"
+          path: artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: artifacts/**/*
+          generate_release_notes: true
