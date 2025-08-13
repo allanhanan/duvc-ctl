@@ -1,9 +1,10 @@
 [build-system]
-requires = ["scikit-build-core", "pybind11"]
+requires = [
+    "scikit-build-core; platform_system=='Windows' and python_version>='3.8' and python_version<'3.13'",
+    "pybind11; platform_system=='Windows' and python_version>='3.8' and python_version<'3.13'"
+]
 build-backend = "scikit_build_core.build"
 
-[tool.setuptools]
-script-files = ["build_check.py"]
 
 [project]
 name = "duvc-ctl"
