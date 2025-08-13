@@ -1,31 +1,75 @@
-upload_pypi:
-  name: Upload to PyPI
-  needs: [upload_testpypi]
-  runs-on: ubuntu-latest
-  if: >
-    github.event_name == 'push' &&
-    startsWith(github.ref, 'refs/tags/v') &&
-    !contains(github.ref, '-')
-  environment:
-    name: pypi
-    url: https://pypi.org/p/duvc-ctl
-  permissions:
-    id-token: write
-  steps:
-    - name: Download all wheels
-      uses: actions/download-artifact@v4
-      with:
-        pattern: wheels-*
-        path: dist
-        merge-multiple: true
+name: Publish to PyPI
 
-    - name: Download sdist
-      uses: actions/download-artifact@v4
-      with:
-        name: sdist
-        path: dist
+on:
+  push:
+    tags: [ 'v*' ]  # Trigger on version tags
+  workflow_dispatch:  # Manual override trigger
+    inputs:
+      run_id:
+        description: 'Run ID from TestPyPI workflow (optional - will use latest successful run if empty)'
+        required: false
+        type: string
 
-    - name: Publish to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        print-hash: true
+jobs:
+  upload_pypi:
+    name: Upload to PyPI
+    runs-on: ubuntu-latest
+    # Only run for stable releases (no hyphens) OR manual dispatch
+    if: |
+      (github.event_name == 'push' && 
+       startsWith(github.ref, 'refs/tags/v') && 
+       !contains(github.ref, '-')) ||
+      github.event_name == 'workflow_dispatch'
+    environment:
+      name: pypi
+      url: https://pypi.org/p/duvc-ctl
+    permissions:
+      id-token: write
+      actions: read  # Needed to download artifacts from other workflows
+    
+    steps:
+      - name: Get latest successful TestPyPI run
+        if: ${{ !inputs.run_id }}
+        id: get-run
+        run: |
+          RUN_ID=$(gh api repos/${{ github.repository }}/actions/workflows/build-wheels.yml/runs \
+            --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | head -n1)
+          echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Set run ID
+        id: run-id
+        run: |
+          if [ -n "${{ inputs.run_id }}" ]; then
+            echo "run_id=${{ inputs.run_id }}" >> $GITHUB_OUTPUT
+          else
+            echo "run_id=${{ steps.get-run.outputs.run_id }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download wheels from TestPyPI workflow
+        uses: actions/download-artifact@v4
+        with:
+          pattern: wheels-*
+          path: dist
+          merge-multiple: true
+          run-id: ${{ steps.run-id.outputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: Download sdist from TestPyPI workflow
+        uses: actions/download-artifact@v4
+        with:
+          name: sdist
+          path: dist
+          run-id: ${{ steps.run-id.outputs.run_id }}
+          github-token: ${{ github.token }}
+
+      - name: List artifacts to upload
+        run: |
+          ls -la dist/
+          echo "Uploading $(ls dist/ | wc -l) files to PyPI"
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          print-hash: true
