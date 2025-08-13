@@ -4,10 +4,10 @@ Windows DirectShow UVC camera control library with C++, Python, and CLI interfac
 
 ## Overview
 
-duvc-ctl provides direct control over DirectShow UVC cameras on Windows. Control PTZ operations, exposure, focus, brightness, and other camera properties.
+duvc-ctl provides direct control over DirectShow API for UVC cameras on Windows. Control PTZ operations, exposure, focus, brightness, and other camera properties.
 
 **Key Features:**
-- DirectShow UVC camera enumeration and control
+- UVC camera enumeration and control
 - PTZ (Pan/Tilt/Zoom) operations
 - Camera properties (exposure, focus, iris)
 - Video properties (brightness, contrast, white balance)
@@ -385,7 +385,7 @@ cmake -DCMAKE_BUILD_TYPE=Debug -DDUVC_WARNINGS_AS_ERRORS=ON ..
 
 ## Project Overview
 
-duvc-ctl is a Windows-exclusive library for controlling DirectShow UVC (USB Video Class) cameras. It provides comprehensive access to camera properties through multiple interfaces while maintaining high performance and thread safety.
+duvc-ctl is a Windows-exclusive library for controlling UVC (USB Video Class) cameras through the DirectShow API. It provides comprehensive access to camera properties through multiple interfaces while maintaining high performance and thread safety.
 
 ### Core Features
 
