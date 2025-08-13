@@ -1,22 +1,23 @@
 import sys
 import platform
-from setuptools import setup
+import os
 
-# Platform checks
+# Platform checks BEFORE any imports
 if platform.system() != "Windows":
+    print("\n" + "="*60)
     print("ERROR: duvc-ctl only supports Windows operating systems.")
     print(f"Your platform: {platform.system()} {platform.machine()}")
-    sys.exit(1)
+    print("="*60 + "\n")
+    # Exit before setuptools/scikit-build get involved
+    os._exit(1)
 
-if sys.version_info < (3, 8):
-    print(f"ERROR: duvc-ctl requires Python 3.8 or newer.")
-    print(f"Your Python version: {sys.version_info.major}.{sys.version_info.minor}")
-    sys.exit(1)
+if sys.version_info < (3, 8) or sys.version_info >= (3, 13):
+    print("\n" + "="*60)
+    print("ERROR: duvc-ctl requires Python 3.8-3.12.")
+    print(f"Your Python: {sys.version_info.major}.{sys.version_info.minor}")
+    print("="*60 + "\n")
+    os._exit(1)
 
-if sys.version_info >= (3, 13):
-    print(f"ERROR: duvc-ctl supports Python 3.8-3.12.")
-    print(f"Your Python version: {sys.version_info.major}.{sys.version_info.minor} is not supported.")
-    sys.exit(1)
-
-# If we get here, platform is supported - proceed with normal setup
+# Only proceed if platform is supported
+from setuptools import setup
 setup()
