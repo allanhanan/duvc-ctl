@@ -19,5 +19,7 @@ if sys.version_info < (3, 8) or sys.version_info >= (3, 13):
     os._exit(1)
 
 # Only proceed if platform is supported
-from setuptools import setup
-setup()
+# Important: Exit successfully for Windows - don't call setup()
+# Let scikit-build-core handle the actual building
+print("Platform check passed - proceeding with build...")
+
