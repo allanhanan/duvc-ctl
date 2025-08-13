@@ -2,9 +2,6 @@
 requires = ["scikit-build-core", "pybind11"]
 build-backend = "scikit_build_core.build"
 
-[tool.setuptools]
-script-files = ["build_check.py"]
-
 [project]
 name = "duvc-ctl"
 version = "1.0.1-rc3"
@@ -20,6 +17,7 @@ classifiers = [
 ]
 
 [tool.scikit-build]
+pre-build = "python path/to/your_pre_build_script.py"
 wheel.packages = ["py/duvc_ctl"]
 
 [tool.scikit-build.cmake.define]
