@@ -39,7 +39,7 @@ duvc::set(devices[0], duvc::CamProp::Pan, setting);
 
 ### Python API
 
-Install from pip with `pip install duvc-ctl` (coming soon)
+Install from pip with `pip install duvc-ctl`
 
 ```python
 import duvc_ctl as duvc
