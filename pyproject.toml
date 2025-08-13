@@ -7,7 +7,7 @@ name = "duvc-ctl"
 version = "1.0.0"
 authors = [{ name = "allanhanan", email = "allan.hanan04@gmail.com" }]
 description = "DirectShow UVC Camera Control Library"
-readme = "README.md"
+readme = "PYPI_README.md"
 requires-python = ">=3.8"
 license = { file = "LICENSE" }
 classifiers = [
