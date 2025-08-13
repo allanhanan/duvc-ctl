@@ -146,6 +146,8 @@ jobs:
         with:
           repository-url: https://test.pypi.org/legacy/
           print-hash: true
+          skip-existing: true
+          verbose: true     
 
   create_release:
     name: Create GitHub Release
