@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "duvc-ctl"
-version = "1.0.1"
+version = "1.0.1-rc2"
 authors = [{ name = "allanhanan", email = "allan.hanan04@gmail.com" }]
 description = "DirectShow UVC Camera Control Library"
 readme = "PYPI_README.md"
