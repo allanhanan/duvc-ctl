@@ -16,7 +16,7 @@ try:
 except ImportError as e:
     raise ImportError("Could not import the C++ extension module for duvc-ctl.") from e
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "allanhanan"
 __email__ = "allan.hanan04@gmail.com"
 __project__ = "duvc-ctl"
