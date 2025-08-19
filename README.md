@@ -3,7 +3,6 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](README.md)
 [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](src/)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-green.svg)](pyproject.toml)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/allanhanan/duvc-ctl/total?style=flat&label=GitHub%20Downloads)
 ![Pepy Total Downloads](https://img.shields.io/pepy/dt/duvc-ctl?style=flat&label=pip%20installs)
 
 
