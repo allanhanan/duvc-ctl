@@ -3,10 +3,10 @@ name: Publish to PyPI
 on:
   push:
     tags: [ 'v*' ]  # Trigger on version tags
-  workflow_dispatch:  # Manual override trigger
+  workflow_dispatch:
     inputs:
       run_id:
-        description: 'Run ID from TestPyPI workflow (optional - will use latest successful run if empty)'
+        description: 'Run ID from TestPyPI workflow (optional)'
         required: false
         type: string
 
@@ -14,26 +14,28 @@ jobs:
   upload_pypi:
     name: Upload to PyPI
     runs-on: ubuntu-latest
-    # Only run for stable releases (no hyphens) OR manual dispatch
+
     if: |
-      (github.event_name == 'push' && 
-       startsWith(github.ref, 'refs/tags/v') && 
+      (github.event_name == 'push' &&
+       startsWith(github.ref, 'refs/tags/v') &&
        !contains(github.ref, '-')) ||
       github.event_name == 'workflow_dispatch'
+
     environment:
       name: pypi
       url: https://pypi.org/p/duvc-ctl
+
     permissions:
       id-token: write
-      actions: read  # Needed to download artifacts from other workflows
-    
+      actions: read  # Needed for downloading artifacts
+
     steps:
       - name: Get latest successful TestPyPI run
-        if: ${{ !inputs.run_id }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.run_id }}
         id: get-run
         run: |
           RUN_ID=$(gh api repos/${{ github.repository }}/actions/workflows/build-wheels.yml/runs \
-            --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | head -n1)
+            --jq '.workflow_runs[] | select(.conclusion == "success") | .id' | head -n 1)
           echo "run_id=$RUN_ID" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ github.token }}
@@ -47,7 +49,7 @@ jobs:
             echo "run_id=${{ steps.get-run.outputs.run_id }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Download wheels from TestPyPI workflow
+      - name: Download wheels from TestPyPI run
         uses: actions/download-artifact@v4
         with:
           pattern: wheels-*
@@ -56,7 +58,7 @@ jobs:
           run-id: ${{ steps.run-id.outputs.run_id }}
           github-token: ${{ github.token }}
 
-      - name: Download sdist from TestPyPI workflow
+      - name: Download sdist from TestPyPI run
         uses: actions/download-artifact@v4
         with:
           name: sdist
@@ -64,10 +66,15 @@ jobs:
           run-id: ${{ steps.run-id.outputs.run_id }}
           github-token: ${{ github.token }}
 
-      - name: List artifacts to upload
+      - name: Check dist contents
         run: |
+          echo "Contents of dist/:"
           ls -la dist/
-          echo "Uploading $(ls dist/ | wc -l) files to PyPI"
+          COUNT=$(ls dist/ | wc -l)
+          if [ "$COUNT" -eq "0" ]; then
+            echo "Error: No files found in dist/"
+            exit 1
+          fi
 
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

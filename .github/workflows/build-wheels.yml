@@ -10,13 +10,17 @@ on:
 
 jobs:
   build_wheels:
-    name: Build wheels for Python ${{ matrix.python-version }} 
+    name: Build wheels for Python ${{ matrix.python-version }}
     runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-    
+
+    defaults:
+      run:
+        working-directory: bindings/python
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,17 +49,24 @@ jobs:
             devices = duvc_ctl.list_devices(); 
             print(f'Found {len(devices)} devices')"
           CIBW_BUILD_VERBOSITY: 1
-          
+        with:
+          package-dir: bindings/python
+
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
           name: wheels-py${{ matrix.python-version }}
-          path: ./wheelhouse/*.whl
+          path: bindings/python/wheelhouse/*.whl
           retention-days: 30
 
   build_sdist:
     name: Build source distribution
     runs-on: windows-2022
+
+    defaults:
+      run:
+        working-directory: bindings/python
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,20 +76,20 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      
+
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install build
-      
+
       - name: Build sdist
         run: python -m build --sdist
-      
+
       - name: Upload sdist
         uses: actions/upload-artifact@v4
         with:
           name: sdist
-          path: dist/*.tar.gz
+          path: bindings/python/dist/*.tar.gz
           retention-days: 30
 
   test_install:
@@ -88,7 +99,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-    
+
     steps:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -117,12 +128,12 @@ jobs:
     needs: [build_wheels, build_sdist, test_install]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    environment: 
+    environment:
       name: testpypi
       url: https://test.pypi.org/p/duvc-ctl
     permissions:
       id-token: write
-    
+
     steps:
       - name: Download all wheels
         uses: actions/download-artifact@v4
@@ -148,7 +159,7 @@ jobs:
           repository-url: https://test.pypi.org/legacy/
           print-hash: true
           skip-existing: true
-          verbose: true     
+          verbose: true
 
   create_release:
     name: Create GitHub Release
@@ -157,7 +168,7 @@ jobs:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     permissions:
       contents: write
-    
+
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
