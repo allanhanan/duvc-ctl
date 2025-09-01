@@ -113,8 +113,9 @@ jobs:
           path: wheels
 
       - name: Test wheel installation
+        shell: pwsh
         run: |
-          $wheel = Get-ChildItem wheels\wheelhouse\*.whl | Select-Object -First 1
+          $wheel = Get-ChildItem wheels\*.whl | Select-Object -First 1
           python -m pip install $wheel.FullName
           python -c "
           import duvc_ctl
@@ -122,6 +123,7 @@ jobs:
           devices = duvc_ctl.list_devices()
           print(f'Found {len(devices)} devices')
           "
+
 
   upload_testpypi:
     name: Upload to TestPyPI
