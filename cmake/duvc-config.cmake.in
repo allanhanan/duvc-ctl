@@ -1,0 +1,15 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Platform-specific dependencies
+if(WIN32)
+    # Windows: No additional dependencies needed
+endif()
+
+# Include targets file
+if(NOT TARGET duvc::duvc)
+    include("${CMAKE_CURRENT_LIST_DIR}/duvc-targets.cmake")
+endif()
+
+check_required_components(duvc)
