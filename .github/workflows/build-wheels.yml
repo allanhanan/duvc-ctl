@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-py${{ matrix.python-version }}
-          path: path: wheelhouse/*.whl
+          path: wheelhouse/*.whl
           retention-days: 30
 
   build_sdist:
