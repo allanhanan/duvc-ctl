@@ -114,7 +114,7 @@ jobs:
 
       - name: Test wheel installation
         run: |
-          $wheel = Get-ChildItem wheels\*.whl | Select-Object -First 1
+          $wheel = Get-ChildItem wheels\wheelhouse\*.whl | Select-Object -First 1
           python -m pip install $wheel.FullName
           python -c "
           import duvc_ctl
