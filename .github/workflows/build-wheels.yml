@@ -30,13 +30,13 @@ jobs:
       - name: Set Python version for cibuildwheel
         shell: bash
         run: |
-          cd bindings/python
           PYTHON_VERSION="${{ matrix.python-version }}"
           CIBW_PYTHON="cp${PYTHON_VERSION//./}"
           echo "CIBW_PYTHON=${CIBW_PYTHON}" >> $GITHUB_ENV
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.16.5
+        working-directory: bindings/python
         env:
           CIBW_BUILD: "${{ env.CIBW_PYTHON }}-win_amd64"
           CIBW_ARCHS_WINDOWS: "AMD64"
@@ -53,7 +53,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-py${{ matrix.python-version }}
-          path: bindings/python/wheelhouse/*.whl
+          path: wheelhouse/*.whl
           retention-days: 30
 
   build_sdist:
