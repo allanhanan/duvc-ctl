@@ -204,22 +204,22 @@ with duvc.DeviceConnection(devices[^0]) as conn:
 **Command Line Interface**
 ```bash
 # List available cameras
-duvc list --detailed
+duvc-cli list --detailed
 
 # Get property information
-duvc get --device 0 --property pan --camera
+duvc-cli get --device 0 --property pan --camera
 
 # Set property value
-duvc set --device 0 --property pan --value 0 --mode manual
+duvc-cli set --device 0 --property pan --value 0 --mode manual
 
 # Monitor device changes
-duvc monitor --timeout 30 --verbose
+duvc-cli monitor --timeout 30 --verbose
 
 # Get property ranges
-duvc ranges --device 0 --camera
+duvc-cli ranges --device 0 --camera
 
 # Vendor-specific properties
-duvc vendor logitech --device 0 --property face-tracking --get
+duvc-cli vendor logitech --device 0 --property face-tracking --get
 ```
 
 </td>
