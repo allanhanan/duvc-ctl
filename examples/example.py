@@ -213,8 +213,14 @@ class CameraController:
         # Get the property enum
         if domain == "cam":
             prop = getattr(duvc.CamProp, prop_name, None)
+            get_func = duvc.get_camera_property
+            set_func = duvc.set_camera_property
+            get_range_func = duvc.get_camera_property_range
         else:
             prop = getattr(duvc.VidProp, prop_name, None)
+            get_func = duvc.get_video_property
+            set_func = duvc.set_video_property
+            get_range_func = duvc.get_video_property_range
         
         if not prop:
             print(f"Property {prop_name} not found!")
@@ -222,20 +228,30 @@ class CameraController:
             return
         
         # Get current value
-        current_setting = duvc.PropSetting()
-        if duvc.get(self.current_device, prop, current_setting):
-            mode_str = duvc.cam_mode_to_string(current_setting.mode)
+        try:
+            current_setting = get_func(self.current_device, prop)
+            mode_str = "Auto" if current_setting.mode == duvc.CamMode.Auto else "Manual"
             print(f"Current {prop_name}: {current_setting.value} ({mode_str})")
-        else:
+        except duvc.PropertyNotSupportedError:
             print(f"Cannot read {prop_name} (not supported)")
+            input("Press Enter to continue...")
+            return
+        except Exception as e:
+            print(f"Error reading {prop_name}: {e}")
+            input("Press Enter to continue...")
+            return
         
         # Get range
-        prop_range = duvc.PropRange()
-        if duvc.get_range(self.current_device, prop, prop_range):
+        try:
+            prop_range = get_range_func(self.current_device, prop)
             print(f"Range: {prop_range.min} to {prop_range.max}, step: {prop_range.step}")
             print(f"Default: {prop_range.default_val}")
-        else:
+        except duvc.PropertyNotSupportedError:
             print("Range information not available")
+            input("Press Enter to continue...")
+            return
+        except Exception as e:
+            print(f"Error getting range for {prop_name}: {e}")
             input("Press Enter to continue...")
             return
         
@@ -251,42 +267,44 @@ class CameraController:
                 return
             elif choice == 1:
                 value = int(input(f"Enter value ({prop_range.min}-{prop_range.max}): "))
-                if prop_range.min <= value <= prop_range.max:
-                    setting = duvc.PropSetting(value, duvc.CamMode.Manual)
-                    if duvc.set(self.current_device, prop, setting):
-                        print(f"Set {prop_name} to {value}")
-                    else:
-                        print("Failed to set property")
-                else:
-                    print("Value out of range!")
+                value = prop_range.clamp(value)
+                setting = duvc.PropSetting(value, duvc.CamMode.Manual)
             elif choice == 2:
                 setting = duvc.PropSetting(prop_range.default_val, duvc.CamMode.Manual)
-                if duvc.set(self.current_device, prop, setting):
-                    print(f"Set {prop_name} to default ({prop_range.default_val})")
-                else:
-                    print("Failed to set property")
             elif choice == 3:
                 setting = duvc.PropSetting(prop_range.default_val, duvc.CamMode.Auto)
-                if duvc.set(self.current_device, prop, setting):
-                    print(f"Set {prop_name} to auto mode")
-                else:
-                    print("Failed to set property")
-        except ValueError:
-            print("Invalid input!")
+            else:
+                print("Invalid option!")
+                return
+            
+            set_func(self.current_device, prop, setting)
+            print(f"Set {prop_name} successfully")
+        except duvc.InvalidValueError:
+            print("Invalid value provided!")
+        except Exception as e:
+            print(f"Failed to set {prop_name}: {e}")
         
-        input("\nPress Enter to continue...")
+        input("Press Enter to continue...")
     
     def center_camera(self):
         """Center the camera (Pan=0, Tilt=0)"""
         print("\nCentering camera...")
         
-        # Center Pan
         pan_setting = duvc.PropSetting(0, duvc.CamMode.Manual)
-        pan_success = duvc.set(self.current_device, duvc.CamProp.Pan, pan_setting)
-        
-        # Center Tilt  
         tilt_setting = duvc.PropSetting(0, duvc.CamMode.Manual)
-        tilt_success = duvc.set(self.current_device, duvc.CamProp.Tilt, tilt_setting)
+        
+        pan_success = True
+        tilt_success = True
+        
+        try:
+            duvc.set_camera_property(self.current_device, duvc.CamProp.Pan, pan_setting)
+        except Exception:
+            pan_success = False
+        
+        try:
+            duvc.set_camera_property(self.current_device, duvc.CamProp.Tilt, tilt_setting)
+        except Exception:
+            tilt_success = False
         
         if pan_success and tilt_success:
             print("Camera centered successfully")
@@ -308,20 +326,28 @@ class CameraController:
         for prop_name in cam_props:
             prop = getattr(duvc.CamProp, prop_name, None)
             if prop:
-                setting = duvc.PropSetting()
-                if duvc.get(self.current_device, prop, setting):
-                    mode_str = duvc.cam_mode_to_string(setting.mode)
+                try:
+                    setting = duvc.get_camera_property(self.current_device, prop)
+                    mode_str = "Auto" if setting.mode == duvc.CamMode.Auto else "Manual"
                     print(f"  {prop_name}: {setting.value} ({mode_str})")
+                except duvc.PropertyNotSupportedError:
+                    pass  # Skip unsupported
+                except Exception as e:
+                    print(f"  {prop_name}: Error - {e}")
         
         print("\nVideo Properties:")
         vid_props = ["Brightness", "Contrast", "Saturation", "WhiteBalance", "Hue", "Gamma"]
         for prop_name in vid_props:
             prop = getattr(duvc.VidProp, prop_name, None)
             if prop:
-                setting = duvc.PropSetting()
-                if duvc.get(self.current_device, prop, setting):
-                    mode_str = duvc.cam_mode_to_string(setting.mode)
+                try:
+                    setting = duvc.get_video_property(self.current_device, prop)
+                    mode_str = "Auto" if setting.mode == duvc.CamMode.Auto else "Manual"
                     print(f"  {prop_name}: {setting.value} ({mode_str})")
+                except duvc.PropertyNotSupportedError:
+                    pass  # Skip unsupported
+                except Exception as e:
+                    print(f"  {prop_name}: Error - {e}")
         
         input("\nPress Enter to continue...")
     
@@ -386,6 +412,7 @@ class CameraController:
                 print(f"Error: {e}")
                 input("Press Enter to continue...")
 
+
 def main():
     """Entry point"""
     if sys.platform != "win32":
@@ -395,6 +422,7 @@ def main():
     
     controller = CameraController()
     controller.run()
+
 
 if __name__ == "__main__":
     main()

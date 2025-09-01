@@ -1,4 +1,9 @@
-#include "duvc-ctl/core.h"
+/**
+ * @file cli/main.cpp
+ * @brief CLI using the new modular duvc-ctl structure
+ */
+
+#include "duvc-ctl/duvc.hpp"  // New umbrella header
 
 #include <iostream>
 #include <sstream>
@@ -12,6 +17,8 @@
 
 #ifdef _WIN32
 #include <windows.h>
+#include <combaseapi.h>  // For CLSIDFromString
+#include <objbase.h>  
 #endif
 
 using duvc::Device;

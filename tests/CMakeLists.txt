@@ -1,44 +1,92 @@
+# tests/CMakeLists.txt
 cmake_minimum_required(VERSION 3.16)
-project(duvc_core_tests LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Path to project root
-set(DUVC_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
-
-# Catch2
 include(FetchContent)
+
+# ============================================================================
+# Test Framework Setup - Catch2
+# ============================================================================
 FetchContent_Declare(
     catch2
     GIT_REPOSITORY https://github.com/catchorg/Catch2.git
     GIT_TAG v3.5.2
 )
+
 FetchContent_MakeAvailable(catch2)
 
-# Test executable that compiles duvc sources directly
-add_executable(duvc_core_tests 
-    test_core.cpp
-    ${DUVC_ROOT_DIR}/src/core.cpp
-    ${DUVC_ROOT_DIR}/src/bindings.cpp
+enable_testing()
+
+# ============================================================================
+# Test Helper Function
+# ============================================================================
+function(duvc_add_cpp_test test_name sources)
+    add_executable(${test_name} ${sources})
+    
+    target_link_libraries(${test_name} PRIVATE 
+        duvc::core 
+        Catch2::Catch2WithMain
+    )
+    
+    target_include_directories(${test_name} PRIVATE 
+        ${CMAKE_SOURCE_DIR}/src
+        ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Apply same compiler flags as main project
+    duvc_set_target_properties(${test_name})
+    
+    # Auto-discover tests
+    include(CTest)
+    include(Catch)
+    catch_discover_tests(${test_name}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+    
+    # Coverage if enabled
+    if(DUVC_ENABLE_COVERAGE)
+        target_compile_options(${test_name} PRIVATE --coverage)
+        target_link_libraries(${test_name} PRIVATE --coverage)
+    endif()
+endfunction()
+
+# ============================================================================
+# Unit Tests
+# ============================================================================
+duvc_add_cpp_test(core_tests cpp/unit/core_tests.cpp)
+duvc_add_cpp_test(platform_tests cpp/unit/platform_tests.cpp)
+duvc_add_cpp_test(vendor_tests cpp/unit/vendor_tests.cpp)
+duvc_add_cpp_test(utils_tests cpp/unit/utils_tests.cpp)
+
+# ============================================================================
+# Integration Tests
+# ============================================================================
+duvc_add_cpp_test(device_integration_tests cpp/integration/device_integration_tests.cpp)
+
+# ============================================================================
+# Functional Tests
+# ============================================================================
+duvc_add_cpp_test(camera_workflow_tests cpp/functional/camera_workflow_tests.cpp)
+
+# ============================================================================
+# Custom Test Targets
+# ============================================================================
+# Run only unit tests
+add_custom_target(test_unit
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure --label-regex "unit"
+    DEPENDS core_tests platform_tests vendor_tests utils_tests
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
-target_include_directories(duvc_core_tests PRIVATE ${DUVC_ROOT_DIR}/include)
-target_link_libraries(duvc_core_tests PRIVATE Catch2::Catch2WithMain)
+# Run only integration tests
+add_custom_target(test_integration
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure --label-regex "integration"
+    DEPENDS device_integration_tests
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 
-if(WIN32)
-    target_link_libraries(duvc_core_tests PRIVATE ole32 oleaut32 strmiids)
-endif()
-
-# Apply same compiler flags as main project
-if(MSVC)
-    target_compile_options(duvc_core_tests PRIVATE /W4 /permissive-)
-    target_compile_definitions(duvc_core_tests PRIVATE UNICODE _UNICODE NOMINMAX)
-else()
-    target_compile_options(duvc_core_tests PRIVATE -Wall -Wextra -Wpedantic)
-endif()
-
-enable_testing()
-include(CTest)
-include(Catch)
-catch_discover_tests(duvc_core_tests)
+# Run only functional tests
+add_custom_target(test_functional
+    COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure --label-regex "functional"
+    DEPENDS camera_workflow_tests
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)

@@ -1,0 +1,35 @@
+# Development dependencies for duvc-ctl Python bindings
+
+# Build system
+scikit-build-core[pyproject]>=0.5.0
+pybind11>=2.10.0
+cmake>=3.16
+ninja
+
+# Testing
+pytest>=6.0
+pytest-cov
+pytest-mock
+
+# Code quality
+black
+isort
+mypy
+flake8
+pre-commit
+
+# Documentation
+sphinx
+sphinx-rtd-theme
+myst-parser
+breathe
+sphinx-autodoc-typehints
+furo
+
+# Release tools
+build
+twine
+bump2version
+
+# Windows-specific tools (for wheel repair)
+delvewheel; sys_platform == "win32"
