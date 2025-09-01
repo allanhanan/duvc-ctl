@@ -89,7 +89,7 @@ build = "cp3{8,9,10,11,12}-win_amd64"
 skip = "pp*"  # Skip PyPy builds
 
 [tool.cibuildwheel.windows]
-before-build = "pip install cmake pybind11[global]"
+before-build = "pip install cmake pybind11[global] delvewheel"
 repair-wheel-command = "python bindings/python/repair_wheel.py {wheel} {dest_dir}"
 
 [tool.black]
