@@ -17,10 +17,6 @@ jobs:
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
 
-    defaults:
-      run:
-        working-directory: bindings/python
-
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,6 +30,7 @@ jobs:
       - name: Set Python version for cibuildwheel
         shell: bash
         run: |
+          cd bindings/python
           PYTHON_VERSION="${{ matrix.python-version }}"
           CIBW_PYTHON="cp${PYTHON_VERSION//./}"
           echo "CIBW_PYTHON=${CIBW_PYTHON}" >> $GITHUB_ENV
@@ -56,16 +53,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-py${{ matrix.python-version }}
-          path: ../wheelhouse/*.whl
+          path: bindings/python/wheelhouse/*.whl
           retention-days: 30
 
   build_sdist:
     name: Build source distribution
     runs-on: windows-2022
-
-    defaults:
-      run:
-        working-directory: bindings/python
 
     steps:
       - uses: actions/checkout@v4
@@ -79,11 +72,14 @@ jobs:
 
       - name: Install build dependencies
         run: |
+          cd bindings/python
           python -m pip install --upgrade pip
           python -m pip install build
 
       - name: Build sdist
-        run: python -m build --sdist
+        run: |
+          cd bindings/python
+          python -m build --sdist
 
       - name: Upload sdist
         uses: actions/upload-artifact@v4
@@ -123,7 +119,6 @@ jobs:
           devices = duvc_ctl.list_devices()
           print(f'Found {len(devices)} devices')
           "
-
 
   upload_testpypi:
     name: Upload to TestPyPI
