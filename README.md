@@ -3,12 +3,10 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey.svg)](README.md)
 [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](src/)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-green.svg)](pyproject.toml)
-![Pepy Total Downloads](https://img.shields.io/pepy/dt/duvc-ctl?style=flat&label=pip%20installs)
+![Pepy Total Downloads](https://img.shields.io/pepy/dt/duvc-ctl?style=flat&label=pip%20installs)  
 
 
-
-
-Windows DirectShow UVC camera control library with C++, Python, and CLI interfaces.
+Windows DirectShow UVC camera control library with C++, Python, and CLI interfaces. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png)](https://www.buymeacoffee.com/allanhanan)
 
 
 ## Table of Contents
