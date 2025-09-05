@@ -6,7 +6,10 @@
 ![Pepy Total Downloads](https://img.shields.io/pepy/dt/duvc-ctl?style=flat&label=pip%20installs)
 
 
-Windows DirectShow UVC camera control library with C++, Python, and CLI interfaces.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" width="150" alt="Buy Me A Coffee">](https://www.buymeacoffee.com/allanhanan)
+Windows DirectShow UVC camera control library with C++, Python, and CLI interfaces
+
+[<img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png" width="150" alt="Buy Me A Coffee">](https://www.buymeacoffee.com/allanhanan)
+
 
 
 ## Table of Contents
