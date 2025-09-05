@@ -458,7 +458,6 @@ PYBIND11_MODULE(_duvc_ctl, m) {
             duvc::PropRange r; bool ok = conn.get_range(p, r); return py::make_tuple(ok, r);
         });
 
-    m.def("clear_connection_cache", &duvc::clear_connection_cache, "Clear the device connection cache");
 #endif
 
     // Top-level functions

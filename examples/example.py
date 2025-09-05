@@ -53,7 +53,6 @@ class CameraController:
         print("4. PTZ Control")
         print("5. Video Properties")
         print("6. Camera Properties")
-        print("7. Clear cache")
         print("0. Exit")
         print("-" * 60)
     
@@ -365,11 +364,6 @@ class CameraController:
         prop_name = input("Enter property name: ").strip()
         self.control_property(domain, prop_name)
     
-    def clear_cache(self):
-        """Clear connection cache"""
-        duvc.clear_connection_cache()
-        print("Connection cache cleared")
-        input("Press Enter to continue...")
     
     def run(self):
         """Main interactive loop"""
@@ -396,8 +390,6 @@ class CameraController:
                     self.video_properties_menu()
                 elif choice == 6:
                     self.camera_properties_menu()
-                elif choice == 7:
-                    self.clear_cache()
                 else:
                     print("Invalid option! Please try again.")
                     input("Press Enter to continue...")

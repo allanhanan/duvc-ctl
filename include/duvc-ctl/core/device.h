@@ -24,8 +24,7 @@ std::vector<Device> list_devices();
  * @return true if device is connected and can be opened
  * 
  * This performs a lightweight check to determine if the device
- * still exists and can be accessed. It may use cached connections
- * if available.
+ * still exists and can be accessed.
  */
 bool is_device_connected(const Device& dev);
 

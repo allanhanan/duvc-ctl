@@ -208,7 +208,7 @@ __all__ = [
     "list_devices", "is_device_connected",
     "get_camera_property_direct", "get_camera_property_range_direct",
     "get_device_capabilities", "get_device_capabilities_by_index",
-    "open_camera", "clear_connection_cache",
+    "open_camera",
     "read_vendor_property", "write_vendor_property",
     "register_device_change_callback", "unregister_device_change_callback",
 

@@ -32,7 +32,7 @@ bool Camera::is_valid() const {
 
 DeviceConnection* Camera::get_connection() const {
     if (!connection_) {
-        connection_ = std::unique_ptr<DeviceConnection>(get_cached_connection(device_));
+        connection_ = std::make_unique<DeviceConnection>(device_);
     }
     return connection_.get();
 }

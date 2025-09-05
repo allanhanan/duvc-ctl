@@ -63,12 +63,4 @@ bool get(const Device& dev, VidProp prop, PropSetting& val);
  */
 bool set(const Device& dev, VidProp prop, const PropSetting& val);
 
-/**
- * @brief Clear all cached device connections
- * 
- * Forces all future operations to create fresh connections.
- * Useful for cleanup or handling device disconnection.
- */
-void clear_connection_cache();
-
 } // namespace duvc

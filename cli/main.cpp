@@ -54,7 +54,6 @@ static void print_usage() {
                << L"  duvc-cli range <index> <domain> <prop>\n"
                << L"  duvc-cli monitor [seconds]  (monitor device changes)\n"
                << L"  duvc-cli status <index>     (check device connection)\n"
-               << L"  duvc-cli clear-cache        (clear connection cache)\n"
 #ifdef _WIN32
                << L"  duvc-cli vendor <index> <property_set_guid> <property_id> [get|set|query] [data_hex]\n"
 #endif
@@ -223,11 +222,6 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    if (_wcsicmp(cmd.c_str(), L"clear-cache") == 0) {
-        duvc::clear_connection_cache();
-        std::wcout << L"Connection cache cleared.\n";
-        return 0;
-    }
 
 #ifdef _WIN32
     if (_wcsicmp(cmd.c_str(), L"vendor") == 0) {

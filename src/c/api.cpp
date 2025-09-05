@@ -647,13 +647,11 @@ duvc_result_t duvc_get_camera_property(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
-        
         duvc::PropSetting cpp_setting;
         if (conn->get(convert_cam_prop(prop), cpp_setting)) {
             *setting = convert_prop_setting_to_c(cpp_setting);
@@ -679,10 +677,9 @@ duvc_result_t duvc_set_camera_property(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -710,13 +707,13 @@ duvc_result_t duvc_get_camera_property_range(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        // Create new device connection
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
-        
+                
         duvc::PropRange cpp_range;
         if (conn->get_range(convert_cam_prop(prop), cpp_range)) {
             *range = convert_prop_range_to_c(cpp_range);
@@ -743,10 +740,9 @@ duvc_result_t duvc_get_multiple_camera_properties(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -780,10 +776,9 @@ duvc_result_t duvc_set_multiple_camera_properties(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -914,10 +909,9 @@ duvc_result_t duvc_get_video_property(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -946,10 +940,9 @@ duvc_result_t duvc_set_video_property(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -977,10 +970,9 @@ duvc_result_t duvc_get_video_property_range(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -1010,10 +1002,9 @@ duvc_result_t duvc_get_multiple_video_properties(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -1047,10 +1038,9 @@ duvc_result_t duvc_set_multiple_video_properties(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection for efficiency
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
-            g_last_error_details = "Failed to get device connection";
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
+            g_last_error_details = "Failed to create device connection";
             return DUVC_ERROR_CONNECTION_FAILED;
         }
         
@@ -1632,9 +1622,9 @@ duvc_result_t duvc_is_camera_property_supported(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection to test property support
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
+        // Create direct device connection
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
             *supported = 0;
             return DUVC_SUCCESS;
         }
@@ -1660,9 +1650,9 @@ duvc_result_t duvc_is_video_property_supported(const duvc_device_t* device,
     try {
         const duvc::Device* cpp_device = reinterpret_cast<const duvc::Device*>(device);
         
-        // Use cached connection to test property support
-        duvc::DeviceConnection* conn = duvc::get_cached_connection(*cpp_device);
-        if (!conn) {
+        // Create direct device connection
+        auto conn = std::make_unique<duvc::DeviceConnection>(*cpp_device);
+        if (!conn || !conn->is_valid()) {
             *supported = 0;
             return DUVC_SUCCESS;
         }

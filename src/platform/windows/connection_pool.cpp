@@ -67,11 +67,7 @@
 
 namespace duvc {
 
-using namespace detail;
-
-// Connection cache globals
-static std::mutex g_cache_mutex;
-static std::unordered_map<std::wstring, std::unique_ptr<DeviceConnection>> g_connection_cache;
+using namespace detail; 
 
 // Forward declarations for DirectShow enumeration
 extern com_ptr<ICreateDevEnum> create_dev_enum();
@@ -310,36 +306,6 @@ bool DeviceConnection::get_range(VidProp prop, PropRange& range) {
     range.default_val = static_cast<int>(def);
     range.default_mode = from_flag(flags, false);
     return true;
-}
-
-// Connection pool management
-DeviceConnection* get_cached_connection(const Device& dev) {
-    std::lock_guard<std::mutex> lock(g_cache_mutex);
-    std::wstring key = dev.path.empty() ? dev.name : dev.path;
-    
-    auto it = g_connection_cache.find(key);
-    if (it != g_connection_cache.end() && it->second->is_valid()) {
-        return it->second.get();
-    }
-    
-    // Create new connection
-    auto conn = std::make_unique<DeviceConnection>(dev);
-    if (!conn->is_valid()) return nullptr;
-    
-    DeviceConnection* result = conn.get();
-    g_connection_cache[key] = std::move(conn);
-    return result;
-}
-
-void release_cached_connection(const Device& dev) {
-    std::lock_guard<std::mutex> lock(g_cache_mutex);
-    std::wstring key = dev.path.empty() ? dev.name : dev.path;
-    g_connection_cache.erase(key);
-}
-
-void clear_connection_cache_impl() {
-    std::lock_guard<std::mutex> lock(g_cache_mutex);
-    g_connection_cache.clear();
 }
 
 } // namespace duvc

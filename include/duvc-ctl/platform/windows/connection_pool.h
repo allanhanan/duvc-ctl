@@ -107,25 +107,6 @@ private:
     void* vid_proc_;
 };
 
-/**
- * @brief Get cached connection for device (internal use)
- * @param dev Device to get connection for
- * @return Pointer to cached connection or nullptr if unavailable
- * 
- * @internal This function is used internally by the core operations.
- * Users should not call this directly.
- */
-DeviceConnection* get_cached_connection(const Device& dev);
-
-/**
- * @brief Release cached connection for device (internal use)
- * @param dev Device to release connection for
- * 
- * @internal This function is used internally for cleanup.
- * Users should not call this directly.
- */
-void release_cached_connection(const Device& dev);
-
 } // namespace duvc
 
 #endif // _WIN32

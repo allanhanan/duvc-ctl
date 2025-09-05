@@ -10,8 +10,8 @@ namespace duvc {
 
 bool get_range(const Device& dev, CamProp prop, PropRange& range) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->get_range(prop, range) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.get_range(prop, range) : false;
 #else
     (void)dev; (void)prop; (void)range;
     return false;
@@ -20,8 +20,8 @@ bool get_range(const Device& dev, CamProp prop, PropRange& range) {
 
 bool get(const Device& dev, CamProp prop, PropSetting& val) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->get(prop, val) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.get(prop, val) : false;
 #else
     (void)dev; (void)prop; (void)val;
     return false;
@@ -30,8 +30,8 @@ bool get(const Device& dev, CamProp prop, PropSetting& val) {
 
 bool set(const Device& dev, CamProp prop, const PropSetting& val) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->set(prop, val) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.set(prop, val) : false;
 #else
     (void)dev; (void)prop; (void)val;
     return false;
@@ -40,8 +40,8 @@ bool set(const Device& dev, CamProp prop, const PropSetting& val) {
 
 bool get_range(const Device& dev, VidProp prop, PropRange& range) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->get_range(prop, range) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.get_range(prop, range) : false;
 #else
     (void)dev; (void)prop; (void)range;
     return false;
@@ -50,8 +50,8 @@ bool get_range(const Device& dev, VidProp prop, PropRange& range) {
 
 bool get(const Device& dev, VidProp prop, PropSetting& val) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->get(prop, val) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.get(prop, val) : false;
 #else
     (void)dev; (void)prop; (void)val;
     return false;
@@ -60,19 +60,11 @@ bool get(const Device& dev, VidProp prop, PropSetting& val) {
 
 bool set(const Device& dev, VidProp prop, const PropSetting& val) {
 #ifdef _WIN32
-    auto* conn = get_cached_connection(dev);
-    return conn ? conn->set(prop, val) : false;
+    DeviceConnection conn(dev);
+    return conn.is_valid() ? conn.set(prop, val) : false;
 #else
     (void)dev; (void)prop; (void)val;
     return false;
-#endif
-}
-
-void clear_connection_cache() {
-#ifdef _WIN32
-    // Implemented in connection_pool.cpp
-    extern void clear_connection_cache_impl();
-    clear_connection_cache_impl();
 #endif
 }
 

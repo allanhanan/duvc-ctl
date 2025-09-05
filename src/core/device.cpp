@@ -135,12 +135,10 @@ bool is_device_connected(const Device& dev) {
             if (is_same_device(dev, fname, dpath)) {
                 // Found in enumeration - now try lightweight access test
                 try {
-                    // Try to create a cached connection (uses existing connection if available)
-                    auto* conn = get_cached_connection(dev);
-                    return conn != nullptr && conn->is_valid();
+                    DeviceConnection conn(dev);
+                    return conn.is_valid();
                 } catch (...) {
-                    // If cached connection fails, device exists but might be busy
-                    // Since it's enumerated, consider it "connected" but potentially busy
+                    // If connection fails, device exists but might be busy
                     return true;
                 }
             }
