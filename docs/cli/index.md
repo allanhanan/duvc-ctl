@@ -22,7 +22,6 @@ The duvc-cli is a command-line interface for the duvc-ctl library that provides 
 - **Property Control**: Get, set, and query ranges for camera and video processing properties
 - **Real-time Monitoring**: Watch for device connect/disconnect events
 - **Vendor Extensions**: Access vendor-specific properties via IKsPropertySet
-- **Connection Management**: Cache control for performance optimization
 - **Cross-platform**: Works with MSVC and MinGW compilers
 
 
@@ -96,7 +95,6 @@ duvc-cli <command> [arguments...]
 | `range` | Get property constraints | `duvc-cli range 0 cam Exposure` |
 | `monitor` | Monitor device changes | `duvc-cli monitor 30` |
 | `status` | Check device connection | `duvc-cli status 0` |
-| `clear-cache` | Clear connection cache | `duvc-cli clear-cache` |
 | `vendor` | Vendor property access | `duvc-cli vendor 0 {GUID} 1 get` |
 
 ### Device Listing
@@ -221,23 +219,6 @@ duvc-cli monitor 60
 # [DEVICE ADDED] \\?\usb#vid_046d&pid_082d&mi_00#7&...
 # [DEVICE REMOVED] \\?\usb#vid_046d&pid_082d&mi_00#7&...
 ```
-
-
-#### clear-cache
-
-```
-duvc-cli clear-cache
-```
-
-**Purpose**: Clear internal connection cache (useful after device reconnection)
-
-**Example**:
-
-```bash
-duvc-cli clear-cache
-# Output: Connection cache cleared.
-```
-
 
 ### Vendor Properties (Windows Only)
 
@@ -485,7 +466,6 @@ duvc-cli list
 - Check if camera is connected and recognized by Windows Device Manager
 - Ensure camera is not being used by another application
 - Try running as Administrator
-- Clear connection cache: `duvc-cli clear-cache`
 
 
 #### 2. Property Not Supported
@@ -526,7 +506,6 @@ duvc-cli status 0
 **Solutions**:
 
 - Reconnect the USB cable
-- Clear connection cache: `duvc-cli clear-cache`
 - Check for driver issues in Device Manager
 - Try different USB port
 
@@ -558,10 +537,8 @@ duvc-cli get 0 vid Brightness          # Test property reading
 
 ### Performance Tips
 
-1. **Use Connection Caching**: Multiple operations on the same device automatically benefit from connection caching
-2. **Clear Cache When Needed**: After device reconnection, use `duvc-cli clear-cache`
-3. **Batch Operations**: Group multiple property changes to minimize overhead
-4. **Check Ranges First**: Use `range` command before setting values to avoid errors
+1. **Batch Operations**: Group multiple property changes to minimize overhead
+2. **Check Ranges First**: Use `range` command before setting values to avoid errors
 
 ### Platform-Specific Notes
 

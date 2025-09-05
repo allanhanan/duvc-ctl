@@ -39,7 +39,6 @@ A comprehensive guide to using the `duvc-ctl` Python library for controlling USB
 - **Windows-Native**: Uses DirectShow APIs for optimal performance and compatibility
 - **No Dependencies**: Self-contained with embedded C++ extension
 - **Type Safe**: Full type hints support with `py.typed` marker
-- **Thread Safe**: Connection pooling and caching for concurrent access
 - **Vendor Support**: Extensible GUID-based vendor property system
 
 
@@ -340,9 +339,6 @@ def get_device_info(device: Device) -> dict[str, Any]:
 
 def reset_device_to_defaults(device: Device) -> dict[str, bool]:
     """Reset all supported properties to factory defaults"""
-
-def clear_connection_cache() -> None:
-    """Clear internal device connection cache"""
 
 def open_camera(index: int) -> Camera:
     """Open camera by index (throws exception on error)"""
@@ -1193,12 +1189,6 @@ def test_directshow_access():
 
 
 ### Performance Optimization
-
-**Connection Caching:**
-
-- Use `Camera` objects for multiple operations
-- Call `clear_connection_cache()` if memory usage grows
-- Prefer single camera instance over repeated device access
 
 **Error Handling:**
 

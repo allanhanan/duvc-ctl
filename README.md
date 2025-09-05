@@ -40,7 +40,6 @@ duvc-ctl provides direct control over DirectShow API for UVC cameras on Windows.
 - Camera properties (exposure, focus, iris)
 - Video properties (brightness, contrast, white balance)
 - Device monitoring with hotplug detection
-- Connection pooling for performance
 - C++17, Python, and CLI interfaces
 
 **Supported Camera Operations:**
@@ -511,16 +510,6 @@ The library integrates deeply with DirectShow APIs:
 
 ### Connection Management
 
-**Connection Pooling**: Automatic caching of DirectShow connections reduces overhead:
-
-```cpp
-// First access - creates connection (~50ms)
-auto connection1 = platform->create_connection(device);
-
-// Subsequent access - uses cached connection (~1ms)  
-auto connection2 = platform->create_connection(device);
-```
-
 **Thread Safety**:
 
 - Device enumeration is fully thread-safe
@@ -703,12 +692,12 @@ ctest --config Release --label-regex "functional"
 
 ### Benchmarks
 
-| Operation | Cold Start | Cached | Notes |
+| Operation | Cold Start | Notes |
 | :-- | :-- | :-- | :-- |
-| **Device Enumeration** | 50-200ms | 50-200ms | DirectShow limitation |
-| **Property Get/Set** | 10-50ms | 1-5ms | Connection pooling benefit |
-| **Connection Creation** | 30-100ms | <1ms | 95%+ cache hit rate |
-| **Property Range Query** | 5-20ms | <1ms | Cached after first query |
+| **Device Enumeration** | 50-200ms | DirectShow limitation |
+| **Property Get/Set** | 10-50ms | Created new connection for each query |
+| **Connection Creation** | 30-100ms | No connection cache |
+| **Property Range Query** | 5-20ms | Created new connection for each query |
 
 ### Threading Performance
 

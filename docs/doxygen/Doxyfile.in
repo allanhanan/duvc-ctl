@@ -1,4 +1,4 @@
-# Doxyfile for duvc-ctl
+# Doxyfile.in for duvc-ctl (CMake Template)
 # Modern configuration with SVG diagrams and clean output
 
 #---------------------------------------------------------------------------
@@ -6,12 +6,12 @@
 #---------------------------------------------------------------------------
 
 DOXYFILE_ENCODING      = UTF-8
-PROJECT_NAME           = "duvc-ctl"
-PROJECT_NUMBER         = "2.0.0"
+PROJECT_NAME           = "@PROJECT_NAME@"
+PROJECT_NUMBER         = "@PROJECT_VERSION@"
 PROJECT_BRIEF          = "USB Video Class Camera Control Library"
 PROJECT_LOGO           = 
 
-OUTPUT_DIRECTORY       = ../build/doxygen
+OUTPUT_DIRECTORY       = "@PROJECT_BINARY_DIR@/docs/doxygen"
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 
@@ -33,9 +33,9 @@ ABBREVIATE_BRIEF       = "The $name class" \
 ALWAYS_DETAILED_SEC    = NO
 INLINE_INHERITED_MEMB  = NO
 FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = ../../include/duvc-ctl \
-                         ../../src
-STRIP_FROM_INC_PATH    = ../../include
+STRIP_FROM_PATH        = "@PROJECT_SOURCE_DIR@/include/duvc-ctl" \
+                         "@PROJECT_SOURCE_DIR@/src"
+STRIP_FROM_INC_PATH    = "@PROJECT_SOURCE_DIR@/include"
 SHORT_NAMES            = NO
 JAVADOC_AUTOBRIEF      = YES
 JAVADOC_BANNER         = NO
@@ -126,7 +126,7 @@ CITE_BIB_FILES         =
 # Configuration options related to warning and progress messages
 #---------------------------------------------------------------------------
 
-QUIET                  = NO
+QUIET                  = YES
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
@@ -139,8 +139,8 @@ WARN_LOGFILE           =
 # Configuration options related to the input files
 #---------------------------------------------------------------------------
 
-INPUT                  = ../../include/duvc-ctl \
-                         ../../src
+INPUT                  = "@PROJECT_SOURCE_DIR@/include/duvc-ctl" \
+                         "@PROJECT_SOURCE_DIR@/src"
 
 INPUT_ENCODING         = UTF-8
 
@@ -153,13 +153,11 @@ FILE_PATTERNS          = *.h \
 
 RECURSIVE              = YES
 
-EXCLUDE                = ../../include/duvc-ctl/legacy \
-                         ../../include/duvc-ctl/detail \
-                         ../../src/legacy \
-                         ../../src/detail
-
+EXCLUDE                = "@PROJECT_SOURCE_DIR@/include/duvc-ctl/legacy" \
+                         "@PROJECT_SOURCE_DIR@/include/duvc-ctl/detail" \
+                         "@PROJECT_SOURCE_DIR@/src/legacy" \
+                         "@PROJECT_SOURCE_DIR@/src/detail"
 EXCLUDE_SYMLINKS       = NO
-
 EXCLUDE_PATTERNS       = *_internal.h \
                          *_impl.h \
                          */build/* \
@@ -168,7 +166,7 @@ EXCLUDE_PATTERNS       = *_internal.h \
 
 EXCLUDE_SYMBOLS        = 
 
-EXAMPLE_PATH           = ../../examples
+EXAMPLE_PATH           = "@PROJECT_SOURCE_DIR@/examples" "@PROJECT_SOURCE_DIR@/examples/cpp"
 EXAMPLE_PATTERNS       = *.cpp \
                          *.c \
                          *.py
@@ -206,7 +204,6 @@ CLANG_DATABASE_PATH    =
 #---------------------------------------------------------------------------
 
 ALPHABETICAL_INDEX     = YES
-COLS_IN_ALPHA_INDEX    = 5
 IGNORE_PREFIX          = 
 
 #---------------------------------------------------------------------------
@@ -219,15 +216,10 @@ HTML_FILE_EXTENSION    = .html
 
 HTML_HEADER            = 
 HTML_FOOTER            = 
-HTML_STYLESHEET        = 
-HTML_EXTRA_STYLESHEET  = custom.css
+HTML_EXTRA_STYLESHEET  = @DOXYGEN_SOURCE_DIR@/custom.css
 HTML_EXTRA_FILES       = 
 
-HTML_COLORSTYLE_HUE    = 210
-HTML_COLORSTYLE_SAT    = 255
-HTML_COLORSTYLE_GAMMA  = 130
-
-HTML_TIMESTAMP         = NO
+HTML_COLORSTYLE        = LIGHT
 HTML_DYNAMIC_MENUS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
 HTML_INDEX_NUM_ENTRIES = 100
@@ -265,7 +257,6 @@ TREEVIEW_WIDTH         = 250
 EXT_LINKS_IN_WINDOW    = NO
 
 FORMULA_FONTSIZE       = 10
-FORMULA_TRANSPARENT    = YES
 FORMULA_MACROFILE      = 
 
 USE_MATHJAX            = NO
@@ -335,12 +326,13 @@ ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
 EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
-INCLUDE_PATH           = ../../include
+INCLUDE_PATH           = "@PROJECT_SOURCE_DIR@/include"
 INCLUDE_FILE_PATTERNS  = 
 
 PREDEFINED             = _WIN32 \
                          DUVC_API= \
                          DUVC_EXPORT= \
+                         __declspec(dllexport)= \
                          "DUVC_DEPRECATED(msg)=" \
                          DOXYGEN_SHOULD_SKIP_THIS
 
@@ -361,12 +353,9 @@ EXTERNAL_PAGES         = YES
 # Configuration options related to the dot tool
 #---------------------------------------------------------------------------
 
-CLASS_DIAGRAMS         = YES
 HIDE_UNDOC_RELATIONS   = YES
 HAVE_DOT               = YES
 DOT_NUM_THREADS        = 0
-DOT_FONTNAME           = Helvetica
-DOT_FONTSIZE           = 10
 DOT_FONTPATH           = 
 
 CLASS_GRAPH            = YES
@@ -395,7 +384,6 @@ PLANTUML_INCLUDE_PATH  =
 
 DOT_GRAPH_MAX_NODES    = 50
 MAX_DOT_GRAPH_DEPTH    = 0
-DOT_TRANSPARENT        = NO
 DOT_MULTI_TARGETS      = NO
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
