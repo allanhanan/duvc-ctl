@@ -4,24 +4,11 @@
  * @file duvc.hpp
  * @brief Main umbrella header for duvc-ctl library
  * 
- * This header provides everything users need for the duvc-ctl library.
+ * This header provides both the full-featured RAII API (Camera, Result<T>)
+ * and a simplified quick API for common use cases (device enumeration,
+ * property get/set, capability snapshots).
+ * 
  * Include this single header to access all functionality.
- * 
- * @example Basic usage:
- * ```
- * #include <duvc-ctl/duvc.hpp>
- * 
- * int main() {
- *     auto devices = duvc::list_devices();
- *     if (!devices.empty()) {
- *         auto camera = duvc::open_camera(0);
- *         if (camera) {
- *             auto result = camera.value().get(duvc::VidProp::Brightness);
- *             // ...
- *         }
- *     }
- * }
- * ```
  */
 
 // Core functionality
@@ -30,7 +17,6 @@
 #include <duvc-ctl/core/camera.h>
 #include <duvc-ctl/core/result.h>
 #include <duvc-ctl/core/capability.h>
-#include <duvc-ctl/core/operations.h>
 
 // Utility functions
 #include <duvc-ctl/utils/string_conversion.h>
@@ -46,42 +32,132 @@
 #include <duvc-ctl/vendor/logitech.h>
 #endif
 
-/**
- * @namespace duvc
- * @brief Main namespace for duvc-ctl library
- * 
- * All duvc-ctl functionality is contained within this namespace.
- * The library provides camera control functionality across different platforms,
- * with primary support for Windows DirectShow devices.
- */
+namespace duvc {
 
 /**
  * @defgroup core Core Functionality
- * @brief Core camera control functionality
- * 
- * This group contains the main API for device enumeration, camera control,
- * and property management.
+ * @brief Device enumeration, camera control, and property management.
+ * @{
  */
+using ::duvc::list_devices;         ///< Enumerate all connected devices
+using ::duvc::is_device_connected;  ///< Check if a device is still connected
+/// @}
+
+/**
+ * @defgroup quickapi Quick API
+ * @brief Simplified one-call camera control functions.
+ * 
+ * These wrappers provide easy access for CLI tools and casual use cases.
+ * They internally use the Camera RAII API but expose a simple `bool` interface.
+ * For detailed error handling, use the full Camera API.
+ * @{
+ */
+
+/**
+ * @brief Get a camera control property value.
+ * @param dev Device to query
+ * @param prop Camera property
+ * @param out Output property setting
+ * @return true if successful
+ */
+inline bool get(const Device& dev, CamProp prop, PropSetting& out) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    auto res = cam.get(prop);
+    if (!res.is_ok()) return false;
+    out = res.value();
+    return true;
+}
+
+/**
+ * @brief Set a camera control property value.
+ * @param dev Device to modify
+ * @param prop Camera property
+ * @param in New property setting
+ * @return true if successful
+ */
+inline bool set(const Device& dev, CamProp prop, const PropSetting& in) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    return cam.set(prop, in).is_ok();
+}
+
+/**
+ * @brief Get the valid range for a camera control property.
+ * @param dev Device to query
+ * @param prop Camera property
+ * @param out Output property range
+ * @return true if successful
+ */
+inline bool get_range(const Device& dev, CamProp prop, PropRange& out) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    auto res = cam.get_range(prop);
+    if (!res.is_ok()) return false;
+    out = res.value();
+    return true;
+}
+
+/**
+ * @brief Get a video processing property value.
+ * @param dev Device to query
+ * @param prop Video property
+ * @param out Output property setting
+ * @return true if successful
+ */
+inline bool get(const Device& dev, VidProp prop, PropSetting& out) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    auto res = cam.get(prop);
+    if (!res.is_ok()) return false;
+    out = res.value();
+    return true;
+}
+
+/**
+ * @brief Set a video processing property value.
+ * @param dev Device to modify
+ * @param prop Video property
+ * @param in New property setting
+ * @return true if successful
+ */
+inline bool set(const Device& dev, VidProp prop, const PropSetting& in) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    return cam.set(prop, in).is_ok();
+}
+
+/**
+ * @brief Get the valid range for a video processing property.
+ * @param dev Device to query
+ * @param prop Video property
+ * @param out Output property range
+ * @return true if successful
+ */
+inline bool get_range(const Device& dev, VidProp prop, PropRange& out) {
+    Camera cam(dev);
+    if (!cam.is_valid()) return false;
+    auto res = cam.get_range(prop);
+    if (!res.is_ok()) return false;
+    out = res.value();
+    return true;
+}
+/// @}
+
+/**
+ * @defgroup capabilities Capability Snapshots
+ * @brief Functions for capturing supported property sets.
+ * @{
+ */
+using ::duvc::get_device_capabilities; ///< Create a snapshot of device capabilities
+/// @}
 
 /**
  * @defgroup utils Utilities
- * @brief Utility functions and helpers
- * 
- * This group contains logging, error handling, and string conversion utilities.
+ * @brief String conversions and diagnostic helpers.
+ * @{
  */
+using ::duvc::to_wstring; ///< Convert properties and modes to wide strings
+/// @}
 
-/**
- * @defgroup platform Platform Support
- * @brief Platform-specific functionality
- * 
- * This group contains platform abstraction layers and platform-specific
- * implementations.
- */
-
-/**
- * @defgroup vendor Vendor Extensions
- * @brief Vendor-specific property support
- * 
- * This group contains vendor-specific property definitions and helpers
- * for accessing advanced device features.
- */
+} // namespace duvc
