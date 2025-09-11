@@ -6,6 +6,7 @@
  */
 
 #include <duvc-ctl/core/types.h>
+#include <string>
 
 namespace duvc {
 
@@ -50,5 +51,10 @@ const wchar_t* to_wstring(VidProp prop);
  * @return Mode name as wide C string (L"AUTO" or L"MANUAL")
  */
 const wchar_t* to_wstring(CamMode mode);
+
+/**
+ * @brief Converts a wide string (UTF-16 on Windows) to a UTF-8 string.
+ */
+std::string to_utf8(const std::wstring& wstr);
 
 } // namespace duvc
