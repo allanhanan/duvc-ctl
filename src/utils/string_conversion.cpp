@@ -4,6 +4,9 @@
  */
 
 #include <duvc-ctl/utils/string_conversion.h>
+#include <string>
+#include <stdexcept>
+#include <windows.h>
 
 namespace duvc {
 
@@ -104,5 +107,19 @@ const wchar_t* to_wstring(VidProp p) {
 const wchar_t* to_wstring(CamMode m) {
     return (m == CamMode::Auto) ? L"AUTO" : L"MANUAL";
 }
+
+std::string to_utf8(const std::wstring& wstr) {
+    if (wstr.empty()) {
+        return std::string();
+    }
+    int size_needed = WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+    if (size_needed == 0) {
+        throw std::runtime_error("WideCharToMultiByte failed.");
+    }
+    std::string str_to(size_needed, 0);
+    WideCharToMultiByte(CP_UTF8, 0, &wstr[0], (int)wstr.size(), &str_to[0], size_needed, NULL, NULL);
+    return str_to;
+}
+
 
 } // namespace duvc

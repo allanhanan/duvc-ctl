@@ -120,7 +120,7 @@ duvc_result_t duvc_set_error_context(const char* operation, const char* device_i
     try {
         set_error_context(operation, device_info);
         return DUVC_SUCCESS;
-    } catch (const std::exception& e) {
+    } catch (const std::exception&) {
         return DUVC_ERROR_SYSTEM_ERROR;
     }
 }
@@ -155,7 +155,7 @@ duvc_result_t duvc_get_error_statistics(char* buffer, size_t buffer_size, size_t
                 
                 for (const auto& pair : g_error_counts) {
                     double percentage = total_errs > 0 ? (double)pair.second / total_errs * 100.0 : 0.0;
-                    stats << duvc_get_error_string(pair.first) 
+                    stats << duvc_error_code_to_string(pair.first) 
                           << ": " << pair.second 
                           << " (" << std::fixed << std::setprecision(1) << percentage << "%)\n";
                 }
@@ -208,7 +208,7 @@ duvc_result_t duvc_suggest_error_resolution(duvc_result_t error_code,
     try {
         std::ostringstream suggestions;
         
-        suggestions << "Resolution suggestions for: " << duvc_get_error_string(error_code) << "\n\n";
+        suggestions << "Resolution suggestions for: " << duvc_error_code_to_string(error_code) << "\n\n";
         
         switch (error_code) {
             case DUVC_ERROR_DEVICE_NOT_FOUND:
