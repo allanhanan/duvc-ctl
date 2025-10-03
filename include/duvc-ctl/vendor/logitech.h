@@ -15,9 +15,12 @@ namespace duvc::logitech {
 
 /**
  * @brief Logitech vendor-specific property set GUID
+ * 
+ * Defined as inline constexpr for consistency and to avoid linker issues.
  */
-extern const GUID LOGITECH_PROPERTY_SET;
-
+inline constexpr GUID LOGITECH_PROPERTY_SET = {
+    0x82066163, 0x7BD0, 0x43EF, {0x8A, 0x6F, 0x5B, 0x89, 0x05, 0xC9, 0xA6, 0x4C}
+};
 /**
  * @brief Logitech vendor property IDs
  */

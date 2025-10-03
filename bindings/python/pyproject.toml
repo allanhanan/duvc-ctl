@@ -7,7 +7,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "duvc-ctl"
-version = "2.0.0"
+version = "2.0.0-rc3"
 authors = [
     { name = "allanhanan", email = "allan.hanan04@gmail.com" }
 ]
@@ -90,7 +90,7 @@ skip = "pp*"  # Skip PyPy builds
 
 [tool.cibuildwheel.windows]
 before-build = "pip install cmake pybind11[global] delvewheel"
-repair-wheel-command = "python bindings/python/repair_wheel.py {wheel} {dest_dir}"
+repair-wheel-command = "python repair_wheel.py {wheel} {dest_dir}"
 
 [tool.black]
 line-length = 88
