@@ -7,7 +7,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "duvc-ctl"
-version = "2.0.0-rc3"
+version = "2.0.0-rc4"
 authors = [
     { name = "allanhanan", email = "allan.hanan04@gmail.com" }
 ]
