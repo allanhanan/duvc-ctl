@@ -767,6 +767,7 @@ PYBIND11_MODULE(_duvc_ctl, m) {
             return std::make_shared<Camera>(device_index);
         }), py::arg("device_index"), "Create camera handle by device index")
         .def("is_valid", &Camera::is_valid, "Check if camera is valid and connected")
+        .def("is_ok", &Camera::is_valid, "Alias for is_valid() - check if camera is valid and connected")
         .def("device", &Camera::device, py::return_value_policy::reference_internal, "Get the underlying device information")
         // Camera property operations
         .def("get", py::overload_cast<CamProp>(&Camera::get), py::arg("prop"),
@@ -934,7 +935,6 @@ PYBIND11_MODULE(_duvc_ctl, m) {
         }, py::arg("property_set"), py::arg("property_id"), py::arg("value"), "Set property from boolean");
 #endif
 
-    // [Continue with all the remaining function bindings exactly as before...]
     // =========================================================================
     // Core Functions (All Must Be Bound)
     // =========================================================================
