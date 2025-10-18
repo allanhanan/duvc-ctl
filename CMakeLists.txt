@@ -414,6 +414,150 @@ if(DUVC_BUILD_PYTHON AND DUVC_DEFAULT_CORE_TARGET)
     list(APPEND DUVC_CORE_TARGETS _duvc_ctl)
 endif()
 
+# ============================================================================
+# Documentation Building
+# ============================================================================
+option(DUVC_BUILD_DOCS "Build documentation with Sphinx and Doxygen" OFF)
+
+if(DUVC_BUILD_DOCS)
+    find_package(Python COMPONENTS Interpreter REQUIRED)
+    
+    # Find Doxygen
+    find_package(Doxygen REQUIRED dot)
+    if(NOT DOXYGEN_FOUND)
+        message(FATAL_ERROR "Doxygen is required to build documentation")
+    endif()
+    
+    # Verify Sphinx is available
+    execute_process(
+        COMMAND ${Python_EXECUTABLE} -m sphinx --version
+        OUTPUT_QUIET
+        ERROR_QUIET
+        RESULT_VARIABLE SPHINX_CHECK_RESULT
+    )
+    
+    if(NOT SPHINX_CHECK_RESULT EQUAL 0)
+        message(FATAL_ERROR "Sphinx is required to build documentation. Install with: pip install -r docs/sphinx/requirements.txt")
+    endif()
+    
+    # Documentation directories
+    set(DOCS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/docs")
+    set(DOCS_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/docs")
+    set(SPHINX_SOURCE_DIR "${DOCS_DIR}/sphinx")
+    set(SPHINX_BUILD_DIR "${DOCS_BUILD_DIR}/sphinx")
+    set(DOXYGEN_SOURCE_DIR "${DOCS_DIR}/doxygen")
+    set(DOXYGEN_BUILD_DIR "${DOCS_BUILD_DIR}/doxygen")
+    
+    # Configure Doxygen
+    set(DOXYGEN_INPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+    set(DOXYGEN_OUTPUT_DIR "${DOXYGEN_BUILD_DIR}")
+    set(DOXYGEN_INDEX_FILE "${DOXYGEN_BUILD_DIR}/html/index.html")
+    
+    configure_file(
+        "${DOXYGEN_SOURCE_DIR}/Doxyfile.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile"
+        @ONLY
+    )
+    
+    # Doxygen target
+    add_custom_command(
+        OUTPUT ${DOXYGEN_INDEX_FILE}
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${DOXYGEN_BUILD_DIR}
+        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        MAIN_DEPENDENCY ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        COMMENT "Generating C++ API documentation with Doxygen"
+        VERBATIM
+    )
+    
+    add_custom_target(doxygen ALL DEPENDS ${DOXYGEN_INDEX_FILE})
+    
+    # Sphinx target
+    set(SPHINX_INDEX_FILE "${SPHINX_BUILD_DIR}/index.html")
+    
+    add_custom_command(
+        OUTPUT ${SPHINX_INDEX_FILE}
+        DEPENDS 
+            ${SPHINX_SOURCE_DIR}/conf.py
+            ${SPHINX_SOURCE_DIR}/index.rst
+            ${SPHINX_SOURCE_DIR}/requirements.txt
+            doxygen
+        COMMAND ${CMAKE_COMMAND} -E make_directory ${SPHINX_BUILD_DIR}
+        COMMAND ${Python_EXECUTABLE} -m pip install -q -r ${SPHINX_SOURCE_DIR}/requirements.txt
+        COMMAND ${Python_EXECUTABLE} -m sphinx 
+            -b html
+            -D breathe_projects.duvc-ctl=${DOXYGEN_BUILD_DIR}/xml
+            -d ${SPHINX_BUILD_DIR}/.doctrees
+            ${SPHINX_SOURCE_DIR}
+            ${SPHINX_BUILD_DIR}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Building HTML documentation with Sphinx"
+        VERBATIM
+    )
+    
+    add_custom_target(sphinx ALL DEPENDS ${SPHINX_INDEX_FILE})
+    add_dependencies(sphinx doxygen)
+    
+    # Combined docs target
+    add_custom_target(docs
+        DEPENDS sphinx doxygen
+        COMMENT "Building complete documentation"
+    )
+    
+    # Clean docs target
+    add_custom_target(docs-clean
+        COMMAND ${CMAKE_COMMAND} -E remove_directory ${DOCS_BUILD_DIR}
+        COMMENT "Cleaning documentation build directory"
+    )
+    
+    # Live reload development server
+    find_program(SPHINX_AUTOBUILD_EXECUTABLE sphinx-autobuild)
+    if(SPHINX_AUTOBUILD_EXECUTABLE)
+        add_custom_target(docs-serve
+            DEPENDS doxygen
+            COMMAND ${SPHINX_AUTOBUILD_EXECUTABLE}
+                --watch ${CMAKE_CURRENT_SOURCE_DIR}/include
+                --ignore "*.tmp"
+                --ignore "*/.git/*"
+                -b html
+                -D breathe_projects.duvc-ctl=${DOXYGEN_BUILD_DIR}/xml
+                ${SPHINX_SOURCE_DIR}
+                ${SPHINX_BUILD_DIR}
+            COMMENT "Starting live documentation server at http://localhost:8000"
+            USES_TERMINAL
+        )
+    endif()
+    
+    # Python docs build script integration
+    add_custom_target(docs-build-script
+        COMMAND ${Python_EXECUTABLE} ${DOCS_DIR}/build.py
+            --build-dir ${DOCS_BUILD_DIR}
+            --source-dir ${DOCS_DIR}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Building documentation using Python build script"
+    )
+    
+    # Install documentation
+    if(DUVC_INSTALL)
+        install(
+            DIRECTORY ${SPHINX_BUILD_DIR}/
+            DESTINATION ${CMAKE_INSTALL_DOCDIR}
+            COMPONENT Documentation
+            OPTIONAL
+            PATTERN ".doctrees" EXCLUDE
+            PATTERN ".buildinfo" EXCLUDE
+        )
+        
+        # Create documentation package component
+        set(CPACK_COMPONENT_DOCUMENTATION_DISPLAY_NAME "Documentation")
+        set(CPACK_COMPONENT_DOCUMENTATION_DESCRIPTION "HTML documentation for duvc-ctl")
+        set(CPACK_COMPONENT_DOCUMENTATION_DEPENDS Runtime)
+    endif()
+    
+    # Add to main build targets list for summary
+    list(APPEND DUVC_CORE_TARGETS docs)
+endif()
+
 
 # ============================================================================
 # Summary
@@ -433,6 +577,16 @@ if(NOT CMAKE_SCRIPT_MODE_FILE)
     message(STATUS "  CLI tool: ${DUVC_BUILD_CLI}")
     message(STATUS "  Tests: ${DUVC_BUILD_TESTS}")
     message(STATUS "  Examples: ${DUVC_BUILD_EXAMPLES}")
+    message(STATUS "")
+    message(STATUS "Documentation:")
+    message(STATUS "  Build docs: ${DUVC_BUILD_DOCS}")
+    if(DUVC_BUILD_DOCS)
+        message(STATUS "  Doxygen: ${DOXYGEN_EXECUTABLE}")
+        message(STATUS "  Sphinx: Available via Python")
+        if(SPHINX_AUTOBUILD_EXECUTABLE)
+            message(STATUS "  Live server: Available (sphinx-autobuild)")
+        endif()
+    endif()
     message(STATUS "")
     message(STATUS "Installation:")
     message(STATUS "  Install: ${DUVC_INSTALL}")

@@ -20,11 +20,6 @@
 
 namespace duvc::logitech {
 
-// Logitech vendor-specific property set GUID
-const GUID LOGITECH_PROPERTY_SET = {
-    0x82066163, 0x7BD0, 0x43EF, {0x8A, 0x6F, 0x5B, 0x89, 0x05, 0xC9, 0xA6, 0x4C}
-};
-
 Result<std::vector<uint8_t>> get_logitech_property(const Device& device, LogitechProperty prop) {
     try {
         KsPropertySet prop_set(device);

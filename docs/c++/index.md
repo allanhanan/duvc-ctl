@@ -40,7 +40,6 @@ duvc-ctl is a Windows-exclusive C++17 library for controlling UVC (USB Video Cla
 #### Device Management
 
 - **Device Discovery**: Enumerate connected UVC cameras through DirectShow
-- **Connection Pooling**: Efficient device connection management with automatic caching
 - **Hot-plug Detection**: Real-time device change notifications via Windows APIs
 
 
@@ -150,7 +149,6 @@ The library maintains backward compatibility:
 The library is designed for multi-threaded environments:
 
 - **Thread-safe**: All public APIs can be called from multiple threads
-- **Connection Pooling**: Automatic per-thread COM apartment management
 - **No Global State**: Each device connection is independent
 - **RAII**: Automatic resource cleanup ensures no leaks
 
@@ -177,7 +175,6 @@ if (result.is_ok()) {
 
 ### Performance Considerations
 
-- **Connection Caching**: Device connections are cached automatically for performance
 - **Bulk Operations**: Use `DeviceConnection` directly for multiple operations
 - **Memory Management**: RAII ensures proper resource cleanup
 - **COM Optimization**: Efficient DirectShow interface management
@@ -304,14 +301,6 @@ bool is_device_connected(const Device& device);
 
 **Returns**: `true` if device is connected and accessible
 
-##### duvc::clear_connection_cache()
-
-```cpp
-void clear_connection_cache();
-```
-
-Clears all cached device connections. Use when devices have been physically disconnected.
-
 #### Property Operations
 
 ##### duvc::get() - Camera Properties
@@ -377,7 +366,7 @@ bool get_range(const Device& device, VidProp property, PropRange& range);
 
 #### DeviceConnection Class
 
-For scenarios with multiple property operations on the same device:
+For scenarios with multiple property operations on the same device, `DeviceConnection` provides an efficient RAII wrapper that maintains a persistent connection to avoid repeated DirectShow interface binding overhead.
 
 ```cpp
 class DeviceConnection {
@@ -385,37 +374,53 @@ public:
     explicit DeviceConnection(const Device& device);
     ~DeviceConnection();
     
-    // Non-copyable, movable
+    // Non-copyable but movable
+    DeviceConnection(const DeviceConnection&) = delete;
+    DeviceConnection& operator=(const DeviceConnection&) = delete;
     DeviceConnection(DeviceConnection&&) = default;
     DeviceConnection& operator=(DeviceConnection&&) = default;
     
-    // Property operations (same interface as global functions)
+    // Camera property operations
     bool get(CamProp prop, PropSetting& val);
     bool set(CamProp prop, const PropSetting& val);
+    bool get_range(CamProp prop, PropRange& range);
+    
+    // Video property operations
     bool get(VidProp prop, PropSetting& val);
     bool set(VidProp prop, const PropSetting& val);
-    bool get_range(CamProp prop, PropRange& range);
     bool get_range(VidProp prop, PropRange& range);
     
+    // Connection status
     bool is_valid() const;
 };
 ```
 
-**Usage**:
+**Usage:**
 
 ```cpp
-DeviceConnection conn(device);
-if (!conn.is_valid()) {
-    // Handle connection failure
-    return;
+try {
+    DeviceConnection conn(device);
+    if (!conn.is_valid()) {
+        std::cerr << "Failed to establish device connection\n";
+        return;
+    }
+    
+    // Multiple operations without re-connecting
+    PropSetting brightness, contrast;
+    PropRange brightness_range;
+    
+    conn.get_range(VidProp::Brightness, brightness_range);
+    conn.get(VidProp::Brightness, brightness);
+    conn.get(VidProp::Contrast, contrast);
+    
+    // Modify and apply
+    brightness.value = brightness_range.clamp_to_range(brightness.value + 20);
+    conn.set(VidProp::Brightness, brightness);
+    
+} catch (const std::runtime_error& e) {
+    std::cerr << "Device connection failed: " << e.what() << "\n";
 }
-
-// Multiple operations without re-connecting
-PropSetting brightness, contrast;
-conn.get(VidProp::Brightness, brightness);
-conn.get(VidProp::Contrast, contrast);
 ```
-
 
 ### Vendor Extensions
 
@@ -628,15 +633,12 @@ All public APIs are thread-safe:
 - Global functions can be called from any thread simultaneously
 - `DeviceConnection` objects are not thread-safe individually but multiple instances can be used concurrently
 - COM apartment management is handled automatically per thread
-- Connection pooling uses internal synchronization
-
 
 ### Memory Management
 
 The library uses RAII throughout:
 
 - All COM interfaces are managed automatically via smart pointers
-- Device connections are cached and cleaned up automatically
 - No manual resource management required in user code
 - Move semantics used for efficient resource transfers
 
@@ -906,123 +908,232 @@ int main() {
 
 ```cpp
 #include <duvc-ctl/core/device.h>
-#include <duvc-ctl/core/connection_pool.h>
+#include <duvc-ctl/platform/windows/connection_pool.h>
 #include <duvc-ctl/utils/string_conversion.h>
 #include <iostream>
 #include <chrono>
+#include <iomanip>
+#include <vector>
+#include <map>
 
 void demonstrate_connection_performance(const duvc::Device& device) {
-    std::wcout << L"\n=== Connection Performance Demo ===\n";
+    std::wcout << L"\n=== Connection Performance Comparison ===\n";
     std::wcout << L"Device: " << device.name << L"\n\n";
     
-    const int num_operations = 50;
+    const int num_operations = 100;
+    
+    // Test properties to read
+    std::vector<duvc::VidProp> test_props = {
+        duvc::VidProp::Brightness,
+        duvc::VidProp::Contrast,
+        duvc::VidProp::Saturation,
+        duvc::VidProp::Hue
+    };
+    
+    std::cout << "Testing " << num_operations << " property read operations...\n";
     
     // Method 1: Using global functions (creates connection each time)
+    std::cout << "\n1. Global functions (reconnects each time):\n";
     auto start = std::chrono::high_resolution_clock::now();
     
+    int successful_ops = 0;
     for (int i = 0; i < num_operations; ++i) {
-        duvc::PropSetting brightness;
-        duvc::get(device, duvc::VidProp::Brightness, brightness);
-        
-        duvc::PropSetting contrast;
-        duvc::get(device, duvc::VidProp::Contrast, contrast);
+        for (auto prop : test_props) {
+            duvc::PropSetting value;
+            if (duvc::get(device, prop, value)) {
+                successful_ops++;
+            }
+        }
     }
     
     auto end = std::chrono::high_resolution_clock::now();
     auto duration1 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
     
-    std::cout << "Global functions (" << num_operations << " iterations): " 
-              << duration1.count() << " ms\n";
+    std::cout << "   Time: " << duration1.count() << " ms\n";
+    std::cout << "   Successful operations: " << successful_ops 
+              << "/" << (num_operations * test_props.size()) << "\n";
     
     // Method 2: Using DeviceConnection (reuses connection)
+    std::cout << "\n2. DeviceConnection (persistent connection):\n";
     start = std::chrono::high_resolution_clock::now();
     
-    {
+    successful_ops = 0;
+    try {
+        duvc::DeviceConnection conn(device);
+        if (!conn.is_valid()) {
+            std::cout << "   Failed to create device connection\n";
+            return;
+        }
+        
+        for (int i = 0; i < num_operations; ++i) {
+            for (auto prop : test_props) {
+                duvc::PropSetting value;
+                if (conn.get(prop, value)) {
+                    successful_ops++;
+                }
+            }
+        }
+    } catch (const std::runtime_error& e) {
+        std::cout << "   Connection error: " << e.what() << "\n";
+        return;
+    }
+    
+    end = std::chrono::high_resolution_clock::now();
+    auto duration2 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    
+    std::cout << "   Time: " << duration2.count() << " ms\n";
+    std::cout << "   Successful operations: " << successful_ops 
+              << "/" << (num_operations * test_props.size()) << "\n";
+    
+    // Performance comparison
+    if (duration1.count() > 0 && duration2.count() > 0) {
+        double speedup = static_cast<double>(duration1.count()) / duration2.count();
+        std::cout << "\nPerformance improvement: " << std::fixed << std::setprecision(1) 
+                  << speedup << "x faster with DeviceConnection\n";
+    }
+}
+
+void batch_property_update(const duvc::Device& device) {
+    std::wcout << L"\n=== Batch Property Configuration ===\n";
+    std::wcout << L"Device: " << device.name << L"\n";
+    
+    try {
         duvc::DeviceConnection conn(device);
         if (!conn.is_valid()) {
             std::cout << "Failed to create device connection\n";
             return;
         }
         
-        for (int i = 0; i < num_operations; ++i) {
-            duvc::PropSetting brightness;
-            conn.get(duvc::VidProp::Brightness, brightness);
+        // Properties to modify
+        std::map<duvc::VidProp, std::string> properties = {
+            {duvc::VidProp::Brightness, "Brightness"},
+            {duvc::VidProp::Contrast, "Contrast"},
+            {duvc::VidProp::Saturation, "Saturation"},
+            {duvc::VidProp::Hue, "Hue"}
+        };
+        
+        // Save current settings and get ranges
+        std::map<duvc::VidProp, duvc::PropSetting> original_settings;
+        std::map<duvc::VidProp, duvc::PropRange> ranges;
+        
+        std::cout << "\nCurrent settings:\n";
+        for (const auto& [prop, name] : properties) {
+            duvc::PropSetting current;
+            duvc::PropRange range;
             
-            duvc::PropSetting contrast;
-            conn.get(duvc::VidProp::Contrast, contrast);
+            if (conn.get(prop, current) && conn.get_range(prop, range)) {
+                original_settings[prop] = current;
+                ranges[prop] = range;
+                
+                std::cout << "  " << name << ": " << current.value 
+                         << " (" << duvc::to_string(current.mode) << ")"
+                         << " [" << range.min << "-" << range.max << "]\n";
+            } else {
+                std::cout << "  " << name << ": Not supported\n";
+            }
         }
-    }
-    
-    end = std::chrono::high_resolution_clock::now();
-    auto duration2 = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    
-    std::cout << "DeviceConnection (" << num_operations << " iterations): " 
-              << duration2.count() << " ms\n";
-    
-    if (duration1.count() > 0) {
-        double speedup = static_cast<double>(duration1.count()) / duration2.count();
-        std::cout << "Speedup: " << std::fixed << std::setprecision(1) << speedup << "x\n";
+        
+        // Apply enhanced settings
+        std::cout << "\nApplying enhanced video settings...\n";
+        for (const auto& [prop, current] : original_settings) {
+            const auto& range = ranges[prop];
+            duvc::PropSetting enhanced;
+            enhanced.mode = duvc::CamMode::Manual;
+            
+            // Calculate enhanced values based on property type
+            switch (prop) {
+                case duvc::VidProp::Brightness:
+                    enhanced.value = range.clamp_to_range(current.value + (range.max - range.min) / 10);
+                    break;
+                case duvc::VidProp::Contrast:
+                    enhanced.value = range.clamp_to_range(current.value + (range.max - range.min) / 8);
+                    break;
+                case duvc::VidProp::Saturation:
+                    enhanced.value = range.clamp_to_range(current.value + (range.max - range.min) / 12);
+                    break;
+                default:
+                    enhanced.value = current.value;
+            }
+            
+            if (conn.set(prop, enhanced)) {
+                std::cout << "  " << properties[prop] << ": " 
+                         << current.value << " → " << enhanced.value << "\n";
+            }
+        }
+        
+        std::cout << "\nEnhanced settings applied. Press Enter to restore original values...";
+        std::cin.ignore();
+        std::cin.get();
+        
+        // Restore original settings
+        std::cout << "Restoring original settings...\n";
+        for (const auto& [prop, original] : original_settings) {
+            if (conn.set(prop, original)) {
+                std::cout << "  " << properties[prop] << ": Restored to " 
+                         << original.value << " (" << duvc::to_string(original.mode) << ")\n";
+            }
+        }
+        
+        std::cout << "Original settings restored successfully.\n";
+        
+    } catch (const std::runtime_error& e) {
+        std::cerr << "Device connection error: " << e.what() << "\n";
     }
 }
 
-void batch_property_update(const duvc::Device& device) {
-    std::wcout << L"\n=== Batch Property Update ===\n";
+void demonstrate_error_recovery(const duvc::Device& device) {
+    std::wcout << L"\n=== Connection Error Recovery ===\n";
     
-    duvc::DeviceConnection conn(device);
-    if (!conn.is_valid()) {
-        std::cout << "Failed to create device connection\n";
-        return;
+    try {
+        duvc::DeviceConnection conn(device);
+        
+        // Test connection validity
+        if (!conn.is_valid()) {
+            std::cout << "Initial connection failed\n";
+            return;
+        }
+        
+        std::cout << "Connection established successfully\n";
+        
+        // Perform operations that might fail
+        duvc::PropSetting brightness;
+        if (conn.get(duvc::VidProp::Brightness, brightness)) {
+            std::cout << "Property access successful: Brightness = " << brightness.value << "\n";
+        } else {
+            std::cout << "Property access failed - device may be disconnected\n";
+        }
+        
+        // Connection object automatically cleans up when it goes out of scope
+        
+    } catch (const std::runtime_error& e) {
+        std::cout << "Connection establishment failed: " << e.what() << "\n";
+        std::cout << "This may indicate:\n";
+        std::cout << "  - Device is not connected\n";
+        std::cout << "  - Device is in use by another application\n";
+        std::cout << "  - Insufficient permissions\n";
+        std::cout << "  - DirectShow interface unavailable\n";
     }
-    
-    // Save current settings
-    std::cout << "Saving current settings...\n";
-    duvc::PropSetting original_brightness, original_contrast, original_saturation;
-    
-    bool has_brightness = conn.get(duvc::VidProp::Brightness, original_brightness);
-    bool has_contrast = conn.get(duvc::VidProp::Contrast, original_contrast);
-    bool has_saturation = conn.get(duvc::VidProp::Saturation, original_saturation);
-    
-    // Apply new settings batch
-    std::cout << "Applying new settings...\n";
-    
-    if (has_brightness) {
-        duvc::PropSetting new_brightness{original_brightness.value + 10, duvc::CamMode::Manual};
-        conn.set(duvc::VidProp::Brightness, new_brightness);
-    }
-    
-    if (has_contrast) {
-        duvc::PropSetting new_contrast{original_contrast.value + 5, duvc::CamMode::Manual};
-        conn.set(duvc::VidProp::Contrast, new_contrast);
-    }
-    
-    if (has_saturation) {
-        duvc::PropSetting new_saturation{original_saturation.value - 5, duvc::CamMode::Manual};
-        conn.set(duvc::VidProp::Saturation, new_saturation);
-    }
-    
-    std::cout << "Settings applied. Press Enter to restore original values...";
-    std::cin.get();
-    
-    // Restore original settings
-    std::cout << "Restoring original settings...\n";
-    
-    if (has_brightness) conn.set(duvc::VidProp::Brightness, original_brightness);
-    if (has_contrast) conn.set(duvc::VidProp::Contrast, original_contrast);
-    if (has_saturation) conn.set(duvc::VidProp::Saturation, original_saturation);
-    
-    std::cout << "Original settings restored.\n";
 }
 
 int main() {
     try {
+        // Enable detailed logging
+        duvc::set_log_level(duvc::LogLevel::Info);
+        duvc::set_log_callback([](duvc::LogLevel level, const std::string& message) {
+            std::cout << "[" << duvc::to_string(level) << "] " << message << "\n";
+        });
+        
         auto devices = duvc::list_devices();
         if (devices.empty()) {
             std::cout << "No cameras found\n";
             return 1;
         }
         
-        demonstrate_connection_performance(devices[^0]);
-        batch_property_update(devices[^0]);
+        const auto& device = devices[0];
+        
+        demonstrate_connection_performance(device);
+        batch_property_update(device);
+        demonstrate_error_recovery(device);
         
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n";
@@ -1319,10 +1430,8 @@ cmake --build . --config Release
 #### Integration Tips
 
 1. **Always check device connectivity** before performing operations
-2. **Use DeviceConnection** for multiple operations on the same device
-3. **Check property ranges** before setting values
-4. **Handle errors gracefully** - not all properties are supported on all devices
-5. **Enable logging** during development for better debugging
-6. **Clear connection cache** if devices are disconnected/reconnected
-7. **Use vendor extensions** only after checking support
-8. **Test with multiple camera models** to ensure compatibility
+2. **Check property ranges** before setting values
+3. **Handle errors gracefully** - not all properties are supported on all devices
+4. **Enable logging** during development for better debugging
+5. **Use vendor extensions** only after checking support
+6. **Test with multiple camera models** to ensure compatibility
