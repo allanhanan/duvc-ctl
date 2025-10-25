@@ -152,6 +152,9 @@ class CameraController:
     def set_property_safely(self, prop_type, prop, setting, prop_name):
         """Safely set a property and return success/error"""
         try:
+            # FORCE FRESH CAMERA FOR SET OPERATIONS
+            self.current_camera = None  # <-- ADD THIS LINE
+            
             if not self.open_current_camera():
                 return False, "Failed to open camera"
 
