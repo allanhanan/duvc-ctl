@@ -5,7 +5,7 @@ This module provides Python-specific exception classes that map to
 the C++ error codes for better Pythonic error handling.
 """
 
-from typing import Optional
+from typing import Optional, List, Dict
 from enum import IntEnum
 
 class DuvcErrorCode(IntEnum):
@@ -186,11 +186,150 @@ def create_exception_from_error_code(error_code: int, message: str,
     except ValueError:
         # Unknown error code
         return DuvcError(f"Unknown error code {error_code}: {message}", None, context)
+    
+# ========================================================================
+# PROPERTY-SPECIFIC EXCEPTIONS (Enhanced Error Context)
+# ========================================================================
+
+class PropertyValueOutOfRangeError(InvalidValueError):
+    """Raised when a property value is outside the valid range.
+    
+    This is a specialized InvalidValueError that includes range information
+    and suggested values for better user experience.
+    """
+    
+    def __init__(self, property_name: str, value: int, min_val: int, max_val: int, 
+                 current_val: Optional[int] = None, step: Optional[int] = None):
+        self.property_name = property_name
+        self.value = value
+        self.min_val = min_val
+        self.max_val = max_val
+        self.current_val = current_val
+        self.step = step
+        
+        # Create detailed error message
+        message = f"Value {value} is out of range for '{property_name}'. Valid range: {min_val} to {max_val}"
+        
+        if step and step > 1:
+            message += f" (step: {step})"
+        
+        if current_val is not None:
+            message += f". Current value: {current_val}"
+            
+        # Add recovery suggestions
+        suggested_value = max(min_val, min(max_val, value))
+        if suggested_value != value:
+            message += f". Try: {suggested_value}"
+        
+        super().__init__(message, context=f"Property: {property_name}, Range: [{min_val}, {max_val}]")
+
+
+class PropertyModeNotSupportedError(PropertyNotSupportedError):
+    """Raised when a property mode (auto/manual) is not supported.
+    
+    This helps distinguish between unsupported properties and unsupported modes.
+    """
+    
+    def __init__(self, property_name: str, mode: str, supported_modes: Optional[List[str]] = None):
+        self.property_name = property_name
+        self.mode = mode
+        self.supported_modes = supported_modes or []
+        
+        message = f"Mode '{mode}' not supported for property '{property_name}'"
+        
+        if supported_modes:
+            message += f". Supported modes: {', '.join(supported_modes)}"
+        else:
+            message += ". Try 'manual' or 'auto'"
+            
+        super().__init__(message, context=f"Property: {property_name}, Mode: {mode}")
+
+
+class BulkOperationError(DuvcError):
+    """Raised when bulk property operations partially fail.
+    
+    Contains information about which properties succeeded/failed.
+    """
+    
+    def __init__(self, operation: str, failed_properties: Dict[str, str], 
+                 successful_count: int, total_count: int):
+        self.operation = operation
+        self.failed_properties = failed_properties
+        self.successful_count = successful_count
+        self.total_count = total_count
+        
+        message = f"{operation} partially failed: {successful_count}/{total_count} properties successful"
+        
+        if failed_properties:
+            failed_list = [f"{prop}: {error}" for prop, error in failed_properties.items()]
+            message += f". Failed: {', '.join(failed_list)}"
+            
+        super().__init__(message, context=f"Operation: {operation}")
+        
+    def get_recovery_suggestions(self) -> List[str]:
+        """Get specific recovery suggestions based on failure types."""
+        suggestions = []
+        
+        for prop, error in self.failed_properties.items():
+            if "not supported" in error.lower():
+                suggestions.append(f"Property '{prop}' not supported by this camera model")
+            elif "out of range" in error.lower():
+                suggestions.append(f"Check valid range for '{prop}' using get_property_range()")
+            elif "busy" in error.lower():
+                suggestions.append(f"Property '{prop}' may be locked by another application")
+                
+        if not suggestions:
+            suggestions.append("Check camera connection and try individual property operations")
+            
+        return suggestions
+
+
+class ConnectionHealthError(DuvcError):
+    """Raised when connection health checks fail.
+    
+    Provides detailed diagnostics and recovery suggestions.
+    """
+    
+    def __init__(self, device_name: str, health_issues: List[str], 
+                 last_working_operation: Optional[str] = None):
+        self.device_name = device_name
+        self.health_issues = health_issues
+        self.last_working_operation = last_working_operation
+        
+        message = f"Camera '{device_name}' connection health check failed"
+        
+        if health_issues:
+            message += f": {', '.join(health_issues)}"
+            
+        if last_working_operation:
+            message += f". Last working operation: {last_working_operation}"
+            
+        super().__init__(message, context=f"Device: {device_name}")
+        
+    def get_recovery_suggestions(self) -> List[str]:
+        """Get specific recovery suggestions based on health issues."""
+        suggestions = []
+        
+        for issue in self.health_issues:
+            if "timeout" in issue.lower():
+                suggestions.append("Try reconnecting to the camera")
+            elif "property" in issue.lower():
+                suggestions.append("Camera may be in a locked state - try reset_to_defaults()")
+            elif "response" in issue.lower():
+                suggestions.append("Check if camera is being used by another application")
+                
+        suggestions.append(f"Try: cam.reconnect() or restart the camera application")
+        
+        return suggestions
+
+
 
 __all__ = [
     'DuvcError', 'DuvcErrorCode',
     'DeviceNotFoundError', 'DeviceBusyError', 'PropertyNotSupportedError',
     'InvalidValueError', 'PermissionDeniedError', 'SystemError',
     'InvalidArgumentError', 'NotImplementedError',
-    'ERROR_CODE_TO_EXCEPTION', 'create_exception_from_error_code'
+    'ERROR_CODE_TO_EXCEPTION', 'create_exception_from_error_code',
+    'PropertyValueOutOfRangeError', 'PropertyModeNotSupportedError',
+    'BulkOperationError', 'ConnectionHealthError'
 ]

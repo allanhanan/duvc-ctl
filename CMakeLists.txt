@@ -385,6 +385,8 @@ if(DUVC_BUILD_PYTHON AND DUVC_DEFAULT_CORE_TARGET)
     
     # Create the Python module
     pybind11_add_module(_duvc_ctl bindings/python/pybind_module.cpp)
+
+    target_link_libraries(_duvc_ctl PRIVATE pybind11::module)
     
     # Set output properties
     set_target_properties(_duvc_ctl PROPERTIES 

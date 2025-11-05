@@ -1,54 +1,23 @@
 """
-duvc-ctl: DirectShow UVC Camera Control Library
-===============================================
+duvc-ctl - DirectShow UVC Camera Control Library
 
-Python bindings for controlling DirectShow UVC cameras on Windows.
+Windows-only library for USB Video Class camera control via DirectShow.
 
-This library provides comprehensive control over UVC cameras using DirectShow APIs,
-supporting both basic camera operations and advanced vendor-specific features.
+Two APIs available:
+1. CameraController (Pythonic) - Simple property-based access with exceptions
+2. Result-Based API (open_camera) - Explicit error handling with Result<T> types
 
-Features:
-- PTZ (Pan/Tilt/Zoom) camera control with precise positioning
-- Video property adjustment (brightness, contrast, exposure, etc.)
-- Device capability detection and real-time monitoring
-- Vendor-specific extensions (Logitech, etc.)
-- Result-based error handling with detailed diagnostics
-- Thread-safe callback system for device hotplug events
-- Flexible GUID handling for vendor properties
-
-Example Basic Usage:
-    >>> import duvc_ctl
-    >>> devices = duvc_ctl.list_devices()
-    >>> if devices:
-    ...     camera = duvc_ctl.Camera(devices[0])
-    ...     if camera.is_valid():
-    ...         # Get current pan value
-    ...         result = camera.get(duvc_ctl.CamProp.Pan)
-    ...         if result.is_ok():
-    ...             print(f"Pan: {result.value().value}")
-    ...         
-    ...         # Set pan to center position
-    ...         setting = duvc_ctl.PropSetting(0, duvc_ctl.CamMode.Manual)
-    ...         camera.set(duvc_ctl.CamProp.Pan, setting)
-
-Example Advanced Usage:
-    >>> # Get comprehensive device information
-    >>> info = duvc_ctl.get_device_info(devices[0])
-    >>> print(f"Device: {info['name']}")
-    >>> print(f"Supported camera properties: {info['camera_properties'].keys()}")
-    >>> 
-    >>> # Monitor device changes
-    >>> def on_device_change(added, path):
-    ...     print(f"Device {'added' if added else 'removed'}: {path}")
-    >>> duvc_ctl.register_device_change_callback(on_device_change)
+Both APIs use the same underlying C++ bindings but differ in error strategy.
 """
+
+
 
 from __future__ import annotations
 
 import sys
 import warnings
 import uuid as _uuid
-from typing import List, Optional, Dict, Any, Union, Tuple, Callable
+from typing import List, Optional, Dict, Any, Union, Tuple, Callable, TypedDict, Literal
 
 # =============================================================================
 # MODULE METADATA
@@ -59,6 +28,8 @@ __author__ = "allanhanan"
 __email__ = "allan.hanan04@gmail.com"
 __license__ = "MIT"
 __project__ = "duvc-ctl"
+
+__all__ = []
 
 # =============================================================================
 # C++ BINDINGS IMPORT
@@ -75,7 +46,7 @@ except ImportError as e:
     raise ImportError(f"{msg}\nOriginal error: {e}") from e
 
 # =============================================================================
-# IMPORT EXCEPTION HIERARCHY FROM exceptions.py MODULE
+# EXCEPTION HIERARCHY
 # =============================================================================
 
 from .exceptions import (
@@ -84,6 +55,44 @@ from .exceptions import (
     SystemError, InvalidArgumentError, NotImplementedError,
     ERROR_CODE_TO_EXCEPTION, create_exception_from_error_code
 )
+
+# =============================================================================
+# TYPE DEFINITIONS
+# =============================================================================
+
+class PropertyInfo(TypedDict):
+    """Device property metadata and current state.
+    
+    Fields:
+        supported: Whether property is supported by device
+        current: Dict with 'value' (int) and 'mode' (str: 'manual'/'auto')
+        range: Dict with 'min', 'max', 'step', 'default' (all int)
+        error: Error message if read failed, None if successful
+    """
+    supported: bool
+    current: Dict[Literal["value", "mode"], Union[int, str]]
+    range: Dict[Literal["min", "max", "step", "default"], int]
+    error: Optional[str]
+
+
+class DeviceInfo(TypedDict):
+    """Device information including all property metadata.
+    
+    Fields:
+        name: Device name from DirectShow
+        path: System device path (stable identifier)
+        connected: Device currently accessible
+        camera_properties: Dict mapping property names to PropertyInfo
+        video_properties: Dict mapping property names to PropertyInfo
+        error: Error message if analysis failed, None if successful
+    """
+    name: str
+    path: str
+    connected: bool
+    camera_properties: Dict[str, PropertyInfo]
+    video_properties: Dict[str, PropertyInfo]
+    error: Optional[str]
+
 
 # =============================================================================
 # GUID HELPERS (Windows Only)
@@ -95,16 +104,16 @@ GUID = getattr(_duvc_ctl, "PyGUID", None)
 def guid_from_uuid(u: _uuid.UUID) -> GUID:
     """
     Convert a Python uuid.UUID into a duvc_ctl GUID object.
-    
+
     Args:
         u: Python UUID object
-        
+
     Returns:
-        GUID object compatible with duvc_ctl vendor functions
-        
+        GUID object for vendor property functions
+
     Raises:
         RuntimeError: If duvc_ctl was built without GUID support
-        
+
     Example:
         >>> import uuid
         >>> import duvc_ctl
@@ -119,21 +128,20 @@ def guid_from_uuid(u: _uuid.UUID) -> GUID:
         raise RuntimeError("duvc_ctl was built without GUID support")
 
 def _normalize_guid(g: Union[str, bytes, _uuid.UUID, GUID]) -> GUID:
-    """
-    Normalize various Python types into a duvc_ctl GUID.
+    """Convert various GUID formats to duvc-ctl GUID object.
     
     Args:
-        g: GUID in various formats (string, bytes, UUID, or GUID)
+        g: GUID as string, bytes (16), UUID, or GUID
         
     Returns:
         Normalized GUID object
         
     Raises:
-        TypeError: If the input type is not supported
+        TypeError: If input type not supported
     """
     if GUID is None:
         raise RuntimeError("GUID support not available (Windows only)")
-        
+
     if isinstance(g, GUID):
         return g
     if isinstance(g, _uuid.UUID):
@@ -142,405 +150,495 @@ def _normalize_guid(g: Union[str, bytes, _uuid.UUID, GUID]) -> GUID:
         return guid_from_uuid(_uuid.UUID(g))
     if isinstance(g, (bytes, bytearray)) and len(g) == 16:
         return GUID(bytes(g))
-    
+
     raise TypeError(f"Unsupported GUID type: {type(g)}")
 
 def read_vendor_property(device: Device, guid: Union[str, bytes, _uuid.UUID, GUID], 
                         prop_id: int) -> Tuple[bool, bytes]:
-    """
-    Read a vendor-specific property with flexible GUID input.
+    """Read vendor-specific property data.
     
     Args:
         device: Target device
-        guid: Property set GUID (various formats accepted)
-        prop_id: Property ID within the set
+        guid: Property set GUID (string, bytes, UUID, or GUID object)
+        prop_id: Property ID within set
         
     Returns:
-        Tuple of (success, data as bytes)
-        
-    Example:
-        >>> success, data = duvc_ctl.read_vendor_property(
-        ...     device, "12345678-1234-5678-9abc-123456789abc", 1)
-        >>> if success:
-        ...     print(f"Property data: {data.hex()}")
-    """
+        (success: bool, data: bytes) - data is empty if failed
+    """ 
     normalized_guid = _normalize_guid(guid)
+
     # Use the actual function name from pybind_module.cpp
     if hasattr(_duvc_ctl, 'get_vendor_property'):
         return _duvc_ctl.get_vendor_property(device, normalized_guid, prop_id)
     else:
         raise NotImplementedError("Vendor property support not available")
 
-def write_vendor_property(device: Device, guid: Union[str, bytes, _uuid.UUID, GUID], 
+def write_vendor_property(device: Device, guid: Union[str, bytes, _uuid.UUID, GUID],
                          prop_id: int, data: Union[bytes, List[int]]) -> bool:
-    """
-    Write a vendor-specific property with flexible inputs.
+    """Write vendor-specific property data.
     
     Args:
         device: Target device
-        guid: Property set GUID (various formats accepted)
-        prop_id: Property ID within the set
-        data: Property data (bytes or list of integers)
+        guid: Property set GUID (string, bytes, UUID, or GUID object)
+        prop_id: Property ID within set
+        data: Property data as bytes or list of integers
         
     Returns:
-        True if successful, False otherwise
-        
-    Example:
-        >>> success = duvc_ctl.write_vendor_property(
-        ...     device, vendor_guid, 1, [0x01, 0x02, 0x03])
-        >>> if success:
-        ...     print("Property written successfully")
+        True if write succeeded, False otherwise
     """
     normalized_guid = _normalize_guid(guid)
+
     if isinstance(data, list):
         data = bytes(data)
+
     # Use the actual function name from pybind_module.cpp
     if hasattr(_duvc_ctl, 'set_vendor_property'):
         return _duvc_ctl.set_vendor_property(device, normalized_guid, prop_id, data)
     else:
         raise NotImplementedError("Vendor property support not available")
 
+# =========================================================================
+# PYTHONIC API (Primary Interface)
+# =========================================================================
+
+# Import the CameraController from separate module
+from .CameraController import CameraController, list_cameras, find_camera, get_camera_info
+# Note: CameraController provides property-based camera control (cam.brightness = 80)
+# while the Result<T> API (open_camera) provides detailed error handling.
+# Both APIs use the same underlying C++ bindings but with different error handling strategies.
+
 # =============================================================================
 # CONVENIENCE UTILITY FUNCTIONS
 # =============================================================================
 
-def find_device_by_name(name: str) -> Optional[Device]:
+def devices() -> List[Device]:
     """
-    Find a device by partial, case-insensitive name matching.
+    Get list of available camera devices.
+
+    This is the recommended function name. Use list_devices() if you prefer
+    the more verbose C++-style naming.
+
+    Returns:
+        List of available Device objects
+    """
+    return list_devices()
+
+def find_device_by_name(name: str, devices_list: Optional[List[Device]] = None) -> Optional[Device]:
+    """Find first device with name containing search string (case-insensitive).
     
     Args:
-        name: Device name or partial name to search for
+        name: Search string
+        devices_list: Optional pre-fetched device list (avoids redundant enumeration)
         
     Returns:
-        First device whose name contains the search string (case-insensitive),
-        or None if no match is found
-        
-    Example:
-        >>> # Find a Logitech camera
-        >>> device = duvc_ctl.find_device_by_name("logitech")
-        >>> if device:
-        ...     print(f"Found: {device.name}")
+        Device if found, None otherwise
     """
-    for dev in list_devices():
+    if devices_list is None:
+        devices_list = list_devices()
+    
+    for dev in devices_list:
         if name.lower() in dev.name.lower():
             return dev
     return None
 
-def find_devices_by_name(name: str) -> List[Device]:
-    """
-    Find all devices matching a partial, case-insensitive name.
+
+    # Enhanced error message with device paths for debugging
+    available_devices = [f"{dev.name} (path: {dev.path})" for dev in devices]
+    from .exceptions import DeviceNotFoundError
+    raise DeviceNotFoundError(
+        f"Device with name containing '{name}' not found. "
+        f"Available devices: {'; '.join(available_devices)}"
+    )
+
+def find_devices_by_name(name: str, devices_list: Optional[List[Device]] = None) -> List[Device]:
+    """Find all devices with name containing search string (case-insensitive).
     
     Args:
-        name: Device name or partial name to search for
+        name: Search string
+        devices_list: Optional pre-fetched device list (avoids redundant enumeration)
         
     Returns:
-        List of devices whose names contain the search string
-        
-    Example:
-        >>> # Find all USB cameras
-        >>> usb_cameras = duvc_ctl.find_devices_by_name("usb")
-        >>> for cam in usb_cameras:
-        ...     print(f"USB Camera: {cam.name}")
+        List of matching devices (empty if none found)
     """
+    if devices_list is None:
+        devices_list = list_devices()
+    
     matching_devices = []
-    for dev in list_devices():
+    for dev in devices_list:
         if name.lower() in dev.name.lower():
             matching_devices.append(dev)
     return matching_devices
 
-def get_device_info(device: Device) -> Dict[str, Any]:
-    """
-    Get comprehensive information about a device including all supported properties.
+
+def get_device_info(device: Device) -> DeviceInfo:
+    """Collect property metadata for a device.
+    
+    Queries device capabilities and reads all property values, ranges, and
+    current settings. Failed property reads are captured with error details
+    rather than raising exceptions.
     
     Args:
-        device: Device to analyze
+        device: Target device
         
     Returns:
-        Dictionary containing device information, supported properties,
-        current values, and valid ranges
-        
-    Example:
-        >>> info = duvc_ctl.get_device_info(device)
-        >>> print(f"Device: {info['name']}")
-        >>> print(f"Connected: {info['connected']}")
-        >>> for prop, details in info['camera_properties'].items():
-        ...     if details.get('supported', True):
-        ...         print(f"{prop}: {details['current']['value']}")
+        DeviceInfo dict with device metadata and property information
     """
-    info: Dict[str, Any] = {
+    info: DeviceInfo = {
         "name": device.name,
         "path": device.path,
         "connected": is_device_connected(device),
         "camera_properties": {},
         "video_properties": {},
+        "error": None
     }
-    
+
     # Try to get device capabilities
     caps_result = get_device_capabilities(device)
     if not caps_result.is_ok():
         info["error"] = caps_result.error().description()
         return info
-    
+
     caps = caps_result.value()
-    
+
     # Analyze camera properties
     for prop in caps.supported_camera_properties():
         try:
+            # Use the exception-throwing helpers from pybind_module.cpp
             camera = Camera(device)
             if camera.is_valid():
-                # Use the exception-throwing helpers from pybind_module.cpp
-                setting = camera.get_camera_property(prop)
-                range_info = camera.get_camera_property_range(prop)
-                
-                prop_name = to_string(prop)
-                info["camera_properties"][prop_name] = {
-                    "supported": True,
-                    "current": {
-                        "value": setting.value,
-                        "mode": setting.mode
-                    },
-                    "range": {
-                        "min": range_info.min,
-                        "max": range_info.max,
-                        "step": range_info.step,
-                        "default": range_info.default_val
+                setting_result = camera.get(prop)
+                range_result = camera.get_range(prop)
+
+                if setting_result.is_ok() and range_result.is_ok():
+                    setting = setting_result.value()
+                    range_info = range_result.value()
+                    prop_name = to_string(prop)
+
+                    info["camera_properties"][prop_name] = {
+                        "supported": True,
+                        "current": {
+                            "value": setting.value,
+                            "mode": to_string(setting.mode)
+                        },
+                        "range": {
+                            "min": range_info.min,
+                            "max": range_info.max,
+                            "step": range_info.step,
+                            "default": range_info.default_val
+                        },
+                        "error": None
                     }
-                }
-        except Exception as e:
+                else:
+                    prop_name = to_string(prop)
+                    error_msg = setting_result.error().description() if not setting_result.is_ok() else range_result.error().description()
+                    info["camera_properties"][prop_name] = {
+                        "supported": False,
+                        "current": {"value": 0, "mode": "unknown"},
+                        "range": {"min": 0, "max": 0, "step": 0, "default": 0},
+                        "error": error_msg
+                    }
+        except (DeviceNotFoundError, PropertyNotSupportedError, InvalidValueError) as e:
             prop_name = to_string(prop)
             info["camera_properties"][prop_name] = {
-                "supported": False, 
+                "supported": False,
+                "current": {"value": 0, "mode": "unknown"},
+                "range": {"min": 0, "max": 0, "step": 0, "default": 0},
                 "error": str(e)
             }
-    
+        except (SystemError, PermissionDeniedError) as e:
+            prop_name = to_string(prop)
+            info["camera_properties"][prop_name] = {
+                "supported": False,
+                "current": {"value": 0, "mode": "unknown"},
+                "range": {"min": 0, "max": 0, "step": 0, "default": 0},
+                "error": f"System error: {str(e)}"
+            }
+        except Exception as e:
+            import logging
+            prop_name = to_string(prop)
+            
+            # Log the error before suppressing it
+            logging.warning(f"Failed to read camera property {prop_name} from device {device.name}: {e}")
+            
+            info['camera_properties'][prop_name] = {
+                'supported': False, 
+                'current': {'value': 0, 'mode': 'unknown'}, 
+                'range': {'min': 0, 'max': 0, 'step': 0, 'default': 0}, 
+                'error': f"Unexpected error: {str(e)}"
+            }
+
+
     # Analyze video properties
     for prop in caps.supported_video_properties():
         try:
             camera = Camera(device)
             if camera.is_valid():
-                # Use the exception-throwing helpers from pybind_module.cpp
-                setting = camera.get_video_property(prop)
-                range_info = camera.get_video_property_range(prop)
-                
-                prop_name = to_string(prop)
-                info["video_properties"][prop_name] = {
-                    "supported": True,
-                    "current": {
-                        "value": setting.value,
-                        "mode": setting.mode
-                    },
-                    "range": {
-                        "min": range_info.min,
-                        "max": range_info.max,
-                        "step": range_info.step,
-                        "default": range_info.default_val
+                setting_result = camera.get(prop)
+                range_result = camera.get_range(prop)
+
+                if setting_result.is_ok() and range_result.is_ok():
+                    setting = setting_result.value()
+                    range_info = range_result.value()
+                    prop_name = to_string(prop)
+
+                    info["video_properties"][prop_name] = {
+                        "supported": True,
+                        "current": {
+                            "value": setting.value,
+                            "mode": to_string(setting.mode)
+                        },
+                        "range": {
+                            "min": range_info.min,
+                            "max": range_info.max,
+                            "step": range_info.step,
+                            "default": range_info.default_val
+                        },
+                        "error": None
                     }
-                }
-        except Exception as e:
+                else:
+                    prop_name = to_string(prop)
+                    error_msg = setting_result.error().description() if not setting_result.is_ok() else range_result.error().description()
+                    info["video_properties"][prop_name] = {
+                        "supported": False,
+                        "current": {"value": 0, "mode": "unknown"},
+                        "range": {"min": 0, "max": 0, "step": 0, "default": 0},
+                        "error": error_msg
+                    }
+        except (DeviceNotFoundError, PropertyNotSupportedError, InvalidValueError) as e:
             prop_name = to_string(prop)
             info["video_properties"][prop_name] = {
                 "supported": False,
+                "current": {"value": 0, "mode": "unknown"},
+                "range": {"min": 0, "max": 0, "step": 0, "default": 0},
                 "error": str(e)
             }
-    
+        except (SystemError, PermissionDeniedError) as e:
+            prop_name = to_string(prop)
+            info["video_properties"][prop_name] = {
+                "supported": False,
+                "current": {"value": 0, "mode": "unknown"},
+                "range": {"min": 0, "max": 0, "step": 0, "default": 0},
+                "error": f"System error: {str(e)}"
+            }
+        except Exception as e:
+            import logging
+            prop_name = to_string(prop)
+            
+            # Log the error before suppressing it
+            logging.warning(f"Failed to read video property {prop_name} from device {device.name}: {e}")
+            
+            info['video_properties'][prop_name] = {
+                'supported': False, 
+                'current': {'value': 0, 'mode': 'unknown'}, 
+                'range': {'min': 0, 'max': 0, 'step': 0, 'default': 0}, 
+                'error': f"Unexpected error: {str(e)}"
+            }
+
     return info
 
 def reset_device_to_defaults(device: Device) -> Dict[str, bool]:
-    """
-    Reset all supported properties of a device to their default values.
+    """Reset all device properties to their default values.
+    
+    Queries property ranges to get defaults, then sets each property.
+    Individual failures do not stop processing of remaining properties.
     
     Args:
-        device: Device to reset
+        device: Target device
         
     Returns:
-        Dictionary mapping property names to success status
-        
-    Example:
-        >>> results = duvc_ctl.reset_device_to_defaults(device)
-        >>> failed_props = [prop for prop, success in results.items() if not success]
-        >>> if failed_props:
-        ...     print(f"Failed to reset: {failed_props}")
-        >>> else:
-        ...     print("All properties reset successfully")
+        Dict mapping property names to success status (True = set, False = failed)
     """
     results: Dict[str, bool] = {}
-    
+
     caps_result = get_device_capabilities(device)
     if not caps_result.is_ok():
         return results
-    
+
     caps = caps_result.value()
     camera = Camera(device)
-    
     if not camera.is_valid():
         return results
-    
+
     # Reset camera properties
     for prop in caps.supported_camera_properties():
         try:
-            range_info = camera.get_camera_property_range(prop)
-            setting = PropSetting(range_info.default_val, range_info.default_mode)
-            camera.set_camera_property(prop, setting)
-            results[f"cam_{to_string(prop)}"] = True
+            range_result = camera.get_range(prop)
+            if range_result.is_ok():
+                range_info = range_result.value()
+                setting = PropSetting(range_info.default_val, range_info.default_mode)
+                set_result = camera.set(prop, setting)
+                results[f"cam_{to_string(prop)}"] = set_result.is_ok()
+            else:
+                results[f"cam_{to_string(prop)}"] = False
         except Exception:
             results[f"cam_{to_string(prop)}"] = False
-    
-    # Reset video properties
+
+    # Reset video properties  
     for prop in caps.supported_video_properties():
         try:
-            range_info = camera.get_video_property_range(prop)
-            setting = PropSetting(range_info.default_val, range_info.default_mode)
-            camera.set_video_property(prop, setting)
-            results[f"vid_{to_string(prop)}"] = True
+            range_result = camera.get_range(prop)
+            if range_result.is_ok():
+                range_info = range_result.value()
+                setting = PropSetting(range_info.default_val, range_info.default_mode)
+                set_result = camera.set(prop, setting)
+                results[f"vid_{to_string(prop)}"] = set_result.is_ok()
+            else:
+                results[f"vid_{to_string(prop)}"] = False
         except Exception:
             results[f"vid_{to_string(prop)}"] = False
-    
+
     return results
 
 def get_supported_properties(device: Device) -> Dict[str, List[str]]:
-    """
-    Get lists of supported camera and video properties for a device.
+    """Get lists of supported camera and video properties.
     
     Args:
-        device: Device to analyze
+        device: Target device
         
     Returns:
-        Dictionary with 'camera' and 'video' keys containing lists of property names
-        
-    Example:
-        >>> props = duvc_ctl.get_supported_properties(device)
-        >>> print(f"Camera properties: {props['camera']}")
-        >>> print(f"Video properties: {props['video']}")
+        Dict with 'camera' and 'video' keys containing property name lists
     """
     result = {"camera": [], "video": []}
-    
+
     caps_result = get_device_capabilities(device)
     if caps_result.is_ok():
         caps = caps_result.value()
         result["camera"] = [to_string(prop) for prop in caps.supported_camera_properties()]
         result["video"] = [to_string(prop) for prop in caps.supported_video_properties()]
-    
+
     return result
 
-def set_property_safe(device: Device, domain: str, property_name: str, 
+def set_property_safe(device: Device, domain: str, property_enum: Union[CamProp, VidProp], 
                      value: int, mode: str = "manual") -> Tuple[bool, str]:
-    """
-    Safely set a property with validation and error reporting.
+    """Set property with validation, returning success status and error message.
     
     Args:
         device: Target device
-        domain: Property domain ("cam" or "vid")
-        property_name: Name of the property to set
+        domain: "cam" for CamProp or "vid" for VidProp
+        property_enum: Property enum (CamProp or VidProp)
         value: Value to set
-        mode: Control mode ("auto" or "manual")
+        mode: "auto" or "manual" (default: "manual")
         
     Returns:
-        Tuple of (success, error_message)
-        
-    Example:
-        >>> success, error = duvc_ctl.set_property_safe(
-        ...     device, "cam", "Pan", 100, "manual")
-        >>> if not success:
-        ...     print(f"Failed to set Pan: {error}")
+        (success: bool, error_message: str) - error_message empty if successful
     """
     try:
         camera = Camera(device)
         if not camera.is_valid():
             return False, "Camera is not valid or connected"
-        
+
         # Parse mode
         cam_mode = CamMode.Auto if mode.lower() == "auto" else CamMode.Manual
         setting = PropSetting(value, cam_mode)
-        
-        # Set property based on domain
-        if domain.lower() == "cam":
-            # Find camera property by name
-            for prop in [CamProp.Pan, CamProp.Tilt, CamProp.Roll, CamProp.Zoom,
-                        CamProp.Exposure, CamProp.Iris, CamProp.Focus, CamProp.Privacy]:
-                if to_string(prop).lower() == property_name.lower():
-                    camera.set_camera_property(prop, setting)
-                    return True, ""
-            return False, f"Unknown camera property: {property_name}"
-            
-        elif domain.lower() == "vid":
-            # Find video property by name  
-            for prop in [VidProp.Brightness, VidProp.Contrast, VidProp.Hue,
-                        VidProp.Saturation, VidProp.Sharpness, VidProp.Gamma,
-                        VidProp.WhiteBalance, VidProp.Gain]:
-                if to_string(prop).lower() == property_name.lower():
-                    camera.set_video_property(prop, setting)
-                    return True, ""
-            return False, f"Unknown video property: {property_name}"
-        else:
-            return False, f"Unknown domain: {domain}. Use 'cam' or 'vid'"
-            
-    except Exception as e:
-        return False, f"Exception occurred: {str(e)}"
 
-def get_property_safe(device: Device, domain: str, property_name: str) -> Tuple[bool, Optional[PropSetting], str]:
-    """
-    Safely get a property with validation and error reporting.
+        # Set property based on domain and enum
+        if domain.lower() == "cam":
+            if not isinstance(property_enum, CamProp):
+                return False, f"Expected CamProp enum for camera domain, got {type(property_enum).__name__}"
+            result = camera.set(property_enum, setting)
+            if result.is_ok():
+                return True, ""
+            else:
+                return False, result.error().description()
+        elif domain.lower() == "vid":
+            if not isinstance(property_enum, VidProp):
+                return False, f"Expected VidProp enum for video domain, got {type(property_enum).__name__}"
+            result = camera.set(property_enum, setting)
+            if result.is_ok():
+                return True, ""
+            else:
+                return False, result.error().description()
+        else:
+            return False, f"Invalid domain/property combination: {domain}, {property_enum}"
+
+    except (DeviceNotFoundError, PropertyNotSupportedError, InvalidValueError) as e:
+        return False, str(e)
+    except (SystemError, PermissionDeniedError) as e:
+        return False, f"System error: {str(e)}"
+    except Exception as e:
+        return False, f"Unexpected error: {str(e)}"
+
+
+def get_property_safe(device: Device, domain: str, property_enum: Union[CamProp, VidProp]) -> Tuple[bool, Optional[PropSetting], str]:
+    """Get property with validation, returning value and error message.
     
     Args:
         device: Target device
-        domain: Property domain ("cam" or "vid") 
-        property_name: Name of the property to get
+        domain: "cam" for CamProp or "vid" for VidProp
+        property_enum: Property enum (CamProp or VidProp)
         
     Returns:
-        Tuple of (success, property_setting, error_message)
-        
-    Example:
-        >>> success, setting, error = duvc_ctl.get_property_safe(device, "cam", "Pan")
-        >>> if success:
-        ...     print(f"Pan value: {setting.value} (mode: {setting.mode})")
+        (success: bool, setting: PropSetting|None, error_message: str)
     """
     try:
         camera = Camera(device)
         if not camera.is_valid():
             return False, None, "Camera is not valid or connected"
-        
-        # Get property based on domain
+
+        # Get property based on domain and enum
         if domain.lower() == "cam":
-            # Find camera property by name
-            for prop in [CamProp.Pan, CamProp.Tilt, CamProp.Roll, CamProp.Zoom,
-                        CamProp.Exposure, CamProp.Iris, CamProp.Focus, CamProp.Privacy]:
-                if to_string(prop).lower() == property_name.lower():
-                    setting = camera.get_camera_property(prop)
-                    return True, setting, ""
-            return False, None, f"Unknown camera property: {property_name}"
-            
+            if not isinstance(property_enum, CamProp):
+                return False, None, f"Expected CamProp enum for camera domain, got {type(property_enum).__name__}"
+            result = camera.get(property_enum)
+            if result.is_ok():
+                return True, result.value(), ""
+            else:
+                return False, None, result.error().description()
         elif domain.lower() == "vid":
-            # Find video property by name
-            for prop in [VidProp.Brightness, VidProp.Contrast, VidProp.Hue,
-                        VidProp.Saturation, VidProp.Sharpness, VidProp.Gamma,
-                        VidProp.WhiteBalance, VidProp.Gain]:
-                if to_string(prop).lower() == property_name.lower():
-                    setting = camera.get_video_property(prop)
-                    return True, setting, ""
-            return False, None, f"Unknown video property: {property_name}"
+            if not isinstance(property_enum, VidProp):
+                return False, None, f"Expected VidProp enum for video domain, got {type(property_enum).__name__}"
+            result = camera.get(property_enum)
+            if result.is_ok():
+                return True, result.value(), ""
+            else:
+                return False, None, result.error().description()
         else:
-            return False, None, f"Unknown domain: {domain}. Use 'cam' or 'vid'"
-            
+            return False, None, f"Invalid domain/property combination: {domain}, {property_enum}"
+
+    except (DeviceNotFoundError, PropertyNotSupportedError, InvalidValueError) as e:
+        return False, None, str(e)
+    except (SystemError, PermissionDeniedError) as e:
+        return False, None, f"System error: {str(e)}"
     except Exception as e:
-        return False, None, f"Exception occurred: {str(e)}"
+        return False, None, f"Unexpected error: {str(e)}"
+
+# convinence iterators
+
+def iter_devices():
+    """Yield available video devices one at a time.
+    
+    Yields:
+        Device: Each available video input device
+    """
+    devices = list_devices()
+    for device in devices:
+        yield device
+
+def iter_connected_devices():
+    """Yield only connected devices.
+    
+    Yields:
+        Device: Each connected video input device
+    """
+    for device in iter_devices():
+        if is_device_connected(device):
+            yield device
+
+# Add to __all__
+__all__.extend(['iter_devices', 'iter_connected_devices'])
+
 
 # =============================================================================
 # LOGGING UTILITIES
 # =============================================================================
 
-def setup_logging(level: LogLevel = LogLevel.Info, 
+def setup_logging(level: LogLevel = LogLevel.Info,
                  callback: Optional[Callable[[LogLevel, str], None]] = None) -> None:
-    """
-    Setup logging for duvc-ctl with optional custom callback.
+    """Set log level and optional callback for log messages.
     
     Args:
-        level: Minimum log level to capture
-        callback: Optional callback function for log messages
-        
-    Example:
-        >>> def log_handler(level, message):
-        ...     print(f"[{level.name}] {message}")
-        >>> duvc_ctl.setup_logging(duvc_ctl.LogLevel.Debug, log_handler)
+        level: Minimum log level to capture (default: Info)
+        callback: Optional function(level, message) called for each log event
     """
     set_log_level(level)
     if callback:
@@ -549,8 +647,8 @@ def setup_logging(level: LogLevel = LogLevel.Info,
 def enable_debug_logging() -> None:
     """Enable debug-level logging with console output."""
     def debug_callback(level: LogLevel, message: str) -> None:
-        print(f"[DUVC {level.name}] {message}")
-    
+        print(f"[DUVC {to_string(level)}] {message}")
+
     setup_logging(LogLevel.Debug, debug_callback)
 
 # =============================================================================
@@ -560,8 +658,8 @@ def enable_debug_logging() -> None:
 if sys.platform != "win32":
     warnings.warn(
         "duvc-ctl is designed for Windows only and uses DirectShow APIs. "
-        "Some functionality may not be available on other platforms.",
-        RuntimeWarning, 
+        "Most functionality may not be available on other platforms.",
+        RuntimeWarning,
         stacklevel=2
     )
 
@@ -572,71 +670,93 @@ if sys.platform != "win32":
 __all__ = [
     # Version and metadata
     "__version__", "__author__", "__email__", "__license__", "__project__",
-    
+
+    # ========================================================================
+    # PRIMARY PYTHONIC API (Recommended for most users)
+    # ========================================================================
+    'CameraController',    # Pythonic class
+    'list_cameras',        # Simple camera discovery
+    'find_camera',         # Find camera by name
+    'get_camera_info',     # Camera information
+
+    'open_device_context',           # Direct device context manager
+    'open_device_by_name_context',   # Device context manager by name
+
     # Core enums (exported from C++)
     "CamMode", "CamProp", "VidProp", "ErrorCode", "LogLevel",
-    
+
     # Core types (exported from C++)
-    "Device", "Camera", "PropSetting", "PropRange", 
-    "PropertyCapability", "DeviceCapabilities", "CppError",
-    
+    "Device", "Camera", "PropSetting", "PropRange",
+    "PropertyCapability", "DeviceCapabilities",
+
     # Result types (exported from C++)
     "PropSettingResult", "PropRangeResult", "VoidResult", 
     "CameraResult", "DeviceCapabilitiesResult",
-    
+
+    # Result helper functions (exported from C++)
+    "Ok_PropSetting", "Err_PropSetting", "Ok_PropRange", "Err_PropRange",
+    "Ok_void", "Err_void", "Ok_bool", "Err_bool", "Ok_uint32", "Err_uint32",
+
     # Core functions (exported from C++)
-    "list_devices", "is_device_connected", "get_device_capabilities",
-    
+    "list_devices", "open_camera", "is_device_connected", "get_device_capabilities",
+
+    # Exception-throwing helpers (simple API)
+    "open_camera_or_throw",
+    "get_device_capabilities_or_throw",
+
     # String conversion functions (exported from C++)
     "to_string",
-    
+
     # Logging functions (exported from C++)
     "set_log_level", "get_log_level", "log_message", "log_debug", "log_info",
     "log_warning", "log_error", "log_critical", "set_log_callback",
-    
+
     # Error handling functions (exported from C++)
     "decode_system_error", "get_diagnostic_info",
-    
+
     # Device callback functions (exported from C++)
     "register_device_change_callback", "unregister_device_change_callback",
-    
-    # Quick API functions (exported from C++)
-    "get_camera_property_direct",
-    
+
+    # Platform interface functions (exported from C++)
+    "create_platform_interface",
+
     # Python exception hierarchy (from exceptions.py)
     "DuvcError", "DuvcErrorCode", "DeviceNotFoundError", "DeviceBusyError",
     "PropertyNotSupportedError", "InvalidValueError", "PermissionDeniedError", 
     "SystemError", "InvalidArgumentError", "NotImplementedError",
     "ERROR_CODE_TO_EXCEPTION", "create_exception_from_error_code",
-    
+
     # Convenience utility functions
-    "find_device_by_name", "find_devices_by_name", "get_device_info", 
-    "reset_device_to_defaults", "get_supported_properties",
+    "devices",
+    "find_device_by_name", "find_devices_by_name", "get_device_info",
+    "reset_device_to_defaults", "get_supported_properties", 
     "set_property_safe", "get_property_safe",
-    
+
     # Logging utilities
     "setup_logging", "enable_debug_logging",
-    
+
+    # Type definitions
+    "DeviceInfo", "PropertyInfo",
+
     # GUID helpers (Windows only, conditional)
     "guid_from_uuid", "read_vendor_property", "write_vendor_property",
 ]
 
+# Add Logitech support
+if hasattr(_duvc_ctl, "LogitechProperty"):
+    __all__.extend([
+        "LogitechProperty", "get_logitech_property", "set_logitech_property",
+        "supports_logitech_properties"
+    ])
+
+# Add Windows-specific error decoding
+if hasattr(_duvc_ctl, "decode_hresult"):
+    __all__.extend([
+        "decode_hresult", "get_hresult_details", "is_device_error", "is_permission_error"
+    ])
+
 # Add Windows-only exports conditionally
 if sys.platform == "win32" and hasattr(_duvc_ctl, "PyGUID"):
     __all__.extend([
-        "GUID", "VendorProperty", "DeviceConnection", "KsPropertySet",
-        "_normalize_guid"
+        "GUID", "VendorProperty", "DeviceConnection", "KsPropertySet", "_normalize_guid"
     ])
-    
-    # Add Logitech support if available
-    if hasattr(_duvc_ctl, "LogitechProperty"):
-        __all__.extend([
-            "LogitechProperty",
-            "get_logitech_property", "set_logitech_property", "supports_logitech_properties"
-        ])
-    
-    # Add Windows-specific error decoding if available
-    if hasattr(_duvc_ctl, "decode_hresult"):
-        __all__.extend([
-            "decode_hresult", "get_hresult_details", "is_device_error", "is_permission_error"
-        ])
