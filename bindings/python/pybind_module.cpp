@@ -2338,12 +2338,22 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   // Type aliases: Use Python typing instead of C++ handle_of for std::function
   py::module typing = py::module::import("typing");
   py::object Callable = typing.attr("Callable");
+  py::module builtins = py::module::import("builtins");
 
   // Define aliases via Python objects (avoids registration issues)
+  // DeviceChangeCallback: Callable[[bool, str], None]
+  py::list device_change_args = py::list();
+  device_change_args.append(builtins.attr("bool"));  // builtins.bool
+  device_change_args.append(builtins.attr("str"));   // builtins.str
   m.attr("DeviceChangeCallback") = Callable[py::make_tuple(
-      py::none(), py::none())]; // Callable[[bool, str], None]
+      device_change_args, py::none())];
+      
+  // LogCallback: Callable[[LogLevel, str], None]
+  py::list log_callback_args = py::list();
+  log_callback_args.append(m.attr("LogLevel"));      // module LogLevel enum
+  log_callback_args.append(builtins.attr("str"));    // builtins.str
   m.attr("LogCallback") = Callable[py::make_tuple(
-      py::none(), py::none())]; // Callable[[LogLevel, str], None]
+      log_callback_args, py::none())]; // Callable[[LogLevel, str], None]
 
   // If direct std::function binding needed elsewhere, register explicitly:
   // py::register_local_function(m, [](std::function<void(bool, std::string)>
