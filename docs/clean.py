@@ -143,6 +143,9 @@ def get_sphinx_cleanup_paths(docs_dir: Path) -> List[Path]:
         
         # Auto-generated files
         sphinx_dir / "_autosummary",
+
+        # API docs copied from Doxygen
+        sphinx_dir / "api",
         
         # Temporary files
         sphinx_dir / ".buildinfo",

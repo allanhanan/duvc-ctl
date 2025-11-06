@@ -1,6 +1,7 @@
 # Core Sphinx and theme
-sphinx>=7.2.0
-sphinx-rtd-theme>=2.0.0
+sphinx>=7.4.7,<8
+docutils>=0.20.1,<0.21
+shibuya>=2025.11.4
 
 # Doxygen integration
 breathe>=4.35.0
@@ -9,7 +10,8 @@ breathe>=4.35.0
 sphinx-design>=0.5.0
 sphinx-copybutton>=0.5.2
 sphinx-togglebutton>=0.3.2
-myst-parser>=2.0.0
+myst-parser>=0.18.0
+linkify-it-py>=2.0.3
 
 # Social media and SEO
 sphinxext-opengraph>=0.9.0
@@ -18,17 +20,12 @@ sphinx-sitemap>=2.5.1
 # Enhanced features
 sphinx-notfound-page>=1.0.0
 sphinx-external-toc>=1.0.0
-sphinx-autodoc-typehints>=1.24.0
+sphinx-autodoc-typehints>=1.23.0  # <-- DOWNGRADE from 1.24.0
 
 # Development and testing
 sphinx-autobuild>=2021.3.14
 doc8>=1.1.1
 rstcheck>=6.2.0
-
-# Optional: Advanced theme options
-# furo>=2023.9.10                    # Alternative modern theme
-# sphinx-book-theme>=1.0.1           # Another modern theme option
-# pydata-sphinx-theme>=0.14.0        # Scientific/data-focused theme
 
 # Build tools
 wheel>=0.41.0

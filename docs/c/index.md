@@ -10,8 +10,6 @@ Complete documentation for the duvc-ctl C ABI (Application Binary Interface), pr
 
 ***
 
-# C API Overview
-
 ## Introduction
 
 The duvc-ctl C API provides a stable, platform-agnostic interface for controlling USB Video Class (UVC) cameras. This C ABI ensures compatibility across different compilers, programming languages, and runtime environments while maintaining full access to the library's capabilities.
@@ -186,7 +184,7 @@ if (duvc_should_retry_operation(result)) {
 
 ***
 
-# Functions and Types Reference
+## Functions and Types Reference
 
 ## Version and ABI Management
 
@@ -665,9 +663,9 @@ int32_t duvc_clamp_value(const duvc_prop_range_t* range, int32_t value);
 
 ***
 
-# Examples
+## Examples
 
-## Basic Device Enumeration
+### Basic Device Enumeration
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -727,7 +725,7 @@ int main() {
 ```
 
 
-## Camera Property Control
+### Camera Property Control
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -820,7 +818,7 @@ int main() {
 ```
 
 
-## Video Property Management
+### Video Property Management
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -884,7 +882,7 @@ int main() {
 ```
 
 
-## Error Handling and Diagnostics
+### Error Handling and Diagnostics
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -950,7 +948,7 @@ int main() {
 ```
 
 
-## Vendor Property Access
+### Vendor Property Access
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -1019,7 +1017,7 @@ int main() {
 ```
 
 
-## Multi-Device Management
+### Multi-Device Management
 
 ```c
 #include "duvc-ctl/c/api.h"
@@ -1097,7 +1095,7 @@ int main() {
 ```
 
 
-## Property Validation and Range Checking
+### Property Validation and Range Checking
 
 ```c
 #include "duvc-ctl/c/api.h"

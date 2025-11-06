@@ -11,7 +11,7 @@ PROJECT_NUMBER         = "@PROJECT_VERSION@"
 PROJECT_BRIEF          = "USB Video Class Camera Control Library"
 PROJECT_LOGO           = 
 
-OUTPUT_DIRECTORY       = "@PROJECT_BINARY_DIR@/docs/doxygen"
+OUTPUT_DIRECTORY       = "@PROJECT_BINARY_DIR@/docs/build/doxygen"
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 
@@ -216,7 +216,7 @@ HTML_FILE_EXTENSION    = .html
 
 HTML_HEADER            = 
 HTML_FOOTER            = 
-HTML_EXTRA_STYLESHEET  = @DOXYGEN_SOURCE_DIR@/custom.css
+HTML_EXTRA_STYLESHEET  = 
 HTML_EXTRA_FILES       = 
 
 HTML_COLORSTYLE        = LIGHT

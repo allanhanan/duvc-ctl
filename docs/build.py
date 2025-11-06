@@ -99,34 +99,92 @@ def install_sphinx_requirements(docs_dir: Path) -> bool:
         return False
 
 def clean_build_dirs(docs_dir: Path) -> None:
-    """Clean build directories."""
-    build_dir = docs_dir / "build"
-    if build_dir.exists():
-        print_status("Cleaning build directory...", "BUILDING")
-        shutil.rmtree(build_dir)
-        print_status("Build directory cleaned", "SUCCESS")
-    else:
-        print_status("Build directory already clean", "INFO")
+    """Clean build directories - calls clean.py."""
+    from clean import clean_documentation
+    
+    clean_documentation(
+        docs_dir,
+        sphinx_only=False,
+        doxygen_only=False,
+        dry_run=False,
+        verbose=True
+    )
+
+
+def copy_api_docs(docs_dir: Path) -> bool:
+    """Copy API documentation folders (with subfolders) into sphinx/api for toctree linking."""
+    api_dest_dir = docs_dir / "sphinx" / "api"
+    
+    # Create destination if it doesn't exist
+    api_dest_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Folders to copy: c, c++, cli, python
+    api_dirs = {
+        "c": docs_dir / "c",
+        "cpp": docs_dir / "c++",
+        "cli": docs_dir / "cli",
+        "python": docs_dir / "python",
+    }
+    
+    try:
+        for name, source_dir in api_dirs.items():
+            if source_dir.exists():
+                dest_dir = api_dest_dir / name
+                # Remove existing if present
+                if dest_dir.exists():
+                    shutil.rmtree(dest_dir)
+                # Copy entire folder with all subfolders
+                shutil.copytree(source_dir, dest_dir)
+                print_status(f"Copied {name} API docs with all subfolders", "INFO")
+            else:
+                print_status(f"Source not found: {source_dir}", "WARNING")
+        
+        print_status("API documentation copied to sphinx/api", "SUCCESS")
+        return True
+    except Exception as e:
+        print_status(f"Failed to copy API docs: {e}", "ERROR")
+        return False
+
 
 def build_doxygen(docs_dir: Path, project_root: Path) -> bool:
     """Build Doxygen documentation."""
     doxygen_dir = docs_dir / "doxygen"
+    doxyfile_template = doxygen_dir / "Doxyfile.in"
     doxyfile = doxygen_dir / "Doxyfile"
     output_dir = docs_dir / "build" / "doxygen"
+    
+    # Expand template if needed
+    if doxyfile_template.exists() and not doxyfile.exists():
+        print_status("Expanding Doxyfile.in template...", "BUILDING")
+        with open(doxyfile_template, 'r') as f:
+            content = f.read()
+        
+        # Replace CMake-style placeholders
+        content = content.replace("@PROJECT_SOURCE_DIR@", str(project_root))
+        content = content.replace("@PROJECT_BINARY_DIR@", str(project_root))
+        content = content.replace("@PROJECT_NAME@", "duvc-ctl")
+        content = content.replace("@PROJECT_VERSION@", "2.0.0")
+        content = content.replace("@DOXYGEN_SOURCE_DIR@", str(doxygen_dir))
+        
+        with open(doxyfile, 'w') as f:
+            f.write(content)
+        print_status("Doxyfile generated from template", "SUCCESS")
+    
     if not doxyfile.exists():
         print_status("Doxyfile not found, skipping Doxygen build", "WARNING")
         return True
+    
     # Ensure output directory exists
     output_dir.mkdir(parents=True, exist_ok=True)
+    
     try:
         print_status("Building Doxygen documentation...", "BUILDING")
-        # Set environment variables for Doxygen
-        env = os.environ.copy()
-        env["PROJECT_ROOT"] = str(project_root)
-        env["OUTPUT_DIRECTORY"] = str(output_dir)
-        result = subprocess.run([
-            "doxygen", str(doxyfile)
-        ], cwd=doxygen_dir, env=env, capture_output=True, text=True)
+        result = subprocess.run(
+            ["doxygen", str(doxyfile)],
+            cwd=doxygen_dir,
+            capture_output=True,
+            text=True
+        )
         if result.returncode != 0:
             print_status("Doxygen build failed:", "ERROR")
             print(result.stderr)
@@ -291,7 +349,11 @@ def main() -> int:
         if not build_doxygen(docs_dir, project_root):
             print_status("Doxygen build failed", "ERROR")
             success = False
-    
+    # Copy API docs for Sphinx
+    if not args.doxygen_only and success:
+        if not copy_api_docs(docs_dir):
+            success = False
+
     # Build Sphinx if Doxygen succeeded or if only Sphinx requested
     if not args.doxygen_only and success:
         if not build_sphinx(docs_dir, args.parallel):
