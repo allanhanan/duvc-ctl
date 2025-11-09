@@ -43,6 +43,7 @@ Thanks for contributing! Follow these guidelines to ensure smooth collaboration.
     - Doxygen comments for public APIs
     - No exceptions in C API
 - **Files:** Use `#pragma once`; follow existing structure.
+- **Use clang-format:** Format all C++ files on LLVM style
 
 
 ## Testing
