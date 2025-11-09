@@ -9,8 +9,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#include <stdint.h>
 #include <stddef.h>
+#include <stdint.h>
 
 /* ========================================================================
  * Version and ABI Constants
@@ -18,7 +18,8 @@ extern "C" {
 #define DUVC_VERSION_MAJOR 1
 #define DUVC_VERSION_MINOR 0
 #define DUVC_VERSION_PATCH 0
-#define DUVC_ABI_VERSION ((DUVC_VERSION_MAJOR << 16) | (DUVC_VERSION_MINOR << 8) | DUVC_VERSION_PATCH)
+#define DUVC_ABI_VERSION                                                       \
+  ((DUVC_VERSION_MAJOR << 16) | (DUVC_VERSION_MINOR << 8) | DUVC_VERSION_PATCH)
 
 /* ========================================================================
  * Core Enumerations
@@ -27,98 +28,99 @@ extern "C" {
  * @brief Result codes for duvc operations
  */
 typedef enum {
-    DUVC_SUCCESS = 0,                    /**< Operation completed successfully */
-    DUVC_ERROR_NOT_IMPLEMENTED,          /**< Feature not implemented on this platform */
-    DUVC_ERROR_INVALID_ARGUMENT,         /**< Invalid function argument provided */
-    DUVC_ERROR_DEVICE_NOT_FOUND,         /**< Device not found or disconnected */
-    DUVC_ERROR_DEVICE_BUSY,              /**< Device is busy or in use by another process */
-    DUVC_ERROR_PROPERTY_NOT_SUPPORTED,   /**< Property not supported by device */
-    DUVC_ERROR_INVALID_VALUE,            /**< Property value out of valid range */
-    DUVC_ERROR_PERMISSION_DENIED,        /**< Insufficient permissions to access device */
-    DUVC_ERROR_SYSTEM_ERROR,             /**< System/platform error occurred */
-    DUVC_ERROR_CONNECTION_FAILED,        /**< Failed to establish device connection */
-    DUVC_ERROR_TIMEOUT,                  /**< Operation timed out */
-    DUVC_ERROR_BUFFER_TOO_SMALL          /**< Provided buffer is too small for data */
+  DUVC_SUCCESS = 0,            /**< Operation completed successfully */
+  DUVC_ERROR_NOT_IMPLEMENTED,  /**< Feature not implemented on this platform */
+  DUVC_ERROR_INVALID_ARGUMENT, /**< Invalid function argument provided */
+  DUVC_ERROR_DEVICE_NOT_FOUND, /**< Device not found or disconnected */
+  DUVC_ERROR_DEVICE_BUSY, /**< Device is busy or in use by another process */
+  DUVC_ERROR_PROPERTY_NOT_SUPPORTED, /**< Property not supported by device */
+  DUVC_ERROR_INVALID_VALUE,          /**< Property value out of valid range */
+  DUVC_ERROR_PERMISSION_DENIED, /**< Insufficient permissions to access device
+                                 */
+  DUVC_ERROR_SYSTEM_ERROR,      /**< System/platform error occurred */
+  DUVC_ERROR_CONNECTION_FAILED, /**< Failed to establish device connection */
+  DUVC_ERROR_TIMEOUT,           /**< Operation timed out */
+  DUVC_ERROR_BUFFER_TOO_SMALL   /**< Provided buffer is too small for data */
 } duvc_result_t;
 
 /**
  * @brief Camera control properties
  */
 typedef enum {
-    DUVC_CAM_PROP_PAN = 0,               /**< Horizontal camera rotation */
-    DUVC_CAM_PROP_TILT,                  /**< Vertical camera rotation */
-    DUVC_CAM_PROP_ROLL,                  /**< Camera roll rotation */
-    DUVC_CAM_PROP_ZOOM,                  /**< Optical zoom level */
-    DUVC_CAM_PROP_EXPOSURE,              /**< Exposure time */
-    DUVC_CAM_PROP_IRIS,                  /**< Aperture/iris setting */
-    DUVC_CAM_PROP_FOCUS,                 /**< Focus position */
-    DUVC_CAM_PROP_SCAN_MODE,             /**< Scan mode (progressive/interlaced) */
-    DUVC_CAM_PROP_PRIVACY,               /**< Privacy mode on/off */
-    DUVC_CAM_PROP_PAN_RELATIVE,          /**< Relative pan movement */
-    DUVC_CAM_PROP_TILT_RELATIVE,         /**< Relative tilt movement */
-    DUVC_CAM_PROP_ROLL_RELATIVE,         /**< Relative roll movement */
-    DUVC_CAM_PROP_ZOOM_RELATIVE,         /**< Relative zoom movement */
-    DUVC_CAM_PROP_EXPOSURE_RELATIVE,     /**< Relative exposure adjustment */
-    DUVC_CAM_PROP_IRIS_RELATIVE,         /**< Relative iris adjustment */
-    DUVC_CAM_PROP_FOCUS_RELATIVE,        /**< Relative focus adjustment */
-    DUVC_CAM_PROP_PAN_TILT,              /**< Combined pan/tilt control */
-    DUVC_CAM_PROP_PAN_TILT_RELATIVE,     /**< Relative pan/tilt movement */
-    DUVC_CAM_PROP_FOCUS_SIMPLE,          /**< Simple focus control */
-    DUVC_CAM_PROP_DIGITAL_ZOOM,          /**< Digital zoom level */
-    DUVC_CAM_PROP_DIGITAL_ZOOM_RELATIVE, /**< Relative digital zoom */
-    DUVC_CAM_PROP_BACKLIGHT_COMPENSATION,/**< Backlight compensation */
-    DUVC_CAM_PROP_LAMP                   /**< Camera lamp/flash control */
+  DUVC_CAM_PROP_PAN = 0,           /**< Horizontal camera rotation */
+  DUVC_CAM_PROP_TILT,              /**< Vertical camera rotation */
+  DUVC_CAM_PROP_ROLL,              /**< Camera roll rotation */
+  DUVC_CAM_PROP_ZOOM,              /**< Optical zoom level */
+  DUVC_CAM_PROP_EXPOSURE,          /**< Exposure time */
+  DUVC_CAM_PROP_IRIS,              /**< Aperture/iris setting */
+  DUVC_CAM_PROP_FOCUS,             /**< Focus position */
+  DUVC_CAM_PROP_SCAN_MODE,         /**< Scan mode (progressive/interlaced) */
+  DUVC_CAM_PROP_PRIVACY,           /**< Privacy mode on/off */
+  DUVC_CAM_PROP_PAN_RELATIVE,      /**< Relative pan movement */
+  DUVC_CAM_PROP_TILT_RELATIVE,     /**< Relative tilt movement */
+  DUVC_CAM_PROP_ROLL_RELATIVE,     /**< Relative roll movement */
+  DUVC_CAM_PROP_ZOOM_RELATIVE,     /**< Relative zoom movement */
+  DUVC_CAM_PROP_EXPOSURE_RELATIVE, /**< Relative exposure adjustment */
+  DUVC_CAM_PROP_IRIS_RELATIVE,     /**< Relative iris adjustment */
+  DUVC_CAM_PROP_FOCUS_RELATIVE,    /**< Relative focus adjustment */
+  DUVC_CAM_PROP_PAN_TILT,          /**< Combined pan/tilt control */
+  DUVC_CAM_PROP_PAN_TILT_RELATIVE, /**< Relative pan/tilt movement */
+  DUVC_CAM_PROP_FOCUS_SIMPLE,      /**< Simple focus control */
+  DUVC_CAM_PROP_DIGITAL_ZOOM,      /**< Digital zoom level */
+  DUVC_CAM_PROP_DIGITAL_ZOOM_RELATIVE,  /**< Relative digital zoom */
+  DUVC_CAM_PROP_BACKLIGHT_COMPENSATION, /**< Backlight compensation */
+  DUVC_CAM_PROP_LAMP                    /**< Camera lamp/flash control */
 } duvc_cam_prop_t;
 
 /**
  * @brief Video processing properties
  */
 typedef enum {
-    DUVC_VID_PROP_BRIGHTNESS = 0,        /**< Image brightness level */
-    DUVC_VID_PROP_CONTRAST,              /**< Image contrast level */
-    DUVC_VID_PROP_HUE,                   /**< Color hue adjustment */
-    DUVC_VID_PROP_SATURATION,            /**< Color saturation level */
-    DUVC_VID_PROP_SHARPNESS,             /**< Image sharpness level */
-    DUVC_VID_PROP_GAMMA,                 /**< Gamma correction value */
-    DUVC_VID_PROP_COLOR_ENABLE,          /**< Color vs. monochrome mode */
-    DUVC_VID_PROP_WHITE_BALANCE,         /**< White balance adjustment */
-    DUVC_VID_PROP_BACKLIGHT_COMPENSATION,/**< Backlight compensation level */
-    DUVC_VID_PROP_GAIN                   /**< Sensor gain level */
+  DUVC_VID_PROP_BRIGHTNESS = 0,         /**< Image brightness level */
+  DUVC_VID_PROP_CONTRAST,               /**< Image contrast level */
+  DUVC_VID_PROP_HUE,                    /**< Color hue adjustment */
+  DUVC_VID_PROP_SATURATION,             /**< Color saturation level */
+  DUVC_VID_PROP_SHARPNESS,              /**< Image sharpness level */
+  DUVC_VID_PROP_GAMMA,                  /**< Gamma correction value */
+  DUVC_VID_PROP_COLOR_ENABLE,           /**< Color vs. monochrome mode */
+  DUVC_VID_PROP_WHITE_BALANCE,          /**< White balance adjustment */
+  DUVC_VID_PROP_BACKLIGHT_COMPENSATION, /**< Backlight compensation level */
+  DUVC_VID_PROP_GAIN                    /**< Sensor gain level */
 } duvc_vid_prop_t;
 
 /**
  * @brief Camera control modes
  */
 typedef enum {
-    DUVC_CAM_MODE_AUTO = 0,              /**< Automatic control by camera */
-    DUVC_CAM_MODE_MANUAL                 /**< Manual control by application */
+  DUVC_CAM_MODE_AUTO = 0, /**< Automatic control by camera */
+  DUVC_CAM_MODE_MANUAL    /**< Manual control by application */
 } duvc_cam_mode_t;
 
 /**
  * @brief Log levels
  */
 typedef enum {
-    DUVC_LOG_DEBUG = 0,                  /**< Debug information */
-    DUVC_LOG_INFO,                       /**< Informational messages */
-    DUVC_LOG_WARNING,                    /**< Warning messages */
-    DUVC_LOG_ERROR,                      /**< Error messages */
-    DUVC_LOG_CRITICAL                    /**< Critical errors */
+  DUVC_LOG_DEBUG = 0, /**< Debug information */
+  DUVC_LOG_INFO,      /**< Informational messages */
+  DUVC_LOG_WARNING,   /**< Warning messages */
+  DUVC_LOG_ERROR,     /**< Error messages */
+  DUVC_LOG_CRITICAL   /**< Critical errors */
 } duvc_log_level_t;
 
 /**
  * @brief Logitech vendor-specific properties
  */
 typedef enum {
-    DUVC_LOGITECH_PROP_RIGHT_LIGHT = 1,  /**< RightLight auto-exposure */
-    DUVC_LOGITECH_PROP_RIGHT_SOUND,      /**< RightSound audio processing */
-    DUVC_LOGITECH_PROP_FACE_TRACKING,    /**< Face tracking enable/disable */
-    DUVC_LOGITECH_PROP_LED_INDICATOR,    /**< LED indicator control */
-    DUVC_LOGITECH_PROP_PROCESSOR_USAGE,  /**< Processor usage optimization */
-    DUVC_LOGITECH_PROP_RAW_DATA_BITS,    /**< Raw data bit depth */
-    DUVC_LOGITECH_PROP_FOCUS_ASSIST,     /**< Focus assist beam */
-    DUVC_LOGITECH_PROP_VIDEO_STANDARD,   /**< Video standard selection */
-    DUVC_LOGITECH_PROP_DIGITAL_ZOOM_ROI, /**< Digital zoom region of interest */
-    DUVC_LOGITECH_PROP_TILT_PAN          /**< Combined tilt/pan control */
+  DUVC_LOGITECH_PROP_RIGHT_LIGHT = 1,  /**< RightLight auto-exposure */
+  DUVC_LOGITECH_PROP_RIGHT_SOUND,      /**< RightSound audio processing */
+  DUVC_LOGITECH_PROP_FACE_TRACKING,    /**< Face tracking enable/disable */
+  DUVC_LOGITECH_PROP_LED_INDICATOR,    /**< LED indicator control */
+  DUVC_LOGITECH_PROP_PROCESSOR_USAGE,  /**< Processor usage optimization */
+  DUVC_LOGITECH_PROP_RAW_DATA_BITS,    /**< Raw data bit depth */
+  DUVC_LOGITECH_PROP_FOCUS_ASSIST,     /**< Focus assist beam */
+  DUVC_LOGITECH_PROP_VIDEO_STANDARD,   /**< Video standard selection */
+  DUVC_LOGITECH_PROP_DIGITAL_ZOOM_ROI, /**< Digital zoom region of interest */
+  DUVC_LOGITECH_PROP_TILT_PAN          /**< Combined tilt/pan control */
 } duvc_logitech_prop_t;
 
 /* ========================================================================
@@ -128,29 +130,30 @@ typedef enum {
  * @brief Property setting with value and mode
  */
 typedef struct {
-    int32_t value;                       /**< Property value */
-    duvc_cam_mode_t mode;                /**< Control mode (auto/manual) */
+  int32_t value;        /**< Property value */
+  duvc_cam_mode_t mode; /**< Control mode (auto/manual) */
 } duvc_prop_setting_t;
 
 /**
  * @brief Property range information
  */
 typedef struct {
-    int32_t min;                         /**< Minimum supported value */
-    int32_t max;                         /**< Maximum supported value */
-    int32_t step;                        /**< Step size between valid values */
-    int32_t default_val;                 /**< Default value */
-    duvc_cam_mode_t default_mode;        /**< Default control mode */
+  int32_t min;                  /**< Minimum supported value */
+  int32_t max;                  /**< Maximum supported value */
+  int32_t step;                 /**< Step size between valid values */
+  int32_t default_val;          /**< Default value */
+  duvc_cam_mode_t default_mode; /**< Default control mode */
 } duvc_prop_range_t;
 
 /**
  * @brief Vendor property container
  */
 typedef struct {
-    char property_set_guid[39];          /**< GUID as string {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx} */
-    uint32_t property_id;                /**< Property ID within set */
-    void* data;                          /**< Property data payload */
-    size_t data_size;                    /**< Size of data in bytes */
+  char property_set_guid[39]; /**< GUID as string
+                                 {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx} */
+  uint32_t property_id;       /**< Property ID within set */
+  void *data;                 /**< Property data payload */
+  size_t data_size;           /**< Size of data in bytes */
 } duvc_vendor_property_t;
 
 /**
@@ -177,7 +180,8 @@ typedef struct duvc_device_capabilities_t duvc_device_capabilities_t;
  * @param message Null-terminated log message string
  * @param user_data User-provided context data
  */
-typedef void (*duvc_log_callback)(duvc_log_level_t level, const char* message, void* user_data);
+typedef void (*duvc_log_callback)(duvc_log_level_t level, const char *message,
+                                  void *user_data);
 
 /**
  * @brief Device hotplug callback
@@ -185,7 +189,8 @@ typedef void (*duvc_log_callback)(duvc_log_level_t level, const char* message, v
  * @param device_path Null-terminated device path string
  * @param user_data User-provided context data
  */
-typedef void (*duvc_device_change_callback)(int added, const char* device_path, void* user_data);
+typedef void (*duvc_device_change_callback)(int added, const char *device_path,
+                                            void *user_data);
 
 /* ========================================================================
  * Constants
@@ -209,11 +214,12 @@ uint32_t duvc_get_version(void);
  * @return Null-terminated version string (e.g., "1.0.0")
  * @note Returned string is statically allocated and should not be freed
  */
-const char* duvc_get_version_string(void);
+const char *duvc_get_version_string(void);
 
 /**
  * @brief Check ABI compatibility
- * @param compiled_version Version the application was compiled with (use DUVC_ABI_VERSION)
+ * @param compiled_version Version the application was compiled with (use
+ * DUVC_ABI_VERSION)
  * @return 1 if compatible, 0 if incompatible
  */
 int duvc_check_abi_compatibility(uint32_t compiled_version);
@@ -248,7 +254,8 @@ int duvc_is_initialized(void);
  * @param user_data User data passed to callback
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_log_callback(duvc_log_callback callback, void* user_data);
+duvc_result_t duvc_set_log_callback(duvc_log_callback callback,
+                                    void *user_data);
 
 /**
  * @brief Set minimum log level
@@ -262,7 +269,7 @@ duvc_result_t duvc_set_log_level(duvc_log_level_t level);
  * @param[out] level Current minimum log level
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_log_level(duvc_log_level_t* level);
+duvc_result_t duvc_get_log_level(duvc_log_level_t *level);
 
 /**
  * @brief Log message at specific level
@@ -270,42 +277,42 @@ duvc_result_t duvc_get_log_level(duvc_log_level_t* level);
  * @param message Message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_message(duvc_log_level_t level, const char* message);
+duvc_result_t duvc_log_message(duvc_log_level_t level, const char *message);
 
 /**
  * @brief Log debug message
  * @param message Debug message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_debug(const char* message);
+duvc_result_t duvc_log_debug(const char *message);
 
 /**
  * @brief Log info message
  * @param message Info message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_info(const char* message);
+duvc_result_t duvc_log_info(const char *message);
 
 /**
  * @brief Log warning message
  * @param message Warning message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_warning(const char* message);
+duvc_result_t duvc_log_warning(const char *message);
 
 /**
  * @brief Log error message
  * @param message Error message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_error(const char* message);
+duvc_result_t duvc_log_error(const char *message);
 
 /**
  * @brief Log critical message
  * @param message Critical message to log
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_log_critical(const char* message);
+duvc_result_t duvc_log_critical(const char *message);
 
 /* ========================================================================
  * Device Management
@@ -315,17 +322,17 @@ duvc_result_t duvc_log_critical(const char* message);
  * @param[out] devices Pointer to receive device array
  * @param[out] count Number of devices found
  * @return DUVC_SUCCESS on success, error code on failure
- * 
+ *
  * @note Caller must free with duvc_free_device_list()
  */
-duvc_result_t duvc_list_devices(duvc_device_t*** devices, size_t* count);
+duvc_result_t duvc_list_devices(duvc_device_t ***devices, size_t *count);
 
 /**
  * @brief Free device list
  * @param devices Device array to free
  * @param count Number of devices in array
  */
-void duvc_free_device_list(duvc_device_t** devices, size_t count);
+void duvc_free_device_list(duvc_device_t **devices, size_t count);
 
 /**
  * @brief Check if device is connected
@@ -333,7 +340,8 @@ void duvc_free_device_list(duvc_device_t** devices, size_t count);
  * @param[out] connected 1 if connected, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_is_device_connected(const duvc_device_t* device, int* connected);
+duvc_result_t duvc_is_device_connected(const duvc_device_t *device,
+                                       int *connected);
 
 /**
  * @brief Get device name
@@ -341,9 +349,11 @@ duvc_result_t duvc_is_device_connected(const duvc_device_t* device, int* connect
  * @param[out] buffer Buffer to receive name
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_device_name(const duvc_device_t* device, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_get_device_name(const duvc_device_t *device, char *buffer,
+                                   size_t buffer_size, size_t *required);
 
 /**
  * @brief Get device path
@@ -351,9 +361,11 @@ duvc_result_t duvc_get_device_name(const duvc_device_t* device, char* buffer, si
  * @param[out] buffer Buffer to receive path
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_device_path(const duvc_device_t* device, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_get_device_path(const duvc_device_t *device, char *buffer,
+                                   size_t buffer_size, size_t *required);
 
 /**
  * @brief Get device ID
@@ -361,9 +373,11 @@ duvc_result_t duvc_get_device_path(const duvc_device_t* device, char* buffer, si
  * @param[out] buffer Buffer to receive ID
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_device_id(const duvc_device_t* device, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_get_device_id(const duvc_device_t *device, char *buffer,
+                                 size_t buffer_size, size_t *required);
 
 /**
  * @brief Check if device is valid
@@ -371,7 +385,7 @@ duvc_result_t duvc_get_device_id(const duvc_device_t* device, char* buffer, size
  * @param[out] valid 1 if valid, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_device_is_valid(const duvc_device_t* device, int* valid);
+duvc_result_t duvc_device_is_valid(const duvc_device_t *device, int *valid);
 
 /* ========================================================================
  * Device Change Monitoring
@@ -382,7 +396,9 @@ duvc_result_t duvc_device_is_valid(const duvc_device_t* device, int* valid);
  * @param user_data User data to pass to callback
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_register_device_change_callback(duvc_device_change_callback callback, void* user_data);
+duvc_result_t
+duvc_register_device_change_callback(duvc_device_change_callback callback,
+                                     void *user_data);
 
 /**
  * @brief Unregister device change callback
@@ -399,7 +415,8 @@ void duvc_unregister_device_change_callback(void);
  * @param[out] conn Pointer to receive connection handle
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_open_camera_by_index(int device_index, duvc_connection_t** conn);
+duvc_result_t duvc_open_camera_by_index(int device_index,
+                                        duvc_connection_t **conn);
 
 /**
  * @brief Open camera by device handle
@@ -407,20 +424,21 @@ duvc_result_t duvc_open_camera_by_index(int device_index, duvc_connection_t** co
  * @param[out] conn Pointer to receive connection handle
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_open_camera(const duvc_device_t* device, duvc_connection_t** conn);
+duvc_result_t duvc_open_camera(const duvc_device_t *device,
+                               duvc_connection_t **conn);
 
 /**
  * @brief Close camera connection
  * @param conn Connection to close
  */
-void duvc_close_camera(duvc_connection_t* conn);
+void duvc_close_camera(duvc_connection_t *conn);
 
 /**
  * @brief Check if camera connection is valid
  * @param conn Connection to check
  * @return 1 if valid, 0 if not
  */
-int duvc_camera_is_valid(const duvc_connection_t* conn);
+int duvc_camera_is_valid(const duvc_connection_t *conn);
 
 /* ========================================================================
  * Property Access - Single Properties
@@ -432,7 +450,9 @@ int duvc_camera_is_valid(const duvc_connection_t* conn);
  * @param[out] setting Property setting (value and mode)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_camera_property(duvc_connection_t* conn, duvc_cam_prop_t prop, duvc_prop_setting_t* setting);
+duvc_result_t duvc_get_camera_property(duvc_connection_t *conn,
+                                       duvc_cam_prop_t prop,
+                                       duvc_prop_setting_t *setting);
 
 /**
  * @brief Set camera property value
@@ -441,7 +461,9 @@ duvc_result_t duvc_get_camera_property(duvc_connection_t* conn, duvc_cam_prop_t 
  * @param setting Property setting to apply
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_camera_property(duvc_connection_t* conn, duvc_cam_prop_t prop, const duvc_prop_setting_t* setting);
+duvc_result_t duvc_set_camera_property(duvc_connection_t *conn,
+                                       duvc_cam_prop_t prop,
+                                       const duvc_prop_setting_t *setting);
 
 /**
  * @brief Get camera property range
@@ -450,7 +472,9 @@ duvc_result_t duvc_set_camera_property(duvc_connection_t* conn, duvc_cam_prop_t 
  * @param[out] range Property range information
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_camera_property_range(duvc_connection_t* conn, duvc_cam_prop_t prop, duvc_prop_range_t* range);
+duvc_result_t duvc_get_camera_property_range(duvc_connection_t *conn,
+                                             duvc_cam_prop_t prop,
+                                             duvc_prop_range_t *range);
 
 /**
  * @brief Get video property value
@@ -459,7 +483,9 @@ duvc_result_t duvc_get_camera_property_range(duvc_connection_t* conn, duvc_cam_p
  * @param[out] setting Property setting (value and mode)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_video_property(duvc_connection_t* conn, duvc_vid_prop_t prop, duvc_prop_setting_t* setting);
+duvc_result_t duvc_get_video_property(duvc_connection_t *conn,
+                                      duvc_vid_prop_t prop,
+                                      duvc_prop_setting_t *setting);
 
 /**
  * @brief Set video property value
@@ -468,7 +494,9 @@ duvc_result_t duvc_get_video_property(duvc_connection_t* conn, duvc_vid_prop_t p
  * @param setting Property setting to apply
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_video_property(duvc_connection_t* conn, duvc_vid_prop_t prop, const duvc_prop_setting_t* setting);
+duvc_result_t duvc_set_video_property(duvc_connection_t *conn,
+                                      duvc_vid_prop_t prop,
+                                      const duvc_prop_setting_t *setting);
 
 /**
  * @brief Get video property range
@@ -477,7 +505,9 @@ duvc_result_t duvc_set_video_property(duvc_connection_t* conn, duvc_vid_prop_t p
  * @param[out] range Property range information
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_video_property_range(duvc_connection_t* conn, duvc_vid_prop_t prop, duvc_prop_range_t* range);
+duvc_result_t duvc_get_video_property_range(duvc_connection_t *conn,
+                                            duvc_vid_prop_t prop,
+                                            duvc_prop_range_t *range);
 
 /* ========================================================================
  * Property Access - Multiple Properties
@@ -490,7 +520,10 @@ duvc_result_t duvc_get_video_property_range(duvc_connection_t* conn, duvc_vid_pr
  * @param count Number of properties in arrays
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_multiple_camera_properties(duvc_connection_t* conn, const duvc_cam_prop_t* props, duvc_prop_setting_t* settings, size_t count);
+duvc_result_t duvc_get_multiple_camera_properties(duvc_connection_t *conn,
+                                                  const duvc_cam_prop_t *props,
+                                                  duvc_prop_setting_t *settings,
+                                                  size_t count);
 
 /**
  * @brief Set multiple camera properties
@@ -500,7 +533,9 @@ duvc_result_t duvc_get_multiple_camera_properties(duvc_connection_t* conn, const
  * @param count Number of properties in arrays
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_multiple_camera_properties(duvc_connection_t* conn, const duvc_cam_prop_t* props, const duvc_prop_setting_t* settings, size_t count);
+duvc_result_t duvc_set_multiple_camera_properties(
+    duvc_connection_t *conn, const duvc_cam_prop_t *props,
+    const duvc_prop_setting_t *settings, size_t count);
 
 /**
  * @brief Get multiple video properties
@@ -510,7 +545,10 @@ duvc_result_t duvc_set_multiple_camera_properties(duvc_connection_t* conn, const
  * @param count Number of properties in arrays
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_multiple_video_properties(duvc_connection_t* conn, const duvc_vid_prop_t* props, duvc_prop_setting_t* settings, size_t count);
+duvc_result_t duvc_get_multiple_video_properties(duvc_connection_t *conn,
+                                                 const duvc_vid_prop_t *props,
+                                                 duvc_prop_setting_t *settings,
+                                                 size_t count);
 
 /**
  * @brief Set multiple video properties
@@ -520,7 +558,9 @@ duvc_result_t duvc_get_multiple_video_properties(duvc_connection_t* conn, const 
  * @param count Number of properties in arrays
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_multiple_video_properties(duvc_connection_t* conn, const duvc_vid_prop_t* props, const duvc_prop_setting_t* settings, size_t count);
+duvc_result_t duvc_set_multiple_video_properties(
+    duvc_connection_t *conn, const duvc_vid_prop_t *props,
+    const duvc_prop_setting_t *settings, size_t count);
 
 /* ========================================================================
  * Quick API - Direct Device Access
@@ -532,7 +572,9 @@ duvc_result_t duvc_set_multiple_video_properties(duvc_connection_t* conn, const 
  * @param[out] setting Property setting (value and mode)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_get_camera_property(const duvc_device_t* device, duvc_cam_prop_t prop, duvc_prop_setting_t* setting);
+duvc_result_t duvc_quick_get_camera_property(const duvc_device_t *device,
+                                             duvc_cam_prop_t prop,
+                                             duvc_prop_setting_t *setting);
 
 /**
  * @brief Quick set camera property (creates temporary connection)
@@ -541,7 +583,10 @@ duvc_result_t duvc_quick_get_camera_property(const duvc_device_t* device, duvc_c
  * @param setting Property setting to apply
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_set_camera_property(const duvc_device_t* device, duvc_cam_prop_t prop, const duvc_prop_setting_t* setting);
+duvc_result_t
+duvc_quick_set_camera_property(const duvc_device_t *device,
+                               duvc_cam_prop_t prop,
+                               const duvc_prop_setting_t *setting);
 
 /**
  * @brief Quick get camera property range
@@ -550,7 +595,9 @@ duvc_result_t duvc_quick_set_camera_property(const duvc_device_t* device, duvc_c
  * @param[out] range Property range information
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_get_camera_property_range(const duvc_device_t* device, duvc_cam_prop_t prop, duvc_prop_range_t* range);
+duvc_result_t duvc_quick_get_camera_property_range(const duvc_device_t *device,
+                                                   duvc_cam_prop_t prop,
+                                                   duvc_prop_range_t *range);
 
 /**
  * @brief Quick get video property
@@ -559,7 +606,9 @@ duvc_result_t duvc_quick_get_camera_property_range(const duvc_device_t* device, 
  * @param[out] setting Property setting (value and mode)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_get_video_property(const duvc_device_t* device, duvc_vid_prop_t prop, duvc_prop_setting_t* setting);
+duvc_result_t duvc_quick_get_video_property(const duvc_device_t *device,
+                                            duvc_vid_prop_t prop,
+                                            duvc_prop_setting_t *setting);
 
 /**
  * @brief Quick set video property
@@ -568,7 +617,9 @@ duvc_result_t duvc_quick_get_video_property(const duvc_device_t* device, duvc_vi
  * @param setting Property setting to apply
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_set_video_property(const duvc_device_t* device, duvc_vid_prop_t prop, const duvc_prop_setting_t* setting);
+duvc_result_t duvc_quick_set_video_property(const duvc_device_t *device,
+                                            duvc_vid_prop_t prop,
+                                            const duvc_prop_setting_t *setting);
 
 /**
  * @brief Quick get video property range
@@ -577,7 +628,9 @@ duvc_result_t duvc_quick_set_video_property(const duvc_device_t* device, duvc_vi
  * @param[out] range Property range information
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_quick_get_video_property_range(const duvc_device_t* device, duvc_vid_prop_t prop, duvc_prop_range_t* range);
+duvc_result_t duvc_quick_get_video_property_range(const duvc_device_t *device,
+                                                  duvc_vid_prop_t prop,
+                                                  duvc_prop_range_t *range);
 
 /* ========================================================================
  * Device Capability Snapshots
@@ -588,7 +641,8 @@ duvc_result_t duvc_quick_get_video_property_range(const duvc_device_t* device, d
  * @param[out] caps Pointer to receive capabilities handle
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_device_capabilities(const duvc_device_t* device, duvc_device_capabilities_t** caps);
+duvc_result_t duvc_get_device_capabilities(const duvc_device_t *device,
+                                           duvc_device_capabilities_t **caps);
 
 /**
  * @brief Get device capabilities by index
@@ -596,20 +650,23 @@ duvc_result_t duvc_get_device_capabilities(const duvc_device_t* device, duvc_dev
  * @param[out] caps Pointer to receive capabilities handle
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_device_capabilities_by_index(int device_index, duvc_device_capabilities_t** caps);
+duvc_result_t
+duvc_get_device_capabilities_by_index(int device_index,
+                                      duvc_device_capabilities_t **caps);
 
 /**
  * @brief Free device capabilities
  * @param caps Capabilities handle to free
  */
-void duvc_free_device_capabilities(duvc_device_capabilities_t* caps);
+void duvc_free_device_capabilities(duvc_device_capabilities_t *caps);
 
 /**
  * @brief Refresh capabilities snapshot
  * @param caps Capabilities handle to refresh
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_refresh_device_capabilities(duvc_device_capabilities_t* caps);
+duvc_result_t
+duvc_refresh_device_capabilities(duvc_device_capabilities_t *caps);
 
 /* ========================================================================
  * Capability Queries
@@ -622,7 +679,10 @@ duvc_result_t duvc_refresh_device_capabilities(duvc_device_capabilities_t* caps)
  * @param[out] current Current property value (can be NULL if not needed)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_camera_capability(const duvc_device_capabilities_t* caps, duvc_cam_prop_t prop, duvc_prop_range_t* range, duvc_prop_setting_t* current);
+duvc_result_t duvc_get_camera_capability(const duvc_device_capabilities_t *caps,
+                                         duvc_cam_prop_t prop,
+                                         duvc_prop_range_t *range,
+                                         duvc_prop_setting_t *current);
 
 /**
  * @brief Get video property capability
@@ -632,7 +692,10 @@ duvc_result_t duvc_get_camera_capability(const duvc_device_capabilities_t* caps,
  * @param[out] current Current property value (can be NULL if not needed)
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_get_video_capability(const duvc_device_capabilities_t* caps, duvc_vid_prop_t prop, duvc_prop_range_t* range, duvc_prop_setting_t* current);
+duvc_result_t duvc_get_video_capability(const duvc_device_capabilities_t *caps,
+                                        duvc_vid_prop_t prop,
+                                        duvc_prop_range_t *range,
+                                        duvc_prop_setting_t *current);
 
 /**
  * @brief Check if camera property is supported
@@ -641,7 +704,9 @@ duvc_result_t duvc_get_video_capability(const duvc_device_capabilities_t* caps, 
  * @param[out] supported 1 if supported, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_supports_camera_property(const duvc_device_capabilities_t* caps, duvc_cam_prop_t prop, int* supported);
+duvc_result_t
+duvc_supports_camera_property(const duvc_device_capabilities_t *caps,
+                              duvc_cam_prop_t prop, int *supported);
 
 /**
  * @brief Check if video property is supported
@@ -650,7 +715,9 @@ duvc_result_t duvc_supports_camera_property(const duvc_device_capabilities_t* ca
  * @param[out] supported 1 if supported, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_supports_video_property(const duvc_device_capabilities_t* caps, duvc_vid_prop_t prop, int* supported);
+duvc_result_t
+duvc_supports_video_property(const duvc_device_capabilities_t *caps,
+                             duvc_vid_prop_t prop, int *supported);
 
 /**
  * @brief Get list of supported camera properties
@@ -658,9 +725,13 @@ duvc_result_t duvc_supports_video_property(const duvc_device_capabilities_t* cap
  * @param[out] props Array to receive supported properties
  * @param max_count Maximum number of properties that can be stored
  * @param[out] actual_count Actual number of supported properties
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if array too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if array too
+ * small
  */
-duvc_result_t duvc_get_supported_camera_properties(const duvc_device_capabilities_t* caps, duvc_cam_prop_t* props, size_t max_count, size_t* actual_count);
+duvc_result_t
+duvc_get_supported_camera_properties(const duvc_device_capabilities_t *caps,
+                                     duvc_cam_prop_t *props, size_t max_count,
+                                     size_t *actual_count);
 
 /**
  * @brief Get list of supported video properties
@@ -668,9 +739,13 @@ duvc_result_t duvc_get_supported_camera_properties(const duvc_device_capabilitie
  * @param[out] props Array to receive supported properties
  * @param max_count Maximum number of properties that can be stored
  * @param[out] actual_count Actual number of supported properties
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if array too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if array too
+ * small
  */
-duvc_result_t duvc_get_supported_video_properties(const duvc_device_capabilities_t* caps, duvc_vid_prop_t* props, size_t max_count, size_t* actual_count);
+duvc_result_t
+duvc_get_supported_video_properties(const duvc_device_capabilities_t *caps,
+                                    duvc_vid_prop_t *props, size_t max_count,
+                                    size_t *actual_count);
 
 /**
  * @brief Check if device is accessible
@@ -678,7 +753,9 @@ duvc_result_t duvc_get_supported_video_properties(const duvc_device_capabilities
  * @param[out] accessible 1 if accessible, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_capabilities_is_device_accessible(const duvc_device_capabilities_t* caps, int* accessible);
+duvc_result_t
+duvc_capabilities_is_device_accessible(const duvc_device_capabilities_t *caps,
+                                       int *accessible);
 
 /* ========================================================================
  * Property Range Utilities
@@ -690,7 +767,8 @@ duvc_result_t duvc_capabilities_is_device_accessible(const duvc_device_capabilit
  * @param[out] valid 1 if valid, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_prop_range_is_valid(const duvc_prop_range_t* range, int32_t value, int* valid);
+duvc_result_t duvc_prop_range_is_valid(const duvc_prop_range_t *range,
+                                       int32_t value, int *valid);
 
 /**
  * @brief Clamp value to valid range
@@ -699,7 +777,8 @@ duvc_result_t duvc_prop_range_is_valid(const duvc_prop_range_t* range, int32_t v
  * @param[out] clamped_value Clamped value within range
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_prop_range_clamp(const duvc_prop_range_t* range, int32_t value, int32_t* clamped_value);
+duvc_result_t duvc_prop_range_clamp(const duvc_prop_range_t *range,
+                                    int32_t value, int32_t *clamped_value);
 
 /**
  * @brief Check if property supports auto mode
@@ -707,7 +786,8 @@ duvc_result_t duvc_prop_range_clamp(const duvc_prop_range_t* range, int32_t valu
  * @param[out] supports_auto 1 if auto mode supported, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_prop_capability_supports_auto(const duvc_prop_range_t* range, int* supports_auto);
+duvc_result_t duvc_prop_capability_supports_auto(const duvc_prop_range_t *range,
+                                                 int *supports_auto);
 
 /* ========================================================================
  * Generic Vendor Properties
@@ -720,9 +800,14 @@ duvc_result_t duvc_prop_capability_supports_auto(const duvc_prop_range_t* range,
  * @param[out] data Buffer to receive property data
  * @param data_size Size of data buffer
  * @param[out] bytes_returned Actual bytes returned
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_vendor_property(const duvc_device_t* device, const char* property_set_guid, uint32_t property_id, void* data, size_t data_size, size_t* bytes_returned);
+duvc_result_t duvc_get_vendor_property(const duvc_device_t *device,
+                                       const char *property_set_guid,
+                                       uint32_t property_id, void *data,
+                                       size_t data_size,
+                                       size_t *bytes_returned);
 
 /**
  * @brief Set vendor-specific property
@@ -733,7 +818,10 @@ duvc_result_t duvc_get_vendor_property(const duvc_device_t* device, const char* 
  * @param data_size Size of property data
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_vendor_property(const duvc_device_t* device, const char* property_set_guid, uint32_t property_id, const void* data, size_t data_size);
+duvc_result_t duvc_set_vendor_property(const duvc_device_t *device,
+                                       const char *property_set_guid,
+                                       uint32_t property_id, const void *data,
+                                       size_t data_size);
 
 /**
  * @brief Query vendor property support
@@ -743,7 +831,10 @@ duvc_result_t duvc_set_vendor_property(const duvc_device_t* device, const char* 
  * @param[out] supported 1 if supported, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_query_vendor_property_support(const duvc_device_t* device, const char* property_set_guid, uint32_t property_id, int* supported);
+duvc_result_t duvc_query_vendor_property_support(const duvc_device_t *device,
+                                                 const char *property_set_guid,
+                                                 uint32_t property_id,
+                                                 int *supported);
 
 /* ========================================================================
  * Logitech Vendor Extensions
@@ -755,9 +846,13 @@ duvc_result_t duvc_query_vendor_property_support(const duvc_device_t* device, co
  * @param[out] data Buffer to receive property data
  * @param data_size Size of data buffer
  * @param[out] bytes_returned Actual bytes returned
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_logitech_property(const duvc_device_t* device, duvc_logitech_prop_t prop, void* data, size_t data_size, size_t* bytes_returned);
+duvc_result_t duvc_get_logitech_property(const duvc_device_t *device,
+                                         duvc_logitech_prop_t prop, void *data,
+                                         size_t data_size,
+                                         size_t *bytes_returned);
 
 /**
  * @brief Set Logitech vendor property
@@ -767,7 +862,9 @@ duvc_result_t duvc_get_logitech_property(const duvc_device_t* device, duvc_logit
  * @param data_size Size of property data
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_set_logitech_property(const duvc_device_t* device, duvc_logitech_prop_t prop, const void* data, size_t data_size);
+duvc_result_t duvc_set_logitech_property(const duvc_device_t *device,
+                                         duvc_logitech_prop_t prop,
+                                         const void *data, size_t data_size);
 
 /**
  * @brief Check Logitech vendor property support
@@ -775,7 +872,8 @@ duvc_result_t duvc_set_logitech_property(const duvc_device_t* device, duvc_logit
  * @param[out] supported 1 if Logitech properties supported, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_supports_logitech_properties(const duvc_device_t* device, int* supported);
+duvc_result_t duvc_supports_logitech_properties(const duvc_device_t *device,
+                                                int *supported);
 
 /* ========================================================================
  * String Conversions
@@ -785,35 +883,35 @@ duvc_result_t duvc_supports_logitech_properties(const duvc_device_t* device, int
  * @param prop Camera property to convert
  * @return Null-terminated property name string (statically allocated)
  */
-const char* duvc_cam_prop_to_string(duvc_cam_prop_t prop);
+const char *duvc_cam_prop_to_string(duvc_cam_prop_t prop);
 
 /**
  * @brief Convert video property to string
  * @param prop Video property to convert
  * @return Null-terminated property name string (statically allocated)
  */
-const char* duvc_vid_prop_to_string(duvc_vid_prop_t prop);
+const char *duvc_vid_prop_to_string(duvc_vid_prop_t prop);
 
 /**
  * @brief Convert camera mode to string
  * @param mode Camera mode to convert
  * @return Null-terminated mode name string (statically allocated)
  */
-const char* duvc_cam_mode_to_string(duvc_cam_mode_t mode);
+const char *duvc_cam_mode_to_string(duvc_cam_mode_t mode);
 
 /**
  * @brief Convert error code to string
  * @param code Error code to convert
  * @return Null-terminated error description string (statically allocated)
  */
-const char* duvc_error_code_to_string(duvc_result_t code);
+const char *duvc_error_code_to_string(duvc_result_t code);
 
 /**
  * @brief Convert log level to string
  * @param level Log level to convert
  * @return Null-terminated log level name string (statically allocated)
  */
-const char* duvc_log_level_to_string(duvc_log_level_t level);
+const char *duvc_log_level_to_string(duvc_log_level_t level);
 
 /* ========================================================================
  * Wide String Conversions (Windows Support)
@@ -824,9 +922,11 @@ const char* duvc_log_level_to_string(duvc_log_level_t level);
  * @param[out] buffer Buffer to receive wide string
  * @param buffer_size Size of buffer in wide characters
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_cam_prop_to_wstring(duvc_cam_prop_t prop, wchar_t* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_cam_prop_to_wstring(duvc_cam_prop_t prop, wchar_t *buffer,
+                                       size_t buffer_size, size_t *required);
 
 /**
  * @brief Convert video property to wide string
@@ -834,9 +934,11 @@ duvc_result_t duvc_cam_prop_to_wstring(duvc_cam_prop_t prop, wchar_t* buffer, si
  * @param[out] buffer Buffer to receive wide string
  * @param buffer_size Size of buffer in wide characters
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_vid_prop_to_wstring(duvc_vid_prop_t prop, wchar_t* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_vid_prop_to_wstring(duvc_vid_prop_t prop, wchar_t *buffer,
+                                       size_t buffer_size, size_t *required);
 
 /**
  * @brief Convert camera mode to wide string
@@ -844,9 +946,11 @@ duvc_result_t duvc_vid_prop_to_wstring(duvc_vid_prop_t prop, wchar_t* buffer, si
  * @param[out] buffer Buffer to receive wide string
  * @param buffer_size Size of buffer in wide characters
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_cam_mode_to_wstring(duvc_cam_mode_t mode, wchar_t* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_cam_mode_to_wstring(duvc_cam_mode_t mode, wchar_t *buffer,
+                                       size_t buffer_size, size_t *required);
 
 /* ========================================================================
  * Error Handling and Diagnostics
@@ -856,18 +960,22 @@ duvc_result_t duvc_cam_mode_to_wstring(duvc_cam_mode_t mode, wchar_t* buffer, si
  * @param[out] buffer Buffer to receive error details
  * @param buffer_size Size of buffer in bytes
  * @param[out] required_size Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_last_error_details(char* buffer, size_t buffer_size, size_t* required_size);
+duvc_result_t duvc_get_last_error_details(char *buffer, size_t buffer_size,
+                                          size_t *required_size);
 
 /**
  * @brief Get diagnostic information
  * @param[out] buffer Buffer to receive diagnostic info
  * @param buffer_size Size of buffer in bytes
  * @param[out] required_size Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_diagnostic_info(char* buffer, size_t buffer_size, size_t* required_size);
+duvc_result_t duvc_get_diagnostic_info(char *buffer, size_t buffer_size,
+                                       size_t *required_size);
 
 /**
  * @brief Check if error is device-related
@@ -899,9 +1007,11 @@ void duvc_clear_last_error(void);
  * @param[out] buffer Buffer to receive error description
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_decode_system_error(unsigned long error_code, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_decode_system_error(unsigned long error_code, char *buffer,
+                                       size_t buffer_size, size_t *required);
 
 /**
  * @brief Decode HRESULT to string
@@ -909,9 +1019,11 @@ duvc_result_t duvc_decode_system_error(unsigned long error_code, char* buffer, s
  * @param[out] buffer Buffer to receive error description
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_decode_hresult(int32_t hr, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_decode_hresult(int32_t hr, char *buffer, size_t buffer_size,
+                                  size_t *required);
 
 /**
  * @brief Get detailed HRESULT information
@@ -919,9 +1031,11 @@ duvc_result_t duvc_decode_hresult(int32_t hr, char* buffer, size_t buffer_size, 
  * @param[out] buffer Buffer to receive detailed information
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_hresult_details(int32_t hr, char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_get_hresult_details(int32_t hr, char *buffer,
+                                       size_t buffer_size, size_t *required);
 
 /**
  * @brief Check if HRESULT indicates device error
@@ -955,16 +1069,18 @@ int duvc_is_hresult_permission_error(int32_t hr);
  * @param[out] has_permissions 1 if has permissions, 0 if not
  * @return DUVC_SUCCESS on success, error code on failure
  */
-duvc_result_t duvc_has_camera_permissions(int* has_permissions);
+duvc_result_t duvc_has_camera_permissions(int *has_permissions);
 
 /**
  * @brief Get platform information
  * @param[out] buffer Buffer to receive platform info
  * @param buffer_size Size of buffer in bytes
  * @param[out] required Required buffer size (including null terminator)
- * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too small
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_BUFFER_TOO_SMALL if buffer too
+ * small
  */
-duvc_result_t duvc_get_platform_info(char* buffer, size_t buffer_size, size_t* required);
+duvc_result_t duvc_get_platform_info(char *buffer, size_t buffer_size,
+                                     size_t *required);
 
 #ifdef __cplusplus
 }

@@ -5,12 +5,12 @@
 
 #ifdef _WIN32
 
-#include <duvc-ctl/platform/windows/connection_pool.h>
-#include <duvc-ctl/detail/com_helpers.h>
 #include <duvc-ctl/core/device.h>
+#include <duvc-ctl/detail/com_helpers.h>
+#include <duvc-ctl/platform/windows/connection_pool.h>
+#include <memory>
 #include <mutex>
 #include <unordered_map>
-#include <memory>
 
 #include <dshow.h>
 #include <strmif.h>
@@ -67,245 +67,301 @@
 
 namespace duvc {
 
-using namespace detail; 
+using namespace detail;
 
 // Forward declarations for DirectShow enumeration
 extern com_ptr<ICreateDevEnum> create_dev_enum();
-extern com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum* dev);
-extern std::wstring read_friendly_name(IMoniker* mon);
-extern std::wstring read_device_path(IMoniker* mon);
-extern bool is_same_device(const Device& d, const std::wstring& name, const std::wstring& path);
+extern com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum *dev);
+extern std::wstring read_friendly_name(IMoniker *mon);
+extern std::wstring read_device_path(IMoniker *mon);
+extern bool is_same_device(const Device &d, const std::wstring &name,
+                           const std::wstring &path);
 
 // DirectShow interface helpers
-static com_ptr<IBaseFilter> bind_to_filter(IMoniker* mon) {
-    com_ptr<IBaseFilter> f;
-    HRESULT hr = mon->BindToObject(nullptr, nullptr, IID_IBaseFilter, 
-                                   reinterpret_cast<void**>(f.put()));
-    if (FAILED(hr)) throw_hr(hr, "BindToObject(IBaseFilter)");
-    return f;
+static com_ptr<IBaseFilter> bind_to_filter(IMoniker *mon) {
+  com_ptr<IBaseFilter> f;
+  HRESULT hr = mon->BindToObject(nullptr, nullptr, IID_IBaseFilter,
+                                 reinterpret_cast<void **>(f.put()));
+  if (FAILED(hr))
+    throw_hr(hr, "BindToObject(IBaseFilter)");
+  return f;
 }
 
-static com_ptr<IAMCameraControl> get_cam_ctrl(IBaseFilter* f) {
-    com_ptr<IAMCameraControl> cam;
-    if (FAILED(f->QueryInterface(IID_IAMCameraControl, reinterpret_cast<void**>(cam.put())))) {
-        return {};
-    }
-    return cam;
+static com_ptr<IAMCameraControl> get_cam_ctrl(IBaseFilter *f) {
+  com_ptr<IAMCameraControl> cam;
+  if (FAILED(f->QueryInterface(IID_IAMCameraControl,
+                               reinterpret_cast<void **>(cam.put())))) {
+    return {};
+  }
+  return cam;
 }
 
-static com_ptr<IAMVideoProcAmp> get_vproc(IBaseFilter* f) {
-    com_ptr<IAMVideoProcAmp> vp;
-    if (FAILED(f->QueryInterface(IID_IAMVideoProcAmp, reinterpret_cast<void**>(vp.put())))) {
-        return {};
-    }
-    return vp;
+static com_ptr<IAMVideoProcAmp> get_vproc(IBaseFilter *f) {
+  com_ptr<IAMVideoProcAmp> vp;
+  if (FAILED(f->QueryInterface(IID_IAMVideoProcAmp,
+                               reinterpret_cast<void **>(vp.put())))) {
+    return {};
+  }
+  return vp;
 }
 
-static com_ptr<IBaseFilter> open_device_filter(const Device& dev) {
-    extern com_ptr<ICreateDevEnum> create_dev_enum();
-    extern com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum* dev);
-    
-    auto de = create_dev_enum();
-    auto en = enum_video_devices(de.get());
-    if (!en) throw std::runtime_error("No video devices available");
-    
-    ULONG fetched = 0;
-    com_ptr<IMoniker> mon;
-    while (en->Next(1, mon.put(), &fetched) == S_OK && fetched) {
-        auto fname = read_friendly_name(mon.get());
-        auto dpath = read_device_path(mon.get());
-        if (is_same_device(dev, fname, dpath)) {
-            return bind_to_filter(mon.get());
-        }
-        mon.reset();
+static com_ptr<IBaseFilter> open_device_filter(const Device &dev) {
+  extern com_ptr<ICreateDevEnum> create_dev_enum();
+  extern com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum * dev);
+
+  auto de = create_dev_enum();
+  auto en = enum_video_devices(de.get());
+  if (!en)
+    throw std::runtime_error("No video devices available");
+
+  ULONG fetched = 0;
+  com_ptr<IMoniker> mon;
+  while (en->Next(1, mon.put(), &fetched) == S_OK && fetched) {
+    auto fname = read_friendly_name(mon.get());
+    auto dpath = read_device_path(mon.get());
+    if (is_same_device(dev, fname, dpath)) {
+      return bind_to_filter(mon.get());
     }
-    
-    throw std::runtime_error("Device not found");
+    mon.reset();
+  }
+
+  throw std::runtime_error("Device not found");
 }
 
 // Property mapping helpers
 static long camprop_to_dshow(CamProp p) {
-    switch (p) {
-        case CamProp::Pan: return CameraControl_Pan;
-        case CamProp::Tilt: return CameraControl_Tilt;
-        case CamProp::Roll: return CameraControl_Roll;
-        case CamProp::Zoom: return CameraControl_Zoom;
-        case CamProp::Exposure: return CameraControl_Exposure;
-        case CamProp::Iris: return CameraControl_Iris;
-        case CamProp::Focus: return CameraControl_Focus;
-        case CamProp::ScanMode: return CameraControl_ScanMode;
-        case CamProp::Privacy: return CameraControl_Privacy;
-        case CamProp::PanRelative: return CameraControl_PanRelative;
-        case CamProp::TiltRelative: return CameraControl_TiltRelative;
-        case CamProp::RollRelative: return CameraControl_RollRelative;
-        case CamProp::ZoomRelative: return CameraControl_ZoomRelative;
-        case CamProp::ExposureRelative: return CameraControl_ExposureRelative;
-        case CamProp::IrisRelative: return CameraControl_IrisRelative;
-        case CamProp::FocusRelative: return CameraControl_FocusRelative;
-        case CamProp::PanTilt: return CameraControl_PanTilt;
-        case CamProp::PanTiltRelative: return CameraControl_PanTiltRelative;
-        case CamProp::FocusSimple: return CameraControl_FocusSimple;
-        case CamProp::DigitalZoom: return CameraControl_DigitalZoom;
-        case CamProp::DigitalZoomRelative: return CameraControl_DigitalZoomRelative;
-        case CamProp::BacklightCompensation: return CameraControl_BacklightCompensation;
-        case CamProp::Lamp: return CameraControl_Lamp;
-        default: return -1;
-    }
+  switch (p) {
+  case CamProp::Pan:
+    return CameraControl_Pan;
+  case CamProp::Tilt:
+    return CameraControl_Tilt;
+  case CamProp::Roll:
+    return CameraControl_Roll;
+  case CamProp::Zoom:
+    return CameraControl_Zoom;
+  case CamProp::Exposure:
+    return CameraControl_Exposure;
+  case CamProp::Iris:
+    return CameraControl_Iris;
+  case CamProp::Focus:
+    return CameraControl_Focus;
+  case CamProp::ScanMode:
+    return CameraControl_ScanMode;
+  case CamProp::Privacy:
+    return CameraControl_Privacy;
+  case CamProp::PanRelative:
+    return CameraControl_PanRelative;
+  case CamProp::TiltRelative:
+    return CameraControl_TiltRelative;
+  case CamProp::RollRelative:
+    return CameraControl_RollRelative;
+  case CamProp::ZoomRelative:
+    return CameraControl_ZoomRelative;
+  case CamProp::ExposureRelative:
+    return CameraControl_ExposureRelative;
+  case CamProp::IrisRelative:
+    return CameraControl_IrisRelative;
+  case CamProp::FocusRelative:
+    return CameraControl_FocusRelative;
+  case CamProp::PanTilt:
+    return CameraControl_PanTilt;
+  case CamProp::PanTiltRelative:
+    return CameraControl_PanTiltRelative;
+  case CamProp::FocusSimple:
+    return CameraControl_FocusSimple;
+  case CamProp::DigitalZoom:
+    return CameraControl_DigitalZoom;
+  case CamProp::DigitalZoomRelative:
+    return CameraControl_DigitalZoomRelative;
+  case CamProp::BacklightCompensation:
+    return CameraControl_BacklightCompensation;
+  case CamProp::Lamp:
+    return CameraControl_Lamp;
+  default:
+    return -1;
+  }
 }
 
 static long vidprop_to_dshow(VidProp p) {
-    switch (p) {
-        case VidProp::Brightness: return VideoProcAmp_Brightness;
-        case VidProp::Contrast: return VideoProcAmp_Contrast;
-        case VidProp::Hue: return VideoProcAmp_Hue;
-        case VidProp::Saturation: return VideoProcAmp_Saturation;
-        case VidProp::Sharpness: return VideoProcAmp_Sharpness;
-        case VidProp::Gamma: return VideoProcAmp_Gamma;
-        case VidProp::ColorEnable: return VideoProcAmp_ColorEnable;
-        case VidProp::WhiteBalance: return VideoProcAmp_WhiteBalance;
-        case VidProp::BacklightCompensation: return VideoProcAmp_BacklightCompensation;
-        case VidProp::Gain: return VideoProcAmp_Gain;
-        default: return -1;
-    }
+  switch (p) {
+  case VidProp::Brightness:
+    return VideoProcAmp_Brightness;
+  case VidProp::Contrast:
+    return VideoProcAmp_Contrast;
+  case VidProp::Hue:
+    return VideoProcAmp_Hue;
+  case VidProp::Saturation:
+    return VideoProcAmp_Saturation;
+  case VidProp::Sharpness:
+    return VideoProcAmp_Sharpness;
+  case VidProp::Gamma:
+    return VideoProcAmp_Gamma;
+  case VidProp::ColorEnable:
+    return VideoProcAmp_ColorEnable;
+  case VidProp::WhiteBalance:
+    return VideoProcAmp_WhiteBalance;
+  case VidProp::BacklightCompensation:
+    return VideoProcAmp_BacklightCompensation;
+  case VidProp::Gain:
+    return VideoProcAmp_Gain;
+  default:
+    return -1;
+  }
 }
 
 static long to_flag(CamMode m, bool is_camera_control) {
-    if (is_camera_control) {
-        return (m == CamMode::Auto) ? CameraControl_Flags_Auto : CameraControl_Flags_Manual;
-    } else {
-        return (m == CamMode::Auto) ? VideoProcAmp_Flags_Auto : VideoProcAmp_Flags_Manual;
-    }
+  if (is_camera_control) {
+    return (m == CamMode::Auto) ? CameraControl_Flags_Auto
+                                : CameraControl_Flags_Manual;
+  } else {
+    return (m == CamMode::Auto) ? VideoProcAmp_Flags_Auto
+                                : VideoProcAmp_Flags_Manual;
+  }
 }
 
 static CamMode from_flag(long flag, bool is_camera_control) {
-    if (is_camera_control) {
-        return (flag & CameraControl_Flags_Auto) ? CamMode::Auto : CamMode::Manual;
-    } else {
-        return (flag & VideoProcAmp_Flags_Auto) ? CamMode::Auto : CamMode::Manual;
-    }
+  if (is_camera_control) {
+    return (flag & CameraControl_Flags_Auto) ? CamMode::Auto : CamMode::Manual;
+  } else {
+    return (flag & VideoProcAmp_Flags_Auto) ? CamMode::Auto : CamMode::Manual;
+  }
 }
 
 // DeviceConnection implementation
-DeviceConnection::DeviceConnection(const Device& dev)
-    : com_(std::make_unique<com_apartment>())
-    , filter_(nullptr)
-    , cam_ctrl_(nullptr)
-    , vid_proc_(nullptr) {
-    
-    try {
-        auto filter = open_device_filter(dev);
-        if (filter) {
-            auto cam_ctrl = get_cam_ctrl(filter.get());
-            auto vid_proc = get_vproc(filter.get());
-            
-            // Store as raw pointers but keep references
-            filter_ = new com_ptr<IBaseFilter>(std::move(filter));
-            cam_ctrl_ = new com_ptr<IAMCameraControl>(std::move(cam_ctrl));
-            vid_proc_ = new com_ptr<IAMVideoProcAmp>(std::move(vid_proc));
-        }
-    } catch (...) {
-        filter_ = nullptr;
+DeviceConnection::DeviceConnection(const Device &dev)
+    : com_(std::make_unique<com_apartment>()), filter_(nullptr),
+      cam_ctrl_(nullptr), vid_proc_(nullptr) {
+
+  try {
+    auto filter = open_device_filter(dev);
+    if (filter) {
+      auto cam_ctrl = get_cam_ctrl(filter.get());
+      auto vid_proc = get_vproc(filter.get());
+
+      // Store as raw pointers but keep references
+      filter_ = new com_ptr<IBaseFilter>(std::move(filter));
+      cam_ctrl_ = new com_ptr<IAMCameraControl>(std::move(cam_ctrl));
+      vid_proc_ = new com_ptr<IAMVideoProcAmp>(std::move(vid_proc));
     }
+  } catch (...) {
+    filter_ = nullptr;
+  }
 }
 
 DeviceConnection::~DeviceConnection() {
-    delete static_cast<com_ptr<IBaseFilter>*>(filter_);
-    delete static_cast<com_ptr<IAMCameraControl>*>(cam_ctrl_);
-    delete static_cast<com_ptr<IAMVideoProcAmp>*>(vid_proc_);
+  delete static_cast<com_ptr<IBaseFilter> *>(filter_);
+  delete static_cast<com_ptr<IAMCameraControl> *>(cam_ctrl_);
+  delete static_cast<com_ptr<IAMVideoProcAmp> *>(vid_proc_);
 }
 
-bool DeviceConnection::get(CamProp prop, PropSetting& val) {
-    auto* cam_ctrl = static_cast<com_ptr<IAMCameraControl>*>(cam_ctrl_);
-    if (!cam_ctrl || !*cam_ctrl) return false;
-    
-    long pid = camprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long value = 0, flags = 0;
-    HRESULT hr = (*cam_ctrl)->Get(pid, &value, &flags);
-    if (FAILED(hr)) return false;
-    
-    val.value = static_cast<int>(value);
-    val.mode = from_flag(flags, true);
-    return true;
+bool DeviceConnection::get(CamProp prop, PropSetting &val) {
+  auto *cam_ctrl = static_cast<com_ptr<IAMCameraControl> *>(cam_ctrl_);
+  if (!cam_ctrl || !*cam_ctrl)
+    return false;
+
+  long pid = camprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long value = 0, flags = 0;
+  HRESULT hr = (*cam_ctrl)->Get(pid, &value, &flags);
+  if (FAILED(hr))
+    return false;
+
+  val.value = static_cast<int>(value);
+  val.mode = from_flag(flags, true);
+  return true;
 }
 
-bool DeviceConnection::set(CamProp prop, const PropSetting& val) {
-    auto* cam_ctrl = static_cast<com_ptr<IAMCameraControl>*>(cam_ctrl_);
-    if (!cam_ctrl || !*cam_ctrl) return false;
-    
-    long pid = camprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long flags = to_flag(val.mode, true);
-    HRESULT hr = (*cam_ctrl)->Set(pid, static_cast<long>(val.value), flags);
-    return SUCCEEDED(hr);
+bool DeviceConnection::set(CamProp prop, const PropSetting &val) {
+  auto *cam_ctrl = static_cast<com_ptr<IAMCameraControl> *>(cam_ctrl_);
+  if (!cam_ctrl || !*cam_ctrl)
+    return false;
+
+  long pid = camprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long flags = to_flag(val.mode, true);
+  HRESULT hr = (*cam_ctrl)->Set(pid, static_cast<long>(val.value), flags);
+  return SUCCEEDED(hr);
 }
 
-bool DeviceConnection::get(VidProp prop, PropSetting& val) {
-    auto* vid_proc = static_cast<com_ptr<IAMVideoProcAmp>*>(vid_proc_);
-    if (!vid_proc || !*vid_proc) return false;
-    
-    long pid = vidprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long value = 0, flags = 0;
-    HRESULT hr = (*vid_proc)->Get(pid, &value, &flags);
-    if (FAILED(hr)) return false;
-    
-    val.value = static_cast<int>(value);
-    val.mode = from_flag(flags, false);
-    return true;
+bool DeviceConnection::get(VidProp prop, PropSetting &val) {
+  auto *vid_proc = static_cast<com_ptr<IAMVideoProcAmp> *>(vid_proc_);
+  if (!vid_proc || !*vid_proc)
+    return false;
+
+  long pid = vidprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long value = 0, flags = 0;
+  HRESULT hr = (*vid_proc)->Get(pid, &value, &flags);
+  if (FAILED(hr))
+    return false;
+
+  val.value = static_cast<int>(value);
+  val.mode = from_flag(flags, false);
+  return true;
 }
 
-bool DeviceConnection::set(VidProp prop, const PropSetting& val) {
-    auto* vid_proc = static_cast<com_ptr<IAMVideoProcAmp>*>(vid_proc_);
-    if (!vid_proc || !*vid_proc) return false;
-    
-    long pid = vidprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long flags = to_flag(val.mode, false);
-    HRESULT hr = (*vid_proc)->Set(pid, static_cast<long>(val.value), flags);
-    return SUCCEEDED(hr);
+bool DeviceConnection::set(VidProp prop, const PropSetting &val) {
+  auto *vid_proc = static_cast<com_ptr<IAMVideoProcAmp> *>(vid_proc_);
+  if (!vid_proc || !*vid_proc)
+    return false;
+
+  long pid = vidprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long flags = to_flag(val.mode, false);
+  HRESULT hr = (*vid_proc)->Set(pid, static_cast<long>(val.value), flags);
+  return SUCCEEDED(hr);
 }
 
-bool DeviceConnection::get_range(CamProp prop, PropRange& range) {
-    auto* cam_ctrl = static_cast<com_ptr<IAMCameraControl>*>(cam_ctrl_);
-    if (!cam_ctrl || !*cam_ctrl) return false;
-    
-    long pid = camprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long min = 0, max = 0, step = 0, def = 0, flags = 0;
-    HRESULT hr = (*cam_ctrl)->GetRange(pid, &min, &max, &step, &def, &flags);
-    if (FAILED(hr)) return false;
-    
-    range.min = static_cast<int>(min);
-    range.max = static_cast<int>(max);
-    range.step = static_cast<int>(step);
-    range.default_val = static_cast<int>(def);
-    range.default_mode = from_flag(flags, true);
-    return true;
+bool DeviceConnection::get_range(CamProp prop, PropRange &range) {
+  auto *cam_ctrl = static_cast<com_ptr<IAMCameraControl> *>(cam_ctrl_);
+  if (!cam_ctrl || !*cam_ctrl)
+    return false;
+
+  long pid = camprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long min = 0, max = 0, step = 0, def = 0, flags = 0;
+  HRESULT hr = (*cam_ctrl)->GetRange(pid, &min, &max, &step, &def, &flags);
+  if (FAILED(hr))
+    return false;
+
+  range.min = static_cast<int>(min);
+  range.max = static_cast<int>(max);
+  range.step = static_cast<int>(step);
+  range.default_val = static_cast<int>(def);
+  range.default_mode = from_flag(flags, true);
+  return true;
 }
 
-bool DeviceConnection::get_range(VidProp prop, PropRange& range) {
-    auto* vid_proc = static_cast<com_ptr<IAMVideoProcAmp>*>(vid_proc_);
-    if (!vid_proc || !*vid_proc) return false;
-    
-    long pid = vidprop_to_dshow(prop);
-    if (pid < 0) return false;
-    
-    long min = 0, max = 0, step = 0, def = 0, flags = 0;
-    HRESULT hr = (*vid_proc)->GetRange(pid, &min, &max, &step, &def, &flags);
-    if (FAILED(hr)) return false;
-    
-    range.min = static_cast<int>(min);
-    range.max = static_cast<int>(max);
-    range.step = static_cast<int>(step);
-    range.default_val = static_cast<int>(def);
-    range.default_mode = from_flag(flags, false);
-    return true;
+bool DeviceConnection::get_range(VidProp prop, PropRange &range) {
+  auto *vid_proc = static_cast<com_ptr<IAMVideoProcAmp> *>(vid_proc_);
+  if (!vid_proc || !*vid_proc)
+    return false;
+
+  long pid = vidprop_to_dshow(prop);
+  if (pid < 0)
+    return false;
+
+  long min = 0, max = 0, step = 0, def = 0, flags = 0;
+  HRESULT hr = (*vid_proc)->GetRange(pid, &min, &max, &step, &def, &flags);
+  if (FAILED(hr))
+    return false;
+
+  range.min = static_cast<int>(min);
+  range.max = static_cast<int>(max);
+  range.step = static_cast<int>(step);
+  range.default_val = static_cast<int>(def);
+  range.default_mode = from_flag(flags, false);
+  return true;
 }
 
 } // namespace duvc

@@ -7,14 +7,20 @@
 
 #ifdef _WIN32
 
-#include <duvc-ctl/detail/com_helpers.h>
-#include <duvc-ctl/core/types.h>
 #include <dshow.h>
+#include <duvc-ctl/core/types.h>
+#include <duvc-ctl/detail/com_helpers.h>
 
 namespace duvc {
 
-// Forward declarations for DirectShow interfaces
-using namespace detail;
+/**
+ * @namespace duvc::detail
+ * @brief Internal implementation details
+ *
+ * Contains platform-specific COM helpers and implementation utilities
+ * not exposed in the public API. Used internally by the library.
+ */
+using namespace detail; // Forward definition
 
 /**
  * @brief Create DirectShow device enumerator
@@ -27,21 +33,21 @@ com_ptr<ICreateDevEnum> create_dev_enum();
  * @param dev Device enumerator
  * @return COM pointer to IEnumMoniker for video devices
  */
-com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum* dev);
+com_ptr<IEnumMoniker> enum_video_devices(ICreateDevEnum *dev);
 
 /**
  * @brief Read friendly name from device moniker
  * @param mon Device moniker
  * @return Device friendly name
  */
-std::wstring read_friendly_name(IMoniker* mon);
+std::wstring read_friendly_name(IMoniker *mon);
 
 /**
  * @brief Read device path from moniker
- * @param mon Device moniker  
+ * @param mon Device moniker
  * @return Device path
  */
-std::wstring read_device_path(IMoniker* mon);
+std::wstring read_device_path(IMoniker *mon);
 
 /**
  * @brief Check if two device identifiers refer to same device
@@ -50,14 +56,15 @@ std::wstring read_device_path(IMoniker* mon);
  * @param path Device path from enumeration
  * @return true if same device
  */
-bool is_same_device(const Device& d, const std::wstring& name, const std::wstring& path);
+bool is_same_device(const Device &d, const std::wstring &name,
+                    const std::wstring &path);
 
 /**
  * @brief Create DirectShow filter from device
  * @param dev Device to open
  * @return COM pointer to IBaseFilter
  */
-com_ptr<IBaseFilter> open_device_filter(const Device& dev);
+com_ptr<IBaseFilter> open_device_filter(const Device &dev);
 
 } // namespace duvc
 

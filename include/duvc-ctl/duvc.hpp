@@ -3,25 +3,25 @@
 /**
  * @file duvc.hpp
  * @brief Main umbrella header for duvc-ctl library
- * 
+ *
  * This header provides both the full-featured RAII API (Camera, Result<T>)
  * and a simplified quick API for common use cases (device enumeration,
  * property get/set, capability snapshots).
- * 
+ *
  * Include this single header to access all functionality.
  */
 
 // Core functionality
-#include <duvc-ctl/core/types.h>
-#include <duvc-ctl/core/device.h>
 #include <duvc-ctl/core/camera.h>
-#include <duvc-ctl/core/result.h>
 #include <duvc-ctl/core/capability.h>
+#include <duvc-ctl/core/device.h>
+#include <duvc-ctl/core/result.h>
+#include <duvc-ctl/core/types.h>
 
 // Utility functions
-#include <duvc-ctl/utils/string_conversion.h>
-#include <duvc-ctl/utils/logging.h>
 #include <duvc-ctl/utils/error_decoder.h>
+#include <duvc-ctl/utils/logging.h>
+#include <duvc-ctl/utils/string_conversion.h>
 
 // Platform interface (advanced users)
 #include <duvc-ctl/platform/interface.h>
@@ -39,14 +39,14 @@ namespace duvc {
  * @brief Device enumeration, camera control, and property management.
  * @{
  */
-using ::duvc::list_devices;         ///< Enumerate all connected devices
-using ::duvc::is_device_connected;  ///< Check if a device is still connected
+using ::duvc::is_device_connected; ///< Check if a device is still connected
+using ::duvc::list_devices;        ///< Enumerate all connected devices
 /// @}
 
 /**
  * @defgroup quickapi Quick API
  * @brief Simplified one-call camera control functions.
- * 
+ *
  * These wrappers provide easy access for CLI tools and casual use cases.
  * They internally use the Camera RAII API but expose a simple `bool` interface.
  * For detailed error handling, use the full Camera API.
@@ -60,13 +60,15 @@ using ::duvc::is_device_connected;  ///< Check if a device is still connected
  * @param out Output property setting
  * @return true if successful
  */
-inline bool get(const Device& dev, CamProp prop, PropSetting& out) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    auto res = cam.get(prop);
-    if (!res.is_ok()) return false;
-    out = res.value();
-    return true;
+inline bool get(const Device &dev, CamProp prop, PropSetting &out) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  auto res = cam.get(prop);
+  if (!res.is_ok())
+    return false;
+  out = res.value();
+  return true;
 }
 
 /**
@@ -76,10 +78,11 @@ inline bool get(const Device& dev, CamProp prop, PropSetting& out) {
  * @param in New property setting
  * @return true if successful
  */
-inline bool set(const Device& dev, CamProp prop, const PropSetting& in) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    return cam.set(prop, in).is_ok();
+inline bool set(const Device &dev, CamProp prop, const PropSetting &in) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  return cam.set(prop, in).is_ok();
 }
 
 /**
@@ -89,13 +92,15 @@ inline bool set(const Device& dev, CamProp prop, const PropSetting& in) {
  * @param out Output property range
  * @return true if successful
  */
-inline bool get_range(const Device& dev, CamProp prop, PropRange& out) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    auto res = cam.get_range(prop);
-    if (!res.is_ok()) return false;
-    out = res.value();
-    return true;
+inline bool get_range(const Device &dev, CamProp prop, PropRange &out) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  auto res = cam.get_range(prop);
+  if (!res.is_ok())
+    return false;
+  out = res.value();
+  return true;
 }
 
 /**
@@ -105,13 +110,15 @@ inline bool get_range(const Device& dev, CamProp prop, PropRange& out) {
  * @param out Output property setting
  * @return true if successful
  */
-inline bool get(const Device& dev, VidProp prop, PropSetting& out) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    auto res = cam.get(prop);
-    if (!res.is_ok()) return false;
-    out = res.value();
-    return true;
+inline bool get(const Device &dev, VidProp prop, PropSetting &out) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  auto res = cam.get(prop);
+  if (!res.is_ok())
+    return false;
+  out = res.value();
+  return true;
 }
 
 /**
@@ -121,10 +128,11 @@ inline bool get(const Device& dev, VidProp prop, PropSetting& out) {
  * @param in New property setting
  * @return true if successful
  */
-inline bool set(const Device& dev, VidProp prop, const PropSetting& in) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    return cam.set(prop, in).is_ok();
+inline bool set(const Device &dev, VidProp prop, const PropSetting &in) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  return cam.set(prop, in).is_ok();
 }
 
 /**
@@ -134,13 +142,15 @@ inline bool set(const Device& dev, VidProp prop, const PropSetting& in) {
  * @param out Output property range
  * @return true if successful
  */
-inline bool get_range(const Device& dev, VidProp prop, PropRange& out) {
-    Camera cam(dev);
-    if (!cam.is_valid()) return false;
-    auto res = cam.get_range(prop);
-    if (!res.is_ok()) return false;
-    out = res.value();
-    return true;
+inline bool get_range(const Device &dev, VidProp prop, PropRange &out) {
+  Camera cam(dev);
+  if (!cam.is_valid())
+    return false;
+  auto res = cam.get_range(prop);
+  if (!res.is_ok())
+    return false;
+  out = res.value();
+  return true;
 }
 /// @}
 
@@ -149,7 +159,8 @@ inline bool get_range(const Device& dev, VidProp prop, PropRange& out) {
  * @brief Functions for capturing supported property sets.
  * @{
  */
-using ::duvc::get_device_capabilities; ///< Create a snapshot of device capabilities
+using ::duvc::get_device_capabilities; ///< Create a snapshot of device
+                                       ///< capabilities
 /// @}
 
 /**
