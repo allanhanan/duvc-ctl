@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="logitech_8cpp" kind="file" language="C++">
+    <compoundname>logitech.cpp</compoundname>
+    <includes refid="ks__properties_8h" local="no">duvc-ctl/platform/windows/ks_properties.h</includes>
+    <includes refid="logging_8h" local="no">duvc-ctl/utils/logging.h</includes>
+    <includes refid="logitech_8h" local="no">duvc-ctl/vendor/logitech.h</includes>
+    <includes local="no">ks.h</includes>
+    <includes local="no">ksproxy.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>duvc-ctl/platform/windows/ks_properties.h</label>
+        <link refid="ks__properties_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>duvc-ctl/utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>duvc-ctl/vendor/logitech.h</label>
+        <link refid="logitech_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="14">
+        <label>functional</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="16">
+        <label>ks.h</label>
+      </node>
+      <node id="17">
+        <label>ksproxy.h</label>
+      </node>
+      <node id="5">
+        <label>optional</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>system_error</label>
+      </node>
+      <node id="8">
+        <label>variant</label>
+      </node>
+      <node id="11">
+        <label>vector</label>
+      </node>
+      <node id="12">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <innernamespace refid="namespaceduvc_1_1logitech">duvc::logitech</innernamespace>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="logitech_8cpp_1a7388dec4f4e874a9a8bc96f976dba59d" prot="public" static="no">
+        <name>KSPROPERTY_SUPPORT_GET</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="17" column="9" bodyfile="vendor/logitech.cpp" bodystart="17" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1a5ddd570cc76e8dbdef26ad18660ddb07" compoundref="core_8cpp" startline="614" endline="623">duvc::query_vendor_property_support</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" compoundref="logitech_8cpp" startline="62" endline="87">duvc::logitech::supports_logitech_properties</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="logitech_8cpp_1a574768e2c9f5f502b2dc16074f70d7d8" prot="public" static="no">
+        <name>KSPROPERTY_SUPPORT_SET</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="18" column="9" bodyfile="vendor/logitech.cpp" bodystart="18" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1a5ddd570cc76e8dbdef26ad18660ddb07" compoundref="core_8cpp" startline="614" endline="623">duvc::query_vendor_property_support</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" compoundref="logitech_8cpp" startline="62" endline="87">duvc::logitech::supports_logitech_properties</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Logitech-specific property implementations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="ks__properties_8h" kindref="compound">duvc-ctl/platform/windows/ks_properties.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="logging_8h" kindref="compound">duvc-ctl/utils/logging.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="logitech_8h" kindref="compound">duvc-ctl/vendor/logitech.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ks.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ksproxy.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>IF<sp/>ks.h<sp/>not<sp/>available,<sp/>define<sp/>manually:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>KSPROPERTY_SUPPORT_GET</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="logitech_8cpp_1a7388dec4f4e874a9a8bc96f976dba59d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KSPROPERTY_SUPPORT_GET<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="logitech_8cpp_1a574768e2c9f5f502b2dc16074f70d7d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KSPROPERTY_SUPPORT_SET<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc_1_1logitech" kindref="compound">duvc::logitech</ref><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;std::vector&lt;uint8_t&gt;</ref>&gt;<sp/><ref refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" kindref="member">get_logitech_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>(device);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;std::vector&lt;uint8_t&gt;</ref>&gt;(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>does<sp/>not<sp/>support<sp/>vendor<sp/>properties&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.get_property(<ref refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" kindref="member">LOGITECH_PROPERTY_SET</ref>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>));</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">e</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="api_8h_1a706c3c143887f191b1d8f23cd5c62a2b" kindref="member">DUVC_LOG_ERROR</ref>(</highlight><highlight class="stringliteral">&quot;Exception<sp/>getting<sp/>Logitech<sp/>property:<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(<ref refid="classduvc_1_1Result" kindref="compound">e</ref>.what()));</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;std::vector&lt;uint8_t&gt;</ref>&gt;(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca" kindref="member">ErrorCode::SystemError</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">e</ref>.what());</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" kindref="member">set_logitech_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,<sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint8_t&gt;<sp/>&amp;data)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>(device);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>does<sp/>not<sp/>support<sp/>vendor<sp/>properties&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.set_property(<ref refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" kindref="member">LOGITECH_PROPERTY_SET</ref>,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>),<sp/>data);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">e</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="api_8h_1a706c3c143887f191b1d8f23cd5c62a2b" kindref="member">DUVC_LOG_ERROR</ref>(</highlight><highlight class="stringliteral">&quot;Exception<sp/>setting<sp/>Logitech<sp/>property:<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(<ref refid="classduvc_1_1Result" kindref="compound">e</ref>.what()));</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca" kindref="member">ErrorCode::SystemError</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">e</ref>.what());</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;bool&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" kindref="member">supports_logitech_properties</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>(device);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>query<sp/>support<sp/>for<sp/>a<sp/>basic<sp/>property</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">result</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">prop_set</ref>.query_support(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" kindref="member">LOGITECH_PROPERTY_SET</ref>,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aaab72bac0dabd801043c0719c9743532" kindref="member">LogitechProperty::RightLight</ref>));</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">result</ref>.<ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">support_flags</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">result</ref>.<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>((<ref refid="classduvc_1_1Result" kindref="compound">support_flags</ref><sp/>&amp;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<ref refid="logitech_8cpp_1a7388dec4f4e874a9a8bc96f976dba59d" kindref="member">KSPROPERTY_SUPPORT_GET</ref><sp/>|<sp/><ref refid="logitech_8cpp_1a574768e2c9f5f502b2dc16074f70d7d8" kindref="member">KSPROPERTY_SUPPORT_SET</ref>))<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">e</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="api_8h_1afb89565f012a56933ec6a59ca2141a1c" kindref="member">DUVC_LOG_DEBUG</ref>(</highlight><highlight class="stringliteral">&quot;Exception<sp/>checking<sp/>Logitech<sp/>support:<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(<ref refid="classduvc_1_1Result" kindref="compound">e</ref>.what()));</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);<sp/></highlight><highlight class="comment">//<sp/>Assume<sp/>not<sp/>supported<sp/>on<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="90" refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" kindref="member">get_logitech_property_typed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">data_result</ref><sp/>=<sp/><ref refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" kindref="member">get_logitech_property</ref>(device,<sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">data_result</ref>.<ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;T&gt;</ref>(<ref refid="classduvc_1_1Result" kindref="compound">data_result</ref>.<ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>());</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;data<sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">data_result</ref>.<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data.size()<sp/>!=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T))<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;T&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a223e81e8afa42c41346a6696560ecc7b" kindref="member">ErrorCode::InvalidValue</ref>,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Property<sp/>data<sp/>size<sp/>mismatch<sp/>for<sp/>Logitech<sp/>property&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>T<sp/>value;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>std::memcpy(&amp;value,<sp/>data.data(),<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(value);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="109" refid="namespaceduvc_1_1logitech_1a21f9f978ab54b953b60c2ea0b14ecbfc" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a21f9f978ab54b953b60c2ea0b14ecbfc" kindref="member">set_logitech_property_typed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>&amp;value)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>std::vector&lt;uint8_t&gt;<sp/>data(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>std::memcpy(data.data(),<sp/>&amp;value,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(T));</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" kindref="member">set_logitech_property</ref>(device,<sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/>data);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Explicit<sp/>template<sp/>instantiations<sp/>for<sp/>common<sp/>types</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="namespaceduvc_1_1logitech_1ae17c1762581cdafc220819093f308c75" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;uint32_t&gt;</ref></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><ref refid="namespaceduvc_1_1logitech_1ae17c1762581cdafc220819093f308c75" kindref="member">get_logitech_property_typed&lt;uint32_t&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,<sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>);</highlight></codeline>
+<codeline lineno="120" refid="namespaceduvc_1_1logitech_1ada8ac9bff8ddc344442b7d164116810e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;int32_t&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1ada8ac9bff8ddc344442b7d164116810e" kindref="member">get_logitech_property_typed&lt;int32_t&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>);</highlight></codeline>
+<codeline lineno="122" refid="namespaceduvc_1_1logitech_1aa928d36546e9b15df90bbb5cc669084b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;bool&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1aa928d36546e9b15df90bbb5cc669084b" kindref="member">get_logitech_property_typed&lt;bool&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="namespaceduvc_1_1logitech_1a2425d367bb5ff121d74ce232e2414748" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a2425d367bb5ff121d74ce232e2414748" kindref="member">set_logitech_property_typed&lt;uint32_t&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>&amp;);</highlight></codeline>
+<codeline lineno="128" refid="namespaceduvc_1_1logitech_1a15d970192a07eb9e09428202802b701d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a15d970192a07eb9e09428202802b701d" kindref="member">set_logitech_property_typed&lt;int32_t&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>,</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">int32_t</ref><sp/>&amp;);</highlight></codeline>
+<codeline lineno="131" refid="namespaceduvc_1_1logitech_1aabd1fc4425b6fdb19a6fd4bf73c23929" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1aabd1fc4425b6fdb19a6fd4bf73c23929" kindref="member">set_logitech_property_typed&lt;bool&gt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref>,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>&amp;);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc::logitech</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="vendor/logitech.cpp"/>
+  </compounddef>
+</doxygen>

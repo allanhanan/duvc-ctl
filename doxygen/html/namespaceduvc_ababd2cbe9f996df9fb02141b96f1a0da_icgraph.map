@@ -1,0 +1,29 @@
+<map id="duvc::default_log_callback" name="duvc::default_log_callback">
+<area shape="rect" id="Node000001" title="Default logging callback that writes to stderr." alt="" coords="542,233,718,260"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#a92c11bbcc4c659a542bd48d477f60876" title="Log a message." alt="" coords="360,233,494,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="527,249,495,249,495,244,527,244"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#a663fa0c39548b58bcdeb34c0dd5210fa" title="Log message at specific level." alt="" coords="179,107,312,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="402,224,361,185,311,148,288,136,290,132,313,143,364,181,405,220"/>
+<area shape="rect" id="Node000009" href="$namespaceduvc.html#ac5d8f544093e30b59e63a5d25bd0367c" title="Log critical message." alt="" coords="186,157,305,184"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="381,229,311,198,282,187,284,182,313,194,383,224"/>
+<area shape="rect" id="Node000010" href="$namespaceduvc.html#a47cac7feb74ff2f865d074b6cfb463f1" title="Log debug message." alt="" coords="187,208,304,235"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="344,238,303,232,304,227,345,233"/>
+<area shape="rect" id="Node000011" href="$namespaceduvc.html#a6d8fe15d04c800f69816c89557ca25d5" title="Log error message." alt="" coords="192,259,299,285"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="345,261,300,267,299,262,344,256"/>
+<area shape="rect" id="Node000012" href="$namespaceduvc.html#a03a6e81316de0517ea31cd6dcca560d4" title="Log info message." alt="" coords="194,309,296,336"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="383,269,313,300,284,311,282,306,311,295,381,264"/>
+<area shape="rect" id="Node000014" href="$namespaceduvc.html#a9de34d5fa98fc93f94e593e4b07cca6e" title="Log warning message." alt="" coords="182,360,308,387"/>
+<area shape="poly" id="edge13_Node000002_Node000014" title=" " alt="" coords="405,273,364,312,313,350,290,362,288,357,311,346,361,308,402,269"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#ad59f4c0cac89a553a88e826f63aad25e" title="Log critical message." alt="" coords="9,5,127,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="212,100,129,46,105,35,107,30,132,42,215,95"/>
+<area shape="rect" id="Node000005" href="$api_8cpp.html#a8eb2a7c27c88acb2ad87386c3d703493" title="Log debug message." alt="" coords="10,56,126,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="181,104,117,86,118,81,182,99"/>
+<area shape="rect" id="Node000006" href="$api_8cpp.html#a55a558025dd21137648e66f746bf1863" title="Log error message." alt="" coords="15,107,121,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="163,123,122,123,122,117,163,117"/>
+<area shape="rect" id="Node000007" href="$api_8cpp.html#a69eb1c2eff849b8249b84ed3c7e820a1" title="Log info message." alt="" coords="17,157,119,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="182,141,118,159,117,154,181,136"/>
+<area shape="rect" id="Node000008" href="$api_8cpp.html#ac25cfc7d64eaa972aabc2040a2be8c14" title="Log warning message." alt="" coords="5,208,131,235"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="188,143,180,147,166,160,157,172,147,185,132,198,111,210,108,205,129,194,143,181,152,169,162,156,177,143,185,138"/>
+<area shape="rect" id="Node000013" href="$api_8cpp.html#a25beb5fbe1559b1e26296077bf0990e8" title="Initialize library." alt="" coords="16,309,120,336"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="179,325,120,325,120,320,179,320"/>
+</map>

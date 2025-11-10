@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc__vendor__property__t" kind="struct" language="C++" prot="public">
+    <compoundname>duvc_vendor_property_t</compoundname>
+    <includes refid="api_8h" local="no">duvc-ctl/c/api.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc__vendor__property__t_1ac169d6eb8fea6058643ccecd015cb3bd" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char duvc_vendor_property_t::property_set_guid[39]</definition>
+        <argsstring>[39]</argsstring>
+        <name>property_set_guid</name>
+        <qualifiedname>duvc_vendor_property_t::property_set_guid</qualifiedname>
+        <briefdescription>
+<para>GUID as string {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="152" column="8" bodyfile="c/api.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc__vendor__property__t_1a831bc1dce815748b3df73b4cc9a450f3" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t duvc_vendor_property_t::property_id</definition>
+        <argsstring></argsstring>
+        <name>property_id</name>
+        <qualifiedname>duvc_vendor_property_t::property_id</qualifiedname>
+        <briefdescription>
+<para>Property ID within set. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="154" column="12" bodyfile="c/api.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc__vendor__property__t_1ad2c34fa7fdcb07b42814a10298c755b3" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* duvc_vendor_property_t::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>duvc_vendor_property_t::data</qualifiedname>
+        <briefdescription>
+<para>Property data payload. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="155" column="8" bodyfile="c/api.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc__vendor__property__t_1a440858253fd9d807c7eb4e261985fe0a" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t duvc_vendor_property_t::data_size</definition>
+        <argsstring></argsstring>
+        <name>data_size</name>
+        <qualifiedname>duvc_vendor_property_t::data_size</qualifiedname>
+        <briefdescription>
+<para>Size of data in bytes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="156" column="10" bodyfile="c/api.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Vendor property container. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc_vendor_property_t</label>
+        <link refid="structduvc__vendor__property__t"/>
+      </node>
+    </collaborationgraph>
+    <location file="c/api.h" line="151" column="1" bodyfile="c/api.h" bodystart="151" bodyend="157"/>
+    <listofallmembers>
+      <member refid="structduvc__vendor__property__t_1ad2c34fa7fdcb07b42814a10298c755b3" prot="public" virt="non-virtual"><scope>duvc_vendor_property_t</scope><name>data</name></member>
+      <member refid="structduvc__vendor__property__t_1a440858253fd9d807c7eb4e261985fe0a" prot="public" virt="non-virtual"><scope>duvc_vendor_property_t</scope><name>data_size</name></member>
+      <member refid="structduvc__vendor__property__t_1a831bc1dce815748b3df73b4cc9a450f3" prot="public" virt="non-virtual"><scope>duvc_vendor_property_t</scope><name>property_id</name></member>
+      <member refid="structduvc__vendor__property__t_1ac169d6eb8fea6058643ccecd015cb3bd" prot="public" virt="non-virtual"><scope>duvc_vendor_property_t</scope><name>property_set_guid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

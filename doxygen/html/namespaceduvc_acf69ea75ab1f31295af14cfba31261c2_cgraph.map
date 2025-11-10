@@ -1,0 +1,5 @@
+<map id="duvc::decode_hresult" name="duvc::decode_hresult">
+<area shape="rect" id="Node000001" title="Decode HRESULT to human&#45;readable string." alt="" coords="5,13,151,40"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ad674a2332aaccc15fb24ab7fad6632f4" title="Decode system error code to human&#45;readable string." alt="" coords="199,5,348,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,24,183,24,183,29,151,29"/>
+</map>

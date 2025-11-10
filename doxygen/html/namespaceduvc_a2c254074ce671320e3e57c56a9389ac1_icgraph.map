@@ -1,0 +1,50 @@
+<map id="duvc::list_devices" name="duvc::list_devices">
+<area shape="rect" id="Node000001" title="Enumerate all available video input devices." alt="" coords="456,360,582,387"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Camera.html#afb78983227d8207306746d433c9fa570" title="Create camera handle by device index." alt="" coords="233,5,390,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="514,345,508,283,491,202,478,159,459,118,436,80,406,46,389,34,392,30,410,42,440,76,464,116,483,158,497,201,513,282,520,344"/>
+<area shape="rect" id="Node000003" href="$bindings_8cpp.html#a2eeaa75b5bece22f8ece44907ed9f569" title=" " alt="" coords="259,56,365,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="512,345,503,292,485,225,471,190,453,156,432,124,406,97,387,84,365,77,367,72,389,80,410,93,436,121,458,153,476,187,490,223,508,291,518,344"/>
+<area shape="rect" id="Node000004" href="$bindings_8cpp.html#a7e5b8b6d1b9f093497e11e827ee56004" title=" " alt="" coords="239,107,384,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="510,345,498,301,477,248,447,193,428,169,406,147,384,134,386,130,410,143,432,165,452,190,482,245,503,300,515,344"/>
+<area shape="rect" id="Node000005" href="$bindings_8cpp.html#a58f06af7a7bba166129e38505c2afd4d" title=" " alt="" coords="259,157,365,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="506,347,491,312,470,272,442,232,406,198,387,187,365,180,366,175,389,182,410,194,446,228,474,269,496,310,511,344"/>
+<area shape="rect" id="Node000006" href="$bindings_8cpp.html#a7eae96ab0b9ad48d78466336076360e0" title=" " alt="" coords="233,208,391,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="500,348,461,297,436,271,407,249,383,238,385,233,409,244,439,267,465,294,504,345"/>
+<area shape="rect" id="Node000007" href="$bindings_8cpp.html#a56e6df6631c2fb647fcb3a8641bc8e49" title=" " alt="" coords="233,259,391,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="488,352,451,325,407,300,377,288,378,283,409,295,454,320,491,348"/>
+<area shape="rect" id="Node000008" href="$bindings_8cpp.html#a96f4ab988208d0f8432d7134f367283b" title=" " alt="" coords="236,309,388,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="446,358,369,339,370,334,447,353"/>
+<area shape="rect" id="Node000009" href="$bindings_8cpp.html#ae6c4b34fa8f4bfc8b53488ce2fccad7b" title=" " alt="" coords="223,360,401,387"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="441,376,401,376,401,371,441,371"/>
+<area shape="rect" id="Node000010" href="$api_8cpp.html#a4858259a9c4d23ce0d671b52615c3e74" title="List all connected devices." alt="" coords="249,411,374,437"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="447,394,370,413,369,407,446,388"/>
+<area shape="rect" id="Node000011" href="$bindings_8cpp.html#a447135500d1651a64fc752ea40d3f2ec" title=" " alt="" coords="238,461,386,488"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="491,399,454,426,409,452,378,463,377,458,407,447,451,422,488,395"/>
+<area shape="rect" id="Node000012" href="$bindings_8cpp.html#a2ef0f3ef211dffa60691ec69734cb8ba" title=" " alt="" coords="263,512,361,539"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="504,401,465,453,439,480,409,502,386,514,362,521,360,516,384,509,407,498,436,476,461,449,500,398"/>
+<area shape="rect" id="Node000013" href="$bindings_8cpp.html#afeb5120c76b876c78b2d47af23770647" title=" " alt="" coords="243,563,380,589"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="511,402,496,437,474,478,446,518,410,553,382,567,380,562,406,548,442,515,470,475,491,435,506,400"/>
+<area shape="rect" id="Node000014" href="$bindings_8cpp.html#a2e76b2547f3ee2427b1cf27ad9b358d6" title=" " alt="" coords="263,613,361,640"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="515,403,503,447,482,501,452,556,432,581,410,603,387,617,362,625,360,619,385,612,406,599,428,578,447,553,477,499,498,445,510,401"/>
+<area shape="rect" id="Node000015" href="$namespaceduvc.html#a0af4366057ae8014aee4989ab3fd7671" title="Create device capability snapshot by index." alt="" coords="216,664,408,691"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="518,402,508,456,490,524,476,559,458,594,436,626,410,654,392,666,389,661,406,650,432,623,453,591,471,557,485,522,503,455,512,401"/>
+<area shape="rect" id="Node000016" href="$namespaceduvc.html#ac682048b44b6b2ee33d99dd460c24f25" title="Create camera from device index." alt="" coords="244,739,380,765"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="518,402,509,463,491,542,459,627,437,668,410,704,385,726,357,741,354,736,382,721,406,701,432,665,454,625,486,541,504,462,513,402"/>
+<area shape="poly" id="edge24_Node000016_Node000016" title=" " alt="" coords="347,726,335,720,312,717,290,719,278,724,276,729,281,737,277,740,270,730,275,720,289,714,312,712,337,715,350,721"/>
+<area shape="rect" id="Node000017" href="$api_8cpp.html#a6c818dfe0ce43fce1ac013dcfcc97ab6" title="Open camera by device handle." alt="" coords="19,513,154,540"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="252,734,232,721,214,704,200,684,193,664,191,626,187,590,180,572,166,554,150,543,153,538,170,550,184,569,192,588,196,626,199,663,205,682,218,701,235,717,255,729"/>
+<area shape="rect" id="Node000018" href="$api_8cpp.html#af3c0339eb2da66e4c693795c1e516a94" title="Open camera by device index." alt="" coords="9,564,164,607"/>
+<area shape="poly" id="edge17_Node000016_Node000018" title=" " alt="" coords="257,734,235,721,214,705,197,682,190,661,182,641,166,621,150,609,153,605,169,617,187,638,195,659,202,680,218,701,238,717,260,729"/>
+<area shape="rect" id="Node000019" href="$api_8cpp.html#a3bb63900ee185ff762cb5202213dcb44" title="Quick get camera property (creates temporary connection)" alt="" coords="5,631,168,673"/>
+<area shape="poly" id="edge18_Node000016_Node000019" title=" " alt="" coords="267,734,167,688,140,676,142,671,169,683,269,729"/>
+<area shape="rect" id="Node000020" href="$api_8cpp.html#a563caf7299afef6db2be80775ec7045b" title="Quick get camera property range." alt="" coords="5,697,168,740"/>
+<area shape="poly" id="edge19_Node000016_Node000020" title=" " alt="" coords="228,742,168,733,168,728,229,737"/>
+<area shape="rect" id="Node000021" href="$api_8cpp.html#ac2450ac31290e5083614c732b6586c6d" title="Quick get video property." alt="" coords="11,764,162,807"/>
+<area shape="poly" id="edge20_Node000016_Node000021" title=" " alt="" coords="229,767,162,777,162,772,228,762"/>
+<area shape="rect" id="Node000022" href="$api_8cpp.html#a993684c5701505045bdb13709872300b" title="Quick get video property range." alt="" coords="11,831,162,873"/>
+<area shape="poly" id="edge21_Node000016_Node000022" title=" " alt="" coords="269,775,169,821,142,833,140,828,167,816,267,770"/>
+<area shape="rect" id="Node000023" href="$api_8cpp.html#ab4d738bc8b5e468bfa9ecd3e27395815" title="Quick set camera property (creates temporary connection)" alt="" coords="5,897,168,940"/>
+<area shape="poly" id="edge22_Node000016_Node000023" title=" " alt="" coords="291,779,238,832,205,861,169,888,148,899,146,894,166,883,202,857,235,829,287,775"/>
+<area shape="rect" id="Node000024" href="$api_8cpp.html#ac5c65a93003977ce563d8a5c1379745c" title="Quick set video property." alt="" coords="11,964,162,1007"/>
+<area shape="poly" id="edge23_Node000016_Node000024" title=" " alt="" coords="300,781,279,819,250,865,213,912,169,954,151,966,148,961,166,950,209,909,245,862,274,816,295,778"/>
+</map>

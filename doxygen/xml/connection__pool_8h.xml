@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="connection__pool_8h" kind="file" language="C++">
+    <compoundname>connection_pool.h</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <includes local="no">duvc-ctl/detail/com_helpers.h</includes>
+    <includes local="no">memory</includes>
+    <includedby refid="api_8cpp" local="yes">c/api.cpp</includedby>
+    <includedby refid="camera_8cpp" local="no">core/camera.cpp</includedby>
+    <includedby refid="device_8cpp" local="no">core/device.cpp</includedby>
+    <includedby refid="connection__pool_8cpp" local="no">platform/windows/connection_pool.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="5">
+        <label>memory</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c/api.cpp</label>
+        <link refid="api_8cpp"/>
+      </node>
+      <node id="3">
+        <label>core/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="4">
+        <label>core/device.cpp</label>
+        <link refid="device_8cpp"/>
+      </node>
+      <node id="5">
+        <label>platform/windows/connection_pool.cpp</label>
+        <link refid="connection__pool_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classduvc_1_1DeviceConnection" prot="public">duvc::DeviceConnection</innerclass>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Windows-specific device connection pooling. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">duvc-ctl/core/types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;duvc-ctl/detail/com_helpers.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">DeviceConnection<sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="30" refid="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" kindref="member">DeviceConnection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">dev</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" kindref="member">~DeviceConnection</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Non-copyable<sp/>but<sp/>movable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="classduvc_1_1DeviceConnection_1a32c2d09632a4999b8c2467eda514a4a8" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceConnection_1a32c2d09632a4999b8c2467eda514a4a8" kindref="member">DeviceConnection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37" refid="classduvc_1_1DeviceConnection_1a31e6b61f5fd2a4a8e340029136c64891" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;<ref refid="classduvc_1_1DeviceConnection_1a31e6b61f5fd2a4a8e340029136c64891" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38" refid="classduvc_1_1DeviceConnection_1af4d77b0bd6f52f747636fed77c9b4d57" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceConnection_1af4d77b0bd6f52f747636fed77c9b4d57" kindref="member">DeviceConnection</ref>(<ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39" refid="classduvc_1_1DeviceConnection_1a51a016f42c26f738e6305fbef08a91c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;<ref refid="classduvc_1_1DeviceConnection_1a51a016f42c26f738e6305fbef08a91c0" kindref="member">operator=</ref>(<ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>&amp;&amp;)<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" kindref="member">get</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">val</ref>);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" kindref="member">set</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">val</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" kindref="member">get</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">val</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" kindref="member">set</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">val</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" kindref="member">get_range</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref><sp/>&amp;range);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" kindref="member">get_range</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref><sp/>&amp;range);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" kindref="member">is_valid</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>filter_<sp/>!=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;duvc::detail::com_apartment&gt;<sp/>com_;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*filter_;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*cam_ctrl_;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*vid_proc_;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="platform/windows/connection_pool.h"/>
+  </compounddef>
+</doxygen>

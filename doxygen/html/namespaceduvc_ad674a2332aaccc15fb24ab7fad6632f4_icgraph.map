@@ -1,0 +1,19 @@
+<map id="duvc::decode_system_error" name="duvc::decode_system_error">
+<area shape="rect" id="Node000001" title="Decode system error code to human&#45;readable string." alt="" coords="606,107,756,149"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#acf69ea75ab1f31295af14cfba31261c2" title="Decode HRESULT to human&#45;readable string." alt="" coords="413,115,558,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="591,131,559,131,559,125,591,125"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a604f5ad9649c2fa6d6edc5d9d147abcf" title="Get diagnostic information for troubleshooting." alt="" coords="196,5,365,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,107,413,76,364,46,335,35,337,30,366,42,416,71,458,103"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#a4bab49b846ca4cd2b2fca893f2192b3a" title="Get detailed HRESULT information." alt="" coords="197,56,364,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="421,112,329,86,330,81,423,107"/>
+<area shape="rect" id="Node000005" href="$classduvc_1_1KsPropertySet.html#a8c1795034a9f6851db82a1232cd897eb" title="Get property data." alt="" coords="209,107,352,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="398,131,352,131,352,125,398,125"/>
+<area shape="rect" id="Node000007" href="$classduvc_1_1KsPropertySet.html#a251aad5cfe01da2b5e380d4697a94f2e" title="Query property support." alt="" coords="209,173,352,216"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="428,149,349,175,348,170,427,144"/>
+<area shape="rect" id="Node000008" href="$classduvc_1_1KsPropertySet.html#a33fa8fc7b6530e4c1c97d5b3bc8053b7" title="Set property data." alt="" coords="209,240,352,283"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="462,154,419,192,366,230,344,242,342,237,364,226,416,188,458,150"/>
+<area shape="rect" id="Node000006" href="$classduvc_1_1KsPropertySet.html#a21e491235b83bacb4fd55e96d2b603f6" title="Get typed property value." alt="" coords="5,107,148,149"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="194,131,148,131,148,125,194,125"/>
+<area shape="rect" id="Node000009" href="$classduvc_1_1KsPropertySet.html#a2a59e63375e5b5f0fb37d39e3aa5b30c" title="Set typed property value." alt="" coords="5,240,148,283"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="194,264,148,264,148,259,194,259"/>
+</map>

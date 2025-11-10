@@ -1,0 +1,19 @@
+<map id="utils/logging.cpp" name="utils/logging.cpp">
+<area shape="rect" id="Node000001" title="Logging system implementation." alt="" coords="287,5,402,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,66,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,35,81,82,80,77,286,29"/>
+<area shape="rect" id="Node000003" href="$logging_8h.html" title="Structured logging interface for duvc&#45;ctl." alt="" coords="89,80,240,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="314,35,211,76,209,71,312,30"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="265,80,331,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="339,34,317,68,312,66,334,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="356,80,427,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="355,31,378,66,373,68,351,34"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="451,80,508,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="370,30,444,70,441,75,367,35"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="532,80,600,107"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="384,30,518,74,516,79,383,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="81,155,158,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="159,109,138,143,133,140,155,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="182,155,236,181"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="175,106,196,140,191,143,170,109"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="core/device.h" name="core/device.h">
+<area shape="rect" id="Node000001" title="Device enumeration and management functions." alt="" coords="465,5,564,32"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html" title="Complete C ABI implementation for duvc&#45;ctl library." alt="" coords="5,88,80,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="450,27,286,45,189,61,93,83,71,90,69,85,91,77,188,56,285,39,449,22"/>
+<area shape="rect" id="Node000003" href="$camera_8cpp.html" title="RAII camera handle implementation." alt="" coords="103,88,222,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="450,35,234,83,206,90,205,85,233,77,449,30"/>
+<area shape="rect" id="Node000004" href="$capability_8cpp.html" title="Device capability detection implementation using Camera API." alt="" coords="246,88,375,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="470,40,343,90,342,85,468,35"/>
+<area shape="rect" id="Node000005" href="$device_8cpp.html" title="Device enumeration and management implementation." alt="" coords="399,88,512,115"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="499,46,467,89,463,86,494,43"/>
+<area shape="rect" id="Node000006" href="$duvc_8hpp.html" title="Main umbrella header for duvc&#45;ctl library." alt="" coords="536,88,610,115"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="535,43,566,86,562,89,530,46"/>
+<area shape="rect" id="Node000007" href="$connection__pool_8cpp.html" title="Windows DirectShow connection pooling implementation." alt="" coords="634,80,824,123"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="563,35,675,77,673,82,561,40"/>
+<area shape="rect" id="Node000008" href="$device__monitor_8cpp.html" title="Windows device hotplug detection implementation." alt="" coords="848,80,1013,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="580,29,836,77,848,80,847,85,835,83,579,34"/>
+<area shape="rect" id="Node000009" href="$ks__properties_8cpp.html" title="IKsPropertySet implementation for vendor properties." alt="" coords="1037,80,1178,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="580,22,780,42,903,58,1026,77,1037,80,1036,85,1025,83,902,63,779,48,579,28"/>
+</map>

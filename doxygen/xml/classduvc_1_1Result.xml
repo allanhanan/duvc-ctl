@@ -1,0 +1,395 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1Result" kind="class" language="C++" prot="public">
+    <compoundname>duvc::Result</compoundname>
+    <includes refid="result_8h" local="no">duvc-ctl/core/result.h</includes>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">typename</ref> T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1Result_1af0bc234b8953d991fb5f01d2b548d5a9" prot="private" static="no" mutable="no">
+        <type>std::variant&lt; T, <ref refid="classduvc_1_1Error" kindref="compound">Error</ref> &gt;</type>
+        <definition>std::variant&lt;T, Error&gt; duvc::Result&lt; T &gt;::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>duvc::Result::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="154" column="16" bodyfile="core/result.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Result&lt; T &gt;::Result</definition>
+        <argsstring>(T value)</argsstring>
+        <name>Result</name>
+        <qualifiedname>duvc::Result::Result</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Create successful result with value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> value </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="81" column="3" bodyfile="core/result.h" bodystart="81" bodyend="81"/>
+        <referencedby refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" compoundref="result_8h" startline="135" endline="137">duvc::Result&lt; T &gt;::value_or</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1aee9049a8dda2bf7d9296f1ab27729944" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Result&lt; T &gt;::Result</definition>
+        <argsstring>(Error error)</argsstring>
+        <name>Result</name>
+        <qualifiedname>duvc::Result::Result</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Error" kindref="compound">Error</ref></type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+<para>Create error result. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Error" kindref="compound">Error</ref> information </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="87" column="3" bodyfile="core/result.h" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1a942842fc271403e397482104c1ff5dfa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Result&lt; T &gt;::Result</definition>
+        <argsstring>(ErrorCode code, std::string message=&quot;&quot;)</argsstring>
+        <name>Result</name>
+        <qualifiedname>duvc::Result::Result</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>message</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Create error result from error code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Error" kindref="compound">Error</ref> code </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Optional error message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="94" column="3" bodyfile="core/result.h" bodystart="94" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::Result&lt; T &gt;::is_ok</definition>
+        <argsstring>() const</argsstring>
+        <name>is_ok</name>
+        <qualifiedname>duvc::Result::is_ok</qualifiedname>
+        <briefdescription>
+<para>Check if result contains a value (success) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="101" column="8" bodyfile="core/result.h" bodystart="101" bodyend="101"/>
+        <referencedby refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" compoundref="duvc_8hpp" startline="63" endline="72">duvc::get</referencedby>
+        <referencedby refid="group__quickapi_1gabe50c1b736f2782a0019091d6ddab5c6" compoundref="duvc_8hpp" startline="113" endline="122">duvc::get</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" compoundref="logitech_8cpp" startline="90" endline="106">duvc::logitech::get_logitech_property_typed</referencedby>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" compoundref="ks__properties_8cpp" startline="124" endline="142">duvc::KsPropertySet::get_property_typed</referencedby>
+        <referencedby refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" compoundref="duvc_8hpp" startline="95" endline="104">duvc::get_range</referencedby>
+        <referencedby refid="group__quickapi_1gaad1b7b0ffab91ab840285893caecdf48" compoundref="duvc_8hpp" startline="145" endline="154">duvc::get_range</referencedby>
+        <referencedby refid="classduvc_1_1Result_1af37bf1e32965f9d913fe04b2faa38f08" compoundref="result_8h" startline="151" endline="151">duvc::Result&lt; T &gt;::operator bool</referencedby>
+        <referencedby refid="classduvc_1_1Result_3_01void_01_4_1ac30b210ef1bda811127b760636a24736" compoundref="result_8h" startline="202" endline="202">duvc::Result&lt; void &gt;::operator bool</referencedby>
+        <referencedby refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" compoundref="duvc_8hpp" startline="81" endline="86">duvc::set</referencedby>
+        <referencedby refid="group__quickapi_1gab6b367552e5f3955cfeb1b5a054764d0" compoundref="duvc_8hpp" startline="131" endline="136">duvc::set</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" compoundref="logitech_8cpp" startline="62" endline="87">duvc::logitech::supports_logitech_properties</referencedby>
+        <referencedby refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" compoundref="result_8h" startline="135" endline="137">duvc::Result&lt; T &gt;::value_or</referencedby>
+        <referencedby refid="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" compoundref="result_8h" startline="144" endline="146">duvc::Result&lt; T &gt;::value_or</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1acaf861018438b257c0d91b769f26e782" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::Result&lt; T &gt;::is_error</definition>
+        <argsstring>() const</argsstring>
+        <name>is_error</name>
+        <qualifiedname>duvc::Result::is_error</qualifiedname>
+        <briefdescription>
+<para>Check if result contains an error. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="107" column="8" bodyfile="core/result.h" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> T &amp;</type>
+        <definition>const T &amp; duvc::Result&lt; T &gt;::value</definition>
+        <argsstring>() const &amp;</argsstring>
+        <name>value</name>
+        <qualifiedname>duvc::Result::value</qualifiedname>
+        <briefdescription>
+<para>Get the value (assumes success) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to value </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::bad_variant_access</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if result is error </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="114" column="11" bodyfile="core/result.h" bodystart="114" bodyend="114"/>
+        <referencedby refid="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" compoundref="core_8cpp" startline="385" endline="399">duvc::DeviceConnection::get</referencedby>
+        <referencedby refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" compoundref="duvc_8hpp" startline="63" endline="72">duvc::get</referencedby>
+        <referencedby refid="group__quickapi_1gabe50c1b736f2782a0019091d6ddab5c6" compoundref="duvc_8hpp" startline="113" endline="122">duvc::get</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" compoundref="core_8cpp" startline="413" endline="427">duvc::DeviceConnection::get</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" compoundref="logitech_8cpp" startline="90" endline="106">duvc::logitech::get_logitech_property_typed</referencedby>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" compoundref="ks__properties_8cpp" startline="124" endline="142">duvc::KsPropertySet::get_property_typed</referencedby>
+        <referencedby refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" compoundref="duvc_8hpp" startline="95" endline="104">duvc::get_range</referencedby>
+        <referencedby refid="group__quickapi_1gaad1b7b0ffab91ab840285893caecdf48" compoundref="duvc_8hpp" startline="145" endline="154">duvc::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" compoundref="core_8cpp" startline="401" endline="411">duvc::DeviceConnection::set</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" compoundref="core_8cpp" startline="429" endline="439">duvc::DeviceConnection::set</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" compoundref="logitech_8cpp" startline="62" endline="87">duvc::logitech::supports_logitech_properties</referencedby>
+        <referencedby refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" compoundref="result_8h" startline="135" endline="137">duvc::Result&lt; T &gt;::value_or</referencedby>
+        <referencedby refid="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" compoundref="result_8h" startline="144" endline="146">duvc::Result&lt; T &gt;::value_or</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1a4a4b2a1ba39d7f37e1e794ecf365c867" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <type>T &amp;&amp;</type>
+        <definition>T &amp;&amp; duvc::Result&lt; T &gt;::value</definition>
+        <argsstring>() &amp;&amp;</argsstring>
+        <name>value</name>
+        <qualifiedname>duvc::Result::value</qualifiedname>
+        <briefdescription>
+<para>Get the value (assumes success) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Moved value </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::bad_variant_access</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if result is error </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="121" column="5" bodyfile="core/result.h" bodystart="121" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Error" kindref="compound">Error</ref> &amp;</type>
+        <definition>const Error &amp; duvc::Result&lt; T &gt;::error</definition>
+        <argsstring>() const</argsstring>
+        <name>error</name>
+        <qualifiedname>duvc::Result::error</qualifiedname>
+        <briefdescription>
+<para>Get the error (assumes error) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Reference to error </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::bad_variant_access</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if result is success </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="128" column="15" bodyfile="core/result.h" bodystart="128" bodyend="128"/>
+        <referencedby refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" compoundref="logitech_8cpp" startline="90" endline="106">duvc::logitech::get_logitech_property_typed</referencedby>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" compoundref="ks__properties_8cpp" startline="124" endline="142">duvc::KsPropertySet::get_property_typed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>T</type>
+        <definition>T duvc::Result&lt; T &gt;::value_or</definition>
+        <argsstring>(const T &amp;default_value) const &amp;</argsstring>
+        <name>value_or</name>
+        <qualifiedname>duvc::Result::value_or</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> T &amp;</type>
+          <declname>default_value</declname>
+        </param>
+        <briefdescription>
+<para>Get value or default if error. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>default_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Default value to return on error </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value or default </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="135" column="5" bodyfile="core/result.h" bodystart="135" bodyend="137"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" compoundref="result_8h" startline="81" endline="81">duvc::Result&lt; T &gt;::Result</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="rvalue" virt="non-virtual">
+        <type>T</type>
+        <definition>T duvc::Result&lt; T &gt;::value_or</definition>
+        <argsstring>(T &amp;&amp;default_value) &amp;&amp;</argsstring>
+        <name>value_or</name>
+        <qualifiedname>duvc::Result::value_or</qualifiedname>
+        <param>
+          <type>T &amp;&amp;</type>
+          <declname>default_value</declname>
+        </param>
+        <briefdescription>
+<para>Get value or default if error. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>default_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Default value to return on error </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Value or default </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="144" column="5" bodyfile="core/result.h" bodystart="144" bodyend="146"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Result_1af37bf1e32965f9d913fe04b2faa38f08" prot="public" static="no" const="yes" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Result&lt; T &gt;::operator bool</definition>
+        <argsstring>() const</argsstring>
+        <name>operator bool</name>
+        <qualifiedname>duvc::Result::operator bool</qualifiedname>
+        <briefdescription>
+<para>Boolean conversion (true if success) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="151" column="12" bodyfile="core/result.h" bodystart="151" bodyend="151"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> type that can contain either a value or an error. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value type (use void for operations that don&apos;t return values) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::Result&lt; T &gt;</label>
+        <link refid="classduvc_1_1Result"/>
+      </node>
+    </collaborationgraph>
+    <location file="core/result.h" line="75" column="12" bodyfile="core/result.h" bodystart="75" bodyend="155"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1Result_1af0bc234b8953d991fb5f01d2b548d5a9" prot="private" virt="non-virtual"><scope>duvc::Result</scope><name>data_</name></member>
+      <member refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>error</name></member>
+      <member refid="classduvc_1_1Result_1acaf861018438b257c0d91b769f26e782" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>is_error</name></member>
+      <member refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>is_ok</name></member>
+      <member refid="classduvc_1_1Result_1af37bf1e32965f9d913fe04b2faa38f08" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>operator bool</name></member>
+      <member refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>Result</name></member>
+      <member refid="classduvc_1_1Result_1aee9049a8dda2bf7d9296f1ab27729944" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>Result</name></member>
+      <member refid="classduvc_1_1Result_1a942842fc271403e397482104c1ff5dfa" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>Result</name></member>
+      <member refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>value</name></member>
+      <member refid="classduvc_1_1Result_1a4a4b2a1ba39d7f37e1e794ecf365c867" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>value</name></member>
+      <member refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>value_or</name></member>
+      <member refid="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" prot="public" virt="non-virtual"><scope>duvc::Result</scope><name>value_or</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

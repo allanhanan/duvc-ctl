@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1IPlatformInterface" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>duvc::IPlatformInterface</compoundname>
+    <derivedcompoundref refid="classduvc_1_1WindowsPlatformInterface" prot="public" virt="non-virtual">duvc::WindowsPlatformInterface</derivedcompoundref>
+    <includes refid="interface_8h" local="no">duvc-ctl/platform/interface.h</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1IPlatformInterface_1ae93d76aea4b7f577a3c4c7c3f2ba6eba" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual duvc::IPlatformInterface::~IPlatformInterface</definition>
+        <argsstring>()=default</argsstring>
+        <name>~IPlatformInterface</name>
+        <qualifiedname>duvc::IPlatformInterface::~IPlatformInterface</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="20" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IPlatformInterface_1a07822c340347bf0290d647b746c7e0f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; std::vector&lt; <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &gt; &gt;</type>
+        <definition>virtual Result&lt; std::vector&lt; Device &gt; &gt; duvc::IPlatformInterface::list_devices</definition>
+        <argsstring>()=0</argsstring>
+        <name>list_devices</name>
+        <qualifiedname>duvc::IPlatformInterface::list_devices</qualifiedname>
+        <reimplementedby refid="classduvc_1_1WindowsPlatformInterface_1acf5648e9ddb6d90a4635fed847dd03cc">list_devices</reimplementedby>
+        <briefdescription>
+<para>Enumerate available devices. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing device list or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="26" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IPlatformInterface_1a4b29d5835b45278227e8996442de1372" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">bool</ref> &gt;</type>
+        <definition>virtual Result&lt; bool &gt; duvc::IPlatformInterface::is_device_connected</definition>
+        <argsstring>(const Device &amp;device)=0</argsstring>
+        <name>is_device_connected</name>
+        <qualifiedname>duvc::IPlatformInterface::is_device_connected</qualifiedname>
+        <reimplementedby refid="classduvc_1_1WindowsPlatformInterface_1aeebd693d00349fbe4ac98cf5f369381d">is_device_connected</reimplementedby>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <briefdescription>
+<para>Check if device is connected. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to check </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing connection status or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="33" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IPlatformInterface_1a38f14507b90a96c1eb1ff2d817c3452c" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; std::unique_ptr&lt; <ref refid="classduvc_1_1Result" kindref="compound">class</ref> <ref refid="classduvc_1_1IDeviceConnection" kindref="compound">IDeviceConnection</ref> &gt; &gt;</type>
+        <definition>virtual Result&lt; std::unique_ptr&lt; class IDeviceConnection &gt; &gt; duvc::IPlatformInterface::create_connection</definition>
+        <argsstring>(const Device &amp;device)=0</argsstring>
+        <name>create_connection</name>
+        <qualifiedname>duvc::IPlatformInterface::create_connection</qualifiedname>
+        <reimplementedby refid="classduvc_1_1WindowsPlatformInterface_1abc83892be09b0b3bbac4ae6cb0625289">create_connection</reimplementedby>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <briefdescription>
+<para>Create device connection. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to connect to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing connection handle or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="41" column="3"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract interface for platform-specific camera operations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>duvc::IPlatformInterface</label>
+        <link refid="classduvc_1_1IPlatformInterface"/>
+      </node>
+      <node id="2">
+        <label>duvc::WindowsPlatformInterface</label>
+        <link refid="classduvc_1_1WindowsPlatformInterface"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::IPlatformInterface</label>
+        <link refid="classduvc_1_1IPlatformInterface"/>
+      </node>
+    </collaborationgraph>
+    <location file="platform/interface.h" line="18" column="1" bodyfile="platform/interface.h" bodystart="18" bodyend="42"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1IPlatformInterface_1a38f14507b90a96c1eb1ff2d817c3452c" prot="public" virt="pure-virtual"><scope>duvc::IPlatformInterface</scope><name>create_connection</name></member>
+      <member refid="classduvc_1_1IPlatformInterface_1a4b29d5835b45278227e8996442de1372" prot="public" virt="pure-virtual"><scope>duvc::IPlatformInterface</scope><name>is_device_connected</name></member>
+      <member refid="classduvc_1_1IPlatformInterface_1a07822c340347bf0290d647b746c7e0f1" prot="public" virt="pure-virtual"><scope>duvc::IPlatformInterface</scope><name>list_devices</name></member>
+      <member refid="classduvc_1_1IPlatformInterface_1ae93d76aea4b7f577a3c4c7c3f2ba6eba" prot="public" virt="virtual"><scope>duvc::IPlatformInterface</scope><name>~IPlatformInterface</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="result_8h" kind="file" language="C++">
+    <compoundname>result.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">optional</includes>
+    <includes local="no">string</includes>
+    <includes local="no">system_error</includes>
+    <includes local="no">variant</includes>
+    <includedby refid="api_8cpp" local="yes">c/api.cpp</includedby>
+    <includedby refid="error__handling_8cpp" local="yes">c/error_handling.cpp</includedby>
+    <includedby refid="camera_8h" local="no">core/camera.h</includedby>
+    <includedby refid="capability_8cpp" local="no">core/capability.cpp</includedby>
+    <includedby refid="capability_8h" local="yes">core/capability.h</includedby>
+    <includedby refid="result_8cpp" local="no">core/result.cpp</includedby>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="interface_8h" local="no">platform/interface.h</includedby>
+    <includedby refid="ks__properties_8h" local="no">platform/windows/ks_properties.h</includedby>
+    <includedby refid="logitech_8h" local="no">vendor/logitech.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>optional</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>system_error</label>
+      </node>
+      <node id="6">
+        <label>variant</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="4">
+        <label>core/camera.h</label>
+        <link refid="camera_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>core/capability.h</label>
+        <link refid="capability_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="10">
+        <label>platform/interface.h</label>
+        <link refid="interface_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>platform/windows/ks_properties.h</label>
+        <link refid="ks__properties_8h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>vendor/logitech.h</label>
+        <link refid="logitech_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c/api.cpp</label>
+        <link refid="api_8cpp"/>
+      </node>
+      <node id="3">
+        <label>c/error_handling.cpp</label>
+        <link refid="error__handling_8cpp"/>
+      </node>
+      <node id="5">
+        <label>core/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="6">
+        <label>core/capability.cpp</label>
+        <link refid="capability_8cpp"/>
+      </node>
+      <node id="9">
+        <label>core/result.cpp</label>
+        <link refid="result_8cpp"/>
+      </node>
+      <node id="11">
+        <label>platform/factory.cpp</label>
+        <link refid="factory_8cpp"/>
+      </node>
+      <node id="13">
+        <label>platform/windows/ks_properties.cpp</label>
+        <link refid="ks__properties_8cpp"/>
+      </node>
+      <node id="14">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classduvc_1_1Error" prot="public">duvc::Error</innerclass>
+    <innerclass refid="classduvc_1_1Result" prot="public">duvc::Result</innerclass>
+    <innerclass refid="classduvc_1_1Result_3_01void_01_4" prot="public">duvc::Result&lt; void &gt;</innerclass>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Result/Error type system for duvc-ctl. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;optional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;system_error&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;variant&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a505a83f220c02df2f85c3810cd9ceb38" kindref="member">Success</ref><sp/>=<sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">DeviceNotFound</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a3bff0a13500d51fabd0e4e4e0ec6b48c" kindref="member">DeviceBusy</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">PropertyNotSupported</ref>,<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a223e81e8afa42c41346a6696560ecc7b" kindref="member">InvalidValue</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a4b33a686be73bb172407d73b26356275" kindref="member">PermissionDenied</ref>,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca" kindref="member">SystemError</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a253ca7dd096ee0956cccee4d376cab8b" kindref="member">InvalidArgument</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a997ca4ce119685f40f03a9a8a6c5346e" kindref="member">NotImplemented</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>code);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="classduvc_1_1Error" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">Error</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/><ref refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" kindref="member">code</ref>,<sp/>std::string<sp/><ref refid="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" kindref="member">message</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">Error</ref>(std::error_code<sp/><ref refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" kindref="member">code</ref>,<sp/>std::string<sp/><ref refid="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" kindref="member">message</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/><ref refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" kindref="member">code</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>code_;<sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<ref refid="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" kindref="member">message</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>message_;<sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>std::string<sp/><ref refid="classduvc_1_1Error_1ad21ca3bbb067caeaf2fbb94146b6c517" kindref="member">description</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>code_;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>std::string<sp/>message_;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="classduvc_1_1Result" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result</ref><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="81" refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" kindref="member">Result</ref>(T<sp/><ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>)<sp/>:<sp/>data_(std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>))<sp/>{}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="classduvc_1_1Result_1aee9049a8dda2bf7d9296f1ab27729944" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_1aee9049a8dda2bf7d9296f1ab27729944" kindref="member">Result</ref>(<ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/><ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>)<sp/>:<sp/>data_(std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(<ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>))<sp/>{}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classduvc_1_1Result_1a942842fc271403e397482104c1ff5dfa" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_1a942842fc271403e397482104c1ff5dfa" kindref="member">Result</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>code,<sp/>std::string<sp/>message<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>data_(<ref refid="classduvc_1_1Error" kindref="compound">Error</ref>(code,<sp/>std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(message)))<sp/>{}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::holds_alternative&lt;T&gt;(data_);<sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="classduvc_1_1Result_1acaf861018438b257c0d91b769f26e782" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1acaf861018438b257c0d91b769f26e782" kindref="member">is_error</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::holds_alternative&lt;Error&gt;(data_);<sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>&amp;<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>()<sp/><ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/>&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::get&lt;T&gt;(data_);<sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="classduvc_1_1Result_1a4a4b2a1ba39d7f37e1e794ecf365c867" refkind="member"><highlight class="normal"><sp/><sp/>T<sp/>&amp;&amp;<ref refid="classduvc_1_1Result_1a4a4b2a1ba39d7f37e1e794ecf365c867" kindref="member">value</ref>()<sp/>&amp;&amp;<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::get&lt;T&gt;(std::move(data_));<sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/>&amp;<ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::get&lt;Error&gt;(data_);<sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" refkind="member"><highlight class="normal"><sp/><sp/>T<sp/><ref refid="classduvc_1_1Result_1a304ed12ed59a1cc9c4f66ab5f71adff1" kindref="member">value_or</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">default_value</ref>)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>&amp;<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>()<sp/>?<sp/><ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>()<sp/>:<sp/><ref refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" kindref="member">default_value</ref>;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" refkind="member"><highlight class="normal"><sp/><sp/>T<sp/><ref refid="classduvc_1_1Result_1aec1adca42af9304ee0d6d2327a73083f" kindref="member">value_or</ref>(T<sp/>&amp;&amp;<ref refid="classduvc_1_1Result" kindref="compound">default_value</ref>)<sp/>&amp;&amp;<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>()<sp/>?<sp/>std::move(*this).<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>()<sp/>:<sp/>std::move(<ref refid="classduvc_1_1Result" kindref="compound">default_value</ref>);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="classduvc_1_1Result_1af37bf1e32965f9d913fe04b2faa38f08" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" kindref="member">bool</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>std::variant&lt;T,<sp/>Error&gt;<sp/>data_;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160" refid="classduvc_1_1Result_3_01void_01_4" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;<sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;<ref refid="classduvc_1_1Result" kindref="compound">void</ref>&gt;<sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="165" refid="classduvc_1_1Result_3_01void_01_4_1aee082650def090d48a3d35410fa55b30" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_3_01void_01_4_1aee082650def090d48a3d35410fa55b30" kindref="member">Result</ref>()<sp/>:<sp/>error_(std::<ref refid="classduvc_1_1Result" kindref="compound">nullopt</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171" refid="classduvc_1_1Result_3_01void_01_4_1acd5b7a5d1e0b92bee4b33748d94b7240" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_3_01void_01_4_1acd5b7a5d1e0b92bee4b33748d94b7240" kindref="member">Result</ref>(<ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/><ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>)<sp/>:<sp/>error_(std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(<ref refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" kindref="member">error</ref>))<sp/>{}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="classduvc_1_1Result_3_01void_01_4_1a390f4fc3798546df97367d50d7f9a6da" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result_3_01void_01_4_1a390f4fc3798546df97367d50d7f9a6da" kindref="member">Result</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>code,<sp/>std::string<sp/>message<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>error_(<ref refid="classduvc_1_1Error" kindref="compound">Error</ref>(code,<sp/>std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(message)))<sp/>{}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="classduvc_1_1Result_3_01void_01_4_1a2e422d39e91d1ca365ccbdbe9e86f60d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_3_01void_01_4_1a2e422d39e91d1ca365ccbdbe9e86f60d" kindref="member">is_ok</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!error_.has_value();<sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191" refid="classduvc_1_1Result_3_01void_01_4_1abe6032918d5c06176e3be1397ac33a97" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_3_01void_01_4_1abe6032918d5c06176e3be1397ac33a97" kindref="member">is_error</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>error_.has_value();<sp/>}</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197" refid="classduvc_1_1Result_3_01void_01_4_1af023ae3a7ed516b922004701defc318f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/>&amp;<ref refid="classduvc_1_1Result_3_01void_01_4_1af023ae3a7ed516b922004701defc318f" kindref="member">error</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*error_;<sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202" refid="classduvc_1_1Result_3_01void_01_4_1ac30b210ef1bda811127b760636a24736" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1ab4a5ff1c932f6babbc6b3378bf0cb06d" kindref="member">bool</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" kindref="member">is_ok</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/>std::optional&lt;Error&gt;<sp/>error_;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214" refid="namespaceduvc_1abe489f91ff036cc3fcfbaf6fa8309bd1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(T<sp/>value)<sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref>(std::move(value));</highlight></codeline>
+<codeline lineno="216"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref>();<sp/>}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230" refid="namespaceduvc_1ae3b4629d636ff911e6a631dd09f46515" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref><sp/><ref refid="namespaceduvc_1ae3b4629d636ff911e6a631dd09f46515" kindref="member">Err</ref>(<ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/>error)<sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref>(std::move(error));</highlight></codeline>
+<codeline lineno="232"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241" refid="namespaceduvc_1ac17c604dfb7762a7ca28b2c5c819c18e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref><sp/><ref refid="namespaceduvc_1ae3b4629d636ff911e6a631dd09f46515" kindref="member">Err</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref><sp/>code,<sp/>std::string<sp/>message<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref>(code,<sp/>std::move(message));</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/result.h"/>
+  </compounddef>
+</doxygen>

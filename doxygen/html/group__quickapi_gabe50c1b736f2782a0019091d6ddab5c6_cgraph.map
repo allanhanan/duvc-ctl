@@ -1,0 +1,7 @@
+<map id="duvc::get" name="duvc::get">
+<area shape="rect" id="Node000001" title="Get a video processing property value." alt="" coords="5,31,81,57"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="129,5,263,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,35,113,30,114,35,82,40"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="129,56,263,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="82,48,114,53,113,58,81,53"/>
+</map>

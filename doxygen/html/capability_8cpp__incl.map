@@ -1,0 +1,47 @@
+<map id="core/capability.cpp" name="core/capability.cpp">
+<area shape="rect" id="Node000001" title="Device capability detection implementation using Camera API." alt="" coords="455,5,584,32"/>
+<area shape="rect" id="Node000002" href="$camera_8h.html" title="RAII camera handle for simplified device management." alt="" coords="160,163,314,189"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="458,35,397,54,336,82,292,117,257,153,254,149,288,113,333,78,395,49,456,30"/>
+<area shape="rect" id="Node000003" href="$result_8h.html" title="Result/Error type system for duvc&#45;ctl." alt="" coords="100,245,243,272"/>
+<area shape="poly" id="edge22_Node000001_Node000003" title=" " alt="" coords="455,23,376,31,331,39,286,51,242,69,201,91,165,120,135,156,129,175,132,195,141,215,153,232,149,235,137,217,127,196,124,174,130,153,161,116,198,87,240,64,284,46,330,34,375,25,454,17"/>
+<area shape="rect" id="Node000011" href="$capability_8h.html" title="Device capability detection and snapshots using Camera API." alt="" coords="346,80,512,107"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="505,35,458,72,454,68,502,30"/>
+<area shape="rect" id="Node000014" href="$device_8h.html" title="Device enumeration and management functions." alt="" coords="536,80,685,107"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="537,30,585,68,581,72,534,35"/>
+<area shape="rect" id="Node000016" href="$logging_8h.html" title="Structured logging interface for duvc&#45;ctl." alt="" coords="709,80,860,107"/>
+<area shape="poly" id="edge23_Node000001_Node000016" title=" " alt="" coords="566,30,725,73,723,78,565,35"/>
+<area shape="rect" id="Node000017" href="$string__conversion_8h.html" title="String conversion utilities for enums and types." alt="" coords="858,155,989,197"/>
+<area shape="poly" id="edge26_Node000001_Node000017" title=" " alt="" coords="585,22,661,29,746,40,822,56,852,66,874,78,900,106,916,139,911,141,896,109,871,82,850,71,821,61,745,45,661,34,584,27"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="229,192,193,235,189,232,225,188"/>
+<area shape="rect" id="Node000009" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="597,245,740,272"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="305,187,586,239,585,245,304,193"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="292,245,360,272"/>
+<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="253,188,303,233,299,237,249,192"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="89,320,160,347"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="166,274,143,308,139,306,161,271"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="185,320,251,347"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="182,271,204,306,200,308,177,274"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="718,320,772,347"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="244,266,704,324,703,329,243,272"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="275,320,372,347"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="199,270,284,310,282,315,197,275"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="5,320,66,347"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="149,275,74,315,71,310,147,270"/>
+<area shape="poly" id="edge9_Node000009_Node000006" title=" " alt="" coords="684,271,723,307,719,311,680,274"/>
+<area shape="poly" id="edge12_Node000011_Node000002" title=" " alt="" coords="400,110,282,159,280,154,398,105"/>
+<area shape="poly" id="edge13_Node000011_Node000003" title=" " alt="" coords="346,104,287,111,229,122,179,137,162,146,150,156,142,173,142,193,148,213,157,231,152,233,143,215,137,194,137,172,145,153,159,142,177,132,227,117,287,106,345,98"/>
+<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="448,105,512,153,564,195,631,235,629,240,561,200,509,157,445,109"/>
+<area shape="poly" id="edge15_Node000011_Node000010" title=" " alt="" coords="418,109,379,156,357,195,339,232,334,230,352,193,375,153,414,106"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="388,163,499,189"/>
+<area shape="poly" id="edge16_Node000011_Node000012" title=" " alt="" coords="434,107,441,147,436,148,429,108"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="574,163,631,189"/>
+<area shape="poly" id="edge17_Node000011_Node000013" title=" " alt="" coords="457,105,563,154,561,158,455,110"/>
+<area shape="poly" id="edge19_Node000014_Node000009" title=" " alt="" coords="621,106,646,154,659,193,667,230,662,231,653,195,641,156,616,108"/>
+<area shape="poly" id="edge21_Node000014_Node000013" title=" " alt="" coords="612,107,608,148,602,147,606,107"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="706,163,784,189"/>
+<area shape="poly" id="edge20_Node000014_Node000015" title=" " alt="" coords="633,105,712,152,710,157,630,109"/>
+<area shape="poly" id="edge25_Node000016_Node000006" title=" " alt="" coords="790,107,798,154,800,176,798,198,781,257,760,307,755,305,776,255,793,197,795,176,793,155,785,107"/>
+<area shape="poly" id="edge24_Node000016_Node000015" title=" " alt="" coords="781,108,760,150,755,148,776,106"/>
+<area shape="poly" id="edge28_Node000017_Node000006" title=" " alt="" coords="910,199,880,236,841,274,783,314,780,310,838,270,876,232,906,196"/>
+<area shape="poly" id="edge27_Node000017_Node000009" title=" " alt="" coords="859,200,724,243,723,238,857,195"/>
+</map>

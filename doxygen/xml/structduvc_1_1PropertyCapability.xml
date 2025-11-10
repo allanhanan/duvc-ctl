@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc_1_1PropertyCapability" kind="struct" language="C++" prot="public">
+    <compoundname>duvc::PropertyCapability</compoundname>
+    <includes refid="capability_8h" local="no">duvc-ctl/core/capability.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc_1_1PropertyCapability_1a6ee999ca416837ab39d075295ac05b93" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::PropertyCapability::supported</definition>
+        <argsstring></argsstring>
+        <name>supported</name>
+        <qualifiedname>duvc::PropertyCapability::supported</qualifiedname>
+        <initializer>= <ref refid="classduvc_1_1Result" kindref="compound">false</ref></initializer>
+        <briefdescription>
+<para>Property is supported by device. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="21" column="8" bodyfile="core/capability.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropertyCapability_1a9382d4568261e001e8fd71123a6192e8" prot="public" static="no" mutable="no">
+        <type><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref></type>
+        <definition>PropRange duvc::PropertyCapability::range</definition>
+        <argsstring></argsstring>
+        <name>range</name>
+        <qualifiedname>duvc::PropertyCapability::range</qualifiedname>
+        <briefdescription>
+<para>Valid range for property. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="22" column="13" bodyfile="core/capability.h" bodystart="22" bodyend="-1"/>
+        <referencedby refid="structduvc_1_1PropertyCapability_1aec0cba090c6b86987de83aa8a3fa779f" compoundref="capability_8h" startline="29" endline="29">supports_auto</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropertyCapability_1a730b69044e67b174e92c40273ceb33ee" prot="public" static="no" mutable="no">
+        <type><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref></type>
+        <definition>PropSetting duvc::PropertyCapability::current</definition>
+        <argsstring></argsstring>
+        <name>current</name>
+        <qualifiedname>duvc::PropertyCapability::current</qualifiedname>
+        <briefdescription>
+<para>Current property value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="23" column="15" bodyfile="core/capability.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structduvc_1_1PropertyCapability_1aec0cba090c6b86987de83aa8a3fa779f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::PropertyCapability::supports_auto</definition>
+        <argsstring>() const</argsstring>
+        <name>supports_auto</name>
+        <qualifiedname>duvc::PropertyCapability::supports_auto</qualifiedname>
+        <briefdescription>
+<para>Check if property supports automatic mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if auto mode is supported </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="29" column="8" bodyfile="core/capability.h" bodystart="29" bodyend="29"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" compoundref="types_8h" startline="97">duvc::PropRange::default_mode</references>
+        <references refid="structduvc_1_1PropertyCapability_1a9382d4568261e001e8fd71123a6192e8" compoundref="capability_8h" startline="22">range</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Property capability information. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>duvc::PropRange</label>
+        <link refid="structduvc_1_1PropRange"/>
+      </node>
+      <node id="3">
+        <label>duvc::PropSetting</label>
+        <link refid="structduvc_1_1PropSetting"/>
+      </node>
+      <node id="1">
+        <label>duvc::PropertyCapability</label>
+        <link refid="structduvc_1_1PropertyCapability"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+range</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>+current</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="core/capability.h" line="20" column="1" bodyfile="core/capability.h" bodystart="20" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structduvc_1_1PropertyCapability_1a730b69044e67b174e92c40273ceb33ee" prot="public" virt="non-virtual"><scope>duvc::PropertyCapability</scope><name>current</name></member>
+      <member refid="structduvc_1_1PropertyCapability_1a9382d4568261e001e8fd71123a6192e8" prot="public" virt="non-virtual"><scope>duvc::PropertyCapability</scope><name>range</name></member>
+      <member refid="structduvc_1_1PropertyCapability_1a6ee999ca416837ab39d075295ac05b93" prot="public" virt="non-virtual"><scope>duvc::PropertyCapability</scope><name>supported</name></member>
+      <member refid="structduvc_1_1PropertyCapability_1aec0cba090c6b86987de83aa8a3fa779f" prot="public" virt="non-virtual"><scope>duvc::PropertyCapability</scope><name>supports_auto</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

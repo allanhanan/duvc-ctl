@@ -1,0 +1,13 @@
+<map id="duvc::DeviceCapabilities::is_device_accessible" name="duvc::DeviceCapabilities::is_device_accessible">
+<area shape="rect" id="Node000001" title="Check if device is connected and accessible." alt="" coords="486,35,652,77"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a772454c70db4cfe25bd897bca791d63a" title="Check if device is accessible." alt="" coords="273,5,411,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="470,46,411,38,412,33,471,41"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a1d35218e5baaccb7d19f4695396581e8" title="Create device capability snapshot." alt="" coords="246,72,438,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="471,71,439,76,438,70,470,66"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#a1bb7b51ed8284acbb23ca4f7ba351d09" title="Get device capabilities snapshot." alt="" coords="6,13,197,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="269,70,159,43,160,38,270,65"/>
+<area shape="rect" id="Node000005" href="$api_8cpp.html#a6377c50e3ae679edc8ce8c040e7fead7" title="Get device capabilities by index." alt="" coords="6,64,197,107"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="230,88,198,88,198,83,230,83"/>
+<area shape="rect" id="Node000006" href="$namespaceduvc.html#a0af4366057ae8014aee4989ab3fd7671" title="Create device capability snapshot by index." alt="" coords="5,131,198,157"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="270,105,160,133,159,128,269,100"/>
+</map>

@@ -1,0 +1,657 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="error__handling_8cpp" kind="file" language="C++">
+    <compoundname>error_handling.cpp</compoundname>
+    <includes refid="api_8h" local="yes">duvc-ctl/c/api.h</includes>
+    <includes refid="result_8h" local="yes">duvc-ctl/core/result.h</includes>
+    <includes refid="error__decoder_8h" local="yes">duvc-ctl/utils/error_decoder.h</includes>
+    <includes refid="logging_8h" local="yes">duvc-ctl/utils/logging.h</includes>
+    <includes local="no">comdef.h</includes>
+    <includes local="no">psapi.h</includes>
+    <includes local="no">windows.h</includes>
+    <includes local="no">atomic</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">sstream</includes>
+    <includes local="no">string</includes>
+    <includes local="no">thread</includes>
+    <includes local="no">unordered_map</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/c/api.h</label>
+        <link refid="api_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>duvc-ctl/utils/error_decoder.h</label>
+        <link refid="error__decoder_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>duvc-ctl/utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>c/error_handling.cpp</label>
+        <link refid="error__handling_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>atomic</label>
+      </node>
+      <node id="15">
+        <label>comdef.h</label>
+      </node>
+      <node id="18">
+        <label>cstring</label>
+      </node>
+      <node id="14">
+        <label>functional</label>
+      </node>
+      <node id="19">
+        <label>iomanip</label>
+      </node>
+      <node id="6">
+        <label>iostream</label>
+      </node>
+      <node id="20">
+        <label>mutex</label>
+      </node>
+      <node id="7">
+        <label>optional</label>
+      </node>
+      <node id="16">
+        <label>psapi.h</label>
+      </node>
+      <node id="21">
+        <label>sstream</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>system_error</label>
+      </node>
+      <node id="22">
+        <label>thread</label>
+      </node>
+      <node id="23">
+        <label>unordered_map</label>
+      </node>
+      <node id="10">
+        <label>variant</label>
+      </node>
+      <node id="12">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="error__handling_8cpp_1aad3039f3cc7ec42004887d97c28136c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_is_temporary_error</definition>
+        <argsstring>(duvc_result_t result)</argsstring>
+        <name>duvc_is_temporary_error</name>
+        <param>
+          <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="84" column="5" bodyfile="c/error_handling.cpp" bodystart="84" bodyend="94"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" compoundref="api_8h" startline="41">DUVC_ERROR_CONNECTION_FAILED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" compoundref="api_8h" startline="35">DUVC_ERROR_DEVICE_BUSY</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a16ec2a503542e010a1a3196faddee324" compoundref="api_8h" startline="42">DUVC_ERROR_TIMEOUT</references>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1ab4819d313e383fe934356d2f70dee13c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_is_user_error</definition>
+        <argsstring>(duvc_result_t result)</argsstring>
+        <name>duvc_is_user_error</name>
+        <param>
+          <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="96" column="5" bodyfile="c/error_handling.cpp" bodystart="96" bodyend="106"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" compoundref="api_8h" startline="43">DUVC_ERROR_BUFFER_TOO_SMALL</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" compoundref="api_8h" startline="33">DUVC_ERROR_INVALID_ARGUMENT</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" compoundref="api_8h" startline="37">DUVC_ERROR_INVALID_VALUE</references>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1a638c24f2b633adef7e44ab2d48d569e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+        <definition>duvc_result_t duvc_set_error_context</definition>
+        <argsstring>(const char *operation, const char *device_info)</argsstring>
+        <name>duvc_set_error_context</name>
+        <param>
+          <type>const char *</type>
+          <declname>operation</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>device_info</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="112" column="15" bodyfile="c/error_handling.cpp" bodystart="112" bodyend="124"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" compoundref="api_8h" startline="33">DUVC_ERROR_INVALID_ARGUMENT</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03abe456d9d56a6a5979a8b66e0a3b34dd4" compoundref="api_8h" startline="40">DUVC_ERROR_SYSTEM_ERROR</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" compoundref="api_8h" startline="31">DUVC_SUCCESS</references>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1a7a5f781c576fd258d7553f3f82afabd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+        <definition>duvc_result_t duvc_get_error_statistics</definition>
+        <argsstring>(char *buffer, size_t buffer_size, size_t *required_size)</argsstring>
+        <name>duvc_get_error_statistics</name>
+        <param>
+          <type>char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>required_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="126" column="15" bodyfile="c/error_handling.cpp" bodystart="126" bodyend="197"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" compoundref="api_8h" startline="43">DUVC_ERROR_BUFFER_TOO_SMALL</references>
+        <references refid="api_8h_1adf8db12168e29b3e94854c2da1fa2f69" compoundref="api_8cpp" startline="341" endline="370">duvc_error_code_to_string</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" compoundref="api_8h" startline="31">DUVC_SUCCESS</references>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1acf9c0e220780deae40b10ffd0fdfea52" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void duvc_reset_error_statistics</definition>
+        <argsstring>(void)</argsstring>
+        <name>duvc_reset_error_statistics</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="199" column="6" bodyfile="c/error_handling.cpp" bodystart="199" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1a7909c701affd31bf469dafbb10bfe7d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+        <definition>duvc_result_t duvc_suggest_error_resolution</definition>
+        <argsstring>(duvc_result_t error_code, char *buffer, size_t buffer_size, size_t *required_size)</argsstring>
+        <name>duvc_suggest_error_resolution</name>
+        <param>
+          <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+          <declname>error_code</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>buffer_size</declname>
+        </param>
+        <param>
+          <type>size_t *</type>
+          <declname>required_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="211" column="15" bodyfile="c/error_handling.cpp" bodystart="211" bodyend="316"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" compoundref="api_8h" startline="43">DUVC_ERROR_BUFFER_TOO_SMALL</references>
+        <references refid="api_8h_1adf8db12168e29b3e94854c2da1fa2f69" compoundref="api_8cpp" startline="341" endline="370">duvc_error_code_to_string</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" compoundref="api_8h" startline="41">DUVC_ERROR_CONNECTION_FAILED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" compoundref="api_8h" startline="35">DUVC_ERROR_DEVICE_BUSY</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab150c8f7659501305fcdf1cb946d40ba" compoundref="api_8h" startline="34">DUVC_ERROR_DEVICE_NOT_FOUND</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" compoundref="api_8h" startline="37">DUVC_ERROR_INVALID_VALUE</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a964eaf317b5838136ecd1c192ac3b090" compoundref="api_8h" startline="38">DUVC_ERROR_PERMISSION_DENIED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03adc8ceb8ad21b0b13b750496b9788449c" compoundref="api_8h" startline="36">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03abe456d9d56a6a5979a8b66e0a3b34dd4" compoundref="api_8h" startline="40">DUVC_ERROR_SYSTEM_ERROR</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" compoundref="api_8h" startline="31">DUVC_SUCCESS</references>
+      </memberdef>
+      <memberdef kind="function" id="error__handling_8cpp_1a3c0431e43a7fc241fb03a40bf327b684" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_should_retry_operation</definition>
+        <argsstring>(duvc_result_t error_code)</argsstring>
+        <name>duvc_should_retry_operation</name>
+        <param>
+          <type><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref></type>
+          <declname>error_code</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/error_handling.cpp" line="318" column="5" bodyfile="c/error_handling.cpp" bodystart="318" bodyend="339"/>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" compoundref="api_8h" startline="41">DUVC_ERROR_CONNECTION_FAILED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" compoundref="api_8h" startline="35">DUVC_ERROR_DEVICE_BUSY</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab150c8f7659501305fcdf1cb946d40ba" compoundref="api_8h" startline="34">DUVC_ERROR_DEVICE_NOT_FOUND</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" compoundref="api_8h" startline="33">DUVC_ERROR_INVALID_ARGUMENT</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" compoundref="api_8h" startline="37">DUVC_ERROR_INVALID_VALUE</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a527f0d397153d7801c62b304a05d9a3d" compoundref="api_8h" startline="32">DUVC_ERROR_NOT_IMPLEMENTED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a964eaf317b5838136ecd1c192ac3b090" compoundref="api_8h" startline="38">DUVC_ERROR_PERMISSION_DENIED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03adc8ceb8ad21b0b13b750496b9788449c" compoundref="api_8h" startline="36">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</references>
+        <references refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a16ec2a503542e010a1a3196faddee324" compoundref="api_8h" startline="42">DUVC_ERROR_TIMEOUT</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>C ABI error handling and diagnostics implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file implements comprehensive error handling for the C ABI, including error code conversion, detailed error information management, and diagnostic utilities for troubleshooting camera control issues. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="api_8h" kindref="compound">duvc-ctl/c/api.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Include<sp/>all<sp/>necessary<sp/>C++<sp/>headers<sp/>for<sp/>error<sp/>handling</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="result_8h" kindref="compound">duvc-ctl/core/result.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="error__decoder_8h" kindref="compound">duvc-ctl/utils/error_decoder.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="logging_8h" kindref="compound">duvc-ctl/utils/logging.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;comdef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;psapi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;atomic&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;thread&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">thread_local</highlight><highlight class="normal"><sp/>std::string<sp/>g_last_error_details;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">std::mutex<sp/>g_error_stats_mutex;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">std::unordered_map&lt;duvc_result_t,<sp/>size_t&gt;<sp/>g_error_counts;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">std::atomic&lt;size_t&gt;<sp/>g_total_operations{0};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">std::atomic&lt;size_t&gt;<sp/>g_total_errors{0};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">ErrorContext<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>std::string<sp/>operation;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>std::string<sp/>device_info;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>std::chrono::steady_clock::time_point<sp/>timestamp;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>std::thread::id<sp/>thread_id;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">thread_local</highlight><highlight class="normal"><sp/>ErrorContext<sp/>g_last_error_context;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>update_error_stats(<ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/>result)<sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>g_total_operations.fetch_add(1);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(result<sp/>!=<sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>g_total_errors.fetch_add(1);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(g_error_stats_mutex);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>g_error_counts[result]++;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>set_error_context(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*operation,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_info<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>g_last_error_context.operation<sp/>=<sp/>operation<sp/>?<sp/>operation<sp/>:<sp/></highlight><highlight class="stringliteral">&quot;Unknown&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>g_last_error_context.device_info<sp/>=<sp/>device_info<sp/>?<sp/>device_info<sp/>:<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>g_last_error_context.timestamp<sp/>=<sp/>std::chrono::steady_clock::now();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>g_last_error_context.thread_id<sp/>=<sp/>std::this_thread::get_id();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>Error<sp/>Classification</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="error__handling_8cpp_1aad3039f3cc7ec42004887d97c28136c0" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="error__handling_8cpp_1aad3039f3cc7ec42004887d97c28136c0" kindref="member">duvc_is_temporary_error</ref>(<ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/>result)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>These<sp/>errors<sp/>might<sp/>be<sp/>resolved<sp/>by<sp/>retrying</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(result)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" kindref="member">DUVC_ERROR_DEVICE_BUSY</ref>:</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a16ec2a503542e010a1a3196faddee324" kindref="member">DUVC_ERROR_TIMEOUT</ref>:</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" kindref="member">DUVC_ERROR_CONNECTION_FAILED</ref>:</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="error__handling_8cpp_1ab4819d313e383fe934356d2f70dee13c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="error__handling_8cpp_1ab4819d313e383fe934356d2f70dee13c" kindref="member">duvc_is_user_error</ref>(<ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/>result)<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>These<sp/>errors<sp/>are<sp/>likely<sp/>caused<sp/>by<sp/>incorrect<sp/>usage</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(result)<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" kindref="member">DUVC_ERROR_INVALID_ARGUMENT</ref>:</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" kindref="member">DUVC_ERROR_INVALID_VALUE</ref>:</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" kindref="member">DUVC_ERROR_BUFFER_TOO_SMALL</ref>:</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>Error<sp/>Context<sp/>Management</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="error__handling_8cpp_1a638c24f2b633adef7e44ab2d48d569e3" refkind="member"><highlight class="normal"><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/><ref refid="error__handling_8cpp_1a638c24f2b633adef7e44ab2d48d569e3" kindref="member">duvc_set_error_context</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*operation,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_info)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!operation)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" kindref="member">DUVC_ERROR_INVALID_ARGUMENT</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>set_error_context(operation,<sp/>device_info);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03abe456d9d56a6a5979a8b66e0a3b34dd4" kindref="member">DUVC_ERROR_SYSTEM_ERROR</ref>;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="error__handling_8cpp_1a7a5f781c576fd258d7553f3f82afabd3" refkind="member"><highlight class="normal"><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/><ref refid="error__handling_8cpp_1a7a5f781c576fd258d7553f3f82afabd3" kindref="member">duvc_get_error_statistics</ref>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*required_size)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ostringstream<sp/>stats;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>Statistics:\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;================\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>total_ops<sp/>=<sp/>g_total_operations.load();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>total_errs<sp/>=<sp/>g_total_errors.load();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Total<sp/>Operations:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>total_ops<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Total<sp/>Errors:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>total_errs<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(total_ops<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>success_rate<sp/>=</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(double)(total_ops<sp/>-<sp/>total_errs)<sp/>/<sp/>total_ops<sp/>*<sp/>100.0;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>error_rate<sp/>=<sp/>(double)total_errs<sp/>/<sp/>total_ops<sp/>*<sp/>100.0;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Success<sp/>Rate:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(2)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>success_rate<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;%\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>Rate:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(2)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>error_rate<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;%\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Detailed<sp/>error<sp/>breakdown</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(g_error_stats_mutex);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!g_error_counts.empty())<sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\nDetailed<sp/>Error<sp/>Breakdown:\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;========================\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;pair<sp/>:<sp/>g_error_counts)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>percentage<sp/>=</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>total_errs<sp/>&gt;<sp/>0<sp/>?<sp/>(double)pair.second<sp/>/<sp/>total_errs<sp/>*<sp/>100.0<sp/>:<sp/>0.0;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>stats<sp/>&lt;&lt;<sp/><ref refid="api_8h_1adf8db12168e29b3e94854c2da1fa2f69" kindref="member">duvc_error_code_to_string</ref>(pair.first)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>pair.second</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::fixed<sp/>&lt;&lt;<sp/>std::setprecision(1)<sp/>&lt;&lt;<sp/>percentage</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;%)\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>stats_str<sp/>=<sp/>stats.str();</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>buffer<sp/>size<sp/>requirements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>needed<sp/>=<sp/>stats_str.length()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(required_size)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*required_size<sp/>=<sp/>needed;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!buffer<sp/>||<sp/>buffer_size<sp/>&lt;<sp/>needed)<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" kindref="member">DUVC_ERROR_BUFFER_TOO_SMALL</ref>;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>std::memcpy(buffer,<sp/>stats_str.c_str(),<sp/>needed);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;e)<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>fallback<sp/>=</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>error<sp/>statistics:<sp/>&quot;</highlight><highlight class="normal">)<sp/>+<sp/>e.what();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>needed<sp/>=<sp/>fallback.length()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(required_size)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*required_size<sp/>=<sp/>needed;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer<sp/>&amp;&amp;<sp/>buffer_size<sp/>&gt;=<sp/>needed)<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::memcpy(buffer,<sp/>fallback.c_str(),<sp/>needed);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>buffer<sp/>&amp;&amp;<sp/>buffer_size<sp/>&gt;=<sp/>needed<sp/>?<sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" kindref="member">DUVC_ERROR_BUFFER_TOO_SMALL</ref>;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199" refid="error__handling_8cpp_1acf9c0e220780deae40b10ffd0fdfea52" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="error__handling_8cpp_1acf9c0e220780deae40b10ffd0fdfea52" kindref="member">duvc_reset_error_statistics</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/>g_total_operations.store(0);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/>g_total_errors.store(0);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(g_error_stats_mutex);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/>g_error_counts.clear();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>========================================================================</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"><sp/>*<sp/>Advanced<sp/>Error<sp/>Handling<sp/>Utilities</highlight></codeline>
+<codeline lineno="209"><highlight class="comment"><sp/>*<sp/>========================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211" refid="error__handling_8cpp_1a7909c701affd31bf469dafbb10bfe7d8" refkind="member"><highlight class="normal"><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/><ref refid="error__handling_8cpp_1a7909c701affd31bf469dafbb10bfe7d8" kindref="member">duvc_suggest_error_resolution</ref>(<ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/>error_code,</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buffer,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>buffer_size,</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>*required_size)<sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>std::ostringstream<sp/>suggestions;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Resolution<sp/>suggestions<sp/>for:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/><ref refid="api_8h_1adf8db12168e29b3e94854c2da1fa2f69" kindref="member">duvc_error_code_to_string</ref>(error_code)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(error_code)<sp/>{</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab150c8f7659501305fcdf1cb946d40ba" kindref="member">DUVC_ERROR_DEVICE_NOT_FOUND</ref>:</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>that<sp/>the<sp/>camera<sp/>is<sp/>physically<sp/>connected\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Verify<sp/>the<sp/>camera<sp/>appears<sp/>in<sp/>Device<sp/>Manager\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Try<sp/>reconnecting<sp/>the<sp/>USB<sp/>cable\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Restart<sp/>the<sp/>camera<sp/>or<sp/>computer\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;5.<sp/>Check<sp/>if<sp/>device<sp/>drivers<sp/>are<sp/>properly<sp/>installed\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" kindref="member">DUVC_ERROR_DEVICE_BUSY</ref>:</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Close<sp/>other<sp/>applications<sp/>using<sp/>the<sp/>camera\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Check<sp/>for<sp/>background<sp/>processes<sp/>using<sp/>the<sp/>camera\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Wait<sp/>a<sp/>moment<sp/>and<sp/>try<sp/>again\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Restart<sp/>applications<sp/>that<sp/>might<sp/>be<sp/>holding<sp/>the<sp/>device\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a964eaf317b5838136ecd1c192ac3b090" kindref="member">DUVC_ERROR_PERMISSION_DENIED</ref>:</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Run<sp/>the<sp/>application<sp/>as<sp/>Administrator<sp/>(Windows)\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Check<sp/>camera<sp/>privacy<sp/>settings\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Verify<sp/>antivirus<sp/>isn&apos;t<sp/>blocking<sp/>camera<sp/>access\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Check<sp/>Windows<sp/>Camera<sp/>privacy<sp/>settings\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03adc8ceb8ad21b0b13b750496b9788449c" kindref="member">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</ref>:</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>device<sp/>capabilities<sp/>before<sp/>setting<sp/>properties\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Verify<sp/>the<sp/>property<sp/>is<sp/>supported<sp/>by<sp/>your<sp/>camera<sp/>model\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Try<sp/>alternative<sp/>properties<sp/>with<sp/>similar<sp/>functionality\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" kindref="member">DUVC_ERROR_INVALID_VALUE</ref>:</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>the<sp/>valid<sp/>range<sp/>for<sp/>this<sp/>property\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Use<sp/>duvc_get_*_property_range()<sp/>to<sp/>get<sp/>valid<sp/>ranges\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Ensure<sp/>values<sp/>are<sp/>within<sp/>min/max<sp/>bounds\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Check<sp/>step<sp/>size<sp/>alignment\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" kindref="member">DUVC_ERROR_CONNECTION_FAILED</ref>:</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>USB<sp/>connection<sp/>and<sp/>cable<sp/>quality\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Try<sp/>a<sp/>different<sp/>USB<sp/>port\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Update<sp/>camera<sp/>drivers\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Check<sp/>for<sp/>USB<sp/>power<sp/>management<sp/>issues\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03abe456d9d56a6a5979a8b66e0a3b34dd4" kindref="member">DUVC_ERROR_SYSTEM_ERROR</ref>:</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>system<sp/>logs<sp/>for<sp/>detailed<sp/>error<sp/>information\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Verify<sp/>DirectShow<sp/>components<sp/>are<sp/>properly<sp/>installed\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Try<sp/>reinstalling<sp/>camera<sp/>drivers\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Check<sp/>for<sp/>Windows<sp/>updates\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;1.<sp/>Check<sp/>the<sp/>detailed<sp/>error<sp/>information\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;2.<sp/>Consult<sp/>the<sp/>documentation<sp/>for<sp/>this<sp/>error<sp/>code\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;3.<sp/>Enable<sp/>debug<sp/>logging<sp/>for<sp/>more<sp/>information\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;4.<sp/>Contact<sp/>support<sp/>with<sp/>diagnostic<sp/>information\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\nGeneral<sp/>troubleshooting:\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>suggestions</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;-<sp/>Enable<sp/>debug<sp/>logging:<sp/>duvc_set_log_level(DUVC_LOG_DEBUG)\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;-<sp/>Get<sp/>diagnostic<sp/>info:<sp/>duvc_get_diagnostic_info()\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>suggestions<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;-<sp/>Check<sp/>error<sp/>statistics:<sp/>duvc_get_error_statistics()\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>suggestions_str<sp/>=<sp/>suggestions.str();</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>buffer<sp/>size<sp/>requirements</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>needed<sp/>=<sp/>suggestions_str.length()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(required_size)</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*required_size<sp/>=<sp/>needed;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!buffer<sp/>||<sp/>buffer_size<sp/>&lt;<sp/>needed)<sp/>{</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" kindref="member">DUVC_ERROR_BUFFER_TOO_SMALL</ref>;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>std::memcpy(buffer,<sp/>suggestions_str.c_str(),<sp/>needed);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref>;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"></highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::exception<sp/>&amp;e)<sp/>{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>fallback<sp/>=</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>error<sp/>suggestions:<sp/>&quot;</highlight><highlight class="normal">)<sp/>+<sp/>e.what();</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>needed<sp/>=<sp/>fallback.length()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(required_size)</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>*required_size<sp/>=<sp/>needed;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buffer<sp/>&amp;&amp;<sp/>buffer_size<sp/>&gt;=<sp/>needed)<sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>std::memcpy(buffer,<sp/>fallback.c_str(),<sp/>needed);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>buffer<sp/>&amp;&amp;<sp/>buffer_size<sp/>&gt;=<sp/>needed<sp/>?<sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03af37d85dc526d6935bd7c76b363d260d1" kindref="member">DUVC_SUCCESS</ref></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab8d12c5c10427554b2eec47b5ed9783a" kindref="member">DUVC_ERROR_BUFFER_TOO_SMALL</ref>;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318" refid="error__handling_8cpp_1a3c0431e43a7fc241fb03a40bf327b684" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="error__handling_8cpp_1a3c0431e43a7fc241fb03a40bf327b684" kindref="member">duvc_should_retry_operation</ref>(<ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03" kindref="member">duvc_result_t</ref><sp/>error_code)<sp/>{</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Determine<sp/>if<sp/>an<sp/>operation<sp/>should<sp/>be<sp/>retried<sp/>based<sp/>on<sp/>the<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(error_code)<sp/>{</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a6e948fa647445927e7dca80a6ccae7cd" kindref="member">DUVC_ERROR_DEVICE_BUSY</ref>:</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a16ec2a503542e010a1a3196faddee324" kindref="member">DUVC_ERROR_TIMEOUT</ref>:</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//<sp/>Likely<sp/>temporary,<sp/>worth<sp/>retrying</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a2c8e141c57582f7e6cbf795d798461d1" kindref="member">DUVC_ERROR_CONNECTION_FAILED</ref>:</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//<sp/>Might<sp/>be<sp/>transient<sp/>connection<sp/>issue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03ab150c8f7659501305fcdf1cb946d40ba" kindref="member">DUVC_ERROR_DEVICE_NOT_FOUND</ref>:</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a964eaf317b5838136ecd1c192ac3b090" kindref="member">DUVC_ERROR_PERMISSION_DENIED</ref>:</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a41d0edf7bac50c1132e0fe186777e713" kindref="member">DUVC_ERROR_INVALID_ARGUMENT</ref>:</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a4cdf7d019580c307d85bb2813bf1e989" kindref="member">DUVC_ERROR_INVALID_VALUE</ref>:</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03adc8ceb8ad21b0b13b750496b9788449c" kindref="member">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</ref>:</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="api_8h_1a011a322a88682661ab14ffed01d3ae03a527f0d397153d7801c62b304a05d9a3d" kindref="member">DUVC_ERROR_NOT_IMPLEMENTED</ref>:</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Unlikely<sp/>to<sp/>succeed<sp/>on<sp/>retry</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Conservative<sp/>approach</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>extern<sp/>&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="c/error_handling.cpp"/>
+  </compounddef>
+</doxygen>

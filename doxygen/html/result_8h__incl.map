@@ -1,0 +1,13 @@
+<map id="core/result.h" name="core/result.h">
+<area shape="rect" id="Node000001" title="Result/Error type system for duvc&#45;ctl." alt="" coords="172,5,265,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,77,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,35,87,76,85,71,186,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="101,80,168,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,35,162,72,159,68,202,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,80,245,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="221,33,221,64,216,64,216,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="270,80,367,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="237,30,290,68,287,73,234,35"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="391,80,451,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="255,30,377,74,376,79,253,35"/>
+</map>

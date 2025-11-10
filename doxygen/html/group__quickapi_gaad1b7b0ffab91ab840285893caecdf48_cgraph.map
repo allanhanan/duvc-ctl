@@ -1,0 +1,7 @@
+<map id="duvc::get_range" name="duvc::get_range">
+<area shape="rect" id="Node000001" title="Get the valid range for a video processing property." alt="" coords="5,31,120,57"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="168,5,302,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,33,152,28,153,33,121,38"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="168,56,302,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,50,153,55,152,60,120,55"/>
+</map>

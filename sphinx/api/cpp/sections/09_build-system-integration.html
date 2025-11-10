@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>9. Build System &amp; Integration - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="10. Platform-Specific Information" href="10_platform-specific-information.html" /><link rel="prev" title="8. Usage Patterns &amp; Best Practices" href="08_usage-patterns-best-practices.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="9. Build System &amp; Integration"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">9. Build System &amp; Integration</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="build-system-integration">
+<h1>9. Build System &amp; Integration<a class="headerlink" href="#build-system-integration" title="Link to this heading">¶</a></h1>
+<section id="cmake-integration">
+<h2>9.1 CMake Integration<a class="headerlink" href="#cmake-integration" title="Link to this heading">¶</a></h2>
+<p><strong>Using duvc-ctl in your CMake project:</strong>[file:e3a8e954]</p>
+<section id="fetchcontent-recommended">
+<h3>FetchContent (Recommended)<a class="headerlink" href="#fetchcontent-recommended" title="Link to this heading">¶</a></h3>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.16</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">project</span><span class="p">(</span><span class="s">my_camera_app</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="nb">include</span><span class="p">(</span><span class="s">FetchContent</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="nb">FetchContent_Declare</span><span class="p">(</span>
+</span><span data-line="7"><span class="w">    </span><span class="s">duvc-ctl</span>
+</span><span data-line="8"><span class="w">    </span><span class="s">GIT_REPOSITORY</span><span class="w"> </span><span class="s">https://github.com/allanhanan/duvc-ctl.git</span>
+</span><span data-line="9"><span class="w">    </span><span class="s">GIT_TAG</span><span class="w">        </span><span class="s">v2.0.0</span><span class="w">  </span><span class="c"># Or main for latest</span>
+</span><span data-line="10"><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c"># Configure options before making available</span>
+</span><span data-line="13"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_TESTS</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+</span><span data-line="14"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_EXAMPLES</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+</span><span data-line="15"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_CLI</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="s">FORCE</span><span class="p">)</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="nb">FetchContent_MakeAvailable</span><span class="p">(</span><span class="s">duvc-ctl</span><span class="p">)</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+</span><span data-line="20"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::core</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="find-package-installed-library">
+<h3>find_package (Installed Library)<a class="headerlink" href="#find-package-installed-library" title="Link to this heading">¶</a></h3>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.16</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">project</span><span class="p">(</span><span class="s">my_camera_app</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c"># Find installed duvc-ctl</span>
+</span><span data-line="5"><span class="nb">find_package</span><span class="p">(</span><span class="s">duvc-ctl</span><span class="w"> </span><span class="s">2.0</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+</span><span data-line="8"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::core</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="add-subdirectory-vendored">
+<h3>add_subdirectory (Vendored)<a class="headerlink" href="#add-subdirectory-vendored" title="Link to this heading">¶</a></h3>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.16</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">project</span><span class="p">(</span><span class="s">my_camera_app</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c"># Configure options</span>
+</span><span data-line="5"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_TESTS</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_CLI</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">third_party/duvc-ctl</span><span class="p">)</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="nb">add_executable</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">main.cpp</span><span class="p">)</span>
+</span><span data-line="11"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::core</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="available-cmake-targets">
+<h3>Available CMake Targets<a class="headerlink" href="#available-cmake-targets" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Target</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Link</p></th>
+<th class="head text-left"><p>Include</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc::core</span></code></p></td>
+<td class="text-left"><p>Shared library (DLL)</p></td>
+<td class="text-left"><p>Automatic</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/duvc.hpp&gt;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc::core-static</span></code></p></td>
+<td class="text-left"><p>Static library</p></td>
+<td class="text-left"><p>Automatic</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/duvc.hpp&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc::c-api</span></code></p></td>
+<td class="text-left"><p>C ABI library</p></td>
+<td class="text-left"><p>Automatic</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/c/api.h&gt;</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::core</span><span class="p">)</span><span class="w">      </span><span class="c"># Shared lib</span>
+</span><span data-line="2"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::core-static</span><span class="p">)</span><span class="w">  </span><span class="c"># Static lib</span>
+</span><span data-line="3"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc::c-api</span><span class="p">)</span><span class="w">     </span><span class="c"># C API</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="cmake-build-options">
+<h3>CMake Build Options<a class="headerlink" href="#cmake-build-options" title="Link to this heading">¶</a></h3>
+<p><strong>Core library:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Option</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_SHARED</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Build shared library (duvc-core.dll)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_STATIC</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Build static library (duvc-core.lib)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_C_API</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Build C API for language bindings</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Optional components:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Option</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_CLI</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Build command-line tool</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_PYTHON</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">OFF</span></code></p></td>
+<td class="text-left"><p>Build Python bindings</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_TESTS</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">OFF</span></code></p></td>
+<td class="text-left"><p>Build test suite</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_BUILD_EXAMPLES</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">OFF</span></code></p></td>
+<td class="text-left"><p>Build example applications</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Development:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Option</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_WARNINGS_AS_ERRORS</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">OFF</span></code></p></td>
+<td class="text-left"><p>Treat warnings as errors</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_INSTALL</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Enable install targets</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVC_INSTALL_CMAKE_CONFIG</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ON</span></code></p></td>
+<td class="text-left"><p>Install CMake config files</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Configuration:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># Minimal integration (no extras)</span>
+</span><span data-line="2"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_CLI</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_TESTS</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_EXAMPLES</span><span class="w"> </span><span class="s">OFF</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="nb">FetchContent_MakeAvailable</span><span class="p">(</span><span class="s">duvc-ctl</span><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c"># Development build (all features)</span>
+</span><span data-line="8"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_TESTS</span><span class="w"> </span><span class="s">ON</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_BUILD_EXAMPLES</span><span class="w"> </span><span class="s">ON</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="10"><span class="nb">set</span><span class="p">(</span><span class="s">DUVC_WARNINGS_AS_ERRORS</span><span class="w"> </span><span class="s">ON</span><span class="w"> </span><span class="s">CACHE</span><span class="w"> </span><span class="s">BOOL</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="nb">FetchContent_MakeAvailable</span><span class="p">(</span><span class="s">duvc-ctl</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="exported-variables">
+<h3>Exported Variables<a class="headerlink" href="#exported-variables" title="Link to this heading">¶</a></h3>
+<p>When using <code class="docutils literal notranslate"><span class="pre">find_package(duvc-ctl)</span></code>:</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="err">duvc-ctl_FOUND</span><span class="w">            </span><span class="c"># TRUE if found</span>
+</span><span data-line="2"><span class="err">duvc-ctl_VERSION</span><span class="w">          </span><span class="c"># Version string (e.g., &quot;2.0.0&quot;)</span>
+</span><span data-line="3"><span class="err">duvc-ctl_INCLUDE_DIRS</span><span class="w">     </span><span class="c"># Include directories</span>
+</span><span data-line="4"><span class="err">duvc-ctl_LIBRARIES</span><span class="w">        </span><span class="c"># All library targets</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="building-from-source">
+<h2>9.2 Building from Source<a class="headerlink" href="#building-from-source" title="Link to this heading">¶</a></h2>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p><strong>Windows 10/11</strong> (Windows 8.1 compatible but not tested)</p></li>
+<li><p><strong>Compiler:</strong> Visual Studio 2019/2022 or MinGW-w64 GCC 9+</p></li>
+<li><p><strong>CMake 3.16+</strong></p></li>
+<li><p><strong>Python 3.8+</strong> (for Python bindings only)</p></li>
+<li><p><strong>Git</strong> (for fetching dependencies)</p></li>
+</ul>
+<hr class="docutils" />
+<section id="quick-build-visual-studio">
+<h3>Quick Build (Visual Studio)<a class="headerlink" href="#quick-build-visual-studio" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allanhanan/duvc-ctl.git
+</span><span data-line="2"><span class="nb">cd</span><span class="w"> </span>duvc-ctl
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Configure</span>
+</span><span data-line="5">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Build Release</span>
+</span><span data-line="8">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Run tests</span>
+</span><span data-line="11"><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>ctest<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--output-on-failure
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="mingw-w64-build">
+<h3>MinGW-w64 Build<a class="headerlink" href="#mingw-w64-build" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Configure with MinGW</span>
+</span><span data-line="2">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;MinGW Makefiles&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Build</span>
+</span><span data-line="6">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>-j8
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Install</span>
+</span><span data-line="9">cmake<span class="w"> </span>--install<span class="w"> </span>build<span class="w"> </span>--prefix<span class="w"> </span>install
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="custom-build-all-options">
+<h3>Custom Build (All Options)<a class="headerlink" href="#custom-build-all-options" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">    </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">    </span>-DDUVC_BUILD_SHARED<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="4"><span class="w">    </span>-DDUVC_BUILD_STATIC<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="5"><span class="w">    </span>-DDUVC_BUILD_C_API<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="6"><span class="w">    </span>-DDUVC_BUILD_CLI<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="7"><span class="w">    </span>-DDUVC_BUILD_PYTHON<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="8"><span class="w">    </span>-DDUVC_BUILD_TESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="9"><span class="w">    </span>-DDUVC_BUILD_EXAMPLES<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="10"><span class="w">    </span>-DDUVC_WARNINGS_AS_ERRORS<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span data-line="11"><span class="w">    </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>install
+</span><span data-line="12">
+</span><span data-line="13">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span><span data-line="14">cmake<span class="w"> </span>--install<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="python-bindings-build">
+<h3>Python Bindings Build<a class="headerlink" href="#python-bindings-build" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Install Python dev dependencies</span>
+</span><span data-line="2">pip<span class="w"> </span>install<span class="w"> </span>pybind11
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Configure with Python enabled</span>
+</span><span data-line="5">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64<span class="w"> </span><span class="se">\</span>
+</span><span data-line="6"><span class="w">    </span>-DDUVC_BUILD_PYTHON<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="7"><span class="w">    </span>-DPython_EXECUTABLE<span class="o">=</span>C:/Python39/python.exe
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Build</span>
+</span><span data-line="10">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1"># Install Python package</span>
+</span><span data-line="13"><span class="nb">cd</span><span class="w"> </span>build/python
+</span><span data-line="14">pip<span class="w"> </span>install<span class="w"> </span>.
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="install-locations">
+<h3>Install Locations<a class="headerlink" href="#install-locations" title="Link to this heading">¶</a></h3>
+<p><strong>Default install prefix:</strong></p>
+<ul class="simple">
+<li><p>Windows: <code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files/duvc-ctl</span></code> or <code class="docutils literal notranslate"><span class="pre">C:/Program</span> <span class="pre">Files</span> <span class="pre">(x86)/duvc-ctl</span></code></p></li>
+<li><p>Custom: Specify with <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX=path</span></code></p></li>
+</ul>
+<p><strong>Installed structure:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">install/
+</span><span data-line="2">├── bin/                 # DLLs and executables
+</span><span data-line="3">│   ├── duvc-core.dll
+</span><span data-line="4">│   ├── duvc-cli.exe
+</span><span data-line="5">│   └── duvc-c-api.dll
+</span><span data-line="6">├── lib/                 # Import libraries
+</span><span data-line="7">│   ├── duvc-core.lib
+</span><span data-line="8">│   └── duvc-c-api.lib
+</span><span data-line="9">├── include/             # Headers
+</span><span data-line="10">│   └── duvc-ctl/
+</span><span data-line="11">│       ├── duvc.hpp
+</span><span data-line="12">│       ├── core/
+</span><span data-line="13">│       ├── platform/
+</span><span data-line="14">│       └── c/
+</span><span data-line="15">└── lib/cmake/duvc-ctl/  # CMake config
+</span><span data-line="16">    ├── duvc-ctl-config.cmake
+</span><span data-line="17">    └── duvc-ctl-targets.cmake
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="development-build">
+<h3>Development Build<a class="headerlink" href="#development-build" title="Link to this heading">¶</a></h3>
+<p><strong>With all debugging symbols and tests:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">    </span>-DDUVC_BUILD_TESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="4"><span class="w">    </span>-DDUVC_BUILD_EXAMPLES<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="5"><span class="w">    </span>-DDUVC_WARNINGS_AS_ERRORS<span class="o">=</span>ON
+</span><span data-line="6">
+</span><span data-line="7">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Debug
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="package-managers">
+<h2>9.3 Package Managers<a class="headerlink" href="#package-managers" title="Link to this heading">¶</a></h2>
+<section id="vcpkg-integration">
+<h3>vcpkg Integration<a class="headerlink" href="#vcpkg-integration" title="Link to this heading">¶</a></h3>
+<p><strong>Status:</strong> In development</p>
+<p><strong>Installation (future):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Install vcpkg port</span>
+</span><span data-line="2">vcpkg<span class="w"> </span>install<span class="w"> </span>duvc-ctl
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Use in CMakeLists.txt</span>
+</span><span data-line="5">find_package<span class="o">(</span>duvc-ctl<span class="w"> </span>CONFIG<span class="w"> </span>REQUIRED<span class="o">)</span>
+</span><span data-line="6">target_link_libraries<span class="o">(</span>my_app<span class="w"> </span>PRIVATE<span class="w"> </span>duvc::core<span class="o">)</span>
+</span></pre></div>
+</div>
+<p><strong>Custom vcpkg triplet:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># x64-windows-static.cmake</span>
+</span><span data-line="2"><span class="nb">set</span><span class="p">(</span><span class="s">VCPKG_TARGET_ARCHITECTURE</span><span class="w"> </span><span class="s">x64</span><span class="p">)</span>
+</span><span data-line="3"><span class="nb">set</span><span class="p">(</span><span class="s">VCPKG_CRT_LINKAGE</span><span class="w"> </span><span class="s">dynamic</span><span class="p">)</span>
+</span><span data-line="4"><span class="nb">set</span><span class="p">(</span><span class="s">VCPKG_LIBRARY_LINKAGE</span><span class="w"> </span><span class="s">static</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="err">vcpkg</span><span class="w"> </span><span class="err">install</span><span class="w"> </span><span class="err">duvc-ctl:x64-windows-static</span>
+</span></pre></div>
+</div>
+<p><strong>CMake toolchain:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">    </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>C:/vcpkg/scripts/buildsystems/vcpkg.cmake<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">    </span>-DVCPKG_TARGET_TRIPLET<span class="o">=</span>x64-windows-static
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="conan-integration">
+<h3>Conan Integration<a class="headerlink" href="#conan-integration" title="Link to this heading">¶</a></h3>
+<p><strong>Status:</strong> In development</p>
+<p><strong>Installation (future):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Add remote (if needed)</span>
+</span><span data-line="2">conan<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>duvc<span class="w"> </span>https://conan.example.com
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Install package</span>
+</span><span data-line="5">conan<span class="w"> </span>install<span class="w"> </span>duvc-ctl/2.0.0@
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Or use conanfile.txt</span>
+</span><span data-line="8"><span class="o">[</span>requires<span class="o">]</span>
+</span><span data-line="9">duvc-ctl/2.0.0
+</span><span data-line="10">
+</span><span data-line="11"><span class="o">[</span>generators<span class="o">]</span>
+</span><span data-line="12">CMakeDeps
+</span><span data-line="13">CMakeToolchain
+</span></pre></div>
+</div>
+<p><strong>CMakeLists.txt:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">find_package</span><span class="p">(</span><span class="s">duvc-ctl</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">my_app</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">duvc-ctl::duvc-ctl</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Conan build:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">conan<span class="w"> </span>install<span class="w"> </span>.<span class="w"> </span>--output-folder<span class="o">=</span>build<span class="w"> </span>--build<span class="o">=</span>missing
+</span><span data-line="2">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>build/conan_toolchain.cmake
+</span><span data-line="3">cmake<span class="w"> </span>--build<span class="w"> </span>build
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="conda-forge-integration">
+<h3>conda-forge Integration<a class="headerlink" href="#conda-forge-integration" title="Link to this heading">¶</a></h3>
+<p><strong>Status:</strong> Planned</p>
+<p><strong>Installation (future):</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>duvc-ctl
+</span></pre></div>
+</div>
+<p><strong>Create environment:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>camera-dev<span class="w"> </span>duvc-ctl<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+</span><span data-line="2">conda<span class="w"> </span>activate<span class="w"> </span>camera-dev
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="chocolatey-cli-tool">
+<h3>Chocolatey (CLI Tool)<a class="headerlink" href="#chocolatey-cli-tool" title="Link to this heading">¶</a></h3>
+<p><strong>Status:</strong> Coming soon</p>
+<p><strong>Installation (future):</strong></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">choco</span> <span class="n">install</span> <span class="n">duvc-cli</span>
+</span><span data-line="2"><span class="n">duvc-cli</span> <span class="n">list</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="manual-portfile-vcpkg">
+<h3>Manual Portfile (vcpkg)<a class="headerlink" href="#manual-portfile-vcpkg" title="Link to this heading">¶</a></h3>
+<p><strong>Create custom overlay:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># ports/duvc-ctl/portfile.cmake</span>
+</span><span data-line="2"><span class="nb">vcpkg_from_github</span><span class="p">(</span>
+</span><span data-line="3"><span class="w">    </span><span class="s">OUT_SOURCE_PATH</span><span class="w"> </span><span class="s">SOURCE_PATH</span>
+</span><span data-line="4"><span class="w">    </span><span class="s">REPO</span><span class="w"> </span><span class="s">allanhanan/duvc-ctl</span>
+</span><span data-line="5"><span class="w">    </span><span class="s">REF</span><span class="w"> </span><span class="s">v2.0.0</span>
+</span><span data-line="6"><span class="w">    </span><span class="s">SHA512</span><span class="w"> </span><span class="s">&lt;hash&gt;</span>
+</span><span data-line="7"><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="nb">vcpkg_cmake_configure</span><span class="p">(</span>
+</span><span data-line="10"><span class="w">    </span><span class="s">SOURCE_PATH</span><span class="w"> </span><span class="s2">&quot;${SOURCE_PATH}&quot;</span>
+</span><span data-line="11"><span class="w">    </span><span class="s">OPTIONS</span>
+</span><span data-line="12"><span class="w">        </span><span class="s">-DDUVC_BUILD_TESTS=OFF</span>
+</span><span data-line="13"><span class="w">        </span><span class="s">-DDUVC_BUILD_CLI=OFF</span>
+</span><span data-line="14"><span class="p">)</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="nb">vcpkg_cmake_install</span><span class="p">()</span>
+</span><span data-line="17"><span class="nb">vcpkg_cmake_config_fixup</span><span class="p">(</span><span class="s">CONFIG_PATH</span><span class="w"> </span><span class="s">lib/cmake/duvc-ctl</span><span class="p">)</span>
+</span><span data-line="18"><span class="nb">vcpkg_copy_pdbs</span><span class="p">()</span>
+</span><span data-line="19">
+</span><span data-line="20"><span class="nb">file</span><span class="p">(</span><span class="s">REMOVE_RECURSE</span><span class="w"> </span><span class="s2">&quot;${CURRENT_PACKAGES_DIR}/debug/include&quot;</span><span class="p">)</span>
+</span><span data-line="21"><span class="nb">file</span><span class="p">(</span><span class="s">INSTALL</span><span class="w"> </span><span class="s2">&quot;${SOURCE_PATH}/LICENSE&quot;</span><span class="w"> </span><span class="s">DESTINATION</span><span class="w"> </span><span class="s2">&quot;${CURRENT_PACKAGES_DIR}/share/${PORT}&quot;</span><span class="w"> </span><span class="s">RENAME</span><span class="w"> </span><span class="s">copyright</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Use overlay:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">vcpkg<span class="w"> </span>install<span class="w"> </span>duvc-ctl<span class="w"> </span>--overlay-ports<span class="o">=</span>./ports
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="cross-compilation">
+<h3>Cross-Compilation<a class="headerlink" href="#cross-compilation" title="Link to this heading">¶</a></h3>
+<p><strong>MinGW on Linux:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">    </span>-DCMAKE_TOOLCHAIN_FILE<span class="o">=</span>toolchains/mingw-w64.cmake<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">    </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release
+</span><span data-line="4">
+</span><span data-line="5">cmake<span class="w"> </span>--build<span class="w"> </span>build
+</span></pre></div>
+</div>
+<p><strong>Toolchain file example:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># toolchains/mingw-w64.cmake</span>
+</span><span data-line="2"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_SYSTEM_NAME</span><span class="w"> </span><span class="s">Windows</span><span class="p">)</span>
+</span><span data-line="3"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_C_COMPILER</span><span class="w"> </span><span class="s">x86_64-w64-mingw32-gcc</span><span class="p">)</span>
+</span><span data-line="4"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_COMPILER</span><span class="w"> </span><span class="s">x86_64-w64-mingw32-g++</span><span class="p">)</span>
+</span><span data-line="5"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_RC_COMPILER</span><span class="w"> </span><span class="s">x86_64-w64-mingw32-windres</span><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH</span><span class="w"> </span><span class="s">/usr/x86_64-w64-mingw32</span><span class="p">)</span>
+</span><span data-line="8"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</span><span class="w"> </span><span class="s">NEVER</span><span class="p">)</span>
+</span><span data-line="9"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</span><span class="w"> </span><span class="s">ONLY</span><span class="p">)</span>
+</span><span data-line="10"><span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</span><span class="w"> </span><span class="s">ONLY</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="08_usage-patterns-best-practices.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">8. Usage Patterns &amp; Best Practices</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="10_platform-specific-information.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">10. Platform-Specific Information</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

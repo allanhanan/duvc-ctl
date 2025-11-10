@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Python Examples - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="C++ Examples" href="cpp-examples.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="Python Examples"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Python Examples</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="python-examples">
+<h1>Python Examples<a class="headerlink" href="#python-examples" title="Link to this heading">¶</a></h1>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="cpp-examples.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">C++ Examples</div></div>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=5375a926"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1com__apartment" kind="class" language="C++" prot="public">
+    <compoundname>duvc::com_apartment</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1com__apartment_1a9ff62395df21a535b9a063830cfe6ac8" prot="private" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">HRESULT</ref></type>
+        <definition>HRESULT duvc::com_apartment::hr_</definition>
+        <argsstring></argsstring>
+        <name>hr_</name>
+        <qualifiedname>duvc::com_apartment::hr_</qualifiedname>
+        <initializer>{ <ref refid="classduvc_1_1Result" kindref="compound">S_OK</ref> }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="143" column="13" bodyfile="core.cpp" bodystart="143" bodyend="143"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1com__apartment_1a838699180177b67967fc82d3602ba122" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_apartment::com_apartment</definition>
+        <argsstring>()</argsstring>
+        <name>com_apartment</name>
+        <qualifiedname>duvc::com_apartment::com_apartment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="131" column="5" bodyfile="core.cpp" bodystart="131" bodyend="136"/>
+        <references refid="namespaceduvc_1a21b444574354018097d4489a9ff0ff9e" compoundref="core_8cpp" startline="115" endline="127">duvc::throw_hr</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__apartment_1a923a2db66d42cda902de7c2e72cfa631" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_apartment::~com_apartment</definition>
+        <argsstring>()</argsstring>
+        <name>~com_apartment</name>
+        <qualifiedname>duvc::com_apartment::~com_apartment</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="138" column="5" bodyfile="core.cpp" bodystart="138" bodyend="140"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::com_apartment</label>
+        <link refid="classduvc_1_1com__apartment"/>
+      </node>
+    </collaborationgraph>
+    <location file="core.cpp" line="129" column="1" bodyfile="core.cpp" bodystart="129" bodyend="144"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1com__apartment_1a838699180177b67967fc82d3602ba122" prot="public" virt="non-virtual"><scope>duvc::com_apartment</scope><name>com_apartment</name></member>
+      <member refid="classduvc_1_1com__apartment_1a9ff62395df21a535b9a063830cfe6ac8" prot="private" virt="non-virtual"><scope>duvc::com_apartment</scope><name>hr_</name></member>
+      <member refid="classduvc_1_1com__apartment_1a923a2db66d42cda902de7c2e72cfa631" prot="public" virt="non-virtual"><scope>duvc::com_apartment</scope><name>~com_apartment</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

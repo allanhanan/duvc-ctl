@@ -1,0 +1,5 @@
+<map id="duvc_check_abi_compatibility" name="duvc_check_abi_compatibility">
+<area shape="rect" id="Node000001" title="Check ABI compatibility." alt="" coords="5,5,201,32"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#ab70bb6f568a46a622e06d8561e51ecb7" title="Get library version." alt="" coords="249,5,372,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,16,234,16,234,21,201,21"/>
+</map>

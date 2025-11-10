@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_55fe6003a6c0a8fbb894a07ce9c60c0e" kind="dir">
+    <compoundname>core</compoundname>
+    <innerfile refid="camera_8h">camera.h</innerfile>
+    <innerfile refid="capability_8h">capability.h</innerfile>
+    <innerfile refid="device_8h">device.h</innerfile>
+    <innerfile refid="operations_8h">operations.h</innerfile>
+    <innerfile refid="result_8h">result.h</innerfile>
+    <innerfile refid="types_8h">types.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="core/"/>
+  </compounddef>
+</doxygen>

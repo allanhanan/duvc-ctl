@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="logging_8h" kind="file" language="C++">
+    <compoundname>logging.h</compoundname>
+    <includes local="no">functional</includes>
+    <includes local="no">string</includes>
+    <includedby refid="api_8cpp" local="yes">c/api.cpp</includedby>
+    <includedby refid="error__handling_8cpp" local="yes">c/error_handling.cpp</includedby>
+    <includedby refid="capability_8cpp" local="no">core/capability.cpp</includedby>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="device__monitor_8cpp" local="no">platform/windows/device_monitor.cpp</includedby>
+    <includedby refid="logging_8cpp" local="no">utils/logging.cpp</includedby>
+    <includedby refid="logitech_8cpp" local="no">vendor/logitech.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>functional</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="1">
+        <label>utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c/api.cpp</label>
+        <link refid="api_8cpp"/>
+      </node>
+      <node id="3">
+        <label>c/error_handling.cpp</label>
+        <link refid="error__handling_8cpp"/>
+      </node>
+      <node id="4">
+        <label>core/capability.cpp</label>
+        <link refid="capability_8cpp"/>
+      </node>
+      <node id="6">
+        <label>platform/windows/device_monitor.cpp</label>
+        <link refid="device__monitor_8cpp"/>
+      </node>
+      <node id="7">
+        <label>utils/logging.cpp</label>
+        <link refid="logging_8cpp"/>
+      </node>
+      <node id="8">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="logging_8h_1afb89565f012a56933ec6a59ca2141a1c" prot="public" static="no">
+        <name>DUVC_LOG_DEBUG</name>
+        <param><defname>msg</defname></param>
+        <initializer><ref refid="namespaceduvc_1a47cac7feb74ff2f865d074b6cfb463f1" kindref="member">duvc::log_debug</ref>(msg)</initializer>
+        <briefdescription>
+<para>Log debug message macro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message string to log at debug level </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="utils/logging.h" line="101" column="9" bodyfile="utils/logging.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logging_8h_1ace03d66fa6631756678e5afec15a1b87" prot="public" static="no">
+        <name>DUVC_LOG_INFO</name>
+        <param><defname>msg</defname></param>
+        <initializer><ref refid="namespaceduvc_1a03a6e81316de0517ea31cd6dcca560d4" kindref="member">duvc::log_info</ref>(msg)</initializer>
+        <briefdescription>
+<para>Log info message macro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message string to log at info level </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="utils/logging.h" line="108" column="9" bodyfile="utils/logging.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logging_8h_1a86a40c6df6776ad27d30090b6e45a299" prot="public" static="no">
+        <name>DUVC_LOG_WARNING</name>
+        <param><defname>msg</defname></param>
+        <initializer><ref refid="namespaceduvc_1a9de34d5fa98fc93f94e593e4b07cca6e" kindref="member">duvc::log_warning</ref>(msg)</initializer>
+        <briefdescription>
+<para>Log warning message macro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message string to log at warning level </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="utils/logging.h" line="115" column="9" bodyfile="utils/logging.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logging_8h_1a706c3c143887f191b1d8f23cd5c62a2b" prot="public" static="no">
+        <name>DUVC_LOG_ERROR</name>
+        <param><defname>msg</defname></param>
+        <initializer><ref refid="namespaceduvc_1a6d8fe15d04c800f69816c89557ca25d5" kindref="member">duvc::log_error</ref>(msg)</initializer>
+        <briefdescription>
+<para>Log error message macro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message string to log at error level </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="utils/logging.h" line="122" column="9" bodyfile="utils/logging.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="logging_8h_1ad8cc63564b7037f2a29daba688c2405b" prot="public" static="no">
+        <name>DUVC_LOG_CRITICAL</name>
+        <param><defname>msg</defname></param>
+        <initializer><ref refid="namespaceduvc_1ac5d8f544093e30b59e63a5d25bd0367c" kindref="member">duvc::log_critical</ref>(msg)</initializer>
+        <briefdescription>
+<para>Log critical message macro. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message string to log at critical level </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="utils/logging.h" line="129" column="9" bodyfile="utils/logging.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structured logging interface for duvc-ctl. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2faa603905470e2a5b8c13e96b579ef0dba" kindref="member">Debug</ref><sp/>=<sp/>0,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa4059b0251f66a18cb56f544728796875" kindref="member">Info</ref><sp/>=<sp/>1,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa0eaadb4fcb48a0a0ed7bc9868be9fbaa" kindref="member">Warning</ref><sp/>=<sp/>2,<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Error" kindref="compound">Error</ref><sp/>=<sp/>3,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa278d01e5af56273bae1bb99a98b370cd" kindref="member">Critical</ref><sp/>=<sp/>4<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/>level);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="namespaceduvc_1a44cf73597087bd5739706a3a4eb5ac89" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc_1a44cf73597087bd5739706a3a4eb5ac89" kindref="member">LogCallback</ref><sp/>=</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>std::function&lt;<ref refid="classduvc_1_1Result" kindref="compound">void</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)&gt;;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a7239cb5e5d6c896113ca7edcfe8ca99b" kindref="member">set_log_callback</ref>(<ref refid="namespaceduvc_1a44cf73597087bd5739706a3a4eb5ac89" kindref="member">LogCallback</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">callback</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1accb113d492197fac14a4ac8f9da0c53f" kindref="member">set_log_level</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="namespaceduvc_1ae6883f4c04a3b0237f624e9c42d07852" kindref="member">get_log_level</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a47cac7feb74ff2f865d074b6cfb463f1" kindref="member">log_debug</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a03a6e81316de0517ea31cd6dcca560d4" kindref="member">log_info</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a9de34d5fa98fc93f94e593e4b07cca6e" kindref="member">log_warning</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a6d8fe15d04c800f69816c89557ca25d5" kindref="member">log_error</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ac5d8f544093e30b59e63a5d25bd0367c" kindref="member">log_critical</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Convenience<sp/>macros<sp/>for<sp/>formatted<sp/>logging</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="logging_8h_1afb89565f012a56933ec6a59ca2141a1c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_LOG_DEBUG(msg)<sp/>duvc::log_debug(msg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="logging_8h_1ace03d66fa6631756678e5afec15a1b87" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_LOG_INFO(msg)<sp/>duvc::log_info(msg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="logging_8h_1a86a40c6df6776ad27d30090b6e45a299" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_LOG_WARNING(msg)<sp/>duvc::log_warning(msg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="logging_8h_1a706c3c143887f191b1d8f23cd5c62a2b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_LOG_ERROR(msg)<sp/>duvc::log_error(msg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="logging_8h_1ad8cc63564b7037f2a29daba688c2405b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_LOG_CRITICAL(msg)<sp/>duvc::log_critical(msg)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="utils/logging.h"/>
+  </compounddef>
+</doxygen>

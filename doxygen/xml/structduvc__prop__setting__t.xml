@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc__prop__setting__t" kind="struct" language="C++" prot="public">
+    <compoundname>duvc_prop_setting_t</compoundname>
+    <includes refid="api_8h" local="no">duvc-ctl/c/api.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc__prop__setting__t_1ac572876f2a70144d098bb91c84f54ca8" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t duvc_prop_setting_t::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>duvc_prop_setting_t::value</qualifiedname>
+        <briefdescription>
+<para>Property value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="133" column="11" bodyfile="c/api.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc__prop__setting__t_1a86b8a406d02f6ac2f3b57bc28d0b7893" prot="public" static="no" mutable="no">
+        <type><ref refid="api_8h_1a7cda1290234cbb7a54b9510f6af41d7c" kindref="member">duvc_cam_mode_t</ref></type>
+        <definition>duvc_cam_mode_t duvc_prop_setting_t::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>duvc_prop_setting_t::mode</qualifiedname>
+        <briefdescription>
+<para>Control mode (auto/manual) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/api.h" line="134" column="19" bodyfile="c/api.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Property setting with value and mode. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc_prop_setting_t</label>
+        <link refid="structduvc__prop__setting__t"/>
+      </node>
+    </collaborationgraph>
+    <location file="c/api.h" line="132" column="1" bodyfile="c/api.h" bodystart="132" bodyend="135"/>
+    <listofallmembers>
+      <member refid="structduvc__prop__setting__t_1a86b8a406d02f6ac2f3b57bc28d0b7893" prot="public" virt="non-virtual"><scope>duvc_prop_setting_t</scope><name>mode</name></member>
+      <member refid="structduvc__prop__setting__t_1ac572876f2a70144d098bb91c84f54ca8" prot="public" virt="non-virtual"><scope>duvc_prop_setting_t</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,37 @@
+<map id="duvc::Result::value" name="duvc::Result::value">
+<area shape="rect" id="Node000001" title="Get the value (assumes success)" alt="" coords="437,341,571,368"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1DeviceConnection.html#aac59736bb276c7c518f9dc2da0f0fa42" title=" " alt="" coords="199,5,389,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="498,326,490,267,472,192,457,152,439,113,416,77,387,46,371,35,374,30,391,42,420,74,443,111,462,150,477,190,495,266,504,325"/>
+<area shape="rect" id="Node000003" href="$group__quickapi.html#ga03a46d69b1f9bc18596e1085b5161ef0" title="Get a camera control property value." alt="" coords="256,56,332,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="496,326,485,276,465,214,433,151,412,122,387,97,361,82,331,74,333,69,363,77,391,93,416,118,437,148,470,212,490,275,501,325"/>
+<area shape="rect" id="Node000006" href="$group__quickapi.html#gabe50c1b736f2782a0019091d6ddab5c6" title="Get a video processing property value." alt="" coords="256,107,332,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="493,327,479,287,457,238,427,189,408,167,387,148,361,133,331,126,333,120,362,128,391,143,412,163,431,186,462,235,484,285,498,326"/>
+<area shape="rect" id="Node000007" href="$classduvc_1_1DeviceConnection.html#ae2f8eee0fcac533247cd79b5e148cbf3" title=" " alt="" coords="199,157,389,184"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="488,329,449,262,421,228,387,198,366,187,368,182,391,194,425,224,454,259,493,326"/>
+<area shape="rect" id="Node000008" href="$namespaceduvc_1_1logitech.html#a4f494bd801c993f6d3c46b3c37a4b72e" title="Get typed Logitech property value." alt="" coords="211,208,377,251"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="476,332,436,298,388,265,364,254,366,249,390,260,439,294,480,328"/>
+<area shape="rect" id="Node000009" href="$classduvc_1_1KsPropertySet.html#a21e491235b83bacb4fd55e96d2b603f6" title="Get typed property value." alt="" coords="223,275,365,317"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="438,339,365,318,366,313,440,334"/>
+<area shape="rect" id="Node000010" href="$group__quickapi.html#gaf73ccab11e1e8cb1a7311ad6e5d59f61" title="Get the valid range for a camera control property." alt="" coords="237,341,351,368"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="421,357,351,357,351,352,421,352"/>
+<area shape="rect" id="Node000013" href="$group__quickapi.html#gaad1b7b0ffab91ab840285893caecdf48" title="Get the valid range for a video processing property." alt="" coords="237,392,351,419"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="431,375,352,394,351,389,430,370"/>
+<area shape="rect" id="Node000014" href="$classduvc_1_1DeviceConnection.html#aaf856b49cae449d542431bd30ba5d931" title=" " alt="" coords="199,443,389,469"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="476,380,436,407,390,433,359,445,357,440,388,428,434,403,473,375"/>
+<area shape="rect" id="Node000015" href="$classduvc_1_1DeviceConnection.html#aa2752d34ca21c524125877f7a7983087" title=" " alt="" coords="199,493,389,520"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="488,383,448,434,421,461,390,484,366,495,364,490,388,479,417,457,444,431,484,380"/>
+<area shape="rect" id="Node000016" href="$namespaceduvc_1_1logitech.html#a376caa27f086fe3d1ede2c24201ab9f3" title="Check if device supports Logitech vendor properties." alt="" coords="214,544,374,587"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="494,384,456,458,426,499,391,534,373,546,370,541,387,530,422,495,451,455,490,381"/>
+<area shape="rect" id="Node000017" href="$classduvc_1_1Result.html#a304ed12ed59a1cc9c4f66ab5f71adff1" title="Get value or default if error." alt="" coords="218,611,370,637"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="500,384,488,431,467,490,435,549,415,577,391,601,372,613,369,608,387,597,411,573,431,547,462,488,483,430,495,383"/>
+<area shape="rect" id="Node000018" href="$classduvc_1_1Result.html#aec1adca42af9304ee0d6d2327a73083f" title="Get value or default if error." alt="" coords="218,661,370,688"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="503,384,494,441,474,512,460,550,441,587,419,621,391,651,372,664,369,659,387,647,414,618,437,584,455,548,469,511,489,439,498,383"/>
+<area shape="rect" id="Node000004" href="$bindings_8cpp.html#a2eeaa75b5bece22f8ece44907ed9f569" title=" " alt="" coords="25,31,131,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="241,66,131,53,132,48,241,61"/>
+<area shape="rect" id="Node000005" href="$bindings_8cpp.html#a2ef0f3ef211dffa60691ec69734cb8ba" title=" " alt="" coords="29,81,127,108"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="241,78,128,92,127,86,241,73"/>
+<area shape="rect" id="Node000011" href="$bindings_8cpp.html#a7e5b8b6d1b9f093497e11e827ee56004" title=" " alt="" coords="5,316,151,343"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="221,349,151,341,151,335,222,344"/>
+<area shape="rect" id="Node000012" href="$bindings_8cpp.html#afeb5120c76b876c78b2d47af23770647" title=" " alt="" coords="9,367,147,393"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="222,366,147,375,147,369,221,360"/>
+</map>

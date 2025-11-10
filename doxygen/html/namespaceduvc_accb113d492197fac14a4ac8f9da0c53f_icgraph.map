@@ -1,0 +1,7 @@
+<map id="duvc::set_log_level" name="duvc::set_log_level">
+<area shape="rect" id="Node000001" title="Set minimum log level." alt="" coords="186,31,319,57"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a25beb5fbe1559b1e26296077bf0990e8" title="Initialize library." alt="" coords="20,5,123,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,35,123,28,124,23,170,30"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#a26fe300558fa86a716e7d4c4faf0ad7c" title="Set minimum log level." alt="" coords="5,56,138,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="170,58,138,63,137,57,170,53"/>
+</map>

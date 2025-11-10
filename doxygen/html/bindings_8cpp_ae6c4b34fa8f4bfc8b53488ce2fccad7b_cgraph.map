@@ -1,0 +1,31 @@
+<map id="duvc_is_device_connected" name="duvc_is_device_connected">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,184,133"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ab42651167ff39abe9e70713ac6db65b9" title="Check if a device is currently connected and accessible." alt="" coords="232,132,411,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,127,216,131,216,136,183,133"/>
+<area shape="rect" id="Node000012" href="$namespaceduvc.html#a2c254074ce671320e3e57c56a9389ac1" title="Enumerate all available video input devices." alt="" coords="258,81,384,108"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="183,107,242,101,243,106,184,113"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#ab7299b8597bf14b18b8351278c209188" title="Create DirectShow device enumerator." alt="" coords="476,107,636,133"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="411,133,460,128,461,133,411,138"/>
+<area shape="rect" id="Node000006" href="$namespaceduvc.html#a1a577c6cd7e4b3106d6f95c15bbceeed" title="Enumerate video input devices." alt="" coords="466,157,646,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="411,152,451,157,451,162,411,158"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#aa743fc7771811366fbd7b192b4f4d5d5" title=" " alt="" coords="459,208,653,235"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="358,157,460,193,485,201,483,206,458,199,356,162"/>
+<area shape="rect" id="Node000008" href="$namespaceduvc.html#a16607a28a7df86e823edf3abd371af92" title="Check if two device identifiers refer to same device." alt="" coords="480,259,632,285"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="339,157,390,200,424,224,460,244,475,251,473,256,458,249,421,228,387,204,336,161"/>
+<area shape="rect" id="Node000009" href="$namespaceduvc.html#a2c2b6f32c6871ad36ae0bf98d9374fd0" title="Read device path from moniker." alt="" coords="476,5,636,32"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="389,129,409,118,425,100,432,81,440,61,457,42,465,37,468,41,461,46,445,64,437,83,430,103,413,122,392,134"/>
+<area shape="rect" id="Node000011" href="$namespaceduvc.html#a019644436e5f0add38b6242843b79fef" title="Read friendly name from device moniker." alt="" coords="471,56,641,83"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="377,129,410,118,434,105,458,92,479,85,480,90,460,97,436,110,412,122,379,134"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#a21b444574354018097d4489a9ff0ff9e" title=" " alt="" coords="719,132,827,159"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="637,127,704,135,703,140,636,132"/>
+<area shape="rect" id="Node000005" href="$namespaceduvc.html#a02d5c5b2e56515cee2cad9057af0467d" title=" " alt="" coords="893,132,1024,159"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="827,143,877,143,877,148,827,148"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="646,157,704,151,704,156,647,163"/>
+<area shape="rect" id="Node000010" href="$namespaceduvc.html#a0dbd37821c1cae29fa72d44e3dbd0583" title=" " alt="" coords="701,31,845,57"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="636,25,686,31,686,37,636,31"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="641,57,685,52,686,57,642,62"/>
+<area shape="poly" id="edge14_Node000012_Node000003" title=" " alt="" coords="385,99,460,107,460,112,385,104"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="379,106,412,118,436,130,460,143,480,150,479,155,458,148,434,135,410,122,377,111"/>
+<area shape="poly" id="edge16_Node000012_Node000009" title=" " alt="" coords="356,78,458,41,483,34,485,39,460,47,358,83"/>
+<area shape="poly" id="edge17_Node000012_Node000011" title=" " alt="" coords="385,85,455,78,456,83,385,91"/>
+</map>

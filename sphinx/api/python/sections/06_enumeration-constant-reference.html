@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>6. Enumeration &amp; Constant Reference - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="7. Exception Hierarchy &amp; Handling" href="07_exception-hierarchy-handling.html" /><link rel="prev" title="5. Comprehensive Type Reference" href="05_comprehensive-type-reference.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="6. Enumeration &amp; Constant Reference"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">6. Enumeration &amp; Constant Reference</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="enumeration-constant-reference">
+<h1>6. Enumeration &amp; Constant Reference<a class="headerlink" href="#enumeration-constant-reference" title="Link to this heading">¶</a></h1>
+<section id="property-enumerations">
+<h2>6.1 Property Enumerations<a class="headerlink" href="#property-enumerations" title="Link to this heading">¶</a></h2>
+<section id="camprop-camera-control-properties-22-total-values">
+<h3>CamProp - Camera control properties (22 total values)<a class="headerlink" href="#camprop-camera-control-properties-22-total-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Enum Constant</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Range</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Pan</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Pan</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>-180 to 180</p></td>
+<td class="text-left"><p>Horizontal left/right rotation in degrees</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Tilt</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Tilt</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>-90 to 90</p></td>
+<td class="text-left"><p>Vertical up/down rotation in degrees</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Roll</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Roll</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>-180 to 180</p></td>
+<td class="text-left"><p>Rotation around optical axis in degrees</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Zoom</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Zoom</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>100-400+</p></td>
+<td class="text-left"><p>Zoom multiplier in steps (100=1x, 200=2x)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Exposure</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Exposure</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Exposure time in log2 units or milliseconds</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Iris</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Iris</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Iris aperture f-stop (0=most open, 255=closed)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Focus</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Focus</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255+</p></td>
+<td class="text-left"><p>Focus distance (0=infinity, 255=closest)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ScanMode</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.ScanMode</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-2</p></td>
+<td class="text-left"><p>Interlaced (0), Progressive (1), or both (2)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Privacy</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.Privacy</span></code></p></td>
+<td class="text-left"><p>bool</p></td>
+<td class="text-left"><p>True/False</p></td>
+<td class="text-left"><p>Hardware privacy shutter on/off</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>PanRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.PanRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Pan movement amount per step (relative)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>TiltRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.TiltRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Tilt movement amount per step (relative)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>RollRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.RollRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Roll movement amount per step (relative)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ZoomRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.ZoomRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Zoom change amount per step (relative)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ExposureRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.ExposureRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Exposure adjustment per step (relative)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>IrisRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.IrisRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Iris adjustment per step (relative)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>FocusRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.FocusRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Focus adjustment per step (relative)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>PanTilt</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.PanTilt</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Combined pan/tilt movement (paired value)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>PanTiltRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.PanTiltRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Combined pan/tilt relative movement</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>FocusSimple</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.FocusSimple</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-3</p></td>
+<td class="text-left"><p>Simple focus: 0=auto, 1=manual, 2=near, 3=far</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DigitalZoom</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.DigitalZoom</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>100-400+</p></td>
+<td class="text-left"><p>Digital zoom multiplier (separate from optical)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DigitalZoomRelative</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.DigitalZoomRelative</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Digital zoom adjustment per step (relative)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>BacklightCompensation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamProp.BacklightCompensation</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Backlight compensation strength</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Property grouping</strong>:</p>
+<ul class="simple">
+<li><p><strong>Absolute positioning</strong>: Pan, Tilt, Roll, Zoom, Exposure, Iris, Focus, DigitalZoom, ScanMode, Privacy, FocusSimple, BacklightCompensation.</p></li>
+<li><p><strong>Relative movement</strong>: PanRelative, TiltRelative, RollRelative, ZoomRelative, ExposureRelative, IrisRelative, FocusRelative, DigitalZoomRelative.</p></li>
+<li><p><strong>Combined operations</strong>: PanTilt, PanTiltRelative.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vidprop-video-image-properties-10-total-values">
+<h3>VidProp - Video/image properties (10 total values)<a class="headerlink" href="#vidprop-video-image-properties-10-total-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Enum Constant</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Range</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Brightness</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Brightness</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Image brightness (0=darkest, 255=brightest)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Contrast</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Contrast</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Contrast between light and dark areas</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Hue</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Hue</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>-180 to 180</p></td>
+<td class="text-left"><p>Color hue shift in degrees</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Saturation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Saturation</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Color saturation (0=grayscale, 255=vivid)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Sharpness</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Sharpness</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Edge sharpening amount</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Gamma</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Gamma</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>Gamma correction curve</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ColorEnable</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.ColorEnable</span></code></p></td>
+<td class="text-left"><p>bool</p></td>
+<td class="text-left"><p>True/False</p></td>
+<td class="text-left"><p>Enable/disable color processing</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>WhiteBalance</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.WhiteBalance</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>Device-dependent</p></td>
+<td class="text-left"><p>White balance temperature or preset</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>BacklightCompensation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.BacklightCompensation</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Backlight compensation compensation strength</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Gain</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.VidProp.Gain</span></code></p></td>
+<td class="text-left"><p>int</p></td>
+<td class="text-left"><p>0-255</p></td>
+<td class="text-left"><p>Signal amplification (0=minimum)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="property-capability-matrix-reference">
+<h3>Property capability matrix reference<a class="headerlink" href="#property-capability-matrix-reference" title="Link to this heading">¶</a></h3>
+<p><strong>Auto mode support by property</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Auto Support</p></th>
+<th class="head text-left"><p>Manual Support</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Brightness</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Most cameras support auto brightness</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Contrast</p></td>
+<td class="text-left"><p>Sometimes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Device-dependent auto support</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Saturation</p></td>
+<td class="text-left"><p>Sometimes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Device-dependent auto support</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Hue</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Typically manual only</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Gamma</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Typically manual only</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Sharpness</p></td>
+<td class="text-left"><p>Sometimes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Device-dependent auto support</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Gain</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Auto-gain common on cameras</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>WhiteBalance</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Auto white balance is very common</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ColorEnable</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>On/off control only</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>BacklightCompensation</p></td>
+<td class="text-left"><p>Sometimes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Device-dependent auto support</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Focus</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Autofocus vs manual focus</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Exposure</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Auto-exposure very common</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Pan/Tilt/Zoom</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Manual positioning only</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Privacy</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Binary on/off only</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ScanMode</p></td>
+<td class="text-left"><p>No</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Fixed selection only</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage pattern for auto support</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Always check before using auto</span>
+</span><span data-line="2"><span class="n">cap_result</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">get_video_capability</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">WhiteBalance</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">if</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="4">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="5">    <span class="k">if</span> <span class="n">cap</span><span class="o">.</span><span class="n">supports_auto</span><span class="p">():</span>
+</span><span data-line="6">        <span class="n">camera</span><span class="o">.</span><span class="n">set_auto</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">WhiteBalance</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="8">        <span class="c1"># Manual only</span>
+</span><span data-line="9">        <span class="n">r</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">range</span>
+</span><span data-line="10">        <span class="n">setting</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">((</span><span class="n">r</span><span class="o">.</span><span class="n">min</span> <span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+</span><span data-line="11">        <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">WhiteBalance</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="control-error-enumerations">
+<h2>6.2 Control &amp; Error Enumerations<a class="headerlink" href="#control-error-enumerations" title="Link to this heading">¶</a></h2>
+<section id="cammode-property-control-mode-2-total-values">
+<h3>CamMode - Property control mode (2 total values)<a class="headerlink" href="#cammode-property-control-mode-2-total-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Mode</p></th>
+<th class="head text-left"><p>Enum Constant</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Auto</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamMode.Auto</span></code></p></td>
+<td class="text-left"><p>Automatic control by camera (device adjusts property)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Manual</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.CamMode.Manual</span></code></p></td>
+<td class="text-left"><p>Manual control by application (user specifies value)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Set brightness with manual mode</span>
+</span><span data-line="2"><span class="n">setting</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Manual</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Enable auto mode (value ignored by device)</span>
+</span><span data-line="6"><span class="n">setting</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Auto</span><span class="p">)</span>
+</span><span data-line="7"><span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Check capability before auto</span>
+</span><span data-line="10"><span class="n">cap_result</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">get_video_capability</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">WhiteBalance</span><span class="p">)</span>
+</span><span data-line="11"><span class="k">if</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">.</span><span class="n">supports_auto</span><span class="p">():</span>
+</span><span data-line="12">    <span class="n">setting</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Auto</span><span class="p">)</span>
+</span><span data-line="13">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">WhiteBalance</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="errorcode-error-codes-9-total-values">
+<h3>ErrorCode - Error codes (9 total values)<a class="headerlink" href="#errorcode-error-codes-9-total-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Code</p></th>
+<th class="head text-left"><p>Enum Constant</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Success</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.Success</span></code></p></td>
+<td class="text-left"><p>Operation succeeded (0x00)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DeviceNotFound</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.DeviceNotFound</span></code></p></td>
+<td class="text-left"><p>Device not found or disconnected (0x01)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DeviceBusy</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.DeviceBusy</span></code></p></td>
+<td class="text-left"><p>Device busy or in use elsewhere (0x02)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>PropertyNotSupported</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.PropertyNotSupported</span></code></p></td>
+<td class="text-left"><p>Property not supported by device (0x03)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>InvalidValue</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.InvalidValue</span></code></p></td>
+<td class="text-left"><p>Property value out of range (0x04)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>PermissionDenied</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.PermissionDenied</span></code></p></td>
+<td class="text-left"><p>Insufficient permissions (0x05)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>SystemError</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.SystemError</span></code></p></td>
+<td class="text-left"><p>System/platform-specific error (0x06)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>InvalidArgument</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.InvalidArgument</span></code></p></td>
+<td class="text-left"><p>Invalid function argument (0x07)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>NotImplemented</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.ErrorCode.NotImplemented</span></code></p></td>
+<td class="text-left"><p>Feature not implemented (0x08)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Error code cross-reference</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">error</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">code</span> <span class="o">=</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">()</span>
+</span><span data-line="5">    
+</span><span data-line="6">    <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">DeviceNotFound</span><span class="p">:</span>
+</span><span data-line="7">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device disconnected&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">PropertyNotSupported</span><span class="p">:</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Property not supported&quot;</span><span class="p">)</span>
+</span><span data-line="10">    <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">InvalidValue</span><span class="p">:</span>
+</span><span data-line="11">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Value out of range&quot;</span><span class="p">)</span>
+</span><span data-line="12">    <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">PermissionDenied</span><span class="p">:</span>
+</span><span data-line="13">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Need elevated privileges&quot;</span><span class="p">)</span>
+</span><span data-line="14">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="15">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="loglevel-logging-severity-5-total-values">
+<h3>LogLevel - Logging severity (5 total values)<a class="headerlink" href="#loglevel-logging-severity-5-total-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Level</p></th>
+<th class="head text-left"><p>Enum Constant</p></th>
+<th class="head text-left"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Debug</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.LogLevel.Debug</span></code></p></td>
+<td class="text-left"><p>Detailed debugging information (lowest)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Info</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.LogLevel.Info</span></code></p></td>
+<td class="text-left"><p>General informational messages</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Warning</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.LogLevel.Warning</span></code></p></td>
+<td class="text-left"><p>Warning conditions</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Error</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.LogLevel.Error</span></code></p></td>
+<td class="text-left"><p>Error conditions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Critical</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc.LogLevel.Critical</span></code></p></td>
+<td class="text-left"><p>Critical error conditions (highest)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage with logging callback</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">log_handler</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span data-line="2">    <span class="n">level_name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">level_name</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_callback</span><span class="p">(</span><span class="n">log_handler</span><span class="p">)</span>
+</span><span data-line="6"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Manual logging</span>
+</span><span data-line="9"><span class="n">duvc</span><span class="o">.</span><span class="n">log_debug</span><span class="p">(</span><span class="s2">&quot;Debug message&quot;</span><span class="p">)</span>
+</span><span data-line="10"><span class="n">duvc</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Info message&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="n">duvc</span><span class="o">.</span><span class="n">log_warning</span><span class="p">(</span><span class="s2">&quot;Warning message&quot;</span><span class="p">)</span>
+</span><span data-line="12"><span class="n">duvc</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Error message&quot;</span><span class="p">)</span>
+</span><span data-line="13"><span class="n">duvc</span><span class="o">.</span><span class="n">log_critical</span><span class="p">(</span><span class="s2">&quot;Critical message&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="string-conversion-functions">
+<h2>6.3 String Conversion Functions<a class="headerlink" href="#string-conversion-functions" title="Link to this heading">¶</a></h2>
+<section id="to-string-convert-enums-to-human-readable-strings">
+<h3>to_string() - Convert enums to human-readable strings<a class="headerlink" href="#to-string-convert-enums-to-human-readable-strings" title="Link to this heading">¶</a></h3>
+<p>Converts any duvc-ctl enum to its string representation. Used for logging, display, and debugging.</p>
+<p><strong>Function signatures</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Convert CamProp to string</span>
+</span><span data-line="2"><span class="n">name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">)</span>  <span class="c1"># Returns &quot;Pan&quot;</span>
+</span><span data-line="3"><span class="n">name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Focus</span><span class="p">)</span>  <span class="c1"># Returns &quot;Focus&quot;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Convert VidProp to string</span>
+</span><span data-line="6"><span class="n">name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>  <span class="c1"># Returns &quot;Brightness&quot;</span>
+</span><span data-line="7"><span class="n">name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Contrast</span><span class="p">)</span>  <span class="c1"># Returns &quot;Contrast&quot;</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Convert CamMode to string</span>
+</span><span data-line="10"><span class="n">mode_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Auto</span><span class="p">)</span>  <span class="c1"># Returns &quot;Auto&quot;</span>
+</span><span data-line="11"><span class="n">mode_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Manual</span><span class="p">)</span>  <span class="c1"># Returns &quot;Manual&quot;</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1"># Convert ErrorCode to string</span>
+</span><span data-line="14"><span class="n">code_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">DeviceNotFound</span><span class="p">)</span>  <span class="c1"># Returns &quot;DeviceNotFound&quot;</span>
+</span><span data-line="15"><span class="n">code_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">ErrorCode</span><span class="o">.</span><span class="n">PermissionDenied</span><span class="p">)</span>  <span class="c1"># Returns &quot;PermissionDenied&quot;</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="c1"># Convert LogLevel to string</span>
+</span><span data-line="18"><span class="n">level_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>  <span class="c1"># Returns &quot;Warning&quot;</span>
+</span><span data-line="19"><span class="n">level_str</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>  <span class="c1"># Returns &quot;Critical&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Common patterns</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Display supported properties</span>
+</span><span data-line="2"><span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="4">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="5">    
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera properties:&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_camera_properties</span><span class="p">():</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Video properties:&quot;</span><span class="p">)</span>
+</span><span data-line="11">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">():</span>
+</span><span data-line="12">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="c1"># Log property operations</span>
+</span><span data-line="15"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span><span data-line="16"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="17">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span><span class="si">}</span><span class="s2"> successfully&quot;</span><span class="p">)</span>
+</span><span data-line="18"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="19">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to set </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="20">
+</span><span data-line="21"><span class="c1"># List all properties with modes</span>
+</span><span data-line="22"><span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">():</span>
+</span><span data-line="23">    <span class="n">cap</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">get_video_capability</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="24">    <span class="n">auto_support</span> <span class="o">=</span> <span class="s2">&quot;auto&quot;</span> <span class="k">if</span> <span class="n">cap</span><span class="o">.</span><span class="n">supports_auto</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;manual only&quot;</span>
+</span><span data-line="25">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">auto_support</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="05_comprehensive-type-reference.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">5. Comprehensive Type Reference</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="07_exception-hierarchy-handling.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">7. Exception Hierarchy &amp; Handling</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

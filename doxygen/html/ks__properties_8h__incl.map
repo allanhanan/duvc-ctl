@@ -1,0 +1,24 @@
+<map id="platform/windows/ks_properties.h" name="platform/windows/ks_properties.h">
+<area shape="rect" id="Node000001" title="IKsPropertySet wrapper for vendor properties." alt="" coords="510,5,652,48"/>
+<area shape="rect" id="Node000002" href="$result_8h.html" title="Result/Error type system for duvc&#45;ctl." alt="" coords="176,104,319,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="511,49,311,102,309,97,509,44"/>
+<area shape="rect" id="Node000008" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="348,104,491,131"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="544,51,457,98,455,94,542,46"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="515,96,647,139"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="584,48,584,81,578,81,578,48"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="671,104,728,131"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="610,46,672,92,669,97,607,51"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="753,104,836,131"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="632,46,751,95,749,100,630,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,187,77,213"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,134,88,183,87,178,214,129"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,187,168,213"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="231,133,166,180,162,176,228,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="397,187,450,213"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="276,129,384,178,381,182,274,134"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="191,187,288,213"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="249,131,245,172,240,171,244,131"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="312,187,372,213"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="264,129,318,175,315,179,261,133"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="423,131,425,171,420,172,418,131"/>
+</map>

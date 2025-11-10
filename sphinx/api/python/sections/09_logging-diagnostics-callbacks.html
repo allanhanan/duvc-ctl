@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>9. Logging, Diagnostics &amp; Callbacks - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="10. Vendor-Specific Extensions" href="10_vendor-specific-extensions.html" /><link rel="prev" title="8. Convenience Functions &amp; Helpers" href="08_convenience-functions-helpers.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="9. Logging, Diagnostics &amp; Callbacks"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">9. Logging, Diagnostics &amp; Callbacks</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="logging-diagnostics-callbacks">
+<h1>9. Logging, Diagnostics &amp; Callbacks<a class="headerlink" href="#logging-diagnostics-callbacks" title="Link to this heading">¶</a></h1>
+<section id="logging-functions-level-management">
+<h2>9.1 Logging Functions &amp; Level Management<a class="headerlink" href="#logging-functions-level-management" title="Link to this heading">¶</a></h2>
+<p>Core logging control with per-level message functions and optional callbacks for structured event handling.</p>
+<hr class="docutils" />
+<section id="set-log-level-configure-minimum-log-level">
+<h3>set_log_level() - configure minimum log level<a class="headerlink" href="#set-log-level-configure-minimum-log-level" title="Link to this heading">¶</a></h3>
+<p>Set the minimum log level for library output. Levels: Debug, Info, Warning, Error, Critical.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">set_log_level</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set minimum log level to capture.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>LogLevel enum values</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Level</p></th>
+<th class="head text-left"><p>Order</p></th>
+<th class="head text-left"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LogLevel.Debug</span></code></p></td>
+<td class="text-left"><p>0 (lowest)</p></td>
+<td class="text-left"><p>Verbose tracing of all operations</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LogLevel.Info</span></code></p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>General information, device enumeration</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LogLevel.Warning</span></code></p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Recoverable issues, degraded operation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LogLevel.Error</span></code></p></td>
+<td class="text-left"><p>3</p></td>
+<td class="text-left"><p>Operation failures, retryable errors</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LogLevel.Critical</span></code></p></td>
+<td class="text-left"><p>4 (highest)</p></td>
+<td class="text-left"><p>Severe failures, unrecoverable states</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Set to debug level</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Operations now logged at debug level</span>
+</span><span data-line="7"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span data-line="8"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-log-level-query-current-level">
+<h3>get_log_level() - query current level<a class="headerlink" href="#get-log-level-query-current-level" title="Link to this heading">¶</a></h3>
+<p>Query the currently configured minimum log level.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_log_level</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">LogLevel</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get current minimum log level.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">current</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_log_level</span><span class="p">()</span>
+</span><span data-line="2"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current level: </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">current</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Check if debug enabled</span>
+</span><span data-line="5"><span class="k">if</span> <span class="n">current</span> <span class="o">==</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">:</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Debug logging active&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="log-message-emit-log-message">
+<h3>log_message() - emit log message<a class="headerlink" href="#log-message-emit-log-message" title="Link to this heading">¶</a></h3>
+<p>Emit message at specified level. Respects set_log_level() filter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">log_message</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Log message at specified level.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Info</span><span class="p">,</span> <span class="s2">&quot;Camera operation started&quot;</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">.</span><span class="n">log_message</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Warning</span><span class="p">,</span> <span class="s2">&quot;Device may be disconnecting&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="log-debug-info-warning-error-critical-convenience-functions">
+<h3>log_debug/info/warning/error/critical() - convenience functions<a class="headerlink" href="#log-debug-info-warning-error-critical-convenience-functions" title="Link to this heading">¶</a></h3>
+<p>Level-specific logging functions. Shorthand for common levels.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">log_debug</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="2"><span class="k">def</span><span class="w"> </span><span class="nf">log_info</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="3"><span class="k">def</span><span class="w"> </span><span class="nf">log_warning</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">log_error</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="5"><span class="k">def</span><span class="w"> </span><span class="nf">log_critical</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">.</span><span class="n">log_debug</span><span class="p">(</span><span class="s2">&quot;Checking device connection&quot;</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">.</span><span class="n">log_info</span><span class="p">(</span><span class="s2">&quot;Device enumeration complete&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">duvc</span><span class="o">.</span><span class="n">log_warning</span><span class="p">(</span><span class="s2">&quot;Brightness at maximum&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">.</span><span class="n">log_error</span><span class="p">(</span><span class="s2">&quot;Failed to set property&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="n">duvc</span><span class="o">.</span><span class="n">log_critical</span><span class="p">(</span><span class="s2">&quot;Device disconnected unexpectedly&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="set-log-callback-custom-message-handler">
+<h3>set_log_callback() - custom message handler<a class="headerlink" href="#set-log-callback-custom-message-handler" title="Link to this heading">¶</a></h3>
+<p>Register callback to receive all log messages. Callback signature: <code class="docutils literal notranslate"><span class="pre">(level:</span> <span class="pre">LogLevel,</span> <span class="pre">message:</span> <span class="pre">str)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">set_log_callback</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">LogLevel</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+</span><span data-line="3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Register callback for log messages.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Callback contract</strong>:</p>
+<ul class="simple">
+<li><p>Called synchronously for each log message</p></li>
+<li><p>No exceptions should escape callback</p></li>
+<li><p>Called from library threads (may not be main thread)</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Direct to standard logging module</span>
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">logging_adapter</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="5">    <span class="n">level_name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">level_num</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="7">        <span class="s2">&quot;Debug&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+</span><span data-line="8">        <span class="s2">&quot;Info&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+</span><span data-line="9">        <span class="s2">&quot;Warning&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span>
+</span><span data-line="10">        <span class="s2">&quot;Error&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">,</span>
+</span><span data-line="11">        <span class="s2">&quot;Critical&quot;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">,</span>
+</span><span data-line="12">    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">level_name</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</span><span data-line="13">    <span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level_num</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_callback</span><span class="p">(</span><span class="n">logging_adapter</span><span class="p">)</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="c1"># Now all library logs go to Python logging</span>
+</span><span data-line="18"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span>
+</span><span data-line="19"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Logs appear in logging output</span>
+</span></pre></div>
+</div>
+<p><strong>File logging</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">log_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;duvc.log&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">def</span><span class="w"> </span><span class="nf">file_logger</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="4">    <span class="n">level_name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">level_name</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">log_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_callback</span><span class="p">(</span><span class="n">file_logger</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Thread-safe callback</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lock</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">log_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+</span><span data-line="4"><span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">def</span><span class="w"> </span><span class="nf">thread_safe_logger</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="7">    <span class="k">with</span> <span class="n">log_lock</span><span class="p">:</span>
+</span><span data-line="8">        <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">duvc</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">level</span><span class="p">),</span> <span class="n">message</span><span class="p">))</span>
+</span><span data-line="9">    <span class="c1"># Process outside lock to avoid blocking library threads</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="n">duvc</span><span class="o">.</span><span class="n">set_log_callback</span><span class="p">(</span><span class="n">thread_safe_logger</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="error-decoding-windows-diagnostics">
+<h2>9.2 Error Decoding &amp; Windows Diagnostics<a class="headerlink" href="#error-decoding-windows-diagnostics" title="Link to this heading">¶</a></h2>
+<p>Platform-level error interpretation and detailed Windows diagnostics. All functions in this section are <strong>Windows-only</strong>.</p>
+<hr class="docutils" />
+<section id="decode-system-error-interpret-system-error-codes">
+<h3>decode_system_error() - interpret system error codes<a class="headerlink" href="#decode-system-error-interpret-system-error-codes" title="Link to this heading">¶</a></h3>
+<p>Decode system error code to human-readable message. Cross-references Windows error codes with common causes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">decode_system_error</span><span class="p">(</span><span class="n">error_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decode system error code to message.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># When catching SystemError</span>
+</span><span data-line="4"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">SystemError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="7">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">:</span>
+</span><span data-line="8">        <span class="n">decoded</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">decode_system_error</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">)</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System error: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-diagnostic-info-comprehensive-system-analysis">
+<h3>get_diagnostic_info() - comprehensive system analysis<a class="headerlink" href="#get-diagnostic-info-comprehensive-system-analysis" title="Link to this heading">¶</a></h3>
+<p>Query detailed system state: device list, driver status, permissions, connection state.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_diagnostic_info</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Collect system diagnostic information.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Returns:</span>
+</span><span data-line="6"><span class="sd">        Dict with keys:</span>
+</span><span data-line="7"><span class="sd">            - devices: List of cameras (name, path, connected)</span>
+</span><span data-line="8"><span class="sd">            - driver_info: DirectShow driver status</span>
+</span><span data-line="9"><span class="sd">            - os_info: Windows version</span>
+</span><span data-line="10"><span class="sd">            - permissions: Current user camera permissions</span>
+</span><span data-line="11"><span class="sd">            - errors: Any initialization errors</span>
+</span><span data-line="12"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Capture full diagnostics</span>
+</span><span data-line="5"><span class="n">diag</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_diagnostic_info</span><span class="p">()</span>
+</span><span data-line="6"><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">diag</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Output:</span>
+</span><span data-line="9"><span class="c1"># {</span>
+</span><span data-line="10"><span class="c1">#   &quot;devices&quot;: [</span>
+</span><span data-line="11"><span class="c1">#     {&quot;name&quot;: &quot;Logitech USB HD&quot;, &quot;path&quot;: &quot;...&quot;, &quot;connected&quot;: true}</span>
+</span><span data-line="12"><span class="c1">#   ],</span>
+</span><span data-line="13"><span class="c1">#   &quot;driver_info&quot;: {&quot;status&quot;: &quot;ok&quot;, &quot;version&quot;: &quot;...&quot;},</span>
+</span><span data-line="14"><span class="c1">#   &quot;os_info&quot;: {&quot;version&quot;: &quot;Windows 10&quot;, &quot;build&quot;: &quot;19045&quot;},</span>
+</span><span data-line="15"><span class="c1">#   &quot;permissions&quot;: {&quot;camera_access&quot;: &quot;granted&quot;},</span>
+</span><span data-line="16"><span class="c1">#   &quot;errors&quot;: []</span>
+</span><span data-line="17"><span class="c1"># }</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="decode-hresult-hresult-interpretation-windows-only">
+<h3>decode_hresult() - HRESULT interpretation (Windows-only)<a class="headerlink" href="#decode-hresult-hresult-interpretation-windows-only" title="Link to this heading">¶</a></h3>
+<p>Decode Windows HRESULT value to error category and description.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">decode_hresult</span><span class="p">(</span><span class="n">hr</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Decode HRESULT to human-readable message.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># HRESULT from DirectShow operation</span>
+</span><span data-line="4"><span class="n">hr</span> <span class="o">=</span> <span class="mh">0x80070005</span>  <span class="c1"># ACCESS_DENIED</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">decoded</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">decode_hresult</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+</span><span data-line="7"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;HRESULT 0x</span><span class="si">{</span><span class="n">hr</span><span class="si">:</span><span class="s2">08X</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">decoded</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="c1"># Output: &quot;HRESULT 0x80070005: Access Denied&quot;</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-hresult-details-detailed-hresult-analysis-windows-only">
+<h3>get_hresult_details() - detailed HRESULT analysis (Windows-only)<a class="headerlink" href="#get-hresult-details-detailed-hresult-analysis-windows-only" title="Link to this heading">¶</a></h3>
+<p>Analyze HRESULT with recovery suggestions and common causes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_hresult_details</span><span class="p">(</span><span class="n">hr</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Analyze HRESULT with detailed information.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Returns:</span>
+</span><span data-line="6"><span class="sd">        Dict with:</span>
+</span><span data-line="7"><span class="sd">            - code: Hex representation</span>
+</span><span data-line="8"><span class="sd">            - facility: HRESULT facility code</span>
+</span><span data-line="9"><span class="sd">            - message: Human-readable message</span>
+</span><span data-line="10"><span class="sd">            - causes: List of common causes</span>
+</span><span data-line="11"><span class="sd">            - suggestions: List of recovery steps</span>
+</span><span data-line="12"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">hr</span> <span class="o">=</span> <span class="mh">0x80004005</span>  <span class="c1"># E_FAIL</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">details</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_hresult_details</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span>
+</span><span data-line="6"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Code: </span><span class="si">{</span><span class="n">details</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Message: </span><span class="si">{</span><span class="n">details</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Common causes:&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">for</span> <span class="n">cause</span> <span class="ow">in</span> <span class="n">details</span><span class="p">[</span><span class="s1">&#39;causes&#39;</span><span class="p">]:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">cause</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Suggestions:&quot;</span><span class="p">)</span>
+</span><span data-line="12"><span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">details</span><span class="p">[</span><span class="s1">&#39;suggestions&#39;</span><span class="p">]:</span>
+</span><span data-line="13">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="is-device-error-device-specific-error-detection-windows-only">
+<h3>is_device_error() - device-specific error detection (Windows-only)<a class="headerlink" href="#is-device-error-device-specific-error-detection-windows-only" title="Link to this heading">¶</a></h3>
+<p>Check if HRESULT or error code indicates device-level failure (not driver/system).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">is_device_error</span><span class="p">(</span><span class="n">hr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">error_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if error is device-specific.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">hr</span> <span class="o">=</span> <span class="mh">0x80070015</span>  <span class="c1"># DEVICE_NOT_READY</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">if</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_error</span><span class="p">(</span><span class="n">hr</span><span class="p">):</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device error - check physical connection&quot;</span><span class="p">)</span>
+</span><span data-line="7"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System/driver error - reinstall or restart&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="is-permission-error-permission-failure-detection-windows-only">
+<h3>is_permission_error() - permission failure detection (Windows-only)<a class="headerlink" href="#is-permission-error-permission-failure-detection-windows-only" title="Link to this heading">¶</a></h3>
+<p>Check if HRESULT or error code indicates permission/access denied.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">is_permission_error</span><span class="p">(</span><span class="n">hr</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="n">error_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if error is permission-denied.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="5"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PermissionDeniedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="6">    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">&#39;hresult&#39;</span><span class="p">):</span>
+</span><span data-line="7">        <span class="k">if</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_permission_error</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">hresult</span><span class="p">):</span>
+</span><span data-line="8">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grant camera access in Settings&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="error-message-templates-and-patterns">
+<h3>Error message templates and patterns<a class="headerlink" href="#error-message-templates-and-patterns" title="Link to this heading">¶</a></h3>
+<p>Common Windows errors and their standard meanings:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>HRESULT</p></th>
+<th class="head text-left"><p>Facility</p></th>
+<th class="head text-left"><p>Meaning</p></th>
+<th class="head text-left"><p>Recovery</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>0x80070005</p></td>
+<td class="text-left"><p>WIN32</p></td>
+<td class="text-left"><p>ACCESS_DENIED</p></td>
+<td class="text-left"><p>Check privacy settings, run as admin</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>0x80070002</p></td>
+<td class="text-left"><p>WIN32</p></td>
+<td class="text-left"><p>FILE_NOT_FOUND</p></td>
+<td class="text-left"><p>Camera driver missing or corrupted</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>0x80070015</p></td>
+<td class="text-left"><p>WIN32</p></td>
+<td class="text-left"><p>DEVICE_NOT_READY</p></td>
+<td class="text-left"><p>Camera disconnected, reconnect USB</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>0x8004DF00</p></td>
+<td class="text-left"><p>COM</p></td>
+<td class="text-left"><p>Device creation failed</p></td>
+<td class="text-left"><p>Device in use by other app</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>0x80004005</p></td>
+<td class="text-left"><p>COM</p></td>
+<td class="text-left"><p>E_FAIL (generic)</p></td>
+<td class="text-left"><p>Check driver logs, try USB restart</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="5"><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="6">    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">&#39;error_code&#39;</span><span class="p">):</span>
+</span><span data-line="7">        <span class="n">details</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_hresult_details</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">)</span>
+</span><span data-line="8">        <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">details</span><span class="p">[</span><span class="s1">&#39;suggestions&#39;</span><span class="p">]:</span>
+</span><span data-line="9">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Try: </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="internal-error-recovery-patterns">
+<h3>Internal error recovery patterns<a class="headerlink" href="#internal-error-recovery-patterns" title="Link to this heading">¶</a></h3>
+<p>Library uses multi-level recovery when errors occur:</p>
+<p><strong>Level 1: Retry with backoff</strong></p>
+<ul class="simple">
+<li><p>Transient errors (timeout, busy) → retry 2-3x with 100ms delay</p></li>
+<li><p>Connection drops → attempt reconnect</p></li>
+</ul>
+<p><strong>Level 2: Query and adapt</strong></p>
+<ul class="simple">
+<li><p>Unsupported property → query capabilities, use alternative</p></li>
+<li><p>Out of range → query range, clamp value</p></li>
+<li><p>Permission denied → suggest user action</p></li>
+</ul>
+<p><strong>Level 3: Escalate and fallback</strong></p>
+<ul class="simple">
+<li><p>Driver error → log, suggest driver reinstall</p></li>
+<li><p>System error → recommend restart</p></li>
+<li><p>Unrecoverable → fail gracefully</p></li>
+</ul>
+<p><strong>Example recovery pattern</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">resilient_set_brightness</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+</span><span data-line="5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set brightness with automatic recovery.&quot;&quot;&quot;</span>
+</span><span data-line="6">    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">retries</span><span class="p">):</span>
+</span><span data-line="7">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="8">            <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="9">            <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</span><span data-line="10">            <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="11">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="12">            <span class="c1"># Level 1: Adapt value</span>
+</span><span data-line="13">            <span class="n">corrected</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+</span><span data-line="14">            <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="15">            <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span>
+</span><span data-line="16">            <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="17">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceBusyError</span><span class="p">:</span>
+</span><span data-line="18">            <span class="c1"># Level 2: Retry with backoff</span>
+</span><span data-line="19">            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span><span data-line="20">                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">))</span>
+</span><span data-line="21">                <span class="k">continue</span>
+</span><span data-line="22">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PermissionDeniedError</span><span class="p">:</span>
+</span><span data-line="23">            <span class="c1"># Level 3: Escalate</span>
+</span><span data-line="24">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera access denied. Grant permission in Settings &gt; Privacy&quot;</span><span class="p">)</span>
+</span><span data-line="25">            <span class="k">return</span> <span class="kc">False</span>
+</span><span data-line="26">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">SystemError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="27">            <span class="c1"># Level 3: Diagnose</span>
+</span><span data-line="28">            <span class="n">details</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_hresult_details</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="p">)</span>
+</span><span data-line="29">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System error: </span><span class="si">{</span><span class="n">details</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="30">            <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">details</span><span class="p">[</span><span class="s1">&#39;suggestions&#39;</span><span class="p">]:</span>
+</span><span data-line="31">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="32">            <span class="k">return</span> <span class="kc">False</span>
+</span><span data-line="33">    <span class="k">return</span> <span class="kc">False</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="device-callbacks-hot-plug">
+<h2>9.3 Device Callbacks &amp; Hot-Plug<a class="headerlink" href="#device-callbacks-hot-plug" title="Link to this heading">¶</a></h2>
+<p>Event-driven device hot-plug detection with thread-safe callback registration.</p>
+<hr class="docutils" />
+<section id="register-device-change-callback-watch-for-device-changes">
+<h3>register_device_change_callback() - watch for device changes<a class="headerlink" href="#register-device-change-callback-watch-for-device-changes" title="Link to this heading">¶</a></h3>
+<p>Register callback to receive notifications when cameras connect/disconnect. Callback runs in library thread pool.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">register_device_change_callback</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+</span><span data-line="3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="5"><span class="sd">    Register callback for device connect/disconnect events.</span>
+</span><span data-line="6"><span class="sd">    </span>
+</span><span data-line="7"><span class="sd">    Args:</span>
+</span><span data-line="8"><span class="sd">        callback: Function(event_type: str, device_name: str)</span>
+</span><span data-line="9"><span class="sd">                  event_type: &quot;connected&quot; or &quot;disconnected&quot;</span>
+</span><span data-line="10"><span class="sd">                  device_name: Name of changed device</span>
+</span><span data-line="11"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Callback signature</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">event_type</span></code> (str): Either <code class="docutils literal notranslate"><span class="pre">&quot;connected&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;disconnected&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_name</span></code> (str): Camera name that changed</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Register callback</span>
+</span><span data-line="7"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Physical hot-plug events now trigger callback</span>
+</span><span data-line="10"><span class="c1"># When user plugs in camera: &quot;Logitech USB HD: connected&quot;</span>
+</span><span data-line="11"><span class="c1"># When user unplugs camera: &quot;Logitech USB HD: disconnected&quot;</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="unregister-device-change-callback-stop-watching">
+<h3>unregister_device_change_callback() - stop watching<a class="headerlink" href="#unregister-device-change-callback-stop-watching" title="Link to this heading">¶</a></h3>
+<p>Unregister previously registered device change callback.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">unregister_device_change_callback</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+</span><span data-line="3"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Unregister device change callback.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Later: stop listening</span>
+</span><span data-line="9"><span class="n">duvc</span><span class="o">.</span><span class="n">unregister_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="gil-management-in-callbacks">
+<h3>GIL management in callbacks<a class="headerlink" href="#gil-management-in-callbacks" title="Link to this heading">¶</a></h3>
+<p>Library automatically acquires Python GIL before calling callback. Safe to call Python APIs from callback. Callback must complete quickly.</p>
+<p><strong>Callback execution context</strong>:</p>
+<ul class="simple">
+<li><p>Called from C++ thread pool</p></li>
+<li><p>GIL held during callback execution</p></li>
+<li><p>Other Python threads may block waiting for GIL</p></li>
+<li><p>Exceptions in callback are logged, not propagated</p></li>
+</ul>
+<p><strong>Quick callback requirement</strong>: Keep callbacks under 10ms. Long operations may block device enumeration.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># CORRECT: Queue event for processing elsewhere</span>
+</span><span data-line="5"><span class="n">event_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="8">    <span class="n">event_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">event_type</span><span class="p">,</span> <span class="n">device_name</span><span class="p">))</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1"># Separate thread processes events</span>
+</span><span data-line="13"><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span data-line="14">    <span class="n">event_type</span><span class="p">,</span> <span class="n">device_name</span> <span class="o">=</span> <span class="n">event_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span><span data-line="15">    <span class="c1"># Process event (may be slow)</span>
+</span><span data-line="16">    <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;connected&quot;</span><span class="p">:</span>
+</span><span data-line="17">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2"> connected&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Incorrect: Long operations in callback</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="5">    <span class="c1"># WRONG: This blocks library threads</span>
+</span><span data-line="6">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Don&#39;t do this!</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="threading-patterns-with-callbacks">
+<h3>Threading patterns with callbacks<a class="headerlink" href="#threading-patterns-with-callbacks" title="Link to this heading">¶</a></h3>
+<p><strong>Pattern 1: Queue-based event processing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+</span><span data-line="3"><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Thread</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">event_queue</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="8">    <span class="n">event_queue</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">event_type</span><span class="p">,</span> <span class="n">device_name</span><span class="p">))</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="k">def</span><span class="w"> </span><span class="nf">event_processor</span><span class="p">():</span>
+</span><span data-line="11">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span data-line="12">        <span class="n">event_type</span><span class="p">,</span> <span class="n">device_name</span> <span class="o">=</span> <span class="n">event_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+</span><span data-line="13">        <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;connected&quot;</span><span class="p">:</span>
+</span><span data-line="14">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Handling new camera: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="15">            <span class="c1"># Long operations OK here</span>
+</span><span data-line="16">        <span class="k">elif</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;disconnected&quot;</span><span class="p">:</span>
+</span><span data-line="17">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera removed: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="20"><span class="n">processor_thread</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">event_processor</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span data-line="21"><span class="n">processor_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 2: Device pool with auto-recovery</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lock</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">active_cameras</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="5"><span class="n">camera_lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="8">    <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;connected&quot;</span><span class="p">:</span>
+</span><span data-line="9">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="10">            <span class="n">cam</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_name</span><span class="p">)</span>
+</span><span data-line="11">            <span class="k">with</span> <span class="n">camera_lock</span><span class="p">:</span>
+</span><span data-line="12">                <span class="n">active_cameras</span><span class="p">[</span><span class="n">device_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">cam</span>
+</span><span data-line="13">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Auto-connected: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="14">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="15">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to connect </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="16">    <span class="k">elif</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;disconnected&quot;</span><span class="p">:</span>
+</span><span data-line="17">        <span class="k">with</span> <span class="n">camera_lock</span><span class="p">:</span>
+</span><span data-line="18">            <span class="k">if</span> <span class="n">device_name</span> <span class="ow">in</span> <span class="n">active_cameras</span><span class="p">:</span>
+</span><span data-line="19">                <span class="n">active_cameras</span><span class="p">[</span><span class="n">device_name</span><span class="p">]</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="20">                <span class="k">del</span> <span class="n">active_cameras</span><span class="p">[</span><span class="n">device_name</span><span class="p">]</span>
+</span><span data-line="21">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Auto-closed: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="c1"># Cameras automatically managed as connected/disconnected</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 3: Listener pattern with state tracking</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lock</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">class</span><span class="w"> </span><span class="nc">DeviceMonitor</span><span class="p">:</span>
+</span><span data-line="5">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="6">        <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span><span data-line="7">        <span class="bp">self</span><span class="o">.</span><span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+</span><span data-line="8">        <span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_change</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">def</span><span class="w"> </span><span class="nf">on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="11">        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+</span><span data-line="12">            <span class="k">if</span> <span class="n">event_type</span> <span class="o">==</span> <span class="s2">&quot;connected&quot;</span><span class="p">:</span>
+</span><span data-line="13">                <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">device_name</span><span class="p">)</span>
+</span><span data-line="14">            <span class="k">else</span><span class="p">:</span>
+</span><span data-line="15">                <span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">device_name</span><span class="p">)</span>
+</span><span data-line="16">    
+</span><span data-line="17">    <span class="k">def</span><span class="w"> </span><span class="nf">get_active</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="18">        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">:</span>
+</span><span data-line="19">            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connected</span><span class="p">)</span>
+</span><span data-line="20">    
+</span><span data-line="21">    <span class="k">def</span><span class="w"> </span><span class="nf">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device_name</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+</span><span data-line="22">        <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+</span><span data-line="23">        <span class="n">deadline</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">timeout</span>
+</span><span data-line="24">        <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">deadline</span><span class="p">:</span>
+</span><span data-line="25">            <span class="k">if</span> <span class="n">device_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_active</span><span class="p">():</span>
+</span><span data-line="26">                <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="27">            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</span><span data-line="28">        <span class="k">return</span> <span class="kc">False</span>
+</span><span data-line="29">
+</span><span data-line="30"><span class="n">monitor</span> <span class="o">=</span> <span class="n">DeviceMonitor</span><span class="p">()</span>
+</span><span data-line="31">
+</span><span data-line="32"><span class="c1"># Later: wait for specific camera</span>
+</span><span data-line="33"><span class="k">if</span> <span class="n">monitor</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+</span><span data-line="34">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera connected!&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 4: Event listener with weak references</strong> (Prevents memory leaks)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">weakref</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">class</span><span class="w"> </span><span class="nc">CameraListener</span><span class="p">:</span>
+</span><span data-line="5">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span data-line="6">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span data-line="7">        <span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_change</span><span class="p">)</span>
+</span><span data-line="8">    
+</span><span data-line="9">    <span class="k">def</span><span class="w"> </span><span class="nf">on_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span data-line="10">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">device_name</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">event_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">    
+</span><span data-line="12">    <span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="13">        <span class="n">duvc</span><span class="o">.</span><span class="n">unregister_device_change_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_change</span><span class="p">)</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="n">listener</span> <span class="o">=</span> <span class="n">CameraListener</span><span class="p">(</span><span class="s2">&quot;MyApp&quot;</span><span class="p">)</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="c1"># Later: clean up properly</span>
+</span><span data-line="18"><span class="n">listener</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</span><span data-line="19"><span class="k">del</span> <span class="n">listener</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="08_convenience-functions-helpers.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">8. Convenience Functions &amp; Helpers</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="10_vendor-specific-extensions.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">10. Vendor-Specific Extensions</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

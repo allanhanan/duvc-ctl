@@ -1,0 +1,7 @@
+<map id="vendor/logitech.h" name="vendor/logitech.h">
+<area shape="rect" id="Node000001" title="Logitech&#45;specific vendor property definitions and helpers." alt="" coords="46,5,167,32"/>
+<area shape="rect" id="Node000002" href="$duvc_8hpp.html" title="Main umbrella header for duvc&#45;ctl library." alt="" coords="5,80,80,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,46,56,81,52,78,83,42"/>
+<area shape="rect" id="Node000003" href="$logitech_8cpp.html" title="Logitech&#45;specific property implementations." alt="" coords="103,80,238,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="130,42,161,78,157,81,126,46"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="duvc::log_message" name="duvc::log_message">
+<area shape="rect" id="Node000001" title="Log a message." alt="" coords="5,31,140,57"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ababd2cbe9f996df9fb02141b96f1a0da" title="Default logging callback that writes to stderr." alt="" coords="188,31,363,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,41,172,41,172,47,140,47"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a621c452d402f42a3c34c68da6f2848f1" title="Get current timestamp as string." alt="" coords="411,5,554,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="363,31,395,27,396,32,364,36"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#a8556fd02a649101843e7712e638cc0cb" title="Convert camera property enum to string." alt="" coords="429,56,536,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="364,52,414,58,414,64,363,57"/>
+</map>

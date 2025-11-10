@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>5. Comprehensive Type Reference - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="6. Enumeration &amp; Constant Reference" href="06_enumeration-constant-reference.html" /><link rel="prev" title="4. Result-Based API - Explicit Error Handling" href="04_result-based-api-explicit-error-handling.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="5. Comprehensive Type Reference"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">5. Comprehensive Type Reference</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="comprehensive-type-reference">
+<h1>5. Comprehensive Type Reference<a class="headerlink" href="#comprehensive-type-reference" title="Link to this heading">¶</a></h1>
+<p>Understanding the core types used throughout the API helps you work effectively with the library. These types represent devices, properties, settings, and errors that flow through your code.</p>
+<section id="core-types-their-methods">
+<h2>5.1 Core Types &amp; Their Methods<a class="headerlink" href="#core-types-their-methods" title="Link to this heading">¶</a></h2>
+<section id="device-type-camera-identification">
+<h3>Device type - camera identification<a class="headerlink" href="#device-type-camera-identification" title="Link to this heading">¶</a></h3>
+<p>Represents a physical camera connected to the system. Returned by <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code> and used throughout the API to identify which device to open or query. Immutable and hashable.</p>
+<p><strong>Fields</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code> (str): Human-readable device name from DirectShow. Example: <code class="docutils literal notranslate"><span class="pre">&quot;Logitech</span> <span class="pre">C920</span> <span class="pre">HD</span> <span class="pre">Webcam&quot;</span></code>. Useful for UI display; not guaranteed unique if multiple identical cameras are connected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code> (str): Unique device identifier. Windows: <code class="docutils literal notranslate"><span class="pre">\\?\USB#VID_046D&amp;PID_082F#...</span></code> or similar. Used for persistent device identification across sessions and reboots. More reliable than name for identification.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">is_valid()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Returns True if device is still enumerable and accessible. False if device was disconnected or removed. Use before attempting operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_id()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Returns unique identifier string. Typically equivalent to path. Use this for persistent device tracking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device_id</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+</span><span data-line="2"><span class="c1"># Save this across sessions to reconnect to same physical device</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__eq__(other:</span> <span class="pre">Device)</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Equality comparison. Two Device objects are equal if they represent the same physical device (same path/ID).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device1</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2"><span class="n">device2</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="3"><span class="k">assert</span> <span class="n">device1</span> <span class="o">==</span> <span class="n">device2</span>  <span class="c1"># Same device</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__ne__(other:</span> <span class="pre">Device)</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Inequality. Opposite of <code class="docutils literal notranslate"><span class="pre">__eq__</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="n">device1</span> <span class="o">!=</span> <span class="n">device2</span><span class="p">:</span>
+</span><span data-line="2">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Different devices&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__hash__()</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code>: Returns hash of device. Enables using Device as dictionary key or in sets.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">device</span><span class="p">:</span> <span class="n">camera_config</span><span class="p">}</span>
+</span><span data-line="2"><span class="n">device_set</span> <span class="o">=</span> <span class="p">{</span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">devices</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__copy__()</span> <span class="pre">-&gt;</span> <span class="pre">Device</span></code>: Shallow copy. Creates new Device object referencing same underlying device.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__deepcopy__()</span> <span class="pre">-&gt;</span> <span class="pre">Device</span></code>: Deep copy. Same as shallow copy for Device (immutable).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device_deep</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__str__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: User-friendly string representation. Used by <code class="docutils literal notranslate"><span class="pre">print()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># Output: &quot;Logitech C920 HD Webcam&quot;</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__repr__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Technical representation for debugging. Shows type, name, path, index.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">repr</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="2"><span class="c1"># Output: Device(name=&#39;Logitech C920 HD Webcam&#39;, path=&#39;\\?\USB#...&#39;, index=0)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="propsetting-type-property-value-and-mode-pair">
+<h3>PropSetting type - property value and mode pair<a class="headerlink" href="#propsetting-type-property-value-and-mode-pair" title="Link to this heading">¶</a></h3>
+<p>Encapsulates a property’s current value and its control mode. When reading properties, you get a PropSetting. When writing, you create and pass a PropSetting.</p>
+<p><strong>Fields</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The actual property value. Type varies: int (brightness 0-255), str (white balance mode), or bool (privacy switch). Depends on property type.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (str): How the property is being controlled. Valid values: <code class="docutils literal notranslate"><span class="pre">'manual'</span></code> (user-controlled), <code class="docutils literal notranslate"><span class="pre">'auto'</span></code> (device auto-adjusts), <code class="docutils literal notranslate"><span class="pre">'continuous'</span></code> (ongoing auto-adjustment). Device may not support all modes for all properties.</p></li>
+</ul>
+<p><strong>Constructor</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Creates new property setting. Both parameters required.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">setting1</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">setting2</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s1">&#39;warm&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">setting3</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>  <span class="c1"># For auto-capable properties</span>
+</span></pre></div>
+</div>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">__copy__()</span> <span class="pre">-&gt;</span> <span class="pre">PropSetting</span></code>: Shallow copy. Creates new PropSetting with same value and mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">copy1</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__deepcopy__()</span> <span class="pre">-&gt;</span> <span class="pre">PropSetting</span></code>: Deep copy. Same as shallow copy (immutable fields).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">copy2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__str__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: User-friendly representation. Shows value and mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">print</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>  <span class="c1"># Output: PropSetting(value=128, mode=&#39;manual&#39;)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__repr__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Technical representation. Same as <strong>str</strong> for this type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">repr</span><span class="p">(</span><span class="n">setting</span><span class="p">)</span>
+</span><span data-line="2"><span class="c1"># Output: PropSetting(value=128, mode=&#39;manual&#39;)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="proprange-type-property-constraints-and-bounds">
+<h3>PropRange type - property constraints and bounds<a class="headerlink" href="#proprange-type-property-constraints-and-bounds" title="Link to this heading">¶</a></h3>
+<p>Describes the allowed range for a property. Obtained from <code class="docutils literal notranslate"><span class="pre">camera.get_range(property)</span></code>. Always query range before writing numeric properties.</p>
+<p><strong>Fields</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code> (int): Minimum allowed value for this property on this device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code> (int): Maximum allowed value for this property on this device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code> (int): Increment step. Brightness might step by 1; zoom by 10. Always use step when iterating ranges.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_val</span></code> (int): Factory default value (what it ships set to).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_mode</span></code> (str): Factory default mode (‘manual’, ‘auto’, etc.).</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">is_valid(value:</span> <span class="pre">int)</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Checks if value is within [min, max]. Returns True if valid, False otherwise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">range_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">range_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">r</span> <span class="o">=</span> <span class="n">range_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    
+</span><span data-line="5">    <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">150</span><span class="p">):</span>
+</span><span data-line="6">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;150 is in valid range&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;150 is out of range&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">clamp(value:</span> <span class="pre">int)</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code>: Clamps value to [min, max]. Returns value unchanged if in range, or returns min/max if out of bounds. Useful for enforcing range constraints.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">user_input</span> <span class="o">=</span> <span class="mi">300</span>
+</span><span data-line="2"><span class="n">safe_value</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>  <span class="c1"># Returns max (e.g., 255)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">setting</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="n">safe_value</span><span class="p">,</span> <span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+</span><span data-line="5"><span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__contains__(value:</span> <span class="pre">int)</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Enables <code class="docutils literal notranslate"><span class="pre">in</span></code> operator. Equivalent to <code class="docutils literal notranslate"><span class="pre">is_valid()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="mi">128</span> <span class="ow">in</span> <span class="n">prop_range</span><span class="p">:</span>
+</span><span data-line="2">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;128 is in range&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;128 is out of range&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__copy__()</span> <span class="pre">-&gt;</span> <span class="pre">PropRange</span></code>: Shallow copy. Creates new PropRange with same bounds.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">copy1</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">range_obj</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__deepcopy__()</span> <span class="pre">-&gt;</span> <span class="pre">PropRange</span></code>: Deep copy. Same as shallow copy (immutable fields).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">copy2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">range_obj</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__str__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: User-friendly representation showing range.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">print</span><span class="p">(</span><span class="n">prop_range</span><span class="p">)</span>  <span class="c1"># Output: PropRange(min=0, max=255, step=1, default=128)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__repr__()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Technical representation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">repr</span><span class="p">(</span><span class="n">prop_range</span><span class="p">)</span>
+</span><span data-line="2"><span class="c1"># Output: PropRange(min=0, max=255, step=1, default=128, default_mode=&#39;manual&#39;)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="propertycapability-type-capability-of-a-single-property">
+<h3>PropertyCapability type - capability of a single property<a class="headerlink" href="#propertycapability-type-capability-of-a-single-property" title="Link to this heading">¶</a></h3>
+<p>Represents what a single property can do on a specific device. Query via <code class="docutils literal notranslate"><span class="pre">caps.get_video_capability(prop)</span></code> or <code class="docutils literal notranslate"><span class="pre">caps.get_camera_capability(prop)</span></code>.</p>
+<p><strong>Fields</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">supported</span></code> (bool): True if device supports this property, False otherwise. Check first before querying range or current value.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range</span></code> (PropRange): Valid range for this property (if supported). May be None if property is boolean or doesn’t have numeric range.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current</span></code> (PropSetting): Current value and mode (if accessible). May be None if device is disconnected or range is still querying.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">supports_auto()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Returns True if property can be set to auto or continuous mode, False if only manual mode supported.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">cap_result</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">get_video_capability</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">cap</span> <span class="o">=</span> <span class="n">cap_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    
+</span><span data-line="5">    <span class="k">if</span> <span class="n">cap</span><span class="o">.</span><span class="n">supported</span><span class="p">:</span>
+</span><span data-line="6">        <span class="k">if</span> <span class="n">cap</span><span class="o">.</span><span class="n">supports_auto</span><span class="p">():</span>
+</span><span data-line="7">            <span class="c1"># Can set to auto mode</span>
+</span><span data-line="8">            <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+</span><span data-line="9">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="10">            <span class="c1"># Manual only</span>
+</span><span data-line="11">            <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="s1">&#39;manual&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="error-status-types">
+<h2>5.2 Error &amp; Status Types<a class="headerlink" href="#error-status-types" title="Link to this heading">¶</a></h2>
+<section id="duvcerror-exception-hierarchy">
+<h3>DuvcError exception hierarchy<a class="headerlink" href="#duvcerror-exception-hierarchy" title="Link to this heading">¶</a></h3>
+<p>Base exception class for all library errors. Raised by exception-throwing API methods. Subclasses represent specific error categories for precise exception handling.</p>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">code()</span> <span class="pre">-&gt;</span> <span class="pre">int</span></code>: Returns integer error code (0x01-0x0A). Used to programmatically handle different error types.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera_or_throw</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">code</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">code</span><span class="p">()</span>
+</span><span data-line="5">    <span class="k">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mh">0x01</span><span class="p">:</span>  <span class="c1"># ERR_DEVICE_NOT_FOUND</span>
+</span><span data-line="6">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device disconnected&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">elif</span> <span class="n">code</span> <span class="o">==</span> <span class="mh">0x06</span><span class="p">:</span>  <span class="c1"># ERR_PERMISSION_DENIED</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Need elevated privileges&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">message()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Returns internal error message (technical string). Lower-level than description; includes implementation details.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">error</span><span class="o">.</span><span class="n">message</span><span class="p">()</span>  <span class="c1"># &quot;IMoniker::BindToObject failed with HRESULT 0x80004004&quot;</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">description()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Returns user-friendly error explanation. Suitable for displaying to end users or logging.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">error</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>  <span class="c1"># &quot;Camera is not connected or was disconnected&quot;</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">get_recovery_suggestions()</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code>: Returns actionable recovery steps for this specific error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera_or_throw</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">())</span>
+</span><span data-line="5">    <span class="c1"># Output: &quot;1. Reconnect the camera\n2. Check Device Manager\n3. Restart the application&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Common subclasses</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DeviceNotFoundError</span></code>: Device not enumerated. Recovery: reconnect, restart app.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DeviceInUseError</span></code>: Camera open elsewhere. Recovery: close other apps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PropertyNotSupportedError</span></code>: Property not on device. Recovery: query capabilities first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">InvalidValueError</span></code>: Value out of range. Recovery: use get_range() first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PermissionError</span></code>: Insufficient privileges. Recovery: run elevated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HardwareError</span></code>: Device hardware failure. Recovery: disconnect/reconnect.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="devicecapabilities-with-iterator-support">
+<h3>DeviceCapabilities with iterator support<a class="headerlink" href="#devicecapabilities-with-iterator-support" title="Link to this heading">¶</a></h3>
+<p>Container for device capabilities. Implements iterator protocol to iterate over supported properties.</p>
+<p><strong>Iterator methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">__iter__()</span></code>: Enables iteration over video properties (default iteration). Used in <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">prop</span> <span class="pre">in</span> <span class="pre">caps</span></code> loops.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    
+</span><span data-line="5">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">():</span>
+</span><span data-line="6">        <span class="nb">print</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">))</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__len__()</span></code>: Returns count of properties. Use <code class="docutils literal notranslate"><span class="pre">len(caps.supported_video_properties())</span></code> or <code class="docutils literal notranslate"><span class="pre">len(caps.supported_camera_properties())</span></code> for explicit length.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    
+</span><span data-line="5">    <span class="n">video_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">())</span>
+</span><span data-line="6">    <span class="n">camera_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">caps</span><span class="o">.</span><span class="n">supported_camera_properties</span><span class="p">())</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device has </span><span class="si">{</span><span class="n">video_count</span><span class="si">}</span><span class="s2"> video and </span><span class="si">{</span><span class="n">camera_count</span><span class="si">}</span><span class="s2"> camera properties&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Why iteration matters</strong>: Enables Pythonic loops without manually calling methods, making code cleaner and more readable.</p>
+</section>
+<hr class="docutils" />
+<section id="camera-result-based-with-move-semantics">
+<h3>Camera Result-based with move semantics<a class="headerlink" href="#camera-result-based-with-move-semantics" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Result[Camera]</span></code> from <code class="docutils literal notranslate"><span class="pre">open_camera()</span></code>. Contains Camera object when successful. Internally uses move semantics for efficient resource transfer (pybind11 handles this automatically in Python).</p>
+<p><strong>Meaning of move semantics</strong>: When you call <code class="docutils literal notranslate"><span class="pre">result.value()</span></code>, the underlying C++ Camera object is efficiently transferred to your Python variable without copying expensive resources (file handles, memory).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="c1"># Efficient transfer; original Camera in Result is invalidated</span>
+</span><span data-line="4">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="5">    
+</span><span data-line="6">    <span class="c1"># Now &#39;camera&#39; owns the DirectShow resources</span>
+</span><span data-line="7">    <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Why it matters</strong>: Resources aren’t duplicated. No performance penalty for passing Results around; only one Camera object holds the actual DirectShow connections.</p>
+</section>
+<hr class="docutils" />
+<section id="result-complete-interface">
+<h3>Result<T> complete interface<a class="headerlink" href="#result-complete-interface" title="Link to this heading">¶</a></h3>
+<p>All Result types share this common interface. The type <code class="docutils literal notranslate"><span class="pre">T</span></code> varies by Result specialization.</p>
+<p><strong>Methods</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">is_ok()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: True if Result contains successful value, False if contains error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">setting</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">error</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">is_error()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: True if Result contains error, False if contains value. Opposite of <code class="docutils literal notranslate"><span class="pre">is_ok()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">setting</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="4">    <span class="k">return</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">value()</span> <span class="pre">-&gt;</span> <span class="pre">T</span></code>: Extract contained value. Only valid if <code class="docutils literal notranslate"><span class="pre">is_ok()</span></code> is true. Raises RuntimeError if called on error Result.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># ✓ Correct</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">setting</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># ✗ Wrong: crashes if error</span>
+</span><span data-line="6"><span class="n">setting</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">error()</span> <span class="pre">-&gt;</span> <span class="pre">Error</span></code>: Extract error details. Only valid if <code class="docutils literal notranslate"><span class="pre">is_error()</span></code> is true. Returns Error object with <code class="docutils literal notranslate"><span class="pre">code()</span></code>, <code class="docutils literal notranslate"><span class="pre">description()</span></code>, <code class="docutils literal notranslate"><span class="pre">recoverable()</span></code> methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="2">    <span class="n">error</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Code: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">()</span><span class="si">}</span><span class="s2">, Message: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__bool__()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>: Enables <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">result:</span></code> checks. True if ok, False if error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">):</span>
+</span><span data-line="2">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Read succeeded&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Read failed&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Value extraction patterns</strong>:</p>
+<p>Safe extraction with explicit check:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="c1"># Use value</span>
+</span><span data-line="5"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="6">    <span class="n">handle_error</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">())</span>
+</span></pre></div>
+</div>
+<p>Extraction with fallback using <code class="docutils literal notranslate"><span class="pre">value_or()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value_or</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="s1">&#39;manual&#39;</span><span class="p">))</span>
+</span><span data-line="3"><span class="c1"># Always succeeds; uses default if error</span>
+</span></pre></div>
+</div>
+<p>Early exit on error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="3">    <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="6"><span class="c1"># Continue</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="typeddicts-type-definitions">
+<h2>5.3 TypedDicts &amp; Type Definitions<a class="headerlink" href="#typeddicts-type-definitions" title="Link to this heading">¶</a></h2>
+<p>TypedDicts are optional data structure schemas. Use them for structured reporting, logging, or saving device/property state to JSON or databases. Not required by the API; provided for convenience.</p>
+<section id="propertyinfo-typeddict">
+<h3>PropertyInfo TypedDict<a class="headerlink" href="#propertyinfo-typeddict" title="Link to this heading">¶</a></h3>
+<p>Schema for serializing or reporting complete property state. Captures everything about a property: support status, current value, valid range, and any errors.</p>
+<p><strong>Fields</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">supported</span></code> (bool): Whether device supports this property. Query via <code class="docutils literal notranslate"><span class="pre">caps.supports_video_property(prop)</span></code> or <code class="docutils literal notranslate"><span class="pre">caps.supports_camera_property(prop)</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">info</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="2">    <span class="s1">&#39;supported&#39;</span><span class="p">:</span> <span class="n">caps</span><span class="o">.</span><span class="n">supports_video_property</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">current</span></code> (dict or None): Current property setting if readable. Contains <code class="docutils literal notranslate"><span class="pre">value</span></code> (int/str/bool) and <code class="docutils literal notranslate"><span class="pre">mode</span></code> (str: ‘manual’/‘auto’/‘continuous’). None if property not supported or unreadable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">setting</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="5">        <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+</span><span data-line="6">        <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="n">setting</span><span class="o">.</span><span class="n">mode</span>
+</span><span data-line="7">    <span class="p">}</span>
+</span><span data-line="8"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="9">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">range</span></code> (dict or None): Valid numeric range if property has bounds. Contains <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, <code class="docutils literal notranslate"><span class="pre">step</span></code>, <code class="docutils literal notranslate"><span class="pre">default</span></code>. None for boolean/enum properties or if range unavailable.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">range_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">range_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">r</span> <span class="o">=</span> <span class="n">range_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="5">        <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">min</span><span class="p">,</span>
+</span><span data-line="6">        <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">max</span><span class="p">,</span>
+</span><span data-line="7">        <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
+</span><span data-line="8">        <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">default_val</span>
+</span><span data-line="9">    <span class="p">}</span>
+</span><span data-line="10"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="11">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">error</span></code> (str or None): Error message if querying failed. None if successful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+<p><strong>Full PropertyInfo construction</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">build_property_info</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">prop_enum</span><span class="p">,</span> <span class="n">is_video</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+</span><span data-line="2">    <span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="3">    
+</span><span data-line="4">    <span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="5">    <span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="6">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Cannot query capabilities&quot;</span>
+</span><span data-line="7">        <span class="k">return</span> <span class="n">info</span>
+</span><span data-line="8">    
+</span><span data-line="9">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="k">if</span> <span class="n">is_video</span><span class="p">:</span>
+</span><span data-line="12">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supports_video_property</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="13">        <span class="n">current_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_video_property</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="14">        <span class="n">range_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="15">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="16">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supports_camera_property</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="17">        <span class="n">current_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_camera_property</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="18">        <span class="n">range_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="19">    
+</span><span data-line="20">    <span class="k">if</span> <span class="ow">not</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]:</span>
+</span><span data-line="21">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="22">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="23">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="24">        <span class="k">return</span> <span class="n">info</span>
+</span><span data-line="25">    
+</span><span data-line="26">    <span class="k">if</span> <span class="n">current_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="27">        <span class="n">setting</span> <span class="o">=</span> <span class="n">current_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="28">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="n">setting</span><span class="o">.</span><span class="n">mode</span><span class="p">}</span>
+</span><span data-line="29">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="30">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="31">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="32">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">current_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>
+</span><span data-line="33">    
+</span><span data-line="34">    <span class="k">if</span> <span class="n">range_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="35">        <span class="n">r</span> <span class="o">=</span> <span class="n">range_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="36">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">min</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">max</span><span class="p">,</span> <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">step</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="n">r</span><span class="o">.</span><span class="n">default_val</span><span class="p">}</span>
+</span><span data-line="37">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="38">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="39">    
+</span><span data-line="40">    <span class="k">return</span> <span class="n">info</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="deviceinfo-typeddict">
+<h3>DeviceInfo TypedDict<a class="headerlink" href="#deviceinfo-typeddict" title="Link to this heading">¶</a></h3>
+<p>Schema for serializing complete device state. Useful for displaying device information, saving device configs, or API responses.</p>
+<p><strong>Fields</strong>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">name</span></code> (str): Device human-readable name from DirectShow.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2"><span class="n">info</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">path</span></code> (str): Unique device identifier (platform-specific path). Use for persistent identification across sessions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">info</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">path</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">connected</span></code> (bool): Current connection status. True if device enumerable, False if disconnected/removed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">info</span><span class="p">[</span><span class="s1">&#39;connected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">camera_properties</span></code> (list of str): List of supported camera property names (pan, tilt, zoom, etc.). Empty if device has no camera controls.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">props</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_camera_properties</span><span class="p">()</span>
+</span><span data-line="5">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">props</span><span class="p">]</span>
+</span><span data-line="6"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">video_properties</span></code> (list of str): List of supported video property names (brightness, contrast, saturation, etc.).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="2">    <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="3">    <span class="n">props</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">props</span><span class="p">]</span>
+</span><span data-line="5"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="6">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">error</span></code> (str or None): Error message if query failed. None if successful.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span> <span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_error</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+<p><strong>Full DeviceInfo construction</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">build_device_info</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+</span><span data-line="2">    <span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="3">    
+</span><span data-line="4">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span>
+</span><span data-line="5">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">path</span>
+</span><span data-line="6">    <span class="n">info</span><span class="p">[</span><span class="s1">&#39;connected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="11">        <span class="n">caps</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="12">        <span class="n">camera_props</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_camera_properties</span><span class="p">()</span>
+</span><span data-line="13">        <span class="n">video_props</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">()</span>
+</span><span data-line="14">        
+</span><span data-line="15">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">camera_props</span><span class="p">]</span>
+</span><span data-line="16">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">video_props</span><span class="p">]</span>
+</span><span data-line="17">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="18">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="19">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="20">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="21">        <span class="n">info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>
+</span><span data-line="22">    
+</span><span data-line="23">    <span class="k">return</span> <span class="n">info</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="c1"># Use for logging or JSON serialization</span>
+</span><span data-line="26"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="27"><span class="n">all_devices_info</span> <span class="o">=</span> <span class="p">[</span><span class="n">build_device_info</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">]</span>
+</span><span data-line="28"><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">all_devices_info</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="windows-only-types">
+<h2>5.4 Windows-Only Types<a class="headerlink" href="#windows-only-types" title="Link to this heading">¶</a></h2>
+<p>These types are Windows-specific implementations. They wrap DirectShow and KsProperty APIs. Only available on Windows; not relevant on other platforms.</p>
+<section id="vendorproperty-type-oem-manufacturer-extensions">
+<h3>VendorProperty type - OEM/manufacturer extensions<a class="headerlink" href="#vendorproperty-type-oem-manufacturer-extensions" title="Link to this heading">¶</a></h3>
+<p>Represents vendor-specific (proprietary) camera properties not in standard UVC spec. Different manufacturers (Logitech, Intel, etc.) expose custom controls via vendor properties.</p>
+<p><strong>What they are</strong>: Beyond standard UVC properties like brightness, some cameras have manufacturer-specific features: LED control, focus speed, advanced stabilization, color temperature presets, etc. These are exposed as VendorProperty.</p>
+<p><strong>How they’re accessed</strong>: Internally, VendorProperty wraps a property ID and access path. You query vendor properties through the same API as standard properties, but you must know the property ID in advance (no enum constant; usually documented by manufacturer).</p>
+<p><strong>Platform context</strong>: On Windows, DirectShow supports both standard UVC properties (via IAMCameraControl/IAMVideoProcAmp) and vendor extensions (via IKsPropertySet). VendorProperty abstracts this DirectShow layer.</p>
+<p><strong>Example scenario</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Standard property access (universally available)</span>
+</span><span data-line="2"><span class="n">brightness_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Vendor property access (device-specific)</span>
+</span><span data-line="5"><span class="c1"># You&#39;d need the vendor property ID from camera documentation</span>
+</span><span data-line="6"><span class="c1"># Example: Logitech may use a specific KSPROPERTY ID for LED control</span>
+</span><span data-line="7"><span class="c1"># This is handled internally; not exposed directly in Python API</span>
+</span></pre></div>
+</div>
+<p><strong>Why included in docs</strong>: Knowing VendorProperty exists helps explain why some cameras support properties beyond the standard set. Most applications use standard properties; vendor properties are for advanced/specialized use cases.</p>
+</section>
+<hr class="docutils" />
+<section id="deviceconnection-type-lifecycle-management">
+<h3>DeviceConnection type - lifecycle management<a class="headerlink" href="#deviceconnection-type-lifecycle-management" title="Link to this heading">¶</a></h3>
+<p>Represents the active DirectShow connection to a physical device. Manages COM object lifecycle and exclusive device access. Internal implementation detail; normally managed automatically by Camera class.</p>
+<p><strong>What it encapsulates</strong>: DirectShow COM objects (IMoniker, IBaseFilter, IAMCameraControl, IAMVideoProcAmp, IKsPropertySet). These must be created when opening a camera and properly released when closing.</p>
+<p><strong>Lifecycle</strong>:</p>
+<ol class="arabic simple">
+<li><p>Device enumeration: DirectShow enumerates devices via IMoniker.</p></li>
+<li><p>Connection: DeviceConnection created when opening camera; acquires exclusive device access.</p></li>
+<li><p>Operations: Property reads/writes go through DirectShow interfaces.</p></li>
+<li><p>Disconnection: DeviceConnection destroyed; DirectShow resources released.</p></li>
+</ol>
+<p><strong>Why move semantics matter</strong>: When Camera closes, DeviceConnection destructor runs, releasing all COM object references. Ensures no resource leaks or device locks.</p>
+<p><strong>Advanced use</strong> (rare):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Normally Camera handles this automatically</span>
+</span><span data-line="2"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="4">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="5">    <span class="c1"># Camera internally owns a DeviceConnection</span>
+</span><span data-line="6">    <span class="c1"># When camera goes out of scope, DeviceConnection releases resources</span>
+</span></pre></div>
+</div>
+<p>If you need to manually manage connection lifecycle (e.g., disconnecting without destroying Camera), you’d work with DeviceConnection directly, but this is not exposed in the Python API. It’s internal only.</p>
+</section>
+<hr class="docutils" />
+<section id="kspropertyset-type-directshow-property-interface">
+<h3>KsPropertySet type - DirectShow property interface<a class="headerlink" href="#kspropertyset-type-directshow-property-interface" title="Link to this heading">¶</a></h3>
+<p>Low-level wrapper for DirectShow’s IKsPropertySet COM interface. Handles reading/writing hardware properties at the Windows multimedia level. Purely internal; not directly accessible from Python.</p>
+<p><strong>What it does</strong>: Translates between high-level property enums (VidProp, CamProp) and low-level DirectShow KSPROPERTY structures. Queries Windows for property support and ranges.</p>
+<p><strong>Properties it manages</strong>:</p>
+<ul class="simple">
+<li><p><strong>Camera control properties</strong> (KSPROPERTY_CAMERACONTROL_*): Pan, tilt, zoom, focus, iris, shutter, gain, roll.</p></li>
+<li><p><strong>Video proc-amp properties</strong> (KSPROPERTY_VIDCAP_VIDEOPROCAMP_*): Brightness, contrast, saturation, hue, etc.</p></li>
+<li><p><strong>Vendor extensions</strong> (IKsPropertySet): Device-specific properties.</p></li>
+</ul>
+<p><strong>Example property ID</strong> (internal):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Internal C++ code (not exposed to Python)</span>
+</span><span data-line="2"><span class="n">KSPROPERTY_CAMERACONTROL_PAN</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">maps</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">duvc</span><span class="p">.</span><span class="n">CamProp</span><span class="p">.</span><span class="n">Pan</span>
+</span><span data-line="3"><span class="n">KSPROPERTY_VIDEOPROCAMP_BRIGHTNESS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">maps</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">duvc</span><span class="p">.</span><span class="n">VidProp</span><span class="p">.</span><span class="n">Brightness</span>
+</span></pre></div>
+</div>
+<p><strong>Why it matters for developers</strong>: Understanding KsPropertySet helps explain why property access might fail on certain Windows versions or drivers. If a property reads as unsupported, it’s likely because KsPropertySet can’t access that KSPROPERTY_* on this device/driver combo.</p>
+</section>
+<hr class="docutils" />
+<section id="platform-specific-implementation">
+<h3>Platform-specific implementation<a class="headerlink" href="#platform-specific-implementation" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl abstracts away platform differences. Currently Windows-only; architecture allows future porting.</p>
+<p><strong>Windows implementation layers</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Layer</p></th>
+<th class="head text-left"><p>Technology</p></th>
+<th class="head text-left"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Python API</p></td>
+<td class="text-left"><p>duvc_ctl module</p></td>
+<td class="text-left"><p>User-facing API (list_devices, open_camera, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>C++ bindings</p></td>
+<td class="text-left"><p>pybind11</p></td>
+<td class="text-left"><p>Python ↔ C++ bridge</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>C++ core</p></td>
+<td class="text-left"><p>Windows DirectShow</p></td>
+<td class="text-left"><p>Device enumeration, property access</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DirectShow</p></td>
+<td class="text-left"><p>COM/IMoniker</p></td>
+<td class="text-left"><p>Device discovery (ICreateDevEnum, IMoniker)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DirectShow</p></td>
+<td class="text-left"><p>COM/IBaseFilter</p></td>
+<td class="text-left"><p>Device connection</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DirectShow</p></td>
+<td class="text-left"><p>COM/IAMCameraControl</p></td>
+<td class="text-left"><p>Camera properties (pan, tilt, zoom)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>DirectShow</p></td>
+<td class="text-left"><p>COM/IAMVideoProcAmp</p></td>
+<td class="text-left"><p>Video properties (brightness, contrast)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DirectShow</p></td>
+<td class="text-left"><p>COM/IKsPropertySet</p></td>
+<td class="text-left"><p>Extended/vendor properties</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>OS</p></td>
+<td class="text-left"><p>Windows Multimedia</p></td>
+<td class="text-left"><p>DirectShow runtime</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Why this layering</strong>: Each layer abstracts complexity. Python developers don’t see DirectShow COM objects; C++ abstracts it. This design allows porting to Linux (V4L2) or macOS (AVFoundation) without changing Python API.</p>
+<p><strong>For developers</strong>: If troubleshooting device issues, understand that failure points occur at different layers:</p>
+<ul class="simple">
+<li><p>Device not enumerated → ICreateDevEnum/IMoniker issue</p></li>
+<li><p>Device open fails → IBaseFilter issue</p></li>
+<li><p>Property read fails → IAMCameraControl/IAMVideoProcAmp/IKsPropertySet issue</p></li>
+<li><p>Permission denied → OS/driver issue</p></li>
+</ul>
+<p>The library surfaces these as error codes and messages; understanding layers helps diagnose root cause.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="04_result-based-api-explicit-error-handling.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">4. Result-Based API - Explicit Error Handling</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="06_enumeration-constant-reference.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">6. Enumeration &amp; Constant Reference</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

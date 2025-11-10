@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="logging_8cpp" kind="file" language="C++">
+    <compoundname>logging.cpp</compoundname>
+    <includes local="no">chrono</includes>
+    <includes refid="logging_8h" local="no">duvc-ctl/utils/logging.h</includes>
+    <includes local="no">iomanip</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">sstream</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>duvc-ctl/utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>utils/logging.cpp</label>
+        <link refid="logging_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>chrono</label>
+      </node>
+      <node id="4">
+        <label>functional</label>
+      </node>
+      <node id="6">
+        <label>iomanip</label>
+      </node>
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="8">
+        <label>mutex</label>
+      </node>
+      <node id="9">
+        <label>sstream</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Logging system implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="logging_8h" kindref="compound">duvc-ctl/utils/logging.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Global<sp/>logging<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::mutex<sp/><ref refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" kindref="member">g_log_mutex</ref>;</highlight></codeline>
+<codeline lineno="17" refid="namespaceduvc_1a78a7e6eff4002e63f782a78acd539caf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a44cf73597087bd5739706a3a4eb5ac89" kindref="member">LogCallback</ref><sp/><ref refid="namespaceduvc_1a78a7e6eff4002e63f782a78acd539caf" kindref="member">g_log_callback</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18" refid="namespaceduvc_1ab360fd7c3b5d16f87d0f89868680e8c8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="namespaceduvc_1ab360fd7c3b5d16f87d0f89868680e8c8" kindref="member">g_min_log_level</ref><sp/>=<sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa4059b0251f66a18cb56f544728796875" kindref="member">LogLevel::Info</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="namespaceduvc_1a8c423c5283fb413b16a8f41b606230c0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2faa603905470e2a5b8c13e96b579ef0dba" kindref="member">LogLevel::Debug</ref>:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;DEBUG&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa4059b0251f66a18cb56f544728796875" kindref="member">LogLevel::Info</ref>:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;INFO&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa0eaadb4fcb48a0a0ed7bc9868be9fbaa" kindref="member">LogLevel::Warning</ref>:</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;WARNING&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">LogLevel::Error</ref>:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;ERROR&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa278d01e5af56273bae1bb99a98b370cd" kindref="member">LogLevel::Critical</ref>:</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;CRITICAL&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;UNKNOWN&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="namespaceduvc_1a621c452d402f42a3c34c68da6f2848f1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="namespaceduvc_1a621c452d402f42a3c34c68da6f2848f1" kindref="member">get_timestamp</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">now</ref><sp/>=<sp/>std::chrono::system_clock::now();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">time_t</ref><sp/>=<sp/>std::chrono::system_clock::to_time_t(<ref refid="classduvc_1_1Result" kindref="compound">now</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">ms</ref><sp/>=<sp/>std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">now</ref>.time_since_epoch())<sp/>%</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1000;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>std::ostringstream<sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref><sp/>&lt;&lt;<sp/>std::put_time(std::localtime(&amp;<ref refid="classduvc_1_1Result" kindref="compound">time_t</ref>),<sp/></highlight><highlight class="stringliteral">&quot;%Y-%m-%d<sp/>%H:%M:%S&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="charliteral">&apos;.&apos;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::setfill(</highlight><highlight class="charliteral">&apos;0&apos;</highlight><highlight class="normal">)<sp/>&lt;&lt;<sp/>std::setw(3)<sp/>&lt;&lt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">ms</ref>.count();</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref>.str();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="namespaceduvc_1ababd2cbe9f996df9fb02141b96f1a0da" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ababd2cbe9f996df9fb02141b96f1a0da" kindref="member">default_log_callback</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>std::ostringstream<sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="namespaceduvc_1a621c452d402f42a3c34c68da6f2848f1" kindref="member">get_timestamp</ref>()<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref>)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>message<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref><sp/>&gt;=<sp/><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">LogLevel::Error</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cerr<sp/>&lt;&lt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref>.str();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cerr.flush();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">ss</ref>.str();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout.flush();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="namespaceduvc_1a7239cb5e5d6c896113ca7edcfe8ca99b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a7239cb5e5d6c896113ca7edcfe8ca99b" kindref="member">set_log_callback</ref>(<ref refid="namespaceduvc_1a44cf73597087bd5739706a3a4eb5ac89" kindref="member">LogCallback</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">callback</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">lock</ref>(<ref refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" kindref="member">g_log_mutex</ref>);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a78a7e6eff4002e63f782a78acd539caf" kindref="member">g_log_callback</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">callback</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="namespaceduvc_1accb113d492197fac14a4ac8f9da0c53f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1accb113d492197fac14a4ac8f9da0c53f" kindref="member">set_log_level</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">lock</ref>(<ref refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" kindref="member">g_log_mutex</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1ab360fd7c3b5d16f87d0f89868680e8c8" kindref="member">g_min_log_level</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="namespaceduvc_1ae6883f4c04a3b0237f624e9c42d07852" refkind="member"><highlight class="normal"><ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="namespaceduvc_1ae6883f4c04a3b0237f624e9c42d07852" kindref="member">get_log_level</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">lock</ref>(<ref refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" kindref="member">g_log_mutex</ref>);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab360fd7c3b5d16f87d0f89868680e8c8" kindref="member">g_min_log_level</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2f" kindref="member">LogLevel</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">lock</ref>(<ref refid="namespaceduvc_1a040414ffbcbcb197ae3205a655919a3b" kindref="member">g_log_mutex</ref>);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>minimum<sp/>log<sp/>level</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref><sp/>&lt;<sp/><ref refid="namespaceduvc_1ab360fd7c3b5d16f87d0f89868680e8c8" kindref="member">g_min_log_level</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Use<sp/>callback<sp/>if<sp/>set,<sp/>otherwise<sp/>use<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespaceduvc_1a78a7e6eff4002e63f782a78acd539caf" kindref="member">g_log_callback</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a78a7e6eff4002e63f782a78acd539caf" kindref="member">g_log_callback</ref>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(...)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>user<sp/>callback<sp/>throws,<sp/>fall<sp/>back<sp/>to<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1ababd2cbe9f996df9fb02141b96f1a0da" kindref="member">default_log_callback</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">LogLevel::Error</ref>,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Exception<sp/>in<sp/>user<sp/>log<sp/>callback<sp/>-<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>message);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1ababd2cbe9f996df9fb02141b96f1a0da" kindref="member">default_log_callback</ref>(<ref refid="classduvc_1_1Result" kindref="compound">level</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="namespaceduvc_1a47cac7feb74ff2f865d074b6cfb463f1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a47cac7feb74ff2f865d074b6cfb463f1" kindref="member">log_debug</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2faa603905470e2a5b8c13e96b579ef0dba" kindref="member">LogLevel::Debug</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="namespaceduvc_1a03a6e81316de0517ea31cd6dcca560d4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a03a6e81316de0517ea31cd6dcca560d4" kindref="member">log_info</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa4059b0251f66a18cb56f544728796875" kindref="member">LogLevel::Info</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="namespaceduvc_1a9de34d5fa98fc93f94e593e4b07cca6e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a9de34d5fa98fc93f94e593e4b07cca6e" kindref="member">log_warning</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa0eaadb4fcb48a0a0ed7bc9868be9fbaa" kindref="member">LogLevel::Warning</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122" refid="namespaceduvc_1a6d8fe15d04c800f69816c89557ca25d5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a6d8fe15d04c800f69816c89557ca25d5" kindref="member">log_error</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa902b0d55fddef6f8d651fe1035b7d4bd" kindref="member">LogLevel::Error</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="namespaceduvc_1ac5d8f544093e30b59e63a5d25bd0367c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ac5d8f544093e30b59e63a5d25bd0367c" kindref="member">log_critical</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;message)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a92c11bbcc4c659a542bd48d477f60876" kindref="member">log_message</ref>(<ref refid="namespaceduvc_1a635e3fe8d78cb18cf5996dbf3ab00b2fa278d01e5af56273bae1bb99a98b370cd" kindref="member">LogLevel::Critical</ref>,<sp/>message);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="utils/logging.cpp"/>
+  </compounddef>
+</doxygen>

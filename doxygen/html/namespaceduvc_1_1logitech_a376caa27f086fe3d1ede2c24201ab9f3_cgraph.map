@@ -1,0 +1,9 @@
+<map id="duvc::logitech::supports_logitech_properties" name="duvc::logitech::supports_logitech_properties">
+<area shape="rect" id="Node000001" title="Check if device supports Logitech vendor properties." alt="" coords="5,48,166,91"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="214,5,348,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,46,211,34,213,39,167,51"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="244,56,318,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,67,228,67,228,72,166,72"/>
+<area shape="rect" id="Node000004" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="214,107,348,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,88,213,100,211,105,166,93"/>
+</map>

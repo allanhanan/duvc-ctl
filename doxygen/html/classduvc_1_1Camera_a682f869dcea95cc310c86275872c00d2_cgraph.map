@@ -1,0 +1,26 @@
+<map id="duvc::Camera::is_valid" name="duvc::Camera::is_valid">
+<area shape="rect" id="Node000001" title="Check if camera is valid and connected." alt="" coords="5,132,161,159"/>
+<area shape="poly" id="edge13_Node000001_Node000001" title=" " alt="" coords="47,133,40,123,45,114,59,107,83,105,109,108,122,114,120,119,107,113,83,111,60,113,48,117,45,123,51,130"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ab42651167ff39abe9e70713ac6db65b9" title="Check if a device is currently connected and accessible." alt="" coords="209,132,388,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,143,193,143,193,148,161,148"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#ab7299b8597bf14b18b8351278c209188" title="Create DirectShow device enumerator." alt="" coords="453,5,613,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="313,129,364,86,398,62,435,42,450,35,452,40,437,46,401,67,367,90,316,133"/>
+<area shape="rect" id="Node000006" href="$namespaceduvc.html#a1a577c6cd7e4b3106d6f95c15bbceeed" title="Enumerate video input devices." alt="" coords="444,56,623,83"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="333,129,435,92,460,85,462,90,437,97,335,134"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#aa743fc7771811366fbd7b192b4f4d5d5" title=" " alt="" coords="436,107,630,133"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="388,133,420,130,421,135,388,138"/>
+<area shape="rect" id="Node000008" href="$namespaceduvc.html#a16607a28a7df86e823edf3abd371af92" title="Check if two device identifiers refer to same device." alt="" coords="458,157,609,184"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="388,152,442,158,441,163,388,158"/>
+<area shape="rect" id="Node000009" href="$namespaceduvc.html#a2c2b6f32c6871ad36ae0bf98d9374fd0" title="Read device path from moniker." alt="" coords="454,208,613,235"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="335,157,437,193,462,201,460,206,435,199,333,162"/>
+<area shape="rect" id="Node000011" href="$namespaceduvc.html#a019644436e5f0add38b6242843b79fef" title="Read friendly name from device moniker." alt="" coords="448,259,618,285"/>
+<area shape="poly" id="edge11_Node000002_Node000011" title=" " alt="" coords="316,157,367,200,401,224,437,244,452,251,450,256,435,249,398,228,364,204,313,161"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#a21b444574354018097d4489a9ff0ff9e" title=" " alt="" coords="696,31,804,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="614,25,681,33,680,39,613,31"/>
+<area shape="rect" id="Node000005" href="$namespaceduvc.html#a02d5c5b2e56515cee2cad9057af0467d" title=" " alt="" coords="870,31,1001,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="804,41,854,41,854,47,804,47"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="623,56,681,49,681,55,624,61"/>
+<area shape="rect" id="Node000010" href="$namespaceduvc.html#a0dbd37821c1cae29fa72d44e3dbd0583" title=" " alt="" coords="678,233,822,260"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="613,228,663,234,663,239,613,233"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="618,259,662,254,663,259,619,265"/>
+</map>

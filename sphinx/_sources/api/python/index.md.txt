@@ -1,0 +1,168 @@
+# duvc-ctl Python Documentation
+
+A guide to using the `duvc-ctl` Python library for controlling USB Video Class (UVC) cameras on Windows.
+
+---
+
+## Contents
+
+**Getting Started**
+
+- [1. Quick Start & Installation](sections/01_quick-start-installation.md)
+    - [1.1 Installation](sections/01_quick-start-installation.md#installation)
+    - [1.2 Your First Program](sections/01_quick-start-installation.md#your-first-program)
+    - [1.3 Platform Requirements & Compatibility](sections/01_quick-start-installation.md#platform-requirements-compatibility)
+
+**Core Concepts**
+
+- [2. Architecture & Design Overview](sections/02_architecture-design-overview.md)
+    - [2.1 Two-Tier Architecture](sections/02_architecture-design-overview.md#two-tier-architecture)
+    - [2.2 API Comparison & Selection](sections/02_architecture-design-overview.md#api-comparison-selection)
+    - [2.3 Core Design Patterns](sections/02_architecture-design-overview.md#core-design-patterns)
+
+**Pythonic API**
+
+- [3. Pythonic API (CameraController)](sections/03_pythonic-api-cameracontroller-class.md)
+    - [3.1 Initialization & Device Connection](sections/03_pythonic-api-cameracontroller-class.md#initialization-device-connection)
+    - [3.2 Context Manager & Lifecycle](sections/03_pythonic-api-cameracontroller-class.md#context-manager-lifecycle)
+    - [3.3 Internal State Management & Thread Safety](sections/03_pythonic-api-cameracontroller-class.md#internal-state-management-thread-safety)
+    - [3.4 Class Constants & Built-In Configurations](sections/03_pythonic-api-cameracontroller-class.md#class-constants-built-in-configurations)
+    - [3.5 Internal Property Mappings](sections/03_pythonic-api-cameracontroller-class.md#internal-property-mappings)
+    - [3.6 Video Properties - Image Processing Control](sections/03_pythonic-api-cameracontroller-class.md#video-properties-image-processing-control)
+    - [3.7 Camera Properties - Physical Control](sections/03_pythonic-api-cameracontroller-class.md#camera-properties-physical-control)
+    - [3.8 Relative Movement & Combined PTZ](sections/03_pythonic-api-cameracontroller-class.md#relative-movement-combined-ptz)
+    - [3.9 String-Based Universal Property Access](sections/03_pythonic-api-cameracontroller-class.md#string-based-universal-property-access)
+    - [3.10 Property Aliases & Discovery](sections/03_pythonic-api-cameracontroller-class.md#property-aliases-discovery)
+    - [3.11 Convenience Setter Methods](sections/03_pythonic-api-cameracontroller-class.md#convenience-setter-methods)
+    - [3.12 Convenience Getter Methods](sections/03_pythonic-api-cameracontroller-class.md#convenience-getter-methods)
+    - [3.13 Validation & Safe Operations](sections/03_pythonic-api-cameracontroller-class.md#validation-safe-operations)
+    - [3.14 Preset Configuration Management](sections/03_pythonic-api-cameracontroller-class.md#preset-configuration-management)
+    - [3.15 Bulk Operations & Batch Control](sections/03_pythonic-api-cameracontroller-class.md#bulk-operations-batch-control)
+    - [3.16 Camera Reset & Defaults](sections/03_pythonic-api-cameracontroller-class.md#camera-reset-defaults)
+    - [3.17 Device Information & Status](sections/03_pythonic-api-cameracontroller-class.md#device-information-status)
+    - [3.18 Connection Management & Recovery](sections/03_pythonic-api-cameracontroller-class.md#connection-management-recovery)
+    - [3.19 Internal Helper Methods & String Conversion](sections/03_pythonic-api-cameracontroller-class.md#internal-helper-methods-string-conversion)
+    - [3.20 Special Methods & Pythonic Features](sections/03_pythonic-api-cameracontroller-class.md#special-methods-pythonic-features)
+
+**Result-Based API**
+
+- [4. Result-Based API](sections/04_result-based-api-explicit-error-handling.md)
+    - [4.1 Core Functions & Device Enumeration](sections/04_result-based-api-explicit-error-handling.md#core-functions-device-enumeration)
+    - [4.2 Camera Class - Result-Based Operations](sections/04_result-based-api-explicit-error-handling.md#camera-class-result-based-operations)
+    - [4.3 Result<T> Type System](sections/04_result-based-api-explicit-error-handling.md#result-t-type-system)
+    - [4.4 Result Method Reference & Error Handling](sections/04_result-based-api-explicit-error-handling.md#result-method-reference-error-handling)
+    - [4.5 Device Capabilities & Property Analysis](sections/04_result-based-api-explicit-error-handling.md#device-capabilities-property-analysis)
+
+**Reference**
+
+- [5. Comprehensive Type Reference](sections/05_comprehensive-type-reference.md)
+    - [5.1 Core Types & Their Methods](sections/05_comprehensive-type-reference.md#core-types-their-methods)
+    - [5.2 Error & Status Types](sections/05_comprehensive-type-reference.md#error-status-types)
+    - [5.3 TypedDicts & Type Definitions](sections/05_comprehensive-type-reference.md#typeddicts-type-definitions)
+    - [5.4 Windows-Only Types](sections/05_comprehensive-type-reference.md#windows-only-types)
+- [6. Enumeration & Constant Reference](sections/06_enumeration-constant-reference.md)
+    - [6.1 Property Enumerations](sections/06_enumeration-constant-reference.md#property-enumerations)
+    - [6.2 Control & Error Enumerations](sections/06_enumeration-constant-reference.md#control-error-enumerations)
+    - [6.3 String Conversion Functions](sections/06_enumeration-constant-reference.md#string-conversion-functions)
+- [7. Exception Hierarchy & Error Handling](sections/07_exception-hierarchy-handling.md)
+    - [7.1 Exception Base & Device Errors](sections/07_exception-hierarchy-handling.md#exception-base-device-errors)
+    - [7.2 Property & Value Errors](sections/07_exception-hierarchy-handling.md#property-value-errors)
+    - [7.3 System & Advanced Exceptions](sections/07_exception-hierarchy-handling.md#system-advanced-exceptions)
+    - [7.4 Exception Mapping & Recovery](sections/07_exception-hierarchy-handling.md#exception-mapping-recovery)
+
+**Utilities & Advanced**
+
+- [8. Convenience Functions & Helpers](sections/08_convenience-functions-helpers.md)
+    - [8.1 Device Discovery & Management](sections/08_convenience-functions-helpers.md#device-discovery-management)
+    - [8.2 Device Context Managers](sections/08_convenience-functions-helpers.md#device-context-managers)
+    - [8.3 Property & Connection Helpers](sections/08_convenience-functions-helpers.md#property-connection-helpers)
+    - [8.4 Logging Setup & Utilities](sections/08_convenience-functions-helpers.md#logging-setup-utilities)
+- [9. Logging, Diagnostics & Callbacks](sections/09_logging-diagnostics-callbacks.md)
+    - [9.1 Logging Functions & Level Management](sections/09_logging-diagnostics-callbacks.md#logging-functions-level-management)
+    - [9.2 Error Decoding & Windows Diagnostics](sections/09_logging-diagnostics-callbacks.md#error-decoding-windows-diagnostics)
+    - [9.3 Device Callbacks & Hot-Plug](sections/09_logging-diagnostics-callbacks.md#device-callbacks-hot-plug)
+- [10. Vendor-Specific Extensions](sections/10_vendor-specific-extensions.md)
+    - [10.1 Logitech Extensions](sections/10_vendor-specific-extensions.md#logitech-extensions)
+    - [10.2 GUID & Vendor Properties](sections/10_vendor-specific-extensions.md#guid-vendor-properties)
+    - [10.3 Abstract Interfaces for Extension](sections/10_vendor-specific-extensions.md#abstract-interfaces-for-extension)
+
+**Implementation & Contribution**
+
+- [11. Building, Contributing & pybind11 Integration](sections/11_building-contributing-pybind11-integration.md)
+    - [11.1 Installation & Build Methods](sections/11_building-contributing-pybind11-integration.md#installation-build-methods)
+    - [11.2 pybind_module.cpp Architecture](sections/11_building-contributing-pybind11-integration.md#pybind-module-cpp-architecture)
+    - [11.3 Contributing & Extension](sections/11_building-contributing-pybind11-integration.md#contributing-extension)
+
+**Complete Property Reference**
+
+- [12. Complete Property Reference](sections/12_complete-property-reference-details.md)
+    - [12.1 Video Properties Reference](sections/12_complete-property-reference-details.md#video-properties-reference)
+    - [12.2 Camera Properties Reference](sections/12_complete-property-reference-details.md#camera-properties-reference)
+    - [12.3 Auto vs Manual Modes](sections/12_complete-property-reference-details.md#auto-vs-manual-modes)
+    - [12.4 Range Discovery & Clamping](sections/12_complete-property-reference-details.md#range-discovery-clamping)
+
+**Practical Guide**
+
+- [13. Common Patterns & Recipes](sections/13_common-patterns-recipes.md)
+    - [13.1 Basic & Multi-Camera Control](sections/13_common-patterns-recipes.md#basic-multi-camera-control)
+    - [13.2 Bulk & Property Operations](sections/13_common-patterns-recipes.md#bulk-property-operations)
+    - [13.3 Advanced Patterns](sections/13_common-patterns-recipes.md#advanced-patterns)
+- [14. Troubleshooting & FAQs](sections/14_troubleshooting-faqs.md)
+    - [14.1 Common Issues](sections/14_troubleshooting-faqs.md#common-issues)
+    - [14.2 Value & Connection Issues](sections/14_troubleshooting-faqs.md#value-connection-issues)
+    - [14.3 Build & Performance Issues](sections/14_troubleshooting-faqs.md#build-performance-issues)
+
+**Deep Dive**
+
+- [15. Advanced Architecture & Special Methods](sections/15_advanced-architecture-special-methods.md)
+    - [15.1 pybind11 Module Design](sections/15_advanced-architecture-special-methods.md#pybind11-module-design)
+    - [15.2 Pythonic Special Methods](sections/15_advanced-architecture-special-methods.md#pythonic-special-methods)
+    - [15.3 Windows-Specific Features](sections/15_advanced-architecture-special-methods.md#windows-specific-features)
+    - [15.4 Type Hints & Static Analysis](sections/15_advanced-architecture-special-methods.md#type-hints-static-analysis)
+- [16. Architecture Decision Records](sections/16_architecture-decision-records.md)
+    - [16.1 Design Decisions](sections/16_architecture-decision-records.md#design-decisions)
+    - [16.2 Implementation Rationale](sections/16_architecture-decision-records.md#implementation-rationale)
+    - [16.3 Future Planning](sections/16_architecture-decision-records.md#future-planning)
+
+**Learning**
+
+- [17. Tutorials & Getting Started](sections/17_tutorials-getting-started.md)
+    - [17.1 Beginner Tutorial](sections/17_tutorials-getting-started.md#beginner-tutorial)
+    - [17.2 Intermediate Patterns](sections/17_tutorials-getting-started.md#intermediate-patterns)
+    - [17.3 Advanced Workflows](sections/17_tutorials-getting-started.md#advanced-workflows)
+
+
+## Overview
+
+**duvc-ctl** provides native USB Video Class (UVC) camera control on Windows via DirectShow. Two complementary APIs:
+
+- **CameraController**: High-level, Pythonic, exception-based
+- **Result-Based**: Low-level, explicit error handling, C++ semantics
+
+Both share identical underlying C++ bindings through pybind11. Choose based on error-handling preference.
+
+**Requirements**: Windows 8+, Python 3.8+, DirectShow libraries (built-in on Windows)
+
+```{toctree}
+:maxdepth: 2
+:hidden:
+:caption: Python Documentation
+
+sections/01_quick-start-installation
+sections/02_architecture-design-overview
+sections/03_pythonic-api-cameracontroller-class
+sections/04_result-based-api-explicit-error-handling
+sections/05_comprehensive-type-reference
+sections/06_enumeration-constant-reference
+sections/07_exception-hierarchy-handling
+sections/08_convenience-functions-helpers
+sections/09_logging-diagnostics-callbacks
+sections/10_vendor-specific-extensions
+sections/11_building-contributing-pybind11-integration
+sections/12_complete-property-reference-details
+sections/13_common-patterns-recipes
+sections/14_troubleshooting-faqs
+sections/15_advanced-architecture-special-methods
+sections/16_architecture-decision-records
+sections/17_tutorials-getting-started
+```

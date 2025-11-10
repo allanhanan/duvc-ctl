@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="constants_8h" kind="file" language="C++">
+    <compoundname>constants.h</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">windows.h</includes>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="constants_8cpp" local="no">vendor/constants.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vendor/constants.h</label>
+        <link refid="constants_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>vector</label>
+      </node>
+      <node id="5">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="1">
+        <label>vendor/constants.h</label>
+        <link refid="constants_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vendor/constants.cpp</label>
+        <link refid="constants_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structduvc_1_1VendorProperty" prot="public">duvc::VendorProperty</innerclass>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Vendor-specific property constants and definitions. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Provides generic vendor property access for Windows UVC devices via DirectShow. Allows reading/writing vendor-specific extension units using GUID-identified property sets. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">duvc-ctl/core/types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">VendorProperty<sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>GUID<sp/><ref refid="structduvc_1_1VendorProperty_1a76a24ac1b968818a1f0aae00ac456a29" kindref="member">property_set</ref>;<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>ULONG<sp/><ref refid="structduvc_1_1VendorProperty_1a299fafa2b8ab37d2c54accf611a89018" kindref="member">property_id</ref>;<sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>std::vector&lt;uint8_t&gt;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1VendorProperty_1a864106a5e193c8889ec7cbc7b6d1fa38" kindref="member">data</ref>;<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="structduvc_1_1VendorProperty_1a2531f7ee98ed33c46a79ea112c1f2ce2" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1VendorProperty_1a2531f7ee98ed33c46a79ea112c1f2ce2" kindref="member">VendorProperty</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="structduvc_1_1VendorProperty_1a5e8155d80bba2e7e3dac50e5a1ff77c0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1VendorProperty_1a5e8155d80bba2e7e3dac50e5a1ff77c0" kindref="member">VendorProperty</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;<ref refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" kindref="member">set</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">ULONG</ref><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint8_t&gt;<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">payload</ref><sp/>=<sp/>{})</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="structduvc_1_1VendorProperty_1a76a24ac1b968818a1f0aae00ac456a29" kindref="member">property_set</ref>(<ref refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" kindref="member">set</ref>),<sp/><ref refid="structduvc_1_1VendorProperty_1a299fafa2b8ab37d2c54accf611a89018" kindref="member">property_id</ref>(<ref refid="classduvc_1_1Result" kindref="compound">id</ref>),<sp/><ref refid="structduvc_1_1VendorProperty_1a864106a5e193c8889ec7cbc7b6d1fa38" kindref="member">data</ref>(<ref refid="classduvc_1_1Result" kindref="compound">payload</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1aa019a1c9788c84f47348db3f03b25d42" kindref="member">get_vendor_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GUID<sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ULONG<sp/>property_id,<sp/>std::vector&lt;uint8_t&gt;<sp/>&amp;data);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab333863cefef68546e2e235527fe3b5c" kindref="member">set_vendor_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GUID<sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ULONG<sp/>property_id,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint8_t&gt;<sp/>&amp;data);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a5ddd570cc76e8dbdef26ad18660ddb07" kindref="member">query_vendor_property_support</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GUID<sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ULONG<sp/>property_id);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="vendor/constants.h"/>
+  </compounddef>
+</doxygen>

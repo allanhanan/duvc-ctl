@@ -1,0 +1,273 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1IDeviceConnection" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>duvc::IDeviceConnection</compoundname>
+    <includes refid="interface_8h" local="no">duvc-ctl/platform/interface.h</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1a2f9bafcd12f4e132206313a76b3c3bf4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>virtual duvc::IDeviceConnection::~IDeviceConnection</definition>
+        <argsstring>()=default</argsstring>
+        <name>~IDeviceConnection</name>
+        <qualifiedname>duvc::IDeviceConnection::~IDeviceConnection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="49" column="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1a36f3d69da915597ccc37e9e6053c75ee" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>virtual bool duvc::IDeviceConnection::is_valid</definition>
+        <argsstring>() const =0</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::IDeviceConnection::is_valid</qualifiedname>
+        <briefdescription>
+<para>Check if connection is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if connection is active </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="55" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1af8bd69f26a871cce1a4ffb5395ca0574" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &gt;</type>
+        <definition>virtual Result&lt; PropSetting &gt; duvc::IDeviceConnection::get_camera_property</definition>
+        <argsstring>(CamProp prop)=0</argsstring>
+        <name>get_camera_property</name>
+        <qualifiedname>duvc::IDeviceConnection::get_camera_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get camera property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property setting or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="62" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1adf62983ddc776b8ea1350730db39d8ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>virtual Result&lt; void &gt; duvc::IDeviceConnection::set_camera_property</definition>
+        <argsstring>(CamProp prop, const PropSetting &amp;setting)=0</argsstring>
+        <name>set_camera_property</name>
+        <qualifiedname>duvc::IDeviceConnection::set_camera_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>setting</declname>
+        </param>
+        <briefdescription>
+<para>Set camera property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>setting</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="70" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1a6a822b9244acea667df27fcc48f60fb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &gt;</type>
+        <definition>virtual Result&lt; PropRange &gt; duvc::IDeviceConnection::get_camera_property_range</definition>
+        <argsstring>(CamProp prop)=0</argsstring>
+        <name>get_camera_property_range</name>
+        <qualifiedname>duvc::IDeviceConnection::get_camera_property_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get camera property range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property range or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="78" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1ab076355a1bf1ac66dfcdfd13e4954871" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &gt;</type>
+        <definition>virtual Result&lt; PropSetting &gt; duvc::IDeviceConnection::get_video_property</definition>
+        <argsstring>(VidProp prop)=0</argsstring>
+        <name>get_video_property</name>
+        <qualifiedname>duvc::IDeviceConnection::get_video_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get video property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property setting or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="85" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1a283d0e4b5c0e35a7797c565a9f3869d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>virtual Result&lt; void &gt; duvc::IDeviceConnection::set_video_property</definition>
+        <argsstring>(VidProp prop, const PropSetting &amp;setting)=0</argsstring>
+        <name>set_video_property</name>
+        <qualifiedname>duvc::IDeviceConnection::set_video_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>setting</declname>
+        </param>
+        <briefdescription>
+<para>Set video property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>setting</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="93" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1IDeviceConnection_1aedce5faa6af2de1ba7bac2fe7600f702" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &gt;</type>
+        <definition>virtual Result&lt; PropRange &gt; duvc::IDeviceConnection::get_video_property_range</definition>
+        <argsstring>(VidProp prop)=0</argsstring>
+        <name>get_video_property_range</name>
+        <qualifiedname>duvc::IDeviceConnection::get_video_property_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get video property range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property range or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/interface.h" line="101" column="18"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Abstract interface for device-specific operations. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::IDeviceConnection</label>
+        <link refid="classduvc_1_1IDeviceConnection"/>
+      </node>
+    </collaborationgraph>
+    <location file="platform/interface.h" line="47" column="1" bodyfile="platform/interface.h" bodystart="47" bodyend="102"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1IDeviceConnection_1af8bd69f26a871cce1a4ffb5395ca0574" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>get_camera_property</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1a6a822b9244acea667df27fcc48f60fb0" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>get_camera_property_range</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1ab076355a1bf1ac66dfcdfd13e4954871" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>get_video_property</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1aedce5faa6af2de1ba7bac2fe7600f702" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>get_video_property_range</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1a36f3d69da915597ccc37e9e6053c75ee" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>is_valid</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1adf62983ddc776b8ea1350730db39d8ea" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>set_camera_property</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1a283d0e4b5c0e35a7797c565a9f3869d1" prot="public" virt="pure-virtual"><scope>duvc::IDeviceConnection</scope><name>set_video_property</name></member>
+      <member refid="classduvc_1_1IDeviceConnection_1a2f9bafcd12f4e132206313a76b3c3bf4" prot="public" virt="virtual"><scope>duvc::IDeviceConnection</scope><name>~IDeviceConnection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

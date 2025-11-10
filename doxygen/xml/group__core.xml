@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="group__core" kind="group">
+    <compoundname>core</compoundname>
+    <title>Core Functionality</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> enumeration, camera control, and property management. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

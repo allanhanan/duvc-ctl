@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1Error" kind="class" language="C++" prot="public">
+    <compoundname>duvc::Error</compoundname>
+    <includes refid="result_8h" local="no">duvc-ctl/core/result.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1Error_1a2ba1c214cb07e7c7b1ddc34d31fdb239" prot="private" static="no" mutable="no">
+        <type><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref></type>
+        <definition>ErrorCode duvc::Error::code_</definition>
+        <argsstring></argsstring>
+        <name>code_</name>
+        <qualifiedname>duvc::Error::code_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="67" column="13" bodyfile="core/result.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1Error_1a0e123bc64c97dfb649d3a1fa4e08cb60" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string duvc::Error::message_</definition>
+        <argsstring></argsstring>
+        <name>message_</name>
+        <qualifiedname>duvc::Error::message_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="68" column="15" bodyfile="core/result.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1Error_1a35414eb2f06eeaced20cf6d2c8027991" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Error::Error</definition>
+        <argsstring>(ErrorCode code, std::string message=&quot;&quot;)</argsstring>
+        <name>Error</name>
+        <qualifiedname>duvc::Error::Error</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref></type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>message</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Create error with code and message. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Error" kindref="compound">Error</ref> code </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Descriptive error message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="48" column="3" bodyfile="core/result.cpp" bodystart="35" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Error_1a0a4b565d0b2e92ba85180ed59c129efd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Error::Error</definition>
+        <argsstring>(std::error_code code, std::string message=&quot;&quot;)</argsstring>
+        <name>Error</name>
+        <qualifiedname>duvc::Error::Error</qualifiedname>
+        <param>
+          <type>std::error_code</type>
+          <declname>code</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>message</declname>
+          <defval>&quot;&quot;</defval>
+        </param>
+        <briefdescription>
+<para>Create error from system error. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>System error code </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Additional context message </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="55" column="3" bodyfile="core/result.cpp" bodystart="38" bodyend="45"/>
+        <references refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" compoundref="result_8h" startline="58" endline="58">code</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903" kindref="member">ErrorCode</ref></type>
+        <definition>ErrorCode duvc::Error::code</definition>
+        <argsstring>() const</argsstring>
+        <name>code</name>
+        <qualifiedname>duvc::Error::code</qualifiedname>
+        <briefdescription>
+<para>Get error code. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="58" column="13" bodyfile="core/result.h" bodystart="58" bodyend="58"/>
+        <referencedby refid="classduvc_1_1Error_1a0a4b565d0b2e92ba85180ed59c129efd" compoundref="result_8cpp" startline="38" endline="45">Error</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> std::string &amp;</type>
+        <definition>const std::string &amp; duvc::Error::message</definition>
+        <argsstring>() const</argsstring>
+        <name>message</name>
+        <qualifiedname>duvc::Error::message</qualifiedname>
+        <briefdescription>
+<para>Get error message. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="61" column="21" bodyfile="core/result.h" bodystart="61" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1Error_1ad21ca3bbb067caeaf2fbb94146b6c517" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string duvc::Error::description</definition>
+        <argsstring>() const</argsstring>
+        <name>description</name>
+        <qualifiedname>duvc::Error::description</qualifiedname>
+        <briefdescription>
+<para>Get full error description. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/result.h" line="64" column="15" bodyfile="core/result.cpp" bodystart="47" bodyend="53"/>
+        <references refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" compoundref="core_8cpp" startline="678" endline="705">duvc::to_string</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classduvc_1_1Error" kindref="compound">Error</ref> information with context. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::Error</label>
+        <link refid="classduvc_1_1Error"/>
+      </node>
+    </collaborationgraph>
+    <location file="core/result.h" line="41" column="1" bodyfile="core/result.h" bodystart="41" bodyend="69"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1Error_1a7bc0ecde548cd0f0dce592f8bbdd86ff" prot="public" virt="non-virtual"><scope>duvc::Error</scope><name>code</name></member>
+      <member refid="classduvc_1_1Error_1a2ba1c214cb07e7c7b1ddc34d31fdb239" prot="private" virt="non-virtual"><scope>duvc::Error</scope><name>code_</name></member>
+      <member refid="classduvc_1_1Error_1ad21ca3bbb067caeaf2fbb94146b6c517" prot="public" virt="non-virtual"><scope>duvc::Error</scope><name>description</name></member>
+      <member refid="classduvc_1_1Error_1a35414eb2f06eeaced20cf6d2c8027991" prot="public" virt="non-virtual"><scope>duvc::Error</scope><name>Error</name></member>
+      <member refid="classduvc_1_1Error_1a0a4b565d0b2e92ba85180ed59c129efd" prot="public" virt="non-virtual"><scope>duvc::Error</scope><name>Error</name></member>
+      <member refid="classduvc_1_1Error_1a394fad4f45227eea61132a3560abbc3c" prot="public" virt="non-virtual"><scope>duvc::Error</scope><name>message</name></member>
+      <member refid="classduvc_1_1Error_1a0e123bc64c97dfb649d3a1fa4e08cb60" prot="private" virt="non-virtual"><scope>duvc::Error</scope><name>message_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

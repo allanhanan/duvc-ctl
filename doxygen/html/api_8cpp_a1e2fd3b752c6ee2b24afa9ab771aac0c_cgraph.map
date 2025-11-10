@@ -1,0 +1,10 @@
+<map id="duvc_set_multiple_camera_properties" name="duvc_set_multiple_camera_properties">
+<area shape="rect" id="Node000001" title="Set multiple camera properties." alt="" coords="5,23,182,65"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Camera.html#afc3cfc69da7411bb9e28c2dad29ebe6c" title="Get camera property value." alt="" coords="230,5,359,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,30,214,26,214,31,183,35"/>
+<area shape="rect" id="Node000004" href="$classduvc_1_1Camera.html#ac9637793f602425d7e07de6d3ec954cb" title="Set camera property value." alt="" coords="230,56,359,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="183,53,214,57,214,62,182,58"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="407,31,481,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="360,27,392,33,391,38,359,32"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="359,56,391,50,392,55,360,61"/>
+</map>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_313caf1132e152dd9b58bea13a4052ca" kind="dir">
+    <compoundname>utils</compoundname>
+    <innerfile refid="error__decoder_8cpp">error_decoder.cpp</innerfile>
+    <innerfile refid="logging_8cpp">logging.cpp</innerfile>
+    <innerfile refid="string__conversion_8cpp">string_conversion.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="utils/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc_1_1PropRange" kind="struct" language="C++" prot="public">
+    <compoundname>duvc::PropRange</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropRange::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <qualifiedname>duvc::PropRange::min</qualifiedname>
+        <briefdescription>
+<para>Minimum supported value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="93" column="7" bodyfile="core/types.h" bodystart="93" bodyend="-1"/>
+        <referencedby refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" compoundref="types_8h" startline="116" endline="125">clamp</referencedby>
+        <referencedby refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" compoundref="bindings_8cpp" startline="61" endline="75">duvc_cam_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" compoundref="bindings_8cpp" startline="101" endline="115">duvc_vid_get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" compoundref="core_8cpp" startline="441" endline="458">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" compoundref="core_8cpp" startline="460" endline="477">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" compoundref="types_8h" startline="107" endline="109">is_valid</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropRange::max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <qualifiedname>duvc::PropRange::max</qualifiedname>
+        <briefdescription>
+<para>Maximum supported value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="94" column="7" bodyfile="core/types.h" bodystart="94" bodyend="-1"/>
+        <referencedby refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" compoundref="types_8h" startline="116" endline="125">clamp</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" compoundref="core_8cpp" startline="441" endline="458">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" compoundref="core_8cpp" startline="460" endline="477">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" compoundref="types_8h" startline="107" endline="109">is_valid</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropRange::step</definition>
+        <argsstring></argsstring>
+        <name>step</name>
+        <qualifiedname>duvc::PropRange::step</qualifiedname>
+        <briefdescription>
+<para>Step size between valid values. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="95" column="7" bodyfile="core/types.h" bodystart="95" bodyend="-1"/>
+        <referencedby refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" compoundref="types_8h" startline="116" endline="125">clamp</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" compoundref="core_8cpp" startline="441" endline="458">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" compoundref="core_8cpp" startline="460" endline="477">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" compoundref="types_8h" startline="107" endline="109">is_valid</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropRange::default_val</definition>
+        <argsstring></argsstring>
+        <name>default_val</name>
+        <qualifiedname>duvc::PropRange::default_val</qualifiedname>
+        <briefdescription>
+<para>Default value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="96" column="7" bodyfile="core/types.h" bodystart="96" bodyend="-1"/>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" compoundref="core_8cpp" startline="441" endline="458">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" compoundref="core_8cpp" startline="460" endline="477">duvc::DeviceConnection::get_range</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref></type>
+        <definition>CamMode duvc::PropRange::default_mode</definition>
+        <argsstring></argsstring>
+        <name>default_mode</name>
+        <qualifiedname>duvc::PropRange::default_mode</qualifiedname>
+        <briefdescription>
+<para>Default control mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="97" column="11" bodyfile="core/types.h" bodystart="97" bodyend="-1"/>
+        <referencedby refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" compoundref="core_8cpp" startline="441" endline="458">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" compoundref="core_8cpp" startline="460" endline="477">duvc::DeviceConnection::get_range</referencedby>
+        <referencedby refid="structduvc_1_1PropertyCapability_1aec0cba090c6b86987de83aa8a3fa779f" compoundref="capability_8h" startline="29" endline="29">duvc::PropertyCapability::supports_auto</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structduvc_1_1PropRange_1a67c088e993a7962ae6443c340ac14b8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::PropRange::PropRange</definition>
+        <argsstring>()=default</argsstring>
+        <name>PropRange</name>
+        <qualifiedname>duvc::PropRange::PropRange</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="100" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::PropRange::is_valid</definition>
+        <argsstring>(int value) const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::PropRange::is_valid</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Check if a value is valid for this range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to check </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if value is within range and aligned to step </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="107" column="8" bodyfile="core/types.h" bodystart="107" bodyend="109"/>
+        <references refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" compoundref="types_8h" startline="94">max</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">min</references>
+        <references refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" compoundref="types_8h" startline="95">step</references>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropRange::clamp</definition>
+        <argsstring>(int value) const</argsstring>
+        <name>clamp</name>
+        <qualifiedname>duvc::PropRange::clamp</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Clamp value to valid range. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to clamp </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Nearest valid value within range </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="116" column="7" bodyfile="core/types.h" bodystart="116" bodyend="125"/>
+        <references refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" compoundref="types_8h" startline="94">max</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">min</references>
+        <references refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" compoundref="types_8h" startline="95">step</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Property range and default information. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::PropRange</label>
+        <link refid="structduvc_1_1PropRange"/>
+      </node>
+    </collaborationgraph>
+    <location file="core/types.h" line="92" column="1" bodyfile="core/types.h" bodystart="92" bodyend="126"/>
+    <listofallmembers>
+      <member refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>clamp</name></member>
+      <member refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>default_mode</name></member>
+      <member refid="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>default_val</name></member>
+      <member refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>is_valid</name></member>
+      <member refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>max</name></member>
+      <member refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>min</name></member>
+      <member refid="structduvc_1_1PropRange_1a67c088e993a7962ae6443c340ac14b8a" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>PropRange</name></member>
+      <member refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" prot="public" virt="non-virtual"><scope>duvc::PropRange</scope><name>step</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

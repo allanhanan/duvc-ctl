@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="device_8h" kind="file" language="C++">
+    <compoundname>device.h</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="api_8cpp" local="yes">c/api.cpp</includedby>
+    <includedby refid="camera_8cpp" local="no">core/camera.cpp</includedby>
+    <includedby refid="capability_8cpp" local="no">core/capability.cpp</includedby>
+    <includedby refid="device_8cpp" local="no">core/device.cpp</includedby>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="connection__pool_8cpp" local="no">platform/windows/connection_pool.cpp</includedby>
+    <includedby refid="device__monitor_8cpp" local="no">platform/windows/device_monitor.cpp</includedby>
+    <includedby refid="ks__properties_8cpp" local="no">platform/windows/ks_properties.cpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>functional</label>
+      </node>
+      <node id="3">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="2">
+        <label>c/api.cpp</label>
+        <link refid="api_8cpp"/>
+      </node>
+      <node id="3">
+        <label>core/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="4">
+        <label>core/capability.cpp</label>
+        <link refid="capability_8cpp"/>
+      </node>
+      <node id="5">
+        <label>core/device.cpp</label>
+        <link refid="device_8cpp"/>
+      </node>
+      <node id="7">
+        <label>platform/windows/connection_pool.cpp</label>
+        <link refid="connection__pool_8cpp"/>
+      </node>
+      <node id="8">
+        <label>platform/windows/device_monitor.cpp</label>
+        <link refid="device__monitor_8cpp"/>
+      </node>
+      <node id="9">
+        <label>platform/windows/ks_properties.cpp</label>
+        <link refid="ks__properties_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Device enumeration and management functions. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">duvc-ctl/core/types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">std::vector&lt;Device&gt;<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc_1ac3f065ee856153757a4b8672b6a192d2" kindref="member">DeviceChangeCallback</ref><sp/>=</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>std::function&lt;void(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>added,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;device_path)&gt;;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1abbb674b206dc193c2a1b127cb413a12f" kindref="member">register_device_change_callback</ref>(<ref refid="namespaceduvc_1ac3f065ee856153757a4b8672b6a192d2" kindref="member">DeviceChangeCallback</ref><sp/>callback);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a2c8dcde95ee8de2b7eef20728f9274dc" kindref="member">unregister_device_change_callback</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/device.h"/>
+  </compounddef>
+</doxygen>

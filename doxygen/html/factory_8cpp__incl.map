@@ -1,0 +1,34 @@
+<map id="platform/factory.cpp" name="platform/factory.cpp">
+<area shape="rect" id="Node000001" title="Platform detection and factory implementation." alt="" coords="208,5,345,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,175,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,35,153,76,151,71,246,30"/>
+<area shape="rect" id="Node000003" href="$interface_8h.html" title="Abstract platform interface for camera control." alt="" coords="250,88,434,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="289,31,325,75,321,78,285,34"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="106,179,175,205"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="269,34,162,168,158,165,265,31"/>
+<area shape="rect" id="Node000013" href="$directshow_8h.html" title="DirectShow&#45;specific declarations and helpers." alt="" coords="483,80,657,123"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="323,30,480,73,479,78,322,35"/>
+<area shape="rect" id="Node000004" href="$result_8h.html" title="Result/Error type system for duvc&#45;ctl." alt="" coords="198,179,342,205"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="334,117,292,168,288,165,330,114"/>
+<area shape="rect" id="Node000010" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="446,179,590,205"/>
+<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="368,113,480,169,478,174,366,118"/>
+<area shape="poly" id="edge11_Node000003_Node000011" title=" " alt="" coords="314,118,187,173,184,174,182,170,185,168,312,113"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="365,179,423,205"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="352,114,381,164,377,166,347,117"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="52,261,123,288"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="243,208,131,257,128,252,240,203"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="148,261,214,288"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="258,208,207,253,204,249,254,204"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="475,261,529,288"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="307,203,461,256,459,261,305,208"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="237,261,335,288"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="275,205,283,246,278,247,270,206"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="358,261,419,288"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="290,204,359,250,356,255,287,208"/>
+<area shape="poly" id="edge10_Node000010_Node000007" title=" " alt="" coords="518,206,510,247,505,246,513,205"/>
+<area shape="poly" id="edge16_Node000013_Node000010" title=" " alt="" coords="560,124,535,166,531,164,556,122"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="614,179,683,205"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="590,121,629,165,625,169,586,125"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="707,171,838,213"/>
+<area shape="poly" id="edge17_Node000013_Node000015" title=" " alt="" coords="619,121,712,162,710,166,616,126"/>
+</map>

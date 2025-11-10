@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_8abc814adb877ee0e3ffcf30bf0fb031" kind="dir">
+    <compoundname>platform</compoundname>
+    <innerdir refid="dir_31163e2612a457f26af176ce7055a969">platform/windows</innerdir>
+    <innerfile refid="interface_8h">interface.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="platform/"/>
+  </compounddef>
+</doxygen>

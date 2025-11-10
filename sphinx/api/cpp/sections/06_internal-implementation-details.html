@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>6. Internal Implementation Details - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="7. Property Reference &amp; Details" href="07_property-reference-details.html" /><link rel="prev" title="5. Vendor-Specific Extensions" href="05_vendor-specific-extensions.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="6. Internal Implementation Details"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">6. Internal Implementation Details</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="internal-implementation-details">
+<h1>6. Internal Implementation Details<a class="headerlink" href="#internal-implementation-details" title="Link to this heading">¶</a></h1>
+<section id="device-connection-pool">
+<h2>6.1 Device Connection Pool<a class="headerlink" href="#device-connection-pool" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/platform/connection_pool.h&gt;</span></code>
+<strong>Platform:</strong> Windows only (<code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>)
+<strong>Namespace:</strong> <code class="docutils literal notranslate"><span class="pre">duvc</span></code> (not <code class="docutils literal notranslate"><span class="pre">detail</span></code>)</p>
+<p>RAII wrapper managing DirectShow COM interfaces for a single device. Provides efficient property access without repeated device enumeration and binding.</p>
+<section id="deviceconnection-class">
+<h3>DeviceConnection class<a class="headerlink" href="#deviceconnection-class" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DeviceConnection</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">DeviceConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">DeviceConnection</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Non-copyable but movable</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">DeviceConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DeviceConnection</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">DeviceConnection</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DeviceConnection</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">DeviceConnection</span><span class="p">(</span><span class="n">DeviceConnection</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">DeviceConnection</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">DeviceConnection</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">    </span>
+</span><span data-line="15"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="17"><span class="w">    </span>
+</span><span data-line="18"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
+</span><span data-line="20"><span class="w">    </span>
+</span><span data-line="21"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">filter_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span data-line="22"><span class="w">    </span>
+</span><span data-line="23"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="24"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ComApartment</span><span class="o">&gt;</span><span class="w"> </span><span class="n">com_</span><span class="p">;</span>
+</span><span data-line="25"><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">filter_</span><span class="p">;</span><span class="w">      </span><span class="c1">// com_ptr&lt;IBaseFilter&gt;</span>
+</span><span data-line="26"><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">cam_ctrl_</span><span class="p">;</span><span class="w">    </span><span class="c1">// com_ptr&lt;IAMCameraControl&gt;</span>
+</span><span data-line="27"><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">vid_proc_</span><span class="p">;</span><span class="w">    </span><span class="c1">// com_ptr&lt;IAMVideoProcAmp&gt;</span>
+</span><span data-line="28"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Encapsulates COM interface lifetime for a single camera device.</p>
+</section>
+<hr class="docutils" />
+<section id="construction-and-lifetime">
+<h3>Construction and lifetime<a class="headerlink" href="#construction-and-lifetime" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">explicit</span><span class="w"> </span><span class="n">DeviceConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="2"><span class="o">~</span><span class="n">DeviceConnection</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p><strong>Constructor behavior:</strong></p>
+<ol class="arabic simple">
+<li><p>Creates dedicated <code class="docutils literal notranslate"><span class="pre">ComApartment</span></code> for COM initialization</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">open_device_filter()</span></code> to enumerate and bind to matching device</p></li>
+<li><p>Queries <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code> and <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code> interfaces from filter</p></li>
+<li><p>Stores COM smart pointers as <code class="docutils literal notranslate"><span class="pre">void*</span></code> (heap-allocated) to avoid header dependencies</p></li>
+</ol>
+<p><strong>Exception handling:</strong> If device cannot be opened, sets <code class="docutils literal notranslate"><span class="pre">filter_</span> <span class="pre">=</span> <span class="pre">nullptr</span></code>. Constructor does not throw.</p>
+<p><strong>Destructor:</strong> Deletes heap-allocated COM smart pointers, releasing all DirectShow interfaces.</p>
+<p><strong>Validity check:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">filter_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Always check validity before calling property methods.</p>
+</section>
+<hr class="docutils" />
+<section id="property-operations">
+<h3>Property operations<a class="headerlink" href="#property-operations" title="Link to this heading">¶</a></h3>
+<p><strong>Camera control properties:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="3"><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Video processing properties:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span data-line="3"><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>All methods return <code class="docutils literal notranslate"><span class="pre">bool</span></code> indicating success. Failures occur if:</p>
+<ul class="simple">
+<li><p>Connection is invalid (<code class="docutils literal notranslate"><span class="pre">is_valid()</span> <span class="pre">==</span> <span class="pre">false</span></code>)</p></li>
+<li><p>Property is unsupported (maps to <code class="docutils literal notranslate"><span class="pre">-1</span></code> in DirectShow constants)</p></li>
+<li><p>DirectShow COM method fails (returns <code class="docutils literal notranslate"><span class="pre">FAILED(hr)</span></code>)</p></li>
+</ul>
+<p><strong>Implementation details:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">get()</span></code> operations:</p>
+<ul class="simple">
+<li><p>Map enum to DirectShow constant via <code class="docutils literal notranslate"><span class="pre">camprop_to_dshow()</span></code> / <code class="docutils literal notranslate"><span class="pre">vidprop_to_dshow()</span></code></p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">IAMCameraControl::Get()</span></code> or <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp::Get()</span></code></p></li>
+<li><p>Convert DirectShow <code class="docutils literal notranslate"><span class="pre">long</span></code> values and flags to <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code></p></li>
+<li><p>Extract mode from flags using <code class="docutils literal notranslate"><span class="pre">from_flag()</span></code> (checks <code class="docutils literal notranslate"><span class="pre">CameraControl_Flags_Auto</span></code> bit)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">set()</span></code> operations:</p>
+<ul class="simple">
+<li><p>Map enum to DirectShow constant</p></li>
+<li><p>Convert <code class="docutils literal notranslate"><span class="pre">CamMode</span></code> to DirectShow flags via <code class="docutils literal notranslate"><span class="pre">to_flag()</span></code></p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">IAMCameraControl::Set()</span></code> or <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp::Set()</span></code></p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">SUCCEEDED(hr)</span></code> status</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">get_range()</span></code> operations:</p>
+<ul class="simple">
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">IAMCameraControl::GetRange()</span></code> or <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp::GetRange()</span></code></p></li>
+<li><p>Populate <code class="docutils literal notranslate"><span class="pre">PropRange</span></code> with min/max/step/default values</p></li>
+<li><p>Extract default mode from flags</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="helper-functions-internal">
+<h3>Helper functions (internal)<a class="headerlink" href="#helper-functions-internal" title="Link to this heading">¶</a></h3>
+<p><strong>Device binding:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IBaseFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">open_device_filter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Enumerates video devices, matches by name and path, binds to <code class="docutils literal notranslate"><span class="pre">IBaseFilter</span></code>. Throws <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> if device not found.</p>
+<p><strong>Interface querying:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IAMCameraControl</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_cam_ctrl</span><span class="p">(</span><span class="n">IBaseFilter</span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">static</span><span class="w"> </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IAMVideoProcAmp</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_vproc</span><span class="p">(</span><span class="n">IBaseFilter</span><span class="o">*</span><span class="w"> </span><span class="n">f</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Query control interfaces from filter. Returns empty <code class="docutils literal notranslate"><span class="pre">com_ptr</span></code> on failure (device may not support all properties).</p>
+<p><strong>Property mapping:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">camprop_to_dshow</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">vidprop_to_dshow</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+</span><span data-line="3"><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">to_flag</span><span class="p">(</span><span class="n">CamMode</span><span class="w"> </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_camera_control</span><span class="p">);</span>
+</span><span data-line="4"><span class="k">static</span><span class="w"> </span><span class="n">CamMode</span><span class="w"> </span><span class="nf">from_flag</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">flag</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_camera_control</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Bidirectional conversion between library enums and DirectShow constants. Maps each <code class="docutils literal notranslate"><span class="pre">CamProp</span></code>/<code class="docutils literal notranslate"><span class="pre">VidProp</span></code> value to its corresponding DirectShow property ID.</p>
+<p><strong>DirectShow constants (fallback definitions):</strong></p>
+<p>The implementation defines DirectShow constants if headers are unavailable:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CameraControl_*</span></code> constants (Pan=0, Tilt=1, Zoom=3, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_*</span></code> constants (Brightness=0, Contrast=1, etc.)</p></li>
+<li><p>Flag constants (<code class="docutils literal notranslate"><span class="pre">CameraControl_Flags_Auto=0x0001</span></code>, etc.)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="no-connection-pooling-caching">
+<h3>No connection pooling/caching<a class="headerlink" href="#no-connection-pooling-caching" title="Link to this heading">¶</a></h3>
+<p><strong>Important:</strong> Despite the filename <code class="docutils literal notranslate"><span class="pre">connection_pool</span></code>, the current implementation <strong>does not</strong> implement connection pooling or caching. The header comment mentions this was the original intent, but pooling was <strong>removed due to thread safety issues</strong>.</p>
+<p><strong>Current behavior:</strong></p>
+<ul class="simple">
+<li><p>Each <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> instance creates a new connection</p></li>
+<li><p>No global cache or shared connection state</p></li>
+<li><p>Connections are independent and non-thread-safe</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class creates temporary connections per operation (see Section 2.2)</p></li>
+</ul>
+<p><strong>Historical context:</strong> The file originally contained a global connection pool with <code class="docutils literal notranslate"><span class="pre">get_connection()</span></code> / <code class="docutils literal notranslate"><span class="pre">release_connection()</span></code> methods, but these were removed. Only the RAII <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> class remains.</p>
+</section>
+<hr class="docutils" />
+<section id="usage-pattern">
+<h3>Usage pattern<a class="headerlink" href="#usage-pattern" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> is used internally by the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class. Direct usage:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">Device</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">DeviceConnection</span><span class="w"> </span><span class="nf">conn</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">conn</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to connect</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="7"><span class="p">}</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1">// Read property</span>
+</span><span data-line="10"><span class="n">duvc</span><span class="o">::</span><span class="n">PropSetting</span><span class="w"> </span><span class="n">zoom_setting</span><span class="p">;</span>
+</span><span data-line="11"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_setting</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Zoom: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">zoom_setting</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="13"><span class="p">}</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1">// Write property</span>
+</span><span data-line="16"><span class="n">duvc</span><span class="o">::</span><span class="n">PropSetting</span><span class="w"> </span><span class="n">new_setting</span><span class="p">{</span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">};</span>
+</span><span data-line="17"><span class="n">conn</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="n">new_setting</span><span class="p">);</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="c1">// Query range</span>
+</span><span data-line="20"><span class="n">duvc</span><span class="o">::</span><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="p">;</span>
+</span><span data-line="21"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">conn</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="22"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Range: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="23"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Connection lifetime:</strong> Each <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> holds COM interfaces for the device’s lifetime. Creating many connections sequentially is safe but inefficient (requires repeated enumeration). For sustained access, reuse the same connection instance.</p>
+</section>
+<hr class="docutils" />
+<section id="implementation-notes">
+<h3>Implementation notes<a class="headerlink" href="#implementation-notes" title="Link to this heading">¶</a></h3>
+<p><strong>COM apartment management:</strong> Each connection creates its own <code class="docutils literal notranslate"><span class="pre">ComApartment</span></code> instance, ensuring COM is initialized in the current thread context. This allows connections from different threads (though not concurrent access to the same connection).</p>
+<p><strong>Pointer storage:</strong> COM smart pointers are stored as <code class="docutils literal notranslate"><span class="pre">void*</span></code> to avoid exposing DirectShow types in the public header. Internally cast to <code class="docutils literal notranslate"><span class="pre">com_ptr&lt;T&gt;*</span></code> for access.</p>
+<p><strong>Move semantics:</strong> The class is default-movable, allowing efficient transfer of ownership (e.g., storing in containers or returning from functions).</p>
+<p><strong>No exceptions in operations:</strong> All property methods return <code class="docutils literal notranslate"><span class="pre">bool</span></code> rather than throwing exceptions, following the library’s error handling pattern for internal operations.</p>
+</section>
+</section>
+<section id="com-helpers">
+<h2>6.2 COM Helpers<a class="headerlink" href="#com-helpers" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/platform/com_helpers.h&gt;</span></code>
+<strong>Namespace:</strong> <code class="docutils literal notranslate"><span class="pre">duvc::detail</span></code>
+<strong>Platform:</strong> Windows only (<code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>)</p>
+<p>Internal COM utilities for managing DirectShow interfaces and Windows API interactions. These are implementation details not exposed in the public API.</p>
+<section id="com-ptr">
+<h3>com_ptr<T><a class="headerlink" href="#com-ptr" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">com_ptr</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">com_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">com_ptr</span><span class="p">(</span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="o">~</span><span class="n">com_ptr</span><span class="p">();</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="c1">// Move-only</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">com_ptr</span><span class="p">(</span><span class="n">com_ptr</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">com_ptr</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">o</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="nf">get</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">T</span><span class="o">**</span><span class="w"> </span><span class="nf">put</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">T</span><span class="o">*</span><span class="w"> </span><span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">reset</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="17"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Smart pointer for COM interface pointers with automatic reference counting.</p>
+<p><strong>Lifetime management:</strong></p>
+<ul class="simple">
+<li><p>Constructor from raw pointer takes ownership (does not call <code class="docutils literal notranslate"><span class="pre">AddRef</span></code>)</p></li>
+<li><p>Destructor calls <code class="docutils literal notranslate"><span class="pre">Release()</span></code> if pointer is non-null</p></li>
+<li><p>Move operations transfer ownership without ref-count changes</p></li>
+</ul>
+<p><strong>Key methods:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">get()</span></code>: Returns raw pointer without affecting ownership.</p>
+<p><code class="docutils literal notranslate"><span class="pre">put()</span></code>: Returns address for output parameters. Releases current pointer first, allowing COM methods to assign a new interface.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IBaseFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">filter</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">moniker</span><span class="o">-&gt;</span><span class="n">BindToObject</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">IID_IBaseFilter</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="3"><span class="w">                           </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">**&gt;</span><span class="p">(</span><span class="n">filter</span><span class="p">.</span><span class="n">put</span><span class="p">()));</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">reset()</span></code>: Releases current interface and sets pointer to null.</p>
+<p><strong>Non-copyable:</strong> Copying would require <code class="docutils literal notranslate"><span class="pre">AddRef</span></code>, which could introduce bugs. Use move semantics or transfer ownership explicitly.</p>
+</section>
+<hr class="docutils" />
+<section id="com-apartment">
+<h3>com_apartment<a class="headerlink" href="#com-apartment" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">com_apartment</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">com_apartment</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">com_apartment</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Non-copyable, non-movable</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>RAII wrapper for COM initialization/uninitialization. Ensures COM is properly initialized for the current thread.</p>
+<p><strong>Constructor:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">hr_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitializeEx</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">COINIT_APARTMENTTHREADED</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr_</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">hr_</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RPC_E_CHANGED_MODE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">throw_hr</span><span class="p">(</span><span class="n">hr_</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CoInitializeEx&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Calls <code class="docutils literal notranslate"><span class="pre">CoInitializeEx</span></code> with <code class="docutils literal notranslate"><span class="pre">COINIT_APARTMENTTHREADED</span></code>. If initialization fails (except <code class="docutils literal notranslate"><span class="pre">RPC_E_CHANGED_MODE</span></code>, meaning COM is already initialized), throws an exception via <code class="docutils literal notranslate"><span class="pre">throw_hr</span></code>.</p>
+<p><strong>Destructor:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr_</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">CoUninitialize</span><span class="p">();</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Only calls <code class="docutils literal notranslate"><span class="pre">CoUninitialize</span></code> if constructor successfully initialized COM. This ensures proper cleanup even if thread already had COM initialized.</p>
+<p><strong>Usage pattern:</strong> Each DirectShow operation class (<code class="docutils literal notranslate"><span class="pre">DirectShowEnumerator</span></code>, <code class="docutils literal notranslate"><span class="pre">DirectShowFilter</span></code>, <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code>) contains a <code class="docutils literal notranslate"><span class="pre">com_apartment</span></code> member to ensure COM is initialized.</p>
+</section>
+<hr class="docutils" />
+<section id="wide-to-utf8">
+<h3>wide_to_utf8<a class="headerlink" href="#wide-to-utf8" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">wide_to_utf8</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="o">*</span><span class="w"> </span><span class="n">ws</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Converts Windows wide strings (UTF-16) to UTF-8 encoded <code class="docutils literal notranslate"><span class="pre">std::string</span></code>.</p>
+<p><strong>Implementation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">ws</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WideCharToMultiByte</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="4"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">out</span><span class="p">(</span><span class="n">sz</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">sz</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;\0&#39;</span><span class="p">);</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sz</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">WideCharToMultiByte</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">ws</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">sz</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">}</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="k">return</span><span class="w"> </span><span class="n">out</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Two-pass conversion: first queries size, then allocates and converts. The <code class="docutils literal notranslate"><span class="pre">-1</span></code> size parameter means null-terminated input. The <code class="docutils literal notranslate"><span class="pre">sz</span> <span class="pre">-</span> <span class="pre">1</span></code> accounts for null terminator not included in output string.</p>
+<p><strong>Usage:</strong> Primarily for error messages from <code class="docutils literal notranslate"><span class="pre">_com_error::ErrorMessage()</span></code> and DirectShow device names.</p>
+</section>
+<hr class="docutils" />
+<section id="throw-hr">
+<h3>throw_hr<a class="headerlink" href="#throw-hr" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">throw_hr</span><span class="p">(</span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">where</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Throws <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> with formatted HRESULT information.</p>
+<p><strong>Implementation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">_com_error</span><span class="w"> </span><span class="nf">err</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="w"> </span><span class="n">oss</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">oss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; failed (hr=0x&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">hex</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">ErrorMessage</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="cp">#ifdef UNICODE</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">oss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">wide_to_utf8</span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">ErrorMessage</span><span class="p">());</span>
+</span><span data-line="8"><span class="w">    </span><span class="cp">#else</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">oss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">ErrorMessage</span><span class="p">();</span>
+</span><span data-line="10"><span class="w">    </span><span class="cp">#endif</span>
+</span><span data-line="11"><span class="p">}</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">oss</span><span class="p">.</span><span class="n">str</span><span class="p">());</span>
+</span></pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">Uses `_com_error` to translate HRESULT to human-readable message. Formats as: `&quot;&lt;operation&gt; failed (hr=0x&lt;hex code&gt;) - &lt;error message&gt;&quot;`.
+</span></pre></div>
+</div>
+<p><strong>Example output:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">CoInitializeEx</span> <span class="n">failed</span> <span class="p">(</span><span class="n">hr</span><span class="o">=</span><span class="mh">0x80010106</span><span class="p">)</span> <span class="o">-</span> <span class="n">Cannot</span> <span class="n">change</span> <span class="n">thread</span> <span class="n">mode</span> <span class="n">after</span> <span class="n">it</span> <span class="ow">is</span> <span class="nb">set</span><span class="o">.</span>
+</span></pre></div>
+</div>
+<p><strong>Usage:</strong> Called when COM operations fail unexpectedly, typically during initialization rather than normal property access.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="directshow-integration">
+<h2>6.3 DirectShow Integration<a class="headerlink" href="#directshow-integration" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/platform/directshow_impl.h&gt;</span></code>
+<strong>Namespace:</strong> <code class="docutils literal notranslate"><span class="pre">duvc::detail</span></code>
+<strong>Platform:</strong> Windows only</p>
+<p>Internal classes wrapping DirectShow COM interfaces for device enumeration and control.</p>
+<section id="directshowmapper">
+<h3>DirectShowMapper<a class="headerlink" href="#directshowmapper" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DirectShowMapper</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">map_camera_property</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">map_video_property</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">map_camera_mode_to_flags</span><span class="p">(</span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_camera_control</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">CamMode</span><span class="w"> </span><span class="nf">map_flags_to_camera_mode</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">is_camera_control</span><span class="p">);</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Static utility class for bidirectional enum ↔ DirectShow constant conversion.</p>
+<p><strong>Property mapping:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">map_camera_property()</span></code>: Converts <code class="docutils literal notranslate"><span class="pre">CamProp</span></code> to DirectShow <code class="docutils literal notranslate"><span class="pre">CameraControl_*</span></code> constants:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CamProp::Pan</span></code> → <code class="docutils literal notranslate"><span class="pre">0L</span></code> (CameraControl_Pan)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamProp::Tilt</span></code> → <code class="docutils literal notranslate"><span class="pre">1L</span></code> (CameraControl_Tilt)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamProp::Zoom</span></code> → <code class="docutils literal notranslate"><span class="pre">3L</span></code> (CameraControl_Zoom)</p></li>
+<li><p>etc. Returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> for unsupported properties</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">map_video_property()</span></code>: Converts <code class="docutils literal notranslate"><span class="pre">VidProp</span></code> to DirectShow <code class="docutils literal notranslate"><span class="pre">VideoProcAmp_*</span></code> constants:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::Brightness</span></code> → <code class="docutils literal notranslate"><span class="pre">0L</span></code> (VideoProcAmp_Brightness)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::Contrast</span></code> → <code class="docutils literal notranslate"><span class="pre">1L</span></code> (VideoProcAmp_Contrast)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::Hue</span></code> → <code class="docutils literal notranslate"><span class="pre">2L</span></code> (VideoProcAmp_Hue)</p></li>
+<li><p>etc. Returns <code class="docutils literal notranslate"><span class="pre">-1</span></code> for unsupported properties</p></li>
+</ul>
+<p><strong>Mode/flag mapping:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">map_camera_mode_to_flags()</span></code>: Converts <code class="docutils literal notranslate"><span class="pre">CamMode</span></code> to DirectShow flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CamMode::Auto</span></code> → <code class="docutils literal notranslate"><span class="pre">0x0001L</span></code> (Auto flag)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamMode::Manual</span></code> → <code class="docutils literal notranslate"><span class="pre">0x0002L</span></code> (Manual flag)</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">map_flags_to_camera_mode()</span></code>: Checks flag <code class="docutils literal notranslate"><span class="pre">&amp;</span> <span class="pre">0x0001</span></code> to determine auto mode. Both camera control and video proc amp use identical flag values.</p>
+</section>
+<hr class="docutils" />
+<section id="directshowenumerator">
+<h3>DirectShowEnumerator<a class="headerlink" href="#directshowenumerator" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DirectShowEnumerator</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DirectShowEnumerator</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">DirectShowEnumerator</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="w"> </span><span class="n">enumerate_devices</span><span class="p">();</span>
+</span><span data-line="7"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_device_available</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">Device</span><span class="w"> </span><span class="nf">read_device_info</span><span class="p">(</span><span class="n">IMoniker</span><span class="o">*</span><span class="w"> </span><span class="n">moniker</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">ICreateDevEnum</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dev_enum_</span><span class="p">;</span>
+</span><span data-line="11"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">com_apartment</span><span class="w"> </span><span class="n">com_</span><span class="p">;</span>
+</span><span data-line="13"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Wrapper for DirectShow device enumeration via <code class="docutils literal notranslate"><span class="pre">ICreateDevEnum</span></code>.</p>
+<p><strong>Construction:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_SystemDeviceEnum</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                               </span><span class="n">IID_ICreateDevEnum</span><span class="p">,</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">**&gt;</span><span class="p">(</span><span class="n">dev_enum_</span><span class="p">.</span><span class="n">put</span><span class="p">()));</span>
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;Failed to create DirectShow device enumerator&quot;</span><span class="p">);</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Creates <code class="docutils literal notranslate"><span class="pre">ICreateDevEnum</span></code> COM object for querying system devices. Throws on failure.</p>
+<p><strong>enumerate_devices():</strong></p>
+<ol class="arabic simple">
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">CreateClassEnumerator(CLSID_VideoInputDeviceCategory)</span></code> to get moniker enumerator</p></li>
+<li><p>Iterates monikers with <code class="docutils literal notranslate"><span class="pre">Next()</span></code></p></li>
+<li><p>For each moniker, calls <code class="docutils literal notranslate"><span class="pre">read_device_info()</span></code> to extract name/path</p></li>
+<li><p>Returns vector of all valid devices</p></li>
+</ol>
+<p>Returns empty vector if no devices or enumeration fails.</p>
+<p><strong>is_device_available():</strong> Calls <code class="docutils literal notranslate"><span class="pre">enumerate_devices()</span></code> and searches for matching device by path (preferred) or name. Uses case-insensitive comparison via <code class="docutils literal notranslate"><span class="pre">_wcsicmp</span></code>.</p>
+<p><strong>read_device_info():</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Device</span><span class="w"> </span><span class="nf">read_device_info</span><span class="p">(</span><span class="n">IMoniker</span><span class="o">*</span><span class="w"> </span><span class="n">moniker</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Extracts device information from moniker:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BindToStorage()</span></code> to get <code class="docutils literal notranslate"><span class="pre">IPropertyBag</span></code></p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">FriendlyName</span></code> property → <code class="docutils literal notranslate"><span class="pre">device.name</span></code></p></li>
+<li><p>Read <code class="docutils literal notranslate"><span class="pre">DevicePath</span></code> property → <code class="docutils literal notranslate"><span class="pre">device.path</span></code></p></li>
+<li><p>If path empty, fallback to <code class="docutils literal notranslate"><span class="pre">GetDisplayName()</span></code> → <code class="docutils literal notranslate"><span class="pre">device.path</span></code></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="directshowfilter">
+<h3>DirectShowFilter<a class="headerlink" href="#directshowfilter" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DirectShowFilter</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">DirectShowFilter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">DirectShowFilter</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IAMCameraControl</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_camera_control</span><span class="p">();</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IAMVideoProcAmp</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_video_proc_amp</span><span class="p">();</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IKsPropertySet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_property_set</span><span class="p">();</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IBaseFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">extract</span><span class="p">();</span>
+</span><span data-line="13"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">com_apartment</span><span class="w"> </span><span class="n">com_</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IBaseFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">filter_</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">    </span>
+</span><span data-line="17"><span class="w">    </span><span class="n">com_ptr</span><span class="o">&lt;</span><span class="n">IBaseFilter</span><span class="o">&gt;</span><span class="w"> </span><span class="n">create_filter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="18"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Wrapper for <code class="docutils literal notranslate"><span class="pre">IBaseFilter</span></code> with interface querying.</p>
+<p><strong>Construction:</strong> Calls <code class="docutils literal notranslate"><span class="pre">create_filter()</span></code> to bind device moniker to filter object.</p>
+<p><strong>create_filter():</strong></p>
+<ol class="arabic simple">
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">DirectShowEnumerator</span></code> to iterate devices</p></li>
+<li><p>Finds matching device by path or name</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">moniker-&gt;BindToObject()</span></code> to get <code class="docutils literal notranslate"><span class="pre">IBaseFilter</span></code></p></li>
+<li><p>Returns filter or empty pointer if not found</p></li>
+</ol>
+<p><strong>Interface queries:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">get_camera_control()</span></code>: Queries <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code> interface for PTZ/exposure/focus controls. Returns empty pointer if not supported.</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_video_proc_amp()</span></code>: Queries <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code> interface for brightness/contrast/saturation controls. Returns empty pointer if not supported.</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_property_set()</span></code>: Queries <code class="docutils literal notranslate"><span class="pre">IKsPropertySet</span></code> interface for Kernel Streaming properties (vendor extensions). Returns empty pointer if not supported.</p>
+<p>All queries use <code class="docutils literal notranslate"><span class="pre">QueryInterface()</span></code> on the filter. Not all devices support all interfaces.</p>
+</section>
+<hr class="docutils" />
+<section id="directshowdeviceconnection">
+<h3>DirectShowDeviceConnection<a class="headerlink" href="#directshowdeviceconnection" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DirectShowDeviceConnection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IDeviceConnection</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">DirectShowDeviceConnection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_camera_property</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_camera_property</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">setting</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="c1">// ... similar for video properties and ranges</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">DirectShowFilter</span><span class="w"> </span><span class="n">filter_</span><span class="p">;</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Implementation of <code class="docutils literal notranslate"><span class="pre">IDeviceConnection</span></code> interface using DirectShow. This is the concrete class instantiated by <code class="docutils literal notranslate"><span class="pre">create_directshow_connection()</span></code>.</p>
+<p><strong>Property operations:</strong></p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">get/set</span></code> method follows this pattern:</p>
+<ol class="arabic simple">
+<li><p>Query appropriate interface (<code class="docutils literal notranslate"><span class="pre">get_camera_control()</span></code> or <code class="docutils literal notranslate"><span class="pre">get_video_proc_amp()</span></code>)</p></li>
+<li><p>Map property enum to DirectShow constant via <code class="docutils literal notranslate"><span class="pre">DirectShowMapper</span></code></p></li>
+<li><p>Call DirectShow <code class="docutils literal notranslate"><span class="pre">Get()</span></code> / <code class="docutils literal notranslate"><span class="pre">Set()</span></code> / <code class="docutils literal notranslate"><span class="pre">GetRange()</span></code> method</p></li>
+<li><p>Convert between DirectShow values/flags and library types</p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> with success or error code</p></li>
+</ol>
+<p><strong>Error handling:</strong></p>
+<ul class="simple">
+<li><p>Interface unavailable → <code class="docutils literal notranslate"><span class="pre">ErrorCode::PropertyNotSupported</span></code></p></li>
+<li><p>Property maps to <code class="docutils literal notranslate"><span class="pre">-1</span></code> → <code class="docutils literal notranslate"><span class="pre">ErrorCode::PropertyNotSupported</span></code></p></li>
+<li><p>COM method fails → <code class="docutils literal notranslate"><span class="pre">ErrorCode::SystemError</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="integration-with-platform-interface">
+<h3>Integration with platform interface<a class="headerlink" href="#integration-with-platform-interface" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">WindowsPlatformInterface</span></code> (from <code class="docutils literal notranslate"><span class="pre">factory.cpp</span></code>) uses these classes:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">DirectShowEnumerator</span><span class="w"> </span><span class="n">enumerator</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">enumerate_devices</span><span class="p">());</span>
+</span><span data-line="4"><span class="p">}</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">DirectShowEnumerator</span><span class="w"> </span><span class="n">enumerator</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">is_device_available</span><span class="p">(</span><span class="n">device</span><span class="p">));</span>
+</span><span data-line="9"><span class="p">}</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">create_connection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">create_directshow_connection</span><span class="p">(</span><span class="n">device</span><span class="p">));</span>
+</span><span data-line="13"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">create_directshow_connection()</span></code> function instantiates <code class="docutils literal notranslate"><span class="pre">DirectShowDeviceConnection</span></code>, which internally uses <code class="docutils literal notranslate"><span class="pre">DirectShowFilter</span></code> to manage COM interfaces.</p>
+<hr class="docutils" />
+<p><strong>No filter graph:</strong> This library does <strong>not</strong> build DirectShow filter graphs or stream video. It only uses the device filter’s control interfaces (<code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code>, <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code>) for property manipulation.</p>
+</section>
+</section>
+<section id="windows-internals">
+<h2>6.4 Windows Internals<a class="headerlink" href="#windows-internals" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">src/platform/windows_internal.h</span></code>
+<strong>Namespace:</strong> <code class="docutils literal notranslate"><span class="pre">duvc::detail</span></code></p>
+<p>Low-level Windows platform utilities and constants for DirectShow integration.</p>
+<hr class="docutils" />
+<section id="windowsutils">
+<h3>WindowsUtils<a class="headerlink" href="#windowsutils" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">WindowsUtils</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">has_camera_permissions</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_windows_version</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_windows_10_or_later</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_last_error_string</span><span class="p">();</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">error_code_to_string</span><span class="p">(</span><span class="n">DWORD</span><span class="w"> </span><span class="n">error_code</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Platform diagnostic utilities. <strong>Declared but not implemented</strong> — these are forward declarations for future Windows 10+ camera privacy API integration.</p>
+<p><strong>Intended purposes:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">has_camera_permissions()</span></code>: Check Windows 10 camera privacy settings via capability access APIs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_windows_version()</span></code>: Query OS version for feature detection</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_windows_10_or_later()</span></code>: Boolean check for modern Windows features</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_last_error_string()</span></code>: Wrapper for <code class="docutils literal notranslate"><span class="pre">GetLastError()</span></code> + <code class="docutils literal notranslate"><span class="pre">FormatMessage()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error_code_to_string(error_code)</span></code>: Convert specific error codes to readable strings</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="directshowconstants">
+<h3>DirectShowConstants<a class="headerlink" href="#directshowconstants" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">namespace</span><span class="w"> </span><span class="nn">DirectShowConstants</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Camera control (9 constants)</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_PAN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0L</span><span class="p">;</span><span class="w">           </span><span class="c1">// Horizontal rotation</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_TILT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="p">;</span><span class="w">          </span><span class="c1">// Vertical rotation</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_ROLL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2L</span><span class="p">;</span><span class="w">          </span><span class="c1">// Rotational tilt</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_ZOOM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3L</span><span class="p">;</span><span class="w">          </span><span class="c1">// Optical/digital zoom</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_EXPOSURE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4L</span><span class="p">;</span><span class="w">      </span><span class="c1">// Shutter speed</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_IRIS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5L</span><span class="p">;</span><span class="w">          </span><span class="c1">// Aperture</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_FOCUS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6L</span><span class="p">;</span><span class="w">         </span><span class="c1">// Lens focus distance</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_SCANMODE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7L</span><span class="p">;</span><span class="w">      </span><span class="c1">// Interlaced/progressive</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">CAMERA_CONTROL_PRIVACY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8L</span><span class="p">;</span><span class="w">       </span><span class="c1">// Lens cover/shutter</span>
+</span><span data-line="12"><span class="w">    </span>
+</span><span data-line="13"><span class="w">    </span><span class="c1">// Video proc amp (10 constants)</span>
+</span><span data-line="14"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_BRIGHTNESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0L</span><span class="p">;</span><span class="w">      </span><span class="c1">// Luminance level</span>
+</span><span data-line="15"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_CONTRAST</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="p">;</span><span class="w">        </span><span class="c1">// Dynamic range</span>
+</span><span data-line="16"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_HUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2L</span><span class="p">;</span><span class="w">             </span><span class="c1">// Color tint (-180° to +180°)</span>
+</span><span data-line="17"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_SATURATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3L</span><span class="p">;</span><span class="w">      </span><span class="c1">// Color intensity</span>
+</span><span data-line="18"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_SHARPNESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">4L</span><span class="p">;</span><span class="w">       </span><span class="c1">// Edge enhancement</span>
+</span><span data-line="19"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_GAMMA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5L</span><span class="p">;</span><span class="w">           </span><span class="c1">// Mid-tone brightness curve</span>
+</span><span data-line="20"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_COLORENABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6L</span><span class="p">;</span><span class="w">     </span><span class="c1">// Color/monochrome mode</span>
+</span><span data-line="21"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_WHITEBALANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7L</span><span class="p">;</span><span class="w">    </span><span class="c1">// Color temperature</span>
+</span><span data-line="22"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_BACKLIGHT_COMPENSATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">8L</span><span class="p">;</span><span class="w"> </span><span class="c1">// Exposure for backlighting</span>
+</span><span data-line="23"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">VIDEOPROCAMP_GAIN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9L</span><span class="p">;</span><span class="w">            </span><span class="c1">// Sensor sensitivity (ISO)</span>
+</span><span data-line="24"><span class="w">    </span>
+</span><span data-line="25"><span class="w">    </span><span class="c1">// Control flags (2 constants)</span>
+</span><span data-line="26"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">FLAGS_AUTO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0001L</span><span class="p">;</span><span class="w">              </span><span class="c1">// Auto control by firmware</span>
+</span><span data-line="27"><span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">FLAGS_MANUAL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0002L</span><span class="p">;</span><span class="w">            </span><span class="c1">// Manual control via API</span>
+</span><span data-line="28"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Total: 21 constants.</strong> Fallback definitions matching Microsoft DirectShow SDK values for <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code> and <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code> interfaces.</p>
+<p><strong>Purpose:</strong> These are provided as compile-time fallbacks if DirectShow headers are missing or incomplete. Standard Windows SDK defines these in <code class="docutils literal notranslate"><span class="pre">strmif.h</span></code>, but older MinGW or SDK versions may lack them. The values are standardized by Microsoft and will not change.</p>
+<p><strong>Usage:</strong> Referenced throughout DirectShow implementation to map generic property enums to DirectShow-specific constants. For example, <code class="docutils literal notranslate"><span class="pre">CameraProperty::Pan</span></code> maps to <code class="docutils literal notranslate"><span class="pre">CAMERA_CONTROL_PAN</span> <span class="pre">=</span> <span class="pre">0L</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="device-monitoring">
+<h2>6.5 Device Monitoring<a class="headerlink" href="#device-monitoring" title="Link to this heading">¶</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">src/platform/device_monitor.cpp</span></code></p>
+<p>Windows device hot-plug detection using <code class="docutils literal notranslate"><span class="pre">WM_DEVICECHANGE</span></code> and <code class="docutils literal notranslate"><span class="pre">RegisterDeviceNotification()</span></code>.</p>
+<hr class="docutils" />
+<section id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h3>
+<p><strong>Global state:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">extern</span><span class="w"> </span><span class="n">DeviceChangeCallback</span><span class="w"> </span><span class="n">g_device_callback</span><span class="p">;</span><span class="w">  </span><span class="c1">// User callback function</span>
+</span><span data-line="2"><span class="k">extern</span><span class="w"> </span><span class="n">HWND</span><span class="w"> </span><span class="n">g_notification_window</span><span class="p">;</span><span class="w">              </span><span class="c1">// Message-only window handle</span>
+</span><span data-line="3"><span class="k">extern</span><span class="w"> </span><span class="n">HDEVNOTIFY</span><span class="w"> </span><span class="n">g_device_notify</span><span class="p">;</span><span class="w">              </span><span class="c1">// Device notification handle</span>
+</span></pre></div>
+</div>
+<p>System uses hidden message-only window to receive <code class="docutils literal notranslate"><span class="pre">WM_DEVICECHANGE</span></code> notifications from Windows. Single-instance design — only one callback can be registered at a time.</p>
+</section>
+<hr class="docutils" />
+<section id="device-notification-wndproc">
+<h3>device_notification_wndproc<a class="headerlink" href="#device-notification-wndproc" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">LRESULT</span><span class="w"> </span><span class="n">CALLBACK</span><span class="w"> </span><span class="n">device_notification_wndproc</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">,</span><span class="w"> </span><span class="n">UINT</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">WPARAM</span><span class="w"> </span><span class="n">wParam</span><span class="p">,</span><span class="w"> </span><span class="n">LPARAM</span><span class="w"> </span><span class="n">lParam</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Window procedure processing device change messages.</p>
+<p><strong>Implementation details:</strong></p>
+<ol class="arabic simple">
+<li><p>Filters for <code class="docutils literal notranslate"><span class="pre">msg</span> <span class="pre">==</span> <span class="pre">WM_DEVICECHANGE</span></code> only</p></li>
+<li><p>Checks <code class="docutils literal notranslate"><span class="pre">wParam</span></code> for <code class="docutils literal notranslate"><span class="pre">DBT_DEVICEARRIVAL</span></code> (device connected) or <code class="docutils literal notranslate"><span class="pre">DBT_DEVICEREMOVECOMPLETE</span></code> (device disconnected)</p></li>
+<li><p>Verifies <code class="docutils literal notranslate"><span class="pre">lParam</span></code> is <code class="docutils literal notranslate"><span class="pre">DEV_BROADCAST_DEVICEINTERFACE</span></code> type</p></li>
+<li><p>Extracts <code class="docutils literal notranslate"><span class="pre">dbcc_name</span></code> (wide string device path like <code class="docutils literal notranslate"><span class="pre">\\?\usb#vid_046d&amp;pid_0825#...</span></code>)</p></li>
+<li><p>Logs event: <code class="docutils literal notranslate"><span class="pre">&quot;Device</span> <span class="pre">added:</span> <span class="pre">...&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Device</span> <span class="pre">removed:</span> <span class="pre">...&quot;</span></code></p></li>
+<li><p>Invokes <code class="docutils literal notranslate"><span class="pre">g_device_callback(device_added,</span> <span class="pre">device_path)</span></code> wrapped in try/catch</p></li>
+<li><p>Catches and logs callback exceptions to prevent window procedure crash</p></li>
+<li><p>Falls through to <code class="docutils literal notranslate"><span class="pre">DefWindowProc()</span></code> for all messages</p></li>
+</ol>
+<p><strong>Thread safety:</strong> Callback invoked synchronously on Windows message thread. User must handle thread synchronization.</p>
+</section>
+<hr class="docutils" />
+<section id="helper-functions">
+<h3>Helper Functions<a class="headerlink" href="#helper-functions" title="Link to this heading">¶</a></h3>
+<p><strong>register_notification_window_class:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">register_notification_window_class</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Registers <code class="docutils literal notranslate"><span class="pre">WNDCLASSW</span></code> with:</p>
+<ul class="simple">
+<li><p>Class name: <code class="docutils literal notranslate"><span class="pre">L&quot;DuvcDeviceNotificationWindow&quot;</span></code></p></li>
+<li><p>Window procedure: <code class="docutils literal notranslate"><span class="pre">device_notification_wndproc</span></code></p></li>
+<li><p>Module handle: <code class="docutils literal notranslate"><span class="pre">GetModuleHandle(nullptr)</span></code></p></li>
+</ul>
+<p>Ignores <code class="docutils literal notranslate"><span class="pre">ERROR_CLASS_ALREADY_EXISTS</span></code> to allow multiple registration attempts. Returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on other errors.</p>
+<p><strong>create_notification_window:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">HWND</span><span class="w"> </span><span class="nf">create_notification_window</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Creates invisible message-only window:</p>
+<ul class="simple">
+<li><p>Style: 0 (no WS_VISIBLE)</p></li>
+<li><p>Position/size: 0, 0, 0, 0 (hidden)</p></li>
+<li><p>Parent: <code class="docutils literal notranslate"><span class="pre">HWND_MESSAGE</span></code> (message-only, no visual presence)</p></li>
+<li><p>Title: <code class="docutils literal notranslate"><span class="pre">L&quot;duvc-ctl</span> <span class="pre">Device</span> <span class="pre">Monitor&quot;</span></code> (for debugging only)</p></li>
+</ul>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> on failure. Window receives no user input, only system notifications.</p>
+<p><strong>register_device_notifications:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">HDEVNOTIFY</span><span class="w"> </span><span class="nf">register_device_notifications</span><span class="p">(</span><span class="n">HWND</span><span class="w"> </span><span class="n">hwnd</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Registers window for device interface notifications:</p>
+<ul class="simple">
+<li><p>Populates <code class="docutils literal notranslate"><span class="pre">DEV_BROADCAST_DEVICEINTERFACE</span></code> filter</p></li>
+<li><p>Sets <code class="docutils literal notranslate"><span class="pre">dbcc_classguid</span> <span class="pre">=</span> <span class="pre">CLSID_VideoInputDeviceCategory</span></code> (video capture devices only)</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">RegisterDeviceNotification(hwnd,</span> <span class="pre">&amp;filter,</span> <span class="pre">DEVICE_NOTIFY_WINDOW_HANDLE)</span></code></p></li>
+<li><p>Logs success/failure with <code class="docutils literal notranslate"><span class="pre">DUVC_LOG_INFO</span></code> / <code class="docutils literal notranslate"><span class="pre">DUVC_LOG_ERROR</span></code></p></li>
+</ul>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> on failure. Only video input devices (cameras, capture cards) trigger notifications.</p>
+</section>
+<hr class="docutils" />
+<section id="public-api">
+<h3>Public API<a class="headerlink" href="#public-api" title="Link to this heading">¶</a></h3>
+<p><strong>register_device_change_callback:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">register_device_change_callback</span><span class="p">(</span><span class="n">DeviceChangeCallback</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Initializes hot-plug monitoring. <strong>Single-instance only</strong> — re-registration logs warning and returns early.</p>
+<p><strong>Execution flow:</strong></p>
+<ol class="arabic simple">
+<li><p>Check if <code class="docutils literal notranslate"><span class="pre">g_notification_window</span></code> already exists → log warning, return</p></li>
+<li><p>Store <code class="docutils literal notranslate"><span class="pre">callback</span></code> in <code class="docutils literal notranslate"><span class="pre">g_device_callback</span></code></p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">create_notification_window()</span></code> → <code class="docutils literal notranslate"><span class="pre">g_notification_window</span></code></p></li>
+<li><p>On failure: null <code class="docutils literal notranslate"><span class="pre">g_device_callback</span></code>, return</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">register_device_notifications(g_notification_window)</span></code> → <code class="docutils literal notranslate"><span class="pre">g_device_notify</span></code></p></li>
+<li><p>On failure: <code class="docutils literal notranslate"><span class="pre">DestroyWindow()</span></code>, null globals, return</p></li>
+<li><p>Log <code class="docutils literal notranslate"><span class="pre">&quot;Device</span> <span class="pre">change</span> <span class="pre">monitoring</span> <span class="pre">started&quot;</span></code></p></li>
+</ol>
+<p><strong>Cleanup on failure:</strong> Automatically destroys window and clears state if registration fails.</p>
+<p><strong>unregister_device_change_callback:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">unregister_device_change_callback</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Stops monitoring and cleans up resources:</p>
+<ol class="arabic simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">g_device_notify</span></code>: <code class="docutils literal notranslate"><span class="pre">UnregisterDeviceNotification()</span></code>, null it, log <code class="docutils literal notranslate"><span class="pre">&quot;Unregistered</span> <span class="pre">device</span> <span class="pre">notifications&quot;</span></code></p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">g_notification_window</span></code>: <code class="docutils literal notranslate"><span class="pre">DestroyWindow()</span></code>, null it, log <code class="docutils literal notranslate"><span class="pre">&quot;Destroyed</span> <span class="pre">notification</span> <span class="pre">window&quot;</span></code></p></li>
+<li><p>Null <code class="docutils literal notranslate"><span class="pre">g_device_callback</span></code></p></li>
+<li><p>Log <code class="docutils literal notranslate"><span class="pre">&quot;Device</span> <span class="pre">change</span> <span class="pre">monitoring</span> <span class="pre">stopped&quot;</span></code></p></li>
+</ol>
+<p><strong>Idempotent:</strong> Safe to call multiple times. Checks null before cleanup operations.</p>
+</section>
+<hr class="docutils" />
+<section id="callback-contract">
+<h3>Callback Contract<a class="headerlink" href="#callback-contract" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">using</span><span class="w"> </span><span class="n">DeviceChangeCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">device_added</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device_path</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_added</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code> for <code class="docutils literal notranslate"><span class="pre">DBT_DEVICEARRIVAL</span></code>, <code class="docutils literal notranslate"><span class="pre">false</span></code> for <code class="docutils literal notranslate"><span class="pre">DBT_DEVICEREMOVECOMPLETE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_path</span></code>: Raw Windows device path (wide string)</p></li>
+</ul>
+<p><strong>Thread context:</strong> Called synchronously on Windows message thread. GUI apps have message loop by default; console apps must call <code class="docutils literal notranslate"><span class="pre">process_pending_device_events()</span></code> periodically (from Section 2.1).</p>
+<p><strong>Exception handling:</strong> Exceptions caught and logged; do not propagate to Windows.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="factory-implementation">
+<h2>6.6 Factory Implementation<a class="headerlink" href="#factory-implementation" title="Link to this heading">¶</a></h2>
+<p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">src/platform/factory.cpp</span></code></p>
+<p>Platform abstraction layer factory. Instantiates platform-specific implementations at runtime.</p>
+<hr class="docutils" />
+<section id="windowsplatforminterface">
+<h3>WindowsPlatformInterface<a class="headerlink" href="#windowsplatforminterface" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">WindowsPlatformInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IPlatformInterface</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">create_connection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Windows DirectShow implementation of <code class="docutils literal notranslate"><span class="pre">IPlatformInterface</span></code>. <strong>Defined locally in factory.cpp</strong> — not exposed in public headers.</p>
+<hr class="docutils" />
+<p><strong>list_devices:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="n">detail</span><span class="o">::</span><span class="n">DirectShowEnumerator</span><span class="w"> </span><span class="n">enumerator</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enumerator</span><span class="p">.</span><span class="n">enumerate_devices</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">devices</span><span class="p">));</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">SystemError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Creates temporary <code class="docutils literal notranslate"><span class="pre">DirectShowEnumerator</span></code> (from <code class="docutils literal notranslate"><span class="pre">directshow_impl.cpp</span></code>), calls <code class="docutils literal notranslate"><span class="pre">enumerate_devices()</span></code>, wraps result in <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code>. Catches COM initialization failures, DirectShow errors, and converts to <code class="docutils literal notranslate"><span class="pre">ErrorCode::SystemError</span></code>.</p>
+<p><strong>is_device_connected:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="n">detail</span><span class="o">::</span><span class="n">DirectShowEnumerator</span><span class="w"> </span><span class="n">enumerator</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">enumerator</span><span class="p">.</span><span class="n">is_device_available</span><span class="p">(</span><span class="n">device</span><span class="p">));</span>
+</span><span data-line="5"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">SystemError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="7"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Creates temporary enumerator, checks if device exists in current DirectShow device list. Returns <code class="docutils literal notranslate"><span class="pre">false</span></code> if not found (not an error), <code class="docutils literal notranslate"><span class="pre">Err</span></code> on system failure.</p>
+<p><strong>create_connection:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">create_connection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">detail</span><span class="o">::</span><span class="n">create_directshow_connection</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">connection</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="6"><span class="w">                </span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">DeviceNotFound</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to create device connection&quot;</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="8"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">connection</span><span class="p">));</span>
+</span><span data-line="9"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">SystemError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="12"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Calls <code class="docutils literal notranslate"><span class="pre">detail::create_directshow_connection(device)</span></code> (defined in <code class="docutils literal notranslate"><span class="pre">directshow_impl.cpp</span></code>) to bind to device via DirectShow. Returns <code class="docutils literal notranslate"><span class="pre">Err(DeviceNotFound)</span></code> if <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> returned (device removed between list and connect), <code class="docutils literal notranslate"><span class="pre">Err(SystemError)</span></code> on exceptions.</p>
+</section>
+<hr class="docutils" />
+<section id="create-platform-interface">
+<h3>create_platform_interface<a class="headerlink" href="#create-platform-interface" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IPlatformInterface</span><span class="o">&gt;</span><span class="w"> </span><span class="n">create_platform_interface</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="cp">#ifdef _WIN32</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">WindowsPlatformInterface</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="cp">#else</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="cp">#endif</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Factory function for platform-specific implementation. Compile-time selection via <code class="docutils literal notranslate"><span class="pre">#ifdef</span></code>.</p>
+<p><strong>Windows:</strong> Returns <code class="docutils literal notranslate"><span class="pre">WindowsPlatformInterface</span></code> wrapping DirectShow APIs.</p>
+<p><strong>Non-Windows platforms:</strong> Returns <code class="docutils literal notranslate"><span class="pre">nullptr</span></code>. Public API functions (in <code class="docutils literal notranslate"><span class="pre">camera.cpp</span></code>, <code class="docutils literal notranslate"><span class="pre">device.cpp</span></code>) check for null and return <code class="docutils literal notranslate"><span class="pre">Err(Unsupported)</span></code> with message <code class="docutils literal notranslate"><span class="pre">&quot;Platform</span> <span class="pre">not</span> <span class="pre">supported&quot;</span></code>.</p>
+<p><strong>Future platforms:</strong> macOS/Linux support would add <code class="docutils literal notranslate"><span class="pre">#elif</span> <span class="pre">__APPLE__</span></code> / <code class="docutils literal notranslate"><span class="pre">#elif</span> <span class="pre">__linux__</span></code> branches with AVFoundation/V4L2 implementations.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="05_vendor-specific-extensions.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">5. Vendor-Specific Extensions</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="07_property-reference-details.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">7. Property Reference &amp; Details</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

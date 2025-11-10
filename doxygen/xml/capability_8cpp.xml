@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="capability_8cpp" kind="file" language="C++">
+    <compoundname>capability.cpp</compoundname>
+    <includes refid="camera_8h" local="no">duvc-ctl/core/camera.h</includes>
+    <includes refid="capability_8h" local="no">duvc-ctl/core/capability.h</includes>
+    <includes refid="device_8h" local="no">duvc-ctl/core/device.h</includes>
+    <includes refid="result_8h" local="no">duvc-ctl/core/result.h</includes>
+    <includes refid="logging_8h" local="no">duvc-ctl/utils/logging.h</includes>
+    <includes refid="string__conversion_8h" local="no">duvc-ctl/utils/string_conversion.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/camera.h</label>
+        <link refid="camera_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>duvc-ctl/core/capability.h</label>
+        <link refid="capability_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>duvc-ctl/core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>duvc-ctl/utils/logging.h</label>
+        <link refid="logging_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>duvc-ctl/utils/string_conversion.h</label>
+        <link refid="string__conversion_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>core/capability.cpp</label>
+        <link refid="capability_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>functional</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="10">
+        <label>memory</label>
+      </node>
+      <node id="5">
+        <label>optional</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>system_error</label>
+      </node>
+      <node id="12">
+        <label>unordered_map</label>
+      </node>
+      <node id="8">
+        <label>variant</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Device capability detection implementation using Camera API. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="camera_8h" kindref="compound">duvc-ctl/core/camera.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="capability_8h" kindref="compound">duvc-ctl/core/capability.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="device_8h" kindref="compound">duvc-ctl/core/device.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="result_8h" kindref="compound">duvc-ctl/core/result.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="logging_8h" kindref="compound">duvc-ctl/utils/logging.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="string__conversion_8h" kindref="compound">duvc-ctl/utils/string_conversion.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Static<sp/>empty<sp/>capability<sp/>for<sp/>unsupported<sp/>properties</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PropertyCapability<sp/>DeviceCapabilities::empty_capability_<sp/>=<sp/>{};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="classduvc_1_1DeviceCapabilities_1a1275f0a40ef3c3462236e21de5feb0ee" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1DeviceCapabilities_1a1275f0a40ef3c3462236e21de5feb0ee" kindref="member">DeviceCapabilities::DeviceCapabilities</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>device_(device),<sp/>device_accessible_(<ref refid="classduvc_1_1Result" kindref="compound">false</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>device_accessible_<sp/>=<sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(device_);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(device_accessible_)<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>scan_capabilities();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DeviceCapabilities::scan_capabilities()<sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>camera_capabilities_.clear();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>video_capabilities_.clear();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>camera<sp/>instance<sp/>for<sp/>property<sp/>access</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">camera</ref>(device_);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">camera</ref>.is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="api_8h_1a86a40c6df6776ad27d30090b6e45a299" kindref="member">DUVC_LOG_WARNING</ref>(</highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>accessible<sp/>during<sp/>capability<sp/>scan&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>device_accessible_<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Scan<sp/>all<sp/>camera<sp/>properties</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;=<sp/>static_cast&lt;int&gt;(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a5331717d33d4e634fd3c5ec209f475d2" kindref="member">CamProp::Lamp</ref>);<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/>prop<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(i);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>PropertyCapability<sp/>capability;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>get<sp/>range<sp/>-<sp/>if<sp/>successful,<sp/>property<sp/>is<sp/>supported</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>range_result<sp/>=<sp/>camera.get_range(prop);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(range_result.is_ok())<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>capability.supported<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>capability.range<sp/>=<sp/>range_result.<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>get<sp/>current<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>current_result<sp/>=<sp/>camera.get(prop);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_result.is_ok())<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capability.current<sp/>=<sp/>current_result.<ref refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" kindref="member">value</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="api_8h_1a86a40c6df6776ad27d30090b6e45a299" kindref="member">DUVC_LOG_WARNING</ref>(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>current<sp/>camera<sp/>property<sp/>value<sp/>for<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(<ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(prop)));</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>camera_capabilities_[prop]<sp/>=<sp/>capability;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Scan<sp/>all<sp/>video<sp/>properties</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;=<sp/>static_cast&lt;int&gt;(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa35d72fa7d84f4ae67d705373d1d44b88" kindref="member">VidProp::Gain</ref>);<sp/>++i)<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/>prop<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(i);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>PropertyCapability<sp/>capability;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>get<sp/>range<sp/>-<sp/>if<sp/>successful,<sp/>property<sp/>is<sp/>supported</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>range_result<sp/>=<sp/>camera.get_range(prop);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(range_result.is_ok())<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>capability.supported<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>capability.range<sp/>=<sp/>range_result.value();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Try<sp/>to<sp/>get<sp/>current<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>current_result<sp/>=<sp/>camera.get(prop);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_result.is_ok())<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capability.current<sp/>=<sp/>current_result.value();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="api_8h_1a86a40c6df6776ad27d30090b6e45a299" kindref="member">DUVC_LOG_WARNING</ref>(</highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>current<sp/>video<sp/>property<sp/>value<sp/>for<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string(<ref refid="namespaceduvc_1a8556fd02a649101843e7712e638cc0cb" kindref="member">to_string</ref>(prop)));</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>video_capabilities_[prop]<sp/>=<sp/>capability;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PropertyCapability<sp/>&amp;</highlight></codeline>
+<codeline lineno="89" refid="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" kindref="member">DeviceCapabilities::get_camera_capability</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref><sp/>=<sp/>camera_capabilities_.find(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref><sp/>!=<sp/>camera_capabilities_.end()<sp/>?<sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref>-&gt;second<sp/>:<sp/>empty_capability_;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref><sp/>&amp;</highlight></codeline>
+<codeline lineno="95" refid="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" kindref="member">DeviceCapabilities::get_video_capability</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref><sp/>=<sp/>video_capabilities_.find(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref><sp/>!=<sp/>video_capabilities_.end()<sp/>?<sp/><ref refid="classduvc_1_1Result" kindref="compound">it</ref>-&gt;second<sp/>:<sp/>empty_capability_;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="classduvc_1_1DeviceCapabilities_1a9c71b522d0b8b8ef2317cd2f7840f544" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceCapabilities_1a9c71b522d0b8b8ef2317cd2f7840f544" kindref="member">DeviceCapabilities::supports_camera_property</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" kindref="member">get_camera_capability</ref>(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>).supported;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classduvc_1_1DeviceCapabilities_1a39b5186056f71f5f16ec4654222bc5c7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceCapabilities_1a39b5186056f71f5f16ec4654222bc5c7" kindref="member">DeviceCapabilities::supports_video_property</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" kindref="member">get_video_capability</ref>(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>).supported;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classduvc_1_1DeviceCapabilities_1a1ca32d6889cfb93a57200e01851a98fd" refkind="member"><highlight class="normal">std::vector&lt;CamProp&gt;<sp/><ref refid="classduvc_1_1DeviceCapabilities_1a1ca32d6889cfb93a57200e01851a98fd" kindref="member">DeviceCapabilities::supported_camera_properties</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>std::vector&lt;CamProp&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;pair<sp/>:<sp/>camera_capabilities_)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pair.second.supported)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>.push_back(pair.first);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classduvc_1_1DeviceCapabilities_1aa5377968e942487f71066a54663d15cb" refkind="member"><highlight class="normal">std::vector&lt;VidProp&gt;<sp/><ref refid="classduvc_1_1DeviceCapabilities_1aa5377968e942487f71066a54663d15cb" kindref="member">DeviceCapabilities::supported_video_properties</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>std::vector&lt;VidProp&gt;<sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;pair<sp/>:<sp/>video_capabilities_)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pair.second.supported)<sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>.push_back(pair.first);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">props</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="classduvc_1_1DeviceCapabilities_1a736006fec61636a4326e29373d172a44" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="classduvc_1_1DeviceCapabilities_1a736006fec61636a4326e29373d172a44" kindref="member">DeviceCapabilities::refresh</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/>device_accessible_<sp/>=<sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(device_);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!device_accessible_)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/>camera_capabilities_.clear();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>video_capabilities_.clear();</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/>scan_capabilities();</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;DeviceCapabilities&gt;</ref><sp/><ref refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" kindref="member">get_device_capabilities</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device)<sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!device.<ref refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" kindref="member">is_valid</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;DeviceCapabilities&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a253ca7dd096ee0956cccee4d376cab8b" kindref="member">ErrorCode::InvalidArgument</ref>,</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>device&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1DeviceCapabilities" kindref="compound">DeviceCapabilities</ref><sp/>capabilities(device);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!capabilities.<ref refid="classduvc_1_1DeviceCapabilities_1ac5d276e943fa0b7ed0c581ffe0309851" kindref="member">is_device_accessible</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;DeviceCapabilities&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>accessible&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(std::move(capabilities));</highlight></codeline>
+<codeline lineno="153"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="namespaceduvc_1a0af4366057ae8014aee4989ab3fd7671" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;DeviceCapabilities&gt;</ref><sp/><ref refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" kindref="member">get_device_capabilities</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">device_index &lt; 0 || device_index &gt;</ref>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">devices</ref>.size()))<sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;DeviceCapabilities&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>device<sp/>index&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" kindref="member">get_device_capabilities</ref>(<ref refid="classduvc_1_1Result" kindref="compound">devices</ref>[<ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>]);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/capability.cpp"/>
+  </compounddef>
+</doxygen>

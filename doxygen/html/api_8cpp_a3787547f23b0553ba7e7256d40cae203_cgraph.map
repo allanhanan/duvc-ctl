@@ -1,0 +1,5 @@
+<map id="duvc_device_is_valid" name="duvc_device_is_valid">
+<area shape="rect" id="Node000001" title="Check if device is valid." alt="" coords="5,5,151,32"/>
+<area shape="rect" id="Node000002" href="$structduvc_1_1Device.html#ad3e80d9ad1a9da04ede1424ff8765050" title="Check if device has valid identifying information." alt="" coords="199,5,349,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,16,183,16,183,21,151,21"/>
+</map>

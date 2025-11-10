@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="ks__properties_8h" kind="file" language="C++">
+    <compoundname>ks_properties.h</compoundname>
+    <includes refid="result_8h" local="no">duvc-ctl/core/result.h</includes>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <includes local="no">duvc-ctl/detail/com_helpers.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">windows.h</includes>
+    <includedby refid="ks__properties_8cpp" local="no">platform/windows/ks_properties.cpp</includedby>
+    <includedby refid="logitech_8cpp" local="no">vendor/logitech.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>platform/windows/ks_properties.h</label>
+        <link refid="ks__properties_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>system_error</label>
+      </node>
+      <node id="7">
+        <label>variant</label>
+      </node>
+      <node id="10">
+        <label>vector</label>
+      </node>
+      <node id="11">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>platform/windows/ks_properties.h</label>
+        <link refid="ks__properties_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>platform/windows/ks_properties.cpp</label>
+        <link refid="ks__properties_8cpp"/>
+      </node>
+      <node id="3">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classduvc_1_1KsPropertySet" prot="public">duvc::KsPropertySet</innerclass>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>IKsPropertySet wrapper for vendor properties. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="result_8h" kindref="compound">duvc-ctl/core/result.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">duvc-ctl/core/types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;duvc-ctl/detail/com_helpers.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">IKsPropertySet;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="classduvc_1_1KsPropertySet" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1KsPropertySet_1aac9242599b92d9f1880f63f2256c72e3" kindref="member">KsPropertySet</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classduvc_1_1KsPropertySet_1ab94161b426b0932547a1107675bdcfed" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1KsPropertySet_1ab94161b426b0932547a1107675bdcfed" kindref="member">~KsPropertySet</ref>();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Non-copyable<sp/>but<sp/>movable</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classduvc_1_1KsPropertySet_1add79634e7a5a421ca338eaa087e47264" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1KsPropertySet_1add79634e7a5a421ca338eaa087e47264" kindref="member">KsPropertySet</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36" refid="classduvc_1_1KsPropertySet_1a6825c6cbfcf0a3606e301366df6bd28e" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;<ref refid="classduvc_1_1KsPropertySet_1a6825c6cbfcf0a3606e301366df6bd28e" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37" refid="classduvc_1_1KsPropertySet_1aca2a619f9be44c070b2bbe02b5d64f86" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1KsPropertySet_1aca2a619f9be44c070b2bbe02b5d64f86" kindref="member">KsPropertySet</ref>(<ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;&amp;)<sp/><ref refid="classduvc_1_1Result" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="38" refid="classduvc_1_1KsPropertySet_1a66c4397160e08de136865c16390e0564" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">operator</ref>=(<ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref><sp/>&amp;&amp;)<sp/><ref refid="classduvc_1_1Result" kindref="compound">noexcept</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" kindref="member">is_valid</ref>()<sp/><ref refid="classduvc_1_1Result" kindref="compound">const</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;<ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref>&gt;<sp/><ref refid="classduvc_1_1KsPropertySet_1a251aad5cfe01da2b5e380d4697a94f2e" kindref="member">query_support</ref>(<ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>property_id);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;std::vector&lt;<ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref>&gt;&gt;<sp/><ref refid="classduvc_1_1KsPropertySet_1a8c1795034a9f6851db82a1232cd897eb" kindref="member">get_property</ref>(<ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>property_id);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="classduvc_1_1KsPropertySet_1a33fa8fc7b6530e4c1c97d5b3bc8053b7" kindref="member">set_property</ref>(<ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;property_set,<sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>property_id,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/>std::vector&lt;<ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref>&gt;<sp/>&amp;data);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">template</ref><sp/>&lt;<ref refid="classduvc_1_1Result" kindref="compound">typename</ref><sp/>T&gt;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;T&gt;<sp/><ref refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" kindref="member">get_property_typed</ref>(<ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;property_set,<sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>property_id);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">template</ref><sp/>&lt;<ref refid="classduvc_1_1Result" kindref="compound">typename</ref><sp/>T&gt;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">&gt;<sp/><ref refid="classduvc_1_1KsPropertySet_1a2a59e63375e5b5f0fb37d39e3aa5b30c" kindref="member">set_property_typed</ref>(<ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/>&amp;property_set,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>property_id,<sp/><ref refid="classduvc_1_1Result" kindref="compound">const</ref><sp/>T<sp/>&amp;value);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">private</ref>:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>detail::<ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref>&lt;<ref refid="classduvc_1_1Result" kindref="compound">IKsPropertySet</ref>&gt;<sp/>property_set_;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="platform/windows/ks_properties.h"/>
+  </compounddef>
+</doxygen>

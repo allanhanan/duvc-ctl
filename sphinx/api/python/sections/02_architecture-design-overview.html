@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2. Architecture &amp; Design Overview - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="3. Pythonic API - CameraController Class" href="03_pythonic-api-cameracontroller-class.html" /><link rel="prev" title="1. Quick Start &amp; Installation" href="01_quick-start-installation.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="2. Architecture &amp; Design Overview"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">2. Architecture &amp; Design Overview</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="architecture-design-overview">
+<h1>2. Architecture &amp; Design Overview<a class="headerlink" href="#architecture-design-overview" title="Link to this heading">¶</a></h1>
+<section id="two-tier-architecture">
+<h2>2.1 Two-Tier Architecture<a class="headerlink" href="#two-tier-architecture" title="Link to this heading">¶</a></h2>
+<p>duvc-ctl uses a layered design with two distinct Python APIs sitting on top of a shared C++ core. Both APIs access the same underlying DirectShow functionality but present different models to the user.</p>
+<section id="high-level-overview">
+<h3>High-level overview<a class="headerlink" href="#high-level-overview" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">┌─────────────────────────────────────────────────┐
+</span><span data-line="2">│          Python User Code                       │
+</span><span data-line="3">├──────────────────────┬──────────────────────────┤
+</span><span data-line="4">│ Pythonic API         │ Result-Based API         │
+</span><span data-line="5">│ (CameraController)   │ (open_camera, Result&lt;T&gt;)│
+</span><span data-line="6">├──────────────────────┴──────────────────────────┤
+</span><span data-line="7">│   pybind11 Python Bindings                      │
+</span><span data-line="8">├─────────────────────────────────────────────────┤
+</span><span data-line="9">│        C++ Core Library (duvc-ctl)              │
+</span><span data-line="10">│  (Device enumeration, property access, etc.)   │
+</span><span data-line="11">├─────────────────────────────────────────────────┤
+</span><span data-line="12">│      Windows DirectShow &amp; COM                   │
+</span><span data-line="13">└─────────────────────────────────────────────────┘
+</span></pre></div>
+</div>
+<p>Both Python APIs call the same C++ code. The difference is in how they handle device lifecycle, errors, and API design.</p>
+</section>
+<section id="pythonic-api-exception-based">
+<h3>Pythonic API (Exception-based)<a class="headerlink" href="#pythonic-api-exception-based" title="Link to this heading">¶</a></h3>
+<p>The Pythonic API, implemented in <code class="docutils literal notranslate"><span class="pre">CameraController</span></code>, wraps the C++ core and adds Python conventions:</p>
+<ul class="simple">
+<li><p><strong>Error handling</strong>: Exceptions (<code class="docutils literal notranslate"><span class="pre">DuvcError</span></code> and subclasses) are raised for failures. Callers use <code class="docutils literal notranslate"><span class="pre">try-except</span></code> blocks.</p></li>
+<li><p><strong>Device management</strong>: Automatic device selection (first camera, or by name). Connection/disconnection handled via context manager (<code class="docutils literal notranslate"><span class="pre">with</span></code> statement).</p></li>
+<li><p><strong>API style</strong>: Property-based access (<code class="docutils literal notranslate"><span class="pre">cam.brightness</span> <span class="pre">=</span> <span class="pre">75</span></code>) and method calls (<code class="docutils literal notranslate"><span class="pre">cam.pan_relative(15)</span></code>).</p></li>
+<li><p><strong>State</strong>: The controller maintains internal state—the active device, connection handle, property cache—so the user doesn’t think about it.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="5">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">80</span>
+</span><span data-line="6">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">cam</span><span class="o">.</span><span class="n">brightness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot set brightness: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>When to use</strong>: Learning, scripting, simple applications where you want minimal boilerplate.</p>
+</section>
+<section id="result-based-api-explicit-error-handling">
+<h3>Result-Based API (Explicit error handling)<a class="headerlink" href="#result-based-api-explicit-error-handling" title="Link to this heading">¶</a></h3>
+<p>The Result-Based API, in the <code class="docutils literal notranslate"><span class="pre">init.py</span></code> module, provides low-level control without exceptions:</p>
+<ul class="simple">
+<li><p><strong>Error handling</strong>: Functions return <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> types. Callers check <code class="docutils literal notranslate"><span class="pre">is_ok()</span></code> or <code class="docutils literal notranslate"><span class="pre">is_error()</span></code> and access the value or error explicitly.</p></li>
+<li><p><strong>Device management</strong>: Explicit. You pass a <code class="docutils literal notranslate"><span class="pre">Device</span></code> or device index to each function.</p></li>
+<li><p><strong>API style</strong>: Functional (<code class="docutils literal notranslate"><span class="pre">open_camera(device)</span></code>, <code class="docutils literal notranslate"><span class="pre">camera.get(property)</span></code> returns <code class="docutils literal notranslate"><span class="pre">Result&lt;PropSetting&gt;</span></code>).</p></li>
+<li><p><strong>State</strong>: Minimal and explicit. You own the Device and Camera objects.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">if</span> <span class="ow">not</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No devices found&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="8">    <span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="11">        <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="12">        <span class="n">brightness_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="13">        
+</span><span data-line="14">        <span class="k">if</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="15">            <span class="n">setting</span> <span class="o">=</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="16">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="17">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="18">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">brightness_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="19">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="20">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">camera_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>When to use</strong>: Production code, detailed error recovery, systems that need to handle failures gracefully without exception overhead.</p>
+</section>
+<section id="design-rationale">
+<h3>Design rationale<a class="headerlink" href="#design-rationale" title="Link to this heading">¶</a></h3>
+<p><strong>Two APIs instead of one?</strong></p>
+<p>The Pythonic API is easier to use for most cases. But production systems often need explicit error handling and minimal overhead. Rather than compromise with a single API, we provide both:</p>
+<ul class="simple">
+<li><p>Beginners and scripts use the simpler Pythonic API.</p></li>
+<li><p>Production code that needs fine-grained control uses the Result-Based API.</p></li>
+<li><p>Both use the same C++ backend, so there’s no code duplication in the core logic.</p></li>
+</ul>
+<p><strong>Why exceptions vs. results?</strong></p>
+<ul class="simple">
+<li><p><strong>Pythonic API (exceptions)</strong>: Python developers expect exceptions. They’re idiomatic. Errors are detected early (at the point of failure) and propagate up without explicit checks.</p></li>
+<li><p><strong>Result-Based API (results)</strong>: No exceptions mean no exception-throwing overhead. Each operation is explicit—you see exactly where errors are handled. This is valuable in production systems where you need to recover from failures gracefully.</p></li>
+</ul>
+</section>
+<section id="c-bindings-layer-pybind11">
+<h3>C++ bindings layer (pybind11)<a class="headerlink" href="#c-bindings-layer-pybind11" title="Link to this heading">¶</a></h3>
+<p>The bridge between Python and C++ is pybind11. It handles:</p>
+<ul class="simple">
+<li><p>Type conversion (Python <code class="docutils literal notranslate"><span class="pre">int</span></code> ↔ C++ <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, Python <code class="docutils literal notranslate"><span class="pre">str</span></code> ↔ C++ <code class="docutils literal notranslate"><span class="pre">std::string</span></code>, etc.)</p></li>
+<li><p>Lifetime management (Python garbage collection ↔ C++ RAII and reference counting)</p></li>
+<li><p>Exception translation (C++ exceptions to Python exceptions in the Pythonic API)</p></li>
+<li><p>Module organization (separate namespaces for Pythonic and Result-based APIs)</p></li>
+</ul>
+<p>The Result-Based API types (<code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">Device</span></code>, <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code>, etc.) are bound directly from C++ to Python. The Pythonic API (CameraController) is written entirely in Python and uses the Result-based bindings internally.</p>
+</section>
+<section id="thread-safety">
+<h3>Thread safety<a class="headerlink" href="#thread-safety" title="Link to this heading">¶</a></h3>
+<p>Both APIs are <strong>thread-safe</strong> at the module level, but individual devices are <strong>not thread-safe</strong>:</p>
+<ul class="simple">
+<li><p>Multiple threads can safely call <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>, open different cameras, etc.</p></li>
+<li><p>If two threads access the same camera (same <code class="docutils literal notranslate"><span class="pre">CameraController</span></code> or <code class="docutils literal notranslate"><span class="pre">Camera</span></code> object), data races can occur. Use a lock or ensure only one thread accesses a camera at a time.</p></li>
+</ul>
+<p>Example of thread-safe usage (different cameras per thread):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">camera_worker</span><span class="p">(</span><span class="n">camera_index</span><span class="p">):</span>
+</span><span data-line="5">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">camera_index</span><span class="p">)</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="6">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="7">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera </span><span class="si">{</span><span class="n">camera_index</span><span class="si">}</span><span class="s2">: brightness set&quot;</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="10"><span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">camera_worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">))]</span>
+</span><span data-line="11"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+</span><span data-line="12">    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span data-line="13"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+</span><span data-line="14">    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p>The C++ core uses a mutex internally to protect shared state (DirectShow device enumeration). Individual camera operations do not hold this mutex long; property get/set operations lock only the minimal necessary time to avoid contention.</p>
+</section>
+<section id="connection-state-machine">
+<h3>Connection state machine<a class="headerlink" href="#connection-state-machine" title="Link to this heading">¶</a></h3>
+<p>A camera connection goes through these states:</p>
+<ol class="arabic simple">
+<li><p><strong>Closed</strong>: No active connection.</p></li>
+<li><p><strong>Opening</strong>: Connecting to the device (transitional).</p></li>
+<li><p><strong>Open</strong>: Connected; properties can be read and written.</p></li>
+<li><p><strong>Closing</strong>: Disconnecting (transitional).</p></li>
+</ol>
+<p>The Pythonic API (<code class="docutils literal notranslate"><span class="pre">CameraController</span></code>) manages these transitions automatically via the context manager. You enter the <code class="docutils literal notranslate"><span class="pre">with</span></code> block → connection opens. You exit the <code class="docutils literal notranslate"><span class="pre">with</span></code> block → connection closes.</p>
+<p>The Result-Based API requires you to manage state explicitly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># Opens connection</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="c1"># Use camera...</span>
+</span><span data-line="5">    <span class="c1"># Connection closes when camera object is destroyed or explicitly closed</span>
+</span></pre></div>
+</div>
+</section>
+<section id="error-propagation">
+<h3>Error propagation<a class="headerlink" href="#error-propagation" title="Link to this heading">¶</a></h3>
+<p><strong>Pythonic API</strong>:</p>
+<ul class="simple">
+<li><p>Errors are raised as exceptions. The exception propagates up the call stack until caught or reaches the top level (where Python prints a traceback).</p></li>
+</ul>
+<p><strong>Result-Based API</strong>:</p>
+<ul class="simple">
+<li><p>Errors are wrapped in the Result type. You check <code class="docutils literal notranslate"><span class="pre">is_ok()</span></code> or <code class="docutils literal notranslate"><span class="pre">is_error()</span></code> and access the error via <code class="docutils literal notranslate"><span class="pre">error()</span></code>. No automatic propagation; you decide how to handle each error.</p></li>
+</ul>
+</section>
+<section id="why-this-design">
+<h3>Why this design?<a class="headerlink" href="#why-this-design" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Separation of concerns</strong>: Pythonic API handles convenience; Result-Based API handles control.</p></li>
+<li><p><strong>Flexibility</strong>: Users pick the API that fits their use case.</p></li>
+<li><p><strong>Performance</strong>: The Result-Based API avoids exception overhead if desired.</p></li>
+<li><p><strong>Production-ready</strong>: Both are suitable for production; the choice is about error handling philosophy.</p></li>
+</ol>
+</section>
+</section>
+<section id="api-comparison-selection">
+<h2>2.2 API Comparison &amp; Selection<a class="headerlink" href="#api-comparison-selection" title="Link to this heading">¶</a></h2>
+<p>This section compares both APIs head-to-head so you can choose the right one for your use case.</p>
+<section id="when-to-use-each-api">
+<h3>When to use each API<a class="headerlink" href="#when-to-use-each-api" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Scenario</p></th>
+<th class="head text-left"><p>Recommended API</p></th>
+<th class="head text-left"><p>Why</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Learning or prototyping</p></td>
+<td class="text-left"><p>Pythonic</p></td>
+<td class="text-left"><p>Fewer lines of code, quick iteration</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Quick script or automation</p></td>
+<td class="text-left"><p>Pythonic</p></td>
+<td class="text-left"><p>Automatic device selection, built-in defaults</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Production application with error handling</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Explicit error checks, no exceptions, full control</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>High-frequency camera control loop</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Lower overhead; no exception throwing</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Handling multiple cameras concurrently</p></td>
+<td class="text-left"><p>Either</p></td>
+<td class="text-left"><p>Both are thread-safe; choose based on error handling preference</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Interactive or CLI application</p></td>
+<td class="text-left"><p>Pythonic</p></td>
+<td class="text-left"><p>Users expect exceptions; easier debugging</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Embedded or headless system</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Explicit error handling fits production patterns</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Real-time or time-critical code</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Predictable performance; no exception overhead</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="detailed-feature-comparison">
+<h3>Detailed feature comparison<a class="headerlink" href="#detailed-feature-comparison" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Pythonic</p></th>
+<th class="head text-left"><p>Result-Based</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Device Selection</strong></p></td>
+<td class="text-left"><p>Automatic (first device or by name)</p></td>
+<td class="text-left"><p>Manual (you pass Device)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Error Handling</strong></p></td>
+<td class="text-left"><p>Exceptions (<code class="docutils literal notranslate"><span class="pre">try-except</span></code>)</p></td>
+<td class="text-left"><p>Result types (<code class="docutils literal notranslate"><span class="pre">is_ok()</span></code> / <code class="docutils literal notranslate"><span class="pre">is_error()</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Property Access</strong></p></td>
+<td class="text-left"><p>Direct (<code class="docutils literal notranslate"><span class="pre">cam.brightness</span> <span class="pre">=</span> <span class="pre">75</span></code>)</p></td>
+<td class="text-left"><p>Method call (<code class="docutils literal notranslate"><span class="pre">camera.set(VidProp.Brightness,</span> <span class="pre">...)</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Code Style</strong></p></td>
+<td class="text-left"><p>Object-oriented</p></td>
+<td class="text-left"><p>Functional</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Boilerplate</strong></p></td>
+<td class="text-left"><p>Minimal</p></td>
+<td class="text-left"><p>More verbose</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Exception Overhead</strong></p></td>
+<td class="text-left"><p>Yes (thrown on error)</p></td>
+<td class="text-left"><p>No (checks Result)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Error Details</strong></p></td>
+<td class="text-left"><p>Exception message + type</p></td>
+<td class="text-left"><p>Error code + detailed description</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Device Lifecycle</strong></p></td>
+<td class="text-left"><p>Context manager (<code class="docutils literal notranslate"><span class="pre">with</span></code>)</p></td>
+<td class="text-left"><p>Manual (you control lifetime)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>State Management</strong></p></td>
+<td class="text-left"><p>Automatic (maintained by controller)</p></td>
+<td class="text-left"><p>Manual (you own state)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Learning Curve</strong></p></td>
+<td class="text-left"><p>Beginner-friendly</p></td>
+<td class="text-left"><p>Moderate</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>IDE Autocomplete</strong></p></td>
+<td class="text-left"><p>Good (Python class)</p></td>
+<td class="text-left"><p>Good (types exported)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Type Hints</strong></p></td>
+<td class="text-left"><p>Yes (CameraController class)</p></td>
+<td class="text-left"><p>Yes (Result<T> and types)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="device-management-lifecycle">
+<h3>Device management lifecycle<a class="headerlink" href="#device-management-lifecycle" title="Link to this heading">¶</a></h3>
+<p>Both APIs handle device discovery, connection, and disconnection, but at different levels.</p>
+<p><strong>Pythonic API lifecycle:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># 1. Discovery (implicit)</span>
+</span><span data-line="4"><span class="c1"># First camera found automatically during construction</span>
+</span><span data-line="5"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="6">    <span class="c1"># 2. Connected</span>
+</span><span data-line="7">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="8">    <span class="c1"># 3. Auto-disconnect on exit</span>
+</span></pre></div>
+</div>
+<p><strong>Result-based API lifecycle:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># 1. Explicit discovery</span>
+</span><span data-line="4"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># 2. Explicit connection</span>
+</span><span data-line="7"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span data-line="8"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="9">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="c1"># 3. Use camera</span>
+</span><span data-line="12">    <span class="n">brightness_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="c1"># 4. Implicit disconnect when camera object is destroyed</span>
+</span></pre></div>
+</div>
+</section>
+<section id="error-handling-strategies">
+<h3>Error handling strategies<a class="headerlink" href="#error-handling-strategies" title="Link to this heading">¶</a></h3>
+<p><strong>Pythonic API (exception-based):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="5">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">999</span>  <span class="c1"># Out of range</span>
+</span><span data-line="6"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">InvalidValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid value: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span><span class="p">:</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Brightness not supported&quot;</span><span class="p">)</span>
+</span><span data-line="10"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No camera found&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Errors interrupt execution; you can’t accidentally ignore them.</p></li>
+<li><p>Idiomatic Python; most libraries use exceptions.</p></li>
+<li><p>Compact code for the happy path.</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Exception handling adds overhead (though typically small).</p></li>
+<li><p>Stack unwinding can complicate debugging in some cases.</p></li>
+</ul>
+<p><strong>Result-based API (explicit):</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">if</span> <span class="ow">not</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No camera found&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="8">    <span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="11">        <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="12">        <span class="n">brightness_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="13">        
+</span><span data-line="14">        <span class="k">if</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="15">            <span class="n">setting</span> <span class="o">=</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="16">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="17">        <span class="k">else</span><span class="p">:</span>
+</span><span data-line="18">            <span class="n">error</span> <span class="o">=</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</span><span data-line="19">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="20">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="21">        <span class="n">error</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span>
+</span><span data-line="22">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to open camera: </span><span class="si">{</span><span class="n">error</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>No hidden control flow; every error is explicit.</p></li>
+<li><p>No exception overhead.</p></li>
+<li><p>Detailed error codes and descriptions available.</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>More boilerplate (more <code class="docutils literal notranslate"><span class="pre">if</span></code> statements).</p></li>
+<li><p>Error handling is mandatory; harder to “forget.”</p></li>
+</ul>
+</section>
+<section id="performance-comparison">
+<h3>Performance comparison<a class="headerlink" href="#performance-comparison" title="Link to this heading">¶</a></h3>
+<p>Both APIs ultimately call the same C++ code, so performance differences are small. However, there are measurable differences in specific scenarios:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>Pythonic</p></th>
+<th class="head text-left"><p>Result-Based</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Single property read (success)</p></td>
+<td class="text-left"><p>~100 µs</p></td>
+<td class="text-left"><p>~95 µs</p></td>
+<td class="text-left"><p>Pythonic has minimal overhead; difference negligible</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Single property read (error path)</p></td>
+<td class="text-left"><p>~200 µs</p></td>
+<td class="text-left"><p>~100 µs</p></td>
+<td class="text-left"><p>Exceptions slow down error handling</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Rapid property reads (1000x)</p></td>
+<td class="text-left"><p>~100 ms</p></td>
+<td class="text-left"><p>~95 ms</p></td>
+<td class="text-left"><p>Exception overhead adds up over many calls</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Device enumeration</p></td>
+<td class="text-left"><p>~10 ms</p></td>
+<td class="text-left"><p>~10 ms</p></td>
+<td class="text-left"><p>Same code path; no difference</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Context manager overhead</p></td>
+<td class="text-left"><p>~5 µs</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>Negligible</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>(These values are estimates and not entirely accurate, timings may differ depending on the system and devices)
+<strong>Practical takeaway</strong>: For most use cases, the performance difference is imperceptible. Only if you’re performing thousands of property operations in a tight loop should you consider the Result-based API for performance.</p>
+</section>
+<section id="trade-offs-summary">
+<h3>Trade-offs summary<a class="headerlink" href="#trade-offs-summary" title="Link to this heading">¶</a></h3>
+<p><strong>Choose Pythonic if</strong>:</p>
+<ul class="simple">
+<li><p>You’re learning or prototyping.</p></li>
+<li><p>Your code is straightforward with few error cases.</p></li>
+<li><p>You like Python idioms and exceptions.</p></li>
+<li><p>You want less boilerplate.</p></li>
+<li><p>Performance is not critical.</p></li>
+</ul>
+<p><strong>Choose Result-based if</strong>:</p>
+<ul class="simple">
+<li><p>You need detailed error recovery logic.</p></li>
+<li><p>You’re building a production system that must handle failures gracefully.</p></li>
+<li><p>You want explicit, predictable control flow (no exception throwing).</p></li>
+<li><p>You’re processing high volumes of property operations.</p></li>
+<li><p>You need to distinguish between different error types programmatically.</p></li>
+<li><p>You prefer functional APIs and explicit error handling.</p></li>
+</ul>
+</section>
+<section id="mixing-both-apis">
+<h3>Mixing both APIs<a class="headerlink" href="#mixing-both-apis" title="Link to this heading">¶</a></h3>
+<p>You can use both APIs in the same application. The Pythonic API’s <code class="docutils literal notranslate"><span class="pre">CameraController</span></code> has a <code class="docutils literal notranslate"><span class="pre">.core</span></code> property that gives you the underlying Result-based <code class="docutils literal notranslate"><span class="pre">Camera</span></code> object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Use Pythonic API</span>
+</span><span data-line="5">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="c1"># Drop down to Result-based API for detailed control</span>
+</span><span data-line="8">    <span class="n">core_camera</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">core</span>
+</span><span data-line="9">    <span class="n">brightness_result</span> <span class="o">=</span> <span class="n">core_camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="k">if</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="12">        <span class="n">setting</span> <span class="o">=</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="13">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current brightness: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>This gives you flexibility: start simple with the Pythonic API, and switch to explicit Result handling when you need more control.</p>
+</section>
+</section>
+<section id="core-design-patterns">
+<h2>2.3 Core Design Patterns<a class="headerlink" href="#core-design-patterns" title="Link to this heading">¶</a></h2>
+<p>This section explains the key design principles that shape duvc-ctl’s architecture, threading model, and internal behavior.</p>
+<section id="resource-ownership-and-raii">
+<h3>Resource ownership and RAII<a class="headerlink" href="#resource-ownership-and-raii" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl follows the <strong>Resource Acquisition Is Initialization (RAII)</strong> principle throughout its C++ core. Every resource (COM objects, device handles, property state) is tied to an object’s lifetime.</p>
+<p><strong>In C++</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">Device</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Device</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* acquire DirectShow resources */</span><span class="w"> </span><span class="p">}</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">Device</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* release DirectShow resources */</span><span class="w"> </span><span class="p">}</span>
+</span><span data-line="5"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">IMFDeviceEnumerator</span><span class="o">*</span><span class="w"> </span><span class="n">enumerator</span><span class="p">;</span><span class="w">  </span><span class="c1">// Owned; freed in destructor</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>When a Device object is destroyed, all associated DirectShow resources are automatically released. This prevents memory leaks and dangling pointers.</p>
+<p><strong>In Python (Pythonic API)</strong>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CameraController</span></code> manages a device lifecycle implicitly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="2">    <span class="c1"># Resources acquired at __enter__</span>
+</span><span data-line="3">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="4"><span class="c1"># Resources released at __exit__, even if an exception occurred</span>
+</span></pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">with</span></code> statement ensures cleanup happens, following Python’s context manager protocol.</p>
+<p><strong>In Python (Result-based API)</strong>:</p>
+<p>Resources are explicitly managed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="c1"># Use camera</span>
+</span><span data-line="5">    <span class="c1"># Destructor called when camera goes out of scope</span>
+</span></pre></div>
+</div>
+<p>Python’s garbage collector triggers the destructor, which releases C++ resources via pybind11.</p>
+</section>
+<section id="threading-and-concurrency-model">
+<h3>Threading and concurrency model<a class="headerlink" href="#threading-and-concurrency-model" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl is designed for <strong>multi-threaded environments</strong> but with careful constraints.</p>
+<p><strong>Module-level thread safety</strong>:</p>
+<p>The module’s global state (device enumeration cache, module initialization) is protected by an internal mutex. Multiple threads can safely call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">def</span><span class="w"> </span><span class="nf">thread_worker</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+</span><span data-line="5">    <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>  <span class="c1"># Safe; uses module lock internally</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Thread </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span><span class="si">}</span><span class="s2"> devices&quot;</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</span><span data-line="9"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+</span><span data-line="10">    <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span data-line="11"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+</span><span data-line="12">    <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><strong>Per-camera thread safety</strong>:</p>
+<p>Once a device is opened, accessing a single camera from multiple threads is <strong>not thread-safe</strong> without external synchronization. Each camera is a single-threaded object and must be accessed from the thread it was marshalled from. This is a result of the COM model used by windows.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># BAD: Race condition</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="3"><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="6">    <span class="k">def</span><span class="w"> </span><span class="nf">thread_worker</span><span class="p">():</span>
+</span><span data-line="7">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Unsafe if another thread accesses cam simultaneously</span>
+</span><span data-line="8">    
+</span><span data-line="9">    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_worker</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</span><span data-line="10">    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span data-line="11">    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1"># GOOD: Multiple cameras, one per thread</span>
+</span><span data-line="14"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="15"><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="k">def</span><span class="w"> </span><span class="nf">thread_worker</span><span class="p">(</span><span class="n">device_index</span><span class="p">):</span>
+</span><span data-line="20">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="p">)</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="21">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Each thread has its own camera; safe</span>
+</span><span data-line="22">
+</span><span data-line="23"><span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">))]</span>
+</span><span data-line="24"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span data-line="25"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><strong>Concurrency strategy</strong>:</p>
+<ul class="simple">
+<li><p>Share devices across threads: Use a lock around camera operations.</p></li>
+<li><p>Don’t share devices: Each thread gets its own camera (preferred).</p></li>
+<li><p>Module-level operations (<code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>, <code class="docutils literal notranslate"><span class="pre">open_camera()</span></code>) are always safe.</p></li>
+</ul>
+</section>
+<section id="c-core-vs-python-wrapper-layer">
+<h3>C++ core vs. Python wrapper layer<a class="headerlink" href="#c-core-vs-python-wrapper-layer" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl’s architecture has two distinct layers:</p>
+<p><strong>C++ Core</strong>:</p>
+<ul class="simple">
+<li><p>Pure C++17 with minimal dependencies.</p></li>
+<li><p>Direct access to Windows COM interfaces (DirectShow).</p></li>
+<li><p>Handles device enumeration, property access, and DirectShow API calls.</p></li>
+<li><p>No Python knowledge; can be used independently or from other languages via C bindings.</p></li>
+</ul>
+<p><strong>Python Wrapper (pybind11)</strong>:</p>
+<ul class="simple">
+<li><p>Binds C++ types to Python (Device, Camera, Result<T>, etc.).</p></li>
+<li><p>Translates Python exceptions to C++ exceptions and vice versa.</p></li>
+<li><p>Manages object lifetime (Python GC ↔ C++ destructors).</p></li>
+<li><p>Provides type conversion (Python <code class="docutils literal notranslate"><span class="pre">str</span></code> ↔ C++ <code class="docutils literal notranslate"><span class="pre">std::string</span></code>).</p></li>
+</ul>
+<p>The Pythonic API (<code class="docutils literal notranslate"><span class="pre">CameraController</span></code>) is written entirely in Python and uses the pybind11 bindings internally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">User Python Code
+</span><span data-line="2">    ↓
+</span><span data-line="3">CameraController (Python)
+</span><span data-line="4">    ↓
+</span><span data-line="5">pybind11 Bindings (Device, Camera, Result&lt;T&gt;)
+</span><span data-line="6">    ↓
+</span><span data-line="7">C++ Core
+</span><span data-line="8">    ↓
+</span><span data-line="9">DirectShow &amp; Windows COM
+</span></pre></div>
+</div>
+<p>This layering allows:</p>
+<ul class="simple">
+<li><p>The C++ core to evolve independently of Python bindings.</p></li>
+<li><p>Python code to be simple and Pythonic (using Python idioms).</p></li>
+<li><p>The pybind11 layer to be thin (mostly type translations, not business logic).</p></li>
+</ul>
+</section>
+<section id="move-semantics-in-python-bindings">
+<h3>Move semantics in Python bindings<a class="headerlink" href="#move-semantics-in-python-bindings" title="Link to this heading">¶</a></h3>
+<p>The C++ core uses <strong>move semantics</strong> to efficiently transfer ownership of resources without copying:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// C++</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="w"> </span><span class="n">open_camera</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">camera</span><span class="p">));</span><span class="w">  </span><span class="c1">// Move, don&#39;t copy</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>pybind11 preserves this semantic when binding to Python. When you receive a Camera from Python, it’s a move-constructed object with full ownership:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="3">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>  <span class="c1"># Efficient transfer of ownership</span>
+</span></pre></div>
+</div>
+<p>Internally, pybind11 uses holder types to manage the C++ object’s lifetime through Python’s garbage collector. When <code class="docutils literal notranslate"><span class="pre">camera</span></code> goes out of scope in Python, the C++ object is destroyed and its resources freed.</p>
+</section>
+<section id="connection-management-state-machine">
+<h3>Connection management state machine<a class="headerlink" href="#connection-management-state-machine" title="Link to this heading">¶</a></h3>
+<p>A camera connection follows these states:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>State</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Valid Transitions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Closed</p></td>
+<td class="text-left"><p>No active connection to device</p></td>
+<td class="text-left"><p>→ Opening</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Opening</p></td>
+<td class="text-left"><p>Attempting to connect</p></td>
+<td class="text-left"><p>→ Open, → Closed (on failure)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Open</p></td>
+<td class="text-left"><p>Connected; properties can be read/written</p></td>
+<td class="text-left"><p>→ Closing</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Closing</p></td>
+<td class="text-left"><p>Disconnecting</p></td>
+<td class="text-left"><p>→ Closed</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Error</p></td>
+<td class="text-left"><p>Connection failed or lost</p></td>
+<td class="text-left"><p>→ Opening (retry)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Pythonic API state transitions</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>  <span class="c1"># Closed → Opening → Open</span>
+</span><span data-line="2">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>                <span class="c1"># Operations in Open state</span>
+</span><span data-line="3"><span class="c1"># Open → Closing → Closed</span>
+</span></pre></div>
+</div>
+<p><strong>Result-based API state transitions</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># Closed → Opening</span>
+</span><span data-line="2"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>                  <span class="c1"># Succeeded; now Open</span>
+</span><span data-line="3">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="4">    <span class="n">brightness_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="5">    <span class="k">if</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="6">        <span class="n">setting</span> <span class="o">=</span> <span class="n">brightness_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="7"><span class="c1"># Open → Closing → Closed (on camera destruction)</span>
+</span></pre></div>
+</div>
+<p>State violations (e.g., trying to access a property in Closed state) raise an exception or return an error.</p>
+</section>
+<section id="device-discovery-patterns">
+<h3>Device discovery patterns<a class="headerlink" href="#device-discovery-patterns" title="Link to this heading">¶</a></h3>
+<p>Device discovery follows a <strong>lazy enumeration</strong> pattern:</p>
+<ol class="arabic simple">
+<li><p><strong>On demand</strong>: Devices are discovered when <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code> is called, not at module import.</p></li>
+<li><p><strong>Caching</strong>: The device list is cached; repeated calls are fast.</p></li>
+<li><p><strong>Invalidation</strong>: The cache is invalidated if device hotplug events are detected (if callback registered).</p></li>
+</ol>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># First call: actual enumeration via DirectShow</span>
+</span><span data-line="4"><span class="n">devices1</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Second call: returns cached list (no DirectShow overhead)</span>
+</span><span data-line="7"><span class="n">devices2</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Register for device change notifications</span>
+</span><span data-line="10"><span class="k">def</span><span class="w"> </span><span class="nf">on_device_change</span><span class="p">(</span><span class="n">added</span><span class="p">,</span> <span class="n">device_path</span><span class="p">):</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="s1">&#39;added&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">added</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;removed&#39;</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">device_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="n">duvc</span><span class="o">.</span><span class="n">register_device_change_callback</span><span class="p">(</span><span class="n">on_device_change</span><span class="p">)</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1"># When a device is plugged/unplugged, the callback fires and the cache is invalidated</span>
+</span></pre></div>
+</div>
+</section>
+<section id="thread-safety-guarantees">
+<h3>Thread safety guarantees<a class="headerlink" href="#thread-safety-guarantees" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl provides these thread-safety guarantees:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>Thread-Safe</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">list_devices()</span></code></p></td>
+<td class="text-left"><p>✓ Yes</p></td>
+<td class="text-left"><p>Internally synchronized</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">open_camera(device)</span></code></p></td>
+<td class="text-left"><p>✓ Yes</p></td>
+<td class="text-left"><p>Returns independent Camera object</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">camera.get(property)</span></code> (single camera)</p></td>
+<td class="text-left"><p>✗ No</p></td>
+<td class="text-left"><p>Use lock if accessing from multiple threads</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">camera.set(property,</span> <span class="pre">value)</span></code> (single camera)</p></td>
+<td class="text-left"><p>✗ No</p></td>
+<td class="text-left"><p>Use lock if accessing from multiple threads</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Multiple cameras in different threads</p></td>
+<td class="text-left"><p>✓ Yes</p></td>
+<td class="text-left"><p>Each camera is isolated</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Device change callbacks</p></td>
+<td class="text-left"><p>✓ Yes</p></td>
+<td class="text-left"><p>Callbacks are thread-safe; executed on internal worker thread</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">register_device_change_callback()</span></code></p></td>
+<td class="text-left"><p>✓ Yes</p></td>
+<td class="text-left"><p>Safe to call from any thread</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Safe multi-threaded pattern</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span data-line="3"><span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lock</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># One camera per thread: no lock needed</span>
+</span><span data-line="8"><span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">(</span><span class="n">device_index</span><span class="p">):</span>
+</span><span data-line="9">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="p">)</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="10">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">))]</span>
+</span><span data-line="13"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span><span data-line="14"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span> <span class="n">t</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><strong>Unsafe pattern (and how to fix it)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># UNSAFE: Multiple threads accessing same camera</span>
+</span><span data-line="2"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="3">    <span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">():</span>
+</span><span data-line="4">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>  <span class="c1"># Race condition!</span>
+</span><span data-line="5">    
+</span><span data-line="6">    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</span><span data-line="7">    <span class="c1"># ...</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># SAFE: Use a lock</span>
+</span><span data-line="10"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="11">    <span class="n">lock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+</span><span data-line="12">    
+</span><span data-line="13">    <span class="k">def</span><span class="w"> </span><span class="nf">worker</span><span class="p">():</span>
+</span><span data-line="14">        <span class="k">with</span> <span class="n">lock</span><span class="p">:</span>
+</span><span data-line="15">            <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>  <span class="c1"># Protected by lock</span>
+</span><span data-line="16">    
+</span><span data-line="17">    <span class="n">threads</span> <span class="o">=</span> <span class="p">[</span><span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</span><span data-line="18">    <span class="c1"># ...</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="01_quick-start-installation.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">1. Quick Start &amp; Installation</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="03_pythonic-api-cameracontroller-class.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">3. Pythonic API - CameraController Class</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

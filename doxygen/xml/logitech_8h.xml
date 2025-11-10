@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="logitech_8h" kind="file" language="C++">
+    <compoundname>logitech.h</compoundname>
+    <includes refid="result_8h" local="no">duvc-ctl/core/result.h</includes>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">windows.h</includes>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="logitech_8cpp" local="no">vendor/logitech.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>vendor/logitech.h</label>
+        <link refid="logitech_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>optional</label>
+      </node>
+      <node id="5">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>system_error</label>
+      </node>
+      <node id="7">
+        <label>variant</label>
+      </node>
+      <node id="9">
+        <label>vector</label>
+      </node>
+      <node id="10">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="1">
+        <label>vendor/logitech.h</label>
+        <link refid="logitech_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <innernamespace refid="namespaceduvc_1_1logitech">duvc::logitech</innernamespace>
+    <briefdescription>
+<para>Logitech-specific vendor property definitions and helpers. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Provides typed access to Logitech UVC extension unit properties including RightLight, face tracking, LED control, and other vendor-specific features. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="result_8h" kindref="compound">duvc-ctl/core/result.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="types_8h" kindref="compound">duvc-ctl/core/types.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="namespaceduvc_1_1logitech" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc_1_1logitech" kindref="compound">duvc::logitech</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">constexpr</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref><sp/><ref refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" kindref="member">LOGITECH_PROPERTY_SET</ref><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>0x82066163,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>0x7BD0,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>0x43EF,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{0x8A,<sp/>0x6F,<sp/>0x5B,<sp/>0x89,<sp/>0x05,<sp/>0xC9,<sp/>0xA6,<sp/>0x4C}};</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/>:<sp/><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aaab72bac0dabd801043c0719c9743532" kindref="member">RightLight</ref><sp/>=<sp/>1,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aea685bc36583885507ece32720e93715" kindref="member">RightSound</ref><sp/>=<sp/>2,<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9ad60b677c3871d7f92cda768f3cb32365" kindref="member">FaceTracking</ref><sp/>=<sp/>3,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a87a621f464a0e39df2e4f2019037b0ca" kindref="member">LedIndicator</ref><sp/>=<sp/>4,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a7eaeefd24595249a48ebd7b496369fc6" kindref="member">ProcessorUsage</ref><sp/>=<sp/>5,<sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a3e9d95beab5955cf856a81f6ca98ffc3" kindref="member">RawDataBits</ref><sp/>=<sp/>6,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9adceda5754afaaa6f2a54835abab65fae" kindref="member">FocusAssist</ref><sp/>=<sp/>7,<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a3d61f17100c56e60375387e3b3776255" kindref="member">VideoStandard</ref><sp/>=<sp/>8,<sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9ad8dfa68d322abec5ac68c8ec0fb0e8bd" kindref="member">DigitalZoomROI</ref><sp/>=<sp/>9,<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a616202c0c809da4851f40f2a7088f84f" kindref="member">TiltPan</ref><sp/>=<sp/>10,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;std::vector&lt;uint8_t&gt;</ref>&gt;<sp/><ref refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" kindref="member">get_logitech_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" kindref="member">set_logitech_property</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,<sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;uint8_t&gt;<sp/>&amp;data);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;bool&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" kindref="member">supports_logitech_properties</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;T&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" kindref="member">get_logitech_property_typed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="namespaceduvc_1_1logitech_1a21f9f978ab54b953b60c2ea0b14ecbfc" kindref="member">set_logitech_property_typed</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>T<sp/>&amp;value);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc::logitech</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="vendor/logitech.h"/>
+  </compounddef>
+</doxygen>

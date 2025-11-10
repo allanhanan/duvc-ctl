@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc_1_1Device" kind="struct" language="C++" prot="public">
+    <compoundname>duvc::Device</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" prot="public" static="no" mutable="no">
+        <type>std::wstring</type>
+        <definition>std::wstring duvc::Device::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>duvc::Device::name</qualifiedname>
+        <briefdescription>
+<para>Human-readable device name. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="132" column="16" bodyfile="core/types.h" bodystart="132" bodyend="-1"/>
+        <referencedby refid="api_8h_1a66712a233ceade3c2749271f6b5d89c4" compoundref="api_8cpp" startline="634" endline="654">duvc_get_device_id</referencedby>
+        <referencedby refid="api_8h_1a4bfbb91beb647813478265438357efc2" compoundref="api_8cpp" startline="592" endline="611">duvc_get_device_name</referencedby>
+        <referencedby refid="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" compoundref="types_8h" startline="156" endline="156">get_id</referencedby>
+        <referencedby refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" compoundref="types_8h" startline="150" endline="150">is_valid</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" prot="public" static="no" mutable="no">
+        <type>std::wstring</type>
+        <definition>std::wstring duvc::Device::path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>duvc::Device::path</qualifiedname>
+        <briefdescription>
+<para>Unique device path/identifier. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="133" column="16" bodyfile="core/types.h" bodystart="133" bodyend="-1"/>
+        <referencedby refid="api_8h_1a66712a233ceade3c2749271f6b5d89c4" compoundref="api_8cpp" startline="634" endline="654">duvc_get_device_id</referencedby>
+        <referencedby refid="api_8h_1adc79af4ead2c77465bed86ad30ec412c" compoundref="api_8cpp" startline="613" endline="632">duvc_get_device_path</referencedby>
+        <referencedby refid="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" compoundref="types_8h" startline="156" endline="156">get_id</referencedby>
+        <referencedby refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" compoundref="types_8h" startline="150" endline="150">is_valid</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structduvc_1_1Device_1a5b3786e1f3d4b96dbece29daf67b08f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Device::Device</definition>
+        <argsstring>()=default</argsstring>
+        <name>Device</name>
+        <qualifiedname>duvc::Device::Device</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="136" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1Device_1ac64fba4f3b1e4bcbce60791bcb773852" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::Device::Device</definition>
+        <argsstring>(std::wstring n, std::wstring p)</argsstring>
+        <name>Device</name>
+        <qualifiedname>duvc::Device::Device</qualifiedname>
+        <param>
+          <type>std::wstring</type>
+          <declname>n</declname>
+        </param>
+        <param>
+          <type>std::wstring</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Construct device with name and path. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> name </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> path </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="143" column="3" bodyfile="core/types.h" bodystart="143" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::Device::is_valid</definition>
+        <argsstring>() const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::Device::is_valid</qualifiedname>
+        <briefdescription>
+<para>Check if device has valid identifying information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if either name or path is non-empty </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="150" column="8" bodyfile="core/types.h" bodystart="150" bodyend="150"/>
+        <references refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" compoundref="types_8h" startline="132">name</references>
+        <references refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" compoundref="types_8h" startline="133">path</references>
+        <referencedby refid="api_8h_1a3787547f23b0553ba7e7256d40cae203" compoundref="api_8cpp" startline="656" endline="674">duvc_device_is_valid</referencedby>
+        <referencedby refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" compoundref="capability_8cpp" startline="140" endline="153">duvc::get_device_capabilities</referencedby>
+        <referencedby refid="namespaceduvc_1aff098bd345fe014553d8b82c5f58b89f" compoundref="camera_8cpp" startline="129" endline="139">duvc::open_camera</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> std::wstring &amp;</type>
+        <definition>const std::wstring &amp; duvc::Device::get_id</definition>
+        <argsstring>() const</argsstring>
+        <name>get_id</name>
+        <qualifiedname>duvc::Device::get_id</qualifiedname>
+        <briefdescription>
+<para>Get stable identifier for this device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Path if available, otherwise name </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="156" column="22" bodyfile="core/types.h" bodystart="156" bodyend="156"/>
+        <references refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" compoundref="types_8h" startline="132">name</references>
+        <references refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" compoundref="types_8h" startline="133">path</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents a camera device. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::Device</label>
+        <link refid="structduvc_1_1Device"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+name</edgelabel>
+          <edgelabel>+path</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::basic_string&lt; Char &gt;</label>
+      </node>
+      <node id="2">
+        <label>std::wstring</label>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="core/types.h" line="131" column="1" bodyfile="core/types.h" bodystart="131" bodyend="157"/>
+    <listofallmembers>
+      <member refid="structduvc_1_1Device_1a5b3786e1f3d4b96dbece29daf67b08f4" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>Device</name></member>
+      <member refid="structduvc_1_1Device_1ac64fba4f3b1e4bcbce60791bcb773852" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>Device</name></member>
+      <member refid="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>get_id</name></member>
+      <member refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>is_valid</name></member>
+      <member refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>name</name></member>
+      <member refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" prot="public" virt="non-virtual"><scope>duvc::Device</scope><name>path</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

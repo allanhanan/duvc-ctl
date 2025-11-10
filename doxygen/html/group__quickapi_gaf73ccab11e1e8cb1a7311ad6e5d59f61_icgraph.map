@@ -1,0 +1,7 @@
+<map id="duvc::get_range" name="duvc::get_range">
+<area shape="rect" id="Node000001" title="Get the valid range for a camera control property." alt="" coords="199,31,313,57"/>
+<area shape="rect" id="Node000002" href="$bindings_8cpp.html#a7e5b8b6d1b9f093497e11e827ee56004" title=" " alt="" coords="5,5,151,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,36,151,32,151,26,183,31"/>
+<area shape="rect" id="Node000003" href="$bindings_8cpp.html#afeb5120c76b876c78b2d47af23770647" title=" " alt="" coords="9,56,147,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,57,148,62,147,57,183,52"/>
+</map>

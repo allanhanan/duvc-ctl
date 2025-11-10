@@ -1,0 +1,32 @@
+<map id="duvc::is_same_device" name="duvc::is_same_device">
+<area shape="rect" id="Node000001" title="Check if two device identifiers refer to same device." alt="" coords="648,344,800,371"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ab42651167ff39abe9e70713ac6db65b9" title="Check if a device is currently connected and accessible." alt="" coords="421,197,600,224"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="689,337,530,227,533,222,692,333"/>
+<area shape="rect" id="Node000010" href="$namespaceduvc.html#a1345df0af198d75f16c54e38d54c7e63" title="Create DirectShow filter from device." alt="" coords="430,461,592,488"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="686,381,538,463,536,458,683,376"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1DeviceCapabilities.html#a1275f0a40ef3c3462236e21de5feb0ee" title="Create capabilities snapshot for device." alt="" coords="201,5,367,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="490,187,441,125,408,91,372,62,352,51,354,46,374,58,411,87,445,121,494,183"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#a2443011d38e904503e646d3da95252a2" title="Check if device is connected." alt="" coords="195,72,373,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="481,189,432,150,372,113,343,102,345,97,374,108,435,146,484,185"/>
+<area shape="rect" id="Node000005" href="$bindings_8cpp.html#ae6c4b34fa8f4bfc8b53488ce2fccad7b" title=" " alt="" coords="195,123,373,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="458,194,372,164,335,152,336,147,374,159,460,189"/>
+<area shape="rect" id="Node000006" href="$classduvc_1_1Camera.html#a682f869dcea95cc310c86275872c00d2" title="Check if camera is valid and connected." alt="" coords="206,197,362,224"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="406,213,362,213,362,208,406,208"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#aff098bd345fe014553d8b82c5f58b89f" title="Create camera from device." alt="" coords="216,248,352,275"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="433,231,347,250,346,245,432,225"/>
+<area shape="rect" id="Node000008" href="$classduvc_1_1DeviceCapabilities.html#a736006fec61636a4326e29373d172a44" title="Refresh capability snapshot." alt="" coords="201,299,367,341"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="475,235,374,289,348,300,346,296,372,284,472,230"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="319,184,307,178,284,176,262,178,250,183,248,188,253,195,249,198,242,189,247,179,261,173,284,171,309,173,322,180"/>
+<area shape="rect" id="Node000009" href="$api_8cpp.html#a2250e42d04f148b7fc027c026f9a0495" title="Refresh capabilities snapshot." alt="" coords="5,299,147,341"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="185,323,147,323,147,317,185,317"/>
+<area shape="rect" id="Node000011" href="$classduvc_1_1DeviceConnection.html#a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" title=" " alt="" coords="202,365,366,408"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="460,458,372,422,342,411,344,406,374,418,462,453"/>
+<area shape="rect" id="Node000012" href="$namespaceduvc.html#aa019a1c9788c84f47348db3f03b25d42" title="Get vendor&#45;specific property data from device." alt="" coords="196,432,372,459"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="414,465,372,459,372,454,414,460"/>
+<area shape="rect" id="Node000013" href="$classduvc_1_1KsPropertySet.html#aac9242599b92d9f1880f63f2256c72e3" title="Create KsPropertySet from device." alt="" coords="213,483,355,525"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="415,490,356,497,355,492,414,484"/>
+<area shape="rect" id="Node000014" href="$namespaceduvc.html#a5ddd570cc76e8dbdef26ad18660ddb07" title="Query whether device supports a vendor&#45;specific property." alt="" coords="216,549,352,592"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="468,497,374,540,345,551,343,546,372,535,466,492"/>
+<area shape="rect" id="Node000015" href="$namespaceduvc.html#ab333863cefef68546e2e235527fe3b5c" title="Set vendor&#45;specific property data on device." alt="" coords="196,616,372,643"/>
+<area shape="poly" id="edge15_Node000010_Node000015" title=" " alt="" coords="491,502,442,555,409,583,374,606,349,618,347,613,372,602,406,578,438,551,487,498"/>
+</map>

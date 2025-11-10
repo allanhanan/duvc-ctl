@@ -1,0 +1,11 @@
+<map id="platform/windows/connection_pool.h" name="platform/windows/connection_pool.h">
+<area shape="rect" id="Node000001" title="Windows&#45;specific device connection pooling." alt="" coords="137,5,327,48"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html" title="Complete C ABI implementation for duvc&#45;ctl library." alt="" coords="5,104,80,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,57,71,106,69,101,172,53"/>
+<area shape="rect" id="Node000003" href="$camera_8cpp.html" title="RAII camera handle implementation." alt="" coords="103,104,222,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="208,62,174,105,170,102,204,59"/>
+<area shape="rect" id="Node000004" href="$device_8cpp.html" title="Device enumeration and management implementation." alt="" coords="246,104,359,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="260,58,295,102,290,105,255,62"/>
+<area shape="rect" id="Node000005" href="$connection__pool_8cpp.html" title="Windows DirectShow connection pooling implementation." alt="" coords="383,96,574,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="305,51,421,93,420,98,303,56"/>
+</map>

@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>11. Building, Contributing &amp; pybind11 Integration - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="12. Complete Property Reference &amp; Details" href="12_complete-property-reference-details.html" /><link rel="prev" title="10. Vendor-Specific Extensions" href="10_vendor-specific-extensions.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="11. Building, Contributing &amp; pybind11 Integration"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">11. Building, Contributing &amp; pybind11 Integration</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="building-contributing-pybind11-integration">
+<h1>11. Building, Contributing &amp; pybind11 Integration<a class="headerlink" href="#building-contributing-pybind11-integration" title="Link to this heading">¶</a></h1>
+<section id="installation-build-methods">
+<h2>11.1 Installation &amp; Build Methods<a class="headerlink" href="#installation-build-methods" title="Link to this heading">¶</a></h2>
+<p>Three installation paths: prebuilt wheels (fastest), source build with cibuildwheel (CI automation), manual source build with CMake.</p>
+<hr class="docutils" />
+<section id="installation-from-pypi">
+<h3>Installation from PyPI<a class="headerlink" href="#installation-from-pypi" title="Link to this heading">¶</a></h3>
+<p>Simplest approach for end users. Binary wheels available for Python 3.8–3.12, Windows 64-bit.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>duvc-ctl
+</span></pre></div>
+</div>
+<p><strong>Verify</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="nb">print</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="building-from-source-with-cibuildwheel">
+<h3>Building from source with cibuildwheel<a class="headerlink" href="#building-from-source-with-cibuildwheel" title="Link to this heading">¶</a></h3>
+<p>Automated cross-Python wheel building via cibuildwheel. Used in CI/CD pipeline for PyPI distribution.</p>
+<p><strong>Local testing</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>cibuildwheel
+</span><span data-line="2">cibuildwheel<span class="w"> </span>--only<span class="w"> </span>cp310-win_amd64
+</span></pre></div>
+</div>
+<p>Builds wheels for Python 3.10 on Windows AMD64 using local environment. Outputs to <code class="docutils literal notranslate"><span class="pre">wheelhouse/</span></code>.</p>
+<p><strong>CI usage</strong> (GitHub Actions):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pypa/cibuildwheel@v2.15.0</span>
+</span><span data-line="2"><span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="nt">only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cp38-win_amd64 cp39-win_amd64 cp310-win_amd64 cp311-win_amd64 cp312-win_amd64</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="build-prerequisites">
+<h3>Build prerequisites<a class="headerlink" href="#build-prerequisites" title="Link to this heading">¶</a></h3>
+<p><strong>Windows SDK/Runtime</strong>:</p>
+<ul class="simple">
+<li><p>Visual Studio 2019+ or Build Tools</p></li>
+<li><p>Windows SDK (includes DirectShow headers)</p></li>
+<li><p>Microsoft Visual C++ Redistributable (end-user runtime)</p></li>
+</ul>
+<p><strong>CMake</strong>:</p>
+<ul class="simple">
+<li><p>CMake 3.16+</p></li>
+<li><p>Ensure in PATH: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--version</span></code></p></li>
+</ul>
+<p><strong>Python</strong>:</p>
+<ul class="simple">
+<li><p>Python 3.8+</p></li>
+<li><p>Development headers (included with standard distribution)</p></li>
+<li><p>Verify: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">--version</span></code></p></li>
+</ul>
+<p><strong>DirectShow</strong>:</p>
+<ul class="simple">
+<li><p>Built into Windows; no separate install needed</p></li>
+<li><p>Headers provided by Windows SDK</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="development-installation">
+<h3>Development installation<a class="headerlink" href="#development-installation" title="Link to this heading">¶</a></h3>
+<p>For source code modification and testing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/allanhanan/duvc-ctl
+</span><span data-line="2"><span class="nb">cd</span><span class="w"> </span>duvc-ctl
+</span><span data-line="3">pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</span></pre></div>
+</div>
+<p>Compiles extension in place. Changes to Python files immediately visible; C++ requires recompile.</p>
+</section>
+<hr class="docutils" />
+<section id="wheel-generation-with-delvewheel">
+<h3>Wheel generation with delvewheel<a class="headerlink" href="#wheel-generation-with-delvewheel" title="Link to this heading">¶</a></h3>
+<p>Post-build tool to repair wheels by bundling runtime dependencies (DLLs). Run after cibuildwheel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>delvewheel
+</span><span data-line="2">delvewheel<span class="w"> </span>repair<span class="w"> </span>dist/duvc_ctl-*.whl
+</span></pre></div>
+</div>
+<p>Outputs fixed wheels to <code class="docutils literal notranslate"><span class="pre">wheelhouse/</span></code>. Required for redistributing without external DLL dependencies.</p>
+</section>
+<hr class="docutils" />
+<section id="build-system-configuration-details">
+<h3>Build system configuration details<a class="headerlink" href="#build-system-configuration-details" title="Link to this heading">¶</a></h3>
+<p><strong>CMake options</strong> (passed to first <code class="docutils literal notranslate"><span class="pre">cmake</span></code> invocation):</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Option</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDSHARED</span></code></p></td>
+<td class="text-left"><p>ON</p></td>
+<td class="text-left"><p>Build shared core library (.dll)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDSTATIC</span></code></p></td>
+<td class="text-left"><p>ON</p></td>
+<td class="text-left"><p>Build static core library (.lib)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDCAPI</span></code></p></td>
+<td class="text-left"><p>ON</p></td>
+<td class="text-left"><p>Build C ABI bindings for pybind11</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDCLI</span></code></p></td>
+<td class="text-left"><p>ON</p></td>
+<td class="text-left"><p>Build command-line tool (duvc-ctl.exe)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDPYTHON</span></code></p></td>
+<td class="text-left"><p>ON</p></td>
+<td class="text-left"><p>Build Python extension (required for PyPI)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDTESTS</span></code></p></td>
+<td class="text-left"><p>OFF</p></td>
+<td class="text-left"><p>Build test suite</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDEXAMPLES</span></code></p></td>
+<td class="text-left"><p>OFF</p></td>
+<td class="text-left"><p>Build example programs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>pyproject.toml configuration</strong> (scikit-build-core):</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">[tool.scikit-build]</span>
+</span><span data-line="2"><span class="n">cmake</span><span class="p">.</span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&gt;=3.16&quot;</span>
+</span><span data-line="3"><span class="n">cmake</span><span class="p">.</span><span class="n">build-type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Release&quot;</span>
+</span><span data-line="4"><span class="n">wheel</span><span class="p">.</span><span class="n">packages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;src/duvcctl&quot;</span><span class="p">]</span>
+</span></pre></div>
+</div>
+<p>Instructs build system where Python sources live and minimum CMake version.</p>
+</section>
+<hr class="docutils" />
+<section id="cmake-options-documentation">
+<h3>CMake options documentation<a class="headerlink" href="#cmake-options-documentation" title="Link to this heading">¶</a></h3>
+<p><strong>Minimal Python build</strong> (wheels only):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">  </span>-DDUVCBUILDSHARED<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">  </span>-DDUVCBUILDSTATIC<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span data-line="4"><span class="w">  </span>-DDUVCBUILDCAPI<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span data-line="5"><span class="w">  </span>-DDUVCBUILDCLI<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+</span><span data-line="6"><span class="w">  </span>-DDUVCBUILDPYTHON<span class="o">=</span>ON
+</span></pre></div>
+</div>
+<p><strong>Full development build</strong> (all components):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;Visual Studio 17 2022&quot;</span><span class="w"> </span>-A<span class="w"> </span>x64<span class="w"> </span><span class="se">\</span>
+</span><span data-line="2"><span class="w">  </span>-DDUVCBUILDSHARED<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="3"><span class="w">  </span>-DDUVCBUILDSTATIC<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="4"><span class="w">  </span>-DDUVCBUILDCAPI<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="5"><span class="w">  </span>-DDUVCBUILDCLI<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="6"><span class="w">  </span>-DDUVCBUILDPYTHON<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="7"><span class="w">  </span>-DDUVCBUILDTESTS<span class="o">=</span>ON<span class="w"> </span><span class="se">\</span>
+</span><span data-line="8"><span class="w">  </span>-DDUVCBUILDEXAMPLES<span class="o">=</span>ON
+</span></pre></div>
+</div>
+<p><strong>Release vs Debug</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Release (optimized, no debug symbols)</span>
+</span><span data-line="2">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Release<span class="w"> </span>...
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Debug (symbols, no optimization)</span>
+</span><span data-line="5">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>...
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ci-cd-pipeline-setup">
+<h3>CI/CD pipeline setup<a class="headerlink" href="#ci-cd-pipeline-setup" title="Link to this heading">¶</a></h3>
+<p><strong>GitHub Actions workflow</strong> (build-wheels.yml):</p>
+<p>Triggers on push/tag. Builds wheels for all Python versions.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Wheels</span>
+</span><span data-line="2"><span class="nt">on</span><span class="p">:</span>
+</span><span data-line="3"><span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">main</span><span class="p p-Indicator">]</span>
+</span><span data-line="5"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;v*&#39;</span><span class="p p-Indicator">]</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="nt">jobs</span><span class="p">:</span>
+</span><span data-line="8"><span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+</span><span data-line="9"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows-latest</span>
+</span><span data-line="10"><span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+</span><span data-line="11"><span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+</span><span data-line="12"><span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;3.8&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.10&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span><span class="p p-Indicator">]</span>
+</span><span data-line="13"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span data-line="14"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+</span><span data-line="15"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+</span><span data-line="16"><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span data-line="17"><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+</span><span data-line="18"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install cibuildwheel</span>
+</span><span data-line="19"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cibuildwheel</span>
+</span><span data-line="20"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v3</span>
+</span><span data-line="21"><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span data-line="22"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">wheelhouse/</span>
+</span></pre></div>
+</div>
+<p><strong>PyPI publish</strong> (build-and-publish.yml):</p>
+<p>Automatically uploads wheels after successful build.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install twine</span>
+</span><span data-line="2"><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">twine upload wheelhouse/*.whl --skip-existing</span>
+</span><span data-line="3"><span class="w">  </span><span class="nt">env</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="nt">TWINE_USERNAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__token__</span>
+</span><span data-line="5"><span class="w">    </span><span class="nt">TWINE_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.PYPI_TOKEN }}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="windows-specific-build-issues-solutions">
+<h3>Windows-specific build issues &amp; solutions<a class="headerlink" href="#windows-specific-build-issues-solutions" title="Link to this heading">¶</a></h3>
+<p><strong>Issue: MSBuild not found</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">CMake</span> <span class="n">Error</span><span class="p">:</span> <span class="n">Could</span> <span class="ow">not</span> <span class="n">find</span> <span class="n">a</span> <span class="n">package</span> <span class="n">configuration</span> <span class="n">file</span><span class="o">...</span>
+</span></pre></div>
+</div>
+<p><strong>Solution</strong>: Run from Visual Studio Developer Command Prompt or specify toolset:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-T<span class="w"> </span><span class="s2">&quot;v143&quot;</span><span class="w"> </span>...
+</span></pre></div>
+</div>
+<p><strong>Issue: DirectShow headers missing</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">fatal</span> <span class="n">error</span> <span class="n">C1083</span><span class="p">:</span> <span class="n">Cannot</span> <span class="nb">open</span> <span class="n">include</span> <span class="n">file</span><span class="p">:</span> <span class="s1">&#39;Mmsystem.h&#39;</span>
+</span></pre></div>
+</div>
+<p><strong>Solution</strong>: Install Windows SDK from Visual Studio Installer, ensure “Windows 10 SDK” or later selected.</p>
+<p><strong>Issue: Python headers not found during build</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">fatal</span> <span class="n">error</span> <span class="n">C1083</span><span class="p">:</span> <span class="n">Cannot</span> <span class="nb">open</span> <span class="n">include</span> <span class="n">file</span><span class="p">:</span> <span class="s1">&#39;Python.h&#39;</span>
+</span></pre></div>
+</div>
+<p><strong>Solution</strong>: Install Python development package:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip<span class="w"> </span>setuptools
+</span><span data-line="2"><span class="c1"># Or download from python.org with dev headers option</span>
+</span></pre></div>
+</div>
+<p><strong>Issue: delvewheel fails on repaired wheel</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Could</span> <span class="ow">not</span> <span class="n">find</span> <span class="n">DLL</span> <span class="n">dependencies</span>
+</span></pre></div>
+</div>
+<p><strong>Solution</strong>: Ensure all runtime dependencies included in build:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">delvewheel<span class="w"> </span>show<span class="w"> </span>dist/*.whl<span class="w">  </span><span class="c1"># Debug output</span>
+</span><span data-line="2">delvewheel<span class="w"> </span>repair<span class="w"> </span>--add-path<span class="w"> </span>.<span class="w"> </span>dist/*.whl<span class="w">  </span><span class="c1"># Explicit path</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="pybind-module-cpp-architecture">
+<h2>11.2 pybind_module.cpp Architecture<a class="headerlink" href="#pybind-module-cpp-architecture" title="Link to this heading">¶</a></h2>
+<p>Core pybind11 bindings architecture mapping C++ layer to Python. Includes conversion helpers, abstract trampolines, Result specializations, and GIL management patterns.</p>
+<hr class="docutils" />
+<section id="string-conversion-helpers">
+<h3>String conversion helpers<a class="headerlink" href="#string-conversion-helpers" title="Link to this heading">¶</a></h3>
+<p><strong>wstring_to_utf8()</strong> - UTF-16 → UTF-8</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">wstring_to_utf8</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">wstr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WideCharToMultiByte</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">wstr</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">result</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">WideCharToMultiByte</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">wstr</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">result</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Used for <a class="reference external" href="http://Device.name">Device.name</a> and Device.path properties (wide internally, UTF-8 to Python).</p>
+<p><strong>utf8_to_wstring()</strong> - UTF-8 → UTF-16</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="nf">utf8_to_wstring</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MultiByteToWideChar</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">result</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="sa">L</span><span class="sc">&#39;\0&#39;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">MultiByteToWideChar</span><span class="p">(</span><span class="n">CP_UTF8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">result</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Converts Python strings to DirectShow APIs.</p>
+</section>
+<hr class="docutils" />
+<section id="error-handling-helpers">
+<h3>Error handling helpers<a class="headerlink" href="#error-handling-helpers" title="Link to this heading">¶</a></h3>
+<p><strong>throw_duvc_error()</strong> - exception wrapper</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">throw_duvc_error</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">Error</span><span class="o">&amp;</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
+</span><span data-line="3"><span class="w">    </span><span class="s">&quot;duvc error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">code</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span data-line="4"><span class="w">    </span><span class="s">&quot; - &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">.</span><span class="n">description</span><span class="p">()</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Used by exception-throwing convenience functions (e.g., <code class="docutils literal notranslate"><span class="pre">open_camera_or_throw</span></code>).</p>
+<p><strong>unwrap_or_throw&lt;T&gt;()</strong> - copyable version</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">unwrap_or_throw</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">throw_duvc_error</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">());</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Extracts value from Result or throws. Copies value (OK for small types).</p>
+<p><strong>unwrap_or_throw&lt;T&gt;()</strong> - rvalue move version</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="k">static</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="n">unwrap_or_throw</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">throw_duvc_error</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">());</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Moves non-copyable values (e.g., <code class="docutils literal notranslate"><span class="pre">shared_ptr&lt;Camera&gt;</span></code>).</p>
+<p><strong>unwrap_void_or_throw()</strong> - void version</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">unwrap_void_or_throw</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">throw_duvc_error</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">());</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Check void Result for errors and throw if failed.</p>
+</section>
+<hr class="docutils" />
+<section id="abstract-trampolines">
+<h3>Abstract trampolines<a class="headerlink" href="#abstract-trampolines" title="Link to this heading">¶</a></h3>
+<p><strong>PyIPlatformInterface</strong> - Python subclassing</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">PyIPlatformInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IPlatformInterface</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">IPlatformInterface</span><span class="o">::</span><span class="n">IPlatformInterface</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">  </span>
+</span><span data-line="4"><span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PYBIND11_OVERRIDE_PURE</span><span class="p">(</span>
+</span><span data-line="6"><span class="w">      </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;&gt;</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">      </span><span class="n">IPlatformInterface</span><span class="p">,</span>
+</span><span data-line="8"><span class="w">      </span><span class="n">list_devices</span>
+</span><span data-line="9"><span class="w">    </span><span class="p">);</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="11"><span class="w">  </span><span class="c1">// ... other methods with PYBIND11_OVERRIDE_PURE</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Enables Python subclasses to override C++ interface methods. Automatic GIL acquisition during Python→C++ calls.</p>
+<p><strong>PyIDeviceConnection</strong> - device connection override</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">PyIDeviceConnection</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IDeviceConnection</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">IDeviceConnection</span><span class="o">::</span><span class="n">IDeviceConnection</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">  </span>
+</span><span data-line="4"><span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_camera_property</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PYBIND11_OVERRIDE_PURE</span><span class="p">(</span>
+</span><span data-line="6"><span class="w">      </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">      </span><span class="n">IDeviceConnection</span><span class="p">,</span>
+</span><span data-line="8"><span class="w">      </span><span class="n">get_camera_property</span><span class="p">,</span>
+</span><span data-line="9"><span class="w">      </span><span class="n">prop</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">);</span>
+</span><span data-line="11"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="12"><span class="w">  </span><span class="c1">// ... all methods with PYBIND11_OVERRIDE_PURE</span>
+</span><span data-line="13"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Custom device backends for non-standard hardware or testing.</p>
+</section>
+<hr class="docutils" />
+<section id="pyguid-implementation">
+<h3>PyGUID implementation<a class="headerlink" href="#pyguid-implementation" title="Link to this heading">¶</a></h3>
+<p><strong>parse_from_string()</strong> - flexible GUID parsing</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">parse_from_string</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">guidstr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="c1">// Support XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</span>
+</span><span data-line="3"><span class="w">  </span><span class="c1">// Support XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX (no dashes)</span>
+</span><span data-line="4"><span class="w">  </span><span class="c1">// Support {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX} (with braces)</span>
+</span><span data-line="5"><span class="w">  </span>
+</span><span data-line="6"><span class="w">  </span><span class="c1">// Parse with sscanf and validate format</span>
+</span><span data-line="7"><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">data1</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="n">data3</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">data4</span><span class="p">[</span><span class="o">^</span><span class="mi">8</span><span class="p">];</span>
+</span><span data-line="10"><span class="w">  </span>
+</span><span data-line="11"><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">matches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sscanf</span><span class="p">(</span><span class="n">guidstr</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;%8lx-%4x-%4x-%2x%2x-%2x%2x%2x%2x%2x%2x&quot;</span><span class="p">,</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">data1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data2</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data3</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data4</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data4</span><span class="p">[</span><span class="o">^</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="p">...);</span>
+</span><span data-line="13"><span class="w">  </span>
+</span><span data-line="14"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matches</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">11</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">  </span><span class="n">guid</span><span class="p">.</span><span class="n">Data1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ULONG</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data1</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">  </span><span class="c1">// ... assign Data2-Data4 components</span>
+</span><span data-line="17"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span data-line="18"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>guid_from_pyobj()</strong> - comprehensive input handling</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">GUID</span><span class="w"> </span><span class="nf">guid_from_pyobj</span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">handle</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="c1">// PyGUID instance: direct cast</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">isinstance</span><span class="o">&lt;</span><span class="n">PyGUID</span><span class="o">&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">PyGUID</span><span class="o">&gt;</span><span class="p">().</span><span class="n">guid</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">  </span>
+</span><span data-line="6"><span class="w">  </span><span class="c1">// uuid.UUID object: extract .hex</span>
+</span><span data-line="7"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">uuid_class</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">hexstr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s">&quot;hex&quot;</span><span class="p">).</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">PyGUID</span><span class="w"> </span><span class="n">pyguid</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pyguid</span><span class="p">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">hexstr</span><span class="p">))</span>
+</span><span data-line="11"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">pyguid</span><span class="p">.</span><span class="n">guid</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="13"><span class="w">  </span>
+</span><span data-line="14"><span class="w">  </span><span class="c1">// String representation</span>
+</span><span data-line="15"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">isinstance</span><span class="o">&lt;</span><span class="n">py</span><span class="o">::</span><span class="n">str</span><span class="o">&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="16"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">guidstr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">PyGUID</span><span class="w"> </span><span class="n">pyguid</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pyguid</span><span class="p">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">guidstr</span><span class="p">))</span>
+</span><span data-line="19"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">pyguid</span><span class="p">.</span><span class="n">guid</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="21"><span class="w">  </span>
+</span><span data-line="22"><span class="w">  </span><span class="c1">// 16-byte buffer</span>
+</span><span data-line="23"><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">py</span><span class="o">::</span><span class="n">isinstance</span><span class="o">&lt;</span><span class="n">py</span><span class="o">::</span><span class="n">bytes</span><span class="o">&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">isinstance</span><span class="o">&lt;</span><span class="n">py</span><span class="o">::</span><span class="n">bytearray</span><span class="o">&gt;</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="24"><span class="w">    </span><span class="n">py</span><span class="o">::</span><span class="n">buffer_info</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">buffer</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">cast</span><span class="o">&lt;</span><span class="n">py</span><span class="o">::</span><span class="n">object</span><span class="o">&gt;</span><span class="p">()).</span><span class="n">request</span><span class="p">();</span>
+</span><span data-line="25"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">itemsize</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="26"><span class="w">      </span><span class="n">GUID</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="27"><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">);</span>
+</span><span data-line="28"><span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="29"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="30"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="31"><span class="w">  </span>
+</span><span data-line="32"><span class="w">  </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">&quot;Unsupported GUID input type&quot;</span><span class="p">);</span>
+</span><span data-line="33"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="result-t-specializations">
+<h3>Result&lt;T&gt; specializations<a class="headerlink" href="#result-t-specializations" title="Link to this heading">¶</a></h3>
+<p><strong>DeviceConnectionResult</strong> - unique_ptr handling</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;DeviceConnectionResult&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing device connection or error&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;is_ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;::</span><span class="n">is_ok</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">IDeviceConnection</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="c1">// Move unique_ptr out, invalidating result</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Uint32Result</strong> - numeric values</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Uint32Result&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing uint32_t or error&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>VectorUint8Result</strong> - binary data</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;VectorUint8Result&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing vector&lt;uint8_t&gt; or error&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w">  </span><span class="c1">// Returns copy</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">return_value_policy</span><span class="o">::</span><span class="n">automatic_reference</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>BoolResult</strong> - boolean queries</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;BoolResult&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing bool or error&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="move-semantics-documentation">
+<h3>Move semantics documentation<a class="headerlink" href="#move-semantics-documentation" title="Link to this heading">¶</a></h3>
+<p><strong>Move-only Camera</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Camera is move-only (non-copyable RAII)</span>
+</span><span data-line="2"><span class="n">PYBIND11_MAKE_OPAQUE</span><span class="p">(</span><span class="n">Camera</span><span class="p">)</span><span class="w">  </span><span class="c1">// Prevents pybind11 copy generation</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Binding uses move semantics</span>
+</span><span data-line="5"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Camera&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;__init__&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="n">Camera</span><span class="o">&amp;</span><span class="w"> </span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="p">(</span><span class="o">&amp;</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="n">Camera</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span><span class="w">  </span><span class="c1">// Placement new for move-only type</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">});</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1">// Python can move Camera but not copy</span>
+</span></pre></div>
+</div>
+<p>Move-only semantics enforced through RAII camera handle.</p>
+</section>
+<hr class="docutils" />
+<section id="gil-release-patterns">
+<h3>GIL release patterns<a class="headerlink" href="#gil-release-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Callback with GIL management</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Register device change callback with GIL handling</span>
+</span><span data-line="2"><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;register_device_change_callback&quot;</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">  </span><span class="p">[](</span><span class="n">py</span><span class="o">::</span><span class="n">function</span><span class="w"> </span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">function</span><span class="w"> </span><span class="n">stored_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">callback</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">register_device_change_callback</span><span class="p">(</span>
+</span><span data-line="6"><span class="w">      </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">event_type</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device_name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">        </span><span class="n">py</span><span class="o">::</span><span class="n">gil_scoped_acquire</span><span class="w"> </span><span class="n">gil</span><span class="p">;</span><span class="w">  </span><span class="c1">// Acquire before Python call</span>
+</span><span data-line="8"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">          </span><span class="n">stored_callback</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span><span class="w"> </span><span class="n">device_name</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">error_already_set</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">          </span><span class="n">PyErr_Clear</span><span class="p">();</span><span class="w">  </span><span class="c1">// Don&#39;t let Python exceptions leak to C++</span>
+</span><span data-line="12"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="13"><span class="w">      </span><span class="p">}</span>
+</span><span data-line="14"><span class="w">    </span><span class="p">);</span>
+</span><span data-line="15"><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;callback&quot;</span><span class="p">),</span>
+</span><span data-line="16"><span class="w">  </span><span class="s">&quot;Register callback for device hotplug events&quot;</span>
+</span><span data-line="17"><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>GIL acquired before calling Python callbacks, released after.</p>
+<p><strong>Logging callback</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;set_log_callback&quot;</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">  </span><span class="p">[](</span><span class="n">py</span><span class="o">::</span><span class="n">function</span><span class="w"> </span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">function</span><span class="w"> </span><span class="n">stored_log_callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">callback</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">set_log_callback</span><span class="p">(</span>
+</span><span data-line="5"><span class="w">      </span><span class="p">[](</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">        </span><span class="n">py</span><span class="o">::</span><span class="n">gil_scoped_acquire</span><span class="w"> </span><span class="n">gil</span><span class="p">;</span><span class="w">  </span><span class="c1">// GIL scope</span>
+</span><span data-line="7"><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">          </span><span class="n">stored_log_callback</span><span class="p">(</span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">error_already_set</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">          </span><span class="n">PyErr_Clear</span><span class="p">();</span>
+</span><span data-line="11"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="12"><span class="w">      </span><span class="p">}</span>
+</span><span data-line="13"><span class="w">    </span><span class="p">);</span>
+</span><span data-line="14"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="15"><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="device-propsetting-proprange-propertycapability-bindings">
+<h3>Device/PropSetting/PropRange/PropertyCapability bindings<a class="headerlink" href="#device-propsetting-proprange-propertycapability-bindings" title="Link to this heading">¶</a></h3>
+<p><strong>Device</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Device&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="2"><span class="w">  </span><span class="s">&quot;Represents a camera device&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="w">  </span><span class="p">.</span><span class="n">def_property_readonly</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="4"><span class="w">    </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">wstring_to_utf8</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+</span><span data-line="5"><span class="w">    </span><span class="s">&quot;Human-readable device name (UTF-8)&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def_property_readonly</span><span class="p">(</span><span class="s">&quot;path&quot;</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">    </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">wstring_to_utf8</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">path</span><span class="p">);</span><span class="w"> </span><span class="p">},</span>
+</span><span data-line="8"><span class="w">    </span><span class="s">&quot;Unique device path identifier (UTF-8)&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;__eq__&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">path</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">  </span><span class="p">})</span>
+</span><span data-line="12"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;__hash__&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="13"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">hash</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&gt;</span><span class="p">()(</span><span class="n">d</span><span class="p">.</span><span class="n">path</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">  </span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>PropSetting</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PropSetting&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="2"><span class="w">  </span><span class="s">&quot;Property setting with value and control mode&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropSetting</span><span class="o">::</span><span class="n">value</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">    </span><span class="s">&quot;Property value&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropSetting</span><span class="o">::</span><span class="n">mode</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">    </span><span class="s">&quot;Control mode (auto/manual)&quot;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>PropRange</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PropRange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="2"><span class="w">  </span><span class="s">&quot;Valid range constraints for a property&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;min&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Minimum value&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;max&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">max</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Maximum value&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;step&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Step size&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;default_val&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Default value&quot;</span><span class="p">)</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;default_mode&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">default_mode</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Default mode&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;is_valid&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropRange</span><span class="o">::</span><span class="n">is_valid</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">));</span>
+</span></pre></div>
+</div>
+<p><strong>PropertyCapability</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">PropertyCapability</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PropertyCapability&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="2"><span class="w">  </span><span class="s">&quot;Property capability information&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;supported&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropertyCapability</span><span class="o">::</span><span class="n">supported</span><span class="p">)</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;range&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropertyCapability</span><span class="o">::</span><span class="n">range</span><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def_readwrite</span><span class="p">(</span><span class="s">&quot;current&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropertyCapability</span><span class="o">::</span><span class="n">current</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;supports_auto&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">PropertyCapability</span><span class="o">::</span><span class="n">supports_auto</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="logitech-submodule-with-10-properties">
+<h3>Logitech submodule with 10 properties<a class="headerlink" href="#logitech-submodule-with-10-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="k">module</span><span class="w"> </span><span class="n">logitech_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">def_submodule</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="s">&quot;logitech&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Logitech vendor-specific extensions&quot;</span>
+</span><span data-line="3"><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">py</span><span class="o">::</span><span class="n">enum_</span><span class="o">&lt;</span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">&gt;</span><span class="p">(</span>
+</span><span data-line="6"><span class="w">  </span><span class="n">logitech_module</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Property&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Logitech vendor-specific properties&quot;</span>
+</span><span data-line="7"><span class="p">)</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;RightLight&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">)</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;RightSound&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightSound</span><span class="p">)</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;FaceTracking&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">FaceTracking</span><span class="p">)</span>
+</span><span data-line="11"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;LedIndicator&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">LedIndicator</span><span class="p">)</span>
+</span><span data-line="12"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;ProcessorUsage&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">ProcessorUsage</span><span class="p">)</span>
+</span><span data-line="13"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;RawDataBits&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RawDataBits</span><span class="p">)</span>
+</span><span data-line="14"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;FocusAssist&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">FocusAssist</span><span class="p">)</span>
+</span><span data-line="15"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;VideoStandard&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">VideoStandard</span><span class="p">)</span>
+</span><span data-line="16"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;DigitalZoomROI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">DigitalZoomROI</span><span class="p">)</span>
+</span><span data-line="17"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;TiltPan&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">TiltPan</span><span class="p">)</span>
+</span><span data-line="18"><span class="w">  </span><span class="p">.</span><span class="n">export_values</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="all-enum-bindings-48-values">
+<h3>All enum bindings (48 values)<a class="headerlink" href="#all-enum-bindings-48-values" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Category</p></th>
+<th class="head text-left"><p>Count</p></th>
+<th class="head text-left"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>CamProp</p></td>
+<td class="text-left"><p>20</p></td>
+<td class="text-left"><p>Pan, Tilt, Zoom, Focus, Exposure, Privacy, …</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>VidProp</p></td>
+<td class="text-left"><p>10</p></td>
+<td class="text-left"><p>Brightness, Contrast, Saturation, Gamma, …</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>CamMode</p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Auto, Manual</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ErrorCode</p></td>
+<td class="text-left"><p>9</p></td>
+<td class="text-left"><p>Success, DeviceNotFound, PermissionDenied, …</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>LogLevel</p></td>
+<td class="text-left"><p>5</p></td>
+<td class="text-left"><p>Debug, Info, Warning, Error, Critical</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Total</strong></p></td>
+<td class="text-left"><p><strong>48</strong></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>All bound via <code class="docutils literal notranslate"><span class="pre">py::enum_&lt;T&gt;(m,</span> <span class="pre">&quot;Name&quot;)</span></code>.</p>
+</section>
+<section id="code-formatting-requirement">
+<h3>Code formatting requirement<a class="headerlink" href="#code-formatting-requirement" title="Link to this heading">¶</a></h3>
+<p>All C++ code <strong>must use clang-format with LLVM style</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">clang-format<span class="w"> </span>-i<span class="w"> </span>--style<span class="o">=</span>llvm<span class="w"> </span>pybind_module.cpp
+</span></pre></div>
+</div>
+<p>Key rules: 2-space indent, 80-column soft limit, <code class="docutils literal notranslate"><span class="pre">BreakBeforeBraces:</span> <span class="pre">Attach</span></code>, <code class="docutils literal notranslate"><span class="pre">ColumnLimit:</span> <span class="pre">100</span></code>.</p>
+</section>
+</section>
+<section id="contributing-extension">
+<h2>11.3 Contributing &amp; Extension<a class="headerlink" href="#contributing-extension" title="Link to this heading">¶</a></h2>
+<p>Extensibility patterns for adding new features, bindings, and exception types. Follows open-source workflow: fork, implement, test, submit PR.</p>
+<hr class="docutils" />
+<section id="binding-patterns-examples">
+<h3>Binding patterns &amp; examples<a class="headerlink" href="#binding-patterns-examples" title="Link to this heading">¶</a></h3>
+<p><strong>Adding a simple property binding</strong></p>
+<p>Extend <code class="docutils literal notranslate"><span class="pre">pybind_module.cpp</span></code> to expose a new C++ function. Use <code class="docutils literal notranslate"><span class="pre">py::module_local()</span></code> for isolation.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;get_device_serial&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getDeviceSerialNumber</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">unwrap_or_throw</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">},</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;device&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;Get device serial number (throws on error)&quot;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Accessible as <code class="docutils literal notranslate"><span class="pre">duvc_ctl.get_device_serial(device)</span></code>.</p>
+<p><strong>Adding a Result specialization</strong></p>
+<p>New Result type (e.g., <code class="docutils literal notranslate"><span class="pre">Result&lt;std::string&gt;</span></code>) requires binding. Add to pybind_module.cpp after other Result types:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;StringResult&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing string or error&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;is_ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">is_ok</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;::</span><span class="n">error</span><span class="p">)</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="adding-new-property-types">
+<h3>Adding new property types<a class="headerlink" href="#adding-new-property-types" title="Link to this heading">¶</a></h3>
+<p><strong>Add enum value</strong> in C++ header <code class="docutils literal notranslate"><span class="pre">duvc/properties.h</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamProp</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">Tilt</span><span class="p">,</span><span class="w"> </span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="n">Focus</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">  </span><span class="c1">// ... existing values ...</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">NewCustomProperty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="w">  </span><span class="c1">// New value</span>
+</span><span data-line="5"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Bind in pybind_module.cpp</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">enum_</span><span class="o">&lt;</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CamProp&quot;</span><span class="p">)</span>
+</span><span data-line="2"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;Pan&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">)</span>
+</span><span data-line="3"><span class="w">  </span><span class="c1">// ... existing bindings ...</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="s">&quot;NewCustomProperty&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">NewCustomProperty</span><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">export_values</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p><strong>Usage in Python</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_camera_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">NewCustomProperty</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="extending-result-specializations">
+<h3>Extending Result specializations<a class="headerlink" href="#extending-result-specializations" title="Link to this heading">¶</a></h3>
+<p>When adding a complex return type (e.g., <code class="docutils literal notranslate"><span class="pre">Result&lt;std::vector&lt;PropRange&gt;&gt;</span></code>):</p>
+<p><strong>C++ header</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_all_property_ranges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">safe_get_all_property_ranges</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>pybind_module.cpp binding</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;PropRangeVectorResult&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">module_local</span><span class="p">(),</span>
+</span><span data-line="3"><span class="w">  </span><span class="s">&quot;Result containing vector of property ranges&quot;</span>
+</span><span data-line="4"><span class="p">)</span>
+</span><span data-line="5"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;is_ok&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;&gt;::</span><span class="n">is_ok</span><span class="p">)</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;error&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">error</span><span class="p">();</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">})</span>
+</span><span data-line="9"><span class="w">  </span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;&gt;&amp;</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="11"><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">return_value_policy</span><span class="o">::</span><span class="n">automatic_reference</span><span class="p">);</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">&quot;get_property_ranges&quot;</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="14"><span class="w">  </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="15"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">safe_get_all_property_ranges</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">&quot;device&quot;</span><span class="p">));</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="adding-new-exceptions-with-errorcode-mapping">
+<h3>Adding new exceptions with ErrorCode mapping<a class="headerlink" href="#adding-new-exceptions-with-errorcode-mapping" title="Link to this heading">¶</a></h3>
+<p><strong>Define exception</strong> in <code class="docutils literal notranslate"><span class="pre">duvc/errors.h</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ErrorCode</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="n">Success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">  </span><span class="c1">// ... existing codes ...</span>
+</span><span data-line="4"><span class="w">  </span><span class="n">NetworkTimeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+</span><span data-line="5"><span class="w">  </span><span class="n">NetworkError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span>
+</span><span data-line="6"><span class="p">};</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="k">class</span><span class="w"> </span><span class="nc">NetworkError</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">DuvcError</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="10"><span class="w">  </span><span class="k">explicit</span><span class="w"> </span><span class="n">NetworkError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Network error&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">DuvcError</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">NetworkError</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Register in pybind_module.cpp</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">register_exception</span><span class="o">&lt;</span><span class="n">duvc</span><span class="o">::</span><span class="n">NetworkError</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NetworkError&quot;</span><span class="p">)</span>
+</span><span data-line="2"><span class="w">  </span><span class="p">.</span><span class="n">def_property_readonly</span><span class="p">(</span><span class="s">&quot;error_code&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[](</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">NetworkError</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">code</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">});</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1">// Map C++ exception to Python</span>
+</span><span data-line="7"><span class="n">register_exception_translator</span><span class="p">(</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">exception_ptr</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">rethrow_exception</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">NetworkError</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">      </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_RuntimeError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="13"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="14"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="15"><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Update ErrorCode mapping</strong> in <code class="docutils literal notranslate"><span class="pre">duvc/errors.h</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">error_code_to_string</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">ErrorCode</span><span class="o">::</span><span class="no">NetworkTimeout</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Network timeout&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">ErrorCode</span><span class="o">::</span><span class="no">NetworkError</span><span class="p">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Network communication failed&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// ... other codes ...</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Unknown error&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="exception-translation-patterns">
+<h3>Exception translation patterns<a class="headerlink" href="#exception-translation-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Automatic C++ → Python exception conversion</strong></p>
+<p>In pybind_module.cpp:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">py</span><span class="o">::</span><span class="n">register_exception_translator</span><span class="p">([](</span><span class="n">std</span><span class="o">::</span><span class="n">exception_ptr</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">rethrow_exception</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">PermissionDeniedError</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">DuvcPermissionDeniedError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="6"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">DeviceNotFoundError</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">DuvcDeviceNotFoundError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="8"><span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="o">&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">PyErr_SetString</span><span class="p">(</span><span class="n">PyExc_RuntimeError</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span>
+</span><span data-line="10"><span class="w">  </span><span class="p">}</span>
+</span><span data-line="11"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Custom exception class definition</strong>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">static</span><span class="w"> </span><span class="n">PyObject</span><span class="o">*</span><span class="w"> </span><span class="n">DuvcPermissionDeniedError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1">// In module init:</span>
+</span><span data-line="4"><span class="n">DuvcPermissionDeniedError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PyErr_NewException</span><span class="p">(</span>
+</span><span data-line="5"><span class="w">  </span><span class="s">&quot;duvc_ctl.PermissionDeniedError&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span>
+</span><span data-line="6"><span class="p">);</span>
+</span><span data-line="7"><span class="n">PyModule_AddObject</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">ptr</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;PermissionDeniedError&quot;</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="8"><span class="w">  </span><span class="n">DuvcPermissionDeniedError</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="testing-procedures-patterns-incomplete-section">
+<h3>Testing procedures &amp; patterns (INCOMPLETE SECTION)<a class="headerlink" href="#testing-procedures-patterns-incomplete-section" title="Link to this heading">¶</a></h3>
+<p><strong>Unit test structure</strong> in <code class="docutils literal notranslate"><span class="pre">tests/test_bindings.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">class</span><span class="w"> </span><span class="nc">TestDeviceDiscovery</span><span class="p">:</span>
+</span><span data-line="5">    <span class="k">def</span><span class="w"> </span><span class="nf">test_list_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="6"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test device enumeration returns list.&quot;&quot;&quot;</span>
+</span><span data-line="7">        <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="8">        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">def</span><span class="w"> </span><span class="nf">test_device_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="11"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test device has required attributes.&quot;&quot;&quot;</span>
+</span><span data-line="12">        <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span data-line="13">        <span class="k">if</span> <span class="n">devices</span><span class="p">:</span>  <span class="c1"># Only if cameras present</span>
+</span><span data-line="14">            <span class="n">dev</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="15">            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">)</span>
+</span><span data-line="16">            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">)</span>
+</span><span data-line="17">            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="k">class</span><span class="w"> </span><span class="nc">TestPropertyAccess</span><span class="p">:</span>
+</span><span data-line="20">    <span class="k">def</span><span class="w"> </span><span class="nf">test_get_brightness</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="21"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test reading brightness property.&quot;&quot;&quot;</span>
+</span><span data-line="22">        <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span data-line="23">        <span class="k">if</span> <span class="ow">not</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="24">            <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;No devices available&quot;</span><span class="p">)</span>
+</span><span data-line="25">        
+</span><span data-line="26">        <span class="n">cam</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="27">        <span class="n">brightness</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span>
+</span><span data-line="28">        <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">brightness</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+</span><span data-line="29">        <span class="n">cam</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="30">    
+</span><span data-line="31">    <span class="k">def</span><span class="w"> </span><span class="nf">test_set_out_of_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="32"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test out-of-range value raises exception.&quot;&quot;&quot;</span>
+</span><span data-line="33">        <span class="n">cam</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="34">        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span><span class="p">):</span>
+</span><span data-line="35">            <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">999</span>
+</span><span data-line="36">        <span class="n">cam</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="37">
+</span><span data-line="38"><span class="k">class</span><span class="w"> </span><span class="nc">TestErrorHandling</span><span class="p">:</span>
+</span><span data-line="39">    <span class="k">def</span><span class="w"> </span><span class="nf">test_invalid_device_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="40"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test invalid device index raises error.&quot;&quot;&quot;</span>
+</span><span data-line="41">        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">):</span>
+</span><span data-line="42">            <span class="n">cam</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">9999</span><span class="p">)</span>
+</span><span data-line="43">    
+</span><span data-line="44">    <span class="k">def</span><span class="w"> </span><span class="nf">test_device_disconnection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="45"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test graceful handling of disconnected device.&quot;&quot;&quot;</span>
+</span><span data-line="46">        <span class="c1"># Simulate disconnection (requires test fixture)</span>
+</span><span data-line="47">        <span class="c1"># Verify no crash, appropriate exception raised</span>
+</span><span data-line="48">        <span class="k">pass</span>
+</span></pre></div>
+</div>
+<p><strong>Run tests</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">pip<span class="w"> </span>install<span class="w"> </span>pytest
+</span><span data-line="2">pytest<span class="w"> </span>tests/test_bindings.py<span class="w"> </span>-v
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ci-cd-integration-setup">
+<h3>CI/CD integration &amp; setup<a class="headerlink" href="#ci-cd-integration-setup" title="Link to this heading">¶</a></h3>
+<p><strong>GitHub Actions workflow</strong> to verify binding changes:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test Bindings</span>
+</span><span data-line="2"><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">pull_request</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">push</span><span class="p p-Indicator">]</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="nt">jobs</span><span class="p">:</span>
+</span><span data-line="5"><span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+</span><span data-line="6"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">windows-latest</span>
+</span><span data-line="7"><span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+</span><span data-line="8"><span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+</span><span data-line="9"><span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;3.10&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.11&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;3.12&#39;</span><span class="p p-Indicator">]</span>
+</span><span data-line="10"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+</span><span data-line="11"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+</span><span data-line="12"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+</span><span data-line="13"><span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+</span><span data-line="14"><span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+</span><span data-line="15"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -e .</span>
+</span><span data-line="16"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install pytest</span>
+</span><span data-line="17"><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest tests/ -v</span>
+</span></pre></div>
+</div>
+<p>When submitting PR, CI verifies:</p>
+<ul class="simple">
+<li><p>All tests pass on multiple Python versions</p></li>
+<li><p>No new compiler warnings (clang-format check)</p></li>
+<li><p>Documentation builds without errors</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="code-review-guidelines">
+<h3>Code review guidelines<a class="headerlink" href="#code-review-guidelines" title="Link to this heading">¶</a></h3>
+<p>Checklist for PR reviews:</p>
+<p><strong>C++ changes</strong> (pybind_module.cpp):</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Code formatted with <code class="docutils literal notranslate"><span class="pre">clang-format</span> <span class="pre">-i</span> <span class="pre">--style=llvm</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> RAII semantics correct (move-only types marked with <code class="docutils literal notranslate"><span class="pre">PYBIND11_MAKE_OPAQUE</span></code>)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> GIL properly managed in callbacks (<code class="docutils literal notranslate"><span class="pre">py::gil_scoped_acquire</span></code>)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Result type properly unwrapped or handled</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Error message strings are descriptive</p></li>
+</ul>
+<p><strong>Python bindings</strong> (.pyi stub):</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> New functions documented</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Type hints complete</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Docstrings follow NumPy style</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Examples in docstrings work</p></li>
+</ul>
+<p><strong>Tests</strong> (tests/):</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> New code has test coverage (&gt;90%)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Edge cases covered (out-of-range, None, empty)</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Tests pass on all Python versions</p></li>
+</ul>
+<p><strong>Documentation</strong> (docs/):</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> API reference updated</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Usage examples provided</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Windows-only features clearly marked</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="internal-test-patterns">
+<h3>Internal test patterns<a class="headerlink" href="#internal-test-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Mock device testing</strong> (when hardware unavailable):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">TestWithMockDevice</span><span class="p">:</span>
+</span><span data-line="2">    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span data-line="3">    <span class="k">def</span><span class="w"> </span><span class="nf">mock_platform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">monkeypatch</span><span class="p">):</span>
+</span><span data-line="4"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Inject mock platform.&quot;&quot;&quot;</span>
+</span><span data-line="5">        <span class="n">mock_impl</span> <span class="o">=</span> <span class="n">MockPlatformInterface</span><span class="p">()</span>
+</span><span data-line="6">        <span class="n">mock_impl</span><span class="o">.</span><span class="n">add_device</span><span class="p">(</span><span class="n">Device</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;MockCamera&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;mock://0&quot;</span><span class="p">))</span>
+</span><span data-line="7">        <span class="n">duvc_ctl</span><span class="o">.</span><span class="n">create_platform_interface</span><span class="p">(</span><span class="n">mock_impl</span><span class="p">)</span>
+</span><span data-line="8">        <span class="k">yield</span>
+</span><span data-line="9">        <span class="n">duvc_ctl</span><span class="o">.</span><span class="n">create_platform_interface</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>  <span class="c1"># Reset</span>
+</span><span data-line="10">
+</span><span data-line="11">    <span class="k">def</span><span class="w"> </span><span class="nf">test_camera_operations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="12"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test with simulated camera.&quot;&quot;&quot;</span>
+</span><span data-line="13">        <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc_ctl</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span data-line="14">        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+</span><span data-line="15">        <span class="k">assert</span> <span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;MockCamera&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Error injection</strong> (test error paths):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">TestErrorRecovery</span><span class="p">:</span>
+</span><span data-line="2">    <span class="k">def</span><span class="w"> </span><span class="nf">test_recovery_on_timeout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="3"><span class="w">        </span><span class="sd">&quot;&quot;&quot;Test automatic retry on timeout.&quot;&quot;&quot;</span>
+</span><span data-line="4">        <span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;duvc_ctl._internal.get_property&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_get</span><span class="p">:</span>
+</span><span data-line="5">            <span class="c1"># Fail twice, succeed on third</span>
+</span><span data-line="6">            <span class="n">mock_get</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="7">                <span class="n">duvc_ctl</span><span class="o">.</span><span class="n">DeviceBusyError</span><span class="p">(),</span>
+</span><span data-line="8">                <span class="n">duvc_ctl</span><span class="o">.</span><span class="n">DeviceBusyError</span><span class="p">(),</span>
+</span><span data-line="9">                <span class="mi">42</span>  <span class="c1"># Success</span>
+</span><span data-line="10">            <span class="p">]</span>
+</span><span data-line="11">            <span class="n">result</span> <span class="o">=</span> <span class="n">resilient_get_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+</span><span data-line="12">            <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">42</span>
+</span><span data-line="13">            <span class="k">assert</span> <span class="n">mock_get</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">3</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="10_vendor-specific-extensions.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">10. Vendor-Specific Extensions</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="12_complete-property-reference-details.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">12. Complete Property Reference &amp; Details</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

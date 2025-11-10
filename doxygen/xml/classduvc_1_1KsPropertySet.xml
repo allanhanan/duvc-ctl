@@ -1,0 +1,476 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1KsPropertySet" kind="class" language="C++" prot="public">
+    <compoundname>duvc::KsPropertySet</compoundname>
+    <includes refid="ks__properties_8h" local="no">duvc-ctl/platform/windows/ks_properties.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1KsPropertySet_1af58de8f2ec5c9109021c15ae07c8828b" prot="private" static="no" mutable="no">
+        <type>detail::com_ptr&lt; <ref refid="classduvc_1_1Result" kindref="compound">IKsPropertySet</ref> &gt;</type>
+        <definition>detail::com_ptr&lt;IKsPropertySet&gt; duvc::KsPropertySet::property_set_</definition>
+        <argsstring></argsstring>
+        <name>property_set_</name>
+        <qualifiedname>duvc::KsPropertySet::property_set_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="97" column="19" bodyfile="platform/windows/ks_properties.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1aac9242599b92d9f1880f63f2256c72e3" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::KsPropertySet::KsPropertySet</definition>
+        <argsstring>(const Device &amp;device)</argsstring>
+        <name>KsPropertySet</name>
+        <qualifiedname>duvc::KsPropertySet::KsPropertySet</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <briefdescription>
+<para>Create <ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> from device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to get property set from </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="29" column="12" bodyfile="platform/windows/ks_properties.cpp" bodystart="23" bodyend="39"/>
+        <references refid="namespaceduvc_1a1345df0af198d75f16c54e38d54c7e63" compoundref="core_8cpp" startline="260" endline="276">duvc::open_device_filter</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1ab94161b426b0932547a1107675bdcfed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::KsPropertySet::~KsPropertySet</definition>
+        <argsstring>()</argsstring>
+        <name>~KsPropertySet</name>
+        <qualifiedname>duvc::KsPropertySet::~KsPropertySet</qualifiedname>
+        <briefdescription>
+<para>Destructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1add79634e7a5a421ca338eaa087e47264" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::KsPropertySet::KsPropertySet</definition>
+        <argsstring>(const KsPropertySet &amp;)=delete</argsstring>
+        <name>KsPropertySet</name>
+        <qualifiedname>duvc::KsPropertySet::KsPropertySet</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="35" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a6825c6cbfcf0a3606e301366df6bd28e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;</type>
+        <definition>KsPropertySet &amp; duvc::KsPropertySet::operator=</definition>
+        <argsstring>(const KsPropertySet &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::KsPropertySet::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="36" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1aca2a619f9be44c070b2bbe02b5d64f86" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::KsPropertySet::KsPropertySet</definition>
+        <argsstring>(KsPropertySet &amp;&amp;) noexcept</argsstring>
+        <name>KsPropertySet</name>
+        <qualifiedname>duvc::KsPropertySet::KsPropertySet</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="37" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a66c4397160e08de136865c16390e0564" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;</type>
+        <definition>KsPropertySet &amp; duvc::KsPropertySet::operator=</definition>
+        <argsstring>(KsPropertySet &amp;&amp;) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::KsPropertySet::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1KsPropertySet" kindref="compound">KsPropertySet</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="38" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::KsPropertySet::is_valid</definition>
+        <argsstring>() const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::KsPropertySet::is_valid</qualifiedname>
+        <briefdescription>
+<para>Check if property set is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if property set can be used </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="44" column="8" bodyfile="platform/windows/ks_properties.cpp" bodystart="46" bodyend="48"/>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a8c1795034a9f6851db82a1232cd897eb" compoundref="ks__properties_8cpp" startline="70" endline="101">get_property</referencedby>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a251aad5cfe01da2b5e380d4697a94f2e" compoundref="ks__properties_8cpp" startline="50" endline="67">query_support</referencedby>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a33fa8fc7b6530e4c1c97d5b3bc8053b7" compoundref="ks__properties_8cpp" startline="103" endline="121">set_property</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a251aad5cfe01da2b5e380d4697a94f2e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref> &gt;</type>
+        <definition>Result&lt; uint32_t &gt; duvc::KsPropertySet::query_support</definition>
+        <argsstring>(const GUID &amp;property_set, uint32_t property_id)</argsstring>
+        <name>query_support</name>
+        <qualifiedname>duvc::KsPropertySet::query_support</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>property_set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+          <declname>property_id</declname>
+        </param>
+        <briefdescription>
+<para>Query property support. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>property_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing support flags or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="52" column="10" bodyfile="platform/windows/ks_properties.cpp" bodystart="50" bodyend="67"/>
+        <references refid="namespaceduvc_1acf69ea75ab1f31295af14cfba31261c2" compoundref="error__decoder_8cpp" startline="70" endline="92">duvc::decode_hresult</references>
+        <references refid="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" compoundref="ks__properties_8cpp" startline="46" endline="48">is_valid</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b">duvc::PropertyNotSupported</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca">duvc::SystemError</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a8c1795034a9f6851db82a1232cd897eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt; &gt;</type>
+        <definition>Result&lt; std::vector&lt; uint8_t &gt; &gt; duvc::KsPropertySet::get_property</definition>
+        <argsstring>(const GUID &amp;property_set, uint32_t property_id)</argsstring>
+        <name>get_property</name>
+        <qualifiedname>duvc::KsPropertySet::get_property</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>property_set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+          <declname>property_id</declname>
+        </param>
+        <briefdescription>
+<para>Get property data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>property_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property data or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="61" column="10" bodyfile="platform/windows/ks_properties.cpp" bodystart="70" bodyend="101"/>
+        <references refid="namespaceduvc_1acf69ea75ab1f31295af14cfba31261c2" compoundref="error__decoder_8cpp" startline="70" endline="92">duvc::decode_hresult</references>
+        <references refid="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" compoundref="ks__properties_8cpp" startline="46" endline="48">is_valid</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b">duvc::PropertyNotSupported</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca">duvc::SystemError</references>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" compoundref="ks__properties_8cpp" startline="124" endline="142">get_property_typed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a33fa8fc7b6530e4c1c97d5b3bc8053b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>Result&lt; void &gt; duvc::KsPropertySet::set_property</definition>
+        <argsstring>(const GUID &amp;property_set, uint32_t property_id, const std::vector&lt; uint8_t &gt; &amp;data)</argsstring>
+        <name>set_property</name>
+        <qualifiedname>duvc::KsPropertySet::set_property</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>property_set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+          <declname>property_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Set property data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>property_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property data to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="71" column="10" bodyfile="platform/windows/ks_properties.cpp" bodystart="103" bodyend="121"/>
+        <references refid="namespaceduvc_1acf69ea75ab1f31295af14cfba31261c2" compoundref="error__decoder_8cpp" startline="70" endline="92">duvc::decode_hresult</references>
+        <references refid="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" compoundref="ks__properties_8cpp" startline="46" endline="48">is_valid</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca">duvc::SystemError</references>
+        <referencedby refid="classduvc_1_1KsPropertySet_1a2a59e63375e5b5f0fb37d39e3aa5b30c" compoundref="ks__properties_8cpp" startline="145" endline="151">set_property_typed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classduvc_1_1Result" kindref="compound">typename</ref> T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; T &gt;</type>
+        <definition>template Result&lt; bool &gt; duvc::KsPropertySet::get_property_typed&lt; bool &gt;</definition>
+        <argsstring>(const GUID &amp;property_set, uint32_t property_id)</argsstring>
+        <name>get_property_typed</name>
+        <qualifiedname>duvc::KsPropertySet::get_property_typed</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>property_set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+          <declname>property_id</declname>
+        </param>
+        <briefdescription>
+<para>Get typed property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>property_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing typed value or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="82" column="10" bodyfile="platform/windows/ks_properties.cpp" bodystart="124" bodyend="142"/>
+        <references refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" compoundref="result_8h" startline="128" endline="128">duvc::Result&lt; T &gt;::error</references>
+        <references refid="classduvc_1_1KsPropertySet_1a8c1795034a9f6851db82a1232cd897eb" compoundref="ks__properties_8cpp" startline="70" endline="101">get_property</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a223e81e8afa42c41346a6696560ecc7b">duvc::InvalidValue</references>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1KsPropertySet_1a2a59e63375e5b5f0fb37d39e3aa5b30c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type><ref refid="classduvc_1_1Result" kindref="compound">typename</ref> T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>template Result&lt; void &gt; duvc::KsPropertySet::set_property_typed&lt; bool &gt;</definition>
+        <argsstring>(const GUID &amp;property_set, uint32_t property_id, const T &amp;value)</argsstring>
+        <name>set_property_typed</name>
+        <qualifiedname>duvc::KsPropertySet::set_property_typed</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>property_set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+          <declname>property_id</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set typed property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value type </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>property_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>property_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value to set </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/ks_properties.h" line="93" column="10" bodyfile="platform/windows/ks_properties.cpp" bodystart="145" bodyend="151"/>
+        <references refid="classduvc_1_1KsPropertySet_1a33fa8fc7b6530e4c1c97d5b3bc8053b7" compoundref="ks__properties_8cpp" startline="103" endline="121">set_property</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>RAII wrapper for IKsPropertySet interface. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::KsPropertySet</label>
+        <link refid="classduvc_1_1KsPropertySet"/>
+      </node>
+    </collaborationgraph>
+    <location file="platform/windows/ks_properties.h" line="23" column="1" bodyfile="platform/windows/ks_properties.h" bodystart="23" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1KsPropertySet_1a8c1795034a9f6851db82a1232cd897eb" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>get_property</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a21e491235b83bacb4fd55e96d2b603f6" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>get_property_typed</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a6e2ecf3413c017d4a4ec309c3e90a3f7" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>is_valid</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1aac9242599b92d9f1880f63f2256c72e3" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>KsPropertySet</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1add79634e7a5a421ca338eaa087e47264" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>KsPropertySet</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1aca2a619f9be44c070b2bbe02b5d64f86" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>KsPropertySet</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a6825c6cbfcf0a3606e301366df6bd28e" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a66c4397160e08de136865c16390e0564" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1af58de8f2ec5c9109021c15ae07c8828b" prot="private" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>property_set_</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a251aad5cfe01da2b5e380d4697a94f2e" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>query_support</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a33fa8fc7b6530e4c1c97d5b3bc8053b7" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>set_property</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1a2a59e63375e5b5f0fb37d39e3aa5b30c" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>set_property_typed</name></member>
+      <member refid="classduvc_1_1KsPropertySet_1ab94161b426b0932547a1107675bdcfed" prot="public" virt="non-virtual"><scope>duvc::KsPropertySet</scope><name>~KsPropertySet</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

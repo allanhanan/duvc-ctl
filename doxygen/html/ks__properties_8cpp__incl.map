@@ -1,0 +1,43 @@
+<map id="platform/windows/ks_properties.cpp" name="platform/windows/ks_properties.cpp">
+<area shape="rect" id="Node000001" title="IKsPropertySet implementation for vendor properties." alt="" coords="519,5,660,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="112,104,181,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,38,368,59,280,77,194,99,188,101,186,96,193,93,279,71,367,54,518,32"/>
+<area shape="rect" id="Node000003" href="$device_8h.html" title="Device enumeration and management functions." alt="" coords="205,104,355,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="519,51,339,102,338,97,518,46"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="524,187,655,229"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="592,48,592,171,587,171,587,48"/>
+<area shape="rect" id="Node000009" href="$ks__properties_8h.html" title="IKsPropertySet wrapper for vendor properties." alt="" coords="379,96,552,139"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="562,51,508,89,505,84,559,46"/>
+<area shape="rect" id="Node000016" href="$error__decoder_8h.html" title="HRESULT decoder and diagnostics utilities." alt="" coords="627,96,752,139"/>
+<area shape="poly" id="edge19_Node000001_Node000016" title=" " alt="" coords="614,46,656,84,653,88,611,50"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="776,104,822,131"/>
+<area shape="poly" id="edge22_Node000001_Node000017" title=" " alt="" coords="650,46,765,94,766,94,764,99,763,98,648,51"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="845,104,923,131"/>
+<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="661,43,834,93,841,96,839,101,833,99,660,48"/>
+<area shape="rect" id="Node000004" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="356,195,500,221"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="303,129,395,184,392,189,300,134"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,195,83,221"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="246,134,97,189,92,191,90,186,95,184,244,129"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="107,195,165,221"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="261,134,171,188,168,184,258,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="417,277,471,304"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="433,221,441,262,436,263,428,222"/>
+<area shape="poly" id="edge15_Node000009_Node000004" title=" " alt="" coords="459,140,442,181,437,179,454,138"/>
+<area shape="poly" id="edge17_Node000009_Node000007" title=" " alt="" coords="379,139,265,165,177,189,174,190,172,185,175,184,264,160,377,134"/>
+<area shape="poly" id="edge16_Node000009_Node000008" title=" " alt="" coords="496,137,550,175,546,179,493,141"/>
+<area shape="rect" id="Node000010" href="$result_8h.html" title="Result/Error type system for duvc&#45;ctl." alt="" coords="188,195,332,221"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="418,142,304,191,302,186,416,137"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="680,195,763,221"/>
+<area shape="poly" id="edge18_Node000009_Node000015" title=" " alt="" coords="528,137,668,184,674,186,672,191,666,189,527,142"/>
+<area shape="poly" id="edge12_Node000010_Node000005" title=" " alt="" coords="290,219,404,269,402,274,288,224"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="26,277,97,304"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="230,224,107,274,105,269,228,219"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="122,277,188,304"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="245,224,184,270,181,266,242,220"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="211,277,309,304"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="263,222,263,262,257,262,257,222"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="332,277,393,304"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="278,220,336,265,333,270,274,224"/>
+<area shape="poly" id="edge20_Node000016_Node000005" title=" " alt="" coords="725,137,751,156,774,180,785,205,784,218,777,231,756,247,726,259,648,276,561,286,486,291,486,285,560,281,647,271,725,254,754,242,773,228,779,217,780,206,769,183,748,160,722,141"/>
+<area shape="poly" id="edge21_Node000016_Node000015" title=" " alt="" coords="699,138,714,179,709,181,694,140"/>
+</map>

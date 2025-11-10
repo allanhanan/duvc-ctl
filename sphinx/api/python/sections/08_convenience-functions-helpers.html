@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>8. Convenience Functions &amp; Helpers - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="9. Logging, Diagnostics &amp; Callbacks" href="09_logging-diagnostics-callbacks.html" /><link rel="prev" title="7. Exception Hierarchy &amp; Handling" href="07_exception-hierarchy-handling.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="8. Convenience Functions &amp; Helpers"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">8. Convenience Functions &amp; Helpers</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="convenience-functions-helpers">
+<h1>8. Convenience Functions &amp; Helpers<a class="headerlink" href="#convenience-functions-helpers" title="Link to this heading">¶</a></h1>
+<section id="device-discovery-management">
+<h2>8.1 Device Discovery &amp; Management<a class="headerlink" href="#device-discovery-management" title="Link to this heading">¶</a></h2>
+<p>Core functions for discovering, enumerating, and identifying camera devices on the system.</p>
+<hr class="docutils" />
+<section id="list-devices-enumerate-all-cameras">
+<h3>list_devices() - enumerate all cameras<a class="headerlink" href="#list-devices-enumerate-all-cameras" title="Link to this heading">¶</a></h3>
+<p>Returns list of all camera devices recognized by DirectShow. Primary discovery function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">list_devices</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of available camera devices.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Returns</strong>: List of <code class="docutils literal notranslate"><span class="pre">Device</span></code> objects with <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">path</span></code>, and <code class="docutils literal notranslate"><span class="pre">is_valid()</span></code> method.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="2"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span><span class="si">}</span><span class="s2"> camera(s)&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">dev</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="devices-alias-for-list-devices">
+<h3>devices() - alias for list_devices()<a class="headerlink" href="#devices-alias-for-list-devices" title="Link to this heading">¶</a></h3>
+<p>Recommended shorter alias for <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>. Preferred for cleaner code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">devices</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of available camera devices (alias).&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Preferred</span>
+</span><span data-line="2"><span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">():</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Equivalent to</span>
+</span><span data-line="6"><span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">():</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="find-device-by-name-search-by-name-substring">
+<h3>find_device_by_name() - search by name substring<a class="headerlink" href="#find-device-by-name-search-by-name-substring" title="Link to this heading">¶</a></h3>
+<p>Find first device matching case-insensitive substring search. Raises exception if not found.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">find_device_by_name</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">devices_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="4"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Device</span><span class="p">:</span>
+</span><span data-line="5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6"><span class="sd">    Find first device with name containing search string.</span>
+</span><span data-line="7"><span class="sd">    </span>
+</span><span data-line="8"><span class="sd">    Args:</span>
+</span><span data-line="9"><span class="sd">        name: Search string (case-insensitive)</span>
+</span><span data-line="10"><span class="sd">        devices_list: Optional pre-fetched device list (avoids re-enumeration)</span>
+</span><span data-line="11"><span class="sd">    </span>
+</span><span data-line="12"><span class="sd">    Returns:</span>
+</span><span data-line="13"><span class="sd">        Device if found</span>
+</span><span data-line="14"><span class="sd">        </span>
+</span><span data-line="15"><span class="sd">    Raises:</span>
+</span><span data-line="16"><span class="sd">        DeviceNotFoundError: If no matching device found</span>
+</span><span data-line="17"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Find by substring</span>
+</span><span data-line="2"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="3">    <span class="n">logitech</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_device_by_name</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found: </span><span class="si">{</span><span class="n">logitech</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not found: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Reuse enumeration</span>
+</span><span data-line="9"><span class="n">device_list</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>
+</span><span data-line="10"><span class="n">cam1</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_device_by_name</span><span class="p">(</span><span class="s2">&quot;USB&quot;</span><span class="p">,</span> <span class="n">device_list</span><span class="p">)</span>
+</span><span data-line="11"><span class="n">cam2</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_device_by_name</span><span class="p">(</span><span class="s2">&quot;HD&quot;</span><span class="p">,</span> <span class="n">device_list</span><span class="p">)</span>  <span class="c1"># No re-enumeration</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="find-devices-by-name-search-all-matches">
+<h3>find_devices_by_name() - search all matches<a class="headerlink" href="#find-devices-by-name-search-all-matches" title="Link to this heading">¶</a></h3>
+<p>Find all devices matching case-insensitive substring. Returns empty list if none found (never raises).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">find_devices_by_name</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">devices_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="4"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]:</span>
+</span><span data-line="5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6"><span class="sd">    Find all devices with name containing search string.</span>
+</span><span data-line="7"><span class="sd">    </span>
+</span><span data-line="8"><span class="sd">    Args:</span>
+</span><span data-line="9"><span class="sd">        name: Search string (case-insensitive)</span>
+</span><span data-line="10"><span class="sd">        devices_list: Optional pre-fetched device list</span>
+</span><span data-line="11"><span class="sd">    </span>
+</span><span data-line="12"><span class="sd">    Returns:</span>
+</span><span data-line="13"><span class="sd">        List of matching devices (empty if none found)</span>
+</span><span data-line="14"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Find all USB cameras</span>
+</span><span data-line="2"><span class="n">usb_cameras</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_devices_by_name</span><span class="p">(</span><span class="s2">&quot;USB&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">usb_cameras</span><span class="p">)</span><span class="si">}</span><span class="s2"> USB camera(s)&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="k">for</span> <span class="n">cam</span> <span class="ow">in</span> <span class="n">usb_cameras</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">cam</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Find all Logitech devices</span>
+</span><span data-line="8"><span class="n">logitechs</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_devices_by_name</span><span class="p">(</span><span class="s2">&quot;logitech&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">if</span> <span class="ow">not</span> <span class="n">logitechs</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No Logitech cameras found&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="iter-devices-lazy-device-iteration">
+<h3>iter_devices() - lazy device iteration<a class="headerlink" href="#iter-devices-lazy-device-iteration" title="Link to this heading">¶</a></h3>
+<p>Generator yielding devices one at a time. Memory-efficient for large device counts.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">iter_devices</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Device</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield available video devices one at a time.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Iterate without loading all into memory</span>
+</span><span data-line="2"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">iter_devices</span><span class="p">():</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span data-line="4">    <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Target&quot;</span><span class="p">:</span>
+</span><span data-line="5">        <span class="k">break</span>  <span class="c1"># Stop early if found</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># First device only</span>
+</span><span data-line="8"><span class="n">first_device</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">iter_devices</span><span class="p">(),</span> <span class="kc">None</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">if</span> <span class="n">first_device</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;First camera: </span><span class="si">{</span><span class="n">first_device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="iter-connected-devices-filter-connected-only">
+<h3>iter_connected_devices() - filter connected only<a class="headerlink" href="#iter-connected-devices-filter-connected-only" title="Link to this heading">¶</a></h3>
+<p>Generator yielding only devices that are currently connected and accessible. Filters disconnected/stale devices.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">iter_connected_devices</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="n">Device</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Yield only connected devices.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Only connected cameras</span>
+</span><span data-line="2"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">iter_connected_devices</span><span class="p">():</span>
+</span><span data-line="3">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connected: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="4">    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="5">        <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">Camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="6">        <span class="c1"># Use camera</span>
+</span><span data-line="7">    <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> became unavailable&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="list-cameras-pythonic-device-listing">
+<h3>list_cameras() - Pythonic device listing<a class="headerlink" href="#list-cameras-pythonic-device-listing" title="Link to this heading">¶</a></h3>
+<p>Alias for device enumeration in CameraController context. Returns same as <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">list_cameras</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of available cameras (Pythonic API alias).&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># CameraController context</span>
+</span><span data-line="2"><span class="n">cameras</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_cameras</span><span class="p">()</span>
+</span><span data-line="3"><span class="k">for</span> <span class="n">cam_device</span> <span class="ow">in</span> <span class="n">cameras</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">cam_device</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: brightness=</span><span class="si">{</span><span class="n">camera</span><span class="o">.</span><span class="n">brightness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="find-camera-find-and-open-camera">
+<h3>find_camera() - find and open camera<a class="headerlink" href="#find-camera-find-and-open-camera" title="Link to this heading">¶</a></h3>
+<p>Find device by substring and return opened <code class="docutils literal notranslate"><span class="pre">CameraController</span></code>. Combines find + open.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">find_camera</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CameraController</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Find and open camera by name substring.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        name: Search string (case-insensitive)</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Opened CameraController instance</span>
+</span><span data-line="10"><span class="sd">        </span>
+</span><span data-line="11"><span class="sd">    Raises:</span>
+</span><span data-line="12"><span class="sd">        DeviceNotFoundError: If no matching device found</span>
+</span><span data-line="13"><span class="sd">        DeviceBusyError: If device in use</span>
+</span><span data-line="14"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># One-step find and open</span>
+</span><span data-line="2"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="3">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_camera</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Opened: </span><span class="si">{</span><span class="n">camera</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera not found&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceBusyError</span><span class="p">:</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera in use&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-device-info-comprehensive-device-analysis">
+<h3>get_device_info() - comprehensive device analysis<a class="headerlink" href="#get-device-info-comprehensive-device-analysis" title="Link to this heading">¶</a></h3>
+<p>Query all device properties, capabilities, and current values. Non-throwing: returns error details for failed properties.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_device_info</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceInfo</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Collect property metadata for a device.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Queries device capabilities and reads all property values, ranges,</span>
+</span><span data-line="6"><span class="sd">    and current settings. Failed property reads are captured with error</span>
+</span><span data-line="7"><span class="sd">    details rather than raising exceptions.</span>
+</span><span data-line="8"><span class="sd">    </span>
+</span><span data-line="9"><span class="sd">    Args:</span>
+</span><span data-line="10"><span class="sd">        device: Target device</span>
+</span><span data-line="11"><span class="sd">        </span>
+</span><span data-line="12"><span class="sd">    Returns:</span>
+</span><span data-line="13"><span class="sd">        DeviceInfo dict with:</span>
+</span><span data-line="14"><span class="sd">            - name: str</span>
+</span><span data-line="15"><span class="sd">            - path: str</span>
+</span><span data-line="16"><span class="sd">            - connected: bool</span>
+</span><span data-line="17"><span class="sd">            - camera_properties: dict[str, PropertyInfo]</span>
+</span><span data-line="18"><span class="sd">            - video_properties: dict[str, PropertyInfo]</span>
+</span><span data-line="19"><span class="sd">            - error: str | None</span>
+</span><span data-line="20"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2"><span class="n">info</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_info</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connected: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;connected&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Inspect properties</span>
+</span><span data-line="8"><span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_info</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="9">    <span class="k">if</span> <span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]:</span>
+</span><span data-line="10">        <span class="n">current</span> <span class="o">=</span> <span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">]</span>
+</span><span data-line="11">        <span class="n">range_info</span> <span class="o">=</span> <span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;range&#39;</span><span class="p">]</span>
+</span><span data-line="12">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">current</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">range_info</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">range_info</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</span><span data-line="13">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="14">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">: Not supported - </span><span class="si">{</span><span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="c1"># Video properties</span>
+</span><span data-line="17"><span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_info</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="18">    <span class="k">if</span> <span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]:</span>
+</span><span data-line="19">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;current&#39;</span><span class="p">][</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-camera-info-alias-for-get-device-info">
+<h3>get_camera_info() - alias for get_device_info()<a class="headerlink" href="#get-camera-info-alias-for-get-device-info" title="Link to this heading">¶</a></h3>
+<p>Pythonic alias for <code class="docutils literal notranslate"><span class="pre">get_device_info()</span></code>. Identical functionality.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_camera_info</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceInfo</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Alias for get_device_info() (Pythonic API).&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="device-support-matrix-reference">
+<h3>Device support matrix reference<a class="headerlink" href="#device-support-matrix-reference" title="Link to this heading">¶</a></h3>
+<p>Different cameras support different property sets. Query before use to avoid exceptions.</p>
+<p><strong>Common property support patterns</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Camera Type</p></th>
+<th class="head text-left"><p>Pan/Tilt</p></th>
+<th class="head text-left"><p>Zoom</p></th>
+<th class="head text-left"><p>Focus</p></th>
+<th class="head text-left"><p>Exposure</p></th>
+<th class="head text-left"><p>WhiteBalance</p></th>
+<th class="head text-left"><p>Brightness</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Webcam (basic)</p></td>
+<td class="text-left"><p>❌</p></td>
+<td class="text-left"><p>❌</p></td>
+<td class="text-left"><p>❌</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>HD Webcam</p></td>
+<td class="text-left"><p>❌</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅ (digital)</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>PTZ Camera</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Conference Cam</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Security Cam</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>❌</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+<td class="text-left"><p>✅</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage pattern</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Query capabilities before use</span>
+</span><span data-line="2"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="3"><span class="n">info</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_info</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Check if property supported</span>
+</span><span data-line="6"><span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;camera_properties&#39;</span><span class="p">][</span><span class="s1">&#39;Pan&#39;</span><span class="p">][</span><span class="s1">&#39;supported&#39;</span><span class="p">]:</span>
+</span><span data-line="7">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="8">    <span class="n">camera</span><span class="o">.</span><span class="n">set_pan</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pan not supported on this device&quot;</span><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1"># Batch capability check</span>
+</span><span data-line="13"><span class="n">supported_props</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="14">    <span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">prop_info</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;video_properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span><span data-line="15">    <span class="k">if</span> <span class="n">prop_info</span><span class="p">[</span><span class="s1">&#39;supported&#39;</span><span class="p">]</span>
+</span><span data-line="16"><span class="p">]</span>
+</span><span data-line="17"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Supported video properties: </span><span class="si">{</span><span class="n">supported_props</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="device-context-managers">
+<h2>8.2 Device Context Managers<a class="headerlink" href="#device-context-managers" title="Link to this heading">¶</a></h2>
+<p>Context managers for automatic device cleanup and safe resource management. Two levels: <code class="docutils literal notranslate"><span class="pre">DeviceContextManager</span></code> for direct core <code class="docutils literal notranslate"><span class="pre">Camera</span></code> access, and context-aware properties on <code class="docutils literal notranslate"><span class="pre">CameraController</span></code>.</p>
+<hr class="docutils" />
+<section id="devicecontextmanager-class">
+<h3>DeviceContextManager class<a class="headerlink" href="#devicecontextmanager-class" title="Link to this heading">¶</a></h3>
+<p>Wraps core <code class="docutils literal notranslate"><span class="pre">Camera</span></code> for automatic cleanup via <code class="docutils literal notranslate"><span class="pre">with</span></code> statement. Direct access to low-level Result types.</p>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__enter__()</span></code> – Opens device, returns core <code class="docutils literal notranslate"><span class="pre">Camera</span></code> object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__exit__(exctype,</span> <span class="pre">excval,</span> <span class="pre">exctb)</span></code> – Closes device, releases resources.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_closed</span></code> (property) – Check if context has been closed.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">from</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="kn">import</span> <span class="n">open_device_context</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Automatic cleanup with context manager</span>
+</span><span data-line="6"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="10">    <span class="c1"># Camera auto-closed on exit, even if exception occurs</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1"># Camera is now closed; further operations fail</span>
+</span></pre></div>
+</div>
+<p><strong>Exception handling</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="5">        <span class="c1"># Operations here</span>
+</span><span data-line="6">        <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Contrast</span><span class="p">)</span>
+</span><span data-line="7">        <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="8">            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">())</span>
+</span><span data-line="9"><span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="10">    <span class="k">if</span> <span class="s2">&quot;already open&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+</span><span data-line="11">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device already in use&quot;</span><span class="p">)</span>
+</span><span data-line="12">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="13">        <span class="k">raise</span>
+</span><span data-line="14"><span class="c1"># Camera is properly closed even if exception raised</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="open-device-context-device-context-factory">
+<h3>open_device_context() - device context factory<a class="headerlink" href="#open-device-context-device-context-factory" title="Link to this heading">¶</a></h3>
+<p>Creates <code class="docutils literal notranslate"><span class="pre">DeviceContextManager</span></code> for a specific device. Low-level control with explicit cleanup.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceContextManager</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Create context manager for direct core Camera access.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        device: Device to connect to</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Context manager yielding core Camera object</span>
+</span><span data-line="10"><span class="sd">        </span>
+</span><span data-line="11"><span class="sd">    Raises:</span>
+</span><span data-line="12"><span class="sd">        RuntimeError: If device cannot be opened</span>
+</span><span data-line="13"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Single operation with automatic cleanup</span>
+</span><span data-line="4"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">brightness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">150</span><span class="p">))</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1"># Multiple operations with same camera</span>
+</span><span data-line="9"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="10">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Contrast</span><span class="p">]:</span>
+</span><span data-line="11">        <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="12">        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="13">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="open-device-by-name-context-named-device-context">
+<h3>open_device_by_name_context() - named device context<a class="headerlink" href="#open-device-by-name-context-named-device-context" title="Link to this heading">¶</a></h3>
+<p>Finds device by name substring, then opens as context manager. Combines discovery + opening in one call.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">open_device_by_name_context</span><span class="p">(</span><span class="n">device_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceContextManager</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Create context manager for device access by name.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        device_name: Device name or partial match (case-insensitive)</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Context manager yielding core Camera object</span>
+</span><span data-line="10"><span class="sd">        </span>
+</span><span data-line="11"><span class="sd">    Raises:</span>
+</span><span data-line="12"><span class="sd">        DeviceNotFoundError: If no matching device found</span>
+</span><span data-line="13"><span class="sd">        RuntimeError: If device cannot be opened</span>
+</span><span data-line="14"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Find by substring and open automatically</span>
+</span><span data-line="2"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="3">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="4">        <span class="n">brightness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="5">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">brightness</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Logitech camera not found&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="case-insensitive-substring-matching">
+<h3>Case-insensitive substring matching<a class="headerlink" href="#case-insensitive-substring-matching" title="Link to this heading">¶</a></h3>
+<p>Both context managers and discovery functions use <strong>case-insensitive</strong> substring matching for device names. Allows flexible search without exact names.</p>
+<p><strong>Matching behavior</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Device actual name: &quot;Logitech USB HD Webcam&quot;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># All these match:</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;logitech&quot;</span><span class="p">)</span>  <span class="c1"># ✓ Substring</span>
+</span><span data-line="5"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;LOGITECH&quot;</span><span class="p">)</span>  <span class="c1"># ✓ Case insensitive</span>
+</span><span data-line="6"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;usb hd&quot;</span><span class="p">)</span>    <span class="c1"># ✓ Substring</span>
+</span><span data-line="7"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;webcam&quot;</span><span class="p">)</span>    <span class="c1"># ✓ Suffix match</span>
+</span><span data-line="8"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;HD Web&quot;</span><span class="p">)</span>    <span class="c1"># ✓ Non-consecutive substring</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># These don&#39;t match:</span>
+</span><span data-line="11"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;Sony&quot;</span><span class="p">)</span>      <span class="c1"># ✗ Different device</span>
+</span><span data-line="12"><span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;cam2&quot;</span><span class="p">)</span>      <span class="c1"># ✗ Not substring</span>
+</span></pre></div>
+</div>
+<p><strong>Matching is done with</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span> <span class="n">search_string</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">device_name</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+</span><span data-line="2">    <span class="c1"># Match found</span>
+</span></pre></div>
+</div>
+<p><strong>Multi-device scenarios</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Device list:</span>
+</span><span data-line="2"><span class="c1"># [^0] &quot;Logitech USB HD Webcam&quot;</span>
+</span><span data-line="3"><span class="c1"># [^1] &quot;Logitech C920&quot;</span>
+</span><span data-line="4"><span class="c1"># [^2] &quot;Built-in Camera&quot;</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Search returns FIRST match</span>
+</span><span data-line="7"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="8">    <span class="c1"># Opens device [^0] &quot;Logitech USB HD Webcam&quot;</span>
+</span><span data-line="9">    <span class="k">pass</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1"># Be specific to target single device</span>
+</span><span data-line="12"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_by_name_context</span><span class="p">(</span><span class="s2">&quot;C920&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="13">    <span class="c1"># Opens device [^1] &quot;Logitech C920&quot;</span>
+</span><span data-line="14">    <span class="k">pass</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="c1"># Find all matches first, then open</span>
+</span><span data-line="17"><span class="n">cameras</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_devices_by_name</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span>
+</span><span data-line="18"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">cameras</span><span class="p">:</span>
+</span><span data-line="19">    <span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_device_context</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">as</span> <span class="n">camera</span><span class="p">:</span>
+</span><span data-line="20">        <span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>CameraController also uses substring matching</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Pythonic API with automatic matching</span>
+</span><span data-line="2"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_name</span><span class="o">=</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="c1"># Finds first device containing &quot;logitech&quot; (case-insensitive)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Also works with device index</span>
+</span><span data-line="6"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="7"><span class="c1"># Opens first device by index</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="property-connection-helpers">
+<h2>8.3 Property &amp; Connection Helpers<a class="headerlink" href="#property-connection-helpers" title="Link to this heading">¶</a></h2>
+<p>Utility functions for safe property operations, connection verification, and batch management.</p>
+<hr class="docutils" />
+<section id="reset-device-to-defaults-restore-factory-settings">
+<h3>reset_device_to_defaults() - restore factory settings<a class="headerlink" href="#reset-device-to-defaults-restore-factory-settings" title="Link to this heading">¶</a></h3>
+<p>Reset all device properties to their default values. Queries property ranges for defaults, then sets each. Individual failures don’t stop remaining properties.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">reset_device_to_defaults</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Reset all supported properties to device defaults.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        device: Target device</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Dict mapping property names (e.g., &quot;Brightness&quot;, &quot;Contrast&quot;) to success status</span>
+</span><span data-line="10"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Restore all to defaults</span>
+</span><span data-line="4"><span class="n">results</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">reset_device_to_defaults</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Check which reset successfully</span>
+</span><span data-line="7"><span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">success</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="8">    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;✓&quot;</span> <span class="k">if</span> <span class="n">success</span> <span class="k">else</span> <span class="s2">&quot;✗&quot;</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1"># Track failed properties</span>
+</span><span data-line="12"><span class="n">failed</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">success</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">}</span>
+</span><span data-line="13"><span class="k">if</span> <span class="n">failed</span><span class="p">:</span>
+</span><span data-line="14">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to reset: </span><span class="si">{</span><span class="n">failed</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-supported-properties-capability-query">
+<h3>get_supported_properties() - capability query<a class="headerlink" href="#get-supported-properties-capability-query" title="Link to this heading">¶</a></h3>
+<p>Query all supported camera and video properties for a device. Non-throwing: captures errors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_supported_properties</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Get lists of supported properties.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        device: Target device</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Dict with keys:</span>
+</span><span data-line="10"><span class="sd">            - &quot;camera&quot;: List of supported camera property names</span>
+</span><span data-line="11"><span class="sd">            - &quot;video&quot;: List of supported video property names</span>
+</span><span data-line="12"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2"><span class="n">supported</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_supported_properties</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera properties:&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">[</span><span class="s2">&quot;camera&quot;</span><span class="p">]:</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Video properties:&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">[</span><span class="s2">&quot;video&quot;</span><span class="p">]:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1"># Filter before operations</span>
+</span><span data-line="13"><span class="k">if</span> <span class="s2">&quot;Pan&quot;</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">[</span><span class="s2">&quot;camera&quot;</span><span class="p">]:</span>
+</span><span data-line="14">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="15">    <span class="n">camera</span><span class="o">.</span><span class="n">set_pan</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span>
+</span><span data-line="16"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="17">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pan not supported&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="set-property-safe-error-free-property-setting">
+<h3>set_property_safe() - error-free property setting<a class="headerlink" href="#set-property-safe-error-free-property-setting" title="Link to this heading">¶</a></h3>
+<p>Set property with validation and error capture. Returns status + error message without raising. Type-safe enum checking.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">set_property_safe</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_enum</span><span class="p">:</span> <span class="n">CamProp</span> <span class="o">|</span> <span class="n">VidProp</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="6">    <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;manual&quot;</span>
+</span><span data-line="7"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="8"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="9"><span class="sd">    Set property with validation and error reporting.</span>
+</span><span data-line="10"><span class="sd">    </span>
+</span><span data-line="11"><span class="sd">    Args:</span>
+</span><span data-line="12"><span class="sd">        device: Target device</span>
+</span><span data-line="13"><span class="sd">        domain: &quot;cam&quot; or &quot;vid&quot; (case-insensitive)</span>
+</span><span data-line="14"><span class="sd">        property_enum: CamProp or VidProp enum</span>
+</span><span data-line="15"><span class="sd">        value: Property value</span>
+</span><span data-line="16"><span class="sd">        mode: &quot;auto&quot; or &quot;manual&quot; (default)</span>
+</span><span data-line="17"><span class="sd">        </span>
+</span><span data-line="18"><span class="sd">    Returns:</span>
+</span><span data-line="19"><span class="sd">        (success: bool, error_message: str)</span>
+</span><span data-line="20"><span class="sd">        error_message is empty if successful</span>
+</span><span data-line="21"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Safe property set (no exceptions)</span>
+</span><span data-line="4"><span class="n">success</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">set_property_safe</span><span class="p">(</span>
+</span><span data-line="5">    <span class="n">device</span><span class="p">,</span>
+</span><span data-line="6">    <span class="s2">&quot;vid&quot;</span><span class="p">,</span>
+</span><span data-line="7">    <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span>
+</span><span data-line="8">    <span class="mi">150</span><span class="p">,</span>
+</span><span data-line="9">    <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;manual&quot;</span>
+</span><span data-line="10"><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+</span><span data-line="13">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Brightness set successfully&quot;</span><span class="p">)</span>
+</span><span data-line="14"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="15">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="16">    <span class="c1"># Handle gracefully</span>
+</span><span data-line="17">
+</span><span data-line="18"><span class="c1"># Batch safe sets</span>
+</span><span data-line="19"><span class="n">props_to_set</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="20">    <span class="p">(</span><span class="s2">&quot;vid&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+</span><span data-line="21">    <span class="p">(</span><span class="s2">&quot;vid&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Contrast</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span>
+</span><span data-line="22">    <span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span> <span class="mi">45</span><span class="p">),</span>
+</span><span data-line="23"><span class="p">]</span>
+</span><span data-line="24">
+</span><span data-line="25"><span class="k">for</span> <span class="n">domain</span><span class="p">,</span> <span class="n">prop_enum</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">props_to_set</span><span class="p">:</span>
+</span><span data-line="26">    <span class="n">success</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">set_property_safe</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">prop_enum</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span><span data-line="27">    <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span><span class="p">:</span>
+</span><span data-line="28">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping </span><span class="si">{</span><span class="n">prop_enum</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-property-safe-error-free-property-reading">
+<h3>get_property_safe() - error-free property reading<a class="headerlink" href="#get-property-safe-error-free-property-reading" title="Link to this heading">¶</a></h3>
+<p>Get property with validation and error capture. Returns status + value + error message. No exceptions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_property_safe</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_enum</span><span class="p">:</span> <span class="n">CamProp</span> <span class="o">|</span> <span class="n">VidProp</span>
+</span><span data-line="5"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="n">PropSetting</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+</span><span data-line="6"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="7"><span class="sd">    Get property with validation and error reporting.</span>
+</span><span data-line="8"><span class="sd">    </span>
+</span><span data-line="9"><span class="sd">    Args:</span>
+</span><span data-line="10"><span class="sd">        device: Target device</span>
+</span><span data-line="11"><span class="sd">        domain: &quot;cam&quot; or &quot;vid&quot; (case-insensitive)</span>
+</span><span data-line="12"><span class="sd">        property_enum: CamProp or VidProp enum</span>
+</span><span data-line="13"><span class="sd">        </span>
+</span><span data-line="14"><span class="sd">    Returns:</span>
+</span><span data-line="15"><span class="sd">        (success: bool, setting: PropSetting | None, error_message: str)</span>
+</span><span data-line="16"><span class="sd">        error_message is empty if successful</span>
+</span><span data-line="17"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Safe property read (no exceptions)</span>
+</span><span data-line="4"><span class="n">success</span><span class="p">,</span> <span class="n">setting</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_property_safe</span><span class="p">(</span>
+</span><span data-line="5">    <span class="n">device</span><span class="p">,</span>
+</span><span data-line="6">    <span class="s2">&quot;vid&quot;</span><span class="p">,</span>
+</span><span data-line="7">    <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span>
+</span><span data-line="8"><span class="p">)</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> (mode: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</span><span data-line="12"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="13">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to read: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1"># Batch safe reads</span>
+</span><span data-line="16"><span class="n">props_to_read</span> <span class="o">=</span> <span class="p">[</span>
+</span><span data-line="17">    <span class="p">(</span><span class="s2">&quot;vid&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">),</span>
+</span><span data-line="18">    <span class="p">(</span><span class="s2">&quot;vid&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Contrast</span><span class="p">),</span>
+</span><span data-line="19">    <span class="p">(</span><span class="s2">&quot;cam&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">),</span>
+</span><span data-line="20"><span class="p">]</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="n">current_state</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span data-line="23"><span class="k">for</span> <span class="n">domain</span><span class="p">,</span> <span class="n">prop_enum</span> <span class="ow">in</span> <span class="n">props_to_read</span><span class="p">:</span>
+</span><span data-line="24">    <span class="n">success</span><span class="p">,</span> <span class="n">setting</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_property_safe</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">prop_enum</span><span class="p">)</span>
+</span><span data-line="25">    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+</span><span data-line="26">        <span class="n">current_state</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">prop_enum</span><span class="p">)]</span> <span class="o">=</span> <span class="n">setting</span><span class="o">.</span><span class="n">value</span>
+</span><span data-line="27">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="28">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping read: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="is-device-connected-connection-status-check">
+<h3>is_device_connected() - connection status check<a class="headerlink" href="#is-device-connected-connection-status-check" title="Link to this heading">¶</a></h3>
+<p>Check if device is currently accessible and connected. Non-throwing: returns bool.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Check if device is currently connected and accessible.</span>
+</span><span data-line="4"><span class="sd">    </span>
+</span><span data-line="5"><span class="sd">    Args:</span>
+</span><span data-line="6"><span class="sd">        device: Target device</span>
+</span><span data-line="7"><span class="sd">        </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        True if device accessible, False if disconnected or inaccessible</span>
+</span><span data-line="10"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is connected&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="6"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is disconnected&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="c1"># Try to find alternative or reconnect</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Connection monitoring</span>
+</span><span data-line="11"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">():</span>
+</span><span data-line="12">    <span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;✓&quot;</span> <span class="k">if</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;✗&quot;</span>
+</span><span data-line="13">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1"># Retry pattern</span>
+</span><span data-line="16"><span class="k">def</span><span class="w"> </span><span class="nf">get_with_retry</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+</span><span data-line="17">    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">retries</span><span class="p">):</span>
+</span><span data-line="18">        <span class="k">if</span> <span class="ow">not</span> <span class="n">duvc</span><span class="o">.</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+</span><span data-line="19">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attempt </span><span class="si">{</span><span class="n">attempt</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: Device disconnected&quot;</span><span class="p">)</span>
+</span><span data-line="20">            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span data-line="21">            <span class="k">continue</span>
+</span><span data-line="22">        
+</span><span data-line="23">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="24">            <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="25">            <span class="k">return</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="26">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="27">            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+</span><span data-line="28">                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span data-line="29">    <span class="k">return</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="logging-setup-utilities">
+<h2>8.4 Logging Setup &amp; Utilities<a class="headerlink" href="#logging-setup-utilities" title="Link to this heading">¶</a></h2>
+<p>Configure logging level, enable debug output, and set callback handlers for library events.</p>
+<hr class="docutils" />
+<section id="setup-logging-configure-log-level-and-callback">
+<h3>setup_logging() - configure log level and callback<a class="headerlink" href="#setup-logging-configure-log-level-and-callback" title="Link to this heading">¶</a></h3>
+<p>Set log level and optional callback for all library log messages. Callback receives (level, message).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">level</span><span class="p">:</span> <span class="n">LogLevel</span> <span class="o">=</span> <span class="n">LogLevel</span><span class="o">.</span><span class="n">Info</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">LogLevel</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="4"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6"><span class="sd">    Configure library logging.</span>
+</span><span data-line="7"><span class="sd">    </span>
+</span><span data-line="8"><span class="sd">    Args:</span>
+</span><span data-line="9"><span class="sd">        level: Minimum log level to capture (default: Info)</span>
+</span><span data-line="10"><span class="sd">        callback: Optional function(level, message) called for each log event</span>
+</span><span data-line="11"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>LogLevel values</strong>: Debug, Info, Warning, Error, Critical</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Set level without callback</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">.</span><span class="n">setup_logging</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># With custom callback</span>
+</span><span data-line="7"><span class="k">def</span><span class="w"> </span><span class="nf">my_log_handler</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span data-line="8">    <span class="n">level_name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</span><span data-line="9">    <span class="n">timestamp</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">timestamp</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">level_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="n">duvc</span><span class="o">.</span><span class="n">setup_logging</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Debug</span><span class="p">,</span> <span class="n">my_log_handler</span><span class="p">)</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="c1"># Log to file</span>
+</span><span data-line="15"><span class="n">log_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;duvc.log&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</span><span data-line="16">
+</span><span data-line="17"><span class="k">def</span><span class="w"> </span><span class="nf">file_log_handler</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span data-line="18">    <span class="n">level_name</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+</span><span data-line="19">    <span class="n">log_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">level_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="20">    <span class="n">log_file</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="n">duvc</span><span class="o">.</span><span class="n">setup_logging</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">LogLevel</span><span class="o">.</span><span class="n">Info</span><span class="p">,</span> <span class="n">file_log_handler</span><span class="p">)</span>
+</span><span data-line="23">
+</span><span data-line="24"><span class="c1"># Operations now logged</span>
+</span><span data-line="25"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="26"><span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># Triggers log messages</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="enable-debug-logging-quick-debug-output">
+<h3>enable_debug_logging() - quick debug output<a class="headerlink" href="#enable-debug-logging-quick-debug-output" title="Link to this heading">¶</a></h3>
+<p>Enable debug-level logging with console output. Convenience function for quick diagnostics.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">enable_debug_logging</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="3"><span class="sd">    Enable debug-level logging to console.</span>
+</span><span data-line="4"><span class="sd">    Equivalent to setup_logging(LogLevel.Debug, print_handler)</span>
+</span><span data-line="5"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Single call for debugging</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">.</span><span class="n">enable_debug_logging</span><span class="p">()</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># Now see all debug output</span>
+</span><span data-line="7"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>  <span class="c1"># Logs device enumeration</span>
+</span><span data-line="8"><span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Logs open operation</span>
+</span><span data-line="9"><span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># Logs property operations</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1"># Output example:</span>
+</span><span data-line="12"><span class="c1"># [DEBUG] Enumerating DirectShow devices</span>
+</span><span data-line="13"><span class="c1"># [DEBUG] Found 2 camera(s)</span>
+</span><span data-line="14"><span class="c1"># [DEBUG] Opening device &quot;Logitech USB HD Webcam&quot;</span>
+</span><span data-line="15"><span class="c1"># [DEBUG] Device opened successfully</span>
+</span><span data-line="16"><span class="c1"># [DEBUG] Setting property: Brightness = 150</span>
+</span></pre></div>
+</div>
+<p><strong>Typical debug output categories</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Category</p></th>
+<th class="head text-left"><p>When</p></th>
+<th class="head text-left"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Device Enumeration</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">list_devices()</span></code></p></td>
+<td class="text-left"><p>“Found N camera(s)”, “Device: name”</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Device Open/Close</p></td>
+<td class="text-left"><p>Camera creation</p></td>
+<td class="text-left"><p>“Opening device”, “Device opened/closed”</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Property Operations</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">get/set_brightness()</span></code></p></td>
+<td class="text-left"><p>“Getting Brightness”, “Set Brightness = 150”</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Capabilities Query</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">get_capabilities()</span></code></p></td>
+<td class="text-left"><p>“Querying capabilities”, “Supported properties: …”</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Mode Changes</p></td>
+<td class="text-left"><p>Property mode changes</p></td>
+<td class="text-left"><p>“Setting auto mode”, “Switching to manual”</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Errors</p></td>
+<td class="text-left"><p>Failures</p></td>
+<td class="text-left"><p>“Failed to open: Permission denied”, “Device disconnected”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="07_exception-hierarchy-handling.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">7. Exception Hierarchy &amp; Handling</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="09_logging-diagnostics-callbacks.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">9. Logging, Diagnostics &amp; Callbacks</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

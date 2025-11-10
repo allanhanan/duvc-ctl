@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>7. Exception Hierarchy &amp; Handling - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="8. Convenience Functions &amp; Helpers" href="08_convenience-functions-helpers.html" /><link rel="prev" title="6. Enumeration &amp; Constant Reference" href="06_enumeration-constant-reference.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="7. Exception Hierarchy &amp; Handling"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">7. Exception Hierarchy &amp; Handling</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="exception-hierarchy-handling">
+<h1>7. Exception Hierarchy &amp; Handling<a class="headerlink" href="#exception-hierarchy-handling" title="Link to this heading">¶</a></h1>
+<section id="exception-base-device-errors">
+<h2>7.1 Exception Base &amp; Device Errors<a class="headerlink" href="#exception-base-device-errors" title="Link to this heading">¶</a></h2>
+<p>Base exception and specific device error subclasses. The Pythonic API raises these automatically; Result-based API returns error codes instead.</p>
+<section id="duvcerror-base-exception-with-error-context">
+<h3>DuvcError - base exception with error context<a class="headerlink" href="#duvcerror-base-exception-with-error-context" title="Link to this heading">¶</a></h3>
+<p>All exceptions inherit from <code class="docutils literal notranslate"><span class="pre">DuvcError</span></code>. Provides unified error handling, error codes, and contextual information for debugging.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error_code</span></code> (DuvcErrorCode or None): Integer error code mapping to specific conditions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">context</span></code> (str or None): Additional context information describing where/why error occurred.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code>: Returns formatted string with error code name, message, and context.</p></li>
+</ul>
+<p><strong>DuvcErrorCode IntEnum (0-8)</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Success</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.SUCCESS</span></code></p></td>
+<td><p>0</p></td>
+<td><p>Operation succeeded</p></td>
+</tr>
+<tr class="row-odd"><td><p>DeviceNotFound</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.DEVICE_NOT_FOUND</span></code></p></td>
+<td><p>1</p></td>
+<td><p>Device not found or disconnected</p></td>
+</tr>
+<tr class="row-even"><td><p>DeviceBusy</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.DEVICE_BUSY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>Device busy or in use</p></td>
+</tr>
+<tr class="row-odd"><td><p>PropertyNotSupported</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.PROPERTY_NOT_SUPPORTED</span></code></p></td>
+<td><p>3</p></td>
+<td><p>Property not supported by device</p></td>
+</tr>
+<tr class="row-even"><td><p>InvalidValue</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.INVALID_VALUE</span></code></p></td>
+<td><p>4</p></td>
+<td><p>Property value out of range</p></td>
+</tr>
+<tr class="row-odd"><td><p>PermissionDenied</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.PERMISSION_DENIED</span></code></p></td>
+<td><p>5</p></td>
+<td><p>Insufficient permissions</p></td>
+</tr>
+<tr class="row-even"><td><p>SystemError</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.SYSTEM_ERROR</span></code></p></td>
+<td><p>6</p></td>
+<td><p>System or platform error</p></td>
+</tr>
+<tr class="row-odd"><td><p>InvalidArgument</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.INVALID_ARGUMENT</span></code></p></td>
+<td><p>7</p></td>
+<td><p>Invalid function argument</p></td>
+</tr>
+<tr class="row-even"><td><p>NotImplemented</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DuvcErrorCode.NOT_IMPLEMENTED</span></code></p></td>
+<td><p>8</p></td>
+<td><p>Feature not implemented</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Code: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="devicenotfounderror-device-not-accessible">
+<h3>DeviceNotFoundError - device not accessible<a class="headerlink" href="#devicenotfounderror-device-not-accessible" title="Link to this heading">¶</a></h3>
+<p>Raised when device not found, disconnected, or not recognized by system. Device may have been physically disconnected or is not enumerable.</p>
+<p><strong>Typical causes</strong>: Device unplugged, driver issues, hardware failure, USB hub power-off.</p>
+<p><strong>Recovery</strong>: Reconnect device, check Device Manager, reinstall drivers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device not found: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available devices: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="devicebusyerror-device-locked-by-another-process">
+<h3>DeviceBusyError - device locked by another process<a class="headerlink" href="#devicebusyerror-device-locked-by-another-process" title="Link to this heading">¶</a></h3>
+<p>Raised when device is already open in another application or thread. Exclusive access prevents concurrent opens (DirectShow limitation).</p>
+<p><strong>Typical causes</strong>: Camera open in another app, another thread holding camera, previous open not properly closed.</p>
+<p><strong>Recovery</strong>: Close other apps using camera, ensure all camera objects are released.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceBusyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera in use: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Close other applications and retry&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="propertynotsupportederror-property-unavailable-on-device">
+<h3>PropertyNotSupportedError - property unavailable on device<a class="headerlink" href="#propertynotsupportederror-property-unavailable-on-device" title="Link to this heading">¶</a></h3>
+<p>Raised when querying/setting a property that device doesn’t support. Not all cameras support all UVC properties.</p>
+<p><strong>Typical causes</strong>: Camera model limitation, firmware restriction, driver doesn’t expose property.</p>
+<p><strong>Recovery</strong>: Query capabilities first, use different property, check camera specs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>  <span class="c1"># May not exist on all cameras</span>
+</span><span data-line="4"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Property not available: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">caps</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_capabilities</span><span class="p">()</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Supported video properties: </span><span class="si">{</span><span class="n">caps</span><span class="o">.</span><span class="n">video_properties</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="invalidvalueerror-property-value-outside-valid-range">
+<h3>InvalidValueError - property value outside valid range<a class="headerlink" href="#invalidvalueerror-property-value-outside-valid-range" title="Link to this heading">¶</a></h3>
+<p>Raised when attempting to set property to value outside [min, max] bounds or with invalid type.</p>
+<p><strong>Typical causes</strong>: Value out of range, step size mismatch, type error.</p>
+<p><strong>Recovery</strong>: Query range first, clamp value to bounds, use correct type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>  <span class="c1"># Typical range 0-255</span>
+</span><span data-line="4"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">InvalidValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid value: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">caps</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_capabilities</span><span class="p">()</span>
+</span><span data-line="7">    <span class="n">bright_range</span> <span class="o">=</span> <span class="n">caps</span><span class="o">.</span><span class="n">video_properties</span><span class="p">[</span><span class="s1">&#39;Brightness&#39;</span><span class="p">][</span><span class="s1">&#39;range&#39;</span><span class="p">]</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valid range: </span><span class="si">{</span><span class="n">bright_range</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">bright_range</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="permissiondeniederror-insufficient-access-permissions">
+<h3>PermissionDeniedError - insufficient access permissions<a class="headerlink" href="#permissiondeniederror-insufficient-access-permissions" title="Link to this heading">¶</a></h3>
+<p>Raised when lacking required permissions to access device. Can occur if privacy settings block camera or insufficient OS privileges.</p>
+<p><strong>Typical causes</strong>: Privacy mode enabled, app not granted camera permission, insufficient privileges.</p>
+<p><strong>Recovery</strong>: Grant permissions, disable privacy mode, run elevated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PermissionDeniedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Permission denied: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Check privacy settings or run with administrator privileges&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="property-value-errors">
+<h2>7.2 Property &amp; Value Errors<a class="headerlink" href="#property-value-errors" title="Link to this heading">¶</a></h2>
+<p>Specialized exception classes for property-specific failures. These provide detailed diagnostic attributes and recovery guidance for common usage errors.</p>
+<hr class="docutils" />
+<section id="propertyvalueoutofrangeerror-comprehensive-range-validation">
+<h3>PropertyValueOutOfRangeError - comprehensive range validation<a class="headerlink" href="#propertyvalueoutofrangeerror-comprehensive-range-validation" title="Link to this heading">¶</a></h3>
+<p>Detailed <code class="docutils literal notranslate"><span class="pre">InvalidValueError</span></code> subclass for out-of-range property values. Captures and reports complete range information with suggested corrections.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">property_name</span></code> (str): Property name (e.g., “Brightness”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> (int): The attempted value that was rejected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_val</span></code> (int): Minimum valid value for this property on this device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_val</span></code> (int): Maximum valid value for this property on this device.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">current_val</span></code> (int or None): Current property value before failed attempt. Helps understand what changed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code> (int or None): Step size between valid values. Important for alignment.</p></li>
+</ul>
+<p><strong>Exception message format</strong>: Includes clamped suggestion automatically.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="s2">&quot;Value 500 is out of range for &#39;Brightness&#39;. Valid range: 0 to 255 </span>
+</span><span data-line="2"><span class="p">(</span><span class="n">step</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span> <span class="n">Current</span> <span class="n">value</span><span class="p">:</span> <span class="mf">128.</span> <span class="n">Try</span><span class="p">:</span> <span class="mi">255</span><span class="s2">&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>  <span class="c1"># Range typically 0-255</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Property: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Attempted: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Valid range: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">min_val</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">max_val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Step size: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">current_val</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="10">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Current: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">current_val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">    
+</span><span data-line="12">    <span class="c1"># Automatic recovery: clamp to valid range</span>
+</span><span data-line="13">    <span class="n">corrected</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</span><span data-line="14">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span>
+</span><span data-line="15">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Retried with: </span><span class="si">{</span><span class="n">corrected</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Recovery algorithm</strong>: Exception message automatically suggests clamping target (<code class="docutils literal notranslate"><span class="pre">Try:</span> <span class="pre">X</span></code>). Apply this value directly without re-querying range.</p>
+</section>
+<hr class="docutils" />
+<section id="propertymodenotsupportederror-mode-compatibility-checking">
+<h3>PropertyModeNotSupportedError - mode compatibility checking<a class="headerlink" href="#propertymodenotsupportederror-mode-compatibility-checking" title="Link to this heading">¶</a></h3>
+<p>Distinguishes mode failures from property unavailability. Raised when property exists but requested mode (auto/manual/continuous) isn’t supported.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">property_name</span></code> (str): Property name (e.g., “Pan”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (str): Mode requested (“auto”, “manual”, or “continuous”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">supported_modes</span></code> (list[str]): List of actually supported modes on this device. Empty if information unavailable.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set_property_auto</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">)</span>  <span class="c1"># Pan typically manual-only</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyModeNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mode error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Property: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Requested mode: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="p">:</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Supported modes: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9">        
+</span><span data-line="10">        <span class="c1"># Fallback to supported mode</span>
+</span><span data-line="11">        <span class="n">fallback</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span> <span class="k">else</span> <span class="s1">&#39;manual&#39;</span>
+</span><span data-line="12">        <span class="k">if</span> <span class="n">fallback</span> <span class="o">==</span> <span class="s1">&#39;manual&#39;</span><span class="p">:</span>
+</span><span data-line="13">            <span class="n">camera</span><span class="o">.</span><span class="n">set_property_manual</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span data-line="14">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="15">        <span class="c1"># Mode information not available, try manual fallback</span>
+</span><span data-line="16">        <span class="n">camera</span><span class="o">.</span><span class="n">set_property_manual</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Difference from PropertyNotSupportedError</strong>: PropertyNotSupportedError = property doesn’t exist. PropertyModeNotSupportedError = property exists but mode unavailable.</p>
+</section>
+<hr class="docutils" />
+<section id="invalidvalueerror-generic-value-validation-failure">
+<h3>InvalidValueError - generic value validation failure<a class="headerlink" href="#invalidvalueerror-generic-value-validation-failure" title="Link to this heading">¶</a></h3>
+<p>Base class for all value validation errors not covered by specific subclasses. Type errors, null values, invalid enum constants.</p>
+<p><strong>Typical causes</strong>: Wrong type passed (string instead of int), null/None value, invalid enum constant.</p>
+<p><strong>Recovery</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="s2">&quot;bright&quot;</span><span class="p">)</span>  <span class="c1"># Type error</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">InvalidValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid value: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="c1"># Verify type: must be int or PropSetting</span>
+</span><span data-line="6">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span>  <span class="c1"># Correct: int</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="invalidargumenterror-function-argument-validation">
+<h3>InvalidArgumentError - function argument validation<a class="headerlink" href="#invalidargumenterror-function-argument-validation" title="Link to this heading">¶</a></h3>
+<p>Raised when function receives structurally invalid argument. Catches programming errors before reaching hardware.</p>
+<p><strong>Typical causes</strong>: Null device pointer, invalid enum passed, malformed PropSetting structure.</p>
+<p><strong>Recovery</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>  <span class="c1"># Invalid property enum</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">InvalidArgumentError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bad argument: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error code: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="c1"># Use valid enum constant</span>
+</span><span data-line="7">    <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="bulkoperationerror-batch-operation-diagnostics">
+<h3>BulkOperationError - batch operation diagnostics<a class="headerlink" href="#bulkoperationerror-batch-operation-diagnostics" title="Link to this heading">¶</a></h3>
+<p>Raised when bulk operations (e.g., setting multiple properties) partially succeed. Contains per-property failure details.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">operation</span></code> (str): Operation name (e.g., “set_properties”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">failed_properties</span></code> (dict): Mapping of property names to error messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">successful_count</span></code> (int): Number of properties successfully modified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_count</span></code> (int): Total properties attempted.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_recovery_suggestions()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code>: Analyzes failures and suggests recovery actions.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">props_to_set</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="2">    <span class="s1">&#39;Brightness&#39;</span><span class="p">:</span> <span class="mi">150</span><span class="p">,</span>
+</span><span data-line="3">    <span class="s1">&#39;Contrast&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span><span data-line="4">    <span class="s1">&#39;Pan&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>  <span class="c1"># May fail if unsupported</span>
+</span><span data-line="5"><span class="p">}</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="8">    <span class="n">camera</span><span class="o">.</span><span class="n">bulk_set_properties</span><span class="p">(</span><span class="n">props_to_set</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">BulkOperationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk operation failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Succeeded: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">successful_count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">total_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed properties: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">failed_properties</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="c1"># Get smart recovery suggestions</span>
+</span><span data-line="15">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">():</span>
+</span><span data-line="16">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="17">    
+</span><span data-line="18">    <span class="c1"># Retry failed properties individually</span>
+</span><span data-line="19">    <span class="k">for</span> <span class="n">prop</span><span class="p">,</span> <span class="n">error_msg</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">failed_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="20">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="21">            <span class="n">camera</span><span class="o">.</span><span class="n">set_single_property</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">props_to_set</span><span class="p">[</span><span class="n">prop</span><span class="p">])</span>
+</span><span data-line="22">        <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span><span class="p">:</span>
+</span><span data-line="23">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping unsupported property: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Recovery suggestions algorithm</strong>:</p>
+<ul class="simple">
+<li><p>“not supported” error → Suggests <code class="docutils literal notranslate"><span class="pre">get_capabilities()</span></code> query</p></li>
+<li><p>“out of range” error → Suggests <code class="docutils literal notranslate"><span class="pre">get_property_range()</span></code> query</p></li>
+<li><p>“busy” error → Suggests closing other apps</p></li>
+<li><p>No specific pattern → Suggests individual retry</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="connectionhealtherror-connection-diagnostics">
+<h3>ConnectionHealthError - connection diagnostics<a class="headerlink" href="#connectionhealtherror-connection-diagnostics" title="Link to this heading">¶</a></h3>
+<p>Raised when connection health checks fail. Provides diagnostics and recovery patterns.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_name</span></code> (str): Camera device name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">health_issues</span></code> (list[str]): List of detected issues (timeout, property locked, etc.).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_working_operation</span></code> (str or None): Last successful operation, helps narrow troubleshooting scope.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_recovery_suggestions()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code>: Context-aware recovery steps.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="c1"># Operations fail due to connection issues</span>
+</span><span data-line="3">    <span class="n">camera</span><span class="o">.</span><span class="n">health_check</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ConnectionHealthError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connection health check failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Issues: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">health_issues</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">last_working_operation</span><span class="p">:</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Last working operation: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">last_working_operation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="c1"># Get recovery suggestions based on failure pattern</span>
+</span><span data-line="12">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">():</span>
+</span><span data-line="13">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="14">    
+</span><span data-line="15">    <span class="c1"># Recovery: try reconnection</span>
+</span><span data-line="16">    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="17">        <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="18">    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span data-line="19">        <span class="c1"># Fallback: restart from scratch</span>
+</span><span data-line="20">        <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Recovery suggestions algorithm</strong>:</p>
+<ul class="simple">
+<li><p>“timeout” issue → Suggests reconnect</p></li>
+<li><p>“property locked” issue → Suggests reset_to_defaults()</p></li>
+<li><p>“no response” issue → Suggests check for concurrent access</p></li>
+<li><p>Fallback → Suggests cam.reconnect() or application restart</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="exception-recovery-suggestion-algorithms">
+<h3>Exception recovery suggestion algorithms<a class="headerlink" href="#exception-recovery-suggestion-algorithms" title="Link to this heading">¶</a></h3>
+<p>The library intelligently analyzes failure patterns and suggests targeted fixes:</p>
+<p><strong>PropertyValueOutOfRangeError recovery</strong>:</p>
+<ol class="arabic simple">
+<li><p>Extract suggested value from exception message</p></li>
+<li><p>Clamp user input to [min, max]</p></li>
+<li><p>Respect step size when adjusting</p></li>
+<li><p>Retry with clamped value</p></li>
+</ol>
+<p><strong>PropertyModeNotSupportedError recovery</strong>:</p>
+<ol class="arabic simple">
+<li><p>Check supported_modes list</p></li>
+<li><p>Fall back to first supported mode</p></li>
+<li><p>If no list, try “manual” as universal fallback</p></li>
+<li><p>If still failing, property may be truly unsupported</p></li>
+</ol>
+<p><strong>BulkOperationError recovery</strong>:</p>
+<ol class="arabic simple">
+<li><p>Analyze failure messages for patterns</p></li>
+<li><p>Group by failure type (unsupported vs. out-of-range vs. busy)</p></li>
+<li><p>Suggest property-specific diagnostics</p></li>
+<li><p>Recommend individual retry if batch failed</p></li>
+</ol>
+<p><strong>ConnectionHealthError recovery</strong>:</p>
+<ol class="arabic simple">
+<li><p>Classify issue type (timeout vs. lock vs. communication)</p></li>
+<li><p>Match to appropriate action (reconnect vs. reset vs. check access)</p></li>
+<li><p>Provide last-working context to narrow scope</p></li>
+<li><p>Escalate to full restart if basic recovery fails</p></li>
+</ol>
+</section>
+</section>
+<section id="system-advanced-exceptions">
+<h2>7.3 System &amp; Advanced Exceptions<a class="headerlink" href="#system-advanced-exceptions" title="Link to this heading">¶</a></h2>
+<p>Platform-level exceptions for system integration, connection management, and batch operations. These handle non-property-specific failures and advanced recovery patterns.</p>
+<hr class="docutils" />
+<section id="permissiondeniederror-access-control-failures">
+<h3>PermissionDeniedError - access control failures<a class="headerlink" href="#permissiondeniederror-access-control-failures" title="Link to this heading">¶</a></h3>
+<p>Raised when lacking OS-level permissions to access device. Privacy settings, restricted mode, or insufficient user privileges.</p>
+<p><strong>Typical causes</strong>: Privacy mode enabled, camera permission denied by OS, running without admin rights, restricted user account.</p>
+<p><strong>Recovery</strong>: Grant app camera permission in privacy settings, run elevated, check user group membership.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PermissionDeniedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Permission denied: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grant camera access in Settings &gt; Privacy &gt; Camera&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="systemerror-platform-driver-failures">
+<h3>SystemError - platform/driver failures<a class="headerlink" href="#systemerror-platform-driver-failures" title="Link to this heading">¶</a></h3>
+<p>Raised for unrecoverable system-level errors. Hardware issues, driver crashes, kernel failures, device firmware errors.</p>
+<p><strong>Typical causes</strong>: Driver bug, corrupt firmware, hardware malfunction, kernel memory access failure, USB port issue.</p>
+<p><strong>Recovery</strong>: Reinstall drivers, restart machine, update firmware, test with different USB port.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_brightness</span><span class="p">()</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">SystemError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Code: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Try restarting or reinstalling camera drivers&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="notimplementederror-unsupported-operations">
+<h3>NotImplementedError - unsupported operations<a class="headerlink" href="#notimplementederror-unsupported-operations" title="Link to this heading">¶</a></h3>
+<p>Raised when operation exists in API but isn’t implemented for target camera/platform. Different from PropertyNotSupportedError (property doesn’t exist vs. operation unavailable).</p>
+<p><strong>Typical causes</strong>: Feature only available on newer firmware, platform limitation, camera model doesn’t support operation.</p>
+<p><strong>Recovery</strong>: Update camera firmware, use alternative method, check camera specs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">advanced_tracking</span><span class="p">()</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">NotImplementedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Not implemented: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This camera may not support advanced tracking&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>BulkOperationError - batch operation diagnostics<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>Raised when setting/getting multiple properties fails partially. Provides detailed failure analysis and per-property error information.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">operation</span></code> (str): Operation name (e.g., “set_properties_batch”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">failed_properties</span></code> (dict[str, str]): Maps property names to error messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">successful_count</span></code> (int): Number of properties that succeeded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total_count</span></code> (int): Total properties attempted.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_recovery_suggestions()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code>: Analyzes failure patterns and suggests fixes.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">props_to_set</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="2">    <span class="s1">&#39;brightness&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span><span data-line="3">    <span class="s1">&#39;contrast&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+</span><span data-line="4">    <span class="s1">&#39;pan&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>  <span class="c1"># May fail</span>
+</span><span data-line="5">    <span class="s1">&#39;focus&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="9">    <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">bulk_set_properties</span><span class="p">(</span><span class="n">props_to_set</span><span class="p">)</span>
+</span><span data-line="10"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">BulkOperationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk set failed: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">operation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Success: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">successful_count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">total_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="c1"># Analyze failures by type</span>
+</span><span data-line="15">    <span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">error_msg</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">failed_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="16">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">prop_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="17">    
+</span><span data-line="18">    <span class="c1"># Get intelligent recovery suggestions</span>
+</span><span data-line="19">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">():</span>
+</span><span data-line="20">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="21">    
+</span><span data-line="22">    <span class="c1"># Retry failures individually</span>
+</span><span data-line="23">    <span class="k">for</span> <span class="n">prop</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">props_to_set</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="24">        <span class="k">if</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">failed_properties</span><span class="p">:</span>
+</span><span data-line="25">            <span class="k">try</span><span class="p">:</span>
+</span><span data-line="26">                <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span><span data-line="27">            <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span><span class="p">:</span>
+</span><span data-line="28">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skipping unsupported: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Recovery suggestion algorithm</strong>:</p>
+<ul class="simple">
+<li><p>“not supported” errors → Group by property, suggest <code class="docutils literal notranslate"><span class="pre">get_supported_properties()</span></code> query</p></li>
+<li><p>“out of range” errors → Group by property, suggest <code class="docutils literal notranslate"><span class="pre">get_property_range()</span></code> query</p></li>
+<li><p>“busy” errors → Suggest close other apps using camera</p></li>
+<li><p>Connection errors → Suggest reconnection or driver restart</p></li>
+<li><p>Mixed errors → Suggest individual retry with detailed error handling</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="connectionhealtherror-connection-status-diagnostics">
+<h3>ConnectionHealthError - connection status diagnostics<a class="headerlink" href="#connectionhealtherror-connection-status-diagnostics" title="Link to this heading">¶</a></h3>
+<p>Advanced exception for connection degradation and health monitoring. Indicates connection is functional but experiencing issues.</p>
+<p><strong>Attributes</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_name</span></code> (str): Camera device name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">health_issues</span></code> (list[str]): List of detected problems (timeout, latency, property locked, etc.).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last_working_operation</span></code> (str or None): Last operation that succeeded, helps narrow scope.</p></li>
+</ul>
+<p><strong>Methods</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_recovery_suggestions()</span> <span class="pre">-&gt;</span> <span class="pre">list[str]</span></code>: Context-aware recovery steps based on issue pattern.</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">health_check</span><span class="p">()</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ConnectionHealthError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connection degraded: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">device_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Issues: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">health_issues</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">last_working_operation</span><span class="p">:</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Last working: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">last_working_operation</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="c1"># Get specific recovery actions</span>
+</span><span data-line="11">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">():</span>
+</span><span data-line="12">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  → </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="c1"># Recovery pattern: reconnect</span>
+</span><span data-line="15">    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="16">        <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="17">    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span data-line="18">        <span class="c1"># Fallback: full restart</span>
+</span><span data-line="19">        <span class="n">camera</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="20">        <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="recovery-patterns-for-system-exceptions">
+<h3>Recovery patterns for system exceptions<a class="headerlink" href="#recovery-patterns-for-system-exceptions" title="Link to this heading">¶</a></h3>
+<p><strong>Timeout/Latency pattern</strong>:</p>
+<ol class="arabic simple">
+<li><p>Check device still enumerated: <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code></p></li>
+<li><p>Test basic operation: <code class="docutils literal notranslate"><span class="pre">get_brightness()</span></code></p></li>
+<li><p>If no response: attempt <code class="docutils literal notranslate"><span class="pre">reconnect()</span></code></p></li>
+<li><p>If still failing: restart application</p></li>
+</ol>
+<p><strong>Hardware/Driver pattern</strong>:</p>
+<ol class="arabic simple">
+<li><p>Check Device Manager for errors</p></li>
+<li><p>Reinstall drivers</p></li>
+<li><p>Restart system</p></li>
+<li><p>Try different USB port</p></li>
+<li><p>Test with USB analyzer if available</p></li>
+</ol>
+<p><strong>Permission pattern</strong>:</p>
+<ol class="arabic simple">
+<li><p>Check privacy settings (OS level)</p></li>
+<li><p>Grant app camera permission</p></li>
+<li><p>Run as administrator if needed</p></li>
+<li><p>Check user group membership on Windows</p></li>
+</ol>
+<p><strong>Connection loss pattern</strong>:</p>
+<ol class="arabic simple">
+<li><p>Verify device still connected physically</p></li>
+<li><p>Check device still in Device Manager</p></li>
+<li><p>Attempt <code class="docutils literal notranslate"><span class="pre">reconnect()</span></code></p></li>
+<li><p>If persistent: power-cycle device</p></li>
+<li><p>If still failing: unplug, wait 10s, reconnect</p></li>
+</ol>
+<p><strong>Batch operation pattern</strong>:</p>
+<ol class="arabic simple">
+<li><p>Identify failure types (unsupported vs. out-of-range vs. permission)</p></li>
+<li><p>Query capabilities for unsupported properties</p></li>
+<li><p>Query ranges for out-of-range values</p></li>
+<li><p>Retry individual properties with corrected values</p></li>
+<li><p>Log permanently failed properties for future skipping</p></li>
+</ol>
+</section>
+</section>
+<section id="exception-mapping-recovery">
+<h2>7.4 Exception Mapping &amp; Recovery<a class="headerlink" href="#exception-mapping-recovery" title="Link to this heading">¶</a></h2>
+<p>Error codes map to specific exception classes through a factory function. Applications catch exceptions at varying specificity levels depending on recovery requirements.</p>
+<hr class="docutils" />
+<section id="error-code-to-exception-mapping">
+<h3>ERROR_CODE_TO_EXCEPTION mapping<a class="headerlink" href="#error-code-to-exception-mapping" title="Link to this heading">¶</a></h3>
+<p>Complete bidirectional mapping between error codes and exception classes:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Error Code</p></th>
+<th class="head text-left"><p>Enum Name</p></th>
+<th class="head text-left"><p>Exception Class</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>0</p></td>
+<td class="text-left"><p>SUCCESS</p></td>
+<td class="text-left"><p>(no exception)</p></td>
+<td class="text-left"><p>Operation succeeded</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>DEVICE_NOT_FOUND</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DeviceNotFoundError</span></code></p></td>
+<td class="text-left"><p>Device disconnected/unavailable</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>DEVICE_BUSY</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DeviceBusyError</span></code></p></td>
+<td class="text-left"><p>Device locked by another process</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p>PROPERTY_NOT_SUPPORTED</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">PropertyNotSupportedError</span></code></p></td>
+<td class="text-left"><p>Property unavailable on device</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p>INVALID_VALUE</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvalidValueError</span></code> / <code class="docutils literal notranslate"><span class="pre">PropertyValueOutOfRangeError</span></code></p></td>
+<td class="text-left"><p>Value invalid/out of range</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>5</p></td>
+<td class="text-left"><p>PERMISSION_DENIED</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">PermissionDeniedError</span></code></p></td>
+<td class="text-left"><p>Insufficient OS permissions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>6</p></td>
+<td class="text-left"><p>SYSTEM_ERROR</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SystemError</span></code></p></td>
+<td class="text-left"><p>Platform/driver failure</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>7</p></td>
+<td class="text-left"><p>INVALID_ARGUMENT</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvalidArgumentError</span></code></p></td>
+<td class="text-left"><p>Function argument invalid</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>8</p></td>
+<td class="text-left"><p>NOT_IMPLEMENTED</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code></p></td>
+<td class="text-left"><p>Operation not implemented</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="create-exception-from-error-code-factory-function">
+<h3>create_exception_from_error_code() factory function<a class="headerlink" href="#create-exception-from-error-code-factory-function" title="Link to this heading">¶</a></h3>
+<p>Internal factory that maps error codes to exception instances. Used automatically by Result types when converting failures to exceptions.</p>
+<p><strong>Signature</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">create_exception_from_error_code</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">context</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="5"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DuvcError</span><span class="p">:</span>
+</span><span data-line="6"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create appropriate exception from error code.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage (internal; automatic in Pythonic API)</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Result-based API (explicit code handling)</span>
+</span><span data-line="2"><span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">VidProp</span><span class="o">.</span><span class="n">Brightness</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_error</span><span class="p">():</span>
+</span><span data-line="4">    <span class="n">code</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">code</span><span class="p">()</span>
+</span><span data-line="5">    <span class="n">message</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span>
+</span><span data-line="6">    <span class="c1"># Convert to exception if needed</span>
+</span><span data-line="7">    <span class="n">exc</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">_create_exception_from_error_code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">raise</span> <span class="n">exc</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Pythonic API (automatic exception raising)</span>
+</span><span data-line="11"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="12">    <span class="n">brightness</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">brightness</span>  <span class="c1"># Raises exception on error</span>
+</span><span data-line="13"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span><span class="p">:</span>
+</span><span data-line="14">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Brightness not available&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="exception-patterns-with-try-except">
+<h3>Exception patterns with try-except<a class="headerlink" href="#exception-patterns-with-try-except" title="Link to this heading">¶</a></h3>
+<p><strong>Pattern 1: Broad error handling</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="3">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span data-line="4"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="5">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Camera error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error code: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Context: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 2: Specific exception catching</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Out of range: clamp and retry</span>
+</span><span data-line="5">    <span class="n">corrected</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</span><span data-line="6">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span>
+</span><span data-line="7"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="8">    <span class="c1"># Property unavailable: use alternative</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness not available on this device&quot;</span><span class="p">)</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Supported: </span><span class="si">{</span><span class="n">camera</span><span class="o">.</span><span class="n">get_supported_properties</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyModeNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="12">    <span class="c1"># Mode not available: use fallback mode</span>
+</span><span data-line="13">    <span class="k">if</span> <span class="s1">&#39;manual&#39;</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="p">:</span>
+</span><span data-line="14">        <span class="n">camera</span><span class="o">.</span><span class="n">set_property_manual</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</span><span data-line="15"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="16">    <span class="c1"># Device disconnected: reconnect or restart</span>
+</span><span data-line="17">    <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="18"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="19">    <span class="c1"># Catch-all for other errors</span>
+</span><span data-line="20">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unhandled error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 3: Multi-level error handling</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="c1"># Try primary operation</span>
+</span><span data-line="3">    <span class="n">result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">bulk_set_properties</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+</span><span data-line="4"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">BulkOperationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="5">    <span class="c1"># Partial success: handle per-property</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Succeeded: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">successful_count</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">total_count</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="k">for</span> <span class="n">prop</span><span class="p">,</span> <span class="n">error_msg</span> <span class="ow">in</span> <span class="n">e</span><span class="o">.</span><span class="n">failed_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span data-line="9">        <span class="k">if</span> <span class="s2">&quot;not supported&quot;</span> <span class="ow">in</span> <span class="n">error_msg</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+</span><span data-line="10">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Skip unsupported: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">        <span class="k">elif</span> <span class="s2">&quot;out of range&quot;</span> <span class="ow">in</span> <span class="n">error_msg</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+</span><span data-line="12">            <span class="c1"># Retry with clamped value</span>
+</span><span data-line="13">            <span class="k">try</span><span class="p">:</span>
+</span><span data-line="14">                <span class="n">camera</span><span class="o">.</span><span class="n">set_single_property</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">props</span><span class="p">[</span><span class="n">prop</span><span class="p">])</span>
+</span><span data-line="15">            <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">pe</span><span class="p">:</span>
+</span><span data-line="16">                <span class="n">corrected</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">pe</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">pe</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">pe</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</span><span data-line="17">                <span class="n">camera</span><span class="o">.</span><span class="n">set_single_property</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span> <span class="n">corrected</span><span class="p">)</span>
+</span><span data-line="18"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ConnectionHealthError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="19">    <span class="c1"># Connection degraded: attempt recovery</span>
+</span><span data-line="20">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connection issues: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">health_issues</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="21">    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="22">        <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="23">    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span data-line="24">        <span class="n">camera</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="25">        <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="26"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="27">    <span class="n">log_error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span><span data-line="28">    <span class="k">raise</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="specific-exception-catching-strategies">
+<h3>Specific exception catching strategies<a class="headerlink" href="#specific-exception-catching-strategies" title="Link to this heading">¶</a></h3>
+<p><strong>Device access errors</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># List available devices</span>
+</span><span data-line="5">    <span class="n">available</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="6">    <span class="k">if</span> <span class="ow">not</span> <span class="n">available</span><span class="p">:</span>
+</span><span data-line="7">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No cameras found&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Available cameras:&quot;</span><span class="p">)</span>
+</span><span data-line="10">        <span class="k">for</span> <span class="n">dev</span> <span class="ow">in</span> <span class="n">available</span><span class="p">:</span>
+</span><span data-line="11">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">dev</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="12"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceBusyError</span><span class="p">:</span>
+</span><span data-line="13">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera in use by another app. Close it first.&quot;</span><span class="p">)</span>
+</span><span data-line="14">    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span data-line="15">    <span class="c1"># Retry</span>
+</span><span data-line="16">    <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="n">device_index</span><span class="p">)</span>
+</span><span data-line="17"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PermissionDeniedError</span><span class="p">:</span>
+</span><span data-line="18">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera access denied. Check privacy settings.&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Property value errors</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Smart recovery: auto-clamp</span>
+</span><span data-line="5">    <span class="n">corrected</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">))</span>
+</span><span data-line="6">    <span class="n">camera</span><span class="o">.</span><span class="n">set_brightness</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Value clamped from </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">corrected</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Property </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="si">}</span><span class="s2"> not available&quot;</span><span class="p">)</span>
+</span><span data-line="10">    <span class="c1"># Try alternative property</span>
+</span><span data-line="11">    <span class="n">available</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_supported_video_properties</span><span class="p">()</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Try: </span><span class="si">{</span><span class="n">available</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyModeNotSupportedError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="14">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mode </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2"> not available for </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="15">    <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="p">:</span>
+</span><span data-line="16">        <span class="n">fallback</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">supported_modes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="17">        <span class="n">camera</span><span class="o">.</span><span class="n">set_property_mode</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">property_name</span><span class="p">,</span> <span class="n">fallback</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>System/platform errors</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">perform_operation</span><span class="p">()</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">SystemError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unrecoverable system error: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">error_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="c1"># Escalate: requires restart/driver reinstall</span>
+</span><span data-line="7">    <span class="k">raise</span>
+</span><span data-line="8"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">NotImplementedError</span><span class="p">:</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Feature not available on this device&quot;</span><span class="p">)</span>
+</span><span data-line="10">    <span class="c1"># Degrade gracefully</span>
+</span><span data-line="11">    <span class="n">use_fallback_method</span><span class="p">()</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="recovery-strategies-with-get-recovery-suggestions">
+<h3>Recovery strategies with get_recovery_suggestions()<a class="headerlink" href="#recovery-strategies-with-get-recovery-suggestions" title="Link to this heading">¶</a></h3>
+<p>Exceptions with recovery guidance expose suggestions via method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="2">    <span class="n">camera</span><span class="o">.</span><span class="n">bulk_set_properties</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+</span><span data-line="3"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">BulkOperationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">suggestions</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">()</span>
+</span><span data-line="5">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">suggestions</span><span class="p">:</span>
+</span><span data-line="6">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Try: </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="c1"># Apply first suggestion if possible</span>
+</span><span data-line="9">    <span class="k">if</span> <span class="n">suggestions</span><span class="p">:</span>
+</span><span data-line="10">        <span class="k">if</span> <span class="s2">&quot;Reconnect&quot;</span> <span class="ow">in</span> <span class="n">suggestions</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+</span><span data-line="11">            <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="12">        <span class="k">elif</span> <span class="s2">&quot;Query capabilities&quot;</span> <span class="ow">in</span> <span class="n">suggestions</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+</span><span data-line="13">            <span class="n">caps</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_capabilities</span><span class="p">()</span>
+</span><span data-line="14"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">ConnectionHealthError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="15">    <span class="n">suggestions</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">get_recovery_suggestions</span><span class="p">()</span>
+</span><span data-line="16">    <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">suggestions</span><span class="p">:</span>
+</span><span data-line="17">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Suggested fix: </span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="18">    
+</span><span data-line="19">    <span class="c1"># Implement suggestion</span>
+</span><span data-line="20">    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="s2">&quot;reconnect&quot;</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">suggestions</span><span class="p">):</span>
+</span><span data-line="21">        <span class="k">try</span><span class="p">:</span>
+</span><span data-line="22">            <span class="n">camera</span><span class="o">.</span><span class="n">reconnect</span><span class="p">()</span>
+</span><span data-line="23">        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span><span data-line="24">            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reconnect failed, restarting...&quot;</span><span class="p">)</span>
+</span><span data-line="25">            <span class="n">camera</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span data-line="26"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyValueOutOfRangeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="27">    <span class="c1"># Exception message includes suggestion</span>
+</span><span data-line="28">    <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>  <span class="c1"># Prints with clamped value suggestion</span>
+</span></pre></div>
+</div>
+<p><strong>Recovery suggestion categories</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Error Pattern</p></th>
+<th class="head text-left"><p>Suggestion Category</p></th>
+<th class="head text-left"><p>Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Out of range</p></td>
+<td class="text-left"><p>“Try: X” (clamped value)</p></td>
+<td class="text-left"><p>Apply directly</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Not supported</p></td>
+<td class="text-left"><p>“Query capabilities”</p></td>
+<td class="text-left"><p>Call <code class="docutils literal notranslate"><span class="pre">get_supported_*()</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Busy/Locked</p></td>
+<td class="text-left"><p>“Close other apps” or “Reconnect”</p></td>
+<td class="text-left"><p>Specific action provided</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Connection</p></td>
+<td class="text-left"><p>“Reconnect” or “Restart device”</p></td>
+<td class="text-left"><p>Progressive escalation</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Timeout</p></td>
+<td class="text-left"><p>“Check USB connection”</p></td>
+<td class="text-left"><p>Hardware/driver check</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="06_enumeration-constant-reference.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">6. Enumeration &amp; Constant Reference</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="08_convenience-functions-helpers.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">8. Convenience Functions &amp; Helpers</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

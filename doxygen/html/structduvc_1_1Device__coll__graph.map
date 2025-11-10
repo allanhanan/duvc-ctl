@@ -1,0 +1,7 @@
+<map id="duvc::Device" name="duvc::Device">
+<area shape="rect" id="Node000001" title="Represents a camera device." alt="" coords="19,289,106,423"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="23,140,102,209"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,209,65,273,60,273,60,209"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,120,91"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="65,106,65,140,60,140,60,106"/>
+</map>

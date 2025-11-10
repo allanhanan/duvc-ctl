@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="version_8h" kind="file" language="C++">
+    <compoundname>version.h</compoundname>
+    <includes local="no">cstdint</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>c/version.h</label>
+        <link refid="version_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>cstdint</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="version_8h_1a8db0f12dbcc565ada71b7cdc9282be5e" prot="public" static="no">
+        <name>DUVC_ABI_VERSION_MAJOR</name>
+        <initializer>2</initializer>
+        <briefdescription>
+<para>Major version number. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Incremented for breaking ABI changes. Applications compiled against a different major version are not guaranteed to be compatible. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="19" column="9" bodyfile="c/version.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a1f570eaeee7ea2613c296e297701ada2" prot="public" static="no">
+        <name>DUVC_ABI_VERSION_MINOR</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Minor version number. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Incremented for new features that maintain backward compatibility. Applications compiled against older minor versions should work. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="27" column="9" bodyfile="c/version.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a7d076b4c06276abc7eb92b6854578d59" prot="public" static="no">
+        <name>DUVC_ABI_VERSION_PATCH</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Patch version number. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Incremented for bug fixes and internal improvements that maintain full ABI compatibility. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="35" column="9" bodyfile="c/version.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a639e184808edc344f82429131030f958" prot="public" static="no">
+        <name>DUVC_ABI_VERSION</name>
+        <initializer>  ((<ref refid="version_8h_1a8db0f12dbcc565ada71b7cdc9282be5e" kindref="member">DUVC_ABI_VERSION_MAJOR</ref> &lt;&lt; 16) | (<ref refid="version_8h_1a1f570eaeee7ea2613c296e297701ada2" kindref="member">DUVC_ABI_VERSION_MINOR</ref> &lt;&lt; 8) |            \
+   <ref refid="version_8h_1a7d076b4c06276abc7eb92b6854578d59" kindref="member">DUVC_ABI_VERSION_PATCH</ref>)</initializer>
+        <briefdescription>
+<para>Combined version number as integer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Format: (major &lt;&lt; 16) | (minor &lt;&lt; 8) | patch Useful for numeric version comparisons. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="43" column="9" bodyfile="c/version.h" bodystart="43" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="define" id="version_8h_1a93ba76da5d7463b6ea15e7622ecdbf27" prot="public" static="no">
+        <name>DUVC_ABI_VERSION_STRING</name>
+        <initializer>&quot;2.0.0&quot;</initializer>
+        <briefdescription>
+<para>Version string in semantic versioning format. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="50" column="9" bodyfile="c/version.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="version_8h_1ab70bb6f568a46a622e06d8561e51ecb7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t</type>
+        <definition>uint32_t duvc_get_version</definition>
+        <argsstring>(void)</argsstring>
+        <name>duvc_get_version</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get runtime library version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Combined version number as returned by DUVC_ABI_VERSION macro</para>
+</simplesect>
+Get runtime library version.</para>
+<para><simplesect kind="return"><para>Combined version number as returned by DUVC_ABI_VERSION macro </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="57" column="10" bodyfile="c/api.cpp" bodystart="234" bodyend="234" declfile="c/version.h" declline="57" declcolumn="10"/>
+        <referencedby refid="api_8h_1acb1a7f390548fcb4bffe76d3932ceb90" compoundref="api_8cpp" startline="238" endline="255">duvc_check_abi_compatibility</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="version_8h_1a4bd4e22e0a73ab098f0952d9578ab334" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char * duvc_get_version_string</definition>
+        <argsstring>(void)</argsstring>
+        <name>duvc_get_version_string</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get runtime library version string. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Null-terminated version string (e.g., &quot;2.0.0&quot;) </para>
+</simplesect>
+<simplesect kind="note"><para>Returned string is statically allocated and should not be freed</para>
+</simplesect>
+Get runtime library version string.</para>
+<para><simplesect kind="return"><para>Null-terminated version string (e.g., &quot;1.0.0&quot;) </para>
+</simplesect>
+<simplesect kind="note"><para>Returned string is statically allocated and should not be freed </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="65" column="12" bodyfile="c/api.cpp" bodystart="236" bodyend="236" declfile="c/version.h" declline="65" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="version_8h_1acb1a7f390548fcb4bffe76d3932ceb90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_check_abi_compatibility</definition>
+        <argsstring>(uint32_t compiled_version)</argsstring>
+        <name>duvc_check_abi_compatibility</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>compiled_version</declname>
+        </param>
+        <briefdescription>
+<para>Check ABI compatibility. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Verifies that the runtime library is compatible with the version this application was compiled against.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>compiled_version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Version the application was compiled with (use DUVC_ABI_VERSION) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if compatible, 0 if incompatible</para>
+</simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>compiled_version</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Version the application was compiled with (use DUVC_ABI_VERSION) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>1 if compatible, 0 if incompatible </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="c/version.h" line="77" column="5" bodyfile="c/api.cpp" bodystart="238" bodyend="255" declfile="c/version.h" declline="77" declcolumn="5"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>ABI versioning and build information for duvc-ctl C API. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdint&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="version_8h_1a8db0f12dbcc565ada71b7cdc9282be5e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_ABI_VERSION_MAJOR<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="version_8h_1a1f570eaeee7ea2613c296e297701ada2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_ABI_VERSION_MINOR<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="version_8h_1a7d076b4c06276abc7eb92b6854578d59" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_ABI_VERSION_PATCH<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="version_8h_1a639e184808edc344f82429131030f958" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_ABI_VERSION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="44"><highlight class="preprocessor"><sp/><sp/>((DUVC_ABI_VERSION_MAJOR<sp/>&lt;&lt;<sp/>16)<sp/>|<sp/>(DUVC_ABI_VERSION_MINOR<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="45"><highlight class="preprocessor"><sp/><sp/><sp/>DUVC_ABI_VERSION_PATCH)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="version_8h_1a93ba76da5d7463b6ea15e7622ecdbf27" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVC_ABI_VERSION_STRING<sp/>&quot;2.0.0&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">uint32_t<sp/><ref refid="version_8h_1ab70bb6f568a46a622e06d8561e51ecb7" kindref="member">duvc_get_version</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="version_8h_1a4bd4e22e0a73ab098f0952d9578ab334" kindref="member">duvc_get_version_string</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="version_8h_1acb1a7f390548fcb4bffe76d3932ceb90" kindref="member">duvc_check_abi_compatibility</ref>(uint32_t<sp/>compiled_version);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="c/version.h"/>
+  </compounddef>
+</doxygen>

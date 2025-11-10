@@ -1,0 +1,7 @@
+<map id="duvc::enum_video_devices" name="duvc::enum_video_devices">
+<area shape="rect" id="Node000001" title="Enumerate video input devices." alt="" coords="5,5,185,32"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#a21b444574354018097d4489a9ff0ff9e" title=" " alt="" coords="233,5,340,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,16,217,16,217,21,185,21"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a02d5c5b2e56515cee2cad9057af0467d" title=" " alt="" coords="388,5,519,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,16,372,16,372,21,340,21"/>
+</map>

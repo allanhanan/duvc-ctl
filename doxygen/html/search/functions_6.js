@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['is_5fdevice_5faccessible_0',['is_device_accessible',['../classduvc_1_1DeviceCapabilities.html#ac5d276e943fa0b7ed0c581ffe0309851',1,'duvc::DeviceCapabilities']]],
+  ['is_5fdevice_5fconnected_1',['is_device_connected',['../classduvc_1_1IPlatformInterface.html#a4b29d5835b45278227e8996442de1372',1,'duvc::IPlatformInterface::is_device_connected()'],['../classduvc_1_1WindowsPlatformInterface.html#aeebd693d00349fbe4ac98cf5f369381d',1,'duvc::WindowsPlatformInterface::is_device_connected()'],['../namespaceduvc.html#ab42651167ff39abe9e70713ac6db65b9',1,'duvc::is_device_connected(const Device &amp;dev)']]],
+  ['is_5fdevice_5ferror_2',['is_device_error',['../namespaceduvc.html#a3c81b05c0ce578b7eb53729c327de14e',1,'duvc']]],
+  ['is_5ferror_3',['is_error',['../classduvc_1_1Result.html#acaf861018438b257c0d91b769f26e782',1,'duvc::Result::is_error()'],['../classduvc_1_1Result_3_01void_01_4.html#abe6032918d5c06176e3be1397ac33a97',1,'duvc::Result&lt; void &gt;::is_error()']]],
+  ['is_5fok_4',['is_ok',['../classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f',1,'duvc::Result::is_ok()'],['../classduvc_1_1Result_3_01void_01_4.html#a2e422d39e91d1ca365ccbdbe9e86f60d',1,'duvc::Result&lt; void &gt;::is_ok()']]],
+  ['is_5fpermission_5ferror_5',['is_permission_error',['../namespaceduvc.html#a14854abccfc834a895354f1024ae1b6d',1,'duvc']]],
+  ['is_5fsame_5fdevice_6',['is_same_device',['../namespaceduvc.html#a16607a28a7df86e823edf3abd371af92',1,'duvc']]],
+  ['is_5fvalid_7',['is_valid',['../classduvc_1_1DeviceConnection.html#a22146e458d993086e1313262a2c992e1',1,'duvc::DeviceConnection::is_valid()'],['../classduvc_1_1Camera.html#a682f869dcea95cc310c86275872c00d2',1,'duvc::Camera::is_valid()'],['../structduvc_1_1PropRange.html#a26c45ec72485c04e70b34b1ff9e5d91a',1,'duvc::PropRange::is_valid()'],['../structduvc_1_1Device.html#ad3e80d9ad1a9da04ede1424ff8765050',1,'duvc::Device::is_valid()'],['../classduvc_1_1IDeviceConnection.html#a36f3d69da915597ccc37e9e6053c75ee',1,'duvc::IDeviceConnection::is_valid()'],['../classduvc_1_1DeviceConnection.html#a22146e458d993086e1313262a2c992e1',1,'duvc::DeviceConnection::is_valid()'],['../classduvc_1_1KsPropertySet.html#a6e2ecf3413c017d4a4ec309c3e90a3f7',1,'duvc::KsPropertySet::is_valid()']]]
+];

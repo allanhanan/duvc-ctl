@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>duvc-ctl C API Documentation - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="duvc-ctl C++ API Documentation" href="../cpp/index.html" /><link rel="prev" title="Migration" href="../../user-guide/migration.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="duvc-ctl C API Documentation"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">duvc-ctl C API Documentation</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="duvc-ctl-c-api-documentation">
+<h1>duvc-ctl C API Documentation<a class="headerlink" href="#duvc-ctl-c-api-documentation" title="Link to this heading">¶</a></h1>
+<p>Complete documentation for the duvc-ctl C ABI (Application Binary Interface), providing stable C-compatible access to UVC camera control functionality.</p>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#c-api-overview"><span class="xref myst">C API Overview</span></a></p></li>
+<li><p><a class="reference internal" href="#functions-and-types-reference">Functions and Types Reference</a></p></li>
+<li><p><a class="reference internal" href="#examples">Examples</a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The duvc-ctl C API provides a stable, platform-agnostic interface for controlling USB Video Class (UVC) cameras. This C ABI ensures compatibility across different compilers, programming languages, and runtime environments while maintaining full access to the library’s capabilities.</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Stable ABI</strong>: Versioned interface with backward compatibility guarantees</p></li>
+<li><p><strong>Cross-Language Compatibility</strong>: Usable from C, C++, Python, Rust, Go, and other languages</p></li>
+<li><p><strong>Comprehensive Functionality</strong>: Full access to camera properties, device management, and vendor extensions</p></li>
+<li><p><strong>Error Handling</strong>: Robust error reporting with detailed diagnostics</p></li>
+<li><p><strong>Memory Management</strong>: Clear ownership semantics and proper resource cleanup</p></li>
+<li><p><strong>Thread Safety</strong>: Safe for concurrent access from multiple threads</p></li>
+</ul>
+</section>
+<section id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h3>
+<p>The C API acts as a bridge between client applications and the underlying C++ implementation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">Client Application
+</span><span data-line="2">       ↓
+</span><span data-line="3">   C API (api.h)
+</span><span data-line="4">       ↓  
+</span><span data-line="5">C++ Implementation
+</span><span data-line="6">       ↓
+</span><span data-line="7">Platform Layer (DirectShow)
+</span><span data-line="8">       ↓
+</span><span data-line="9">UVC Hardware
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Platform</strong>: Windows 10+ (x64)</p></li>
+<li><p><strong>Compiler</strong>: Any C99-compatible compiler</p></li>
+<li><p><strong>Dependencies</strong>: None (self-contained)</p></li>
+</ul>
+</section>
+<section id="basic-usage-pattern">
+<h3>Basic Usage Pattern<a class="headerlink" href="#basic-usage-pattern" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Initialize library</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="c1">// Use camera functionality</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">    </span>
+</span><span data-line="15"><span class="w">    </span><span class="c1">// ... camera operations ...</span>
+</span><span data-line="16"><span class="w">    </span>
+</span><span data-line="17"><span class="w">    </span><span class="c1">// Cleanup</span>
+</span><span data-line="18"><span class="w">    </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="20"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="21"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="compilation">
+<h3>Compilation<a class="headerlink" href="#compilation" title="Link to this heading">¶</a></h3>
+<p>Link against the duvc-ctl library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">gcc<span class="w"> </span>-o<span class="w"> </span>myapp<span class="w"> </span>myapp.c<span class="w"> </span>-lduvc-ctl
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="core-concepts">
+<h2>Core Concepts<a class="headerlink" href="#core-concepts" title="Link to this heading">¶</a></h2>
+<section id="result-codes">
+<h3>Result Codes<a class="headerlink" href="#result-codes" title="Link to this heading">¶</a></h3>
+<p>All operations return <code class="docutils literal notranslate"><span class="pre">duvc_result_t</span></code> status codes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> (0): Operation succeeded</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVC_ERROR_*</span></code>: Various error conditions with detailed meanings</p></li>
+</ul>
+</section>
+<section id="device-handles">
+<h3>Device Handles<a class="headerlink" href="#device-handles" title="Link to this heading">¶</a></h3>
+<p>Devices are represented as opaque <code class="docutils literal notranslate"><span class="pre">duvc_device_t*</span></code> pointers managed by the library. Always use library functions to enumerate and access devices.</p>
+</section>
+<section id="property-system">
+<h3>Property System<a class="headerlink" href="#property-system" title="Link to this heading">¶</a></h3>
+<p>Camera properties use value-mode pairs:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">              </span><span class="c1">// Property value</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">duvc_cam_mode_t</span><span class="w"> </span><span class="n">mode</span><span class="p">;</span><span class="w">       </span><span class="c1">// DUVC_CAM_MODE_AUTO or DUVC_CAM_MODE_MANUAL</span>
+</span><span data-line="4"><span class="p">}</span><span class="w"> </span><span class="n">duvc_prop_setting_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="connection-management">
+<h3>Connection Management<a class="headerlink" href="#connection-management" title="Link to this heading">¶</a></h3>
+<p>For efficiency, create persistent connections for multiple operations:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">duvc_create_connection</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="3"><span class="c1">// ... multiple operations ...</span>
+</span><span data-line="4"><span class="n">duvc_close_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="abi-versioning">
+<h2>ABI Versioning<a class="headerlink" href="#abi-versioning" title="Link to this heading">¶</a></h2>
+<section id="version-checking">
+<h3>Version Checking<a class="headerlink" href="#version-checking" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Check compatibility at runtime</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">duvc_check_abi_compatibility</span><span class="p">(</span><span class="n">DUVC_ABI_VERSION</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ABI version mismatch</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="5"><span class="p">}</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Library version: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_version_string</span><span class="p">());</span>
+</span></pre></div>
+</div>
+</section>
+<section id="compatibility-rules">
+<h3>Compatibility Rules<a class="headerlink" href="#compatibility-rules" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Major Version</strong>: Must match exactly (breaking changes)</p></li>
+<li><p><strong>Minor Version</strong>: Runtime ≥ compiled (backward compatible additions)</p></li>
+<li><p><strong>Patch Version</strong>: Any (bug fixes only)</p></li>
+</ul>
+</section>
+</section>
+<section id="error-handling">
+<h2>Error Handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h2>
+<section id="basic-error-handling">
+<h3>Basic Error Handling<a class="headerlink" href="#basic-error-handling" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_some_operation</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Get detailed error information</span>
+</span><span data-line="6"><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">details</span><span class="p">[</span><span class="o">^</span><span class="mi">1024</span><span class="p">];</span>
+</span><span data-line="7"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">required</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_get_last_error_details</span><span class="p">(</span><span class="n">details</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">details</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">required</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Details: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="advanced-error-analysis">
+<h3>Advanced Error Analysis<a class="headerlink" href="#advanced-error-analysis" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Check error classification</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_device_error</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="c1">// Handle device-related errors</span>
+</span><span data-line="4"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_permission_error</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Handle permission errors</span>
+</span><span data-line="6"><span class="p">}</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1">// Check if operation should be retried</span>
+</span><span data-line="9"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_should_retry_operation</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="c1">// Implement retry logic</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="functions-and-types-reference">
+<h2>Functions and Types Reference<a class="headerlink" href="#functions-and-types-reference" title="Link to this heading">¶</a></h2>
+</section>
+<section id="version-and-abi-management">
+<h2>Version and ABI Management<a class="headerlink" href="#version-and-abi-management" title="Link to this heading">¶</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
+<section id="duvc-get-version">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_get_version</span></code><a class="headerlink" href="#duvc-get-version" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">duvc_get_version</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get runtime library version as integer
+<strong>Returns</strong>: Version number in format <code class="docutils literal notranslate"><span class="pre">(major</span> <span class="pre">&lt;&lt;</span> <span class="pre">16)</span> <span class="pre">|</span> <span class="pre">(minor</span> <span class="pre">&lt;&lt;</span> <span class="pre">8)</span> <span class="pre">|</span> <span class="pre">patch</span></code></p>
+</section>
+<section id="duvc-get-version-string">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_get_version_string</span></code><a class="headerlink" href="#duvc-get-version-string" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">duvc_get_version_string</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get runtime library version as string
+<strong>Returns</strong>: Null-terminated version string (e.g., “2.0.0”)
+<strong>Note</strong>: Returned string is statically allocated</p>
+</section>
+<section id="duvc-check-abi-compatibility">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_check_abi_compatibility</span></code><a class="headerlink" href="#duvc-check-abi-compatibility" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">duvc_check_abi_compatibility</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">compiled_version</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check ABI compatibility between compiled and runtime versions
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">compiled_version</span></code>: Version application was compiled with (use <code class="docutils literal notranslate"><span class="pre">DUVC_ABI_VERSION</span></code>)
+<strong>Returns</strong>: 1 if compatible, 0 if incompatible</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="library-management">
+<h2>Library Management<a class="headerlink" href="#library-management" title="Link to this heading">¶</a></h2>
+<section id="duvc-initialize">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_initialize</span></code><a class="headerlink" href="#duvc-initialize" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Initialize the duvc library. Must be called before other functions.
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure
+<strong>Thread Safety</strong>: Not thread-safe, call from main thread only</p>
+</section>
+<section id="duvc-shutdown">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_shutdown</span></code><a class="headerlink" href="#duvc-shutdown" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">duvc_shutdown</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Shutdown library and cleanup resources
+<strong>Thread Safety</strong>: Not thread-safe, call from main thread only</p>
+</section>
+<section id="duvc-is-initialized">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_is_initialized</span></code><a class="headerlink" href="#duvc-is-initialized" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">duvc_is_initialized</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if library is initialized
+<strong>Returns</strong>: 1 if initialized, 0 if not</p>
+</section>
+</section>
+<section id="core-types-and-enumerations">
+<h2>Core Types and Enumerations<a class="headerlink" href="#core-types-and-enumerations" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Result Codes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">                    </span><span class="cm">/**&lt; Operation succeeded */</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DUVC_ERROR_DEVICE_NOT_FOUND</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Device not found or disconnected */</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">DUVC_ERROR_DEVICE_BUSY</span><span class="p">,</span><span class="w">             </span><span class="cm">/**&lt; Device is busy or in use */</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">,</span><span class="w">  </span><span class="cm">/**&lt; Property not supported by device */</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">DUVC_ERROR_INVALID_VALUE</span><span class="p">,</span><span class="w">           </span><span class="cm">/**&lt; Property value out of range */</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">DUVC_ERROR_PERMISSION_DENIED</span><span class="p">,</span><span class="w">       </span><span class="cm">/**&lt; Insufficient permissions */</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">DUVC_ERROR_SYSTEM_ERROR</span><span class="p">,</span><span class="w">            </span><span class="cm">/**&lt; System/platform error */</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">DUVC_ERROR_INVALID_ARGUMENT</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Invalid function argument */</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">DUVC_ERROR_NOT_IMPLEMENTED</span><span class="p">,</span><span class="w">         </span><span class="cm">/**&lt; Feature not implemented */</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">DUVC_ERROR_CONNECTION_FAILED</span><span class="p">,</span><span class="w">       </span><span class="cm">/**&lt; Failed to establish connection */</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">DUVC_ERROR_TIMEOUT</span><span class="p">,</span><span class="w">                 </span><span class="cm">/**&lt; Operation timed out */</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">DUVC_ERROR_BUFFER_TOO_SMALL</span><span class="w">         </span><span class="cm">/**&lt; Provided buffer too small */</span>
+</span><span data-line="14"><span class="p">}</span><span class="w"> </span><span class="n">duvc_result_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="camera-properties">
+<h3>Camera Properties<a class="headerlink" href="#camera-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">DUVC_CAM_PROP_PAN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">              </span><span class="cm">/**&lt; Horizontal camera rotation */</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DUVC_CAM_PROP_TILT</span><span class="p">,</span><span class="w">                 </span><span class="cm">/**&lt; Vertical camera rotation */</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">DUVC_CAM_PROP_ROLL</span><span class="p">,</span><span class="w">                 </span><span class="cm">/**&lt; Camera roll rotation */</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w">                 </span><span class="cm">/**&lt; Optical zoom level */</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">DUVC_CAM_PROP_EXPOSURE</span><span class="p">,</span><span class="w">             </span><span class="cm">/**&lt; Exposure time */</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">DUVC_CAM_PROP_IRIS</span><span class="p">,</span><span class="w">                 </span><span class="cm">/**&lt; Aperture/iris setting */</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">DUVC_CAM_PROP_FOCUS</span><span class="p">,</span><span class="w">                </span><span class="cm">/**&lt; Focus position */</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">DUVC_CAM_PROP_SCAN_MODE</span><span class="p">,</span><span class="w">            </span><span class="cm">/**&lt; Scan mode */</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">DUVC_CAM_PROP_PRIVACY</span><span class="p">,</span><span class="w">              </span><span class="cm">/**&lt; Privacy mode */</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">DUVC_CAM_PROP_PAN_RELATIVE</span><span class="p">,</span><span class="w">         </span><span class="cm">/**&lt; Relative pan movement */</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">DUVC_CAM_PROP_TILT_RELATIVE</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Relative tilt movement */</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">DUVC_CAM_PROP_ROLL_RELATIVE</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Relative roll movement */</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">DUVC_CAM_PROP_ZOOM_RELATIVE</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Relative zoom movement */</span>
+</span><span data-line="15"><span class="w">    </span><span class="n">DUVC_CAM_PROP_EXPOSURE_RELATIVE</span><span class="p">,</span><span class="w">    </span><span class="cm">/**&lt; Relative exposure adjustment */</span>
+</span><span data-line="16"><span class="w">    </span><span class="n">DUVC_CAM_PROP_IRIS_RELATIVE</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; Relative iris adjustment */</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">DUVC_CAM_PROP_FOCUS_RELATIVE</span><span class="p">,</span><span class="w">       </span><span class="cm">/**&lt; Relative focus adjustment */</span>
+</span><span data-line="18"><span class="w">    </span><span class="n">DUVC_CAM_PROP_PAN_TILT</span><span class="p">,</span><span class="w">             </span><span class="cm">/**&lt; Combined pan/tilt control */</span>
+</span><span data-line="19"><span class="w">    </span><span class="n">DUVC_CAM_PROP_PAN_TILT_RELATIVE</span><span class="p">,</span><span class="w">    </span><span class="cm">/**&lt; Relative pan/tilt movement */</span>
+</span><span data-line="20"><span class="w">    </span><span class="n">DUVC_CAM_PROP_FOCUS_SIMPLE</span><span class="p">,</span><span class="w">         </span><span class="cm">/**&lt; Simple focus control */</span>
+</span><span data-line="21"><span class="w">    </span><span class="n">DUVC_CAM_PROP_DIGITAL_ZOOM</span><span class="p">,</span><span class="w">         </span><span class="cm">/**&lt; Digital zoom level */</span>
+</span><span data-line="22"><span class="w">    </span><span class="n">DUVC_CAM_PROP_DIGITAL_ZOOM_RELATIVE</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; Relative digital zoom */</span>
+</span><span data-line="23"><span class="w">    </span><span class="n">DUVC_CAM_PROP_BACKLIGHT_COMPENSATION</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; Backlight compensation */</span>
+</span><span data-line="24"><span class="w">    </span><span class="n">DUVC_CAM_PROP_LAMP</span><span class="w">                  </span><span class="cm">/**&lt; Camera lamp/flash control */</span>
+</span><span data-line="25"><span class="p">}</span><span class="w"> </span><span class="n">duvc_cam_prop_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="video-properties">
+<h3>Video Properties<a class="headerlink" href="#video-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">DUVC_VID_PROP_BRIGHTNESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">       </span><span class="cm">/**&lt; Image brightness level */</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DUVC_VID_PROP_CONTRAST</span><span class="p">,</span><span class="w">             </span><span class="cm">/**&lt; Image contrast level */</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">DUVC_VID_PROP_HUE</span><span class="p">,</span><span class="w">                  </span><span class="cm">/**&lt; Color hue adjustment */</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">DUVC_VID_PROP_SATURATION</span><span class="p">,</span><span class="w">           </span><span class="cm">/**&lt; Color saturation level */</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">DUVC_VID_PROP_SHARPNESS</span><span class="p">,</span><span class="w">            </span><span class="cm">/**&lt; Image sharpness level */</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">DUVC_VID_PROP_GAMMA</span><span class="p">,</span><span class="w">                </span><span class="cm">/**&lt; Gamma correction value */</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">DUVC_VID_PROP_COLOR_ENABLE</span><span class="p">,</span><span class="w">         </span><span class="cm">/**&lt; Color vs. monochrome mode */</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">DUVC_VID_PROP_WHITE_BALANCE</span><span class="p">,</span><span class="w">        </span><span class="cm">/**&lt; White balance adjustment */</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">DUVC_VID_PROP_BACKLIGHT_COMPENSATION</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; Backlight compensation level */</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">DUVC_VID_PROP_GAIN</span><span class="w">                  </span><span class="cm">/**&lt; Sensor gain level */</span>
+</span><span data-line="12"><span class="p">}</span><span class="w"> </span><span class="n">duvc_vid_prop_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="property-structures">
+<h3>Property Structures<a class="headerlink" href="#property-structures" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">                      </span><span class="cm">/**&lt; Property value */</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">duvc_cam_mode_t</span><span class="w"> </span><span class="n">mode</span><span class="p">;</span><span class="w">               </span><span class="cm">/**&lt; Control mode (auto/manual) */</span>
+</span><span data-line="4"><span class="p">}</span><span class="w"> </span><span class="n">duvc_prop_setting_t</span><span class="p">;</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">min</span><span class="p">;</span><span class="w">                        </span><span class="cm">/**&lt; Minimum supported value */</span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">max</span><span class="p">;</span><span class="w">                        </span><span class="cm">/**&lt; Maximum supported value */</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">step</span><span class="p">;</span><span class="w">                       </span><span class="cm">/**&lt; Step size between valid values */</span>
+</span><span data-line="10"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">default_val</span><span class="p">;</span><span class="w">                </span><span class="cm">/**&lt; Default value */</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">duvc_cam_mode_t</span><span class="w"> </span><span class="n">default_mode</span><span class="p">;</span><span class="w">       </span><span class="cm">/**&lt; Default control mode */</span>
+</span><span data-line="12"><span class="p">}</span><span class="w"> </span><span class="n">duvc_prop_range_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="control-modes">
+<h3>Control Modes<a class="headerlink" href="#control-modes" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">DUVC_CAM_MODE_AUTO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">             </span><span class="cm">/**&lt; Automatic control by camera */</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="w">                </span><span class="cm">/**&lt; Manual control by application */</span>
+</span><span data-line="4"><span class="p">}</span><span class="w"> </span><span class="n">duvc_cam_mode_t</span><span class="p">;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="opaque-handle-types">
+<h3>Opaque Handle Types<a class="headerlink" href="#opaque-handle-types" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">duvc_device_t</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="p">;</span><span class="w">           </span><span class="cm">/**&lt; Device handle */</span>
+</span><span data-line="2"><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">duvc_connection_t</span><span class="w"> </span><span class="n">duvc_connection_t</span><span class="p">;</span><span class="w">   </span><span class="cm">/**&lt; Connection handle */</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="device-management">
+<h2>Device Management<a class="headerlink" href="#device-management" title="Link to this heading">¶</a></h2>
+<section id="duvc-list-devices">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_list_devices</span></code><a class="headerlink" href="#duvc-list-devices" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_list_devices</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">***</span><span class="w"> </span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">*</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Enumerate all available camera devices
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devices</span></code>: Output array of device pointers (caller must free with <code class="docutils literal notranslate"><span class="pre">duvc_free_device_list</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: Number of devices in the array
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-free-device-list">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_free_device_list</span></code><a class="headerlink" href="#duvc-free-device-list" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">duvc_free_device_list</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Free device list returned by <code class="docutils literal notranslate"><span class="pre">duvc_list_devices</span></code>
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devices</span></code>: Device array to free</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: Number of devices in the array</p></li>
+</ul>
+</section>
+<section id="duvc-is-device-connected">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_is_device_connected</span></code><a class="headerlink" href="#duvc-is-device-connected" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">connected</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if device is currently connected
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Device to check</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connected</span></code>: Output - 1 if connected, 0 if not
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-get-device-name">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_get_device_name</span></code><a class="headerlink" href="#duvc-get-device-name" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_device_name</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                   </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name_buffer</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                   </span><span class="kt">size_t</span><span class="w"> </span><span class="n">buffer_size</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">                                   </span><span class="kt">size_t</span><span class="o">*</span><span class="w"> </span><span class="n">required_size</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get device name as UTF-8 string
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Target device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_buffer</span></code>: Buffer to receive name (can be NULL to query size)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buffer_size</span></code>: Size of name_buffer in bytes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required_size</span></code>: Required buffer size including null terminator
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, <code class="docutils literal notranslate"><span class="pre">DUVC_ERROR_BUFFER_TOO_SMALL</span></code> if buffer too small</p></li>
+</ul>
+</section>
+<section id="duvc-get-device-path">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_get_device_path</span></code><a class="headerlink" href="#duvc-get-device-path" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_device_path</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                   </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path_buffer</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                   </span><span class="kt">size_t</span><span class="w"> </span><span class="n">buffer_size</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">                                   </span><span class="kt">size_t</span><span class="o">*</span><span class="w"> </span><span class="n">required_size</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get device path as UTF-8 string
+<strong>Parameters</strong>: Same as <code class="docutils literal notranslate"><span class="pre">duvc_get_device_name</span></code>
+<strong>Returns</strong>: Same as <code class="docutils literal notranslate"><span class="pre">duvc_get_device_name</span></code></p>
+</section>
+</section>
+<section id="id2">
+<h2>Connection Management<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="duvc-create-connection">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_create_connection</span></code><a class="headerlink" href="#duvc-create-connection" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_create_connection</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="2"><span class="w">                                     </span><span class="n">duvc_connection_t</span><span class="o">**</span><span class="w"> </span><span class="n">connection</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Create persistent connection to device for efficient operations
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Device to connect to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connection</span></code>: Output connection handle
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-close-connection">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_close_connection</span></code><a class="headerlink" href="#duvc-close-connection" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_close_connection</span><span class="p">(</span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">connection</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Close device connection
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">connection</span></code>: Connection to close
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-is-connection-valid">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_is_connection_valid</span></code><a class="headerlink" href="#duvc-is-connection-valid" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_is_connection_valid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">valid</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if connection is valid
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">connection</span></code>: Connection to check</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valid</span></code>: Output - 1 if valid, 0 if invalid
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+</section>
+<section id="property-operations">
+<h2>Property Operations<a class="headerlink" href="#property-operations" title="Link to this heading">¶</a></h2>
+<section id="direct-device-access">
+<h3>Direct Device Access<a class="headerlink" href="#direct-device-access" title="Link to this heading">¶</a></h3>
+<section id="duvc-get-camera-property">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_get_camera_property</span></code><a class="headerlink" href="#duvc-get-camera-property" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_camera_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                       </span><span class="n">duvc_cam_prop_t</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                       </span><span class="n">duvc_prop_setting_t</span><span class="o">*</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get current camera property value
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Target device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prop</span></code>: Camera property to query</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setting</span></code>: Output current property setting
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-set-camera-property">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_set_camera_property</span></code><a class="headerlink" href="#duvc-set-camera-property" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_set_camera_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                       </span><span class="n">duvc_cam_prop_t</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="n">duvc_prop_setting_t</span><span class="o">*</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Set camera property value
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Target device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prop</span></code>: Camera property to set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setting</span></code>: New property setting
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+<section id="duvc-get-camera-property-range">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_get_camera_property_range</span></code><a class="headerlink" href="#duvc-get-camera-property-range" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_camera_property_range</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                             </span><span class="n">duvc_cam_prop_t</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                             </span><span class="n">duvc_prop_range_t</span><span class="o">*</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get valid range for camera property
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Target device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prop</span></code>: Camera property to query</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">range</span></code>: Output property range information
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p></li>
+</ul>
+</section>
+</section>
+<section id="connection-based-access-more-efficient">
+<h3>Connection-Based Access (More Efficient)<a class="headerlink" href="#connection-based-access-more-efficient" title="Link to this heading">¶</a></h3>
+<section id="duvc-connection-get-camera-property">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_connection_get_camera_property</span></code><a class="headerlink" href="#duvc-connection-get-camera-property" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_connection_get_camera_property</span><span class="p">(</span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                                  </span><span class="n">duvc_cam_prop_t</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                                  </span><span class="n">duvc_prop_setting_t</span><span class="o">*</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get camera property using persistent connection
+<strong>Parameters</strong>: Similar to direct access but uses connection handle
+<strong>Performance</strong>: More efficient for multiple operations on same device</p>
+</section>
+</section>
+</section>
+<section id="vendor-properties">
+<h2>Vendor Properties<a class="headerlink" href="#vendor-properties" title="Link to this heading">¶</a></h2>
+<section id="duvc-get-vendor-property">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_get_vendor_property</span></code><a class="headerlink" href="#duvc-get-vendor-property" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_vendor_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">property_set_guid</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                       </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">                                       </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+</span><span data-line="5"><span class="w">                                       </span><span class="kt">size_t</span><span class="o">*</span><span class="w"> </span><span class="n">data_size</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get vendor-specific property data
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>: Target device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property_set_guid</span></code>: Property set GUID as string (e.g., “{12345678-1234-1234-1234-123456789ABC}”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property_id</span></code>: Property ID within set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Buffer to receive property data (can be NULL to query size)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_size</span></code>: Input: buffer size, Output: actual data size
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, <code class="docutils literal notranslate"><span class="pre">DUVC_ERROR_BUFFER_TOO_SMALL</span></code> if buffer too small</p></li>
+</ul>
+</section>
+<section id="duvc-set-vendor-property">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_set_vendor_property</span></code><a class="headerlink" href="#duvc-set-vendor-property" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_set_vendor_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">property_set_guid</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                       </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span>
+</span><span data-line="4"><span class="w">                                       </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">,</span>
+</span><span data-line="5"><span class="w">                                       </span><span class="kt">size_t</span><span class="w"> </span><span class="n">data_size</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Set vendor-specific property data
+<strong>Parameters</strong>: Similar to get but with input data
+<strong>Returns</strong>: <code class="docutils literal notranslate"><span class="pre">DUVC_SUCCESS</span></code> on success, error code on failure</p>
+</section>
+<section id="logitech-vendor-properties">
+<h3>Logitech Vendor Properties<a class="headerlink" href="#logitech-vendor-properties" title="Link to this heading">¶</a></h3>
+<section id="duvc-supports-logitech-properties">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_supports_logitech_properties</span></code><a class="headerlink" href="#duvc-supports-logitech-properties" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_supports_logitech_properties</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">supported</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if device supports Logitech vendor properties
+<strong>Returns</strong>: 1 if supported, 0 if not supported</p>
+</section>
+<section id="duvc-get-logitech-property-int32">
+<h4><code class="docutils literal notranslate"><span class="pre">duvc_get_logitech_property_int32</span></code><a class="headerlink" href="#duvc-get-logitech-property-int32" title="Link to this heading">¶</a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_logitech_property_int32</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">,</span>
+</span><span data-line="2"><span class="w">                                               </span><span class="n">duvc_logitech_prop_t</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">                                               </span><span class="kt">int32_t</span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get Logitech property as 32-bit integer
+<strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prop</span></code>: Logitech property (e.g., <code class="docutils literal notranslate"><span class="pre">DUVC_LOGITECH_PROP_RIGHT_LIGHT</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: Output property value</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id3">
+<h2>Error Handling<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<section id="duvc-get-error-string">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_get_error_string</span></code><a class="headerlink" href="#duvc-get-error-string" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">duvc_get_error_string</span><span class="p">(</span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get human-readable error description
+<strong>Returns</strong>: Null-terminated error string (statically allocated)</p>
+</section>
+<section id="duvc-get-last-error-details">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_get_last_error_details</span></code><a class="headerlink" href="#duvc-get-last-error-details" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_result_t</span><span class="w"> </span><span class="nf">duvc_get_last_error_details</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="2"><span class="w">                                          </span><span class="kt">size_t</span><span class="w"> </span><span class="n">buffer_size</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="3"><span class="w">                                          </span><span class="kt">size_t</span><span class="o">*</span><span class="w"> </span><span class="n">required_size</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Get detailed error information from last operation
+<strong>Parameters</strong>: Standard buffer pattern - can pass NULL buffer to query required size</p>
+</section>
+<section id="duvc-is-device-error">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_is_device_error</span></code><a class="headerlink" href="#duvc-is-device-error" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">duvc_is_device_error</span><span class="p">(</span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if error is device-related
+<strong>Returns</strong>: 1 if device-related, 0 otherwise</p>
+</section>
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading">¶</a></h2>
+<section id="duvc-is-value-valid">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_is_value_valid</span></code><a class="headerlink" href="#duvc-is-value-valid" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">duvc_is_value_valid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_prop_range_t</span><span class="o">*</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Check if property value is valid for given range
+<strong>Returns</strong>: 1 if valid, 0 if invalid</p>
+</section>
+<section id="duvc-clamp-value">
+<h3><code class="docutils literal notranslate"><span class="pre">duvc_clamp_value</span></code><a class="headerlink" href="#duvc-clamp-value" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int32_t</span><span class="w"> </span><span class="nf">duvc_clamp_value</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">duvc_prop_range_t</span><span class="o">*</span><span class="w"> </span><span class="n">range</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Description</strong>: Clamp value to valid range with step alignment
+<strong>Returns</strong>: Nearest valid value within range</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<section id="basic-device-enumeration">
+<h3>Basic Device Enumeration<a class="headerlink" href="#basic-device-enumeration" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Initialize library</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to initialize: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="10"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="12"><span class="w">    </span>
+</span><span data-line="13"><span class="w">    </span><span class="c1">// Check version compatibility</span>
+</span><span data-line="14"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">duvc_check_abi_compatibility</span><span class="p">(</span><span class="n">DUVC_ABI_VERSION</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="15"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ABI version mismatch</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">        </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="17"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="19"><span class="w">    </span>
+</span><span data-line="20"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;duvc-ctl version: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_version_string</span><span class="p">());</span>
+</span><span data-line="21"><span class="w">    </span>
+</span><span data-line="22"><span class="w">    </span><span class="c1">// List devices</span>
+</span><span data-line="23"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="24"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="25"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="26"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="27"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to list devices: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="29"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="30"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="31"><span class="w">    </span>
+</span><span data-line="32"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Found %zu devices:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="33"><span class="w">    </span>
+</span><span data-line="34"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="35"><span class="w">        </span><span class="c1">// Get device name</span>
+</span><span data-line="36"><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="o">^</span><span class="mi">256</span><span class="p">];</span>
+</span><span data-line="37"><span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">name_size</span><span class="p">;</span>
+</span><span data-line="38"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_get_device_name</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name_size</span><span class="p">);</span>
+</span><span data-line="39"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="40"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;  [%zu] %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+</span><span data-line="41"><span class="w">            </span>
+</span><span data-line="42"><span class="w">            </span><span class="c1">// Check if connected</span>
+</span><span data-line="43"><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">connected</span><span class="p">;</span>
+</span><span data-line="44"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_device_connected</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">connected</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="45"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;       Status: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">connected</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Connected&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Disconnected&quot;</span><span class="p">);</span>
+</span><span data-line="46"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="47"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="48"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="49"><span class="w">    </span>
+</span><span data-line="50"><span class="w">    </span><span class="c1">// Cleanup</span>
+</span><span data-line="51"><span class="w">    </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="52"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="53"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="54"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="camera-property-control">
+<h3>Camera Property Control<a class="headerlink" href="#camera-property-control" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">void</span><span class="w"> </span><span class="nf">demonstrate_ptz_control</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span>
+</span><span data-line="9"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Demonstrating PTZ control...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span>
+</span><span data-line="11"><span class="w">    </span><span class="c1">// Create connection for efficient operations</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_create_connection</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to create connection: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="15"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="17"><span class="w">    </span>
+</span><span data-line="18"><span class="w">    </span><span class="c1">// Get current zoom settings</span>
+</span><span data-line="19"><span class="w">    </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">zoom_setting</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_get_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zoom_setting</span><span class="p">);</span>
+</span><span data-line="21"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="22"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current zoom: %d (%s)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="23"><span class="w">               </span><span class="n">zoom_setting</span><span class="p">.</span><span class="n">value</span><span class="p">,</span>
+</span><span data-line="24"><span class="w">               </span><span class="n">zoom_setting</span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_AUTO</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Auto&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Manual&quot;</span><span class="p">);</span>
+</span><span data-line="25"><span class="w">        </span>
+</span><span data-line="26"><span class="w">        </span><span class="c1">// Get zoom range</span>
+</span><span data-line="27"><span class="w">        </span><span class="n">duvc_prop_range_t</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">;</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_get_camera_property_range</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">);</span>
+</span><span data-line="29"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="30"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Zoom range: %d to %d (step: %d, default: %d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
+</span><span data-line="31"><span class="w">                   </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">max</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">step</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">default_val</span><span class="p">);</span>
+</span><span data-line="32"><span class="w">            </span>
+</span><span data-line="33"><span class="w">            </span><span class="c1">// Set zoom to middle of range</span>
+</span><span data-line="34"><span class="w">            </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">new_zoom</span><span class="p">;</span>
+</span><span data-line="35"><span class="w">            </span><span class="n">new_zoom</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">zoom_range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span data-line="36"><span class="w">            </span><span class="n">new_zoom</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_clamp_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">,</span><span class="w"> </span><span class="n">new_zoom</span><span class="p">.</span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// Ensure valid</span>
+</span><span data-line="37"><span class="w">            </span><span class="n">new_zoom</span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">;</span>
+</span><span data-line="38"><span class="w">            </span>
+</span><span data-line="39"><span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">new_zoom</span><span class="p">);</span>
+</span><span data-line="40"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="41"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Set zoom to: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">new_zoom</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+</span><span data-line="42"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="43"><span class="w">                </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to set zoom: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="44"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="45"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="46"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="47"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Zoom not supported on this device</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="48"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="49"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to get zoom: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="50"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="51"><span class="w">    </span>
+</span><span data-line="52"><span class="w">    </span><span class="c1">// Pan control</span>
+</span><span data-line="53"><span class="w">    </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">pan_setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">};</span><span class="w"> </span><span class="c1">// Center pan</span>
+</span><span data-line="54"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_PAN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pan_setting</span><span class="p">);</span>
+</span><span data-line="55"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="56"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Pan centered</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="57"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="58"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to set pan: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="59"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="60"><span class="w">    </span>
+</span><span data-line="61"><span class="w">    </span><span class="c1">// Tilt control</span>
+</span><span data-line="62"><span class="w">    </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">tilt_setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">};</span><span class="w"> </span><span class="c1">// Center tilt</span>
+</span><span data-line="63"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_TILT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tilt_setting</span><span class="p">);</span>
+</span><span data-line="64"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="65"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Tilt centered</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="66"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="67"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to set tilt: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="68"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="69"><span class="w">    </span>
+</span><span data-line="70"><span class="w">    </span><span class="n">duvc_close_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="71"><span class="p">}</span>
+</span><span data-line="72">
+</span><span data-line="73"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="74"><span class="w">    </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="75"><span class="w">    </span>
+</span><span data-line="76"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="77"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="78"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="79"><span class="w">        </span><span class="n">demonstrate_ptz_control</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]);</span>
+</span><span data-line="80"><span class="w">        </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="81"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="82"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;No devices found</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="83"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="84"><span class="w">    </span>
+</span><span data-line="85"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="86"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="87"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="video-property-management">
+<h3>Video Property Management<a class="headerlink" href="#video-property-management" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="kt">void</span><span class="w"> </span><span class="nf">adjust_video_properties</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Adjusting video properties...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_create_connection</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to create connection</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="14"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="15"><span class="w">    </span>
+</span><span data-line="16"><span class="w">    </span><span class="c1">// Brightness control</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">duvc_prop_range_t</span><span class="w"> </span><span class="n">brightness_range</span><span class="p">;</span>
+</span><span data-line="18"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_get_video_property_range</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_VID_PROP_BRIGHTNESS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">brightness_range</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="20"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Brightness range: %d to %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">brightness_range</span><span class="p">.</span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">brightness_range</span><span class="p">.</span><span class="n">max</span><span class="p">);</span>
+</span><span data-line="21"><span class="w">        </span>
+</span><span data-line="22"><span class="w">        </span><span class="c1">// Set brightness to 75% of range</span>
+</span><span data-line="23"><span class="w">        </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">target_brightness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brightness_range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+</span><span data-line="24"><span class="w">            </span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)((</span><span class="n">brightness_range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">brightness_range</span><span class="p">.</span><span class="n">min</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.75</span><span class="p">);</span>
+</span><span data-line="25"><span class="w">        </span><span class="n">target_brightness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_clamp_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">brightness_range</span><span class="p">,</span><span class="w"> </span><span class="n">target_brightness</span><span class="p">);</span>
+</span><span data-line="26"><span class="w">        </span>
+</span><span data-line="27"><span class="w">        </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">brightness_setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">target_brightness</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">};</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_video_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_VID_PROP_BRIGHTNESS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">brightness_setting</span><span class="p">);</span>
+</span><span data-line="29"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="30"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Set brightness to: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">target_brightness</span><span class="p">);</span>
+</span><span data-line="31"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="32"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="33"><span class="w">    </span>
+</span><span data-line="34"><span class="w">    </span><span class="c1">// Auto white balance</span>
+</span><span data-line="35"><span class="w">    </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">wb_setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_AUTO</span><span class="p">};</span>
+</span><span data-line="36"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_video_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_VID_PROP_WHITE_BALANCE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wb_setting</span><span class="p">);</span>
+</span><span data-line="37"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="38"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enabled auto white balance</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="39"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="40"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;White balance not supported</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="41"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="42"><span class="w">    </span>
+</span><span data-line="43"><span class="w">    </span><span class="n">duvc_close_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="44"><span class="p">}</span>
+</span><span data-line="45">
+</span><span data-line="46"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="47"><span class="w">    </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="48"><span class="w">    </span>
+</span><span data-line="49"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="50"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="51"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="52"><span class="w">        </span><span class="n">adjust_video_properties</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]);</span>
+</span><span data-line="53"><span class="w">        </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55"><span class="w">    </span>
+</span><span data-line="56"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="57"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="58"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="error-handling-and-diagnostics">
+<h3>Error Handling and Diagnostics<a class="headerlink" href="#error-handling-and-diagnostics" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="kt">void</span><span class="w"> </span><span class="nf">demonstrate_error_handling</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span>
+</span><span data-line="7"><span class="w">    </span><span class="c1">// Attempt operation that might fail</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="13"><span class="w">        </span><span class="c1">// Basic error information</span>
+</span><span data-line="14"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Error: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="15"><span class="w">        </span>
+</span><span data-line="16"><span class="w">        </span><span class="c1">// Detailed error information</span>
+</span><span data-line="17"><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">details</span><span class="p">[</span><span class="o">^</span><span class="mi">1024</span><span class="p">];</span>
+</span><span data-line="18"><span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">required</span><span class="p">;</span>
+</span><span data-line="19"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_get_last_error_details</span><span class="p">(</span><span class="n">details</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">details</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">required</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="20"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Details: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">details</span><span class="p">);</span>
+</span><span data-line="21"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="22"><span class="w">        </span>
+</span><span data-line="23"><span class="w">        </span><span class="c1">// Error classification</span>
+</span><span data-line="24"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_device_error</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="25"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;This is a device-related error</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="26"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="27"><span class="w">        </span>
+</span><span data-line="28"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_permission_error</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="29"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;This is a permission error - try running as administrator</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="30"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="31"><span class="w">        </span>
+</span><span data-line="32"><span class="w">        </span><span class="c1">// Check if retry might help</span>
+</span><span data-line="33"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_should_retry_operation</span><span class="p">(</span><span class="n">result</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="34"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Operation might succeed if retried</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="35"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="36"><span class="w">        </span>
+</span><span data-line="37"><span class="w">        </span><span class="c1">// Get diagnostic information</span>
+</span><span data-line="38"><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="o">^</span><span class="mi">2048</span><span class="p">];</span>
+</span><span data-line="39"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_get_diagnostic_info</span><span class="p">(</span><span class="n">diagnostic</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">diagnostic</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">required</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="40"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Diagnostic info:</span><span class="se">\n</span><span class="s">%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">);</span>
+</span><span data-line="41"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="42"><span class="w">        </span>
+</span><span data-line="43"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="44"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="45"><span class="w">    </span>
+</span><span data-line="46"><span class="w">    </span><span class="c1">// Success case</span>
+</span><span data-line="47"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Found %zu devices</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="48"><span class="w">    </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="49"><span class="p">}</span>
+</span><span data-line="50">
+</span><span data-line="51"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="52"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_initialize</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="53"><span class="w">        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to initialize library</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="54"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="55"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="56"><span class="w">    </span>
+</span><span data-line="57"><span class="w">    </span><span class="n">demonstrate_error_handling</span><span class="p">();</span>
+</span><span data-line="58"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="59"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="60"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="vendor-property-access">
+<h3>Vendor Property Access<a class="headerlink" href="#vendor-property-access" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="kt">void</span><span class="w"> </span><span class="nf">demonstrate_vendor_properties</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="c1">// Check for Logitech support</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">logitech_supported</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">logitech_supported</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">logitech_supported</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Device supports Logitech properties</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">        </span>
+</span><span data-line="14"><span class="w">        </span><span class="c1">// Get RightLight setting</span>
+</span><span data-line="15"><span class="w">        </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">rightlight_value</span><span class="p">;</span>
+</span><span data-line="16"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_get_logitech_property_int32</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_LOGITECH_PROP_RIGHT_LIGHT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rightlight_value</span><span class="p">);</span>
+</span><span data-line="17"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="18"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;RightLight value: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rightlight_value</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="20"><span class="w">        </span>
+</span><span data-line="21"><span class="w">        </span><span class="c1">// Enable face tracking</span>
+</span><span data-line="22"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_set_logitech_property_int32</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_LOGITECH_PROP_FACE_TRACKING</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span data-line="23"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="24"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Face tracking enabled</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="25"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="26"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="27"><span class="w">    </span>
+</span><span data-line="28"><span class="w">    </span><span class="c1">// Generic vendor property example</span>
+</span><span data-line="29"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">vendor_guid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;{12345678-1234-5678-9ABC-123456789ABC}&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example GUID</span>
+</span><span data-line="30"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span data-line="31"><span class="w">    </span>
+</span><span data-line="32"><span class="w">    </span><span class="c1">// Query property size first</span>
+</span><span data-line="33"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">data_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="34"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_get_vendor_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">vendor_guid</span><span class="p">,</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data_size</span><span class="p">);</span>
+</span><span data-line="35"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_ERROR_BUFFER_TOO_SMALL</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">data_size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="36"><span class="w">        </span><span class="c1">// Allocate buffer and get data</span>
+</span><span data-line="37"><span class="w">        </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">data_size</span><span class="p">);</span>
+</span><span data-line="38"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="39"><span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_get_vendor_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">vendor_guid</span><span class="p">,</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">data_size</span><span class="p">);</span>
+</span><span data-line="40"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="41"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Got vendor property: %zu bytes</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data_size</span><span class="p">);</span>
+</span><span data-line="42"><span class="w">                </span><span class="c1">// Process vendor data...</span>
+</span><span data-line="43"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="44"><span class="w">            </span><span class="n">free</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span><span data-line="45"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="46"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_ERROR_PROPERTY_NOT_SUPPORTED</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="47"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Vendor property not supported</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="48"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="49"><span class="p">}</span>
+</span><span data-line="50">
+</span><span data-line="51"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="52"><span class="w">    </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="53"><span class="w">    </span>
+</span><span data-line="54"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="55"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="56"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="57"><span class="w">        </span><span class="n">demonstrate_vendor_properties</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]);</span>
+</span><span data-line="58"><span class="w">        </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="59"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="60"><span class="w">    </span>
+</span><span data-line="61"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="62"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="63"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="multi-device-management">
+<h3>Multi-Device Management<a class="headerlink" href="#multi-device-management" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="kt">void</span><span class="w"> </span><span class="nf">manage_multiple_devices</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span>
+</span><span data-line="9"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;No devices available</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="12"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="14"><span class="w">    </span>
+</span><span data-line="15"><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Managing %zu devices:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">    </span>
+</span><span data-line="17"><span class="w">    </span><span class="c1">// Create connections to all devices</span>
+</span><span data-line="18"><span class="w">    </span><span class="n">duvc_connection_t</span><span class="o">**</span><span class="w"> </span><span class="n">connections</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="p">));</span>
+</span><span data-line="19"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">connections</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="20"><span class="w">        </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="21"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="22"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="23"><span class="w">    </span>
+</span><span data-line="24"><span class="w">    </span><span class="c1">// Connect to each device</span>
+</span><span data-line="25"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="26"><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="o">^</span><span class="mi">256</span><span class="p">];</span>
+</span><span data-line="27"><span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">name_size</span><span class="p">;</span>
+</span><span data-line="28"><span class="w">        </span><span class="n">duvc_get_device_name</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name_size</span><span class="p">);</span>
+</span><span data-line="29"><span class="w">        </span>
+</span><span data-line="30"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_create_connection</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span data-line="31"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="32"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Connected to device %zu: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+</span><span data-line="33"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="34"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Failed to connect to device %zu: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">duvc_get_error_string</span><span class="p">(</span><span class="n">result</span><span class="p">));</span>
+</span><span data-line="35"><span class="w">            </span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+</span><span data-line="36"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="37"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="38"><span class="w">    </span>
+</span><span data-line="39"><span class="w">    </span><span class="c1">// Perform operations on all connected devices</span>
+</span><span data-line="40"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="41"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="42"><span class="w">            </span><span class="c1">// Set all devices to auto-exposure</span>
+</span><span data-line="43"><span class="w">            </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">auto_exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_AUTO</span><span class="p">};</span>
+</span><span data-line="44"><span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_EXPOSURE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">auto_exposure</span><span class="p">);</span>
+</span><span data-line="45"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="46"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Device %zu: Set to auto-exposure</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span data-line="47"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="48"><span class="w">            </span>
+</span><span data-line="49"><span class="w">            </span><span class="c1">// Center pan/tilt on PTZ cameras</span>
+</span><span data-line="50"><span class="w">            </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">};</span>
+</span><span data-line="51"><span class="w">            </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_PAN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">center</span><span class="p">);</span>
+</span><span data-line="52"><span class="w">            </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_TILT</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">center</span><span class="p">);</span>
+</span><span data-line="53"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="54"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="55"><span class="w">    </span>
+</span><span data-line="56"><span class="w">    </span><span class="c1">// Cleanup connections</span>
+</span><span data-line="57"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="58"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="59"><span class="w">            </span><span class="n">duvc_close_connection</span><span class="p">(</span><span class="n">connections</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span data-line="60"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="61"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="62"><span class="w">    </span>
+</span><span data-line="63"><span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">connections</span><span class="p">);</span>
+</span><span data-line="64"><span class="w">    </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="65"><span class="p">}</span>
+</span><span data-line="66">
+</span><span data-line="67"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="68"><span class="w">    </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="69"><span class="w">    </span><span class="n">manage_multiple_devices</span><span class="p">();</span>
+</span><span data-line="70"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="71"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="72"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<section id="property-validation-and-range-checking">
+<h3>Property Validation and Range Checking<a class="headerlink" href="#property-validation-and-range-checking" title="Link to this heading">¶</a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;duvc-ctl/c/api.h&quot;</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="kt">void</span><span class="w"> </span><span class="nf">safe_property_setting</span><span class="p">(</span><span class="n">duvc_device_t</span><span class="o">*</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc_connection_t</span><span class="o">*</span><span class="w"> </span><span class="n">conn</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">duvc_result_t</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_create_connection</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="12"><span class="w">    </span>
+</span><span data-line="13"><span class="w">    </span><span class="c1">// Safe zoom adjustment with validation</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">duvc_prop_range_t</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_get_camera_property_range</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="17"><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Zoom range: %d to %d (step: %d)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">max</span><span class="p">,</span><span class="w"> </span><span class="n">zoom_range</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+</span><span data-line="18"><span class="w">        </span>
+</span><span data-line="19"><span class="w">        </span><span class="c1">// Test various zoom values</span>
+</span><span data-line="20"><span class="w">        </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">test_values</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w"> </span><span class="mi">999</span><span class="p">,</span><span class="w"> </span><span class="mi">-50</span><span class="p">};</span>
+</span><span data-line="21"><span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">num_tests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">test_values</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">test_values</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]);</span>
+</span><span data-line="22"><span class="w">        </span>
+</span><span data-line="23"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">num_tests</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="24"><span class="w">            </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">original_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_values</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span><span data-line="25"><span class="w">            </span>
+</span><span data-line="26"><span class="w">            </span><span class="c1">// Check if value is valid</span>
+</span><span data-line="27"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_is_value_valid</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">,</span><span class="w"> </span><span class="n">original_value</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="28"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Value %d is valid</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">original_value</span><span class="p">);</span>
+</span><span data-line="29"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="30"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Value %d is invalid, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">original_value</span><span class="p">);</span>
+</span><span data-line="31"><span class="w">                </span>
+</span><span data-line="32"><span class="w">                </span><span class="c1">// Clamp to valid range</span>
+</span><span data-line="33"><span class="w">                </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">clamped_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_clamp_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">,</span><span class="w"> </span><span class="n">original_value</span><span class="p">);</span>
+</span><span data-line="34"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;clamped to %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">clamped_value</span><span class="p">);</span>
+</span><span data-line="35"><span class="w">                </span>
+</span><span data-line="36"><span class="w">                </span><span class="c1">// Use the clamped value</span>
+</span><span data-line="37"><span class="w">                </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">zoom_setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">clamped_value</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_MODE_MANUAL</span><span class="p">};</span>
+</span><span data-line="38"><span class="w">                </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_set_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">zoom_setting</span><span class="p">);</span>
+</span><span data-line="39"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="40"><span class="w">                    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Successfully set zoom to %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">clamped_value</span><span class="p">);</span>
+</span><span data-line="41"><span class="w">                </span><span class="p">}</span>
+</span><span data-line="42"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="43"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="44"><span class="w">        </span>
+</span><span data-line="45"><span class="w">        </span><span class="c1">// Demonstrate stepping through values</span>
+</span><span data-line="46"><span class="w">        </span><span class="n">duvc_prop_setting_t</span><span class="w"> </span><span class="n">current_zoom</span><span class="p">;</span>
+</span><span data-line="47"><span class="w">        </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_connection_get_camera_property</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span><span class="w"> </span><span class="n">DUVC_CAM_PROP_ZOOM</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">current_zoom</span><span class="p">);</span>
+</span><span data-line="48"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="49"><span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current zoom: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">current_zoom</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+</span><span data-line="50"><span class="w">            </span>
+</span><span data-line="51"><span class="w">            </span><span class="c1">// Get next valid value up</span>
+</span><span data-line="52"><span class="w">            </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">next_value</span><span class="p">;</span>
+</span><span data-line="53"><span class="w">            </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc_get_next_valid_value</span><span class="p">(</span><span class="o">&amp;</span><span class="n">zoom_range</span><span class="p">,</span><span class="w"> </span><span class="n">current_zoom</span><span class="p">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">next_value</span><span class="p">);</span>
+</span><span data-line="54"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="55"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Next zoom value would be: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">next_value</span><span class="p">);</span>
+</span><span data-line="56"><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_ERROR_INVALID_VALUE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="57"><span class="w">                </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Already at maximum zoom</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+</span><span data-line="58"><span class="w">            </span><span class="p">}</span>
+</span><span data-line="59"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="60"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="61"><span class="w">    </span>
+</span><span data-line="62"><span class="w">    </span><span class="n">duvc_close_connection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+</span><span data-line="63"><span class="p">}</span>
+</span><span data-line="64">
+</span><span data-line="65"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="66"><span class="w">    </span><span class="n">duvc_initialize</span><span class="p">();</span>
+</span><span data-line="67"><span class="w">    </span>
+</span><span data-line="68"><span class="w">    </span><span class="n">duvc_device_t</span><span class="o">**</span><span class="w"> </span><span class="n">devices</span><span class="p">;</span>
+</span><span data-line="69"><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</span><span data-line="70"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc_list_devices</span><span class="p">(</span><span class="o">&amp;</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">DUVC_SUCCESS</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="71"><span class="w">        </span><span class="n">safe_property_setting</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]);</span>
+</span><span data-line="72"><span class="w">        </span><span class="n">duvc_free_device_list</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+</span><span data-line="73"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="74"><span class="w">    </span>
+</span><span data-line="75"><span class="w">    </span><span class="n">duvc_shutdown</span><span class="p">();</span>
+</span><span data-line="76"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="77"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="../../user-guide/migration.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Migration</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../cpp/index.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">duvc-ctl C++ API Documentation</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="types_8h" kind="file" language="C++">
+    <compoundname>types.h</compoundname>
+    <includes local="no">string</includes>
+    <includedby refid="api_8cpp" local="yes">c/api.cpp</includedby>
+    <includedby refid="camera_8h" local="no">core/camera.h</includedby>
+    <includedby refid="capability_8h" local="yes">core/capability.h</includedby>
+    <includedby refid="device_8h" local="no">core/device.h</includedby>
+    <includedby refid="types_8cpp" local="no">core/types.cpp</includedby>
+    <includedby refid="duvc_8hpp" local="no">duvc.hpp</includedby>
+    <includedby refid="interface_8h" local="no">platform/interface.h</includedby>
+    <includedby refid="connection__pool_8h" local="no">platform/windows/connection_pool.h</includedby>
+    <includedby refid="directshow_8h" local="no">platform/windows/directshow.h</includedby>
+    <includedby refid="ks__properties_8h" local="no">platform/windows/ks_properties.h</includedby>
+    <includedby refid="string__conversion_8h" local="no">utils/string_conversion.h</includedby>
+    <includedby refid="constants_8h" local="no">vendor/constants.h</includedby>
+    <includedby refid="logitech_8h" local="no">vendor/logitech.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>core/camera.h</label>
+        <link refid="camera_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>core/capability.h</label>
+        <link refid="capability_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>duvc.hpp</label>
+        <link refid="duvc_8hpp"/>
+      </node>
+      <node id="14">
+        <label>platform/interface.h</label>
+        <link refid="interface_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>platform/windows/directshow.h</label>
+        <link refid="directshow_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>platform/windows/ks_properties.h</label>
+        <link refid="ks__properties_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>utils/string_conversion.h</label>
+        <link refid="string__conversion_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>vendor/constants.h</label>
+        <link refid="constants_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>vendor/logitech.h</label>
+        <link refid="logitech_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>c/api.cpp</label>
+        <link refid="api_8cpp"/>
+      </node>
+      <node id="4">
+        <label>core/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+      </node>
+      <node id="5">
+        <label>core/capability.cpp</label>
+        <link refid="capability_8cpp"/>
+      </node>
+      <node id="9">
+        <label>core/device.cpp</label>
+        <link refid="device_8cpp"/>
+      </node>
+      <node id="13">
+        <label>core/types.cpp</label>
+        <link refid="types_8cpp"/>
+      </node>
+      <node id="15">
+        <label>platform/factory.cpp</label>
+        <link refid="factory_8cpp"/>
+      </node>
+      <node id="10">
+        <label>platform/windows/connection_pool.cpp</label>
+        <link refid="connection__pool_8cpp"/>
+      </node>
+      <node id="11">
+        <label>platform/windows/device_monitor.cpp</label>
+        <link refid="device__monitor_8cpp"/>
+      </node>
+      <node id="12">
+        <label>platform/windows/ks_properties.cpp</label>
+        <link refid="ks__properties_8cpp"/>
+      </node>
+      <node id="21">
+        <label>utils/string_conversion.cpp</label>
+        <link refid="string__conversion_8cpp"/>
+      </node>
+      <node id="23">
+        <label>vendor/constants.cpp</label>
+        <link refid="constants_8cpp"/>
+      </node>
+      <node id="19">
+        <label>vendor/logitech.cpp</label>
+        <link refid="logitech_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structduvc_1_1PropSetting" prot="public">duvc::PropSetting</innerclass>
+    <innerclass refid="structduvc_1_1PropRange" prot="public">duvc::PropRange</innerclass>
+    <innerclass refid="structduvc_1_1Device" prot="public">duvc::Device</innerclass>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>Core data types and enumerations for duvc-ctl. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af6d4a17b27da35c2d90ce13801f36782" kindref="member">Pan</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a686319a93c35facda5c3da08875fb394" kindref="member">Tilt</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a25b5eb3bbef15385b5f5ff3abe46f342" kindref="member">Roll</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a4252b72e6ebcd4d4b4c2e46a786f03d2" kindref="member">Zoom</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880adf10da7c5d1f4a5550d5f410cb949a5d" kindref="member">Exposure</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ad25c7286a46dbb6eeecc5cfddacd5818" kindref="member">Iris</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ae24ee2487879116dcab772c0ac4fe341" kindref="member">Focus</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a8127be4a1d9d373c05e6e48f001a5ea4" kindref="member">ScanMode</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ac5f29bb36f9158d2e00f5d4dc213a0ff" kindref="member">Privacy</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a365f672c582091a1df82520cb5ccd003" kindref="member">PanRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a74d45c99dfd804387e044266c1cd335f" kindref="member">TiltRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a3d2848098ad6ea135695c4f14dc731f5" kindref="member">RollRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ac33d5bc4decc972c5f33242bca5fe7f8" kindref="member">ZoomRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a22321ba68a44684f79a629f4fa51f448" kindref="member">ExposureRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880acd9d48298f8318e57f35911a435aa17c" kindref="member">IrisRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880aecad10508f6671bca1af3eabe5e109ef" kindref="member">FocusRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af47f881eb1a950402ec6af3edb2a6fb5" kindref="member">PanTilt</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a58be988e4ce3dd51b2541fc0be0f3ff0" kindref="member">PanTiltRelative</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a2c61a1ab60c3937a1329a99897ad5eaf" kindref="member">FocusSimple</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880affc6cca7e5dc5d86c342762c9ed08e2f" kindref="member">DigitalZoom</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af4c2360fd28c4f15780e5f9ab13d0c9d" kindref="member">DigitalZoomRelative</ref>,<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880afa19c0028cdb5f9619f48d1addcd2164" kindref="member">BacklightCompensation</ref>,<sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a5331717d33d4e634fd3c5ec209f475d2" kindref="member">Lamp</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fab25323f99788ce64617f018b8a9f5f70" kindref="member">Brightness</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fac63ecd19a0ca74c22dfcf3063c9805d2" kindref="member">Contrast</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fafb5d805f5b3b22e4fd4a1bc66875dbe3" kindref="member">Hue</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa2e3307b9b1a2cc64b48f1cd6977a4b29" kindref="member">Saturation</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fac50a2697a9800ac4fa2a230bee190adc" kindref="member">Sharpness</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fad9cdb0f6e0d556347c10a8695545a4b5" kindref="member">Gamma</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fab3961eeff6ca12b4cf6bddbf063c4363" kindref="member">ColorEnable</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa68a1cd4232bccbb91973004902e7393a" kindref="member">WhiteBalance</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880afa19c0028cdb5f9619f48d1addcd2164" kindref="member">BacklightCompensation</ref>,<sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa35d72fa7d84f4ae67d705373d1d44b88" kindref="member">Gain</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">Auto</ref>,<sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301" kindref="member">Manual</ref><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="structduvc_1_1PropSetting" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>{</highlight></codeline>
+<codeline lineno="75" refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" kindref="member">value</ref>;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="structduvc_1_1PropSetting_1a788949c6e82d56c5120e3eba5775f1a0" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/><ref refid="structduvc_1_1PropSetting_1a788949c6e82d56c5120e3eba5775f1a0" kindref="member">mode</ref>;<sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="structduvc_1_1PropSetting_1a128da5a341e46a18c83ae2bc8953323b" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropSetting_1a128da5a341e46a18c83ae2bc8953323b" kindref="member">PropSetting</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structduvc_1_1PropSetting_1adb35ff1279624838a0e5353d7e58e343" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropSetting_1adb35ff1279624838a0e5353d7e58e343" kindref="member">PropSetting</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">v</ref>,<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">m</ref>)<sp/>:<sp/><ref refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" kindref="member">value</ref>(<ref refid="classduvc_1_1Result" kindref="compound">v</ref>),<sp/><ref refid="structduvc_1_1PropSetting_1a788949c6e82d56c5120e3eba5775f1a0" kindref="member">mode</ref>(<ref refid="classduvc_1_1Result" kindref="compound">m</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="structduvc_1_1PropRange" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref><sp/>{</highlight></codeline>
+<codeline lineno="93" refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94" refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" kindref="member">max</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" kindref="member">step</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="96" refid="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" kindref="member">default_val</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/><ref refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" kindref="member">default_mode</ref>;<sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structduvc_1_1PropRange_1a67c088e993a7962ae6443c340ac14b8a" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropRange_1a67c088e993a7962ae6443c340ac14b8a" kindref="member">PropRange</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a26c45ec72485c04e70b34b1ff9e5d91a" kindref="member">is_valid</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>value<sp/>&gt;=<sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref><sp/>&amp;&amp;<sp/>value<sp/>&lt;=<sp/><ref refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" kindref="member">max</ref><sp/>&amp;&amp;<sp/>((value<sp/>-<sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>)<sp/>%<sp/><ref refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" kindref="member">step</ref><sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a1ff222ec5792e2d1a58ae9adcd7aeb51" kindref="member">clamp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(value<sp/>&lt;=<sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(value<sp/>&gt;=<sp/><ref refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" kindref="member">max</ref>)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" kindref="member">max</ref>;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Round<sp/>to<sp/>nearest<sp/>step</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">steps</ref><sp/>=<sp/>(value<sp/>-<sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref><sp/>+<sp/><ref refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" kindref="member">step</ref><sp/>/<sp/>2)<sp/>/<sp/><ref refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" kindref="member">step</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref><sp/>+<sp/><ref refid="classduvc_1_1Result" kindref="compound">steps</ref><sp/>*<sp/><ref refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" kindref="member">step</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="structduvc_1_1Device" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>{</highlight></codeline>
+<codeline lineno="132" refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" refkind="member"><highlight class="normal"><sp/><sp/>std::wstring<sp/><ref refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" kindref="member">name</ref>;<sp/></highlight></codeline>
+<codeline lineno="133" refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" refkind="member"><highlight class="normal"><sp/><sp/>std::wstring<sp/><ref refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" kindref="member">path</ref>;<sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="structduvc_1_1Device_1a5b3786e1f3d4b96dbece29daf67b08f4" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1Device_1a5b3786e1f3d4b96dbece29daf67b08f4" kindref="member">Device</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="structduvc_1_1Device_1ac64fba4f3b1e4bcbce60791bcb773852" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1Device_1ac64fba4f3b1e4bcbce60791bcb773852" kindref="member">Device</ref>(std::wstring<sp/><ref refid="classduvc_1_1Result" kindref="compound">n</ref>,<sp/>std::wstring<sp/><ref refid="classduvc_1_1Result" kindref="compound">p</ref>)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" kindref="member">name</ref>(std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(<ref refid="classduvc_1_1Result" kindref="compound">n</ref>)),<sp/><ref refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" kindref="member">path</ref>(std::<ref refid="classduvc_1_1Result" kindref="compound">move</ref>(<ref refid="classduvc_1_1Result" kindref="compound">p</ref>))<sp/>{}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150" refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" kindref="member">is_valid</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>!<ref refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" kindref="member">name</ref>.empty()<sp/>||<sp/>!<ref refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" kindref="member">path</ref>.empty();<sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156" refid="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;<ref refid="structduvc_1_1Device_1ab0eedd8652dfe375c0b8d5d7e8d9a3d8" kindref="member">get_id</ref>()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" kindref="member">path</ref>.empty()<sp/>?<sp/><ref refid="structduvc_1_1Device_1abbbd21744d4f1818893362e4521f0188" kindref="member">name</ref><sp/>:<sp/><ref refid="structduvc_1_1Device_1a143cf50e43ff89c7f54b58bbe09f8fb1" kindref="member">path</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/types.h"/>
+  </compounddef>
+</doxygen>

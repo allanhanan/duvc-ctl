@@ -1,0 +1,392 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1DeviceCapabilities" kind="class" language="C++" prot="public">
+    <compoundname>duvc::DeviceCapabilities</compoundname>
+    <includes refid="capability_8h" local="no">duvc-ctl/core/capability.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1DeviceCapabilities_1a09d60504f17c0c89ef518643859fb023" prot="private" static="no" mutable="no">
+        <type><ref refid="structduvc_1_1Device" kindref="compound">Device</ref></type>
+        <definition>Device duvc::DeviceCapabilities::device_</definition>
+        <argsstring></argsstring>
+        <name>device_</name>
+        <qualifiedname>duvc::DeviceCapabilities::device_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="102" column="10" bodyfile="core/capability.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceCapabilities_1a32a97f87f50af7303738ea423bdd1172" prot="private" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceCapabilities::device_accessible_</definition>
+        <argsstring></argsstring>
+        <name>device_accessible_</name>
+        <qualifiedname>duvc::DeviceCapabilities::device_accessible_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="103" column="8" bodyfile="core/capability.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceCapabilities_1a218ad2f135f2ee232ea02c8afe359b92" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref>, <ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref> &gt;</type>
+        <definition>std::unordered_map&lt;CamProp, PropertyCapability&gt; duvc::DeviceCapabilities::camera_capabilities_</definition>
+        <argsstring></argsstring>
+        <name>camera_capabilities_</name>
+        <qualifiedname>duvc::DeviceCapabilities::camera_capabilities_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="104" column="22" bodyfile="core/capability.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceCapabilities_1ad5f028a4c219cd784eafb25b08ec40e9" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; <ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref>, <ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref> &gt;</type>
+        <definition>std::unordered_map&lt;VidProp, PropertyCapability&gt; duvc::DeviceCapabilities::video_capabilities_</definition>
+        <argsstring></argsstring>
+        <name>video_capabilities_</name>
+        <qualifiedname>duvc::DeviceCapabilities::video_capabilities_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="105" column="22" bodyfile="core/capability.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classduvc_1_1DeviceCapabilities_1a0162860201769032df380f9fe6e3e3c5" prot="private" static="yes" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref></type>
+        <definition>const PropertyCapability duvc::DeviceCapabilities::empty_capability_</definition>
+        <argsstring></argsstring>
+        <name>empty_capability_</name>
+        <qualifiedname>duvc::DeviceCapabilities::empty_capability_</qualifiedname>
+        <initializer>= {}</initializer>
+        <briefdescription>
+<para>Empty capability for unsupported properties. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="111" column="35" bodyfile="core/capability.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a1275f0a40ef3c3462236e21de5feb0ee" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceCapabilities::DeviceCapabilities</definition>
+        <argsstring>(const Device &amp;device)</argsstring>
+        <name>DeviceCapabilities</name>
+        <qualifiedname>duvc::DeviceCapabilities::DeviceCapabilities</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <briefdescription>
+<para>Create capabilities snapshot for device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to analyze </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="41" column="12" bodyfile="core/capability.cpp" bodystart="19" bodyend="25"/>
+        <references refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" compoundref="core_8cpp" startline="549" endline="580">duvc::is_device_connected</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref> &amp;</type>
+        <definition>const PropertyCapability &amp; duvc::DeviceCapabilities::get_camera_capability</definition>
+        <argsstring>(CamProp prop) const</argsstring>
+        <name>get_camera_capability</name>
+        <qualifiedname>duvc::DeviceCapabilities::get_camera_capability</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get camera property capability. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Property capability info </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="48" column="28" bodyfile="core/capability.cpp" bodystart="89" bodyend="92"/>
+        <referencedby refid="api_8h_1afd5ae51e1d1317967821de105b8fb26b" compoundref="api_8cpp" startline="1491" endline="1527">duvc_get_camera_capability</referencedby>
+        <referencedby refid="classduvc_1_1DeviceCapabilities_1a9c71b522d0b8b8ef2317cd2f7840f544" compoundref="capability_8cpp" startline="100" endline="102">supports_camera_property</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropertyCapability" kindref="compound">PropertyCapability</ref> &amp;</type>
+        <definition>const PropertyCapability &amp; duvc::DeviceCapabilities::get_video_capability</definition>
+        <argsstring>(VidProp prop) const</argsstring>
+        <name>get_video_capability</name>
+        <qualifiedname>duvc::DeviceCapabilities::get_video_capability</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get video property capability. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Property capability info </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="55" column="28" bodyfile="core/capability.cpp" bodystart="95" bodyend="98"/>
+        <referencedby refid="api_8h_1ac37528f2c8aa04931329aefb5561b58c" compoundref="api_8cpp" startline="1529" endline="1565">duvc_get_video_capability</referencedby>
+        <referencedby refid="classduvc_1_1DeviceCapabilities_1a39b5186056f71f5f16ec4654222bc5c7" compoundref="capability_8cpp" startline="104" endline="106">supports_video_property</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a9c71b522d0b8b8ef2317cd2f7840f544" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceCapabilities::supports_camera_property</definition>
+        <argsstring>(CamProp prop) const</argsstring>
+        <name>supports_camera_property</name>
+        <qualifiedname>duvc::DeviceCapabilities::supports_camera_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Check if camera property is supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if supported </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="62" column="8" bodyfile="core/capability.cpp" bodystart="100" bodyend="102"/>
+        <references refid="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" compoundref="capability_8cpp" startline="89" endline="92">get_camera_capability</references>
+        <referencedby refid="api_8h_1a1c85439662d95e31bfeb85fb98d16a06" compoundref="api_8cpp" startline="1568" endline="1588">duvc_supports_camera_property</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a39b5186056f71f5f16ec4654222bc5c7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceCapabilities::supports_video_property</definition>
+        <argsstring>(VidProp prop) const</argsstring>
+        <name>supports_video_property</name>
+        <qualifiedname>duvc::DeviceCapabilities::supports_video_property</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Check if video property is supported. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if supported </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="69" column="8" bodyfile="core/capability.cpp" bodystart="104" bodyend="106"/>
+        <references refid="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" compoundref="capability_8cpp" startline="95" endline="98">get_video_capability</references>
+        <referencedby refid="api_8h_1a33ba81a83d33ca811b4c3edb2b191bcc" compoundref="api_8cpp" startline="1591" endline="1611">duvc_supports_video_property</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a1ca32d6889cfb93a57200e01851a98fd" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref> &gt;</type>
+        <definition>std::vector&lt; CamProp &gt; duvc::DeviceCapabilities::supported_camera_properties</definition>
+        <argsstring>() const</argsstring>
+        <name>supported_camera_properties</name>
+        <qualifiedname>duvc::DeviceCapabilities::supported_camera_properties</qualifiedname>
+        <briefdescription>
+<para>Get list of supported camera properties. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Vector of supported camera properties </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="75" column="15" bodyfile="core/capability.cpp" bodystart="108" bodyend="116"/>
+        <referencedby refid="api_8h_1a7a2254e4e7553eb64baba819cf7fde5e" compoundref="api_8cpp" startline="1614" endline="1646">duvc_get_supported_camera_properties</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1aa5377968e942487f71066a54663d15cb" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref> &gt;</type>
+        <definition>std::vector&lt; VidProp &gt; duvc::DeviceCapabilities::supported_video_properties</definition>
+        <argsstring>() const</argsstring>
+        <name>supported_video_properties</name>
+        <qualifiedname>duvc::DeviceCapabilities::supported_video_properties</qualifiedname>
+        <briefdescription>
+<para>Get list of supported video properties. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Vector of supported video properties </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="81" column="15" bodyfile="core/capability.cpp" bodystart="118" bodyend="126"/>
+        <referencedby refid="api_8h_1a047fd2c8ebd8ad45106f60f97be8aa83" compoundref="api_8cpp" startline="1649" endline="1681">duvc_get_supported_video_properties</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a27c13de4d73e9a2e58fc7b96e152d2f4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        <definition>const Device &amp; duvc::DeviceCapabilities::device</definition>
+        <argsstring>() const</argsstring>
+        <name>device</name>
+        <qualifiedname>duvc::DeviceCapabilities::device</qualifiedname>
+        <briefdescription>
+<para>Get the device this capability snapshot is for. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> reference </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="87" column="16" bodyfile="core/capability.h" bodystart="87" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1ac5d276e943fa0b7ed0c581ffe0309851" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceCapabilities::is_device_accessible</definition>
+        <argsstring>() const</argsstring>
+        <name>is_device_accessible</name>
+        <qualifiedname>duvc::DeviceCapabilities::is_device_accessible</qualifiedname>
+        <briefdescription>
+<para>Check if device is connected and accessible. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if device is accessible </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="93" column="8" bodyfile="core/capability.h" bodystart="93" bodyend="93"/>
+        <referencedby refid="api_8h_1a772454c70db4cfe25bd897bca791d63a" compoundref="api_8cpp" startline="1684" endline="1703">duvc_capabilities_is_device_accessible</referencedby>
+        <referencedby refid="namespaceduvc_1a1d35218e5baaccb7d19f4695396581e8" compoundref="capability_8cpp" startline="140" endline="153">duvc::get_device_capabilities</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1a736006fec61636a4326e29373d172a44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>Result&lt; void &gt; duvc::DeviceCapabilities::refresh</definition>
+        <argsstring>()</argsstring>
+        <name>refresh</name>
+        <qualifiedname>duvc::DeviceCapabilities::refresh</qualifiedname>
+        <briefdescription>
+<para>Refresh capability snapshot. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="99" column="10" bodyfile="core/capability.cpp" bodystart="128" bodyend="138"/>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35">duvc::DeviceNotFound</references>
+        <references refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" compoundref="core_8cpp" startline="549" endline="580">duvc::is_device_connected</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <referencedby refid="api_8h_1a2250e42d04f148b7fc027c026f9a0495" compoundref="api_8cpp" startline="1466" endline="1485">duvc_refresh_device_capabilities</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classduvc_1_1DeviceCapabilities_1ab78f522519c482e054563a9b3d77431b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">void</ref></type>
+        <definition>void duvc::DeviceCapabilities::scan_capabilities</definition>
+        <argsstring>()</argsstring>
+        <name>scan_capabilities</name>
+        <qualifiedname>duvc::DeviceCapabilities::scan_capabilities</qualifiedname>
+        <briefdescription>
+<para>Scan all properties and build capability map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/capability.h" line="108" column="8" bodyfile="core/capability.cpp" bodystart="27" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Complete device capability snapshot. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::DeviceCapabilities</label>
+        <link refid="classduvc_1_1DeviceCapabilities"/>
+      </node>
+    </collaborationgraph>
+    <location file="core/capability.h" line="35" column="1" bodyfile="core/capability.h" bodystart="35" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1DeviceCapabilities_1a218ad2f135f2ee232ea02c8afe359b92" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>camera_capabilities_</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a27c13de4d73e9a2e58fc7b96e152d2f4" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>device</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a09d60504f17c0c89ef518643859fb023" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>device_</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a32a97f87f50af7303738ea423bdd1172" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>device_accessible_</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a1275f0a40ef3c3462236e21de5feb0ee" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>DeviceCapabilities</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a0162860201769032df380f9fe6e3e3c5" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>empty_capability_</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1aaedb3238c46e9790352970320573d964" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>get_camera_capability</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a0e4f4584301be880886a181e88d7af8a" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>get_video_capability</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1ac5d276e943fa0b7ed0c581ffe0309851" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>is_device_accessible</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a736006fec61636a4326e29373d172a44" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>refresh</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1ab78f522519c482e054563a9b3d77431b" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>scan_capabilities</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a1ca32d6889cfb93a57200e01851a98fd" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>supported_camera_properties</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1aa5377968e942487f71066a54663d15cb" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>supported_video_properties</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a9c71b522d0b8b8ef2317cd2f7840f544" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>supports_camera_property</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1a39b5186056f71f5f16ec4654222bc5c7" prot="public" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>supports_video_property</name></member>
+      <member refid="classduvc_1_1DeviceCapabilities_1ad5f028a4c219cd784eafb25b08ec40e9" prot="private" virt="non-virtual"><scope>duvc::DeviceCapabilities</scope><name>video_capabilities_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

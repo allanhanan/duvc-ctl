@@ -1,0 +1,41 @@
+<map id="core/result.h" name="core/result.h">
+<area shape="rect" id="Node000001" title="Result/Error type system for duvc&#45;ctl." alt="" coords="530,5,624,32"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html" title="Complete C ABI implementation for duvc&#45;ctl library." alt="" coords="5,261,80,288"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="515,27,378,45,298,61,219,83,117,110,98,119,79,131,62,148,45,172,36,194,35,219,41,260,36,261,29,219,31,193,40,169,58,145,76,127,95,114,115,105,218,77,297,56,377,40,515,22"/>
+<area shape="rect" id="Node000003" href="$error__handling_8cpp.html" title="C ABI error handling and diagnostics implementation." alt="" coords="1029,88,1168,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="640,24,811,44,1018,77,1052,85,1050,90,1017,83,810,50,639,29"/>
+<area shape="rect" id="Node000004" href="$camera_8h.html" title="RAII camera handle for simplified device management." alt="" coords="230,88,335,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="517,39,329,90,328,85,516,34"/>
+<area shape="rect" id="Node000006" href="$capability_8cpp.html" title="Device capability detection implementation using Camera API." alt="" coords="264,261,394,288"/>
+<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="559,46,490,123,400,215,346,263,343,259,397,211,486,119,555,42"/>
+<area shape="rect" id="Node000007" href="$capability_8h.html" title="Device capability detection and snapshots using Camera API." alt="" coords="272,179,387,205"/>
+<area shape="poly" id="edge13_Node000001_Node000007" title=" " alt="" coords="534,41,496,60,457,82,391,134,343,180,339,176,388,130,454,78,493,55,531,36"/>
+<area shape="rect" id="Node000008" href="$duvc_8hpp.html" title="Main umbrella header for duvc&#45;ctl library." alt="" coords="488,261,562,288"/>
+<area shape="poly" id="edge15_Node000001_Node000008" title=" " alt="" coords="566,47,553,81,542,132,534,184,528,261,523,261,529,183,536,131,548,79,561,45"/>
+<area shape="rect" id="Node000009" href="$result_8cpp.html" title="Result/Error type implementations." alt="" coords="1192,88,1299,115"/>
+<area shape="poly" id="edge14_Node000001_Node000009" title=" " alt="" coords="640,19,878,36,1029,52,1180,77,1209,85,1208,90,1179,83,1028,58,878,41,639,25"/>
+<area shape="rect" id="Node000010" href="$interface_8h.html" title="Abstract platform interface for camera control." alt="" coords="562,88,696,115"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="596,44,624,86,619,89,591,46"/>
+<area shape="rect" id="Node000012" href="$ks__properties_8h.html" title="IKsPropertySet wrapper for vendor properties." alt="" coords="864,80,1005,123"/>
+<area shape="poly" id="edge19_Node000001_Node000012" title=" " alt="" coords="640,31,852,77,864,80,863,85,851,83,639,36"/>
+<area shape="rect" id="Node000015" href="$logitech_8h.html" title="Logitech&#45;specific vendor property definitions and helpers." alt="" coords="720,88,840,115"/>
+<area shape="poly" id="edge22_Node000001_Node000015" title=" " alt="" coords="624,35,749,85,747,90,622,40"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="215,110,178,117,139,129,102,147,70,172,56,194,49,218,45,261,39,261,43,217,51,191,66,169,99,142,137,124,177,112,214,104"/>
+<area shape="rect" id="Node000005" href="$camera_8cpp.html" title="RAII camera handle implementation." alt="" coords="79,179,198,205"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="250,126,160,180,158,176,247,121"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="271,129,258,170,257,192,262,212,282,239,308,259,304,263,279,243,257,214,252,192,253,169,266,128"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="299,128,325,177,320,179,294,130"/>
+<area shape="poly" id="edge11_Node000004_Node000008" title=" " alt="" coords="321,120,400,168,464,217,513,259,510,263,461,222,397,173,318,125"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="271,212,81,265,79,260,269,207"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="332,221,332,261,326,261,326,221"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="375,209,496,258,494,263,373,214"/>
+<area shape="poly" id="edge17_Node000010_Node000008" title=" " alt="" coords="616,129,535,262,531,259,612,127"/>
+<area shape="rect" id="Node000011" href="$factory_8cpp.html" title="Platform detection and factory implementation." alt="" coords="613,179,749,205"/>
+<area shape="poly" id="edge18_Node000010_Node000011" title=" " alt="" coords="647,127,676,177,671,179,642,130"/>
+<area shape="rect" id="Node000013" href="$ks__properties_8cpp.html" title="IKsPropertySet implementation for vendor properties." alt="" coords="981,171,1122,213"/>
+<area shape="poly" id="edge20_Node000012_Node000013" title=" " alt="" coords="975,130,1026,168,1023,172,972,134"/>
+<area shape="rect" id="Node000014" href="$logitech_8cpp.html" title="Logitech&#45;specific property implementations." alt="" coords="823,179,958,205"/>
+<area shape="poly" id="edge21_Node000012_Node000014" title=" " alt="" coords="920,138,899,179,894,177,915,135"/>
+<area shape="poly" id="edge23_Node000015_Node000008" title=" " alt="" coords="786,130,783,173,776,196,763,215,749,226,728,236,675,251,563,271,562,266,674,246,726,231,746,221,759,212,771,193,778,172,780,130"/>
+<area shape="poly" id="edge24_Node000015_Node000014" title=" " alt="" coords="809,122,876,176,873,180,806,127"/>
+</map>

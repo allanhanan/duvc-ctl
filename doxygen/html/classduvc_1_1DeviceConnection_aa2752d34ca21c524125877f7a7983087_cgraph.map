@@ -1,0 +1,9 @@
+<map id="duvc::DeviceConnection::set" name="duvc::DeviceConnection::set">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,196,83"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#aa4bc7d2556b6a0cbd6de087e074a7a2c" title=" " alt="" coords="277,5,373,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,53,261,30,262,35,164,58"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="258,56,392,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,67,243,67,243,72,196,72"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#afdc705db540dbc9d018845ae7ddc761a" title=" " alt="" coords="244,107,406,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="164,81,248,100,247,105,162,86"/>
+</map>

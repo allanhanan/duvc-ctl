@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>3. Utility Functions &amp; Helpers - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="4. Platform Abstraction Layer" href="04_platform-abstraction-layer.html" /><link rel="prev" title="2. Core API - Public Headers" href="02_core-api-public-headers.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="3. Utility Functions &amp; Helpers"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">3. Utility Functions &amp; Helpers</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="utility-functions-helpers">
+<h1>3. Utility Functions &amp; Helpers<a class="headerlink" href="#utility-functions-helpers" title="Link to this heading">¶</a></h1>
+<section id="logging-system">
+<h2>3.1 Logging System<a class="headerlink" href="#logging-system" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/utils/logging.h&gt;</span></code></p>
+<p>The library provides a structured logging system for internal diagnostics and debugging. Applications can hook into this system to capture library events.</p>
+<section id="loglevel-enum">
+<h3>LogLevel enum<a class="headerlink" href="#loglevel-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">LogLevel</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">      </span><span class="c1">// Verbose debugging information</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">       </span><span class="c1">// General informational messages</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Warning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">    </span><span class="c1">// Warning messages</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">      </span><span class="c1">// Error messages</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Critical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="w">    </span><span class="c1">// Critical errors</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Five severity levels</strong> with numeric ordering (higher = more severe). Used to filter messages and route output.</p>
+<p><strong>String conversion:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Returns level name: “DEBUG”, “INFO”, “WARNING”, “ERROR”, or “CRITICAL”.</p>
+</section>
+<hr class="docutils" />
+<section id="callback-configuration">
+<h3>Callback configuration<a class="headerlink" href="#callback-configuration" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">using</span><span class="w"> </span><span class="n">LogCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">void</span><span class="w"> </span><span class="nf">set_log_callback</span><span class="p">(</span><span class="n">LogCallback</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Registers a callback function to receive all log messages. The callback receives the severity level and message string.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_callback</span><span class="p">([](</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">Error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[DUVC] &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[DUVC] &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="7"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Callback behavior:</strong></p>
+<ul class="simple">
+<li><p>Pass <code class="docutils literal notranslate"><span class="pre">nullptr</span></code> to disable custom logging (reverts to default handler)</p></li>
+<li><p>Callback invoked with mutex held (implementation is thread-safe)</p></li>
+<li><p>If callback throws an exception, the system catches it and logs an error using the default handler</p></li>
+<li><p>Callback should be fast; slow operations may block library threads</p></li>
+</ul>
+<p><strong>Default handler:</strong> When no callback is set, messages are written to stdout (Debug/Info/Warning) or stderr (Error/Critical) with timestamps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mf">15.123</span><span class="p">]</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">Device</span> <span class="n">enumeration</span> <span class="n">started</span>
+</span><span data-line="2"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mf">15.456</span><span class="p">]</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]</span> <span class="n">Failed</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span> <span class="n">busy</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="log-level-filtering">
+<h3>Log level filtering<a class="headerlink" href="#log-level-filtering" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">set_log_level</span><span class="p">(</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">LogLevel</span><span class="w"> </span><span class="nf">get_log_level</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Controls the minimum severity level for logged messages. Messages below this threshold are silently discarded.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Only log warnings and above</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">Warning</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Query current setting</span>
+</span><span data-line="5"><span class="k">auto</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">get_log_level</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p><strong>Default level:</strong> <code class="docutils literal notranslate"><span class="pre">LogLevel::Info</span></code> (Debug messages suppressed by default).</p>
+<p><strong>Performance:</strong> Filtering happens before formatting. Setting <code class="docutils literal notranslate"><span class="pre">LogLevel::Error</span></code> eliminates overhead of Debug/Info/Warning messages entirely.</p>
+</section>
+<hr class="docutils" />
+<section id="logging-functions">
+<h3>Logging functions<a class="headerlink" href="#logging-functions" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">log_message</span><span class="p">(</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">void</span><span class="w"> </span><span class="nf">log_debug</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="4"><span class="kt">void</span><span class="w"> </span><span class="nf">log_info</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="5"><span class="kt">void</span><span class="w"> </span><span class="nf">log_warning</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="6"><span class="kt">void</span><span class="w"> </span><span class="nf">log_error</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span><span data-line="7"><span class="kt">void</span><span class="w"> </span><span class="nf">log_critical</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Functions for emitting log messages. The level-specific functions (<code class="docutils literal notranslate"><span class="pre">log_debug</span></code>, <code class="docutils literal notranslate"><span class="pre">log_info</span></code>, etc.) are convenience wrappers around <code class="docutils literal notranslate"><span class="pre">log_message</span></code>.</p>
+<p><strong>Direct usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">log_info</span><span class="p">(</span><span class="s">&quot;Camera opened successfully&quot;</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">log_error</span><span class="p">(</span><span class="s">&quot;DirectShow enumeration failed&quot;</span><span class="p">);</span>
+</span><span data-line="3"><span class="n">duvc</span><span class="o">::</span><span class="n">log_debug</span><span class="p">(</span><span class="s">&quot;Property value: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">value</span><span class="p">));</span>
+</span></pre></div>
+</div>
+<p><strong>Message construction:</strong> Accept <code class="docutils literal notranslate"><span class="pre">std::string</span></code>. Build formatted messages with <code class="docutils literal notranslate"><span class="pre">std::ostringstream</span></code> or <code class="docutils literal notranslate"><span class="pre">std::format</span></code> before passing:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span><span class="w"> </span><span class="n">oss</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">oss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Device &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; brightness=&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">duvc</span><span class="o">::</span><span class="n">log_info</span><span class="p">(</span><span class="n">oss</span><span class="p">.</span><span class="n">str</span><span class="p">());</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="logging-macros">
+<h3>Logging macros<a class="headerlink" href="#logging-macros" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#define DUVC_LOG_DEBUG(msg)    duvc::log_debug(msg)</span>
+</span><span data-line="2"><span class="cp">#define DUVC_LOG_INFO(msg)     duvc::log_info(msg)</span>
+</span><span data-line="3"><span class="cp">#define DUVC_LOG_WARNING(msg)  duvc::log_warning(msg)</span>
+</span><span data-line="4"><span class="cp">#define DUVC_LOG_ERROR(msg)    duvc::log_error(msg)</span>
+</span><span data-line="5"><span class="cp">#define DUVC_LOG_CRITICAL(msg) duvc::log_critical(msg)</span>
+</span></pre></div>
+</div>
+<p>Macros for logging used internally by the library. Applications can use these or call the functions directly—they’re functionally identical.</p>
+<p><strong>Internal usage patterns:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">DUVC_LOG_DEBUG</span><span class="p">(</span><span class="s">&quot;Querying property range&quot;</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">DUVC_LOG_WARNING</span><span class="p">(</span><span class="s">&quot;Property not supported, trying fallback&quot;</span><span class="p">);</span>
+</span><span data-line="3"><span class="n">DUVC_LOG_ERROR</span><span class="p">(</span><span class="s">&quot;COM initialization failed&quot;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Note:</strong> These are simple wrappers, not variadic macros. Formatting must be done before passing the message.</p>
+</section>
+<hr class="docutils" />
+<section id="thread-safety">
+<h3>Thread safety<a class="headerlink" href="#thread-safety" title="Link to this heading">¶</a></h3>
+<p>The logging system is fully thread-safe:</p>
+<ul class="simple">
+<li><p>Global state (<code class="docutils literal notranslate"><span class="pre">g_log_callback</span></code>, <code class="docutils literal notranslate"><span class="pre">g_min_log_level</span></code>) protected by mutex</p></li>
+<li><p>Callbacks invoked with lock held to prevent races</p></li>
+<li><p>Safe to call from multiple threads concurrently</p></li>
+</ul>
+<p><strong>Mutex contention:</strong> Heavy logging from many threads may create lock contention. Keep callbacks fast or buffer messages for async processing.</p>
+</section>
+<hr class="docutils" />
+<section id="typical-log-output">
+<h3>Typical log output<a class="headerlink" href="#typical-log-output" title="Link to this heading">¶</a></h3>
+<p><strong>Default format:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">30.123</span><span class="p">]</span> <span class="p">[</span><span class="n">DEBUG</span><span class="p">]</span> <span class="n">Enumerating</span> <span class="n">DirectShow</span> <span class="n">video</span> <span class="n">devices</span>
+</span><span data-line="2"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">30.156</span><span class="p">]</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">Found</span> <span class="mi">2</span> <span class="n">devices</span>
+</span><span data-line="3"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">30.201</span><span class="p">]</span> <span class="p">[</span><span class="n">DEBUG</span><span class="p">]</span> <span class="n">Opening</span> <span class="n">device</span><span class="p">:</span> <span class="n">Logitech</span> <span class="n">HD</span> <span class="n">Webcam</span>
+</span><span data-line="4"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">30.345</span><span class="p">]</span> <span class="p">[</span><span class="n">INFO</span><span class="p">]</span> <span class="n">Device</span> <span class="n">connection</span> <span class="n">established</span>
+</span><span data-line="5"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">31.012</span><span class="p">]</span> <span class="p">[</span><span class="n">WARNING</span><span class="p">]</span> <span class="n">Property</span> <span class="n">Iris</span> <span class="ow">not</span> <span class="n">supported</span>
+</span><span data-line="6"><span class="p">[</span><span class="mi">2025</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">09</span> <span class="mi">20</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mf">31.234</span><span class="p">]</span> <span class="p">[</span><span class="n">ERROR</span><span class="p">]</span> <span class="n">Failed</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">Pan</span><span class="p">:</span> <span class="n">value</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</span></pre></div>
+</div>
+<p><strong>Timestamp format:</strong> <code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">HH:MM:SS.mmm</span></code> (millisecond precision).</p>
+</section>
+<hr class="docutils" />
+<section id="integration-patterns">
+<h3>Integration patterns<a class="headerlink" href="#integration-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Redirect to application logger:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;spdlog/spdlog.h&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_callback</span><span class="p">([](</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">duvc</span><span class="o">::</span><span class="no">LogLevel</span><span class="o">::</span><span class="no">Debug</span><span class="p">:</span><span class="w">   </span><span class="n">spdlog</span><span class="o">::</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">duvc</span><span class="o">::</span><span class="no">LogLevel</span><span class="o">::</span><span class="no">Info</span><span class="p">:</span><span class="w">    </span><span class="n">spdlog</span><span class="o">::</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">duvc</span><span class="o">::</span><span class="no">LogLevel</span><span class="o">::</span><span class="no">Warning</span><span class="p">:</span><span class="w"> </span><span class="n">spdlog</span><span class="o">::</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">duvc</span><span class="o">::</span><span class="no">LogLevel</span><span class="o">::</span><span class="no">Error</span><span class="p">:</span><span class="w">   </span><span class="n">spdlog</span><span class="o">::</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">duvc</span><span class="o">::</span><span class="no">LogLevel</span><span class="o">::</span><span class="no">Critical</span><span class="p">:</span><span class="w"> </span><span class="n">spdlog</span><span class="o">::</span><span class="n">critical</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="11"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Write to file:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">logfile</span><span class="p">(</span><span class="s">&quot;duvc.log&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_callback</span><span class="p">([</span><span class="o">&amp;</span><span class="n">logfile</span><span class="p">](</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">logfile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">logfile</span><span class="p">.</span><span class="n">flush</span><span class="p">();</span>
+</span><span data-line="5"><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Suppress all logging:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">Critical</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// No messages pass</span>
+</span><span data-line="2"><span class="c1">// Or:</span>
+</span><span data-line="3"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_callback</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">Critical</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="what-the-library-logs">
+<h3>What the library logs<a class="headerlink" href="#what-the-library-logs" title="Link to this heading">¶</a></h3>
+<p><strong>Debug level:</strong></p>
+<ul class="simple">
+<li><p>DirectShow interface queries</p></li>
+<li><p>Property range queries</p></li>
+<li><p>Detailed operation traces</p></li>
+</ul>
+<p><strong>Info level:</strong></p>
+<ul class="simple">
+<li><p>Device enumeration results</p></li>
+<li><p>Connection establishment</p></li>
+<li><p>Property changes</p></li>
+</ul>
+<p><strong>Warning level:</strong></p>
+<ul class="simple">
+<li><p>Unsupported properties</p></li>
+<li><p>Fallback behavior</p></li>
+<li><p>Non-fatal errors</p></li>
+</ul>
+<p><strong>Error level:</strong></p>
+<ul class="simple">
+<li><p>COM failures</p></li>
+<li><p>Device access errors</p></li>
+<li><p>Invalid operations</p></li>
+</ul>
+<p><strong>Critical level:</strong></p>
+<ul class="simple">
+<li><p>Unrecoverable initialization failures</p></li>
+<li><p>System resource exhaustion</p></li>
+</ul>
+<p><strong>Production recommendation:</strong> Set level to <code class="docutils literal notranslate"><span class="pre">Info</span></code> or <code class="docutils literal notranslate"><span class="pre">Warning</span></code> for normal operation. Enable <code class="docutils literal notranslate"><span class="pre">Debug</span></code> only when diagnosing issues.</p>
+</section>
+</section>
+<section id="string-conversion">
+<h2>3.2 String Conversion<a class="headerlink" href="#string-conversion" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/utils/string_conversion.h&gt;</span></code></p>
+<p>Utilities for converting enum values to strings and performing character encoding conversions.</p>
+<section id="enum-to-string-conversion">
+<h3>Enum to string conversion<a class="headerlink" href="#enum-to-string-conversion" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="3"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Converts enum values to narrow (UTF-8) C-style strings.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Property: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// &quot;Zoom&quot;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">;</span>
+</span><span data-line="5"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Mode: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// &quot;AUTO&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Returns:</strong> String literal for known enums, “Unknown” for invalid values.</p>
+</section>
+<hr class="docutils" />
+<section id="enum-to-wide-string-conversion">
+<h3>Enum to wide string conversion<a class="headerlink" href="#enum-to-wide-string-conversion" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="o">*</span><span class="w"> </span><span class="nf">to_wstring</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="o">*</span><span class="w"> </span><span class="nf">to_wstring</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="3"><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="o">*</span><span class="w"> </span><span class="nf">to_wstring</span><span class="p">(</span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Converts enum values to wide (UTF-16 on Windows) C-style strings. Useful for Windows APIs and logging that requires wide strings.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Property: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_wstring</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// L&quot;Brightness&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Note:</strong> Mode strings are uppercase: <code class="docutils literal notranslate"><span class="pre">L&quot;AUTO&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">L&quot;MANUAL&quot;</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="utf-16-to-utf-8-conversion">
+<h3>UTF-16 to UTF-8 conversion<a class="headerlink" href="#utf-16-to-utf-8-conversion" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">to_utf8</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">wstr</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Converts a wide string (UTF-16 on Windows) to a UTF-8 encoded narrow string. Essential for working with Windows device names and paths in portable code.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Device</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* from list_devices() */</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">utf8_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_utf8</span><span class="p">(</span><span class="n">camera</span><span class="p">.</span><span class="n">name</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Safe for JSON, file I/O, cross-platform APIs</span>
+</span><span data-line="5"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">utf8_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation:</strong> Uses Windows <code class="docutils literal notranslate"><span class="pre">WideCharToMultiByte</span></code> with <code class="docutils literal notranslate"><span class="pre">CP_UTF8</span></code> flag for proper character conversion.</p>
+<p><strong>Error handling:</strong> Throws <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> if conversion fails. Returns empty string for empty input.</p>
+<p><strong>Use cases:</strong></p>
+<ul class="simple">
+<li><p>Logging device names to files/console</p></li>
+<li><p>Serializing device info to JSON/XML</p></li>
+<li><p>Passing device names to cross-platform APIs</p></li>
+<li><p>Displaying camera names in UI (UTF-8 frameworks)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="error-decoding">
+<h2>3.3 Error Decoding<a class="headerlink" href="#error-decoding" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/utils/error_decoder.h&gt;</span></code></p>
+<p>Utilities for decoding Windows system errors and COM HRESULTs into human-readable messages.</p>
+<section id="system-error-decoding">
+<h3>System error decoding<a class="headerlink" href="#system-error-decoding" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">decode_system_error</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">error_code</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Converts a Windows system error code (e.g., from <code class="docutils literal notranslate"><span class="pre">GetLastError()</span></code>) to a descriptive string.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">err_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetLastError</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">decode_system_error</span><span class="p">(</span><span class="n">err_code</span><span class="p">);</span>
+</span><span data-line="3"><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation:</strong> Uses <code class="docutils literal notranslate"><span class="pre">FormatMessageW</span></code> to retrieve localized error text from Windows, then converts to UTF-8.</p>
+<p><strong>Fallback:</strong> If <code class="docutils literal notranslate"><span class="pre">FormatMessage</span></code> fails, returns <code class="docutils literal notranslate"><span class="pre">&quot;System</span> <span class="pre">error</span> <span class="pre">0x[hex_code]&quot;</span></code>.</p>
+<p><strong>Platform:</strong> Windows only. On other platforms, returns <code class="docutils literal notranslate"><span class="pre">&quot;System</span> <span class="pre">error</span> <span class="pre">[code]&quot;</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="hresult-decoding">
+<h3>HRESULT decoding<a class="headerlink" href="#hresult-decoding" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">decode_hresult</span><span class="p">(</span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_hresult_details</span><span class="p">(</span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Windows-only functions for decoding COM HRESULTs.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">decode_hresult</span></code>:</strong> Converts HRESULT to human-readable description using <code class="docutils literal notranslate"><span class="pre">_com_error</span></code>.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">decode_hresult</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">DUVC_LOG_ERROR</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">get_hresult_details</span></code>:</strong> Provides extended information including hex code, facility, error code, severity, and description.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">details</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">get_hresult_details</span><span class="p">(</span><span class="mh">0x8007001F</span><span class="p">);</span>
+</span><span data-line="2"><span class="c1">// Returns: &quot;HRESULT: 0x8007001F (Facility: 7, Code: 31) [FAILURE] - A device attached to the system is not functioning.&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Output format:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">HRESULT</span><span class="p">:</span> <span class="mi">0</span><span class="n">x</span><span class="p">[</span><span class="nb">hex</span><span class="p">]</span> <span class="p">(</span><span class="n">Facility</span><span class="p">:</span> <span class="p">[</span><span class="n">num</span><span class="p">],</span> <span class="n">Code</span><span class="p">:</span> <span class="p">[</span><span class="n">num</span><span class="p">])</span> <span class="p">[</span><span class="n">SUCCESS</span><span class="o">/</span><span class="n">FAILURE</span><span class="p">]</span> <span class="o">-</span> <span class="p">[</span><span class="n">description</span><span class="p">]</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="error-classification">
+<h3>Error classification<a class="headerlink" href="#error-classification" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_device_error</span><span class="p">(</span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_permission_error</span><span class="p">(</span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Windows-only functions for categorizing HRESULTs.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">is_device_error</span></code>:</strong> Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> for device-related failures.</p>
+<p>Recognized codes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">E_ACCESSDENIED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_DEVICE_NOT_CONNECTED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_DEVICE_IN_USE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_NOT_FOUND</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_FILE_NOT_FOUND</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VFW_E_CANNOT_CONNECT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VFW_E_CANNOT_RENDER</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VFW_E_DEVICE_IN_USE</span></code></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">is_device_error</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Handle device disconnection/busy state</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">DeviceNotFound</span><span class="p">;</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">is_permission_error</span></code>:</strong> Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> for access/permission failures.</p>
+<p>Currently checks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">E_ACCESSDENIED</span></code></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">is_permission_error</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Prompt user to grant camera permissions</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">PermissionDenied</span><span class="p">;</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="diagnostic-information">
+<h3>Diagnostic information<a class="headerlink" href="#diagnostic-information" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_diagnostic_info</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Collects system information useful for troubleshooting. Returns a formatted string with:</p>
+<ul class="simple">
+<li><p>Platform (Windows / Non-Windows)</p></li>
+<li><p>Windows version and build number</p></li>
+<li><p>Processor architecture (x64, x86, ARM64, ARM)</p></li>
+<li><p>COM initialization status</p></li>
+<li><p>DirectShow availability</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">get_diagnostic_info</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Example output:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">ctl</span> <span class="n">Diagnostic</span> <span class="n">Information</span>
+</span><span data-line="2"><span class="o">==============================</span>
+</span><span data-line="3"><span class="n">Platform</span><span class="p">:</span> <span class="n">Windows</span>
+</span><span data-line="4"><span class="n">Windows</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">10.0</span> <span class="p">(</span><span class="n">Build</span> <span class="mi">19045</span><span class="p">)</span>
+</span><span data-line="5"><span class="n">Architecture</span><span class="p">:</span> <span class="n">x64</span>
+</span><span data-line="6"><span class="n">COM</span> <span class="n">Status</span><span class="p">:</span> <span class="n">Available</span>
+</span><span data-line="7"><span class="n">DirectShow</span><span class="p">:</span> <span class="n">Available</span>
+</span></pre></div>
+</div>
+<p><strong>Error scenarios:</strong></p>
+<ul class="simple">
+<li><p>If COM initialization fails, includes error description</p></li>
+<li><p>If DirectShow unavailable, reports <code class="docutils literal notranslate"><span class="pre">CoCreateInstance</span></code> failure</p></li>
+<li><p>On non-Windows platforms, returns single line: <code class="docutils literal notranslate"><span class="pre">&quot;Platform:</span> <span class="pre">Non-Windows</span> <span class="pre">(stub</span> <span class="pre">implementation)&quot;</span></code></p></li>
+</ul>
+<p><strong>Use cases:</strong></p>
+<ul class="simple">
+<li><p>Include in bug reports</p></li>
+<li><p>Log at application startup</p></li>
+<li><p>Display in diagnostic/about dialogs</p></li>
+<li><p>Automated issue reporting</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Platform notes:</strong> All HRESULT-related functions (<code class="docutils literal notranslate"><span class="pre">decode_hresult</span></code>, <code class="docutils literal notranslate"><span class="pre">get_hresult_details</span></code>, <code class="docutils literal notranslate"><span class="pre">is_device_error</span></code>, <code class="docutils literal notranslate"><span class="pre">is_permission_error</span></code>) are Windows-only and wrapped in <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>. They do not exist in non-Windows builds.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="02_core-api-public-headers.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">2. Core API - Public Headers</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="04_platform-abstraction-layer.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">4. Platform Abstraction Layer</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

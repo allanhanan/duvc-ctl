@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>11. Device Support &amp; Compatibility - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="12. Troubleshooting &amp; Debugging" href="12_troubleshooting-debugging.html" /><link rel="prev" title="10. Platform-Specific Information" href="10_platform-specific-information.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="11. Device Support &amp; Compatibility"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">11. Device Support &amp; Compatibility</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="device-support-compatibility">
+<h1>11. Device Support &amp; Compatibility<a class="headerlink" href="#device-support-compatibility" title="Link to this heading">¶</a></h1>
+<section id="tested-devices">
+<h2>11.1 Tested Devices<a class="headerlink" href="#tested-devices" title="Link to this heading">¶</a></h2>
+<p><strong>duvc-ctl works with any UVC-compliant camera on Windows.</strong></p>
+<p>The library relies on DirectShow’s UVC support rather than device-specific drivers, providing broad compatibility.</p>
+<hr class="docutils" />
+<section id="verified-compatible-brands">
+<h3>Verified Compatible Brands<a class="headerlink" href="#verified-compatible-brands" title="Link to this heading">¶</a></h3>
+<p><strong>Logitech</strong> (Extended support via vendor extensions):</p>
+<ul class="simple">
+<li><p>C920/C922 HD Pro Webcam</p></li>
+<li><p>C930e Business Webcam</p></li>
+<li><p>BRIO 4K Ultra HD</p></li>
+<li><p>StreamCam</p></li>
+<li><p>PTZ Pro series</p></li>
+</ul>
+<p><strong>Microsoft:</strong></p>
+<ul class="simple">
+<li><p>LifeCam HD-3000</p></li>
+<li><p>LifeCam Studio</p></li>
+<li><p>Modern Webcam</p></li>
+</ul>
+<p><strong>Generic UVC:</strong></p>
+<ul class="simple">
+<li><p>Most USB webcams without proprietary drivers</p></li>
+<li><p>Conference room PTZ cameras</p></li>
+<li><p>Document cameras</p></li>
+<li><p>Industrial machine vision cameras</p></li>
+</ul>
+<p><strong>Professional:</strong></p>
+<ul class="simple">
+<li><p>PTZOptics cameras</p></li>
+<li><p>AVer CAM series</p></li>
+<li><p>Elgato Facecam</p></li>
+<li><p>Razer Kiyo series</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="property-support-varies">
+<h3>Property Support Varies<a class="headerlink" href="#property-support-varies" title="Link to this heading">¶</a></h3>
+<p>Not all cameras implement all UVC properties:</p>
+<p><strong>Common capabilities:</strong></p>
+<ul class="simple">
+<li><p>Brightness, Contrast, Saturation</p></li>
+<li><p>Auto/Manual Exposure</p></li>
+<li><p>Auto/Manual White Balance</p></li>
+<li><p>Auto Focus (if supported by hardware)</p></li>
+</ul>
+<p><strong>Less common:</strong></p>
+<ul class="simple">
+<li><p>Pan/Tilt/Zoom (PTZ cameras only)</p></li>
+<li><p>Privacy Shutter</p></li>
+<li><p>Roll</p></li>
+<li><p>Iris control</p></li>
+</ul>
+<p><strong>Check support:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Query which properties are available</span>
+</span><span data-line="5"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_utf8</span><span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Tilt</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="8"><span class="w">                   </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Focus</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span><span class="w"> </span>
+</span><span data-line="12"><span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="14"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="device-capability-matrix">
+<h2>11.2 Device Capability Matrix<a class="headerlink" href="#device-capability-matrix" title="Link to this heading">¶</a></h2>
+<p><strong>Typical property support by camera type:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Basic Webcam</p></th>
+<th class="head text-left"><p>PTZ Camera</p></th>
+<th class="head text-left"><p>High-End Webcam</p></th>
+<th class="head text-left"><p>Industrial Camera</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Brightness</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Contrast</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Saturation</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Hue</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Sharpness</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Gamma</strong></p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>White Balance</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Backlight Comp</strong></p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Gain</strong></p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Exposure</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Focus</strong></p></td>
+<td class="text-left"><p>Auto only</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Zoom</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Pan</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Tilt</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Roll</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Iris</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Privacy</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Legend:</strong></p>
+<ul class="simple">
+<li><p>✓ = Commonly supported</p></li>
+<li><p>~ = Sometimes supported</p></li>
+<li><p>✗ = Rarely supported</p></li>
+</ul>
+<hr class="docutils" />
+<section id="logitech-specific-features">
+<h3>Logitech-Specific Features<a class="headerlink" href="#logitech-specific-features" title="Link to this heading">¶</a></h3>
+<p><strong>Vendor extensions via <code class="docutils literal notranslate"><span class="pre">IKsPropertySet</span></code>:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>C920</p></th>
+<th class="head text-left"><p>C922</p></th>
+<th class="head text-left"><p>C930e</p></th>
+<th class="head text-left"><p>BRIO</p></th>
+<th class="head text-left"><p>StreamCam</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>RightLight</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>RightSound</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✗</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Face Tracking</strong></p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>~</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>LED Control</strong></p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✓</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>HDR</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>✗</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Digital Pan/Tilt</strong></p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✗</p></td>
+<td class="text-left"><p>✓</p></td>
+<td class="text-left"><p>~</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/vendor/logitech.h&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">devices</span><span class="p">).</span><span class="n">value_or</span><span class="p">(</span><span class="nb">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Enable RightLight auto-exposure</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span>
+</span><span data-line="7"><span class="w">        </span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="resolution-impact">
+<h3>Resolution Impact<a class="headerlink" href="#resolution-impact" title="Link to this heading">¶</a></h3>
+<p><strong>Property availability can vary by resolution:</strong></p>
+<p>Some cameras disable certain controls at high resolutions (e.g., 4K) due to bandwidth or processing limits.</p>
+<p><strong>Example:</strong></p>
+<ul class="simple">
+<li><p>1080p: Full property support</p></li>
+<li><p>4K: Auto focus only, manual focus disabled</p></li>
+<li><p>720p: All properties available</p></li>
+</ul>
+<p><strong>This is firmware-dependent</strong> and varies by manufacturer.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="known-issues-workarounds">
+<h2>11.3 Known Issues &amp; Workarounds<a class="headerlink" href="#known-issues-workarounds" title="Link to this heading">¶</a></h2>
+<section id="issue-1-property-values-dont-persist">
+<h3>Issue 1: Property Values Don’t Persist<a class="headerlink" href="#issue-1-property-values-dont-persist" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some cameras reset properties to defaults when:</p>
+<ul class="simple">
+<li><p>Camera is unplugged/replugged</p></li>
+<li><p>System reboots</p></li>
+<li><p>Camera app is closed</p></li>
+</ul>
+<p><strong>Cause:</strong> Properties stored in volatile firmware memory, not flash.</p>
+<p><strong>Workaround:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Save desired settings</span>
+</span><span data-line="2"><span class="k">struct</span><span class="w"> </span><span class="nc">CameraSettings</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">exposure</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">brightness</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">white_balance</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">};</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1">// Apply on startup</span>
+</span><span data-line="9"><span class="kt">void</span><span class="w"> </span><span class="nf">apply_settings</span><span class="p">(</span><span class="n">Camera</span><span class="o">&amp;</span><span class="w"> </span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">CameraSettings</span><span class="o">&amp;</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">settings</span><span class="p">.</span><span class="n">exposure</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">settings</span><span class="p">.</span><span class="n">brightness</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">VidProp</span><span class="o">::</span><span class="n">WhiteBalance</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">settings</span><span class="p">.</span><span class="n">white_balance</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="13"><span class="p">}</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1">// Call on device connection</span>
+</span><span data-line="16"><span class="n">duvc</span><span class="o">::</span><span class="n">register_device_change_callback</span><span class="p">([](</span><span class="kt">bool</span><span class="w"> </span><span class="n">added</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="17"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">added</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="18"><span class="w">        </span><span class="c1">// Device connected - reapply settings</span>
+</span><span data-line="19"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="20"><span class="w">        </span><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="21"><span class="w">        </span><span class="n">apply_settings</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="n">saved_settings</span><span class="p">);</span>
+</span><span data-line="22"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="23"><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-2-auto-mode-doesnt-revert-to-default">
+<h3>Issue 2: Auto Mode Doesn’t Revert to Default<a class="headerlink" href="#issue-2-auto-mode-doesnt-revert-to-default" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Setting manual value, then switching back to auto may not restore original auto behavior.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Original state: Auto exposure</span>
+</span><span data-line="2"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// Set manual</span>
+</span><span data-line="3"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">});</span><span class="w">     </span><span class="c1">// Back to auto</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Auto behavior may differ from original</span>
+</span></pre></div>
+</div>
+<p><strong>Cause:</strong> Some cameras remember manual value as “auto starting point.”</p>
+<p><strong>Workaround:</strong>
+Query and store default value before modification:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Modify</span>
+</span><span data-line="5"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1">// Restore to true default</span>
+</span><span data-line="8"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">default_mode</span><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-3-property-changes-during-streaming">
+<h3>Issue 3: Property Changes During Streaming<a class="headerlink" href="#issue-3-property-changes-during-streaming" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some cameras ignore property changes while actively streaming video.</p>
+<p><strong>Symptom:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// Returns success</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// But value doesn&#39;t change if camera is streaming</span>
+</span><span data-line="5"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">);</span><span class="w">  </span><span class="c1">// Still old value</span>
+</span></pre></div>
+</div>
+<p><strong>Workaround:</strong>
+Stop streaming, apply properties, restart streaming:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// OpenCV example</span>
+</span><span data-line="2"><span class="n">cv</span><span class="o">::</span><span class="n">VideoCapture</span><span class="w"> </span><span class="nf">cap</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="3"><span class="n">cap</span><span class="p">.</span><span class="n">release</span><span class="p">();</span><span class="w">  </span><span class="c1">// Stop streaming</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="6"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">cap</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// Restart with new settings</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-4-incorrect-range-values">
+<h3>Issue 4: Incorrect Range Values<a class="headerlink" href="#issue-4-incorrect-range-values" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some cameras report invalid <code class="docutils literal notranslate"><span class="pre">min</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, or <code class="docutils literal notranslate"><span class="pre">step</span></code> values.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>Step of 0 (continuous values)</p></li>
+<li><p>Min &gt; Max (reversed range)</p></li>
+<li><p>Range includes impossible values</p></li>
+</ul>
+<p><strong>Workaround:</strong>
+Validate and clamp:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">range_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Validate</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">step</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">        </span><span class="n">range</span><span class="p">.</span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// Assume step of 1</span>
+</span><span data-line="11"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="12"><span class="w">    </span>
+</span><span data-line="13"><span class="w">    </span><span class="c1">// Safe clamping</span>
+</span><span data-line="14"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">user_value</span><span class="p">);</span>
+</span><span data-line="15"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="16"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-5-slow-property-queries">
+<h3>Issue 5: Slow Property Queries<a class="headerlink" href="#issue-5-slow-property-queries" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some cameras take a long time to respond to <code class="docutils literal notranslate"><span class="pre">get()</span></code> or <code class="docutils literal notranslate"><span class="pre">get_range()</span></code> calls.</p>
+<p><strong>Typical duration:</strong> 50-200ms per query</p>
+<p><strong>Workaround:</strong>
+Cache property ranges:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Cache on startup</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">CamProp</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cached_ranges</span><span class="p">;</span>
+</span><span data-line="3"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Tilt</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">        </span><span class="n">cached_ranges</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="7"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="8"><span class="p">}</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1">// Use cached values for validation</span>
+</span><span data-line="11"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cached_ranges</span><span class="p">[</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">].</span><span class="n">is_valid</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="13"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-6-directshow-exclusive-access">
+<h3>Issue 6: DirectShow Exclusive Access<a class="headerlink" href="#issue-6-directshow-exclusive-access" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+If another application is using DirectShow to control the camera, property changes may fail.</p>
+<p><strong>Error:</strong> <code class="docutils literal notranslate"><span class="pre">E_FAIL</span></code> or <code class="docutils literal notranslate"><span class="pre">VFW_E_IN_USE</span></code></p>
+<p><strong>Conflicting applications:</strong></p>
+<ul class="simple">
+<li><p>Windows Camera app</p></li>
+<li><p>Skype/Teams (if camera preview active)</p></li>
+<li><p>OBS Studio (with DirectShow source)</p></li>
+<li><p>Third-party camera control software</p></li>
+</ul>
+<p><strong>Workaround:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">code</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">DeviceInUse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera in use by another application</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">        </span><span class="c1">// Prompt user to close other apps</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-7-usb-power-management">
+<h3>Issue 7: USB Power Management<a class="headerlink" href="#issue-7-usb-power-management" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Windows USB selective suspend can reset camera properties.</p>
+<p><strong>Symptom:</strong> Properties revert to defaults after period of inactivity.</p>
+<p><strong>Workaround:</strong>
+Disable USB selective suspend for camera devices:</p>
+<p><strong>PowerShell:</strong></p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># Disable for all USB devices</span>
+</span><span data-line="2"><span class="n">powercfg</span> <span class="p">/</span><span class="n">change</span> <span class="n">usb-selective-suspend-setting</span> <span class="n">0</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c"># Or via Device Manager → USB Hub → Power Management → </span>
+</span><span data-line="5"><span class="c"># Uncheck &quot;Allow computer to turn off this device&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Programmatic detection:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">register_device_change_callback</span><span class="p">([](</span><span class="kt">bool</span><span class="w"> </span><span class="n">added</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">added</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="c1">// Device reconnected (possibly due to power management)</span>
+</span><span data-line="4"><span class="w">        </span><span class="c1">// Reapply settings</span>
+</span><span data-line="5"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="6"><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-8-firmware-bugs">
+<h3>Issue 8: Firmware Bugs<a class="headerlink" href="#issue-8-firmware-bugs" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some cameras have firmware bugs causing:</p>
+<ul class="simple">
+<li><p>Invalid property values</p></li>
+<li><p>Crashes when setting certain combinations</p></li>
+<li><p>Properties affecting unrelated settings</p></li>
+</ul>
+<p><strong>Example:</strong> Setting Zoom on some cameras resets Exposure.</p>
+<p><strong>Workaround:</strong>
+Test and document camera-specific quirks:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Logitech C920 quirk: Setting zoom resets exposure</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">exposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="3"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="4"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="n">exposure</span><span class="p">);</span><span class="w">  </span><span class="c1">// Restore exposure</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-9-multiple-cameras-same-model">
+<h3>Issue 9: Multiple Cameras Same Model<a class="headerlink" href="#issue-9-multiple-cameras-same-model" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Cameras of same model have identical names, making identification difficult.</p>
+<p><strong>Solution:</strong>
+Use device path for unique identification:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">devices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Name: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Path: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Path contains unique USB bus/port info</span>
+</span><span data-line="7"><span class="p">}</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1">// Store path to identify specific camera</span>
+</span><span data-line="10"><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">my_camera_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">devices</span><span class="p">.</span><span class="n">path</span><span class="p">;</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="c1">// Later, find same camera</span>
+</span><span data-line="13"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">my_camera_path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="15"><span class="w">        </span><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="16"><span class="w">        </span><span class="c1">// This is the correct camera</span>
+</span><span data-line="17"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="18"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="issue-10-no-uvc-compliance">
+<h3>Issue 10: No UVC Compliance<a class="headerlink" href="#issue-10-no-uvc-compliance" title="Link to this heading">¶</a></h3>
+<p><strong>Problem:</strong>
+Some “webcams” don’t implement UVC properly and require proprietary drivers.</p>
+<p><strong>Examples:</strong></p>
+<ul class="simple">
+<li><p>Very old webcams (pre-2008)</p></li>
+<li><p>Some security cameras</p></li>
+<li><p>Proprietary industrial cameras</p></li>
+</ul>
+<p><strong>Detection:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No UVC cameras found</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera may require vendor drivers</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="p">}</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1">// Or camera appears but has no properties</span>
+</span><span data-line="8"><span class="n">Camera</span><span class="w"> </span><span class="n">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="9"><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">);</span>
+</span><span data-line="10"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera doesn&#39;t support standard UVC properties</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="12"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Solution:</strong> Use vendor SDK if available, or duvc-ctl won’t work.</p>
+</section>
+<hr class="docutils" />
+<section id="testing-new-devices">
+<h3>Testing New Devices<a class="headerlink" href="#testing-new-devices" title="Link to this heading">¶</a></h3>
+<p><strong>Capability discovery script:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">test_camera_capabilities</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Testing: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_utf8</span><span class="p">(</span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Camera</span><span class="w"> </span><span class="n">camera</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Test camera properties</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Camera Properties:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Tilt</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span>
+</span><span data-line="9"><span class="w">                       </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Focus</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Iris</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="11"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="12"><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span>
+</span><span data-line="13"><span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">max</span>
+</span><span data-line="14"><span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (default: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">default_val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="16"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="17"><span class="w">    </span>
+</span><span data-line="18"><span class="w">    </span><span class="c1">// Test video properties</span>
+</span><span data-line="19"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">Video Properties:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="20"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">,</span><span class="w"> </span><span class="n">VidProp</span><span class="o">::</span><span class="n">Contrast</span><span class="p">,</span>
+</span><span data-line="21"><span class="w">                       </span><span class="n">VidProp</span><span class="o">::</span><span class="n">Saturation</span><span class="p">,</span><span class="w"> </span><span class="n">VidProp</span><span class="o">::</span><span class="n">WhiteBalance</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="22"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="23"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="24"><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;: &quot;</span>
+</span><span data-line="25"><span class="w">                      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="26"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="27"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="28"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="10_platform-specific-information.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">10. Platform-Specific Information</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="12_troubleshooting-debugging.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">12. Troubleshooting &amp; Debugging</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

@@ -1,0 +1,20 @@
+<map id="core/camera.h" name="core/camera.h">
+<area shape="rect" id="Node000001" title="RAII camera handle for simplified device management." alt="" coords="368,5,472,32"/>
+<area shape="rect" id="Node000002" href="$result_8h.html" title="Result/Error type system for duvc&#45;ctl." alt="" coords="176,80,319,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,35,293,76,291,71,389,30"/>
+<area shape="rect" id="Node000008" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="348,80,491,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,33,422,64,417,64,417,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="515,80,583,107"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="443,30,514,70,512,74,441,35"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,155,77,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,110,92,152,90,147,211,105"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,155,168,181"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="229,109,168,148,166,144,226,105"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="397,155,450,181"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="279,105,384,147,382,152,277,110"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="191,155,288,181"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="249,108,245,139,240,139,244,107"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="312,155,372,181"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="266,105,316,143,312,147,263,109"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="423,107,425,139,419,139,418,107"/>
+</map>

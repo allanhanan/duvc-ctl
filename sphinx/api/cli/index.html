@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>duvc-ctl CLI Documentation - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="duvc-ctl Python Documentation" href="../python/index.html" /><link rel="prev" title="16. Appendices" href="../cpp/sections/16_appendices.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="duvc-ctl CLI Documentation"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">duvc-ctl CLI Documentation</strong>
+        <meta itemprop="position" content="2" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="duvc-ctl-cli-documentation">
+<h1>duvc-ctl CLI Documentation<a class="headerlink" href="#duvc-ctl-cli-documentation" title="Link to this heading">¶</a></h1>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#cli-overview">CLI Overview</a></p></li>
+<li><p><a class="reference internal" href="#installation-building">Installation &amp; Building</a></p></li>
+<li><p><a class="reference internal" href="#command-reference">Command Reference</a></p></li>
+<li><p><a class="reference internal" href="#usage-examples">Usage Examples</a></p></li>
+<li><p><a class="reference internal" href="#advanced-features">Advanced Features</a></p></li>
+<li><p><a class="reference internal" href="#error-codes">Error Codes</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting">Troubleshooting</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="cli-overview">
+<h2>CLI Overview<a class="headerlink" href="#cli-overview" title="Link to this heading">¶</a></h2>
+<p>The duvc-cli is a command-line interface for the duvc-ctl library that provides direct access to UVC camera controls through the DirectShow API. It offers a simple, scriptable interface for camera property management, device monitoring, and vendor-specific operations.</p>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Device Management</strong>: List, monitor, and check status of connected UVC cameras</p></li>
+<li><p><strong>Property Control</strong>: Get, set, and query ranges for camera and video processing properties</p></li>
+<li><p><strong>Real-time Monitoring</strong>: Watch for device connect/disconnect events</p></li>
+<li><p><strong>Vendor Extensions</strong>: Access vendor-specific properties via IKsPropertySet</p></li>
+<li><p><strong>Cross-platform</strong>: Works with MSVC and MinGW compilers</p></li>
+</ul>
+</section>
+<section id="supported-domains">
+<h3>Supported Domains<a class="headerlink" href="#supported-domains" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>cam</strong>: Camera Control Properties (IAMCameraControl) - 24 properties</p></li>
+<li><p><strong>vid</strong>: Video Processing Properties (IAMVideoProcAmp) - 10 properties</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="installation-building">
+<h2>Installation &amp; Building<a class="headerlink" href="#installation-building" title="Link to this heading">¶</a></h2>
+<section id="build-requirements">
+<h3>Build Requirements<a class="headerlink" href="#build-requirements" title="Link to this heading">¶</a></h3>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.16</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="building-the-cli">
+<h3>Building the CLI<a class="headerlink" href="#building-the-cli" title="Link to this heading">¶</a></h3>
+<p>The CLI is built as part of the main duvc-ctl project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Configure project with CLI enabled (default)</span>
+</span><span data-line="2">cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="w"> </span>-DDUVC_BUILD_CLI<span class="o">=</span>ON
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Build the CLI</span>
+</span><span data-line="5">cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># The executable will be at: build/bin/duvc-cli.exe</span>
+</span></pre></div>
+</div>
+</section>
+<section id="compiler-specific-features">
+<h3>Compiler-Specific Features<a class="headerlink" href="#compiler-specific-features" title="Link to this heading">¶</a></h3>
+<section id="msvc-configuration">
+<h4>MSVC Configuration<a class="headerlink" href="#msvc-configuration" title="Link to this heading">¶</a></h4>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">target_compile_options</span><span class="p">(</span><span class="s">duvc-cli</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">/W4</span><span class="w"> </span><span class="s">/permissive-</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">target_compile_definitions</span><span class="p">(</span><span class="s">duvc-cli</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">UNICODE</span><span class="w"> </span><span class="s">_UNICODE</span><span class="w"> </span><span class="s">NOMINMAX</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="mingw-configuration">
+<h4>MinGW Configuration<a class="headerlink" href="#mingw-configuration" title="Link to this heading">¶</a></h4>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="nb">target_link_options</span><span class="p">(</span><span class="s">duvc-cli</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-mconsole</span><span class="p">)</span>
+</span><span data-line="2"><span class="nb">target_compile_options</span><span class="p">(</span><span class="s">duvc-cli</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-Wall</span><span class="w"> </span><span class="s">-Wextra</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="command-reference">
+<h2>Command Reference<a class="headerlink" href="#command-reference" title="Link to this heading">¶</a></h2>
+<section id="basic-syntax">
+<h3>Basic Syntax<a class="headerlink" href="#basic-syntax" title="Link to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">arguments</span><span class="o">...</span><span class="p">]</span>
+</span></pre></div>
+</div>
+</section>
+<section id="commands-overview">
+<h3>Commands Overview<a class="headerlink" href="#commands-overview" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Command</p></th>
+<th class="head text-left"><p>Purpose</p></th>
+<th class="head text-left"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td class="text-left"><p>Enumerate connected devices</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">get</span></code></p></td>
+<td class="text-left"><p>Get property value</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">get</span> <span class="pre">0</span> <span class="pre">vid</span> <span class="pre">Brightness</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">set</span></code></p></td>
+<td class="text-left"><p>Set property value</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">set</span> <span class="pre">0</span> <span class="pre">vid</span> <span class="pre">Brightness</span> <span class="pre">128</span> <span class="pre">manual</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">range</span></code></p></td>
+<td class="text-left"><p>Get property constraints</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">range</span> <span class="pre">0</span> <span class="pre">cam</span> <span class="pre">Exposure</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">monitor</span></code></p></td>
+<td class="text-left"><p>Monitor device changes</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">monitor</span> <span class="pre">30</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">status</span></code></p></td>
+<td class="text-left"><p>Check device connection</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">status</span> <span class="pre">0</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">vendor</span></code></p></td>
+<td class="text-left"><p>Vendor property access</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">vendor</span> <span class="pre">0</span> <span class="pre">{GUID}</span> <span class="pre">1</span> <span class="pre">get</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="device-listing">
+<h3>Device Listing<a class="headerlink" href="#device-listing" title="Link to this heading">¶</a></h3>
+<section id="list">
+<h4>list<a class="headerlink" href="#list" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="nb">list</span>
+</span></pre></div>
+</div>
+<p><strong>Purpose</strong>: Enumerate all connected UVC cameras</p>
+<p><strong>Output Format</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">Devices: 2
+</span><span data-line="2">[^0] Logitech HD Pro Webcam C920
+</span><span data-line="3"> \\?\usb#vid_046d&amp;pid_082d&amp;mi_00#7&amp;1234abcd&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+</span><span data-line="4">[^1] USB Camera
+</span><span data-line="5"> \\?\usb#vid_1234&amp;pid_5678&amp;mi_00#8&amp;abcd1234&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="property-operations">
+<h3>Property Operations<a class="headerlink" href="#property-operations" title="Link to this heading">¶</a></h3>
+<section id="get">
+<h4>get<a class="headerlink" href="#get" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="n">get</span> <span class="o">&lt;</span><span class="n">device_index</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">domain</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">property</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_index</span></code>: Device index from list (0-based)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domain</span></code>: <code class="docutils literal notranslate"><span class="pre">cam</span></code> (camera) or <code class="docutils literal notranslate"><span class="pre">vid</span></code> (video processing)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property</span></code>: Property name (case-insensitive)</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness
+</span><span data-line="2"><span class="c1"># Output: Brightness = 128 (MANUAL)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="set">
+<h4>set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="nb">set</span> <span class="o">&lt;</span><span class="n">device_index</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">domain</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">property</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">mode</span><span class="p">]</span>
+</span></pre></div>
+</div>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_index</span></code>: Device index from list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">domain</span></code>: <code class="docutils literal notranslate"><span class="pre">cam</span></code> or <code class="docutils literal notranslate"><span class="pre">vid</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property</span></code>: Property name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: Integer value to set</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: <code class="docutils literal notranslate"><span class="pre">auto</span></code> or <code class="docutils literal notranslate"><span class="pre">manual</span></code> (default: manual)</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w"> </span><span class="m">200</span><span class="w"> </span>manual
+</span><span data-line="2"><span class="c1"># Output: OK</span>
+</span></pre></div>
+</div>
+</section>
+<section id="range">
+<h4>range<a class="headerlink" href="#range" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="nb">range</span> <span class="o">&lt;</span><span class="n">device_index</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">domain</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nb">property</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<p><strong>Purpose</strong>: Get valid range and default values for a property</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness
+</span><span data-line="2"><span class="c1"># Output: Brightness: min=0, max=255, step=1, default=128, mode=AUTO</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="device-management">
+<h3>Device Management<a class="headerlink" href="#device-management" title="Link to this heading">¶</a></h3>
+<section id="status">
+<h4>status<a class="headerlink" href="#status" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="n">status</span> <span class="o">&lt;</span><span class="n">device_index</span><span class="o">&gt;</span>
+</span></pre></div>
+</div>
+<p><strong>Purpose</strong>: Check if a specific device is connected and accessible</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>status<span class="w"> </span><span class="m">0</span>
+</span><span data-line="2"><span class="c1"># Output: Device [^0] Logitech HD Pro Webcam C920 is CONNECTED</span>
+</span></pre></div>
+</div>
+</section>
+<section id="monitor">
+<h4>monitor<a class="headerlink" href="#monitor" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="n">monitor</span> <span class="p">[</span><span class="n">seconds</span><span class="p">]</span>
+</span></pre></div>
+</div>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">seconds</span></code>: Duration to monitor (default: 30)</p></li>
+</ul>
+<p><strong>Purpose</strong>: Watch for device connect/disconnect events in real-time</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>monitor<span class="w"> </span><span class="m">60</span>
+</span><span data-line="2"><span class="c1"># Output:</span>
+</span><span data-line="3"><span class="c1"># Monitoring device changes for 60 seconds...</span>
+</span><span data-line="4"><span class="c1"># Press Ctrl+C to stop early.</span>
+</span><span data-line="5"><span class="c1"># </span>
+</span><span data-line="6"><span class="c1"># [DEVICE ADDED] \\?\usb#vid_046d&amp;pid_082d&amp;mi_00#7&amp;...</span>
+</span><span data-line="7"><span class="c1"># [DEVICE REMOVED] \\?\usb#vid_046d&amp;pid_082d&amp;mi_00#7&amp;...</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="vendor-properties-windows-only">
+<h3>Vendor Properties (Windows Only)<a class="headerlink" href="#vendor-properties-windows-only" title="Link to this heading">¶</a></h3>
+<section id="vendor">
+<h4>vendor<a class="headerlink" href="#vendor" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">-</span><span class="n">cli</span> <span class="n">vendor</span> <span class="o">&lt;</span><span class="n">device_index</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">guid</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">property_id</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">operation</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">data_hex</span><span class="p">]</span>
+</span></pre></div>
+</div>
+<p><strong>Parameters</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device_index</span></code>: Device index from list</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">guid</span></code>: Property set GUID (with or without braces)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property_id</span></code>: Property ID (integer)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">operation</span></code>: <code class="docutils literal notranslate"><span class="pre">get</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span></code>, or <code class="docutils literal notranslate"><span class="pre">query</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_hex</span></code>: Hexadecimal data for set operations</p></li>
+</ul>
+<p><strong>Examples</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Query property support</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>vendor<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">{</span><span class="m">82066163</span>-7BD0-43EF-8A6F-5B8905C9A64C<span class="o">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>query
+</span><span data-line="3"><span class="c1"># Output: Vendor property SUPPORTED</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Get property data</span>
+</span><span data-line="6">duvc-cli<span class="w"> </span>vendor<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">82066163</span>-7BD0-43EF-8A6F-5B8905C9A64C<span class="w"> </span><span class="m">1</span><span class="w"> </span>get
+</span><span data-line="7"><span class="c1"># Output: Vendor property data: 01000000</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Set property data</span>
+</span><span data-line="10">duvc-cli<span class="w"> </span>vendor<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">{</span><span class="m">82066163</span>-7BD0-43EF-8A6F-5B8905C9A64C<span class="o">}</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">00000000</span>
+</span><span data-line="11"><span class="c1"># Output: Vendor property set successfully.</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading">¶</a></h2>
+<section id="basic-camera-control">
+<h3>Basic Camera Control<a class="headerlink" href="#basic-camera-control" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># List all connected cameras</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>list
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Get current pan value</span>
+</span><span data-line="5">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>cam<span class="w"> </span>Pan
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Set pan to center position (usually 0) in manual mode</span>
+</span><span data-line="8">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>cam<span class="w"> </span>Pan<span class="w"> </span><span class="m">0</span><span class="w"> </span>manual
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Get pan range to see valid values</span>
+</span><span data-line="11">duvc-cli<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="w"> </span>cam<span class="w"> </span>Pan
+</span></pre></div>
+</div>
+</section>
+<section id="video-processing-control">
+<h3>Video Processing Control<a class="headerlink" href="#video-processing-control" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Check current brightness</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Increase brightness</span>
+</span><span data-line="5">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w"> </span><span class="m">200</span><span class="w"> </span>manual
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Set auto white balance</span>
+</span><span data-line="8">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>WhiteBalance<span class="w"> </span><span class="m">0</span><span class="w"> </span>auto
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Check contrast range</span>
+</span><span data-line="11">duvc-cli<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Contrast
+</span></pre></div>
+</div>
+</section>
+<section id="batch-operations">
+<h3>Batch Operations<a class="headerlink" href="#batch-operations" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Save current settings (Windows batch example)</span>
+</span><span data-line="2">@echo<span class="w"> </span>off
+</span><span data-line="3">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w"> </span>&gt;<span class="w"> </span>brightness.txt
+</span><span data-line="4">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Contrast<span class="w"> </span>&gt;<span class="w"> </span>contrast.txt
+</span><span data-line="5">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Saturation<span class="w"> </span>&gt;<span class="w"> </span>saturation.txt
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># Apply settings</span>
+</span><span data-line="8">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w"> </span><span class="m">180</span><span class="w"> </span>manual
+</span><span data-line="9">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Contrast<span class="w"> </span><span class="m">150</span><span class="w"> </span>manual<span class="w">  </span>
+</span><span data-line="10">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Saturation<span class="w"> </span><span class="m">120</span><span class="w"> </span>manual
+</span><span data-line="11">
+</span><span data-line="12"><span class="nb">echo</span><span class="w"> </span>Settings<span class="w"> </span>applied.<span class="w"> </span>Press<span class="w"> </span>any<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>restore...
+</span><span data-line="13">pause
+</span><span data-line="14">
+</span><span data-line="15"><span class="c1"># Restore from saved values (implementation needed)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="scripting-with-error-handling">
+<h3>Scripting with Error Handling<a class="headerlink" href="#scripting-with-error-handling" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="ch">#!/bin/bash</span>
+</span><span data-line="2"><span class="c1"># Linux/MinGW example</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Check if device exists</span>
+</span><span data-line="5"><span class="k">if</span><span class="w"> </span>!<span class="w"> </span>duvc-cli<span class="w"> </span>status<span class="w"> </span><span class="m">0</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span data-line="6"><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Camera not found or not accessible&quot;</span>
+</span><span data-line="7"><span class="w">    </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+</span><span data-line="8"><span class="k">fi</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># Set multiple properties with error checking</span>
+</span><span data-line="11"><span class="nv">properties</span><span class="o">=(</span><span class="s2">&quot;Brightness:180&quot;</span><span class="w"> </span><span class="s2">&quot;Contrast:140&quot;</span><span class="w"> </span><span class="s2">&quot;Saturation:130&quot;</span><span class="o">)</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="k">for</span><span class="w"> </span>prop<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">properties</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span data-line="14"><span class="w">    </span><span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>name<span class="w"> </span>value<span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$prop</span><span class="s2">&quot;</span>
+</span><span data-line="15"><span class="w">    </span><span class="k">if</span><span class="w"> </span>duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$value</span><span class="s2">&quot;</span><span class="w"> </span>manual<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+</span><span data-line="16"><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✓ Set </span><span class="nv">$name</span><span class="s2"> to </span><span class="nv">$value</span><span class="s2">&quot;</span>
+</span><span data-line="17"><span class="w">    </span><span class="k">else</span>
+</span><span data-line="18"><span class="w">        </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✗ Failed to set </span><span class="nv">$name</span><span class="s2">&quot;</span>
+</span><span data-line="19"><span class="w">    </span><span class="k">fi</span>
+</span><span data-line="20"><span class="k">done</span>
+</span></pre></div>
+</div>
+</section>
+<section id="device-monitoring-script">
+<h3>Device Monitoring Script<a class="headerlink" href="#device-monitoring-script" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Monitor devices and log changes</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>monitor<span class="w"> </span><span class="m">300</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nv">IFS</span><span class="o">=</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>line<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span data-line="3"><span class="w">    </span><span class="nv">timestamp</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span>
+</span><span data-line="4"><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;[</span><span class="nv">$timestamp</span><span class="s2">] </span><span class="nv">$line</span><span class="s2">&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>device_changes.log
+</span><span data-line="5"><span class="k">done</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="advanced-features">
+<h2>Advanced Features<a class="headerlink" href="#advanced-features" title="Link to this heading">¶</a></h2>
+<section id="property-name-reference">
+<h3>Property Name Reference<a class="headerlink" href="#property-name-reference" title="Link to this heading">¶</a></h3>
+<section id="camera-control-properties-cam-domain">
+<h4>Camera Control Properties (cam domain)<a class="headerlink" href="#camera-control-properties-cam-domain" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Pan</span><span class="p">,</span> <span class="n">Tilt</span><span class="p">,</span> <span class="n">Roll</span><span class="p">,</span> <span class="n">Zoom</span><span class="p">,</span> <span class="n">Exposure</span><span class="p">,</span> <span class="n">Iris</span><span class="p">,</span> <span class="n">Focus</span><span class="p">,</span> <span class="n">ScanMode</span><span class="p">,</span> <span class="n">Privacy</span><span class="p">,</span>
+</span><span data-line="2"><span class="n">PanRelative</span><span class="p">,</span> <span class="n">TiltRelative</span><span class="p">,</span> <span class="n">RollRelative</span><span class="p">,</span> <span class="n">ZoomRelative</span><span class="p">,</span> 
+</span><span data-line="3"><span class="n">ExposureRelative</span><span class="p">,</span> <span class="n">IrisRelative</span><span class="p">,</span> <span class="n">FocusRelative</span><span class="p">,</span> <span class="n">PanTilt</span><span class="p">,</span> 
+</span><span data-line="4"><span class="n">PanTiltRelative</span><span class="p">,</span> <span class="n">FocusSimple</span><span class="p">,</span> <span class="n">DigitalZoom</span><span class="p">,</span> <span class="n">DigitalZoomRelative</span><span class="p">,</span>
+</span><span data-line="5"><span class="n">BacklightCompensation</span><span class="p">,</span> <span class="n">Lamp</span>
+</span></pre></div>
+</div>
+</section>
+<section id="video-processing-properties-vid-domain">
+<h4>Video Processing Properties (vid domain)<a class="headerlink" href="#video-processing-properties-vid-domain" title="Link to this heading">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Brightness</span><span class="p">,</span> <span class="n">Contrast</span><span class="p">,</span> <span class="n">Hue</span><span class="p">,</span> <span class="n">Saturation</span><span class="p">,</span> <span class="n">Sharpness</span><span class="p">,</span> <span class="n">Gamma</span><span class="p">,</span> 
+</span><span data-line="2"><span class="n">ColorEnable</span><span class="p">,</span> <span class="n">WhiteBalance</span><span class="p">,</span> <span class="n">BacklightCompensation</span><span class="p">,</span> <span class="n">Gain</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="control-modes">
+<h3>Control Modes<a class="headerlink" href="#control-modes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>auto</strong>: Camera automatically manages the property</p></li>
+<li><p><strong>manual</strong>: User has direct control over the property value</p></li>
+</ul>
+</section>
+<section id="guid-format-support">
+<h3>GUID Format Support<a class="headerlink" href="#guid-format-support" title="Link to this heading">¶</a></h3>
+<p>The vendor command accepts GUIDs in multiple formats:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># With braces (recommended)</span>
+</span><span data-line="2"><span class="o">{</span><span class="m">82066163</span>-7BD0-43EF-8A6F-5B8905C9A64C<span class="o">}</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># Without braces (auto-converted)</span>
+</span><span data-line="5"><span class="m">82066163</span>-7BD0-43EF-8A6F-5B8905C9A64C
+</span></pre></div>
+</div>
+</section>
+<section id="hexadecimal-data-format">
+<h3>Hexadecimal Data Format<a class="headerlink" href="#hexadecimal-data-format" title="Link to this heading">¶</a></h3>
+<p>Vendor property data is represented as hexadecimal strings:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># 4-byte integer value 1</span>
+</span><span data-line="2"><span class="m">01000000</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1"># 4-byte integer value 256</span>
+</span><span data-line="5"><span class="m">00010000</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1"># 1-byte boolean true</span>
+</span><span data-line="8"><span class="m">01</span>
+</span><span data-line="9">
+</span><span data-line="10"><span class="c1"># 8-byte data</span>
+</span><span data-line="11">0123456789ABCDEF
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="error-codes">
+<h2>Error Codes<a class="headerlink" href="#error-codes" title="Link to this heading">¶</a></h2>
+<p>The CLI returns specific exit codes for different error conditions:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Exit Code</p></th>
+<th class="head text-left"><p>Meaning</p></th>
+<th class="head text-left"><p>Example Cause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>0</p></td>
+<td class="text-left"><p>Success</p></td>
+<td class="text-left"><p>Command completed successfully</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>Usage Error</p></td>
+<td class="text-left"><p>Invalid command syntax or arguments</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Device Error</p></td>
+<td class="text-left"><p>Invalid device index or device not found</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p>Property Error</p></td>
+<td class="text-left"><p>Unknown property name or invalid mode</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p>Operation Error</p></td>
+<td class="text-left"><p>Property not supported or operation failed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="error-code-examples">
+<h3>Error Code Examples<a class="headerlink" href="#error-code-examples" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Exit code 1 - Usage error</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>get
+</span><span data-line="3"><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span><span class="w">  </span><span class="c1"># Output: 1</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Exit code 2 - Invalid device index</span>
+</span><span data-line="6">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">99</span><span class="w"> </span>vid<span class="w"> </span>Brightness
+</span><span data-line="7"><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span><span class="w">  </span><span class="c1"># Output: 2</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># Exit code 3 - Unknown property</span>
+</span><span data-line="10">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>InvalidProperty
+</span><span data-line="11"><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span><span class="w">  </span><span class="c1"># Output: 3</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1"># Exit code 4 - Property not supported</span>
+</span><span data-line="14">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>cam<span class="w"> </span>UnsupportedProperty
+</span><span data-line="15"><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span><span class="w">  </span><span class="c1"># Output: 4</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading">¶</a></h3>
+<section id="no-devices-found">
+<h4>1. No Devices Found<a class="headerlink" href="#no-devices-found" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>list
+</span><span data-line="2"><span class="c1"># Output: Devices: 0</span>
+</span></pre></div>
+</div>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Check if camera is connected and recognized by Windows Device Manager</p></li>
+<li><p>Ensure camera is not being used by another application</p></li>
+<li><p>Try running as Administrator</p></li>
+</ul>
+</section>
+<section id="property-not-supported">
+<h4>2. Property Not Supported<a class="headerlink" href="#property-not-supported" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>cam<span class="w"> </span>Pan
+</span><span data-line="2"><span class="c1"># Output: Property not supported or failed to read.</span>
+</span></pre></div>
+</div>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Check if the camera supports the property: <code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">range</span> <span class="pre">0</span> <span class="pre">cam</span> <span class="pre">Pan</span></code></p></li>
+<li><p>Try different property names (check spelling)</p></li>
+<li><p>Some cameras only support a subset of properties</p></li>
+</ul>
+</section>
+<section id="failed-to-set-property">
+<h4>3. Failed to Set Property<a class="headerlink" href="#failed-to-set-property" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w"> </span><span class="m">300</span><span class="w"> </span>manual
+</span><span data-line="2"><span class="c1"># Output: Failed to set property.</span>
+</span></pre></div>
+</div>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Check valid range: <code class="docutils literal notranslate"><span class="pre">duvc-cli</span> <span class="pre">range</span> <span class="pre">0</span> <span class="pre">vid</span> <span class="pre">Brightness</span></code></p></li>
+<li><p>Ensure value is within min/max bounds</p></li>
+<li><p>Try with <code class="docutils literal notranslate"><span class="pre">auto</span></code> mode instead of <code class="docutils literal notranslate"><span class="pre">manual</span></code></p></li>
+</ul>
+</section>
+<section id="device-connection-issues">
+<h4>4. Device Connection Issues<a class="headerlink" href="#device-connection-issues" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">duvc-cli<span class="w"> </span>status<span class="w"> </span><span class="m">0</span>
+</span><span data-line="2"><span class="c1"># Output: Device [^0] Camera Name is DISCONNECTED</span>
+</span></pre></div>
+</div>
+<p><strong>Solutions</strong>:</p>
+<ul class="simple">
+<li><p>Reconnect the USB cable</p></li>
+<li><p>Check for driver issues in Device Manager</p></li>
+<li><p>Try different USB port</p></li>
+</ul>
+</section>
+</section>
+<section id="debug-information">
+<h3>Debug Information<a class="headerlink" href="#debug-information" title="Link to this heading">¶</a></h3>
+<section id="enable-verbose-output">
+<h4>Enable Verbose Output<a class="headerlink" href="#enable-verbose-output" title="Link to this heading">¶</a></h4>
+<p>The CLI relies on the underlying library’s logging. To enable verbose output in your application:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_callback</span><span class="p">([](</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;] &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="3"><span class="p">});</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">::</span><span class="n">set_log_level</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">LogLevel</span><span class="o">::</span><span class="n">Debug</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<section id="test-device-accessibility">
+<h4>Test Device Accessibility<a class="headerlink" href="#test-device-accessibility" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Quick test sequence</span>
+</span><span data-line="2">duvc-cli<span class="w"> </span>list<span class="w">                          </span><span class="c1"># Check if devices are detected</span>
+</span><span data-line="3">duvc-cli<span class="w"> </span>status<span class="w"> </span><span class="m">0</span><span class="w">                      </span><span class="c1"># Check specific device status</span>
+</span><span data-line="4">duvc-cli<span class="w"> </span>range<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w">        </span><span class="c1"># Test property access</span>
+</span><span data-line="5">duvc-cli<span class="w"> </span>get<span class="w"> </span><span class="m">0</span><span class="w"> </span>vid<span class="w"> </span>Brightness<span class="w">          </span><span class="c1"># Test property reading</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="performance-tips">
+<h3>Performance Tips<a class="headerlink" href="#performance-tips" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Batch Operations</strong>: Group multiple property changes to minimize overhead</p></li>
+<li><p><strong>Check Ranges First</strong>: Use <code class="docutils literal notranslate"><span class="pre">range</span></code> command before setting values to avoid errors</p></li>
+</ol>
+</section>
+<section id="platform-specific-notes">
+<h3>Platform-Specific Notes<a class="headerlink" href="#platform-specific-notes" title="Link to this heading">¶</a></h3>
+<section id="windows-msvc">
+<h4>Windows (MSVC)<a class="headerlink" href="#windows-msvc" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Full Unicode support for device names and paths</p></li>
+<li><p>Complete vendor property support via IKsPropertySet</p></li>
+<li><p>Integrated with Windows Device Manager</p></li>
+</ul>
+</section>
+<section id="windows-mingw">
+<h4>Windows (MinGW)<a class="headerlink" href="#windows-mingw" title="Link to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Console subsystem properly configured</p></li>
+<li><p>Cross-platform compatibility maintained</p></li>
+<li><p>All features supported</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="../cpp/sections/16_appendices.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">16. Appendices</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../python/index.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">duvc-ctl Python Documentation</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

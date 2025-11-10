@@ -1,0 +1,28 @@
+var core_8h =
+[
+    [ "duvc::VendorProperty", "structduvc_1_1VendorProperty.html", "structduvc_1_1VendorProperty" ],
+    [ "duvc::DeviceConnection", "classduvc_1_1DeviceConnection.html", "classduvc_1_1DeviceConnection" ],
+    [ "DeviceChangeCallback", "core_8h.html#ac3f065ee856153757a4b8672b6a192d2", null ],
+    [ "clear_connection_cache", "core_8h.html#a1078927aa05ca0665f6c3c861066c4f0", null ],
+    [ "get", "core_8h.html#ga03a46d69b1f9bc18596e1085b5161ef0", null ],
+    [ "get", "core_8h.html#gabe50c1b736f2782a0019091d6ddab5c6", null ],
+    [ "get_cached_connection", "core_8h.html#aa743fc7771811366fbd7b192b4f4d5d5", null ],
+    [ "get_range", "core_8h.html#gaf73ccab11e1e8cb1a7311ad6e5d59f61", null ],
+    [ "get_range", "core_8h.html#gaad1b7b0ffab91ab840285893caecdf48", null ],
+    [ "get_vendor_property", "core_8h.html#aa019a1c9788c84f47348db3f03b25d42", null ],
+    [ "is_device_connected", "core_8h.html#ab42651167ff39abe9e70713ac6db65b9", null ],
+    [ "list_devices", "core_8h.html#a2c254074ce671320e3e57c56a9389ac1", null ],
+    [ "query_vendor_property_support", "core_8h.html#a5ddd570cc76e8dbdef26ad18660ddb07", null ],
+    [ "register_device_change_callback", "core_8h.html#abbb674b206dc193c2a1b127cb413a12f", null ],
+    [ "release_cached_connection", "core_8h.html#a316d213f962f0e412d6967eac153ad40", null ],
+    [ "set", "core_8h.html#ga686ce12eeefaa6c520c8b4506b4c2bc9", null ],
+    [ "set", "core_8h.html#gab6b367552e5f3955cfeb1b5a054764d0", null ],
+    [ "set_vendor_property", "core_8h.html#ab333863cefef68546e2e235527fe3b5c", null ],
+    [ "to_string", "core_8h.html#a51078dd5b4dd4f45c7b2412fc590276c", null ],
+    [ "to_string", "core_8h.html#a8556fd02a649101843e7712e638cc0cb", null ],
+    [ "to_string", "core_8h.html#a772cb51fa63c15a032fddb734d0ef7a9", null ],
+    [ "to_wstring", "core_8h.html#aaf40203ae31bb0a2d0315615f21874f8", null ],
+    [ "to_wstring", "core_8h.html#a66db90f7a95928cb7c54e5c080bae42a", null ],
+    [ "to_wstring", "core_8h.html#a137bbe10db57e7cfd58d8236692378d6", null ],
+    [ "unregister_device_change_callback", "core_8h.html#a2c8dcde95ee8de2b7eef20728f9274dc", null ]
+];

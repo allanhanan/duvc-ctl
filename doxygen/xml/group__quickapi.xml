@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="group__quickapi" kind="group">
+    <compoundname>quickapi</compoundname>
+    <title>Quick API</title>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::get</definition>
+        <argsstring>(const Device &amp;dev, CamProp prop, PropSetting &amp;out)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::get</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>CamProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>PropSetting &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+<para>Get a camera control property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="63" column="13" bodyfile="duvc.hpp" bodystart="63" bodyend="72" declfile="core.h" declline="18" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+        <referencedby refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" compoundref="bindings_8cpp" startline="77" endline="88">duvc_cam_get</referencedby>
+        <referencedby refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" compoundref="bindings_8cpp" startline="117" endline="128">duvc_vid_get</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::set</definition>
+        <argsstring>(const Device &amp;dev, CamProp prop, const PropSetting &amp;in)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::set</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>CamProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>const PropSetting &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+<para>Set a camera control property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to modify </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="81" column="13" bodyfile="duvc.hpp" bodystart="81" bodyend="86" declfile="core.h" declline="19" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <referencedby refid="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" compoundref="bindings_8cpp" startline="90" endline="98">duvc_cam_set</referencedby>
+        <referencedby refid="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" compoundref="bindings_8cpp" startline="130" endline="138">duvc_vid_set</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::get_range</definition>
+        <argsstring>(const Device &amp;dev, CamProp prop, PropRange &amp;out)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::get_range</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>CamProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>PropRange &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+<para>Get the valid range for a camera control property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output property range </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="95" column="13" bodyfile="duvc.hpp" bodystart="95" bodyend="104" declfile="core.h" declline="17" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+        <referencedby refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" compoundref="bindings_8cpp" startline="61" endline="75">duvc_cam_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" compoundref="bindings_8cpp" startline="101" endline="115">duvc_vid_get_range</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__quickapi_1gabe50c1b736f2782a0019091d6ddab5c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::get</definition>
+        <argsstring>(const Device &amp;dev, VidProp prop, PropSetting &amp;out)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::get</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>VidProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>PropSetting &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+<para>Get a video processing property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="113" column="13" bodyfile="duvc.hpp" bodystart="113" bodyend="122" declfile="core.h" declline="22" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="group__quickapi_1gab6b367552e5f3955cfeb1b5a054764d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::set</definition>
+        <argsstring>(const Device &amp;dev, VidProp prop, const PropSetting &amp;in)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::set</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>VidProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>const PropSetting &amp;</type>
+          <defname>in</defname>
+        </param>
+        <briefdescription>
+<para>Set a video processing property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to modify </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="131" column="13" bodyfile="duvc.hpp" bodystart="131" bodyend="136" declfile="core.h" declline="23" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+      </memberdef>
+      <memberdef kind="function" id="group__quickapi_1gaad1b7b0ffab91ab840285893caecdf48" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool duvc::get_range</definition>
+        <argsstring>(const Device &amp;dev, VidProp prop, PropRange &amp;out)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::get_range</qualifiedname>
+        <param>
+          <type>const Device &amp;</type>
+          <defname>dev</defname>
+        </param>
+        <param>
+          <type>VidProp</type>
+          <defname>prop</defname>
+        </param>
+        <param>
+          <type>PropRange &amp;</type>
+          <defname>out</defname>
+        </param>
+        <briefdescription>
+<para>Get the valid range for a video processing property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>out</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output property range </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if successful </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="duvc.hpp" line="145" column="13" bodyfile="duvc.hpp" bodystart="145" bodyend="154" declfile="core.h" declline="21" declcolumn="6"/>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Simplified one-call camera control functions.</para>
+<para>These wrappers provide easy access for CLI tools and casual use cases. They internally use the <ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> RAII API but expose a simple <computeroutput>bool</computeroutput> interface. For detailed error handling, use the full <ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> API. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,9 @@
+<map id="duvc::get_device_capabilities" name="duvc::get_device_capabilities">
+<area shape="rect" id="Node000001" title="Create device capability snapshot." alt="" coords="246,64,438,91"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a1bb7b51ed8284acbb23ca4f7ba351d09" title="Get device capabilities snapshot." alt="" coords="6,5,197,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,62,159,35,160,30,270,57"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#a6377c50e3ae679edc8ce8c040e7fead7" title="Get device capabilities by index." alt="" coords="6,56,197,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,80,198,80,198,75,230,75"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#a0af4366057ae8014aee4989ab3fd7671" title="Create device capability snapshot by index." alt="" coords="5,123,198,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="270,97,160,125,159,120,269,92"/>
+</map>

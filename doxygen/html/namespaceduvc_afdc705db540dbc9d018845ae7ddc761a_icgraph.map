@@ -1,0 +1,9 @@
+<map id="duvc::vidprop_to_dshow" name="duvc::vidprop_to_dshow">
+<area shape="rect" id="Node000001" title=" " alt="" coords="244,64,406,91"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1DeviceConnection.html#ae2f8eee0fcac533247cd79b5e148cbf3" title=" " alt="" coords="5,5,196,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,62,154,35,155,30,257,57"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1DeviceConnection.html#a3a30a60f3b5ea51c1621300704f8c10d" title=" " alt="" coords="18,56,183,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="229,80,183,80,183,75,229,75"/>
+<area shape="rect" id="Node000004" href="$classduvc_1_1DeviceConnection.html#aa2752d34ca21c524125877f7a7983087" title=" " alt="" coords="5,123,196,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="257,98,155,125,154,120,256,93"/>
+</map>

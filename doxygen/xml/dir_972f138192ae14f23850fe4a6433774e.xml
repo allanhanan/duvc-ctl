@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_972f138192ae14f23850fe4a6433774e" kind="dir">
+    <compoundname>platform/windows</compoundname>
+    <innerfile refid="connection__pool_8cpp">connection_pool.cpp</innerfile>
+    <innerfile refid="device__monitor_8cpp">device_monitor.cpp</innerfile>
+    <innerfile refid="ks__properties_8cpp">ks_properties.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="platform/windows/"/>
+  </compounddef>
+</doxygen>

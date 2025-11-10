@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>5. Vendor-Specific Extensions - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="6. Internal Implementation Details" href="06_internal-implementation-details.html" /><link rel="prev" title="4. Platform Abstraction Layer" href="04_platform-abstraction-layer.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="5. Vendor-Specific Extensions"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">5. Vendor-Specific Extensions</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="vendor-specific-extensions">
+<h1>5. Vendor-Specific Extensions<a class="headerlink" href="#vendor-specific-extensions" title="Link to this heading">¶</a></h1>
+<section id="logitech-extensions">
+<h2>5.1 Logitech Extensions<a class="headerlink" href="#logitech-extensions" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/vendor/logitech.h&gt;</span></code>
+<strong>Namespace:</strong> <code class="docutils literal notranslate"><span class="pre">duvc::logitech</span></code>
+<strong>Platform:</strong> Windows only (<code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>)</p>
+<p>Provides access to Logitech-specific UVC extension unit properties beyond standard DirectShow controls. These properties control vendor-specific features like RightLight, face tracking, and LED indicators.</p>
+<p>This serves more of like an example for similar vendor specific extensions that can be made available</p>
+<section id="logitechproperty-enum">
+<h3>LogitechProperty enum<a class="headerlink" href="#logitechproperty-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">LogitechProperty</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">RightLight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">       </span><span class="c1">// Auto-exposure and brightness optimization</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">RightSound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">       </span><span class="c1">// Audio processing and noise cancellation</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">FaceTracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">     </span><span class="c1">// Face tracking enable/disable for auto-framing</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">LedIndicator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">     </span><span class="c1">// LED indicator control (on/off/blink modes)</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">ProcessorUsage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">   </span><span class="c1">// Processor usage optimization hints</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">RawDataBits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">      </span><span class="c1">// Raw data bit depth configuration</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">FocusAssist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">      </span><span class="c1">// Focus assist beam control</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">VideoStandard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">    </span><span class="c1">// Video standard selection (NTSC/PAL/etc)</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">DigitalZoomROI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">   </span><span class="c1">// Digital zoom region of interest coordinates</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">TiltPan</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w">          </span><span class="c1">// Combined tilt/pan control (absolute positioning)</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>10 vendor property values</strong> corresponding to Logitech’s UVC extension unit property IDs. Values map to the property set GUID <code class="docutils literal notranslate"><span class="pre">{82066163-7BD0-43EF-8A6F-5B8905C9A64C}</span></code>.</p>
+<p><strong>Property descriptions:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Typical Data Type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">RightLight</span></code></p></td>
+<td class="text-left"><p>Adaptive lighting optimization</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> (0=off, 1=on)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">RightSound</span></code></p></td>
+<td class="text-left"><p>Audio noise reduction and enhancement</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">FaceTracking</span></code></p></td>
+<td class="text-left"><p>Auto-framing based on detected faces</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LedIndicator</span></code></p></td>
+<td class="text-left"><p>Camera status LED control</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> (mode flags)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ProcessorUsage</span></code></p></td>
+<td class="text-left"><p>CPU/GPU usage hints for firmware</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">RawDataBits</span></code></p></td>
+<td class="text-left"><p>Sensor bit depth configuration</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">FocusAssist</span></code></p></td>
+<td class="text-left"><p>IR focus assist beam enable</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoStandard</span></code></p></td>
+<td class="text-left"><p>Broadcast standard selection</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> (enum)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DigitalZoomROI</span></code></p></td>
+<td class="text-left"><p>Digital zoom target region</p></td>
+<td class="text-left"><p>Struct (x, y, width, height)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">TiltPan</span></code></p></td>
+<td class="text-left"><p>Combined PTZ positioning</p></td>
+<td class="text-left"><p>Struct (pan, tilt values)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="raw-byte-property-access">
+<h3>Raw byte property access<a class="headerlink" href="#raw-byte-property-access" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">get_logitech_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">LogitechProperty</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_logitech_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">LogitechProperty</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Low-level functions for reading/writing properties as raw byte vectors. Caller responsible for interpreting binary format.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">data_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">get_logitech_property</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Interpret bytes based on property format</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Setting property:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">led_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x02</span><span class="p">};</span><span class="w">  </span><span class="c1">// LED mode 2</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">LedIndicator</span><span class="p">,</span><span class="w"> </span><span class="n">led_data</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Error returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::PropertyNotSupported</span></code>: Device lacks Logitech extension unit</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::SystemError</span></code>: KsProperty query failed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::DeviceNotFound</span></code>: Device disconnected</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="typed-property-access">
+<h3>Typed property access<a class="headerlink" href="#typed-property-access" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_logitech_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">LogitechProperty</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="5"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_logitech_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">LogitechProperty</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Type-safe wrappers that reinterpret property bytes as specified type. Type <code class="docutils literal notranslate"><span class="pre">T</span></code> must be trivially copyable and match the property’s binary layout.</p>
+<p><strong>Supported types (explicit instantiations):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+</ul>
+<p><strong>Reading typed property:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">get_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">rightlight_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;RightLight: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">rightlight_mode</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;enabled&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;disabled&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Setting typed property:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Enable face tracking</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">FaceTracking</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Type safety:</strong> The typed functions validate that received data size matches <code class="docutils literal notranslate"><span class="pre">sizeof(T)</span></code>. Mismatched sizes return <code class="docutils literal notranslate"><span class="pre">ErrorCode::InvalidValue</span></code>.</p>
+<p><strong>Custom types:</strong> For complex properties like <code class="docutils literal notranslate"><span class="pre">DigitalZoomROI</span></code>, define a matching struct:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">ZoomROI</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">y</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">width</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">height</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">};</span>
+</span><span data-line="7"><span class="k">static_assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">is_trivially_copyable_v</span><span class="o">&lt;</span><span class="n">ZoomROI</span><span class="o">&gt;</span><span class="p">);</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="k">auto</span><span class="w"> </span><span class="n">roi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">get_logitech_property_typed</span><span class="o">&lt;</span><span class="n">ZoomROI</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">DigitalZoomROI</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="device-support-detection">
+<h3>Device support detection<a class="headerlink" href="#device-support-detection" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Checks if a device supports Logitech vendor extensions by querying the extension unit’s presence and capabilities.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">support</span><span class="p">.</span><span class="n">is_ok</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">support</span><span class="p">.</span><span class="n">value</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Device supports Logitech extensions</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">rightlight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">get_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Logitech extensions not available</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation:</strong> Internally queries support flags for the <code class="docutils literal notranslate"><span class="pre">RightLight</span></code> property. Returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on any error or if <code class="docutils literal notranslate"><span class="pre">KSPROPERTY_SUPPORT_GET</span></code>/<code class="docutils literal notranslate"><span class="pre">KSPROPERTY_SUPPORT_SET</span></code> flags are not set.</p>
+<p><strong>Non-Logitech cameras:</strong> Always returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. Safe to call on any device.</p>
+</section>
+<hr class="docutils" />
+<section id="implementation-details">
+<h3>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading">¶</a></h3>
+<p><strong>Property set GUID:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">GUID</span><span class="w"> </span><span class="n">LOGITECH_PROPERTY_SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="mh">0x82066163</span><span class="p">,</span><span class="w"> </span><span class="mh">0x7BD0</span><span class="p">,</span><span class="w"> </span><span class="mh">0x43EF</span><span class="p">,</span>
+</span><span data-line="3"><span class="w">    </span><span class="p">{</span><span class="mh">0x8A</span><span class="p">,</span><span class="w"> </span><span class="mh">0x6F</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5B</span><span class="p">,</span><span class="w"> </span><span class="mh">0x89</span><span class="p">,</span><span class="w"> </span><span class="mh">0x05</span><span class="p">,</span><span class="w"> </span><span class="mh">0xC9</span><span class="p">,</span><span class="w"> </span><span class="mh">0xA6</span><span class="p">,</span><span class="w"> </span><span class="mh">0x4C</span><span class="p">}</span>
+</span><span data-line="4"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>All Logitech properties belong to this extension unit GUID. Defined as <code class="docutils literal notranslate"><span class="pre">inline</span> <span class="pre">constexpr</span></code> for C++17 ODR-safety.</p>
+<p><strong>Backend:</strong> Uses <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> class (from <code class="docutils literal notranslate"><span class="pre">ks_properties.h</span></code>) to interact with Windows Kernel Streaming property APIs. This bypasses DirectShow and directly communicates with the USB Video Class driver.</p>
+<p><strong>Error handling:</strong></p>
+<ul class="simple">
+<li><p>Exceptions from <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> caught and converted to <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> errors</p></li>
+<li><p>Logged at <code class="docutils literal notranslate"><span class="pre">ERROR</span></code> level for get/set, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> level for support queries</p></li>
+<li><p>Device disconnection during operation returns <code class="docutils literal notranslate"><span class="pre">SystemError</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="usage-patterns">
+<h3>Usage patterns<a class="headerlink" href="#usage-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Toggle feature:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">).</span><span class="n">value_or</span><span class="p">(</span><span class="nb">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Enable RightLight</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Toggle face tracking</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">tracking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">get_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">FaceTracking</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tracking</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">        </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property_typed</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">FaceTracking</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">tracking</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+</span><span data-line="9"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="10"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Conditional features:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">devices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">logitech</span><span class="o">::</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">dev</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">support</span><span class="p">.</span><span class="n">value_or</span><span class="p">(</span><span class="nb">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dev</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot; [Logitech extensions available]</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Platform availability:</strong> All functions are Windows-only and wrapped in <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>. Non-Windows builds will have no <code class="docutils literal notranslate"><span class="pre">duvc::logitech</span></code> namespace.</p>
+<p><strong>Camera compatibility:</strong> Only Logitech cameras with UVC extension units support these properties. Other manufacturers may use different GUIDs and property IDs.</p>
+</section>
+</section>
+<section id="kernel-streaming-properties">
+<h2>5.2 Kernel Streaming Properties<a class="headerlink" href="#kernel-streaming-properties" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/platform/ks_properties.h&gt;</span></code>
+<strong>Platform:</strong> Windows only (<code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">_WIN32</span></code>)</p>
+<p>Low-level wrapper for Windows Kernel Streaming property access via the <code class="docutils literal notranslate"><span class="pre">IKsPropertySet</span></code> COM interface. Used internally by vendor extensions to query properties beyond DirectShow’s standard interfaces.</p>
+<section id="kspropertyset-class">
+<h3>KsPropertySet class<a class="headerlink" href="#kspropertyset-class" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">KsPropertySet</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">KsPropertySet</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="o">~</span><span class="n">KsPropertySet</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Non-copyable but movable</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">KsPropertySet</span><span class="p">(</span><span class="n">KsPropertySet</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">KsPropertySet</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">KsPropertySet</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="k">noexcept</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query_support</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">get_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+</span><span data-line="15"><span class="w">    </span>
+</span><span data-line="16"><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span><span data-line="18"><span class="w">    </span>
+</span><span data-line="19"><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="20"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span><span data-line="21"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>RAII wrapper managing lifetime of the <code class="docutils literal notranslate"><span class="pre">IKsPropertySet</span></code> COM interface. Automatically queries interface from device filter on construction.</p>
+</section>
+<hr class="docutils" />
+<section id="constructor-and-validity">
+<h3>Constructor and validity<a class="headerlink" href="#constructor-and-validity" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">explicit</span><span class="w"> </span><span class="n">KsPropertySet</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Constructor opens the device’s DirectShow filter and queries for <code class="docutils literal notranslate"><span class="pre">IID_IKsPropertySet</span></code> interface. If the query fails (device doesn’t support Kernel Streaming properties), the instance is invalid.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">KsPropertySet</span><span class="w"> </span><span class="nf">prop_set</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">prop_set</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Device does not support KS properties</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Non-throwing:</strong> Constructor catches all exceptions and sets the instance to invalid state. Always check <code class="docutils literal notranslate"><span class="pre">is_valid()</span></code> before use.</p>
+<p><strong>Move semantics:</strong> The class is move-only (non-copyable). Moving transfers ownership of the COM interface pointer.</p>
+</section>
+<hr class="docutils" />
+<section id="query-support">
+<h3>Query support<a class="headerlink" href="#query-support" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">query_support</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Queries whether a property is supported and what operations (get/set) are available. Returns support flags as a bitmask.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prop_set</span><span class="p">.</span><span class="n">query_support</span><span class="p">(</span><span class="n">LOGITECH_PROPERTY_SET</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">support</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">support</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">can_get</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">KSPROPERTY_SUPPORT_GET</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">can_set</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">flags</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">KSPROPERTY_SUPPORT_SET</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Support flags:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">KSPROPERTY_SUPPORT_GET</span></code> (0x1): Property can be read</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KSPROPERTY_SUPPORT_SET</span></code> (0x2): Property can be written</p></li>
+</ul>
+<p><strong>Error returns:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::SystemError</span></code>: Interface not valid</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::PropertyNotSupported</span></code>: Property not supported by device</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="raw-property-access">
+<h3>Raw property access<a class="headerlink" href="#raw-property-access" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">get_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Low-level byte-oriented property access.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">get_property</span></code>:</strong> Queries property size, allocates buffer, retrieves data. Returns byte vector containing property value in its native binary format.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prop_set</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="n">some_guid</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Interpret bytes based on property definition</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">set_property</span></code>:</strong> Writes raw byte data to property.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">value_bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0x01</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00</span><span class="p">};</span><span class="w">  </span><span class="c1">// uint32_t = 1</span>
+</span><span data-line="2"><span class="n">prop_set</span><span class="p">.</span><span class="n">set_property</span><span class="p">(</span><span class="n">some_guid</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">value_bytes</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation details:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_property</span></code> first calls <code class="docutils literal notranslate"><span class="pre">IKsPropertySet::Get()</span></code> with null buffer to query size, then allocates and retrieves actual data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_property</span></code> calls <code class="docutils literal notranslate"><span class="pre">IKsPropertySet::Set()</span></code> directly with provided buffer</p></li>
+<li><p>Both decode HRESULT failures using <code class="docutils literal notranslate"><span class="pre">decode_hresult()</span></code> utility</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>Typed property access<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="5"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set_property_typed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GUID</span><span class="o">&amp;</span><span class="w"> </span><span class="n">property_set</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">property_id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Type-safe wrappers that reinterpret property bytes as specified type <code class="docutils literal notranslate"><span class="pre">T</span></code>. Type must be trivially copyable.</p>
+<p><strong>Reading typed value:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prop_set</span><span class="p">.</span><span class="n">get_property_typed</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">guid</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Writing typed value:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">prop_set</span><span class="p">.</span><span class="n">set_property_typed</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">guid</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">enable</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_property_typed</span></code> calls <code class="docutils literal notranslate"><span class="pre">get_property()</span></code>, validates size matches <code class="docutils literal notranslate"><span class="pre">sizeof(T)</span></code>, then uses <code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code> to reinterpret bytes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_property_typed</span></code> uses <code class="docutils literal notranslate"><span class="pre">std::memcpy</span></code> to convert value to bytes, then calls <code class="docutils literal notranslate"><span class="pre">set_property()</span></code></p></li>
+<li><p>Size mismatch returns <code class="docutils literal notranslate"><span class="pre">ErrorCode::InvalidValue</span></code> with descriptive message</p></li>
+</ul>
+<p><strong>Explicit instantiations</strong> for common types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">uint32_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></li>
+</ul>
+<p>Custom types can be used if they are trivially copyable and match the property’s binary layout.</p>
+</section>
+<hr class="docutils" />
+<section id="ikspropertyset-interface">
+<h3>IKsPropertySet interface<a class="headerlink" href="#ikspropertyset-interface" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">IKsPropertySet</span><span class="p">;</span><span class="w">  </span><span class="c1">// Forward declaration</span>
+</span></pre></div>
+</div>
+<p>COM interface defined in Windows Kernel Streaming headers. Provides low-level access to device properties via property set GUIDs and IDs.</p>
+<p><strong>Key methods (internal to implementation):</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">QuerySupported(GUID,</span> <span class="pre">DWORD,</span> <span class="pre">ULONG*)</span></code>: Query support flags</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Get(GUID,</span> <span class="pre">DWORD,</span> <span class="pre">void*,</span> <span class="pre">ULONG,</span> <span class="pre">void*,</span> <span class="pre">ULONG,</span> <span class="pre">ULONG*)</span></code>: Read property</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Set(GUID,</span> <span class="pre">DWORD,</span> <span class="pre">void*,</span> <span class="pre">ULONG,</span> <span class="pre">void*,</span> <span class="pre">ULONG)</span></code>: Write property</p></li>
+</ul>
+<p><strong>GUID handling:</strong> Property sets are identified by 128-bit GUIDs. Each property within a set has a numeric ID (typically 1-based).</p>
+<p><strong>Example GUIDs:</strong></p>
+<ul class="simple">
+<li><p>Logitech vendor properties: <code class="docutils literal notranslate"><span class="pre">{82066163-7BD0-43EF-8A6F-5B8905C9A64C}</span></code></p></li>
+<li><p>DirectShow standard sets use different GUIDs</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="vendor-property-structure">
+<h2>5.3 Vendor Property Structure<a class="headerlink" href="#vendor-property-structure" title="Link to this heading">¶</a></h2>
+<p><strong>Note:</strong> The codebase <strong>does not</strong> define a <code class="docutils literal notranslate"><span class="pre">VendorProperty</span></code> struct or generic <code class="docutils literal notranslate"><span class="pre">get_vendor_property</span></code>/<code class="docutils literal notranslate"><span class="pre">set_vendor_property</span></code> functions. Vendor properties are accessed through:</p>
+<ol class="arabic simple">
+<li><p><strong>Logitech-specific functions</strong> in <code class="docutils literal notranslate"><span class="pre">duvc::logitech</span></code> namespace (Section 5.1)</p></li>
+<li><p><strong>Generic <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> class</strong> (Section 5.2) for direct property access</p></li>
+</ol>
+<p><strong>Architecture:</strong> The library provides vendor-specific namespaces (currently only <code class="docutils literal notranslate"><span class="pre">duvc::logitech</span></code>) that wrap <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> with typed enums and documented property IDs. This approach allows adding new vendors without changing the core API.</p>
+<hr class="docutils" />
+<section id="implementing-custom-vendor-properties">
+<h3>Implementing custom vendor properties<a class="headerlink" href="#implementing-custom-vendor-properties" title="Link to this heading">¶</a></h3>
+<p>To add support for another vendor (e.g., Microsoft Surface cameras), follow this pattern:</p>
+<p><strong>1. Define property enum and GUID:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">namespace</span><span class="w"> </span><span class="nn">duvc</span><span class="o">::</span><span class="nn">microsoft</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">GUID</span><span class="w"> </span><span class="n">SURFACE_PROPERTY_SET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="cm">/* ... */</span><span class="p">};</span>
+</span><span data-line="3"><span class="w">    </span>
+</span><span data-line="4"><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceProperty</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="n">IRFloodLight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">        </span><span class="n">RGBExposure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">        </span><span class="c1">// ...</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">};</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>2. Implement get/set wrappers:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">namespace</span><span class="w"> </span><span class="nn">duvc</span><span class="o">::</span><span class="nn">microsoft</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">get_surface_property</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">SurfaceProperty</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="n">KsPropertySet</span><span class="w"> </span><span class="nf">prop_set</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">prop_set</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">PropertyNotSupported</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="7"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">prop_set</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="n">SURFACE_PROPERTY_SET</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">prop</span><span class="p">));</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="c1">// Similar for set_surface_property, typed variants, supports check</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>3. Document property types</strong> and typical values in header comments (as done in <code class="docutils literal notranslate"><span class="pre">logitech.h</span></code>).</p>
+</section>
+<hr class="docutils" />
+<section id="direct-kspropertyset-usage">
+<h3>Direct KsPropertySet usage<a class="headerlink" href="#direct-kspropertyset-usage" title="Link to this heading">¶</a></h3>
+<p>For one-off vendor property access without creating a vendor namespace:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/platform/ks_properties.h&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">GUID</span><span class="w"> </span><span class="n">custom_guid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="cm">/* ... */</span><span class="p">};</span>
+</span><span data-line="4"><span class="n">duvc</span><span class="o">::</span><span class="n">KsPropertySet</span><span class="w"> </span><span class="nf">props</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">props</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="n">get_property</span><span class="p">(</span><span class="n">custom_guid</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">        </span><span class="c1">// Process raw bytes</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Use cases:</strong></p>
+<ul class="simple">
+<li><p>Prototyping new vendor property support</p></li>
+<li><p>Accessing undocumented properties for debugging</p></li>
+<li><p>One-off custom integrations</p></li>
+</ul>
+<p><strong>Production recommendation:</strong> Wrap raw access in typed functions for maintainability and documentation, as demonstrated by the Logitech extension implementation.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="04_platform-abstraction-layer.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">4. Platform Abstraction Layer</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="06_internal-implementation-details.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">6. Internal Implementation Details</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

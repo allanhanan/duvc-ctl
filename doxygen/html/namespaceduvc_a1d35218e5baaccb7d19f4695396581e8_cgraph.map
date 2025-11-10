@@ -1,0 +1,9 @@
+<map id="duvc::get_device_capabilities" name="duvc::get_device_capabilities">
+<area shape="rect" id="Node000001" title="Create device capability snapshot." alt="" coords="5,72,198,99"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1DeviceCapabilities.html#ac5d276e943fa0b7ed0c581ffe0309851" title="Check if device is connected and accessible." alt="" coords="246,5,412,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,69,230,49,231,55,157,74"/>
+<area shape="rect" id="Node000003" href="$structduvc_1_1Device.html#ad3e80d9ad1a9da04ede1424ff8765050" title="Check if device has valid identifying information." alt="" coords="254,72,404,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="198,83,238,83,238,88,198,88"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="292,123,366,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,97,277,122,276,127,164,102"/>
+</map>

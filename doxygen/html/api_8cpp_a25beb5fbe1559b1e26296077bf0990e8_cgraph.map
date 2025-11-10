@@ -1,0 +1,15 @@
+<map id="duvc_initialize" name="duvc_initialize">
+<area shape="rect" id="Node000001" title="Initialize library." alt="" coords="5,56,109,83"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#a03a6e81316de0517ea31cd6dcca560d4" title="Log info message." alt="" coords="172,31,274,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,59,156,51,157,57,110,64"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#accb113d492197fac14a4ac8f9da0c53f" title="Set minimum log level." alt="" coords="157,81,290,108"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="110,75,142,80,141,85,109,80"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a92c11bbcc4c659a542bd48d477f60876" title="Log a message." alt="" coords="338,31,472,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,41,322,41,322,47,275,47"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#ababd2cbe9f996df9fb02141b96f1a0da" title="Default logging callback that writes to stderr." alt="" coords="520,31,696,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="473,41,505,41,505,47,473,47"/>
+<area shape="rect" id="Node000005" href="$namespaceduvc.html#a621c452d402f42a3c34c68da6f2848f1" title="Get current timestamp as string." alt="" coords="744,5,887,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="696,31,728,27,728,32,696,36"/>
+<area shape="rect" id="Node000006" href="$namespaceduvc.html#a8556fd02a649101843e7712e638cc0cb" title="Convert camera property enum to string." alt="" coords="762,56,869,83"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="696,52,747,58,746,64,696,57"/>
+</map>

@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc_1_1VendorProperty" kind="struct" language="C++" prot="public">
+    <compoundname>duvc::VendorProperty</compoundname>
+    <includes refid="core_8h" local="no">duvc-ctl/core.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc_1_1VendorProperty_1a76a24ac1b968818a1f0aae00ac456a29" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">GUID</ref></type>
+        <definition>GUID duvc::VendorProperty::property_set</definition>
+        <argsstring></argsstring>
+        <name>property_set</name>
+        <qualifiedname>duvc::VendorProperty::property_set</qualifiedname>
+        <briefdescription>
+<para>Property set GUID (vendor-specific extension unit) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="42" column="10" bodyfile="core.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1VendorProperty_1a299fafa2b8ab37d2c54accf611a89018" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">ULONG</ref></type>
+        <definition>ULONG duvc::VendorProperty::property_id</definition>
+        <argsstring></argsstring>
+        <name>property_id</name>
+        <qualifiedname>duvc::VendorProperty::property_id</qualifiedname>
+        <briefdescription>
+<para>Property ID within set (vendor-defined numeric identifier) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="43" column="11" bodyfile="core.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1VendorProperty_1a864106a5e193c8889ec7cbc7b6d1fa38" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt;</type>
+        <definition>std::vector&lt; uint8_t &gt; duvc::VendorProperty::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <qualifiedname>duvc::VendorProperty::data</qualifiedname>
+        <briefdescription>
+<para>Property data payload (opaque vendor-defined binary data) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="44" column="17" bodyfile="core.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structduvc_1_1VendorProperty_1a2531f7ee98ed33c46a79ea112c1f2ce2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::VendorProperty::VendorProperty</definition>
+        <argsstring>()=default</argsstring>
+        <name>VendorProperty</name>
+        <qualifiedname>duvc::VendorProperty::VendorProperty</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/constants.h" line="34" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1VendorProperty_1a5e8155d80bba2e7e3dac50e5a1ff77c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::VendorProperty::VendorProperty</definition>
+        <argsstring>(const GUID &amp;set, ULONG id, const std::vector&lt; uint8_t &gt; &amp;payload={})</argsstring>
+        <name>VendorProperty</name>
+        <qualifiedname>duvc::VendorProperty::VendorProperty</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref> &amp;</type>
+          <declname>set</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">ULONG</ref></type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt; &amp;</type>
+          <declname>payload</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+<para>Construct vendor property with initial values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property set GUID identifying the extension unit </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property ID within the extension unit </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>payload</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial data buffer (empty by default) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/constants.h" line="42" column="3" bodyfile="vendor/constants.h" bodystart="42" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Vendor-specific property data container. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Encapsulates a vendor extension unit property identified by a GUID property set and numeric property ID. The data payload is opaque and vendor-defined. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::VendorProperty</label>
+        <link refid="structduvc_1_1VendorProperty"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>+data</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>std::vector&lt; uint8_t &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="core.h" line="41" column="1" bodyfile="core.h" bodystart="41" bodyend="45"/>
+    <listofallmembers>
+      <member refid="structduvc_1_1VendorProperty_1a864106a5e193c8889ec7cbc7b6d1fa38" prot="public" virt="non-virtual"><scope>duvc::VendorProperty</scope><name>data</name></member>
+      <member refid="structduvc_1_1VendorProperty_1a299fafa2b8ab37d2c54accf611a89018" prot="public" virt="non-virtual"><scope>duvc::VendorProperty</scope><name>property_id</name></member>
+      <member refid="structduvc_1_1VendorProperty_1a76a24ac1b968818a1f0aae00ac456a29" prot="public" virt="non-virtual"><scope>duvc::VendorProperty</scope><name>property_set</name></member>
+      <member refid="structduvc_1_1VendorProperty_1a2531f7ee98ed33c46a79ea112c1f2ce2" prot="public" virt="non-virtual"><scope>duvc::VendorProperty</scope><name>VendorProperty</name></member>
+      <member refid="structduvc_1_1VendorProperty_1a5e8155d80bba2e7e3dac50e5a1ff77c0" prot="public" virt="non-virtual"><scope>duvc::VendorProperty</scope><name>VendorProperty</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

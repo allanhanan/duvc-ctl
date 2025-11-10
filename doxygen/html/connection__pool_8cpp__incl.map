@@ -1,0 +1,30 @@
+<map id="platform/windows/connection_pool.cpp" name="platform/windows/connection_pool.cpp">
+<area shape="rect" id="Node000001" title="Windows DirectShow connection pooling implementation." alt="" coords="400,5,590,48"/>
+<area shape="rect" id="Node000002" href="$device_8h.html" title="Device enumeration and management functions." alt="" coords="356,104,506,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="482,50,451,93,447,90,478,47"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,187,137,229"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="400,35,315,42,225,54,148,73,119,84,98,98,86,114,78,132,72,171,67,171,73,131,81,111,95,94,116,80,146,67,224,49,314,37,399,30"/>
+<area shape="rect" id="Node000008" href="$connection__pool_8h.html" title="Windows&#45;specific device connection pooling." alt="" coords="108,96,282,139"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="425,51,281,94,279,89,424,46"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="161,195,229,221"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="441,51,393,72,346,98,320,119,295,141,228,188,225,184,292,137,317,114,343,94,391,67,439,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="530,104,588,131"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="512,47,543,90,539,93,508,50"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="612,104,722,131"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="537,46,630,94,628,99,534,51"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="746,104,815,131"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="578,46,735,93,739,95,737,100,733,99,576,51"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="840,104,905,131"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="591,39,705,61,828,93,833,95,832,100,826,99,704,67,590,45"/>
+<area shape="rect" id="Node000003" href="$types_8h.html" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="253,195,396,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="417,133,353,187,350,182,414,129"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="502,195,579,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="448,129,514,182,511,187,445,133"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="420,195,477,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="436,131,446,179,440,180,431,132"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="298,277,351,304"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="327,222,327,262,322,262,322,222"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="226,137,295,183,292,188,223,141"/>
+<area shape="poly" id="edge9_Node000008_Node000007" title=" " alt="" coords="168,141,114,179,111,175,165,137"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="198,139,198,179,192,179,192,139"/>
+</map>

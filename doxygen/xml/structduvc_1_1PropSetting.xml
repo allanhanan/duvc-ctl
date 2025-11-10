@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="structduvc_1_1PropSetting" kind="struct" language="C++" prot="public">
+    <compoundname>duvc::PropSetting</compoundname>
+    <includes refid="types_8h" local="no">duvc-ctl/core/types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" prot="public" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+        <definition>int duvc::PropSetting::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <qualifiedname>duvc::PropSetting::value</qualifiedname>
+        <briefdescription>
+<para>Property value. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="75" column="7" bodyfile="core/types.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" compoundref="bindings_8cpp" startline="77" endline="88">duvc_cam_get</referencedby>
+        <referencedby refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" compoundref="bindings_8cpp" startline="117" endline="128">duvc_vid_get</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structduvc_1_1PropSetting_1a788949c6e82d56c5120e3eba5775f1a0" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref></type>
+        <definition>CamMode duvc::PropSetting::mode</definition>
+        <argsstring></argsstring>
+        <name>mode</name>
+        <qualifiedname>duvc::PropSetting::mode</qualifiedname>
+        <briefdescription>
+<para>Control mode (auto/manual) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="76" column="11" bodyfile="core/types.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="structduvc_1_1PropSetting_1a128da5a341e46a18c83ae2bc8953323b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::PropSetting::PropSetting</definition>
+        <argsstring>()=default</argsstring>
+        <name>PropSetting</name>
+        <qualifiedname>duvc::PropSetting::PropSetting</qualifiedname>
+        <briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="79" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structduvc_1_1PropSetting_1adb35ff1279624838a0e5353d7e58e343" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::PropSetting::PropSetting</definition>
+        <argsstring>(int v, CamMode m)</argsstring>
+        <name>PropSetting</name>
+        <qualifiedname>duvc::PropSetting::PropSetting</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">int</ref></type>
+          <declname>v</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref></type>
+          <declname>m</declname>
+        </param>
+        <briefdescription>
+<para>Construct property setting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>m</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Control mode </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/types.h" line="86" column="3" bodyfile="core/types.h" bodystart="86" bodyend="86"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Property setting with value and control mode. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::PropSetting</label>
+        <link refid="structduvc_1_1PropSetting"/>
+      </node>
+    </collaborationgraph>
+    <location file="core/types.h" line="74" column="1" bodyfile="core/types.h" bodystart="74" bodyend="87"/>
+    <listofallmembers>
+      <member refid="structduvc_1_1PropSetting_1a788949c6e82d56c5120e3eba5775f1a0" prot="public" virt="non-virtual"><scope>duvc::PropSetting</scope><name>mode</name></member>
+      <member refid="structduvc_1_1PropSetting_1a128da5a341e46a18c83ae2bc8953323b" prot="public" virt="non-virtual"><scope>duvc::PropSetting</scope><name>PropSetting</name></member>
+      <member refid="structduvc_1_1PropSetting_1adb35ff1279624838a0e5353d7e58e343" prot="public" virt="non-virtual"><scope>duvc::PropSetting</scope><name>PropSetting</name></member>
+      <member refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" prot="public" virt="non-virtual"><scope>duvc::PropSetting</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

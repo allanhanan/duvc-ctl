@@ -1,0 +1,7 @@
+<map id="duvc_get_multiple_video_properties" name="duvc_get_multiple_video_properties">
+<area shape="rect" id="Node000001" title="Get multiple video properties." alt="" coords="5,5,170,48"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Camera.html#afc3cfc69da7411bb9e28c2dad29ebe6c" title="Get camera property value." alt="" coords="218,13,347,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,24,202,24,202,29,170,29"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="395,13,469,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,24,379,24,379,29,347,29"/>
+</map>

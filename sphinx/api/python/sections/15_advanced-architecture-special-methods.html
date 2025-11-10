@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>15. Advanced Architecture &amp; Special Methods - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="16. Architecture Decision Records" href="16_architecture-decision-records.html" /><link rel="prev" title="14. Troubleshooting &amp; FAQs" href="14_troubleshooting-faqs.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="15. Advanced Architecture &amp; Special Methods"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">15. Advanced Architecture &amp; Special Methods</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="advanced-architecture-special-methods">
+<h1>15. Advanced Architecture &amp; Special Methods<a class="headerlink" href="#advanced-architecture-special-methods" title="Link to this heading">¶</a></h1>
+<section id="pybind11-module-design">
+<h2>15.1 pybind11 Module Design<a class="headerlink" href="#pybind11-module-design" title="Link to this heading">¶</a></h2>
+<p><strong>Module initialization &amp; organization</strong>: <code class="docutils literal notranslate"><span class="pre">PYBIND11_MODULE(duvcctl,</span> <span class="pre">m)</span></code> entry point defines main module. All types use <code class="docutils literal notranslate"><span class="pre">py::module_local</span></code> to prevent collision when multiple modules import duvc-ctl. Separate submodule for Windows-specific features (<code class="docutils literal notranslate"><span class="pre">logitech</span></code> submodule for vendor extensions).</p>
+<p><strong>Module-local types</strong>: Every pybind11 class declared with <code class="docutils literal notranslate"><span class="pre">.def</span></code> includes <code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">py::module_local</span></code> binding attribute. Prevents type identity conflicts if duvc-ctl imported via different paths. Core types: <code class="docutils literal notranslate"><span class="pre">Device</span></code>, <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code>, <code class="docutils literal notranslate"><span class="pre">PropRange</span></code>, <code class="docutils literal notranslate"><span class="pre">PropertyCapability</span></code>, <code class="docutils literal notranslate"><span class="pre">Error</span></code>, all result types, enums.</p>
+<p><strong>Submodules</strong>: <code class="docutils literal notranslate"><span class="pre">logitech</span></code> submodule created via <code class="docutils literal notranslate"><span class="pre">py::module::def_submodule()</span></code>. Contains <code class="docutils literal notranslate"><span class="pre">LogitechProperty</span></code> enum and functions (<code class="docutils literal notranslate"><span class="pre">get_property()</span></code>, <code class="docutils literal notranslate"><span class="pre">set_property()</span></code>, <code class="docutils literal notranslate"><span class="pre">supports_properties()</span></code>). Access via <code class="docutils literal notranslate"><span class="pre">duvc_ctl.logitech.Property.RightLight</span></code>. Declared <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">WIN32</span></code> — only available on Windows.</p>
+<p><strong>Opaque RAII handling <code class="docutils literal notranslate"><span class="pre">PYBIND11_MAKE_OPAQUE</span></code></strong>: <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class uses <code class="docutils literal notranslate"><span class="pre">PYBIND11_MAKE_OPAQUE(Camera)</span></code> declaration. Camera is <strong>move-only, non-copyable</strong> due to DirectShow handle management (RAII). Pybind11 normally generates copy constructors—opaque marker prevents this. Allows correct move semantics when Python receives <code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;Camera&gt;</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">**Move semantics in Python**: Rvalue reference helper `unwrap_or_throw&lt;T&gt;(duvc::Result&lt;T&gt;&amp;&amp; result)` implemented for move-only types. Transfers ownership of non-copyable values (e.g., `Camera`) from result to Python via `std::move()`. Prevents &quot;trying to copy non-copyable&quot; errors. 
+</span></pre></div>
+</div>
+<p><strong>Non-copyable types</strong>: <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and <code class="docutils literal notranslate"><span class="pre">DeviceCapabilities</span></code> are non-copyable C++ classes. Pybind11 bindings for these <strong>omit copy constructors</strong> and <strong>omit copy helpers</strong> (<code class="docutils literal notranslate"><span class="pre">Ok_Camera</span></code>, <code class="docutils literal notranslate"><span class="pre">Err_Camera</span></code>, <code class="docutils literal notranslate"><span class="pre">Ok_DeviceCapabilities</span></code>, <code class="docutils literal notranslate"><span class="pre">Err_DeviceCapabilities</span></code> NOT bound). Only move constructors and move assignment.</p>
+</section>
+<section id="pythonic-special-methods">
+<h2>15.2 Pythonic Special Methods<a class="headerlink" href="#pythonic-special-methods" title="Link to this heading">¶</a></h2>
+<p><strong>Context manager protocol <code class="docutils literal notranslate"><span class="pre">__enter__/__exit__</span></code></strong>: <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class implements context manager via <code class="docutils literal notranslate"><span class="pre">.def(&quot;__enter__&quot;,</span> <span class="pre">...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.def(&quot;__exit__&quot;,</span> <span class="pre">...)</span></code> bindings. Entering (<code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">cam:</span></code>) validates camera connection and returns self (shared_ptr). Exiting automatically triggers shared_ptr cleanup in destructor—DirectShow handle released by RAII. Exit method returns <code class="docutils literal notranslate"><span class="pre">false</span></code> (don’t suppress exceptions). Usage: <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">Camera(device)</span> <span class="pre">as</span> <span class="pre">cam:</span> <span class="pre">cam.set(...)</span></code>.</p>
+<p><strong>Boolean conversion <code class="docutils literal notranslate"><span class="pre">__bool__()</span></code></strong>: All <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> types implement <code class="docutils literal notranslate"><span class="pre">.def(&quot;__bool__&quot;,</span> <span class="pre">...)</span></code> returning <code class="docutils literal notranslate"><span class="pre">result.is_ok()</span></code>. Allows <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">result:</span></code> pattern instead of <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">result.is_ok()</span></code>. Device, PropSetting, PropRange also support boolean context. Falsy result = error state, truthy = success.</p>
+<p><strong>Iterator protocol <code class="docutils literal notranslate"><span class="pre">__iter__/__len__</span></code></strong>: <code class="docutils literal notranslate"><span class="pre">DeviceCapabilities</span></code> class binds <code class="docutils literal notranslate"><span class="pre">.def(&quot;__iter__&quot;,</span> <span class="pre">...)</span></code> to yield both camera and video properties combined into Python list. <code class="docutils literal notranslate"><span class="pre">.def(&quot;__len__&quot;,</span> <span class="pre">...)</span></code> returns total property count. Enables <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">prop</span> <span class="pre">in</span> <span class="pre">caps:</span></code> and <code class="docutils literal notranslate"><span class="pre">len(caps)</span></code>. Internally combines supported camera properties + supported video properties.</p>
+<p><strong>Membership testing <code class="docutils literal notranslate"><span class="pre">__contains__</span></code></strong>: <code class="docutils literal notranslate"><span class="pre">PropRange</span></code> implements <code class="docutils literal notranslate"><span class="pre">.def(&quot;__contains__&quot;,</span> <span class="pre">...)</span></code> delegating to <code class="docutils literal notranslate"><span class="pre">range.is_valid(value)</span></code>. Allows <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">value</span> <span class="pre">in</span> <span class="pre">prop_range:</span></code> syntax to test if value within bounds/step.</p>
+<p><strong>String representation <code class="docutils literal notranslate"><span class="pre">__str__/__repr__</span></code></strong>: All major types implement <code class="docutils literal notranslate"><span class="pre">.def(&quot;__str__&quot;,</span> <span class="pre">...)</span></code> for user-friendly output and <code class="docutils literal notranslate"><span class="pre">.def(&quot;__repr__&quot;,</span> <span class="pre">...)</span></code> for debug representation. Device: <code class="docutils literal notranslate"><span class="pre">str()</span></code> returns name, <code class="docutils literal notranslate"><span class="pre">repr()</span></code> shows name + path. PropRange: <code class="docutils literal notranslate"><span class="pre">str()</span></code> shows “min to max, step X”; <code class="docutils literal notranslate"><span class="pre">repr()</span></code> includes defaults. Error: <code class="docutils literal notranslate"><span class="pre">str()</span></code> returns message; <code class="docutils literal notranslate"><span class="pre">repr()</span></code> includes code.</p>
+<p><strong>Equality &amp; hashing <code class="docutils literal notranslate"><span class="pre">__eq__/__ne__/__hash__</span></code></strong>: Device, PyGUID, PropSetting, PropRange all bind <code class="docutils literal notranslate"><span class="pre">.def(&quot;__eq__&quot;,</span> <span class="pre">...)</span></code> comparing by value (Device by path, PyGUID by GUID bytes, etc.). <code class="docutils literal notranslate"><span class="pre">.def(&quot;__ne__&quot;,</span> <span class="pre">...)</span></code> inverts equality. <code class="docutils literal notranslate"><span class="pre">.def(&quot;__hash__&quot;,</span> <span class="pre">...)</span></code> enables dictionary/set usage. Device hashed by path; PyGUID by GUID structure. Allows <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">dev1</span> <span class="pre">==</span> <span class="pre">dev2:</span></code> and <code class="docutils literal notranslate"><span class="pre">devices_set</span> <span class="pre">=</span> <span class="pre">{device1,</span> <span class="pre">device2}</span></code>.</p>
+<p><strong>Copy semantics <code class="docutils literal notranslate"><span class="pre">__copy__/__deepcopy__</span></code></strong>: Simple types (Device, PropSetting, PropRange, PyGUID, PropRange) implement <code class="docutils literal notranslate"><span class="pre">.def(&quot;__copy__&quot;,</span> <span class="pre">...)</span></code> and <code class="docutils literal notranslate"><span class="pre">.def(&quot;__deepcopy__&quot;,</span> <span class="pre">...)</span></code> as shallow/deep equivalents since no nested mutable state. Both return copy of self. Camera omits copy methods—move-only RAII type. VendorProperty, PropRange support full copy protocol.</p>
+</section>
+<section id="windows-specific-features">
+<h2>15.3 Windows-Specific Features<a class="headerlink" href="#windows-specific-features" title="Link to this heading">¶</a></h2>
+<p><strong>DirectShow integration COM/filter graph</strong>: Library uses Windows DirectShow API to enumerate and control cameras via filter graphs and COM objects. <code class="docutils literal notranslate"><span class="pre">IEnumMoniker</span></code>, <code class="docutils literal notranslate"><span class="pre">IMoniker</span></code>, <code class="docutils literal notranslate"><span class="pre">IBaseFilter</span></code>, <code class="docutils literal notranslate"><span class="pre">IGraphBuilder</span></code> wrapped in pybind11 classes <code class="docutils literal notranslate"><span class="pre">PyEnumMoniker</span></code>, <code class="docutils literal notranslate"><span class="pre">PyBaseFilter</span></code>. Camera properties accessed through <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code>, <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code> filter interfaces. Context manager pattern handles COM AddRef/Release lifecycle automatically.</p>
+<p><strong>GUID handling PyGUID/parsing</strong>: <code class="docutils literal notranslate"><span class="pre">PyGUID</span></code> class in pybind11 provides flexible GUID input parsing. Accepts Python <code class="docutils literal notranslate"><span class="pre">uuid.UUID</span></code> (extracts <code class="docutils literal notranslate"><span class="pre">.hex</span></code> attribute), string representations (with/without braces, dashes auto-added), 16-byte buffers (bytes, bytearray, memoryview). Parsing logic via <code class="docutils literal notranslate"><span class="pre">parsefromstring()</span></code> handles XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX format. Used in vendor property functions <code class="docutils literal notranslate"><span class="pre">getvendorproperty()</span></code>, <code class="docutils literal notranslate"><span class="pre">setvendorproperty()</span></code> for property set GUID parameter.</p>
+<p><strong>HRESULT error codes decode/categorization</strong>: Functions <code class="docutils literal notranslate"><span class="pre">decodehresult()</span></code>, <code class="docutils literal notranslate"><span class="pre">gethresultdetails()</span></code>, <code class="docutils literal notranslate"><span class="pre">isdeviceerror()</span></code>, <code class="docutils literal notranslate"><span class="pre">ispermissionerror()</span></code> decode Windows HRESULT values. <code class="docutils literal notranslate"><span class="pre">decodehresult(hresult)</span></code> returns human-readable description. Error codes categorized: <code class="docutils literal notranslate"><span class="pre">HRESULT_FROM_WIN32(ERROR_DEVICE_NOT_FOUND)</span></code> → DeviceNotFound, access denied → PermissionDenied, device busy → DeviceBusy. All platform-specific via <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">WIN32</span></code>.</p>
+<p><strong>KsPropertySet interface</strong>: Wrapper class <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> providing Windows KsProperty access for vendor-specific properties bypassing standard DirectShow. Binds C++ <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> class with methods: <code class="docutils literal notranslate"><span class="pre">querysupport()</span></code>, <code class="docutils literal notranslate"><span class="pre">getproperty()</span></code> (raw bytes), <code class="docutils literal notranslate"><span class="pre">setproperty()</span></code> (raw bytes), plus typed accessors <code class="docutils literal notranslate"><span class="pre">getpropertyint()</span></code>, <code class="docutils literal notranslate"><span class="pre">setpropertyint()</span></code>, <code class="docutils literal notranslate"><span class="pre">getpropertybool()</span></code>, <code class="docutils literal notranslate"><span class="pre">setpropertybool()</span></code>, <code class="docutils literal notranslate"><span class="pre">getpropertyuint32()</span></code>, <code class="docutils literal notranslate"><span class="pre">setpropertyuint32()</span></code>. Accepts flexible GUID inputs via <code class="docutils literal notranslate"><span class="pre">guidfrompyobj()</span></code>.</p>
+<p><strong>Windows-only types</strong>: <code class="docutils literal notranslate"><span class="pre">VendorProperty</span></code> (struct wrapping property set GUID, property ID, and <code class="docutils literal notranslate"><span class="pre">vectoruint8_t</span></code> data), <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> (thin DirectShow wrapper for low-level property control via tuple-based returns), <code class="docutils literal notranslate"><span class="pre">KsPropertySet</span></code> (Windows KsProperty interface wrapper). All declared within <code class="docutils literal notranslate"><span class="pre">#ifdef</span> <span class="pre">WIN32</span></code>. Attempting to import on non-Windows raises <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code>.</p>
+<p><strong>Platform-specific behavior matrix</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Windows</p></th>
+<th class="head text-left"><p>Linux/Mac</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Library availability</p></td>
+<td class="text-left"><p>Full</p></td>
+<td class="text-left"><p>ImportError</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Device enumeration</p></td>
+<td class="text-left"><p>DirectShow API</p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Property access</p></td>
+<td class="text-left"><p>IAMCameraControl, IAMVideoProcAmp</p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>GUID handling</p></td>
+<td class="text-left"><p>Full PyGUID parsing</p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Vendor extensions</p></td>
+<td class="text-left"><p>KsPropertySet, Logitech submodule</p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>HRESULT decoding</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">decodehresult()</span></code></p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Context manager</p></td>
+<td class="text-left"><p>Supported via COM lifecycle</p></td>
+<td class="text-left"><p>Not available</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="type-hints-static-analysis">
+<h2>15.4 Type Hints &amp; Static Analysis<a class="headerlink" href="#type-hints-static-analysis" title="Link to this heading">¶</a></h2>
+<p><strong>Type hint coverage in signatures &amp; attributes</strong>: Function signatures use full <code class="docutils literal notranslate"><span class="pre">Optional[]</span></code>, <code class="docutils literal notranslate"><span class="pre">Union[]</span></code>, <code class="docutils literal notranslate"><span class="pre">List[]</span></code>, <code class="docutils literal notranslate"><span class="pre">Dict[]</span></code>, <code class="docutils literal notranslate"><span class="pre">TypedDict</span></code> annotations. All public functions in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> typed. Return types and parameter types fully specified. Example: <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">getdeviceinfo(device:</span> <span class="pre">Device)</span> <span class="pre">-&gt;</span> <span class="pre">DeviceInfo:</span></code>, <code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">setpropertysafe(...)</span> <span class="pre">-&gt;</span> <span class="pre">Tuple[bool,</span> <span class="pre">str]:</span></code>. Comprehensive annotations targeting Python 3.8+.</p>
+<p><strong>TypedDicts</strong>: <code class="docutils literal notranslate"><span class="pre">PropertyInfo</span></code> TypedDict with fields <code class="docutils literal notranslate"><span class="pre">supported:</span> <span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">current:</span> <span class="pre">Dict[Literal[&quot;value&quot;,</span> <span class="pre">&quot;mode&quot;],</span> <span class="pre">Union[int,</span> <span class="pre">str]]</span></code>, <code class="docutils literal notranslate"><span class="pre">range:</span> <span class="pre">Dict[Literal[&quot;min&quot;,</span> <span class="pre">&quot;max&quot;,</span> <span class="pre">&quot;step&quot;,</span> <span class="pre">&quot;default&quot;],</span> <span class="pre">int]</span></code>, <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">Optional[str]</span></code>. <code class="docutils literal notranslate"><span class="pre">DeviceInfo</span></code> TypedDict: <code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">path:</span> <span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">connected:</span> <span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">cameraproperties:</span> <span class="pre">Dict[str,</span> <span class="pre">PropertyInfo]</span></code>, <code class="docutils literal notranslate"><span class="pre">videoproperties:</span> <span class="pre">Dict[str,</span> <span class="pre">PropertyInfo]</span></code>, <code class="docutils literal notranslate"><span class="pre">error:</span> <span class="pre">Optional[str]</span></code>. Enables IDE autocomplete and mypy struct checking.</p>
+<p><strong>MyPy compatibility &amp; type stubs</strong>: Inline type annotations in <code class="docutils literal notranslate"><span class="pre">.py</span></code> files enable mypy checking without separate <code class="docutils literal notranslate"><span class="pre">.pyi</span></code> stubs. Pybind11 C++ bindings expose types to Python type checker via annotations in <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>. Note: Planned for future—no explicit <code class="docutils literal notranslate"><span class="pre">.pyi</span></code> stub files generated yet, but inline annotations sufficient for mypy 0.910+.</p>
+<p><strong>IDE support with autocomplete</strong>: PyCharm, VSCode Pylance, and other IDE LSP clients read <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> annotations and bindings to provide function signature hints, parameter validation, return type inference. Type hints enable “Go to Definition” and type-aware refactoring. String annotations in TypedDict enable forward references.</p>
+<p><strong>Type hint details and overloads</strong>: Functions with multiple signatures use <code class="docutils literal notranslate"><span class="pre">&#64;overload</span></code> pattern (in separate stubs or pybind11 <code class="docutils literal notranslate"><span class="pre">.def()</span></code> overloads). Example: <code class="docutils literal notranslate"><span class="pre">set()</span></code> method overloaded for <code class="docutils literal notranslate"><span class="pre">(CamProp,</span> <span class="pre">PropSetting)</span></code>, <code class="docutils literal notranslate"><span class="pre">(CamProp,</span> <span class="pre">int)</span></code> (value-only, manual mode), <code class="docutils literal notranslate"><span class="pre">(CamProp,</span> <span class="pre">int,</span> <span class="pre">str)</span></code> (value and mode string). Pybind11 bindings expose all overload signatures; Python type checker resolves via function name and argument types. Callables typed as <code class="docutils literal notranslate"><span class="pre">Callable[[Device],</span> <span class="pre">None]</span></code> for callbacks.</p>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="14_troubleshooting-faqs.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">14. Troubleshooting &amp; FAQs</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="16_architecture-decision-records.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">16. Architecture Decision Records</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

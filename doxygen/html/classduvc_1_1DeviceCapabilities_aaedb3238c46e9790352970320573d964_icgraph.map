@@ -1,0 +1,9 @@
+<map id="duvc::DeviceCapabilities::get_camera_capability" name="duvc::DeviceCapabilities::get_camera_capability">
+<area shape="rect" id="Node000001" title="Get camera property capability." alt="" coords="444,27,610,69"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#afd5ae51e1d1317967821de105b8fb26b" title="Get camera property capability." alt="" coords="210,5,396,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,38,396,34,397,28,429,33"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1DeviceCapabilities.html#a9c71b522d0b8b8ef2317cd2f7840f544" title="Check if camera property is supported." alt="" coords="211,56,394,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="429,63,395,68,395,63,428,58"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#a1c85439662d95e31bfeb85fb98d16a06" title="Check if camera property is supported." alt="" coords="5,56,162,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="196,80,162,80,162,75,196,75"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="duvc::get_cached_connection" name="duvc::get_cached_connection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="648,160,843,187"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#ab42651167ff39abe9e70713ac6db65b9" title="Check if a device is currently connected and accessible." alt="" coords="421,160,600,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="633,176,601,176,601,171,633,171"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1DeviceCapabilities.html#a1275f0a40ef3c3462236e21de5feb0ee" title="Create capabilities snapshot for device." alt="" coords="201,5,367,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="483,151,434,107,372,62,349,51,351,46,374,58,437,102,487,147"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#a2443011d38e904503e646d3da95252a2" title="Check if device is connected." alt="" coords="195,72,373,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="468,155,372,113,337,102,339,97,374,108,470,150"/>
+<area shape="rect" id="Node000005" href="$bindings_8cpp.html#ae6c4b34fa8f4bfc8b53488ce2fccad7b" title=" " alt="" coords="195,123,373,149"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="410,160,369,153,370,147,411,154"/>
+<area shape="rect" id="Node000006" href="$classduvc_1_1Camera.html#a682f869dcea95cc310c86275872c00d2" title="Check if camera is valid and connected." alt="" coords="206,197,362,224"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="411,192,362,200,362,195,411,187"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#aff098bd345fe014553d8b82c5f58b89f" title="Create camera from device." alt="" coords="216,248,352,275"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="470,196,374,238,339,250,337,245,372,234,468,192"/>
+<area shape="rect" id="Node000008" href="$classduvc_1_1DeviceCapabilities.html#a736006fec61636a4326e29373d172a44" title="Refresh capability snapshot." alt="" coords="201,299,367,341"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="487,200,437,244,374,289,351,301,349,296,372,284,434,240,483,196"/>
+<area shape="poly" id="edge6_Node000006_Node000006" title=" " alt="" coords="319,184,307,178,284,176,262,178,250,183,248,188,253,195,249,198,242,189,247,179,261,173,284,171,309,173,322,180"/>
+<area shape="rect" id="Node000009" href="$api_8cpp.html#a2250e42d04f148b7fc027c026f9a0495" title="Refresh capabilities snapshot." alt="" coords="5,299,147,341"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="185,323,147,323,147,317,185,317"/>
+</map>

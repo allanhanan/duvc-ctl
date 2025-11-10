@@ -1,0 +1,561 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="namespaceduvc_1_1logitech" kind="namespace" language="C++">
+    <compoundname>duvc::logitech</compoundname>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" prot="public" static="no" strong="yes">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref></type>
+        <name>LogitechProperty</name>
+        <qualifiedname>duvc::logitech::LogitechProperty</qualifiedname>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aaab72bac0dabd801043c0719c9743532" prot="public">
+          <name>RightLight</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>RightLight auto-exposure and brightness optimization. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aea685bc36583885507ece32720e93715" prot="public">
+          <name>RightSound</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>RightSound audio processing and noise cancellation. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9ad60b677c3871d7f92cda768f3cb32365" prot="public">
+          <name>FaceTracking</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+<para>Face tracking enable/disable for auto-framing. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a87a621f464a0e39df2e4f2019037b0ca" prot="public">
+          <name>LedIndicator</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+<para>LED indicator control (on/off/blink modes) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a7eaeefd24595249a48ebd7b496369fc6" prot="public">
+          <name>ProcessorUsage</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+<para>Processor usage optimization hints. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a3e9d95beab5955cf856a81f6ca98ffc3" prot="public">
+          <name>RawDataBits</name>
+          <initializer>= 6</initializer>
+          <briefdescription>
+<para>Raw data bit depth configuration. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9adceda5754afaaa6f2a54835abab65fae" prot="public">
+          <name>FocusAssist</name>
+          <initializer>= 7</initializer>
+          <briefdescription>
+<para>Focus assist beam control. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a3d61f17100c56e60375387e3b3776255" prot="public">
+          <name>VideoStandard</name>
+          <initializer>= 8</initializer>
+          <briefdescription>
+<para>Video standard selection (NTSC/PAL/etc) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9ad8dfa68d322abec5ac68c8ec0fb0e8bd" prot="public">
+          <name>DigitalZoomROI</name>
+          <initializer>= 9</initializer>
+          <briefdescription>
+<para>Digital zoom region of interest coordinates. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9a616202c0c809da4851f40f2a7088f84f" prot="public">
+          <name>TiltPan</name>
+          <initializer>= 10</initializer>
+          <briefdescription>
+<para>Combined tilt/pan control (absolute positioning) </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Logitech vendor property IDs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Enumeration of supported Logitech extension unit properties. Values correspond to property IDs within LOGITECH_PROPERTY_SET. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.h" line="40" column="1" bodyfile="vendor/logitech.h" bodystart="40" bodyend="51"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" prot="public" static="no" constexpr="yes" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">constexpr</ref> <ref refid="classduvc_1_1Result" kindref="compound">GUID</ref></type>
+        <definition>constexpr GUID duvc::logitech::LOGITECH_PROPERTY_SET</definition>
+        <argsstring></argsstring>
+        <name>LOGITECH_PROPERTY_SET</name>
+        <qualifiedname>duvc::logitech::LOGITECH_PROPERTY_SET</qualifiedname>
+        <initializer>= {
+    0x82066163,
+    0x7BD0,
+    0x43EF,
+    {0x8A, 0x6F, 0x5B, 0x89, 0x05, 0xC9, 0xA6, 0x4C}}</initializer>
+        <briefdescription>
+<para>Logitech vendor-specific property set GUID. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Identifies Logitech&apos;s UVC extension unit for all vendor properties. Defined as inline constexpr for C++17 compatibility without ODR violations.</para>
+<para>GUID: {82066163-7BD0-43EF-8A6F-5B8905C9A64C} </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.h" line="28" column="23" bodyfile="vendor/logitech.h" bodystart="28" bodyend="32"/>
+        <referencedby refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" compoundref="logitech_8cpp" startline="23" endline="41">get_logitech_property</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" compoundref="logitech_8cpp" startline="43" endline="60">set_logitech_property</referencedby>
+        <referencedby refid="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" compoundref="logitech_8cpp" startline="62" endline="87">supports_logitech_properties</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt; &gt;</type>
+        <definition>Result&lt; std::vector&lt; uint8_t &gt; &gt; duvc::logitech::get_logitech_property</definition>
+        <argsstring>(const Device &amp;device, LogitechProperty prop)</argsstring>
+        <name>get_logitech_property</name>
+        <qualifiedname>duvc::logitech::get_logitech_property</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get Logitech vendor property as raw byte vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target device to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Logitech property ID to read </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing property data buffer on success, or error on failure </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="23" column="8" bodyfile="vendor/logitech.cpp" bodystart="23" bodyend="41" declfile="vendor/logitech.h" declline="60" declcolumn="8"/>
+        <references refid="api_8h_1a706c3c143887f191b1d8f23cd5c62a2b" compoundref="api_8h" startline="1061">DUVC_LOG_ERROR</references>
+        <references refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" compoundref="logitech_8h" startline="28" endline="32">LOGITECH_PROPERTY_SET</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b">duvc::PropertyNotSupported</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca">duvc::SystemError</references>
+        <referencedby refid="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" compoundref="logitech_8cpp" startline="90" endline="106">get_logitech_property_typed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>Result&lt; void &gt; duvc::logitech::set_logitech_property</definition>
+        <argsstring>(const Device &amp;device, LogitechProperty prop, const std::vector&lt; uint8_t &gt; &amp;data)</argsstring>
+        <name>set_logitech_property</name>
+        <qualifiedname>duvc::logitech::set_logitech_property</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> std::vector&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint8_t</ref> &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Set Logitech vendor property from raw byte vector. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target device to modify </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Logitech property ID to write </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property data buffer (format depends on property type) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="43" column="8" bodyfile="vendor/logitech.cpp" bodystart="43" bodyend="60" declfile="vendor/logitech.h" declline="70" declcolumn="8"/>
+        <references refid="api_8h_1a706c3c143887f191b1d8f23cd5c62a2b" compoundref="api_8h" startline="1061">DUVC_LOG_ERROR</references>
+        <references refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" compoundref="logitech_8h" startline="28" endline="32">LOGITECH_PROPERTY_SET</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b">duvc::PropertyNotSupported</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903ab932b91f686c2aa588adfd9a407155ca">duvc::SystemError</references>
+        <referencedby refid="namespaceduvc_1_1logitech_1a21f9f978ab54b953b60c2ea0b14ecbfc" compoundref="logitech_8cpp" startline="109" endline="115">set_logitech_property_typed</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a376caa27f086fe3d1ede2c24201ab9f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">bool</ref> &gt;</type>
+        <definition>Result&lt; bool &gt; duvc::logitech::supports_logitech_properties</definition>
+        <argsstring>(const Device &amp;device)</argsstring>
+        <name>supports_logitech_properties</name>
+        <qualifiedname>duvc::logitech::supports_logitech_properties</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <briefdescription>
+<para>Check if device supports Logitech vendor properties. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to check for Logitech extension unit support </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing true if supported, false otherwise, or error on query failure </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="62" column="8" bodyfile="vendor/logitech.cpp" bodystart="62" bodyend="87" declfile="vendor/logitech.h" declline="79" declcolumn="8"/>
+        <references refid="api_8h_1afb89565f012a56933ec6a59ca2141a1c" compoundref="api_8h" startline="1058">DUVC_LOG_DEBUG</references>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="logitech_8cpp_1a7388dec4f4e874a9a8bc96f976dba59d" compoundref="logitech_8cpp" startline="17">KSPROPERTY_SUPPORT_GET</references>
+        <references refid="logitech_8cpp_1a574768e2c9f5f502b2dc16074f70d7d8" compoundref="logitech_8cpp" startline="18">KSPROPERTY_SUPPORT_SET</references>
+        <references refid="namespaceduvc_1_1logitech_1aa6518e52fa8b13f2a7160e5ed4f3121e" compoundref="logitech_8h" startline="28" endline="32">LOGITECH_PROPERTY_SET</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9aaab72bac0dabd801043c0719c9743532">RightLight</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a4f494bd801c993f6d3c46b3c37a4b72e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; T &gt;</type>
+        <definition>Result&lt; T &gt; duvc::logitech::get_logitech_property_typed</definition>
+        <argsstring>(const Device &amp;device, LogitechProperty prop)</argsstring>
+        <name>get_logitech_property_typed</name>
+        <qualifiedname>duvc::logitech::get_logitech_property_typed</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+<para>Get typed Logitech property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Template function that reads property data and reinterprets as specified type. Type T must be trivially copyable and match the property&apos;s binary layout.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value type (must be trivially copyable) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target device to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Logitech property ID to read </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> containing typed value on success, or error on failure </para>
+</simplesect>
+<simplesect kind="note"><para>Caller must ensure T matches the property&apos;s actual data format </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="90" column="8" bodyfile="vendor/logitech.cpp" bodystart="90" bodyend="106" declfile="vendor/logitech.h" declline="95" declcolumn="8"/>
+        <references refid="classduvc_1_1Result_1aeae3d86ec04c3b53caef2e1b51467609" compoundref="result_8h" startline="128" endline="128">duvc::Result&lt; T &gt;::error</references>
+        <references refid="namespaceduvc_1_1logitech_1a91bff3336f23441c645a3ae57a858991" compoundref="logitech_8cpp" startline="23" endline="41">get_logitech_property</references>
+        <references refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a223e81e8afa42c41346a6696560ecc7b">duvc::InvalidValue</references>
+        <references refid="classduvc_1_1Result_1a6a3af8795b3d3090f17993728dbe701f" compoundref="result_8h" startline="101" endline="101">duvc::Result&lt; T &gt;::is_ok</references>
+        <references refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" compoundref="result_8h" startline="222" endline="222">duvc::Ok</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a21f9f978ab54b953b60c2ea0b14ecbfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>Result&lt; void &gt; duvc::logitech::set_logitech_property_typed</definition>
+        <argsstring>(const Device &amp;device, LogitechProperty prop, const T &amp;value)</argsstring>
+        <name>set_logitech_property_typed</name>
+        <qualifiedname>duvc::logitech::set_logitech_property_typed</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>device</declname>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> T &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Set typed Logitech property value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Template function that writes typed value as raw binary property data. Type T must be trivially copyable and match the property&apos;s binary layout.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value type (must be trivially copyable) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>device</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target device to modify </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Logitech property ID to write </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Property value to set (will be reinterpreted as bytes) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><ref refid="classduvc_1_1Result" kindref="compound">Result</ref> indicating success or error </para>
+</simplesect>
+<simplesect kind="note"><para>Caller must ensure T matches the property&apos;s expected data format </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="109" column="8" bodyfile="vendor/logitech.cpp" bodystart="109" bodyend="115" declfile="vendor/logitech.h" declline="112" declcolumn="8"/>
+        <references refid="namespaceduvc_1_1logitech_1a42327fbd8096925f41eafe0fdfcc9a3a" compoundref="logitech_8cpp" startline="43" endline="60">set_logitech_property</references>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1ae17c1762581cdafc220819093f308c75" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref> &gt;</type>
+        <definition>template Result&lt; uint32_t &gt; duvc::logitech::get_logitech_property_typed&lt; uint32_t &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty)</argsstring>
+        <name>get_logitech_property_typed&lt; uint32_t &gt;</name>
+        <qualifiedname>duvc::logitech::get_logitech_property_typed&lt; uint32_t &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="118" column="1" declfile="vendor/logitech.cpp" declline="118" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1ada8ac9bff8ddc344442b7d164116810e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">int32_t</ref> &gt;</type>
+        <definition>template Result&lt; int32_t &gt; duvc::logitech::get_logitech_property_typed&lt; int32_t &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty)</argsstring>
+        <name>get_logitech_property_typed&lt; int32_t &gt;</name>
+        <qualifiedname>duvc::logitech::get_logitech_property_typed&lt; int32_t &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="120" column="1" declfile="vendor/logitech.cpp" declline="120" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1aa928d36546e9b15df90bbb5cc669084b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">bool</ref> &gt;</type>
+        <definition>template Result&lt; bool &gt; duvc::logitech::get_logitech_property_typed&lt; bool &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty)</argsstring>
+        <name>get_logitech_property_typed&lt; bool &gt;</name>
+        <qualifiedname>duvc::logitech::get_logitech_property_typed&lt; bool &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="122" column="1" declfile="vendor/logitech.cpp" declline="122" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a2425d367bb5ff121d74ce232e2414748" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>template Result&lt; void &gt; duvc::logitech::set_logitech_property_typed&lt; uint32_t &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty, const uint32_t &amp;)</argsstring>
+        <name>set_logitech_property_typed&lt; uint32_t &gt;</name>
+        <qualifiedname>duvc::logitech::set_logitech_property_typed&lt; uint32_t &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">uint32_t</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="125" column="1" declfile="vendor/logitech.cpp" declline="125" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1a15d970192a07eb9e09428202802b701d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>template Result&lt; void &gt; duvc::logitech::set_logitech_property_typed&lt; int32_t &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty, const int32_t &amp;)</argsstring>
+        <name>set_logitech_property_typed&lt; int32_t &gt;</name>
+        <qualifiedname>duvc::logitech::set_logitech_property_typed&lt; int32_t &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">int32_t</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="128" column="1" declfile="vendor/logitech.cpp" declline="128" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceduvc_1_1logitech_1aabd1fc4425b6fdb19a6fd4bf73c23929" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">template</ref> <ref refid="classduvc_1_1Result" kindref="compound">Result</ref>&lt; <ref refid="classduvc_1_1Result" kindref="compound">void</ref> &gt;</type>
+        <definition>template Result&lt; void &gt; duvc::logitech::set_logitech_property_typed&lt; bool &gt;</definition>
+        <argsstring>(const Device &amp;, LogitechProperty, const bool &amp;)</argsstring>
+        <name>set_logitech_property_typed&lt; bool &gt;</name>
+        <qualifiedname>duvc::logitech::set_logitech_property_typed&lt; bool &gt;</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="namespaceduvc_1_1logitech_1a978904a848ea8a6c7662d989c67d16b9" kindref="member">LogitechProperty</ref></type>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1Result" kindref="compound">bool</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="vendor/logitech.cpp" line="131" column="1" declfile="vendor/logitech.cpp" declline="131" declcolumn="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="vendor/logitech.h" line="18" column="1"/>
+  </compounddef>
+</doxygen>

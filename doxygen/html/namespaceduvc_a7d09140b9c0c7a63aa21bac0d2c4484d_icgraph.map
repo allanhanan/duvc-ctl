@@ -1,0 +1,9 @@
+<map id="duvc::get_property_set" name="duvc::get_property_set">
+<area shape="rect" id="Node000001" title=" " alt="" coords="229,64,383,91"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#aa019a1c9788c84f47348db3f03b25d42" title="Get vendor&#45;specific property data from device." alt="" coords="5,5,181,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="239,62,143,35,145,30,241,57"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a5ddd570cc76e8dbdef26ad18660ddb07" title="Query whether device supports a vendor&#45;specific property." alt="" coords="25,56,161,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,80,161,80,161,75,213,75"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#ab333863cefef68546e2e235527fe3b5c" title="Set vendor&#45;specific property data on device." alt="" coords="5,123,181,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="241,98,145,125,143,120,239,93"/>
+</map>

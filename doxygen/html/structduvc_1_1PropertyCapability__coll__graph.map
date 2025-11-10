@@ -1,0 +1,7 @@
+<map id="duvc::PropertyCapability" name="duvc::PropertyCapability">
+<area shape="rect" id="Node000001" title="Property capability information." alt="" coords="52,267,206,336"/>
+<area shape="rect" id="Node000002" href="$structduvc_1_1PropRange.html" title="Property range and default information." alt="" coords="5,5,117,203"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,202,114,250,109,252,93,204"/>
+<area shape="rect" id="Node000003" href="$structduvc_1_1PropSetting.html" title="Property setting with value and control mode." alt="" coords="141,48,256,160"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,160,161,244,157,253,152,250,156,242,183,159"/>
+</map>

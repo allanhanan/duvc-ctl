@@ -1,0 +1,5 @@
+<map id="duvc_capabilities_is_device_accessible" name="duvc_capabilities_is_device_accessible">
+<area shape="rect" id="Node000001" title="Check if device is accessible." alt="" coords="5,5,144,48"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1DeviceCapabilities.html#ac5d276e943fa0b7ed0c581ffe0309851" title="Check if device is connected and accessible." alt="" coords="192,5,358,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,24,176,24,176,29,144,29"/>
+</map>

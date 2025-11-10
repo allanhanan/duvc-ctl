@@ -1,0 +1,872 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="connection__pool_8cpp" kind="file" language="C++">
+    <compoundname>connection_pool.cpp</compoundname>
+    <includes refid="device_8h" local="no">duvc-ctl/core/device.h</includes>
+    <includes local="no">duvc-ctl/detail/com_helpers.h</includes>
+    <includes refid="connection__pool_8h" local="no">duvc-ctl/platform/windows/connection_pool.h</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">mutex</includes>
+    <includes local="no">unordered_map</includes>
+    <includes local="no">dshow.h</includes>
+    <includes local="no">strmif.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>duvc-ctl/platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>platform/windows/connection_pool.cpp</label>
+        <link refid="connection__pool_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>dshow.h</label>
+      </node>
+      <node id="7">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="5">
+        <label>functional</label>
+      </node>
+      <node id="9">
+        <label>memory</label>
+      </node>
+      <node id="10">
+        <label>mutex</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="13">
+        <label>strmif.h</label>
+      </node>
+      <node id="11">
+        <label>unordered_map</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="connection__pool_8cpp_1aa944cae58e4d4e8b4334ab9ab9787619" prot="public" static="no">
+        <name>CameraControl_Pan</name>
+        <initializer>0L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="20" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a242ada87336bae7d8e03579188887a95" prot="public" static="no">
+        <name>CameraControl_Tilt</name>
+        <initializer>1L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="21" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a10bb26cc41ca7fc64073e8bc51fbdc6f" prot="public" static="no">
+        <name>CameraControl_Roll</name>
+        <initializer>2L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="22" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a28af98732bfc1923cfdc7f7463be8cea" prot="public" static="no">
+        <name>CameraControl_Zoom</name>
+        <initializer>3L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="23" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ab98ae276ff15a48ce053694b265ea80f" prot="public" static="no">
+        <name>CameraControl_Exposure</name>
+        <initializer>4L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="24" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ad152b577905a38ead1fc4e3a5794c1b7" prot="public" static="no">
+        <name>CameraControl_Iris</name>
+        <initializer>5L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="25" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a2e3bc349dc0f288d615f17dfca62f81c" prot="public" static="no">
+        <name>CameraControl_Focus</name>
+        <initializer>6L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="26" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a88c2233f5644f24d10abb0a3563e5184" prot="public" static="no">
+        <name>CameraControl_ScanMode</name>
+        <initializer>7L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="27" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1aace13005651bf63f49ec00baf8fa9716" prot="public" static="no">
+        <name>CameraControl_Privacy</name>
+        <initializer>8L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="28" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a0e85828bda4cc11e67259c9e3eecf510" prot="public" static="no">
+        <name>CameraControl_PanRelative</name>
+        <initializer>9L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="29" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a4bae2e84bd4190b7c05754d342acd146" prot="public" static="no">
+        <name>CameraControl_TiltRelative</name>
+        <initializer>10L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="30" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ad80d6c08e95027aa740e7256053741ee" prot="public" static="no">
+        <name>CameraControl_RollRelative</name>
+        <initializer>11L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="31" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a76139e2718d05a88d0d40d2091e43e03" prot="public" static="no">
+        <name>CameraControl_ZoomRelative</name>
+        <initializer>12L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="32" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a4fa6467a4c8229c02bbbc1fff2c75f35" prot="public" static="no">
+        <name>CameraControl_ExposureRelative</name>
+        <initializer>13L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="33" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a3fd7c846d135d195cc5f19d9c977252b" prot="public" static="no">
+        <name>CameraControl_IrisRelative</name>
+        <initializer>14L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="34" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ae59ea12d8983b2f47bf0495f2df5a3b6" prot="public" static="no">
+        <name>CameraControl_FocusRelative</name>
+        <initializer>15L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="35" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ad1bccd4f147cb2c3149d8b59ced15d6e" prot="public" static="no">
+        <name>CameraControl_PanTilt</name>
+        <initializer>16L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="36" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a515ebdb3eb330f77750fc146f8a088f8" prot="public" static="no">
+        <name>CameraControl_PanTiltRelative</name>
+        <initializer>17L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="37" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a450375e5fcba9b9ac62d91bb8d1ad59c" prot="public" static="no">
+        <name>CameraControl_FocusSimple</name>
+        <initializer>18L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="38" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a1ead80624ce475f7d90721ab88ef38a6" prot="public" static="no">
+        <name>CameraControl_DigitalZoom</name>
+        <initializer>19L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="39" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ace89b8a2b15424b268fa5aa58a70daf1" prot="public" static="no">
+        <name>CameraControl_DigitalZoomRelative</name>
+        <initializer>20L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="40" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ae21f06587a402a0d7beb09a8e4adf2cc" prot="public" static="no">
+        <name>CameraControl_BacklightCompensation</name>
+        <initializer>21L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="41" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a43b6a98e0a91d7f03cf8982057c332fa" prot="public" static="no">
+        <name>CameraControl_Lamp</name>
+        <initializer>22L</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="42" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ae2ee8c608c503965848b18f50e944293" prot="public" static="no">
+        <name>CameraControl_Flags_Auto</name>
+        <initializer>0x0001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="43" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ac01093814e619dc6a75ed1f0db6707aa" prot="public" static="no">
+        <name>CameraControl_Flags_Manual</name>
+        <initializer>0x0002</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="44" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1aefe212c55c90859acd3f9ab790f6bbc1" prot="public" static="no">
+        <name>VideoProcAmp_Brightness</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="48" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a03060d4208ecd457125bc06ad98da06b" prot="public" static="no">
+        <name>VideoProcAmp_Contrast</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="49" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a04eaf8a54fa7c427ef1c07056f766746" prot="public" static="no">
+        <name>VideoProcAmp_Hue</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="50" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1af5a9139d4797d876ea441718d0fb632e" prot="public" static="no">
+        <name>VideoProcAmp_Saturation</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="51" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a2da7e0fe706e8d89f99ef21129121f91" prot="public" static="no">
+        <name>VideoProcAmp_Sharpness</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="52" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a792fe68bf0f82c09ca2286e58734e1ae" prot="public" static="no">
+        <name>VideoProcAmp_Gamma</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="53" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a1a6a01d93e8a2812db51083a18f3b8cd" prot="public" static="no">
+        <name>VideoProcAmp_ColorEnable</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="54" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1a6637eb587823781608d4a0c2c948116b" prot="public" static="no">
+        <name>VideoProcAmp_WhiteBalance</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="55" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1ad18a55f334bdde468c493c00df54e8ec" prot="public" static="no">
+        <name>VideoProcAmp_BacklightCompensation</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="56" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1af8341d661d8f3bf31d739a8bde321f19" prot="public" static="no">
+        <name>VideoProcAmp_Gain</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="57" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1af1871c17ca9ebf9320287e5cbdd3bd9a" prot="public" static="no">
+        <name>VideoProcAmp_Flags_Auto</name>
+        <initializer>0x0001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="58" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="connection__pool_8cpp_1aed5901df84ca373972cef596c1914993" prot="public" static="no">
+        <name>VideoProcAmp_Flags_Manual</name>
+        <initializer>0x0002</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.cpp" line="59" column="9" bodyfile="platform/windows/connection_pool.cpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Windows DirectShow connection pooling implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="device_8h" kindref="compound">duvc-ctl/core/device.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;duvc-ctl/detail/com_helpers.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="connection__pool_8h" kindref="compound">duvc-ctl/platform/windows/connection_pool.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unordered_map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dshow.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;strmif.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DirectShow<sp/>control<sp/>interfaces</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__AMCAMERACONTROL__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="connection__pool_8cpp_1aa944cae58e4d4e8b4334ab9ab9787619" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Pan<sp/>0L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="connection__pool_8cpp_1a242ada87336bae7d8e03579188887a95" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Tilt<sp/>1L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="connection__pool_8cpp_1a10bb26cc41ca7fc64073e8bc51fbdc6f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Roll<sp/>2L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="connection__pool_8cpp_1a28af98732bfc1923cfdc7f7463be8cea" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Zoom<sp/>3L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="connection__pool_8cpp_1ab98ae276ff15a48ce053694b265ea80f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Exposure<sp/>4L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="connection__pool_8cpp_1ad152b577905a38ead1fc4e3a5794c1b7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Iris<sp/>5L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="connection__pool_8cpp_1a2e3bc349dc0f288d615f17dfca62f81c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Focus<sp/>6L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="connection__pool_8cpp_1a88c2233f5644f24d10abb0a3563e5184" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_ScanMode<sp/>7L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="connection__pool_8cpp_1aace13005651bf63f49ec00baf8fa9716" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Privacy<sp/>8L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="connection__pool_8cpp_1a0e85828bda4cc11e67259c9e3eecf510" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_PanRelative<sp/>9L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="connection__pool_8cpp_1a4bae2e84bd4190b7c05754d342acd146" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_TiltRelative<sp/>10L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="connection__pool_8cpp_1ad80d6c08e95027aa740e7256053741ee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_RollRelative<sp/>11L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="connection__pool_8cpp_1a76139e2718d05a88d0d40d2091e43e03" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_ZoomRelative<sp/>12L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="connection__pool_8cpp_1a4fa6467a4c8229c02bbbc1fff2c75f35" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_ExposureRelative<sp/>13L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="connection__pool_8cpp_1a3fd7c846d135d195cc5f19d9c977252b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_IrisRelative<sp/>14L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="connection__pool_8cpp_1ae59ea12d8983b2f47bf0495f2df5a3b6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_FocusRelative<sp/>15L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="connection__pool_8cpp_1ad1bccd4f147cb2c3149d8b59ced15d6e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_PanTilt<sp/>16L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="connection__pool_8cpp_1a515ebdb3eb330f77750fc146f8a088f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_PanTiltRelative<sp/>17L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="connection__pool_8cpp_1a450375e5fcba9b9ac62d91bb8d1ad59c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_FocusSimple<sp/>18L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="connection__pool_8cpp_1a1ead80624ce475f7d90721ab88ef38a6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_DigitalZoom<sp/>19L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="connection__pool_8cpp_1ace89b8a2b15424b268fa5aa58a70daf1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_DigitalZoomRelative<sp/>20L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="connection__pool_8cpp_1ae21f06587a402a0d7beb09a8e4adf2cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_BacklightCompensation<sp/>21L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="connection__pool_8cpp_1a43b6a98e0a91d7f03cf8982057c332fa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Lamp<sp/>22L</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="connection__pool_8cpp_1ae2ee8c608c503965848b18f50e944293" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Flags_Auto<sp/>0x0001</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="connection__pool_8cpp_1ac01093814e619dc6a75ed1f0db6707aa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CameraControl_Flags_Manual<sp/>0x0002</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>__AMVIDEOPROCAMP__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="connection__pool_8cpp_1aefe212c55c90859acd3f9ab790f6bbc1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Brightness<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="connection__pool_8cpp_1a03060d4208ecd457125bc06ad98da06b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Contrast<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="connection__pool_8cpp_1a04eaf8a54fa7c427ef1c07056f766746" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Hue<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="connection__pool_8cpp_1af5a9139d4797d876ea441718d0fb632e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Saturation<sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="connection__pool_8cpp_1a2da7e0fe706e8d89f99ef21129121f91" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Sharpness<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="connection__pool_8cpp_1a792fe68bf0f82c09ca2286e58734e1ae" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Gamma<sp/>5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="connection__pool_8cpp_1a1a6a01d93e8a2812db51083a18f3b8cd" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_ColorEnable<sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="connection__pool_8cpp_1a6637eb587823781608d4a0c2c948116b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_WhiteBalance<sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="connection__pool_8cpp_1ad18a55f334bdde468c493c00df54e8ec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_BacklightCompensation<sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="connection__pool_8cpp_1af8341d661d8f3bf31d739a8bde321f19" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Gain<sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="connection__pool_8cpp_1af1871c17ca9ebf9320287e5cbdd3bd9a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Flags_Auto<sp/>0x0001</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="connection__pool_8cpp_1aed5901df84ca373972cef596c1914993" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VideoProcAmp_Flags_Manual<sp/>0x0002</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_MSC_VER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>comment(lib,<sp/>&quot;ole32.lib&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>comment(lib,<sp/>&quot;oleaut32.lib&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>comment(lib,<sp/>&quot;strmiids.lib&quot;)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">detail;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Forward<sp/>declarations<sp/>for<sp/>DirectShow<sp/>enumeration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>com_ptr&lt;ICreateDevEnum&gt;<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>com_ptr&lt;IEnumMoniker&gt;<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(ICreateDevEnum<sp/>*dev);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::wstring<sp/><ref refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" kindref="member">read_friendly_name</ref>(IMoniker<sp/>*mon);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::wstring<sp/><ref refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" kindref="member">read_device_path</ref>(IMoniker<sp/>*mon);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a16607a28a7df86e823edf3abd371af92" kindref="member">is_same_device</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;name,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;path);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DirectShow<sp/>interface<sp/>helpers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="namespaceduvc_1a72f92cd80ed6f3c59c814fae59e8ba26" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IBaseFilter&gt;</ref><sp/><ref refid="namespaceduvc_1a72f92cd80ed6f3c59c814fae59e8ba26" kindref="member">bind_to_filter</ref>(<ref refid="classduvc_1_1Result" kindref="compound">IMoniker</ref><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">mon</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IBaseFilter&gt;</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">f</ref>;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">HRESULT</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">hr</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">mon</ref>-&gt;BindToObject(</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/><ref refid="classduvc_1_1Result" kindref="compound">IID_IBaseFilter</ref>,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">f</ref>.put()));</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">FAILED</ref>(<ref refid="classduvc_1_1Result" kindref="compound">hr</ref>))</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a21b444574354018097d4489a9ff0ff9e" kindref="member">throw_hr</ref>(<ref refid="classduvc_1_1Result" kindref="compound">hr</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BindToObject(IBaseFilter)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">f</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="namespaceduvc_1a525e082d3184609f07eb02f89b853eb4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IAMCameraControl&gt;</ref><sp/><ref refid="namespaceduvc_1a525e082d3184609f07eb02f89b853eb4" kindref="member">get_cam_ctrl</ref>(<ref refid="classduvc_1_1Result" kindref="compound">IBaseFilter</ref><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">f</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IAMCameraControl&gt;</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">cam</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">FAILED</ref>(<ref refid="classduvc_1_1Result" kindref="compound">f</ref>-&gt;QueryInterface(<ref refid="classduvc_1_1Result" kindref="compound">IID_IAMCameraControl</ref>,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">cam</ref>.put()))))<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">cam</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="namespaceduvc_1a04547a9d26bcf475fc447dd6b7e9df11" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IAMVideoProcAmp&gt;</ref><sp/><ref refid="namespaceduvc_1a04547a9d26bcf475fc447dd6b7e9df11" kindref="member">get_vproc</ref>(<ref refid="classduvc_1_1Result" kindref="compound">IBaseFilter</ref><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">f</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">com_ptr&lt;IAMVideoProcAmp&gt;</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">vp</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">FAILED</ref>(<ref refid="classduvc_1_1Result" kindref="compound">f</ref>-&gt;QueryInterface(<ref refid="classduvc_1_1Result" kindref="compound">IID_IAMVideoProcAmp</ref>,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">vp</ref>.put()))))<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{};</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">vp</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>com_ptr&lt;IBaseFilter&gt;<sp/><ref refid="namespaceduvc_1a1345df0af198d75f16c54e38d54c7e63" kindref="member">open_device_filter</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>com_ptr&lt;ICreateDevEnum&gt;<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>();</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>com_ptr&lt;IEnumMoniker&gt;<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(ICreateDevEnum<sp/>*<sp/>dev);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>de<sp/>=<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>en<sp/>=<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(de.get());</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!en)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;No<sp/>video<sp/>devices<sp/>available&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/>ULONG<sp/>fetched<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>com_ptr&lt;IMoniker&gt;<sp/>mon;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(en-&gt;Next(1,<sp/>mon.put(),<sp/>&amp;fetched)<sp/>==<sp/>S_OK<sp/>&amp;&amp;<sp/>fetched)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fname<sp/>=<sp/><ref refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" kindref="member">read_friendly_name</ref>(mon.get());</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dpath<sp/>=<sp/><ref refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" kindref="member">read_device_path</ref>(mon.get());</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespaceduvc_1a16607a28a7df86e823edf3abd371af92" kindref="member">is_same_device</ref>(dev,<sp/>fname,<sp/>dpath))<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a72f92cd80ed6f3c59c814fae59e8ba26" kindref="member">bind_to_filter</ref>(mon.get());</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>mon.reset();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">throw</highlight><highlight class="normal"><sp/>std::runtime_error(</highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>found&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Property<sp/>mapping<sp/>helpers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" kindref="member">camprop_to_dshow</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">p</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">p</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af6d4a17b27da35c2d90ce13801f36782" kindref="member">CamProp::Pan</ref>:</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1aa944cae58e4d4e8b4334ab9ab9787619" kindref="member">CameraControl_Pan</ref>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a686319a93c35facda5c3da08875fb394" kindref="member">CamProp::Tilt</ref>:</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a242ada87336bae7d8e03579188887a95" kindref="member">CameraControl_Tilt</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a25b5eb3bbef15385b5f5ff3abe46f342" kindref="member">CamProp::Roll</ref>:</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a10bb26cc41ca7fc64073e8bc51fbdc6f" kindref="member">CameraControl_Roll</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a4252b72e6ebcd4d4b4c2e46a786f03d2" kindref="member">CamProp::Zoom</ref>:</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a28af98732bfc1923cfdc7f7463be8cea" kindref="member">CameraControl_Zoom</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880adf10da7c5d1f4a5550d5f410cb949a5d" kindref="member">CamProp::Exposure</ref>:</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ab98ae276ff15a48ce053694b265ea80f" kindref="member">CameraControl_Exposure</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ad25c7286a46dbb6eeecc5cfddacd5818" kindref="member">CamProp::Iris</ref>:</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ad152b577905a38ead1fc4e3a5794c1b7" kindref="member">CameraControl_Iris</ref>;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ae24ee2487879116dcab772c0ac4fe341" kindref="member">CamProp::Focus</ref>:</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a2e3bc349dc0f288d615f17dfca62f81c" kindref="member">CameraControl_Focus</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a8127be4a1d9d373c05e6e48f001a5ea4" kindref="member">CamProp::ScanMode</ref>:</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a88c2233f5644f24d10abb0a3563e5184" kindref="member">CameraControl_ScanMode</ref>;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ac5f29bb36f9158d2e00f5d4dc213a0ff" kindref="member">CamProp::Privacy</ref>:</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1aace13005651bf63f49ec00baf8fa9716" kindref="member">CameraControl_Privacy</ref>;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a365f672c582091a1df82520cb5ccd003" kindref="member">CamProp::PanRelative</ref>:</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a0e85828bda4cc11e67259c9e3eecf510" kindref="member">CameraControl_PanRelative</ref>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a74d45c99dfd804387e044266c1cd335f" kindref="member">CamProp::TiltRelative</ref>:</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a4bae2e84bd4190b7c05754d342acd146" kindref="member">CameraControl_TiltRelative</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a3d2848098ad6ea135695c4f14dc731f5" kindref="member">CamProp::RollRelative</ref>:</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ad80d6c08e95027aa740e7256053741ee" kindref="member">CameraControl_RollRelative</ref>;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880ac33d5bc4decc972c5f33242bca5fe7f8" kindref="member">CamProp::ZoomRelative</ref>:</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a76139e2718d05a88d0d40d2091e43e03" kindref="member">CameraControl_ZoomRelative</ref>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a22321ba68a44684f79a629f4fa51f448" kindref="member">CamProp::ExposureRelative</ref>:</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a4fa6467a4c8229c02bbbc1fff2c75f35" kindref="member">CameraControl_ExposureRelative</ref>;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880acd9d48298f8318e57f35911a435aa17c" kindref="member">CamProp::IrisRelative</ref>:</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a3fd7c846d135d195cc5f19d9c977252b" kindref="member">CameraControl_IrisRelative</ref>;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880aecad10508f6671bca1af3eabe5e109ef" kindref="member">CamProp::FocusRelative</ref>:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ae59ea12d8983b2f47bf0495f2df5a3b6" kindref="member">CameraControl_FocusRelative</ref>;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af47f881eb1a950402ec6af3edb2a6fb5" kindref="member">CamProp::PanTilt</ref>:</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ad1bccd4f147cb2c3149d8b59ced15d6e" kindref="member">CameraControl_PanTilt</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a58be988e4ce3dd51b2541fc0be0f3ff0" kindref="member">CamProp::PanTiltRelative</ref>:</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a515ebdb3eb330f77750fc146f8a088f8" kindref="member">CameraControl_PanTiltRelative</ref>;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a2c61a1ab60c3937a1329a99897ad5eaf" kindref="member">CamProp::FocusSimple</ref>:</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a450375e5fcba9b9ac62d91bb8d1ad59c" kindref="member">CameraControl_FocusSimple</ref>;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880affc6cca7e5dc5d86c342762c9ed08e2f" kindref="member">CamProp::DigitalZoom</ref>:</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a1ead80624ce475f7d90721ab88ef38a6" kindref="member">CameraControl_DigitalZoom</ref>;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880af4c2360fd28c4f15780e5f9ab13d0c9d" kindref="member">CamProp::DigitalZoomRelative</ref>:</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ace89b8a2b15424b268fa5aa58a70daf1" kindref="member">CameraControl_DigitalZoomRelative</ref>;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880afa19c0028cdb5f9619f48d1addcd2164" kindref="member">CamProp::BacklightCompensation</ref>:</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ae21f06587a402a0d7beb09a8e4adf2cc" kindref="member">CameraControl_BacklightCompensation</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880a5331717d33d4e634fd3c5ec209f475d2" kindref="member">CamProp::Lamp</ref>:</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a43b6a98e0a91d7f03cf8982057c332fa" kindref="member">CameraControl_Lamp</ref>;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185" refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" kindref="member">vidprop_to_dshow</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">p</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">p</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fab25323f99788ce64617f018b8a9f5f70" kindref="member">VidProp::Brightness</ref>:</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1aefe212c55c90859acd3f9ab790f6bbc1" kindref="member">VideoProcAmp_Brightness</ref>;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fac63ecd19a0ca74c22dfcf3063c9805d2" kindref="member">VidProp::Contrast</ref>:</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a03060d4208ecd457125bc06ad98da06b" kindref="member">VideoProcAmp_Contrast</ref>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fafb5d805f5b3b22e4fd4a1bc66875dbe3" kindref="member">VidProp::Hue</ref>:</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a04eaf8a54fa7c427ef1c07056f766746" kindref="member">VideoProcAmp_Hue</ref>;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa2e3307b9b1a2cc64b48f1cd6977a4b29" kindref="member">VidProp::Saturation</ref>:</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1af5a9139d4797d876ea441718d0fb632e" kindref="member">VideoProcAmp_Saturation</ref>;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fac50a2697a9800ac4fa2a230bee190adc" kindref="member">VidProp::Sharpness</ref>:</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a2da7e0fe706e8d89f99ef21129121f91" kindref="member">VideoProcAmp_Sharpness</ref>;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fad9cdb0f6e0d556347c10a8695545a4b5" kindref="member">VidProp::Gamma</ref>:</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a792fe68bf0f82c09ca2286e58734e1ae" kindref="member">VideoProcAmp_Gamma</ref>;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fab3961eeff6ca12b4cf6bddbf063c4363" kindref="member">VidProp::ColorEnable</ref>:</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a1a6a01d93e8a2812db51083a18f3b8cd" kindref="member">VideoProcAmp_ColorEnable</ref>;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa68a1cd4232bccbb91973004902e7393a" kindref="member">VidProp::WhiteBalance</ref>:</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1a6637eb587823781608d4a0c2c948116b" kindref="member">VideoProcAmp_WhiteBalance</ref>;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fafa19c0028cdb5f9619f48d1addcd2164" kindref="member">VidProp::BacklightCompensation</ref>:</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1ad18a55f334bdde468c493c00df54e8ec" kindref="member">VideoProcAmp_BacklightCompensation</ref>;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020fa35d72fa7d84f4ae67d705373d1d44b88" kindref="member">VidProp::Gain</ref>:</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="core_8cpp_1af8341d661d8f3bf31d739a8bde321f19" kindref="member">VideoProcAmp_Gain</ref>;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="210"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" kindref="member">to_flag</ref>(<ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">m</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">is_camera_control</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">is_camera_control</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">m</ref><sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">CamMode::Auto</ref>)<sp/>?<sp/><ref refid="core_8cpp_1ae2ee8c608c503965848b18f50e944293" kindref="member">CameraControl_Flags_Auto</ref></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="core_8cpp_1ac01093814e619dc6a75ed1f0db6707aa" kindref="member">CameraControl_Flags_Manual</ref>;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">m</ref><sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">CamMode::Auto</ref>)<sp/>?<sp/><ref refid="core_8cpp_1af1871c17ca9ebf9320287e5cbdd3bd9a" kindref="member">VideoProcAmp_Flags_Auto</ref></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/><ref refid="core_8cpp_1aed5901df84ca373972cef596c1914993" kindref="member">VideoProcAmp_Flags_Manual</ref>;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4b" kindref="member">CamMode</ref><sp/><ref refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" kindref="member">from_flag</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">flag</ref>,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">is_camera_control</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">is_camera_control</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">flag</ref><sp/>&amp;<sp/><ref refid="core_8cpp_1ae2ee8c608c503965848b18f50e944293" kindref="member">CameraControl_Flags_Auto</ref>)<sp/>?<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">CamMode::Auto</ref><sp/>:<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301" kindref="member">CamMode::Manual</ref>;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">flag</ref><sp/>&amp;<sp/><ref refid="core_8cpp_1af1871c17ca9ebf9320287e5cbdd3bd9a" kindref="member">VideoProcAmp_Flags_Auto</ref>)<sp/>?<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">CamMode::Auto</ref><sp/>:<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301" kindref="member">CamMode::Manual</ref>;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="228"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DeviceConnection<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><ref refid="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" kindref="member">DeviceConnection::DeviceConnection</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev)</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>:<sp/>com_(std::make_unique&lt;com_apartment&gt;()),<sp/>filter_(nullptr),</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cam_ctrl_(nullptr),<sp/>vid_proc_(nullptr)<sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>filter<sp/>=<sp/><ref refid="namespaceduvc_1a1345df0af198d75f16c54e38d54c7e63" kindref="member">open_device_filter</ref>(dev);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(filter)<sp/>{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>cam_ctrl<sp/>=<sp/><ref refid="namespaceduvc_1a525e082d3184609f07eb02f89b853eb4" kindref="member">get_cam_ctrl</ref>(filter.get());</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>vid_proc<sp/>=<sp/><ref refid="namespaceduvc_1a04547a9d26bcf475fc447dd6b7e9df11" kindref="member">get_vproc</ref>(filter.get());</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Store<sp/>as<sp/>raw<sp/>pointers<sp/>but<sp/>keep<sp/>references</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>filter_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>com_ptr&lt;IBaseFilter&gt;(std::move(filter));</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cam_ctrl_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>com_ptr&lt;IAMCameraControl&gt;(std::move(cam_ctrl));</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>vid_proc_<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>com_ptr&lt;IAMVideoProcAmp&gt;(std::move(vid_proc));</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(...)<sp/>{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>filter_<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal">DeviceConnection::~DeviceConnection()<sp/>{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IBaseFilter&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(filter_);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMCameraControl&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(cam_ctrl_);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMVideoProcAmp&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vid_proc_);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::get(CamProp<sp/>prop,<sp/>PropSetting<sp/>&amp;val)<sp/>{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*cam_ctrl<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMCameraControl&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(cam_ctrl_);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cam_ctrl<sp/>||<sp/>!*cam_ctrl)</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" kindref="member">camprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>value<sp/>=<sp/>0,<sp/>flags<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*cam_ctrl)-&gt;Get(pid,<sp/>&amp;value,<sp/>&amp;flags);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/>val.value<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(value);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/>val.mode<sp/>=<sp/><ref refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" kindref="member">from_flag</ref>(flags,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::set(CamProp<sp/>prop,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PropSetting<sp/>&amp;val)<sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*cam_ctrl<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMCameraControl&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(cam_ctrl_);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cam_ctrl<sp/>||<sp/>!*cam_ctrl)</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" kindref="member">camprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>flags<sp/>=<sp/><ref refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" kindref="member">to_flag</ref>(val.mode,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*cam_ctrl)-&gt;Set(pid,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">long</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(val.value),<sp/>flags);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>SUCCEEDED(hr);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::get(VidProp<sp/>prop,<sp/>PropSetting<sp/>&amp;val)<sp/>{</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*vid_proc<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMVideoProcAmp&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vid_proc_);</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!vid_proc<sp/>||<sp/>!*vid_proc)</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" kindref="member">vidprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>value<sp/>=<sp/>0,<sp/>flags<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*vid_proc)-&gt;Get(pid,<sp/>&amp;value,<sp/>&amp;flags);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/>val.value<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(value);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/>val.mode<sp/>=<sp/><ref refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" kindref="member">from_flag</ref>(flags,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::set(VidProp<sp/>prop,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PropSetting<sp/>&amp;val)<sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*vid_proc<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMVideoProcAmp&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vid_proc_);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!vid_proc<sp/>||<sp/>!*vid_proc)</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" kindref="member">vidprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>flags<sp/>=<sp/><ref refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" kindref="member">to_flag</ref>(val.mode,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*vid_proc)-&gt;Set(pid,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">long</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(val.value),<sp/>flags);</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>SUCCEEDED(hr);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::get_range(CamProp<sp/>prop,<sp/>PropRange<sp/>&amp;range)<sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*cam_ctrl<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMCameraControl&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(cam_ctrl_);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cam_ctrl<sp/>||<sp/>!*cam_ctrl)</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" kindref="member">camprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>min<sp/>=<sp/>0,<sp/>max<sp/>=<sp/>0,<sp/>step<sp/>=<sp/>0,<sp/>def<sp/>=<sp/>0,<sp/>flags<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*cam_ctrl)-&gt;GetRange(pid,<sp/>&amp;min,<sp/>&amp;max,<sp/>&amp;step,<sp/>&amp;def,<sp/>&amp;flags);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/>range.min<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(min);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/>range.max<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/>range.step<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(step);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/>range.default_val<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(def);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/>range.default_mode<sp/>=<sp/><ref refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" kindref="member">from_flag</ref>(flags,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>DeviceConnection::get_range(VidProp<sp/>prop,<sp/>PropRange<sp/>&amp;range)<sp/>{</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*vid_proc<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">com_ptr&lt;IAMVideoProcAmp&gt;<sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vid_proc_);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!vid_proc<sp/>||<sp/>!*vid_proc)</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>pid<sp/>=<sp/><ref refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" kindref="member">vidprop_to_dshow</ref>(prop);</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pid<sp/>&lt;<sp/>0)</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>min<sp/>=<sp/>0,<sp/>max<sp/>=<sp/>0,<sp/>step<sp/>=<sp/>0,<sp/>def<sp/>=<sp/>0,<sp/>flags<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>(*vid_proc)-&gt;GetRange(pid,<sp/>&amp;min,<sp/>&amp;max,<sp/>&amp;step,<sp/>&amp;def,<sp/>&amp;flags);</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/>range.min<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(min);</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/>range.max<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(max);</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/>range.step<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(step);</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/>range.default_val<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(def);</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/>range.default_mode<sp/>=<sp/><ref refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" kindref="member">from_flag</ref>(flags,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="platform/windows/connection_pool.cpp"/>
+  </compounddef>
+</doxygen>

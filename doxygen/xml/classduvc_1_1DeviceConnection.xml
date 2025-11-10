@@ -1,0 +1,732 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1DeviceConnection" kind="class" language="C++" prot="public">
+    <compoundname>duvc::DeviceConnection</compoundname>
+    <includes refid="core_8h" local="no">duvc-ctl/core.h</includes>
+    <innerclass refid="classduvc_1_1DeviceConnection_1_1com__apartment" prot="public">duvc::DeviceConnection::com_apartment</innerclass>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1DeviceConnection_1a66f8307e71b8e37c962b637c78a222fc" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; <ref refid="classduvc_1_1DeviceConnection_1_1com__apartment" kindref="compound">com_apartment</ref> &gt;</type>
+        <definition>std::unique_ptr&lt;com_apartment&gt; duvc::DeviceConnection::com_</definition>
+        <argsstring></argsstring>
+        <name>com_</name>
+        <qualifiedname>duvc::DeviceConnection::com_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="71" column="21" bodyfile="core.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceConnection_1a49a72be7d510efb2df12aac5a7ab87f8" prot="private" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">void</ref> *</type>
+        <definition>void * duvc::DeviceConnection::filter_</definition>
+        <argsstring></argsstring>
+        <name>filter_</name>
+        <qualifiedname>duvc::DeviceConnection::filter_</qualifiedname>
+        <briefdescription>
+<para>DirectShow filter interface (stored as void* to avoid header dependencies) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="72" column="10" bodyfile="core.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceConnection_1aa59d5a3d023cd8479a2e12578a5f5e42" prot="private" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">void</ref> *</type>
+        <definition>void * duvc::DeviceConnection::cam_ctrl_</definition>
+        <argsstring></argsstring>
+        <name>cam_ctrl_</name>
+        <qualifiedname>duvc::DeviceConnection::cam_ctrl_</qualifiedname>
+        <briefdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> control interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="73" column="10" bodyfile="core.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceConnection_1a4eafa2b6ea5b094237e1ea67303625da" prot="private" static="no" mutable="no">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">void</ref> *</type>
+        <definition>void * duvc::DeviceConnection::vid_proc_</definition>
+        <argsstring></argsstring>
+        <name>vid_proc_</name>
+        <qualifiedname>duvc::DeviceConnection::vid_proc_</qualifiedname>
+        <briefdescription>
+<para>Video processing interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="74" column="10" bodyfile="core.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classduvc_1_1DeviceConnection_1a38296005a28e37efa1345e6e29624d2a" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; duvc::detail::com_apartment &gt;</type>
+        <definition>std::unique_ptr&lt;duvc::detail::com_apartment&gt; duvc::DeviceConnection::com_</definition>
+        <argsstring></argsstring>
+        <name>com_</name>
+        <qualifiedname>duvc::DeviceConnection::com_</qualifiedname>
+        <briefdescription>
+<para>COM apartment for this connection. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="97" column="19" bodyfile="platform/windows/connection_pool.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::DeviceConnection</definition>
+        <argsstring>(const Device &amp;dev)</argsstring>
+        <name>DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::DeviceConnection</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>dev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="57" column="14" bodyfile="core.cpp" bodystart="358" bodyend="377"/>
+        <references refid="namespaceduvc_1a525e082d3184609f07eb02f89b853eb4" compoundref="core_8cpp" startline="230" endline="234">duvc::get_cam_ctrl</references>
+        <references refid="namespaceduvc_1a04547a9d26bcf475fc447dd6b7e9df11" compoundref="core_8cpp" startline="236" endline="240">duvc::get_vproc</references>
+        <references refid="namespaceduvc_1a1345df0af198d75f16c54e38d54c7e63" compoundref="core_8cpp" startline="260" endline="276">duvc::open_device_filter</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::~DeviceConnection</definition>
+        <argsstring>()</argsstring>
+        <name>~DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::~DeviceConnection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="58" column="5" bodyfile="core.cpp" bodystart="379" bodyend="383"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get</definition>
+        <argsstring>(CamProp prop, PropSetting &amp;val)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::DeviceConnection::get</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="60" column="10" bodyfile="core.cpp" bodystart="385" bodyend="399"/>
+        <references refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" compoundref="core_8cpp" startline="279" endline="306">duvc::camprop_to_dshow</references>
+        <references refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" compoundref="core_8cpp" startline="332" endline="338">duvc::from_flag</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::set</definition>
+        <argsstring>(CamProp prop, const PropSetting &amp;val)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::DeviceConnection::set</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="61" column="10" bodyfile="core.cpp" bodystart="401" bodyend="411"/>
+        <references refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" compoundref="core_8cpp" startline="279" endline="306">duvc::camprop_to_dshow</references>
+        <references refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" compoundref="core_8cpp" startline="324" endline="330">duvc::to_flag</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get</definition>
+        <argsstring>(VidProp prop, PropSetting &amp;val)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::DeviceConnection::get</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="62" column="10" bodyfile="core.cpp" bodystart="413" bodyend="427"/>
+        <references refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" compoundref="core_8cpp" startline="332" endline="338">duvc::from_flag</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+        <references refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" compoundref="core_8cpp" startline="308" endline="322">duvc::vidprop_to_dshow</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::set</definition>
+        <argsstring>(VidProp prop, const PropSetting &amp;val)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::DeviceConnection::set</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="63" column="10" bodyfile="core.cpp" bodystart="429" bodyend="439"/>
+        <references refid="namespaceduvc_1aa4bc7d2556b6a0cbd6de087e074a7a2c" compoundref="core_8cpp" startline="324" endline="330">duvc::to_flag</references>
+        <references refid="classduvc_1_1Result_1a260a000aca87d38c8f9f22ad80804691" compoundref="result_8h" startline="114" endline="114">duvc::Result&lt; T &gt;::value</references>
+        <references refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" compoundref="core_8cpp" startline="308" endline="322">duvc::vidprop_to_dshow</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get_range</definition>
+        <argsstring>(CamProp prop, PropRange &amp;range)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::DeviceConnection::get_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="64" column="10" bodyfile="core.cpp" bodystart="441" bodyend="458"/>
+        <references refid="namespaceduvc_1ad928c817c788cc4ad08adccaf54a1892" compoundref="core_8cpp" startline="279" endline="306">duvc::camprop_to_dshow</references>
+        <references refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" compoundref="types_8h" startline="97">duvc::PropRange::default_mode</references>
+        <references refid="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" compoundref="types_8h" startline="96">duvc::PropRange::default_val</references>
+        <references refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" compoundref="core_8cpp" startline="332" endline="338">duvc::from_flag</references>
+        <references refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" compoundref="types_8h" startline="94">duvc::PropRange::max</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">duvc::PropRange::min</references>
+        <references refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" compoundref="types_8h" startline="95">duvc::PropRange::step</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get_range</definition>
+        <argsstring>(VidProp prop, PropRange &amp;range)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::DeviceConnection::get_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="65" column="10" bodyfile="core.cpp" bodystart="460" bodyend="477"/>
+        <references refid="structduvc_1_1PropRange_1ae46c4ab49715f07069f9331222c11bed" compoundref="types_8h" startline="97">duvc::PropRange::default_mode</references>
+        <references refid="structduvc_1_1PropRange_1a4f68f8aeda6d9ea46eb037c7df4a104f" compoundref="types_8h" startline="96">duvc::PropRange::default_val</references>
+        <references refid="namespaceduvc_1aee4337c96c223e1892b35dbca2f41806" compoundref="core_8cpp" startline="332" endline="338">duvc::from_flag</references>
+        <references refid="structduvc_1_1PropRange_1ab5b81a569f76130c58c8e59aa0dfed12" compoundref="types_8h" startline="94">duvc::PropRange::max</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">duvc::PropRange::min</references>
+        <references refid="structduvc_1_1PropRange_1ab1ab464138dacc1575176ef42ebb17d9" compoundref="types_8h" startline="95">duvc::PropRange::step</references>
+        <references refid="namespaceduvc_1afdc705db540dbc9d018845ae7ddc761a" compoundref="core_8cpp" startline="308" endline="322">duvc::vidprop_to_dshow</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::is_valid</definition>
+        <argsstring>() const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::DeviceConnection::is_valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.h" line="67" column="10" bodyfile="core.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::DeviceConnection</definition>
+        <argsstring>(const Device &amp;dev)</argsstring>
+        <name>DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::DeviceConnection</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1Device" kindref="compound">Device</ref> &amp;</type>
+          <declname>dev</declname>
+        </param>
+        <briefdescription>
+<para>Create connection to specified device. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="structduvc_1_1Device" kindref="compound">Device</ref> to connect to </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if device cannot be opened </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="30" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::~DeviceConnection</definition>
+        <argsstring>()</argsstring>
+        <name>~DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::~DeviceConnection</qualifiedname>
+        <briefdescription>
+<para>Destructor - releases all COM interfaces. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="33" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a32c2d09632a4999b8c2467eda514a4a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::DeviceConnection</definition>
+        <argsstring>(const DeviceConnection &amp;)=delete</argsstring>
+        <name>DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::DeviceConnection</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a31e6b61f5fd2a4a8e340029136c64891" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;</type>
+        <definition>DeviceConnection &amp; duvc::DeviceConnection::operator=</definition>
+        <argsstring>(const DeviceConnection &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::DeviceConnection::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="37" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1af4d77b0bd6f52f747636fed77c9b4d57" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::DeviceConnection::DeviceConnection</definition>
+        <argsstring>(DeviceConnection &amp;&amp;)=default</argsstring>
+        <name>DeviceConnection</name>
+        <qualifiedname>duvc::DeviceConnection::DeviceConnection</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="38" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a51a016f42c26f738e6305fbef08a91c0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;</type>
+        <definition>DeviceConnection &amp; duvc::DeviceConnection::operator=</definition>
+        <argsstring>(DeviceConnection &amp;&amp;)=default</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::DeviceConnection::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref> &amp;&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="39" column="20"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get</definition>
+        <argsstring>(CamProp prop, PropSetting &amp;val)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::DeviceConnection::get</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Get current value of a camera control property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output current setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if value was retrieved successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="47" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::set</definition>
+        <argsstring>(CamProp prop, const PropSetting &amp;val)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::DeviceConnection::set</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Set value of a camera control property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property to set </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if value was set successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="55" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get</definition>
+        <argsstring>(VidProp prop, PropSetting &amp;val)</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::DeviceConnection::get</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Get current value of a video processing property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output current setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if value was retrieved successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="63" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::set</definition>
+        <argsstring>(VidProp prop, const PropSetting &amp;val)</argsstring>
+        <name>set</name>
+        <qualifiedname>duvc::DeviceConnection::set</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref> &amp;</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+<para>Set value of a video processing property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property to set </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>val</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New property setting </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if value was set successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="71" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get_range</definition>
+        <argsstring>(CamProp prop, PropRange &amp;range)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::DeviceConnection::get_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+<para>Get valid range for a camera control property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref> property to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output range information </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if range was retrieved successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="79" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::get_range</definition>
+        <argsstring>(VidProp prop, PropRange &amp;range)</argsstring>
+        <name>get_range</name>
+        <qualifiedname>duvc::DeviceConnection::get_range</qualifiedname>
+        <param>
+          <type><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref></type>
+          <declname>prop</declname>
+        </param>
+        <param>
+          <type><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref> &amp;</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+<para>Get valid range for a video processing property. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>prop</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Video property to query </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>range</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output range information </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if range was retrieved successfully </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="87" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">bool</ref></type>
+        <definition>bool duvc::DeviceConnection::is_valid</definition>
+        <argsstring>() const</argsstring>
+        <name>is_valid</name>
+        <qualifiedname>duvc::DeviceConnection::is_valid</qualifiedname>
+        <briefdescription>
+<para>Check if connection is valid. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if device is connected and interfaces are available </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="platform/windows/connection_pool.h" line="93" column="8" bodyfile="platform/windows/connection_pool.h" bodystart="93" bodyend="93"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>RAII wrapper for DirectShow device connections. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Manages COM interfaces for a single device, providing efficient access to camera controls without repeated device enumeration and binding. </para>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::DeviceConnection</label>
+        <link refid="classduvc_1_1DeviceConnection"/>
+      </node>
+    </collaborationgraph>
+    <location file="core.h" line="55" column="1" bodyfile="core.h" bodystart="55" bodyend="75"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1DeviceConnection_1aa59d5a3d023cd8479a2e12578a5f5e42" prot="private" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>cam_ctrl_</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a66f8307e71b8e37c962b637c78a222fc" prot="private" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>com_</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a38296005a28e37efa1345e6e29624d2a" prot="private" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>com_</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>DeviceConnection</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a4afc9b6ddaeb6ffdcfcda94dd14f6dbc" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>DeviceConnection</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a32c2d09632a4999b8c2467eda514a4a8" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>DeviceConnection</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1af4d77b0bd6f52f747636fed77c9b4d57" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>DeviceConnection</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a49a72be7d510efb2df12aac5a7ab87f8" prot="private" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>filter_</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aac59736bb276c7c518f9dc2da0f0fa42" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1ae2f8eee0fcac533247cd79b5e148cbf3" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get_range</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get_range</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1ad0564ed2561d7358c549d50c80a635e5" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get_range</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a3a30a60f3b5ea51c1621300704f8c10d" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>get_range</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>is_valid</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a22146e458d993086e1313262a2c992e1" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>is_valid</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a31e6b61f5fd2a4a8e340029136c64891" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a51a016f42c26f738e6305fbef08a91c0" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>set</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>set</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aaf856b49cae449d542431bd30ba5d931" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>set</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1aa2752d34ca21c524125877f7a7983087" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>set</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a4eafa2b6ea5b094237e1ea67303625da" prot="private" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>vid_proc_</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>~DeviceConnection</name></member>
+      <member refid="classduvc_1_1DeviceConnection_1a924d698106e40a58b0439d04447e12c6" prot="public" virt="non-virtual"><scope>duvc::DeviceConnection</scope><name>~DeviceConnection</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

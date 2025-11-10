@@ -1,0 +1,72 @@
+<map id="core/types.h" name="core/types.h">
+<area shape="rect" id="Node000001" title="Core data types and enumerations for duvc&#45;ctl." alt="" coords="1383,5,1476,32"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html" title="Complete C ABI implementation for duvc&#45;ctl library." alt="" coords="163,261,237,288"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1367,23,1086,27,698,37,334,54,202,67,156,74,126,83,74,106,31,136,16,153,9,171,10,190,21,212,34,227,50,239,88,257,127,266,163,270,162,276,126,272,86,262,47,244,31,231,16,215,5,192,4,170,12,150,27,132,71,102,124,77,155,69,202,62,334,49,698,31,1086,22,1367,18"/>
+<area shape="rect" id="Node000003" href="$camera_8h.html" title="RAII camera handle for simplified device management." alt="" coords="181,88,285,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1367,25,971,46,427,83,286,97,285,91,426,77,971,41,1367,20"/>
+<area shape="rect" id="Node000006" href="$capability_8h.html" title="Device capability detection and snapshots using Camera API." alt="" coords="44,179,159,205"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="1367,22,1093,23,717,29,531,36,367,47,241,62,198,72,171,82,146,103,128,130,107,179,102,177,123,127,142,100,168,78,196,67,240,57,366,42,530,31,717,24,1093,17,1367,17"/>
+<area shape="rect" id="Node000007" href="$duvc_8hpp.html" title="Main umbrella header for duvc&#45;ctl library." alt="" coords="1483,261,1557,288"/>
+<area shape="poly" id="edge22_Node000001_Node000007" title=" " alt="" coords="1492,18,1534,23,1579,33,1623,51,1662,78,1679,99,1686,120,1692,170,1697,193,1697,203,1691,215,1663,242,1628,259,1591,270,1558,275,1557,269,1590,264,1626,254,1660,238,1687,212,1692,202,1692,193,1687,171,1681,121,1674,102,1658,82,1620,56,1577,38,1533,28,1491,23"/>
+<area shape="rect" id="Node000008" href="$device_8h.html" title="Device enumeration and management functions." alt="" coords="981,88,1080,115"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="1367,35,1081,93,1080,87,1366,30"/>
+<area shape="rect" id="Node000013" href="$types_8cpp.html" title="Core type implementations." alt="" coords="2262,88,2370,115"/>
+<area shape="poly" id="edge21_Node000001_Node000013" title=" " alt="" coords="1492,17,1629,19,1818,28,2034,46,2144,60,2251,77,2281,85,2279,90,2250,83,2143,65,2033,51,1818,33,1629,25,1491,22"/>
+<area shape="rect" id="Node000014" href="$interface_8h.html" title="Abstract platform interface for camera control." alt="" coords="1724,88,1857,115"/>
+<area shape="poly" id="edge23_Node000001_Node000014" title=" " alt="" coords="1492,31,1706,77,1738,85,1737,90,1705,83,1491,36"/>
+<area shape="rect" id="Node000016" href="$connection__pool_8h.html" title="Windows&#45;specific device connection pooling." alt="" coords="438,80,628,123"/>
+<area shape="poly" id="edge26_Node000001_Node000016" title=" " alt="" coords="1368,28,629,94,629,89,1367,23"/>
+<area shape="rect" id="Node000017" href="$directshow_8h.html" title="DirectShow&#45;specific declarations and helpers." alt="" coords="1881,88,2081,115"/>
+<area shape="poly" id="edge31_Node000001_Node000017" title=" " alt="" coords="1492,25,1870,77,1914,85,1913,90,1869,83,1491,30"/>
+<area shape="rect" id="Node000018" href="$ks__properties_8h.html" title="IKsPropertySet wrapper for vendor properties." alt="" coords="1359,80,1500,123"/>
+<area shape="poly" id="edge33_Node000001_Node000018" title=" " alt="" coords="1432,48,1432,80,1427,80,1427,48"/>
+<area shape="rect" id="Node000020" href="$string__conversion_8h.html" title="String conversion utilities for enums and types." alt="" coords="1119,179,1281,205"/>
+<area shape="poly" id="edge36_Node000001_Node000020" title=" " alt="" coords="1401,43,1348,82,1218,180,1214,176,1345,78,1398,39"/>
+<area shape="rect" id="Node000022" href="$constants_8h.html" title="Vendor&#45;specific property constants and definitions." alt="" coords="2106,88,2238,115"/>
+<area shape="poly" id="edge41_Node000001_Node000022" title=" " alt="" coords="1491,20,1754,36,1923,53,2094,77,2128,85,2127,90,2093,83,1923,59,1754,42,1491,25"/>
+<area shape="rect" id="Node000024" href="$logitech_8h.html" title="Logitech&#45;specific vendor property definitions and helpers." alt="" coords="1528,88,1648,115"/>
+<area shape="poly" id="edge44_Node000001_Node000024" title=" " alt="" coords="1469,37,1564,85,1562,90,1466,42"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="166,109,130,115,94,127,61,146,34,172,26,192,34,212,61,237,94,254,130,264,162,269,162,274,128,269,92,259,57,242,30,215,21,192,30,169,57,142,92,122,129,110,165,103"/>
+<area shape="rect" id="Node000004" href="$camera_8cpp.html" title="RAII camera handle implementation." alt="" coords="334,179,452,205"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="271,120,372,176,369,180,268,125"/>
+<area shape="rect" id="Node000005" href="$capability_8cpp.html" title="Device capability detection implementation using Camera API." alt="" coords="610,261,739,288"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="225,130,217,172,220,193,230,212,255,230,293,244,341,255,395,262,509,270,609,272,609,277,509,276,395,268,340,260,292,249,252,234,226,215,215,195,212,172,220,129"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="203,126,122,180,119,176,200,121"/>
+<area shape="poly" id="edge10_Node000003_Node000007" title=" " alt="" coords="248,127,278,172,299,194,324,211,349,219,388,227,501,238,646,246,807,251,1300,259,1482,269,1482,274,1300,264,807,256,646,251,501,243,388,232,348,225,321,216,296,198,274,176,244,130"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="130,213,187,259,183,263,127,217"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="160,207,178,211,296,231,415,246,610,266,609,271,415,251,296,236,177,216,159,212"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="174,204,228,211,529,235,763,244,998,248,1300,259,1482,268,1482,274,1300,264,998,253,763,249,528,240,228,216,174,209"/>
+<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="1035,131,1030,175,1022,197,1007,216,971,225,895,235,669,252,238,274,238,269,668,247,894,230,970,220,1004,211,1017,194,1025,173,1030,130"/>
+<area shape="poly" id="edge14_Node000008_Node000004" title=" " alt="" coords="966,110,743,131,605,150,466,173,435,181,434,175,465,168,604,144,743,126,965,105"/>
+<area shape="poly" id="edge15_Node000008_Node000005" title=" " alt="" coords="1048,128,1056,148,1062,171,1061,194,1051,215,1030,231,999,244,917,262,824,271,740,275,740,270,823,266,916,257,997,239,1027,227,1047,212,1056,193,1057,172,1051,150,1043,130"/>
+<area shape="poly" id="edge17_Node000008_Node000007" title=" " alt="" coords="1096,109,1192,130,1244,146,1294,168,1310,179,1321,190,1331,200,1345,211,1417,243,1483,262,1481,267,1415,248,1343,216,1327,204,1317,193,1307,183,1292,173,1243,151,1191,135,1095,114"/>
+<area shape="rect" id="Node000009" href="$device_8cpp.html" title="Device enumeration and management implementation." alt="" coords="477,179,590,205"/>
+<area shape="poly" id="edge16_Node000008_Node000009" title=" " alt="" coords="966,113,801,137,603,173,574,181,573,176,602,168,800,131,965,108"/>
+<area shape="rect" id="Node000010" href="$connection__pool_8cpp.html" title="Windows DirectShow connection pooling implementation." alt="" coords="614,171,804,213"/>
+<area shape="poly" id="edge18_Node000008_Node000010" title=" " alt="" coords="971,122,785,173,784,168,969,117"/>
+<area shape="rect" id="Node000011" href="$device__monitor_8cpp.html" title="Windows device hotplug detection implementation." alt="" coords="828,171,993,213"/>
+<area shape="poly" id="edge19_Node000008_Node000011" title=" " alt="" coords="1003,126,940,172,937,168,1000,122"/>
+<area shape="rect" id="Node000012" href="$ks__properties_8cpp.html" title="IKsPropertySet implementation for vendor properties." alt="" coords="1356,171,1497,213"/>
+<area shape="poly" id="edge20_Node000008_Node000012" title=" " alt="" coords="1096,114,1338,168,1356,172,1355,177,1337,173,1095,120"/>
+<area shape="poly" id="edge24_Node000014_Node000007" title=" " alt="" coords="1793,131,1786,174,1777,196,1763,215,1748,226,1727,235,1672,251,1558,271,1557,266,1670,246,1725,230,1745,221,1759,211,1773,193,1781,173,1788,130"/>
+<area shape="rect" id="Node000015" href="$factory_8cpp.html" title="Platform detection and factory implementation." alt="" coords="1830,179,1967,205"/>
+<area shape="poly" id="edge25_Node000014_Node000015" title=" " alt="" coords="1820,123,1885,176,1881,180,1816,127"/>
+<area shape="poly" id="edge27_Node000016_Node000002" title=" " alt="" coords="431,130,376,149,324,173,290,195,259,219,213,263,210,259,256,215,287,190,321,168,374,144,429,125"/>
+<area shape="poly" id="edge28_Node000016_Node000004" title=" " alt="" coords="489,134,415,180,412,176,486,129"/>
+<area shape="poly" id="edge29_Node000016_Node000009" title=" " alt="" coords="536,138,536,178,531,178,531,138"/>
+<area shape="poly" id="edge30_Node000016_Node000010" title=" " alt="" coords="589,128,669,168,667,173,587,132"/>
+<area shape="poly" id="edge32_Node000017_Node000015" title=" " alt="" coords="1961,128,1912,180,1908,176,1957,125"/>
+<area shape="poly" id="edge34_Node000018_Node000012" title=" " alt="" coords="1431,138,1430,170,1424,170,1425,138"/>
+<area shape="rect" id="Node000019" href="$logitech_8cpp.html" title="Logitech&#45;specific property implementations." alt="" coords="1521,179,1655,205"/>
+<area shape="poly" id="edge35_Node000018_Node000019" title=" " alt="" coords="1481,128,1566,176,1564,180,1478,133"/>
+<area shape="poly" id="edge37_Node000020_Node000002" title=" " alt="" coords="1104,210,1049,216,807,238,571,255,238,274,237,269,571,249,807,232,1049,211,1103,204"/>
+<area shape="poly" id="edge38_Node000020_Node000005" title=" " alt="" coords="1125,211,1100,216,904,246,740,268,739,263,903,241,1099,211,1124,206"/>
+<area shape="poly" id="edge39_Node000020_Node000007" title=" " alt="" coords="1266,207,1483,261,1482,267,1264,212"/>
+<area shape="rect" id="Node000021" href="$string__conversion_8cpp.html" title="String conversion utilities implementation." alt="" coords="1112,261,1288,288"/>
+<area shape="poly" id="edge40_Node000020_Node000021" title=" " alt="" coords="1203,221,1203,261,1197,261,1197,221"/>
+<area shape="poly" id="edge42_Node000022_Node000007" title=" " alt="" coords="2177,131,2173,174,2165,197,2151,215,2117,230,2057,241,1885,259,1698,270,1558,275,1557,270,1698,264,1885,254,2056,236,2116,225,2148,211,2161,194,2168,173,2172,130"/>
+<area shape="rect" id="Node000023" href="$constants_8cpp.html" title="Vendor&#45;specific property implementation." alt="" coords="1991,179,2137,205"/>
+<area shape="poly" id="edge43_Node000022_Node000023" title=" " alt="" coords="2146,127,2081,180,2078,176,2143,123"/>
+<area shape="poly" id="edge45_Node000024_Node000007" title=" " alt="" coords="1626,122,1650,142,1669,169,1676,193,1669,215,1646,239,1617,255,1586,266,1558,272,1557,267,1585,261,1615,250,1643,234,1664,212,1671,193,1664,172,1646,146,1622,126"/>
+<area shape="poly" id="edge46_Node000024_Node000019" title=" " alt="" coords="1591,130,1591,178,1585,178,1585,130"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="duvc::unregister_device_change_callback" name="duvc::unregister_device_change_callback">
+<area shape="rect" id="Node000001" title="Unregister device change callback." alt="" coords="372,5,531,48"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a4961e02c4ed3ad0dced1ca69ebfabd34" title="Unregister device change callback." alt="" coords="166,5,324,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="356,29,325,29,325,24,356,24"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#aba9a96bde8eb046a53402e47d1f763e2" title="Shutdown library." alt="" coords="5,13,118,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,29,118,29,118,24,150,24"/>
+</map>

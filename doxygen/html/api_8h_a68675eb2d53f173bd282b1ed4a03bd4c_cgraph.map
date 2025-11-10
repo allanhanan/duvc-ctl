@@ -1,0 +1,5 @@
+<map id="duvc_cam_mode_to_string" name="duvc_cam_mode_to_string">
+<area shape="rect" id="Node000001" title="Convert camera mode to string." alt="" coords="5,5,183,32"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#a8556fd02a649101843e7712e638cc0cb" title="Convert camera property enum to string." alt="" coords="231,5,338,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="183,16,215,16,215,21,183,21"/>
+</map>

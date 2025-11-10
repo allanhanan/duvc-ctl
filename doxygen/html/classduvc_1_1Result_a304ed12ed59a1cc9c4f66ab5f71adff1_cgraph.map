@@ -1,0 +1,9 @@
+<map id="duvc::Result::value_or" name="duvc::Result::value_or">
+<area shape="rect" id="Node000001" title="Get value or default if error." alt="" coords="5,56,158,83"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="209,5,344,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,53,207,34,208,39,137,58"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1Result.html#ab4a5ff1c932f6babbc6b3378bf0cb06d" title="Create successful result with value." alt="" coords="206,56,347,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,67,190,67,190,72,158,72"/>
+<area shape="rect" id="Node000004" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="209,107,344,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="137,81,208,100,207,105,135,86"/>
+</map>

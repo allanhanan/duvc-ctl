@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>10. Vendor-Specific Extensions - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="11. Building, Contributing &amp; pybind11 Integration" href="11_building-contributing-pybind11-integration.html" /><link rel="prev" title="9. Logging, Diagnostics &amp; Callbacks" href="09_logging-diagnostics-callbacks.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="10. Vendor-Specific Extensions"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">10. Vendor-Specific Extensions</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="vendor-specific-extensions">
+<h1>10. Vendor-Specific Extensions<a class="headerlink" href="#vendor-specific-extensions" title="Link to this heading">¶</a></h1>
+<section id="logitech-extensions">
+<h2>10.1 Logitech Extensions<a class="headerlink" href="#logitech-extensions" title="Link to this heading">¶</a></h2>
+<p>Logitech-specific camera properties and control functions for PTZ, LED, and audio features. Available on supported Logitech camera models (C922, C930, C925, etc.).</p>
+<hr class="docutils" />
+<section id="logitechproperty-enum">
+<h3>LogitechProperty enum<a class="headerlink" href="#logitechproperty-enum" title="Link to this heading">¶</a></h3>
+<p>10 vendor properties specific to Logitech cameras. Integer enum values mapped to hardware controls.</p>
+<p><strong>Properties</strong>:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Value</p></th>
+<th class="head text-left"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LED_Mode</span></code></p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>LED indicator on/off/auto</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Brightness_Enhancement</span></code></p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>Automatic brightness adjustment</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Face_Detection</span></code></p></td>
+<td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Enable/disable face detection</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Low_Light_Compensation</span></code></p></td>
+<td class="text-left"><p>3</p></td>
+<td class="text-left"><p>Low-light mode</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Automatic_Exposure</span></code></p></td>
+<td class="text-left"><p>4</p></td>
+<td class="text-left"><p>Auto-exposure control</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Automatic_Whitebalance</span></code></p></td>
+<td class="text-left"><p>5</p></td>
+<td class="text-left"><p>Auto white balance control</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Automatic_Lowlight_Compensation</span></code></p></td>
+<td class="text-left"><p>6</p></td>
+<td class="text-left"><p>Auto low-light adjustment</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Pan_Speed</span></code></p></td>
+<td class="text-left"><p>7</p></td>
+<td class="text-left"><p>PTZ pan movement speed</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Tilt_Speed</span></code></p></td>
+<td class="text-left"><p>8</p></td>
+<td class="text-left"><p>PTZ tilt movement speed</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">Zoom_Speed</span></code></p></td>
+<td class="text-left"><p>9</p></td>
+<td class="text-left"><p>PTZ zoom movement speed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_logitech_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogitechProperty</span><span class="o">.</span><span class="n">LED_Mode</span><span class="p">)</span>
+</span><span data-line="5"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LED Mode: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-logitech-property-read-logitech-property">
+<h3>get_logitech_property() - read Logitech property<a class="headerlink" href="#get-logitech-property-read-logitech-property" title="Link to this heading">¶</a></h3>
+<p>Get Logitech-specific property value. Returns Result type with error on unsupported models.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_logitech_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">prop</span><span class="p">:</span> <span class="n">LogitechProperty</span>
+</span><span data-line="4"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Okuint32</span> <span class="o">|</span> <span class="n">Erruint32</span><span class="p">:</span>
+</span><span data-line="5"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="6"><span class="sd">    Get Logitech property value.</span>
+</span><span data-line="7"><span class="sd">    </span>
+</span><span data-line="8"><span class="sd">    Returns:</span>
+</span><span data-line="9"><span class="sd">        Okuint32 with value, or Erruint32 if unsupported/failed</span>
+</span><span data-line="10"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Read LED mode</span>
+</span><span data-line="6"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_logitech_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogitechProperty</span><span class="o">.</span><span class="n">LED_Mode</span><span class="p">)</span>
+</span><span data-line="7"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LED: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="set-logitech-property-write-logitech-property">
+<h3>set_logitech_property() - write Logitech property<a class="headerlink" href="#set-logitech-property-write-logitech-property" title="Link to this heading">¶</a></h3>
+<p>Set Logitech-specific property value. Range varies by property.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">set_logitech_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">prop</span><span class="p">:</span> <span class="n">LogitechProperty</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+</span><span data-line="5"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Okvoid</span> <span class="o">|</span> <span class="n">Errvoid</span><span class="p">:</span>
+</span><span data-line="6"><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span data-line="7"><span class="sd">    Set Logitech property value.</span>
+</span><span data-line="8"><span class="sd">    </span>
+</span><span data-line="9"><span class="sd">    Returns:</span>
+</span><span data-line="10"><span class="sd">        Okvoid on success, Errvoid on error</span>
+</span><span data-line="11"><span class="sd">    &quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Set LED to auto (value = 2)</span>
+</span><span data-line="6"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">set_logitech_property</span><span class="p">(</span>
+</span><span data-line="7">    <span class="n">device</span><span class="p">,</span>
+</span><span data-line="8">    <span class="n">duvc</span><span class="o">.</span><span class="n">LogitechProperty</span><span class="o">.</span><span class="n">LED_Mode</span><span class="p">,</span>
+</span><span data-line="9">    <span class="mi">2</span>
+</span><span data-line="10"><span class="p">)</span>
+</span><span data-line="11"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LED set to auto&quot;</span><span class="p">)</span>
+</span><span data-line="13"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="14">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="c1"># Set pan speed (0-100)</span>
+</span><span data-line="17"><span class="n">duvc</span><span class="o">.</span><span class="n">set_logitech_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">LogitechProperty</span><span class="o">.</span><span class="n">Pan_Speed</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="supports-logitech-properties-capability-check">
+<h3>supports_logitech_properties() - capability check<a class="headerlink" href="#supports-logitech-properties-capability-check" title="Link to this heading">¶</a></h3>
+<p>Query if device supports Logitech extensions. Some models lack vendor features.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check if device supports Logitech extensions.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="k">if</span> <span class="n">duvc</span><span class="o">.</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> supports Logitech extensions&quot;</span><span class="p">)</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="c1"># Safe to use Logitech-specific functions</span>
+</span><span data-line="9">    <span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_logitech_property</span><span class="p">(</span>
+</span><span data-line="10">        <span class="n">device</span><span class="p">,</span>
+</span><span data-line="11">        <span class="n">duvc</span><span class="o">.</span><span class="n">LogitechProperty</span><span class="o">.</span><span class="n">LED_Mode</span>
+</span><span data-line="12">    <span class="p">)</span>
+</span><span data-line="13"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="14">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not support Logitech extensions&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Capability detection</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">():</span>
+</span><span data-line="4">    <span class="n">has_logitech</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">supports_logitech_properties</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">marker</span> <span class="o">=</span> <span class="s2">&quot;✓&quot;</span> <span class="k">if</span> <span class="n">has_logitech</span> <span class="k">else</span> <span class="s2">&quot;✗&quot;</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">marker</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="guid-vendor-properties">
+<h2>10.2 GUID &amp; Vendor Properties<a class="headerlink" href="#guid-vendor-properties" title="Link to this heading">¶</a></h2>
+<p>Low-level GUID handling for Windows COM interfaces and generic vendor property access. <strong>All GUID functions are Windows-only.</strong></p>
+<hr class="docutils" />
+<section id="guid-wrapper-type-windows-only">
+<h3>GUID wrapper type (Windows-only)<a class="headerlink" href="#guid-wrapper-type-windows-only" title="Link to this heading">¶</a></h3>
+<p>GUID object encapsulates Windows GUID structure. Immutable wrapper for interface identification and vendor-specific control.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">GUID</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Windows GUID wrapper (128-bit UUID).&quot;&quot;&quot;</span>
+</span><span data-line="3">    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="fm">__bytes__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="guid-from-uuid-uuid-to-guid-conversion-windows-only">
+<h3>guid_from_uuid() - UUID to GUID conversion (Windows-only)<a class="headerlink" href="#guid-from-uuid-uuid-to-guid-conversion-windows-only" title="Link to this heading">¶</a></h3>
+<p>Convert Python UUID to Windows GUID format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">guid_from_uuid</span><span class="p">(</span><span class="n">uuid_obj</span><span class="p">:</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GUID</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert Python UUID to GUID.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">standard_uuid</span> <span class="o">=</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s2">&quot;6994ad05-93f7-406d-611d-4222d440c8a0&quot;</span><span class="p">)</span>
+</span><span data-line="5"><span class="n">guid</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_uuid</span><span class="p">(</span><span class="n">standard_uuid</span><span class="p">)</span>
+</span><span data-line="6"><span class="nb">print</span><span class="p">(</span><span class="n">guid</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="guid-from-pyobj-flexible-guid-creation-windows-only">
+<h3>guid_from_pyobj() - flexible GUID creation (Windows-only)<a class="headerlink" href="#guid-from-pyobj-flexible-guid-creation-windows-only" title="Link to this heading">¶</a></h3>
+<p>Create GUID from string, bytes, or UUID object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">guid_from_pyobj</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GUID</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create GUID from string, bytes, or UUID.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>String formats</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}</span></code> (with braces)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX</span></code> (no braces)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></code> (hex only)</p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># From string</span>
+</span><span data-line="4"><span class="n">guid1</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="s2">&quot;{6994ad05-93f7-406d-611d-4222d440c8a0}&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1"># From bytes (16 bytes, little-endian GUID)</span>
+</span><span data-line="7"><span class="n">guid2</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x05\xad\x94\x69\xf7\x93\x6d\x40</span><span class="s1">...&#39;</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># From UUID</span>
+</span><span data-line="10"><span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+</span><span data-line="11"><span class="n">guid3</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">UUID</span><span class="p">(</span><span class="s2">&quot;6994ad05-93f7-406d-611d-4222d440c8a0&quot;</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="vendorproperty-type">
+<h3>VendorProperty type<a class="headerlink" href="#vendorproperty-type" title="Link to this heading">¶</a></h3>
+<p>Structured vendor property descriptor with metadata. Contains GUID, property ID, and access mode.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">VendorProperty</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Vendor-specific property descriptor.&quot;&quot;&quot;</span>
+</span><span data-line="3">    <span class="n">vendor_guid</span><span class="p">:</span> <span class="n">GUID</span>
+</span><span data-line="4">    <span class="n">property_id</span><span class="p">:</span> <span class="nb">int</span>
+</span><span data-line="5">    <span class="n">access_mode</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># &quot;read&quot;, &quot;write&quot;, &quot;read_write&quot;</span>
+</span><span data-line="6">    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span>    <span class="c1"># &quot;int&quot;, &quot;bytes&quot;, &quot;string&quot;</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="deviceconnection-type">
+<h3>DeviceConnection type<a class="headerlink" href="#deviceconnection-type" title="Link to this heading">¶</a></h3>
+<p>Device connection context for vendor property operations. Wraps open camera handle.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">DeviceConnection</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Device connection for vendor operations.&quot;&quot;&quot;</span>
+</span><span data-line="3">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span>
+</span><span data-line="4">    <span class="n">is_open</span><span class="p">:</span> <span class="nb">bool</span>
+</span><span data-line="5">    <span class="n">error</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="read-vendor-property-get-vendor-property-windows-only">
+<h3>read_vendor_property() - get vendor property (Windows-only)<a class="headerlink" href="#read-vendor-property-get-vendor-property-windows-only" title="Link to this heading">¶</a></h3>
+<p>Read vendor-specific property using GUID and property ID.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">read_vendor_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">vendor_guid</span><span class="p">:</span> <span class="n">GUID</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span>
+</span><span data-line="6"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">[</span><span class="nb">bytes</span> <span class="o">|</span> <span class="nb">int</span><span class="p">]:</span>
+</span><span data-line="7"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Read vendor property.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Data types</strong>: <code class="docutils literal notranslate"><span class="pre">&quot;int&quot;</span></code> → int, <code class="docutils literal notranslate"><span class="pre">&quot;bytes&quot;</span></code> → bytes, <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code> → str</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4"><span class="n">guid</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="s2">&quot;{6994ad05-93f7-406d-611d-4222d440c8a0}&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">read_vendor_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">guid</span><span class="p">,</span> <span class="n">prop_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span><span class="p">)</span>
+</span><span data-line="7"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="8">    <span class="n">value</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Property value: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="10"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="11">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="write-vendor-property-set-vendor-property-windows-only">
+<h3>write_vendor_property() - set vendor property (Windows-only)<a class="headerlink" href="#write-vendor-property-set-vendor-property-windows-only" title="Link to this heading">¶</a></h3>
+<p>Write vendor-specific property value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">write_vendor_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">vendor_guid</span><span class="p">:</span> <span class="n">GUID</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">value</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="6">    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span>
+</span><span data-line="7"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Result</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+</span><span data-line="8"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Write vendor property.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4"><span class="n">guid</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="s2">&quot;{6994ad05-93f7-406d-611d-4222d440c8a0}&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">write_vendor_property</span><span class="p">(</span>
+</span><span data-line="7">    <span class="n">device</span><span class="p">,</span> <span class="n">guid</span><span class="p">,</span> <span class="n">prop_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">&quot;int&quot;</span>
+</span><span data-line="8"><span class="p">)</span>
+</span><span data-line="9"><span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Property set successfully&quot;</span><span class="p">)</span>
+</span><span data-line="11"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="get-vendor-property-wrapper-with-error-handling">
+<h3>get_vendor_property() - wrapper with error handling<a class="headerlink" href="#get-vendor-property-wrapper-with-error-handling" title="Link to this heading">¶</a></h3>
+<p>High-level wrapper for <code class="docutils literal notranslate"><span class="pre">read_vendor_property()</span></code>. Raises exception on error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">get_vendor_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">vendor_guid</span><span class="p">:</span> <span class="n">GUID</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span>
+</span><span data-line="6"><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">:</span>
+</span><span data-line="7"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Read vendor property (exception on error).&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4"><span class="n">guid</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="s2">&quot;{6994ad05-93f7-406d-611d-4222d440c8a0}&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">value</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_vendor_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">guid</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Property: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="set-vendor-property-wrapper-with-error-handling">
+<h3>set_vendor_property() - wrapper with error handling<a class="headerlink" href="#set-vendor-property-wrapper-with-error-handling" title="Link to this heading">¶</a></h3>
+<p>High-level wrapper for <code class="docutils literal notranslate"><span class="pre">write_vendor_property()</span></code>. Raises exception on error.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">set_vendor_property</span><span class="p">(</span>
+</span><span data-line="2">    <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span>
+</span><span data-line="3">    <span class="n">vendor_guid</span><span class="p">:</span> <span class="n">GUID</span><span class="p">,</span>
+</span><span data-line="4">    <span class="n">property_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+</span><span data-line="5">    <span class="n">value</span><span class="p">:</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+</span><span data-line="6">    <span class="n">data_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span>
+</span><span data-line="7"><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="8"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Write vendor property (exception on error).&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">device</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="4"><span class="n">guid</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">guid_from_pyobj</span><span class="p">(</span><span class="s2">&quot;{6994ad05-93f7-406d-611d-4222d440c8a0}&quot;</span><span class="p">)</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="7">    <span class="n">duvc</span><span class="o">.</span><span class="n">set_vendor_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">guid</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Property set&quot;</span><span class="p">)</span>
+</span><span data-line="9"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DuvcError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="10">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<section id="abstract-interfaces-for-extension">
+<h2>10.3 Abstract Interfaces for Extension<a class="headerlink" href="#abstract-interfaces-for-extension" title="Link to this heading">¶</a></h2>
+<p>Plugin-style extensibility through abstract interface implementation. Python subclasses can override C++ interface methods using pybind11 trampolines.</p>
+<hr class="docutils" />
+<section id="iplatforminterface-abstract-windows-only">
+<h3>IPlatformInterface abstract (Windows-only)<a class="headerlink" href="#iplatforminterface-abstract-windows-only" title="Link to this heading">¶</a></h3>
+<p>Abstract base for platform-specific operations. Defines hooks for device enumeration, property access, and system queries. Not used directly; subclass via Python or use built-in implementation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">IPlatformInterface</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Platform implementation contract.&quot;&quot;&quot;</span>
+</span><span data-line="3">    <span class="k">def</span><span class="w"> </span><span class="nf">enumerate_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Device</span><span class="p">]:</span> <span class="o">...</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="nf">query_device_capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DeviceCapabilities</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="5">    <span class="k">def</span><span class="w"> </span><span class="nf">get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="6">    <span class="k">def</span><span class="w"> </span><span class="nf">set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="ideviceconnection-abstract-windows-only">
+<h3>IDeviceConnection abstract (Windows-only)<a class="headerlink" href="#ideviceconnection-abstract-windows-only" title="Link to this heading">¶</a></h3>
+<p>Abstract connection context for vendor operations. Manages device lifecycle and low-level I/O. Override for custom transport layers or simulation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">IDeviceConnection</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Device connection contract.&quot;&quot;&quot;</span>
+</span><span data-line="3">    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">Device</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="5">    <span class="k">def</span><span class="w"> </span><span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="6">    <span class="k">def</span><span class="w"> </span><span class="nf">read_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span> <span class="o">...</span>
+</span><span data-line="7">    <span class="k">def</span><span class="w"> </span><span class="nf">write_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="o">...</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pyiplatforminterface-python-subclassing-trampoline">
+<h3>PyIPlatformInterface - Python subclassing trampoline<a class="headerlink" href="#pyiplatforminterface-python-subclassing-trampoline" title="Link to this heading">¶</a></h3>
+<p>Pybind11 trampoline enabling Python classes to override interface methods. Automatic GIL management for C++→Python calls.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">CustomPlatform</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IPlatformInterface</span><span class="p">):</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="nf">enumerate_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="5">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Custom enumeration&quot;</span><span class="p">)</span>
+</span><span data-line="6">        <span class="n">devices</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="7">        <span class="c1"># Custom device discovery logic</span>
+</span><span data-line="8">        <span class="k">return</span> <span class="n">devices</span>
+</span><span data-line="9">    
+</span><span data-line="10">    <span class="k">def</span><span class="w"> </span><span class="nf">query_device_capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+</span><span data-line="11">        <span class="c1"># Custom capability query</span>
+</span><span data-line="12">        <span class="k">return</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceCapabilities</span><span class="p">()</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="k">def</span><span class="w"> </span><span class="nf">get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">):</span>
+</span><span data-line="15">        <span class="c1"># Custom property read</span>
+</span><span data-line="16">        <span class="k">return</span> <span class="mi">0</span>
+</span><span data-line="17">    
+</span><span data-line="18">    <span class="k">def</span><span class="w"> </span><span class="nf">set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span data-line="19">        <span class="c1"># Custom property write</span>
+</span><span data-line="20">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="c1"># Register with library</span>
+</span><span data-line="23"><span class="n">platform</span> <span class="o">=</span> <span class="n">CustomPlatform</span><span class="p">()</span>
+</span><span data-line="24"><span class="n">duvc</span><span class="o">.</span><span class="n">create_platform_interface</span><span class="p">(</span><span class="n">platform</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pyideviceconnection-python-subclassing-trampoline">
+<h3>PyIDeviceConnection - Python subclassing trampoline<a class="headerlink" href="#pyideviceconnection-python-subclassing-trampoline" title="Link to this heading">¶</a></h3>
+<p>Trampoline for device connection override. Custom implementations handle non-standard transports or mock devices.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">MockConnection</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IDeviceConnection</span><span class="p">):</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+</span><span data-line="5">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mock open: </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="6">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mock close&quot;</span><span class="p">)</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="k">def</span><span class="w"> </span><span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="12">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="k">def</span><span class="w"> </span><span class="nf">read_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">):</span>
+</span><span data-line="15">        <span class="c1"># Return mock data</span>
+</span><span data-line="16">        <span class="k">return</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00\x01\x02\x03</span><span class="s1">&#39;</span>
+</span><span data-line="17">    
+</span><span data-line="18">    <span class="k">def</span><span class="w"> </span><span class="nf">write_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span data-line="19">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mock write: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+</span><span data-line="20">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="n">conn</span> <span class="o">=</span> <span class="n">MockConnection</span><span class="p">()</span>
+</span><span data-line="23"><span class="c1"># Pass to device operations</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pybind11-override-pure-macro-pattern">
+<h3>PYBIND11_OVERRIDE_PURE macro pattern<a class="headerlink" href="#pybind11-override-pure-macro-pattern" title="Link to this heading">¶</a></h3>
+<p>Macros used internally to forward Python method calls to C++. Not directly called by users, but understanding helps with debugging.</p>
+<p><strong>Invocation</strong> (internal):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// C++ side (pybind11 binding code)</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">PyIPlatformInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">IPlatformInterface</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="w"> </span><span class="n">enumerate_devices</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">        </span><span class="n">PYBIND11_OVERRIDE_PURE</span><span class="p">(</span>
+</span><span data-line="5"><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="p">,</span>
+</span><span data-line="6"><span class="w">            </span><span class="n">IPlatformInterface</span><span class="p">,</span>
+</span><span data-line="7"><span class="w">            </span><span class="n">enumerate_devices</span>
+</span><span data-line="8"><span class="w">        </span><span class="p">);</span>
+</span><span data-line="9"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="10"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>When Python calls <code class="docutils literal notranslate"><span class="pre">enumerate_devices()</span></code>, pybind11 routes it through this macro, acquiring GIL and calling the Python implementation.</p>
+</section>
+<hr class="docutils" />
+<section id="create-platform-interface-factory-registration">
+<h3>create_platform_interface() - factory registration<a class="headerlink" href="#create-platform-interface-factory-registration" title="Link to this heading">¶</a></h3>
+<p>Register custom platform implementation. Library uses it for all subsequent operations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">def</span><span class="w"> </span><span class="nf">create_platform_interface</span><span class="p">(</span><span class="n">impl</span><span class="p">:</span> <span class="n">IPlatformInterface</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span data-line="2"><span class="w">    </span><span class="sd">&quot;&quot;&quot;Register custom platform implementation.&quot;&quot;&quot;</span>
+</span></pre></div>
+</div>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">CustomPlatform</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IPlatformInterface</span><span class="p">):</span>
+</span><span data-line="4">    <span class="c1"># ... implementation ...</span>
+</span><span data-line="5">    <span class="k">pass</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="n">duvc</span><span class="o">.</span><span class="n">create_platform_interface</span><span class="p">(</span><span class="n">CustomPlatform</span><span class="p">())</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="c1"># All library operations now use custom implementation</span>
+</span><span data-line="10"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">devices</span><span class="p">()</span>  <span class="c1"># Uses CustomPlatform.enumerate_devices()</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="python-custom-implementation-patterns">
+<h3>Python custom implementation patterns<a class="headerlink" href="#python-custom-implementation-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Pattern 1: Simulation/Testing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">SimulatedPlatform</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IPlatformInterface</span><span class="p">):</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="5">        <span class="bp">self</span><span class="o">.</span><span class="n">device_list</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="k">def</span><span class="w"> </span><span class="nf">enumerate_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="8">        <span class="c1"># Return mock devices</span>
+</span><span data-line="9">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">device_list</span>
+</span><span data-line="10">    
+</span><span data-line="11">    <span class="k">def</span><span class="w"> </span><span class="nf">query_device_capabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+</span><span data-line="12">        <span class="n">caps</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceCapabilities</span><span class="p">()</span>
+</span><span data-line="13">        <span class="n">caps</span><span class="o">.</span><span class="n">supported_camera_properties</span> <span class="o">=</span> <span class="p">[</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Tilt</span><span class="p">]</span>
+</span><span data-line="14">        <span class="k">return</span> <span class="n">caps</span>
+</span><span data-line="15">    
+</span><span data-line="16">    <span class="k">def</span><span class="w"> </span><span class="nf">get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">):</span>
+</span><span data-line="17">        <span class="k">return</span> <span class="mi">50</span>  <span class="c1"># Mock value</span>
+</span><span data-line="18">    
+</span><span data-line="19">    <span class="k">def</span><span class="w"> </span><span class="nf">set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span data-line="20">        <span class="k">return</span> <span class="kc">True</span>  <span class="c1"># Always succeed</span>
+</span><span data-line="21">
+</span><span data-line="22"><span class="c1"># Use simulated environment</span>
+</span><span data-line="23"><span class="n">duvc</span><span class="o">.</span><span class="n">create_platform_interface</span><span class="p">(</span><span class="n">SimulatedPlatform</span><span class="p">())</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 2: Logging/Debugging wrapper</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">LoggingPlatform</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IPlatformInterface</span><span class="p">):</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">real_impl</span><span class="p">):</span>
+</span><span data-line="5">        <span class="bp">self</span><span class="o">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">real_impl</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="k">def</span><span class="w"> </span><span class="nf">enumerate_devices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="8">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TRACE: enumerate_devices called&quot;</span><span class="p">)</span>
+</span><span data-line="9">        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">enumerate_devices</span><span class="p">()</span>
+</span><span data-line="10">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRACE: found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s2"> devices&quot;</span><span class="p">)</span>
+</span><span data-line="11">        <span class="k">return</span> <span class="n">result</span>
+</span><span data-line="12">    
+</span><span data-line="13">    <span class="k">def</span><span class="w"> </span><span class="nf">get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">):</span>
+</span><span data-line="14">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRACE: get_property device=</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> prop=</span><span class="si">{</span><span class="n">prop_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="15">        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">)</span>
+</span><span data-line="16">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRACE: result=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="17">        <span class="k">return</span> <span class="n">value</span>
+</span><span data-line="18">    
+</span><span data-line="19">    <span class="k">def</span><span class="w"> </span><span class="nf">set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span data-line="20">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRACE: set_property device=</span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> prop=</span><span class="si">{</span><span class="n">prop_id</span><span class="si">}</span><span class="s2"> value=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="21">        <span class="n">success</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">real</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span><span data-line="22">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TRACE: success=</span><span class="si">{</span><span class="n">success</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="23">        <span class="k">return</span> <span class="n">success</span>
+</span></pre></div>
+</div>
+<p><strong>Pattern 3: Custom device transport</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">class</span><span class="w"> </span><span class="nc">NetworkConnection</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">IDeviceConnection</span><span class="p">):</span>
+</span><span data-line="4">    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+</span><span data-line="5">        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+</span><span data-line="6">        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+</span><span data-line="7">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span data-line="8">    
+</span><span data-line="9">    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+</span><span data-line="10">        <span class="c1"># Connect to remote device</span>
+</span><span data-line="11">        <span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+</span><span data-line="12">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+</span><span data-line="13">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+</span><span data-line="14">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="15">    
+</span><span data-line="16">    <span class="k">def</span><span class="w"> </span><span class="nf">is_connected</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="17">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</span><span data-line="18">    
+</span><span data-line="19">    <span class="k">def</span><span class="w"> </span><span class="nf">read_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">):</span>
+</span><span data-line="20">        <span class="c1"># Send read request over network</span>
+</span><span data-line="21">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;READ </span><span class="si">{</span><span class="n">prop_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span><span data-line="22">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+</span><span data-line="23">    
+</span><span data-line="24">    <span class="k">def</span><span class="w"> </span><span class="nf">write_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_id</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span data-line="25">        <span class="c1"># Send write request over network</span>
+</span><span data-line="26">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WRITE </span><span class="si">{</span><span class="n">prop_id</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+</span><span data-line="27">        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span data-line="28">        <span class="k">return</span> <span class="kc">True</span>
+</span><span data-line="29">    
+</span><span data-line="30">    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span data-line="31">        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">:</span>
+</span><span data-line="32">            <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></pre></div>
+</div>
+<p><strong>Important Notes</strong>:</p>
+<ul class="simple">
+<li><p>Custom implementations must implement all abstract methods</p></li>
+<li><p>GIL is held during Python method calls; avoid blocking</p></li>
+<li><p>Exceptions in Python methods are converted to C++ exceptions</p></li>
+<li><p>Return types must match interface contract exactly</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="09_logging-diagnostics-callbacks.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">9. Logging, Diagnostics &amp; Callbacks</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="11_building-contributing-pybind11-integration.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">11. Building, Contributing &amp; pybind11 Integration</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

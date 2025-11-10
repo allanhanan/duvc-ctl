@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>7. Property Reference &amp; Details - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="8. Usage Patterns &amp; Best Practices" href="08_usage-patterns-best-practices.html" /><link rel="prev" title="6. Internal Implementation Details" href="06_internal-implementation-details.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="7. Property Reference &amp; Details"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">7. Property Reference &amp; Details</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="property-reference-details">
+<h1>7. Property Reference &amp; Details<a class="headerlink" href="#property-reference-details" title="Link to this heading">¶</a></h1>
+<section id="camera-properties-complete-reference">
+<h2>7.1 Camera Properties Complete Reference<a class="headerlink" href="#camera-properties-complete-reference" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/types.h&gt;</span></code>
+<strong>Enum:</strong> <code class="docutils literal notranslate"><span class="pre">CamProp</span></code>
+<strong>DirectShow Interface:</strong> <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code></p>
+<p>All 23 camera property values with descriptions and behaviors. Actual ranges are <strong>device-specific</strong> and must be queried via <code class="docutils literal notranslate"><span class="pre">camera.get_range(prop)</span></code> or <code class="docutils literal notranslate"><span class="pre">DeviceCapabilities</span></code>.</p>
+<hr class="docutils" />
+<section id="absolute-position-properties-9">
+<h3>Absolute Position Properties (9)<a class="headerlink" href="#absolute-position-properties-9" title="Link to this heading">¶</a></h3>
+<p><strong>CamProp::Pan</strong>
+Horizontal camera rotation (left/right). Mechanically moves camera head or adjusts digital framing.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Degrees (typically ±180° for PTZ cameras, varies by hardware)</p></li>
+<li><p><strong>Typical range:</strong> -180 to +180, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Available on PTZ cameras with auto-tracking</p></li>
+<li><p><strong>Hardware:</strong> PTZ cameras, webcams with motorized pan</p></li>
+</ul>
+<p><strong>CamProp::Tilt</strong>
+Vertical camera rotation (up/down). Mechanically moves camera head or adjusts digital framing.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Degrees (typically ±90° for PTZ cameras)</p></li>
+<li><p><strong>Typical range:</strong> -90 to +90, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Available on PTZ cameras with auto-tracking</p></li>
+<li><p><strong>Hardware:</strong> PTZ cameras, webcams with motorized tilt</p></li>
+</ul>
+<p><strong>CamProp::Roll</strong>
+Rotational tilt around optical axis. Rarely supported by consumer hardware.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Degrees (-180 to +180)</p></li>
+<li><p><strong>Typical range:</strong> -180 to +180, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Usually manual only</p></li>
+<li><p><strong>Hardware:</strong> Professional PTZ cameras, some action cameras</p></li>
+</ul>
+<p><strong>CamProp::Zoom</strong>
+Optical zoom level. Controls lens focal length, not digital zoom.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary zoom steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 10 to 100 (1x to 10x zoom), step 1</p></li>
+<li><p><strong>Auto mode:</strong> Rarely available</p></li>
+<li><p><strong>Hardware:</strong> Cameras with optical zoom lens</p></li>
+</ul>
+<p><strong>CamProp::Exposure</strong>
+Exposure time (shutter speed). Controls sensor light integration time.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Log₂ seconds (e.g., -10 = 1/1024s, -1 = 1/2s, 0 = 1s)</p></li>
+<li><p><strong>Typical range:</strong> -13 to -1 (1/8192s to 1/2s), step 1</p></li>
+<li><p><strong>Auto mode:</strong> Standard (firmware adjusts for scene brightness)</p></li>
+<li><p><strong>Effect:</strong> Lower values = darker/sharper motion, higher = brighter/motion blur</p></li>
+</ul>
+<p><strong>CamProp::Iris</strong>
+Aperture/iris opening. Controls lens f-stop and depth of field. <strong>Rare on webcams</strong> (fixed aperture).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> f-stop * 10 (e.g., 28 = f/2.8, 56 = f/5.6)</p></li>
+<li><p><strong>Typical range:</strong> 10 to 200 (f/1.0 to f/20), step 1</p></li>
+<li><p><strong>Auto mode:</strong> Usually manual only</p></li>
+<li><p><strong>Hardware:</strong> Professional cameras with adjustable aperture</p></li>
+</ul>
+<p><strong>CamProp::Focus</strong>
+Lens focus distance. Adjusts focus from close-up to infinity.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary focus steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 255 (close to infinity), step 1</p></li>
+<li><p><strong>Auto mode:</strong> Standard (continuous autofocus)</p></li>
+<li><p><strong>Hardware:</strong> Cameras with adjustable focus (most webcams)</p></li>
+</ul>
+<p><strong>CamProp::ScanMode</strong>
+Scan mode selection: progressive (0) vs. interlaced (1). <strong>Obsolete for modern cameras.</strong></p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Boolean (0 = progressive, 1 = interlaced)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 1, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Hardware:</strong> Legacy analog cameras, capture cards</p></li>
+</ul>
+<p><strong>CamProp::Privacy</strong>
+Privacy shutter/lens cover. Mechanically blocks lens or disables sensor.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Boolean (0 = open, 1 = closed)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 1, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Hardware:</strong> Business webcams (Logitech, Microsoft), laptops with privacy shutters</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="relative-movement-properties-8">
+<h3>Relative Movement Properties (8)<a class="headerlink" href="#relative-movement-properties-8" title="Link to this heading">¶</a></h3>
+<p>These properties specify <strong>delta values</strong> for relative adjustments. Not all cameras support relative mode.</p>
+<p><strong>CamProp::PanRelative</strong>
+Relative pan movement. Moves camera left (-) or right (+) by specified angle.</p>
+<p><strong>CamProp::TiltRelative</strong>
+Relative tilt movement. Moves camera up (+) or down (-) by specified angle.</p>
+<p><strong>CamProp::RollRelative</strong>
+Relative roll adjustment. Rotates camera clockwise (+) or counterclockwise (-).</p>
+<p><strong>CamProp::ZoomRelative</strong>
+Relative zoom adjustment. Zooms in (+) or out (-) by specified steps.</p>
+<p><strong>CamProp::ExposureRelative</strong>
+Relative exposure adjustment. Increases (+) or decreases (-) exposure time.</p>
+<p><strong>CamProp::IrisRelative</strong>
+Relative iris adjustment. Opens (+) or closes (-) aperture.</p>
+<p><strong>CamProp::FocusRelative</strong>
+Relative focus adjustment. Moves focus closer (+) or farther (-).</p>
+</section>
+<hr class="docutils" />
+<section id="combined-control-properties-2">
+<h3>Combined Control Properties (2)<a class="headerlink" href="#combined-control-properties-2" title="Link to this heading">¶</a></h3>
+<p><strong>CamProp::PanTilt</strong>
+Combined pan/tilt control. Sets both pan and tilt in single operation. <strong>Rarely supported.</strong></p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Composite value (implementation-defined)</p></li>
+<li><p><strong>Hardware:</strong> High-end PTZ cameras with optimized movement</p></li>
+</ul>
+<p><strong>CamProp::PanTiltRelative</strong>
+Relative pan/tilt movement. Adjusts both axes simultaneously.</p>
+</section>
+<hr class="docutils" />
+<section id="simple-controls-1">
+<h3>Simple Controls (1)<a class="headerlink" href="#simple-controls-1" title="Link to this heading">¶</a></h3>
+<p><strong>CamProp::FocusSimple</strong>
+Simplified focus control: near (0), far (1), auto (2). <strong>Logitech extension</strong>, not standard DirectShow.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Enum (0 = near, 1 = far, 2 = auto)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 2, step 1</p></li>
+<li><p><strong>Hardware:</strong> Logitech webcams (C920, C930e, Brio)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="digital-processing-properties-3">
+<h3>Digital/Processing Properties (3)<a class="headerlink" href="#digital-processing-properties-3" title="Link to this heading">¶</a></h3>
+<p><strong>CamProp::DigitalZoom</strong>
+Digital zoom level. Software image cropping/upscaling, not optical zoom.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Zoom multiplier * 100 (e.g., 100 = 1.0x, 200 = 2.0x)</p></li>
+<li><p><strong>Typical range:</strong> 100 to 400 (1x to 4x), step 10</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Quality:</strong> Lower than optical zoom (interpolation artifacts)</p></li>
+</ul>
+<p><strong>CamProp::DigitalZoomRelative</strong>
+Relative digital zoom adjustment. Increases (+) or decreases (-) digital zoom.</p>
+<p><strong>CamProp::BacklightCompensation</strong>
+Backlight compensation level. Adjusts exposure for strong backlighting (e.g., window behind subject).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Compensation level (0 = off, 1+ = increasing compensation)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 10, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Rarely available</p></li>
+<li><p><strong>Effect:</strong> Brightens foreground when background is overexposed</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="lamp-flash-1">
+<h3>Lamp/Flash (1)<a class="headerlink" href="#lamp-flash-1" title="Link to this heading">¶</a></h3>
+<p><strong>CamProp::Lamp</strong>
+Camera lamp/flash control. Enables auxiliary lighting (LED ring, flash).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Boolean (0 = off, 1 = on)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 1, step 1</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Hardware:</strong> Document cameras, industrial cameras with built-in lighting</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="property-range-querying">
+<h2>Property Range Querying<a class="headerlink" href="#property-range-querying" title="Link to this heading">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">range_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// range.min, range.max, range.step, range.default_val, range.default_mode</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Hardware variance:</strong> Ranges are <strong>not standardized</strong>. A Logitech C920 may report exposure range -13 to -1, while a generic webcam reports -7 to 0. Always query device-specific ranges.</p>
+<p><strong>Unsupported properties:</strong> <code class="docutils literal notranslate"><span class="pre">get_range()</span></code> returns <code class="docutils literal notranslate"><span class="pre">Err(ErrorCode::NotSupported)</span></code> for properties not implemented by hardware/driver.</p>
+</section>
+<section id="video-properties-complete-reference">
+<h2>7.2 Video Properties Complete Reference<a class="headerlink" href="#video-properties-complete-reference" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/types.h&gt;</span></code>
+<strong>Enum:</strong> <code class="docutils literal notranslate"><span class="pre">VidProp</span></code>
+<strong>DirectShow Interface:</strong> <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code></p>
+<p>All 10 video processing properties with descriptions and behaviors. These control <strong>digital image processing</strong>, not camera hardware. Actual ranges are <strong>device-specific</strong> and must be queried via <code class="docutils literal notranslate"><span class="pre">camera.get_range(prop)</span></code> or <code class="docutils literal notranslate"><span class="pre">DeviceCapabilities</span></code>.</p>
+<hr class="docutils" />
+<section id="vidprop-brightness">
+<h3>VidProp::Brightness<a class="headerlink" href="#vidprop-brightness" title="Link to this heading">¶</a></h3>
+<p>Luminance level. Adds/subtracts constant value to all pixels (black point adjustment).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary brightness steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> -64 to +64, step 1 (or 0 to 255 for some cameras)</p></li>
+<li><p><strong>Default:</strong> 0 (neutral)</p></li>
+<li><p><strong>Auto mode:</strong> Rarely available (auto-exposure handles this)</p></li>
+<li><p><strong>Effect:</strong> Negative = darker image, positive = brighter image</p></li>
+<li><p><strong>Technical:</strong> Linear offset applied in YUV/RGB space before gamma correction</p></li>
+</ul>
+<p><strong>Usage note:</strong> For exposure control, prefer <code class="docutils literal notranslate"><span class="pre">CamProp::Exposure</span></code>. Brightness is post-processing and can clip highlights/shadows.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-contrast">
+<h3>VidProp::Contrast<a class="headerlink" href="#vidprop-contrast" title="Link to this heading">¶</a></h3>
+<p>Dynamic range. Scales pixel values around midpoint (white point adjustment).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary contrast steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 100, step 1 (some cameras use -50 to +50)</p></li>
+<li><p><strong>Default:</strong> 50 or 0 (neutral, device-dependent)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> Lower = flatter/washed out, higher = stronger blacks/whites</p></li>
+<li><p><strong>Technical:</strong> Multiplies pixel values by scaling factor around 128 (8-bit) or equivalent</p></li>
+</ul>
+<p><strong>Usage note:</strong> Values above 80-90 can cause clipping. Combine with brightness adjustment for best results.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-hue">
+<h3>VidProp::Hue<a class="headerlink" href="#vidprop-hue" title="Link to this heading">¶</a></h3>
+<p>Color tint. Rotates hue angle in HSV/HSL color space.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Degrees or arbitrary hue steps</p></li>
+<li><p><strong>Typical range:</strong> -180 to +180 degrees, step 1 (or 0 to 360)</p></li>
+<li><p><strong>Default:</strong> 0 (no shift)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> -180° = cyan/green shift, 0 = natural, +180° = magenta/red shift</p></li>
+<li><p><strong>Technical:</strong> Rotates H component in HSV space, preserves S and V</p></li>
+</ul>
+<p><strong>Usage note:</strong> For color correction, prefer <code class="docutils literal notranslate"><span class="pre">VidProp::WhiteBalance</span></code>. Hue is global shift, not adaptive.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-saturation">
+<h3>VidProp::Saturation<a class="headerlink" href="#vidprop-saturation" title="Link to this heading">¶</a></h3>
+<p>Color intensity. Scales chroma values in color space.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary saturation steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 200, step 1 (0 = grayscale, 100 = normal, 200 = oversaturated)</p></li>
+<li><p><strong>Default:</strong> 100 (neutral)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> 0 = black &amp; white, 100 = natural colors, 200 = vivid/oversaturated</p></li>
+<li><p><strong>Technical:</strong> Scales S component in HSV space, preserves H and V</p></li>
+</ul>
+<p><strong>Usage note:</strong> Values above 150 can cause color clipping and unnatural tones.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-sharpness">
+<h3>VidProp::Sharpness<a class="headerlink" href="#vidprop-sharpness" title="Link to this heading">¶</a></h3>
+<p>Edge enhancement. Applies high-pass filter to increase perceived detail.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Arbitrary sharpness steps (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 100, step 1 (or 0 to 255)</p></li>
+<li><p><strong>Default:</strong> 50 (moderate sharpening)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> 0 = soft/blurry, 50 = natural, 100 = over-sharpened with halos</p></li>
+<li><p><strong>Technical:</strong> Unsharp mask or Laplacian edge enhancement filter</p></li>
+</ul>
+<p><strong>Usage note:</strong> High values (&gt;75) introduce ringing artifacts and noise amplification. Use conservatively.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-gamma">
+<h3>VidProp::Gamma<a class="headerlink" href="#vidprop-gamma" title="Link to this heading">¶</a></h3>
+<p>Mid-tone brightness curve. Adjusts gamma correction exponent.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Gamma exponent * 100 (e.g., 100 = γ=1.0, 220 = γ=2.2)</p></li>
+<li><p><strong>Typical range:</strong> 1 to 500 (γ=0.01 to γ=5.0), step 1</p></li>
+<li><p><strong>Default:</strong> 100 or 220 (γ=1.0 or γ=2.2, device-dependent)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> &lt;100 = brighter midtones (flatter curve), &gt;100 = darker midtones (steeper curve)</p></li>
+<li><p><strong>Technical:</strong> Applies power-law transformation: $ V_{out} = V_{in}^{\gamma} $</p></li>
+</ul>
+<p><strong>Usage note:</strong> Standard sRGB gamma is 2.2 (220). Do not change unless matching specific display/workflow.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-colorenable">
+<h3>VidProp::ColorEnable<a class="headerlink" href="#vidprop-colorenable" title="Link to this heading">¶</a></h3>
+<p>Color mode toggle. Switches between color and monochrome output.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Boolean (0 = monochrome, 1 = color)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 1, step 1</p></li>
+<li><p><strong>Default:</strong> 1 (color)</p></li>
+<li><p><strong>Auto mode:</strong> Manual only</p></li>
+<li><p><strong>Effect:</strong> 0 = grayscale output, 1 = full color</p></li>
+<li><p><strong>Technical:</strong> Zeroes chroma channels (U/V in YUV) when disabled</p></li>
+</ul>
+<p><strong>Usage note:</strong> Equivalent to setting <code class="docutils literal notranslate"><span class="pre">VidProp::Saturation</span> <span class="pre">=</span> <span class="pre">0</span></code>, but may be hardware-accelerated.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-whitebalance">
+<h3>VidProp::WhiteBalance<a class="headerlink" href="#vidprop-whitebalance" title="Link to this heading">¶</a></h3>
+<p>Color temperature adjustment. Shifts white point to compensate for lighting.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Kelvin (K) or arbitrary color temperature steps</p></li>
+<li><p><strong>Typical range:</strong> 2800 to 6500 K, step 10 (or arbitrary 0-255 scale)</p></li>
+<li><p><strong>Default:</strong> 4000-5000 K (neutral/daylight)</p></li>
+<li><p><strong>Auto mode:</strong> <strong>Standard</strong> (auto white balance, AWB)</p></li>
+<li><p><strong>Effect:</strong> Lower = warmer (yellow/orange), higher = cooler (blue)</p></li>
+<li><p><strong>Technical:</strong> Applies RGB channel gains to neutralize color cast</p></li>
+</ul>
+<p><strong>Common presets:</strong></p>
+<ul class="simple">
+<li><p>2800 K = incandescent/tungsten (warm orange)</p></li>
+<li><p>4000 K = fluorescent (cool white)</p></li>
+<li><p>5500 K = daylight (neutral)</p></li>
+<li><p>6500 K = overcast/shade (cool blue)</p></li>
+</ul>
+<p><strong>Usage note:</strong> Auto mode is highly recommended. Manual tuning requires color reference card.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-backlightcompensation">
+<h3>VidProp::BacklightCompensation<a class="headerlink" href="#vidprop-backlightcompensation" title="Link to this heading">¶</a></h3>
+<p>Backlight compensation level. Adjusts exposure for strong backlighting.</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Compensation level (0 = off, 1-10 = increasing compensation)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 10, step 1 (some cameras use 0/1 boolean)</p></li>
+<li><p><strong>Default:</strong> 0 (off)</p></li>
+<li><p><strong>Auto mode:</strong> Rarely available</p></li>
+<li><p><strong>Effect:</strong> Brightens foreground when background is overexposed (e.g., window behind subject)</p></li>
+<li><p><strong>Technical:</strong> Adjusts metering zones to prioritize foreground exposure</p></li>
+</ul>
+<p><strong>Overlap:</strong> Some cameras expose this via <code class="docutils literal notranslate"><span class="pre">CamProp::BacklightCompensation</span></code> instead. Check both.</p>
+<p><strong>Usage note:</strong> Alternative to adjusting <code class="docutils literal notranslate"><span class="pre">CamProp::Exposure</span></code> manually. Less effective than HDR tone mapping.</p>
+</section>
+<hr class="docutils" />
+<section id="vidprop-gain">
+<h3>VidProp::Gain<a class="headerlink" href="#vidprop-gain" title="Link to this heading">¶</a></h3>
+<p>Sensor gain level. Digital/analog amplification of sensor signal (ISO equivalent).</p>
+<ul class="simple">
+<li><p><strong>Unit:</strong> Gain multiplier or dB (device-specific scale)</p></li>
+<li><p><strong>Typical range:</strong> 0 to 100 (or 0 to 255), step 1</p></li>
+<li><p><strong>Default:</strong> 0 or auto (device-dependent)</p></li>
+<li><p><strong>Auto mode:</strong> <strong>Standard</strong> (auto-gain control, AGC)</p></li>
+<li><p><strong>Effect:</strong> Higher gain = brighter image in low light, but more noise</p></li>
+<li><p><strong>Technical:</strong> Amplifies sensor readout before digitization (analog gain) or after (digital gain)</p></li>
+</ul>
+<p><strong>Relationship to exposure:</strong></p>
+<ul class="simple">
+<li><p>Low light: increase gain OR increase exposure time</p></li>
+<li><p>Gain is faster (no motion blur) but noisier</p></li>
+<li><p>Exposure time is cleaner but causes motion blur</p></li>
+</ul>
+<p><strong>Usage note:</strong> Auto mode is recommended. Manual tuning requires controlled lighting. High gain (&gt;50) introduces significant noise.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Property Range Querying<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">range_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// range.min, range.max, range.step, range.default_val, range.default_mode</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Hardware variance:</strong> Ranges are <strong>not standardized</strong>. A Logitech C920 may report brightness range -64 to +64, while a generic webcam reports 0 to 255. Always query device-specific ranges.</p>
+<p><strong>Unsupported properties:</strong> <code class="docutils literal notranslate"><span class="pre">get_range()</span></code> returns <code class="docutils literal notranslate"><span class="pre">Err(ErrorCode::NotSupported)</span></code> for properties not implemented by hardware/driver.</p>
+</section>
+<hr class="docutils" />
+<section id="auto-mode-support">
+<h2>Auto Mode Support<a class="headerlink" href="#auto-mode-support" title="Link to this heading">¶</a></h2>
+<p><strong>Commonly auto-capable:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::WhiteBalance</span></code> — auto white balance (AWB) is standard on most cameras</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::Gain</span></code> — auto gain control (AGC) is standard</p></li>
+</ul>
+<p><strong>Rarely auto-capable:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp::Brightness</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Contrast</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Hue</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Saturation</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Sharpness</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Gamma</span></code> — these are post-processing adjustments, not firmware-controlled</p></li>
+</ul>
+<p>Check <code class="docutils literal notranslate"><span class="pre">PropertyCapability::supports_auto()</span></code> or <code class="docutils literal notranslate"><span class="pre">range.default_mode</span></code> to verify auto support for specific device.</p>
+</section>
+<section id="property-range-discovery">
+<h2>7.3 Property Range Discovery<a class="headerlink" href="#property-range-discovery" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/types.h&gt;</span></code>
+<strong>Structs:</strong> <code class="docutils literal notranslate"><span class="pre">PropRange</span></code>, <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code></p>
+<p>Query device-specific property ranges before setting values. Ranges are <strong>not standardized</strong> — each camera reports different min/max/step values.</p>
+<hr class="docutils" />
+<section id="proprange-structure">
+<h3>PropRange Structure<a class="headerlink" href="#proprange-structure" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">PropRange</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="p">;</span><span class="w">                  </span><span class="c1">// Minimum supported value</span>
+</span><span data-line="3"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">;</span><span class="w">                  </span><span class="c1">// Maximum supported value</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="p">;</span><span class="w">                 </span><span class="c1">// Step size between valid values</span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">default_val</span><span class="p">;</span><span class="w">          </span><span class="c1">// Default value</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">CamMode</span><span class="w"> </span><span class="n">default_mode</span><span class="p">;</span><span class="w">     </span><span class="c1">// Default control mode (Auto/Manual)</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">clamp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="10"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Fields:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code>: Lowest value camera accepts (e.g., exposure -13, brightness -64)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>: Highest value camera accepts (e.g., exposure -1, brightness +64)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: Increment between valid values (typically 1, sometimes 10 or 100)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_val</span></code>: Factory default value recommended by manufacturer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_mode</span></code>: Whether property defaults to <code class="docutils literal notranslate"><span class="pre">CamMode::Auto</span></code> or <code class="docutils literal notranslate"><span class="pre">CamMode::Manual</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="get-range-usage">
+<h3>get_range Usage<a class="headerlink" href="#get-range-usage" title="Link to this heading">¶</a></h3>
+<p><strong>Camera properties:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Exposure range: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Step: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">step</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, default: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Default mode: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">default_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;Auto&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;Manual&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="9"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">message</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Video properties:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// range.min, range.max, range.step, range.default_val, range.default_mode</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Error handling:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::NotSupported</span></code>: Property not implemented by hardware/driver</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::DeviceNotFound</span></code>: Camera disconnected</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::SystemError</span></code>: DirectShow API failure</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="is-valid-method">
+<h3>is_valid Method<a class="headerlink" href="#is-valid-method" title="Link to this heading">¶</a></h3>
+<p><strong>Signature:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">PropRange::is_valid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Checks if value is within <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max]</span></code> and aligned to <code class="docutils literal notranslate"><span class="pre">step</span></code> boundary.</p>
+<p><strong>Implementation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">return</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">((</span><span class="n">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Example usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">45</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// Safe to set</span>
+</span><span data-line="5"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Invalid value 45 for pan (range: &quot;</span><span class="w"> </span>
+</span><span data-line="7"><span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Step alignment:</strong></p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">min=0,</span> <span class="pre">max=100,</span> <span class="pre">step=10</span></code>, valid values are <code class="docutils literal notranslate"><span class="pre">{0,</span> <span class="pre">10,</span> <span class="pre">20,</span> <span class="pre">...,</span> <span class="pre">100}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_valid(15)</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code> (not aligned to step)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_valid(20)</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="clamp-method">
+<h3>clamp Method<a class="headerlink" href="#clamp-method" title="Link to this heading">¶</a></h3>
+<p><strong>Signature:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="nf">PropRange::clamp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Constrains value to valid range and rounds to nearest step boundary.</p>
+<p><strong>Implementation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">min</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+</span><span data-line="3"><span class="c1">// Round to nearest step</span>
+</span><span data-line="4"><span class="kt">int</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">step</span><span class="p">;</span>
+</span><span data-line="5"><span class="k">return</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">steps</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">step</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Example usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">int</span><span class="w"> </span><span class="n">user_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">  </span><span class="c1">// Potentially invalid</span>
+</span><span data-line="4"><span class="kt">int</span><span class="w"> </span><span class="n">safe_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">user_input</span><span class="p">);</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">safe_value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// Always valid</span>
+</span></pre></div>
+</div>
+<p><strong>Rounding behavior:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clamp(-50)</span></code> with <code class="docutils literal notranslate"><span class="pre">min=0</span></code> → returns <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clamp(200)</span></code> with <code class="docutils literal notranslate"><span class="pre">max=100</span></code> → returns <code class="docutils literal notranslate"><span class="pre">100</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clamp(47)</span></code> with <code class="docutils literal notranslate"><span class="pre">min=0,</span> <span class="pre">step=10</span></code> → returns <code class="docutils literal notranslate"><span class="pre">50</span></code> (rounds 47 to nearest 50)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clamp(43)</span></code> with <code class="docutils literal notranslate"><span class="pre">min=0,</span> <span class="pre">step=10</span></code> → returns <code class="docutils literal notranslate"><span class="pre">40</span></code> (rounds 43 to nearest 40)</p></li>
+</ul>
+<p><strong>Use case:</strong> UI sliders can pass any integer; <code class="docutils literal notranslate"><span class="pre">clamp()</span></code> ensures value is always accepted by hardware.</p>
+</section>
+<hr class="docutils" />
+<section id="propsetting-structure">
+<h3>PropSetting Structure<a class="headerlink" href="#propsetting-structure" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">PropSetting</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">          </span><span class="c1">// Property value</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="p">;</span><span class="w">       </span><span class="c1">// Control mode (Auto/Manual)</span>
+</span><span data-line="4"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Used when setting properties via <code class="docutils literal notranslate"><span class="pre">camera.set()</span></code>. Must specify both value and mode.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Manual control with specific value</span>
+</span><span data-line="2"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Auto control (value ignored by firmware, but should match default_val)</span>
+</span><span data-line="5"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">WhiteBalance</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="6"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">VidProp</span><span class="o">::</span><span class="n">WhiteBalance</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="auto-vs-manual-modes">
+<h2>7.4 Auto vs Manual Modes<a class="headerlink" href="#auto-vs-manual-modes" title="Link to this heading">¶</a></h2>
+<p><strong>Enum:</strong> <code class="docutils literal notranslate"><span class="pre">CamMode</span></code></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamMode</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Auto</span><span class="p">,</span><span class="w">    </span><span class="c1">// Firmware-controlled (camera adjusts automatically)</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Manual</span><span class="w">   </span><span class="c1">// Application-controlled (fixed value)</span>
+</span><span data-line="4"><span class="p">};</span>
+</span></pre></div>
+</div>
+<hr class="docutils" />
+<section id="mode-behavior">
+<h3>Mode Behavior<a class="headerlink" href="#mode-behavior" title="Link to this heading">¶</a></h3>
+<p><strong>Auto mode:</strong></p>
+<ul class="simple">
+<li><p>Firmware continuously adjusts property based on scene (e.g., auto-exposure adapts to lighting)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> field in <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code> is <strong>ignored</strong> by camera — firmware uses its own algorithm</p></li>
+<li><p>Reading property via <code class="docutils literal notranslate"><span class="pre">camera.get()</span></code> returns <strong>current firmware-computed value</strong>, not user-set value</p></li>
+<li><p>Typical auto properties: <code class="docutils literal notranslate"><span class="pre">CamProp::Exposure</span></code>, <code class="docutils literal notranslate"><span class="pre">CamProp::Focus</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::WhiteBalance</span></code>, <code class="docutils literal notranslate"><span class="pre">VidProp::Gain</span></code></p></li>
+</ul>
+<p><strong>Manual mode:</strong></p>
+<ul class="simple">
+<li><p>Firmware uses fixed value provided by application</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code> field in <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code> is <strong>required</strong> and enforced</p></li>
+<li><p>Reading property via <code class="docutils literal notranslate"><span class="pre">camera.get()</span></code> returns last value set by application</p></li>
+<li><p>Value persists until changed or camera reset</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="checking-auto-support">
+<h3>Checking Auto Support<a class="headerlink" href="#checking-auto-support" title="Link to this heading">¶</a></h3>
+<p><strong>Method 1: Check range.default_mode</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Focus</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">default_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Focus supports auto mode</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Focus</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">});</span>
+</span><span data-line="6"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Focus is manual-only</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Focus</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Method 2: PropertyCapability::supports_auto()</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">DeviceCapabilities</span><span class="w"> </span><span class="nf">caps</span><span class="p">(</span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">caps</span><span class="p">.</span><span class="n">get_camera_capability</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">supports_auto</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Exposure supports auto mode</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">PropertyCapability::supports_auto</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">default_mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">;</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="switching-modes">
+<h3>Switching Modes<a class="headerlink" href="#switching-modes" title="Link to this heading">¶</a></h3>
+<p><strong>Manual → Auto:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Enable auto-exposure</span>
+</span><span data-line="2"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="3"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">range</span><span class="p">.</span><span class="n">default_val</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Auto → Manual:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Get current auto-computed value</span>
+</span><span data-line="2"><span class="n">PropSetting</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Lock to current value</span>
+</span><span data-line="5"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">current</span><span class="p">.</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Manual value adjustment:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Read current manual value</span>
+</span><span data-line="2"><span class="n">PropSetting</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Increase by 1 step</span>
+</span><span data-line="5"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="6"><span class="kt">int</span><span class="w"> </span><span class="n">new_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">step</span><span class="p">);</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="n">new_value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="mode-limitations">
+<h3>Mode Limitations<a class="headerlink" href="#mode-limitations" title="Link to this heading">¶</a></h3>
+<p><strong>Property-specific restrictions:</strong></p>
+<ul class="simple">
+<li><p><strong>Brightness, Contrast, Hue, Saturation, Sharpness, Gamma:</strong> Usually <strong>manual-only</strong> (post-processing adjustments, not firmware-controlled)</p></li>
+<li><p><strong>Exposure, Focus, WhiteBalance, Gain:</strong> Usually support <strong>both auto and manual</strong></p></li>
+<li><p><strong>Pan, Tilt, Zoom:</strong> Usually <strong>manual-only</strong> (mechanical positioning)</p></li>
+<li><p><strong>Privacy, ColorEnable, ScanMode:</strong> Always <strong>manual-only</strong> (binary switches)</p></li>
+</ul>
+<p><strong>Hardware variance:</strong> Some cameras report auto support for properties that don’t actually respond to auto mode. Always test on target hardware.</p>
+<p><strong>Attempted auto on manual-only property:</strong> DirectShow may return <code class="docutils literal notranslate"><span class="pre">E_PROP_ID_UNSUPPORTED</span></code> or silently fall back to manual mode. Library returns <code class="docutils literal notranslate"><span class="pre">Err(ErrorCode::NotSupported)</span></code> when auto mode fails.</p>
+</section>
+<hr class="docutils" />
+<section id="mode-persistence">
+<h3>Mode Persistence<a class="headerlink" href="#mode-persistence" title="Link to this heading">¶</a></h3>
+<p><strong>Cross-session behavior:</strong></p>
+<ul class="simple">
+<li><p>Manual values typically persist across application restarts (stored in camera firmware)</p></li>
+<li><p>Auto mode typically resets to auto on camera power-cycle or USB reconnect</p></li>
+<li><p>Some cameras reset all properties to defaults on disconnect</p></li>
+</ul>
+<p><strong>Reading current mode:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropSetting</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">).</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Exposure is in auto mode (current value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setting</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Exposure is manual (fixed value: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setting</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Best practice:</strong> Always query current mode before modifying values to avoid unintended mode switches.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="06_internal-implementation-details.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">6. Internal Implementation Details</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="08_usage-patterns-best-practices.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">8. Usage Patterns &amp; Best Practices</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

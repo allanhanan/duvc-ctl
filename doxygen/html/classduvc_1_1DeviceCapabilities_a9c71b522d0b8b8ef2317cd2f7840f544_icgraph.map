@@ -1,0 +1,5 @@
+<map id="duvc::DeviceCapabilities::supports_camera_property" name="duvc::DeviceCapabilities::supports_camera_property">
+<area shape="rect" id="Node000001" title="Check if camera property is supported." alt="" coords="210,5,393,48"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a1c85439662d95e31bfeb85fb98d16a06" title="Check if camera property is supported." alt="" coords="5,5,162,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,29,162,29,162,24,194,24"/>
+</map>

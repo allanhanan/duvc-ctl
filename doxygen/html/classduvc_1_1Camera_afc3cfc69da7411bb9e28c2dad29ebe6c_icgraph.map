@@ -1,0 +1,11 @@
+<map id="duvc::Camera::get" name="duvc::Camera::get">
+<area shape="rect" id="Node000001" title="Get camera property value." alt="" coords="230,113,359,140"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#aad9636d2df56d2f955de2783cc06bbd6" title="Get multiple camera properties." alt="" coords="5,5,182,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,107,180,62,155,51,157,46,183,58,261,102"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#a01f1d8b5b3d7e96c9477f4e163fe1a7c" title="Get multiple video properties." alt="" coords="11,72,176,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,116,176,110,177,104,215,111"/>
+<area shape="rect" id="Node000004" href="$api_8cpp.html#a1e2fd3b752c6ee2b24afa9ab771aac0c" title="Set multiple camera properties." alt="" coords="5,139,182,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,143,182,148,182,143,214,137"/>
+<area shape="rect" id="Node000005" href="$api_8cpp.html#a5bc995ad18045408b7f2ba1c3b2033e6" title="Set multiple video properties." alt="" coords="11,205,176,248"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="261,151,183,196,157,207,155,202,180,191,258,146"/>
+</map>

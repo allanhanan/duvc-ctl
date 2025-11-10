@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="classduvc_1_1com__ptr" kind="class" language="C++" prot="public">
+    <compoundname>duvc::com_ptr</compoundname>
+    <templateparamlist>
+      <param>
+        <type><ref refid="classduvc_1_1Result" kindref="compound">typename</ref> T</type>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classduvc_1_1com__ptr_1aa089c7618b8c5dbf4a0c75e10dd6b7cb" prot="private" static="no" mutable="no">
+        <type>T *</type>
+        <definition>T* duvc::com_ptr&lt; T &gt;::p_</definition>
+        <argsstring></argsstring>
+        <name>p_</name>
+        <qualifiedname>duvc::com_ptr::p_</qualifiedname>
+        <initializer>= <ref refid="classduvc_1_1Result" kindref="compound">nullptr</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="104" column="7" bodyfile="core.cpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a286c74b917edc454cafe0c81283c1e39" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::com_ptr</definition>
+        <argsstring>() noexcept=default</argsstring>
+        <name>com_ptr</name>
+        <qualifiedname>duvc::com_ptr::com_ptr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="84" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a80a96b37acd33bed247bb43e83b203d3" prot="public" static="no" const="no" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::com_ptr</definition>
+        <argsstring>(T *p) noexcept</argsstring>
+        <name>com_ptr</name>
+        <qualifiedname>duvc::com_ptr::com_ptr</qualifiedname>
+        <param>
+          <type>T *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="85" column="14" bodyfile="core.cpp" bodystart="85" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a5b9a114c857c3a34ea9846ee45ffcf62" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::~com_ptr</definition>
+        <argsstring>()</argsstring>
+        <name>~com_ptr</name>
+        <qualifiedname>duvc::com_ptr::~com_ptr</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="86" column="5" bodyfile="core.cpp" bodystart="86" bodyend="86"/>
+        <references refid="classduvc_1_1com__ptr_1ab6562b9254749d7a04d57a327953e111" compoundref="core_8cpp" startline="101" endline="101">duvc::com_ptr&lt; T &gt;::reset</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1ab2bf4427221eb513268bdda894e9c4ca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::com_ptr</definition>
+        <argsstring>(const com_ptr &amp;)=delete</argsstring>
+        <name>com_ptr</name>
+        <qualifiedname>duvc::com_ptr::com_ptr</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="88" column="5"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1aac2ec0774a1422e6cfaf3ecc041e120b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;</type>
+        <definition>com_ptr &amp; duvc::com_ptr&lt; T &gt;::operator=</definition>
+        <argsstring>(const com_ptr &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::com_ptr::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1Result" kindref="compound">const</ref> <ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="89" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a93103178f8d9b36a7595e35987cbe90c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::com_ptr</definition>
+        <argsstring>(com_ptr &amp;&amp;o) noexcept</argsstring>
+        <name>com_ptr</name>
+        <qualifiedname>duvc::com_ptr::com_ptr</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;&amp;</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="91" column="5" bodyfile="core.cpp" bodystart="91" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1ab5b2acc739136a7dd8f46f94092b57e0" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;</type>
+        <definition>com_ptr &amp; duvc::com_ptr&lt; T &gt;::operator=</definition>
+        <argsstring>(com_ptr &amp;&amp;o) noexcept</argsstring>
+        <name>operator=</name>
+        <qualifiedname>duvc::com_ptr::operator=</qualifiedname>
+        <param>
+          <type><ref refid="classduvc_1_1com__ptr" kindref="compound">com_ptr</ref> &amp;&amp;</type>
+          <declname>o</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="92" column="13" bodyfile="core.cpp" bodystart="92" bodyend="95"/>
+        <references refid="classduvc_1_1com__ptr_1ab6562b9254749d7a04d57a327953e111" compoundref="core_8cpp" startline="101" endline="101">duvc::com_ptr&lt; T &gt;::reset</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a945b635f24ccd84f3aa0de15d464cbc7" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T * duvc::com_ptr&lt; T &gt;::get</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>get</name>
+        <qualifiedname>duvc::com_ptr::get</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="97" column="7" bodyfile="core.cpp" bodystart="97" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a3694b3daf7c51bb796fa5edf7378450c" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T **</type>
+        <definition>T ** duvc::com_ptr&lt; T &gt;::put</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>put</name>
+        <qualifiedname>duvc::com_ptr::put</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="98" column="7" bodyfile="core.cpp" bodystart="98" bodyend="98"/>
+        <references refid="classduvc_1_1com__ptr_1ab6562b9254749d7a04d57a327953e111" compoundref="core_8cpp" startline="101" endline="101">duvc::com_ptr&lt; T &gt;::reset</references>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1a30ee55a2d7721ac0151a626c5391d376" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type>T *</type>
+        <definition>T * duvc::com_ptr&lt; T &gt;::operator-&gt;</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator-&gt;</name>
+        <qualifiedname>duvc::com_ptr::operator-&gt;</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="99" column="7" bodyfile="core.cpp" bodystart="99" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1aee141f13e1616dccb3908b1ea511ca33" prot="public" static="no" const="yes" explicit="yes" inline="yes" noexcept="yes" virt="non-virtual">
+        <type></type>
+        <definition>duvc::com_ptr&lt; T &gt;::operator bool</definition>
+        <argsstring>() const noexcept</argsstring>
+        <name>operator bool</name>
+        <qualifiedname>duvc::com_ptr::operator bool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="100" column="14" bodyfile="core.cpp" bodystart="100" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classduvc_1_1com__ptr_1ab6562b9254749d7a04d57a327953e111" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
+        <type><ref refid="classduvc_1_1Result" kindref="compound">void</ref></type>
+        <definition>void duvc::com_ptr&lt; T &gt;::reset</definition>
+        <argsstring>() noexcept</argsstring>
+        <name>reset</name>
+        <qualifiedname>duvc::com_ptr::reset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core.cpp" line="101" column="10" bodyfile="core.cpp" bodystart="101" bodyend="101"/>
+        <referencedby refid="classduvc_1_1com__ptr_1ab5b2acc739136a7dd8f46f94092b57e0" compoundref="core_8cpp" startline="92" endline="95">duvc::com_ptr&lt; T &gt;::operator=</referencedby>
+        <referencedby refid="classduvc_1_1com__ptr_1a3694b3daf7c51bb796fa5edf7378450c" compoundref="core_8cpp" startline="98" endline="98">duvc::com_ptr&lt; T &gt;::put</referencedby>
+        <referencedby refid="classduvc_1_1com__ptr_1a5b9a114c857c3a34ea9846ee45ffcf62" compoundref="core_8cpp" startline="86" endline="86">duvc::com_ptr&lt; T &gt;::~com_ptr</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>duvc::com_ptr&lt; T &gt;</label>
+        <link refid="classduvc_1_1com__ptr"/>
+      </node>
+    </collaborationgraph>
+    <location file="core.cpp" line="82" column="1" bodyfile="core.cpp" bodystart="82" bodyend="105"/>
+    <listofallmembers>
+      <member refid="classduvc_1_1com__ptr_1a286c74b917edc454cafe0c81283c1e39" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>com_ptr</name></member>
+      <member refid="classduvc_1_1com__ptr_1a80a96b37acd33bed247bb43e83b203d3" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>com_ptr</name></member>
+      <member refid="classduvc_1_1com__ptr_1ab2bf4427221eb513268bdda894e9c4ca" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>com_ptr</name></member>
+      <member refid="classduvc_1_1com__ptr_1a93103178f8d9b36a7595e35987cbe90c" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>com_ptr</name></member>
+      <member refid="classduvc_1_1com__ptr_1a945b635f24ccd84f3aa0de15d464cbc7" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>get</name></member>
+      <member refid="classduvc_1_1com__ptr_1aee141f13e1616dccb3908b1ea511ca33" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>operator bool</name></member>
+      <member refid="classduvc_1_1com__ptr_1a30ee55a2d7721ac0151a626c5391d376" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>operator-&gt;</name></member>
+      <member refid="classduvc_1_1com__ptr_1aac2ec0774a1422e6cfaf3ecc041e120b" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1com__ptr_1ab5b2acc739136a7dd8f46f94092b57e0" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>operator=</name></member>
+      <member refid="classduvc_1_1com__ptr_1aa089c7618b8c5dbf4a0c75e10dd6b7cb" prot="private" virt="non-virtual"><scope>duvc::com_ptr</scope><name>p_</name></member>
+      <member refid="classduvc_1_1com__ptr_1a3694b3daf7c51bb796fa5edf7378450c" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>put</name></member>
+      <member refid="classduvc_1_1com__ptr_1ab6562b9254749d7a04d57a327953e111" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>reset</name></member>
+      <member refid="classduvc_1_1com__ptr_1a5b9a114c857c3a34ea9846ee45ffcf62" prot="public" virt="non-virtual"><scope>duvc::com_ptr</scope><name>~com_ptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

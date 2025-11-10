@@ -1,0 +1,617 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="bindings_8cpp" kind="file" language="C++">
+    <compoundname>bindings.cpp</compoundname>
+    <includes refid="core_8h" local="yes">duvc-ctl/core.h</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">mutex</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core.h</label>
+        <link refid="core_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>defs.h</label>
+        <link refid="defs_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>bindings.cpp</label>
+        <link refid="bindings_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>cstdint</label>
+      </node>
+      <node id="6">
+        <label>functional</label>
+      </node>
+      <node id="7">
+        <label>memory</label>
+      </node>
+      <node id="10">
+        <label>mutex</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>vector</label>
+      </node>
+      <node id="9">
+        <label>windows.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" prot="public" static="no">
+        <name>DUVCC_API</name>
+        <initializer>__declspec(dllexport)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="6" column="9" bodyfile="bindings.cpp" bodystart="6" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" prot="public" static="yes" mutable="no">
+        <type>std::mutex</type>
+        <definition>std::mutex g_devices_mutex</definition>
+        <argsstring></argsstring>
+        <name>g_devices_mutex</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="14" column="19" bodyfile="bindings.cpp" bodystart="14" bodyend="-1"/>
+        <referencedby refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" compoundref="bindings_8cpp" startline="77" endline="88">duvc_cam_get</referencedby>
+        <referencedby refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" compoundref="bindings_8cpp" startline="61" endline="75">duvc_cam_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" compoundref="bindings_8cpp" startline="90" endline="98">duvc_cam_set</referencedby>
+        <referencedby refid="bindings_8cpp_1a7eae96ab0b9ad48d78466336076360e0" compoundref="bindings_8cpp" startline="22" endline="28">duvc_get_device_count</referencedby>
+        <referencedby refid="bindings_8cpp_1a56e6df6631c2fb647fcb3a8641bc8e49" compoundref="bindings_8cpp" startline="30" endline="37">duvc_get_device_name</referencedby>
+        <referencedby refid="bindings_8cpp_1a96f4ab988208d0f8432d7134f367283b" compoundref="bindings_8cpp" startline="39" endline="46">duvc_get_device_path</referencedby>
+        <referencedby refid="bindings_8cpp_1ae6c4b34fa8f4bfc8b53488ce2fccad7b" compoundref="bindings_8cpp" startline="48" endline="55">duvc_is_device_connected</referencedby>
+        <referencedby refid="bindings_8cpp_1a447135500d1651a64fc752ea40d3f2ec" compoundref="bindings_8cpp" startline="17" endline="20">duvc_refresh_devices</referencedby>
+        <referencedby refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" compoundref="bindings_8cpp" startline="117" endline="128">duvc_vid_get</referencedby>
+        <referencedby refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" compoundref="bindings_8cpp" startline="101" endline="115">duvc_vid_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" compoundref="bindings_8cpp" startline="130" endline="138">duvc_vid_set</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" prot="public" static="yes" mutable="no">
+        <type>std::vector&lt; <ref refid="structduvc_1_1Device" kindref="compound">duvc::Device</ref> &gt;</type>
+        <definition>std::vector&lt;duvc::Device&gt; g_devices</definition>
+        <argsstring></argsstring>
+        <name>g_devices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="15" column="20" bodyfile="bindings.cpp" bodystart="15" bodyend="-1"/>
+        <referencedby refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" compoundref="bindings_8cpp" startline="77" endline="88">duvc_cam_get</referencedby>
+        <referencedby refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" compoundref="bindings_8cpp" startline="61" endline="75">duvc_cam_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" compoundref="bindings_8cpp" startline="90" endline="98">duvc_cam_set</referencedby>
+        <referencedby refid="bindings_8cpp_1a7eae96ab0b9ad48d78466336076360e0" compoundref="bindings_8cpp" startline="22" endline="28">duvc_get_device_count</referencedby>
+        <referencedby refid="bindings_8cpp_1a56e6df6631c2fb647fcb3a8641bc8e49" compoundref="bindings_8cpp" startline="30" endline="37">duvc_get_device_name</referencedby>
+        <referencedby refid="bindings_8cpp_1a96f4ab988208d0f8432d7134f367283b" compoundref="bindings_8cpp" startline="39" endline="46">duvc_get_device_path</referencedby>
+        <referencedby refid="bindings_8cpp_1ae6c4b34fa8f4bfc8b53488ce2fccad7b" compoundref="bindings_8cpp" startline="48" endline="55">duvc_is_device_connected</referencedby>
+        <referencedby refid="bindings_8cpp_1a447135500d1651a64fc752ea40d3f2ec" compoundref="bindings_8cpp" startline="17" endline="20">duvc_refresh_devices</referencedby>
+        <referencedby refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" compoundref="bindings_8cpp" startline="117" endline="128">duvc_vid_get</referencedby>
+        <referencedby refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" compoundref="bindings_8cpp" startline="101" endline="115">duvc_vid_get_range</referencedby>
+        <referencedby refid="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" compoundref="bindings_8cpp" startline="130" endline="138">duvc_vid_set</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bindings_8cpp_1a447135500d1651a64fc752ea40d3f2ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void duvc_refresh_devices</definition>
+        <argsstring>()</argsstring>
+        <name>duvc_refresh_devices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="17" column="9" bodyfile="bindings.cpp" bodystart="17" bodyend="20"/>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a7eae96ab0b9ad48d78466336076360e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_get_device_count</definition>
+        <argsstring>()</argsstring>
+        <name>duvc_get_device_count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="22" column="8" bodyfile="bindings.cpp" bodystart="22" bodyend="28"/>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a56e6df6631c2fb647fcb3a8641bc8e49" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const wchar_t *</type>
+        <definition>const wchar_t * duvc_get_device_name</definition>
+        <argsstring>(int index)</argsstring>
+        <name>duvc_get_device_name</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="30" column="18" bodyfile="bindings.cpp" bodystart="30" bodyend="37"/>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a96f4ab988208d0f8432d7134f367283b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const wchar_t *</type>
+        <definition>const wchar_t * duvc_get_device_path</definition>
+        <argsstring>(int index)</argsstring>
+        <name>duvc_get_device_path</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="39" column="18" bodyfile="bindings.cpp" bodystart="39" bodyend="46"/>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1ae6c4b34fa8f4bfc8b53488ce2fccad7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_is_device_connected</definition>
+        <argsstring>(int index)</argsstring>
+        <name>duvc_is_device_connected</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="48" column="8" bodyfile="bindings.cpp" bodystart="48" bodyend="55"/>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" compoundref="core_8cpp" startline="549" endline="580">duvc::is_device_connected</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1ab174845ae2523545235d57a10d8fb68c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void duvc_clear_cache</definition>
+        <argsstring>()</argsstring>
+        <name>duvc_clear_cache</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="57" column="9" bodyfile="bindings.cpp" bodystart="57" bodyend="59"/>
+        <references refid="namespaceduvc_1a1078927aa05ca0665f6c3c861066c4f0" compoundref="core_8cpp" startline="505" endline="508">duvc::clear_connection_cache</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_cam_get_range</definition>
+        <argsstring>(int index, int camProp, int *outMin, int *outMax, int *outStep, int *outDef, int *outModeAuto)</argsstring>
+        <name>duvc_cam_get_range</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>camProp</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outMin</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outMax</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outStep</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outDef</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outModeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="61" column="8" bodyfile="bindings.cpp" bodystart="61" bodyend="75"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" compoundref="duvc_8hpp" startline="95" endline="104">duvc::get_range</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">duvc::PropRange::min</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_cam_get</definition>
+        <argsstring>(int index, int camProp, int *outValue, int *outModeAuto)</argsstring>
+        <name>duvc_cam_get</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>camProp</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outValue</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outModeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="77" column="8" bodyfile="bindings.cpp" bodystart="77" bodyend="88"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" compoundref="duvc_8hpp" startline="63" endline="72">duvc::get</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" compoundref="types_8h" startline="75">duvc::PropSetting::value</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_cam_set</definition>
+        <argsstring>(int index, int camProp, int value, int modeAuto)</argsstring>
+        <name>duvc_cam_set</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>camProp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>modeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="90" column="8" bodyfile="bindings.cpp" bodystart="90" bodyend="98"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301">duvc::Manual</references>
+        <references refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" compoundref="duvc_8hpp" startline="81" endline="86">duvc::set</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_vid_get_range</definition>
+        <argsstring>(int index, int vidProp, int *outMin, int *outMax, int *outStep, int *outDef, int *outModeAuto)</argsstring>
+        <name>duvc_vid_get_range</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vidProp</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outMin</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outMax</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outStep</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outDef</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outModeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="101" column="8" bodyfile="bindings.cpp" bodystart="101" bodyend="115"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" compoundref="duvc_8hpp" startline="95" endline="104">duvc::get_range</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" compoundref="types_8h" startline="93">duvc::PropRange::min</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_vid_get</definition>
+        <argsstring>(int index, int vidProp, int *outValue, int *outModeAuto)</argsstring>
+        <name>duvc_vid_get</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vidProp</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outValue</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>outModeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="117" column="8" bodyfile="bindings.cpp" bodystart="117" bodyend="128"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" compoundref="duvc_8hpp" startline="63" endline="72">duvc::get</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" compoundref="types_8h" startline="75">duvc::PropSetting::value</references>
+      </memberdef>
+      <memberdef kind="function" id="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int duvc_vid_set</definition>
+        <argsstring>(int index, int vidProp, int value, int modeAuto)</argsstring>
+        <name>duvc_vid_set</name>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vidProp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>modeAuto</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="bindings.cpp" line="130" column="8" bodyfile="bindings.cpp" bodystart="130" bodyend="138"/>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb">duvc::Auto</references>
+        <references refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" compoundref="bindings_8cpp" startline="15">g_devices</references>
+        <references refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" compoundref="bindings_8cpp" startline="14">g_devices_mutex</references>
+        <references refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" compoundref="core_8cpp" startline="626" endline="644">duvc::list_devices</references>
+        <references refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301">duvc::Manual</references>
+        <references refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" compoundref="duvc_8hpp" startline="81" endline="86">duvc::set</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="core_8h" kindref="compound">duvc-ctl/core.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mutex&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVCC_API<sp/>__declspec(dllexport)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DUVCC_API</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Thread-safe<sp/>device<sp/>management</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::mutex<sp/><ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>;</highlight></codeline>
+<codeline lineno="15" refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::vector&lt;duvc::Device&gt;<sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="bindings_8cpp_1a447135500d1651a64fc752ea40d3f2ec" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a447135500d1651a64fc752ea40d3f2ec" kindref="member">duvc_refresh_devices</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="bindings_8cpp_1a7eae96ab0b9ad48d78466336076360e0" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a7eae96ab0b9ad48d78466336076360e0" kindref="member">duvc_get_device_count</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size());</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="bindings_8cpp_1a56e6df6631c2fb647fcb3a8641bc8e49" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">wchar_t</highlight><highlight class="normal">*<sp/><ref refid="bindings_8cpp_1a56e6df6631c2fb647fcb3a8641bc8e49" kindref="member">duvc_get_device_name</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index].name.c_str();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="bindings_8cpp_1a96f4ab988208d0f8432d7134f367283b" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">wchar_t</highlight><highlight class="normal">*<sp/><ref refid="bindings_8cpp_1a96f4ab988208d0f8432d7134f367283b" kindref="member">duvc_get_device_path</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index].path.c_str();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="bindings_8cpp_1ae6c4b34fa8f4bfc8b53488ce2fccad7b" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1ae6c4b34fa8f4bfc8b53488ce2fccad7b" kindref="member">duvc_is_device_connected</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">duvc::is_device_connected</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index])<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="bindings_8cpp_1ab174845ae2523545235d57a10d8fb68c" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1ab174845ae2523545235d57a10d8fb68c" kindref="member">duvc_clear_cache</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a1078927aa05ca0665f6c3c861066c4f0" kindref="member">duvc::clear_connection_cache</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a7e5b8b6d1b9f093497e11e827ee56004" kindref="member">duvc_cam_get_range</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>camProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outMin,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outMax,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outStep,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outDef,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outModeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropRange" kindref="compound">duvc::PropRange</ref><sp/>r{};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" kindref="member">duvc::get_range</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">duvc::CamProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(camProp),<sp/>r))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outMin)<sp/>*outMin<sp/>=<sp/>r.<ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outMax)<sp/>*outMax<sp/>=<sp/>r.max;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outStep)<sp/>*outStep<sp/>=<sp/>r.step;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outDef)<sp/>*outDef<sp/>=<sp/>r.default_val;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outModeAuto)<sp/>*outModeAuto<sp/>=<sp/>(r.default_mode<sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref>)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a2eeaa75b5bece22f8ece44907ed9f569" kindref="member">duvc_cam_get</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>camProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outValue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outModeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">duvc::PropSetting</ref><sp/>s{};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" kindref="member">duvc::get</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">duvc::CamProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(camProp),<sp/>s))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outValue)<sp/>*outValue<sp/>=<sp/>s.<ref refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outModeAuto)<sp/>*outModeAuto<sp/>=<sp/>(s.mode<sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref>)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a58f06af7a7bba166129e38505c2afd4d" kindref="member">duvc_cam_set</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>camProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>modeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">duvc::PropSetting</ref><sp/>s{<sp/>value,<sp/>modeAuto<sp/>?<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref><sp/>:<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301" kindref="member">duvc::CamMode::Manual</ref><sp/>};</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" kindref="member">duvc::set</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">duvc::CamProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(camProp),<sp/>s)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment">//<sp/>VideoProcAmp<sp/>domain</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1afeb5120c76b876c78b2d47af23770647" kindref="member">duvc_vid_get_range</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vidProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outMin,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outMax,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outStep,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outDef,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outModeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropRange" kindref="compound">duvc::PropRange</ref><sp/>r{};</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__quickapi_1gaf73ccab11e1e8cb1a7311ad6e5d59f61" kindref="member">duvc::get_range</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">duvc::VidProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vidProp),<sp/>r))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outMin)<sp/>*outMin<sp/>=<sp/>r.<ref refid="structduvc_1_1PropRange_1a57e9abd91dc0291e88134ae491b6012b" kindref="member">min</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outMax)<sp/>*outMax<sp/>=<sp/>r.max;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outStep)<sp/>*outStep<sp/>=<sp/>r.step;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outDef)<sp/>*outDef<sp/>=<sp/>r.default_val;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outModeAuto)<sp/>*outModeAuto<sp/>=<sp/>(r.default_mode<sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref>)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a2ef0f3ef211dffa60691ec69734cb8ba" kindref="member">duvc_vid_get</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vidProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outValue,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>outModeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">duvc::PropSetting</ref><sp/>s{};</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__quickapi_1ga03a46d69b1f9bc18596e1085b5161ef0" kindref="member">duvc::get</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">duvc::VidProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vidProp),<sp/>s))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outValue)<sp/>*outValue<sp/>=<sp/>s.<ref refid="structduvc_1_1PropSetting_1a359064ca4c3f2478fcbab5ce61a3d346" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(outModeAuto)<sp/>*outModeAuto<sp/>=<sp/>(s.mode<sp/>==<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref>)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" refkind="member"><highlight class="normal"><ref refid="bindings_8cpp_1ad58366544de9b3a7bab4a87379b21617" kindref="member">DUVCC_API</ref><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="bindings_8cpp_1a2e76b2547f3ee2427b1cf27ad9b358d6" kindref="member">duvc_vid_set</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vidProp,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>value,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>modeAuto)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>std::lock_guard&lt;std::mutex&gt;<sp/>lock(<ref refid="bindings_8cpp_1aaf97ca20e4deb72cf9cb992e9867e79f" kindref="member">g_devices_mutex</ref>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.empty())<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">duvc::list_devices</ref>();</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(index<sp/>&lt;<sp/>0<sp/>||<sp/>index<sp/>&gt;=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>.size()))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">duvc::PropSetting</ref><sp/>s{<sp/>value,<sp/>modeAuto<sp/>?<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4ba06b9281e396db002010bde1de57262eb" kindref="member">duvc::CamMode::Auto</ref><sp/>:<sp/><ref refid="namespaceduvc_1a4b7d231cbb366b51f538c3d419b8fb4bae1ba155a9f2e8c3be94020eef32a0301" kindref="member">duvc::CamMode::Manual</ref><sp/>};</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="group__quickapi_1ga686ce12eeefaa6c520c8b4506b4c2bc9" kindref="member">duvc::set</ref>(<ref refid="bindings_8cpp_1ad7f30dc3fa7f85e6da668de73ed9f85d" kindref="member">g_devices</ref>[index],<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">duvc::VidProp</ref></highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vidProp),<sp/>s)<sp/>?<sp/>1<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>extern<sp/>&quot;C&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="bindings.cpp"/>
+  </compounddef>
+</doxygen>

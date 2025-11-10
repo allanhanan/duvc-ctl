@@ -1,0 +1,13 @@
+<map id="utils/error_decoder.h" name="utils/error_decoder.h">
+<area shape="rect" id="Node000001" title="HRESULT decoder and diagnostics utilities." alt="" coords="234,5,374,32"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html" title="Complete C ABI implementation for duvc&#45;ctl library." alt="" coords="5,88,80,115"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,39,93,83,73,90,71,85,91,77,238,34"/>
+<area shape="rect" id="Node000003" href="$error__handling_8cpp.html" title="C ABI error handling and diagnostics implementation." alt="" coords="104,88,242,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,43,195,90,192,85,269,38"/>
+<area shape="rect" id="Node000004" href="$duvc_8hpp.html" title="Main umbrella header for duvc&#45;ctl library." alt="" coords="267,88,341,115"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="306,48,306,88,301,88,301,48"/>
+<area shape="rect" id="Node000005" href="$ks__properties_8cpp.html" title="IKsPropertySet implementation for vendor properties." alt="" coords="365,80,506,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="339,38,403,77,401,82,336,43"/>
+<area shape="rect" id="Node000006" href="$error__decoder_8cpp.html" title="Error decoding and diagnostic utilities implementation." alt="" coords="531,88,684,115"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="367,34,560,85,559,90,366,39"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="duvc::KsPropertySet::get_property_typed" name="duvc::KsPropertySet::get_property_typed">
+<area shape="rect" id="Node000001" title="Get typed property value." alt="" coords="5,123,148,165"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#aeae3d86ec04c3b53caef2e1b51467609" title="Get the error (assumes error)" alt="" coords="202,13,332,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,120,142,85,194,50,205,44,208,49,197,54,145,89,103,124"/>
+<area shape="rect" id="Node000003" href="$classduvc_1_1KsPropertySet.html#a8c1795034a9f6851db82a1232cd897eb" title="Get property data." alt="" coords="196,64,338,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="147,120,180,109,182,114,149,125"/>
+<area shape="rect" id="Node000007" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="422,131,496,157"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="148,141,406,141,406,147,148,147"/>
+<area shape="rect" id="Node000008" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="200,181,334,208"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="149,160,200,174,199,179,148,166"/>
+<area shape="rect" id="Node000009" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="200,232,334,259"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="109,164,150,191,197,218,210,223,207,228,194,222,147,196,106,168"/>
+<area shape="rect" id="Node000004" href="$namespaceduvc.html#acf69ea75ab1f31295af14cfba31261c2" title="Decode HRESULT to human&#45;readable string." alt="" coords="386,13,531,40"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="338,61,397,43,399,48,339,66"/>
+<area shape="rect" id="Node000006" href="$classduvc_1_1KsPropertySet.html#a6e2ecf3413c017d4a4ec309c3e90a3f7" title="Check if property set is valid." alt="" coords="388,64,530,107"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="339,83,372,83,372,88,339,88"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="339,105,408,126,406,131,338,110"/>
+<area shape="rect" id="Node000005" href="$namespaceduvc.html#ad674a2332aaccc15fb24ab7fad6632f4" title="Decode system error code to human&#45;readable string." alt="" coords="579,5,729,48"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="532,24,564,24,564,29,532,29"/>
+</map>

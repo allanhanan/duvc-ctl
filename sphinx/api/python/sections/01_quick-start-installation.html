@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>1. Quick Start &amp; Installation - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="2. Architecture &amp; Design Overview" href="02_architecture-design-overview.html" /><link rel="prev" title="duvc-ctl Python Documentation" href="../index.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="1. Quick Start &amp; Installation"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp/index.html">duvc-ctl C++ API Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp/sections/16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl Python Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl Python Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">1. Quick Start &amp; Installation</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="quick-start-installation">
+<h1>1. Quick Start &amp; Installation<a class="headerlink" href="#quick-start-installation" title="Link to this heading">¶</a></h1>
+<section id="installation">
+<h2>1.1 Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<section id="system-requirements">
+<h3>System requirements<a class="headerlink" href="#system-requirements" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl is a Windows-only library that relies on the DirectShow multimedia framework. It requires:</p>
+<ul class="simple">
+<li><p><strong>Windows</strong>: Windows 7 SP1 or later. DirectShow is included with all modern Windows versions.</p></li>
+<li><p><strong>Python</strong>: 3.8 or later (binary wheels support 3.8–3.12).</p></li>
+<li><p><strong>C++ toolchain</strong> (for building from source): Visual Studio 2019+ or Build Tools, CMake 3.16+, and a C++17-compatible compiler.</p></li>
+</ul>
+</section>
+<section id="installation-from-pypi">
+<h3>Installation from PyPI<a class="headerlink" href="#installation-from-pypi" title="Link to this heading">¶</a></h3>
+<p>The easiest way to get started is to install the prebuilt binary wheel:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">pip</span> <span class="n">install</span> <span class="n">duvc</span><span class="o">-</span><span class="n">ctl</span>
+</span></pre></div>
+</div>
+<p>Verify the installation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import duvcctl; print(duvcctl.__version__)&quot;</span>
+</span></pre></div>
+</div>
+<p>Binary wheels are available for Windows on Python 3.8–3.12 (64-bit). If your Python version or architecture differs, you’ll need to build from source.</p>
+</section>
+<section id="building-from-source">
+<h3>Building from source<a class="headerlink" href="#building-from-source" title="Link to this heading">¶</a></h3>
+<p>If a prebuilt wheel is not available for your configuration, or if you want to build with custom flags, build from source using CMake.</p>
+<p><strong>Prerequisites:</strong></p>
+<ul class="simple">
+<li><p>Python development headers (included with most Python distributions).</p></li>
+<li><p>CMake 3.16 or later.</p></li>
+<li><p>A C++ compiler: Visual Studio 2019 or later, or Build Tools for Visual Studio.</p></li>
+<li><p>Git.</p></li>
+</ul>
+<p><strong>Build steps:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">allanhanan</span><span class="o">/</span><span class="n">duvc</span><span class="o">-</span><span class="n">ctl</span><span class="o">.</span><span class="n">git</span>
+</span><span data-line="2"><span class="n">cd</span> <span class="n">duvc</span><span class="o">-</span><span class="n">ctl</span>
+</span><span data-line="3"><span class="n">cmake</span> <span class="o">-</span><span class="n">B</span> <span class="n">build</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Visual Studio 17 2022&quot;</span> <span class="o">-</span><span class="n">A</span> <span class="n">x64</span> <span class="o">-</span><span class="n">DDUVCBUILDPYTHON</span><span class="o">=</span><span class="n">ON</span>
+</span><span data-line="4"><span class="n">cmake</span> <span class="o">--</span><span class="n">build</span> <span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Release</span>
+</span><span data-line="5"><span class="n">cmake</span> <span class="o">--</span><span class="n">install</span> <span class="n">build</span> <span class="o">--</span><span class="n">config</span> <span class="n">Release</span>
+</span></pre></div>
+</div>
+<p>Replace “Visual Studio 17 2022” with your Visual Studio version if different (e.g., “Visual Studio 16 2019”).</p>
+<p><strong>CMake configuration options:</strong></p>
+<p>Common options to pass to the first <code class="docutils literal notranslate"><span class="pre">cmake</span></code> command:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDSHARED</span></code> (ON/OFF): Build a shared core library. Default: ON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDSTATIC</span></code> (ON/OFF): Build a static core library. Default: ON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDCAPI</span></code> (ON/OFF): Build the C API for bindings. Default: ON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDCLI</span></code> (ON/OFF): Build the command-line tool. Default: ON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDPYTHON</span></code> (ON/OFF): Build Python bindings. Default: ON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDTESTS</span></code> (ON/OFF): Build tests. Default: OFF.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DUVCBUILDEXAMPLES</span></code> (ON/OFF): Build examples. Default: OFF.</p></li>
+</ul>
+<p>For example, to build only the Python bindings:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">cmake</span> <span class="o">-</span><span class="n">B</span> <span class="n">build</span> <span class="o">-</span><span class="n">G</span> <span class="s2">&quot;Visual Studio 17 2022&quot;</span> <span class="o">-</span><span class="n">A</span> <span class="n">x64</span> \
+</span><span data-line="2">  <span class="o">-</span><span class="n">DDUVCBUILDSHARED</span><span class="o">=</span><span class="n">ON</span> \
+</span><span data-line="3">  <span class="o">-</span><span class="n">DDUVCBUILDSTATIC</span><span class="o">=</span><span class="n">OFF</span> \
+</span><span data-line="4">  <span class="o">-</span><span class="n">DDUVCBUILDCAPI</span><span class="o">=</span><span class="n">OFF</span> \
+</span><span data-line="5">  <span class="o">-</span><span class="n">DDUVCBUILDCLI</span><span class="o">=</span><span class="n">OFF</span> \
+</span><span data-line="6">  <span class="o">-</span><span class="n">DDUVCBUILDPYTHON</span><span class="o">=</span><span class="n">ON</span>
+</span></pre></div>
+</div>
+</section>
+<section id="editable-installation-development">
+<h3>Editable installation (development)<a class="headerlink" href="#editable-installation-development" title="Link to this heading">¶</a></h3>
+<p>For development work on the source code, install in editable mode:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</span></pre></div>
+</div>
+<p>This compiles the extension in place and allows you to edit Python files without reinstalling. The underlying C++ code is compiled using scikit-build-core with pybind11. Ensure your toolchain is installed and on PATH before running this command.</p>
+</section>
+<section id="wheel-repair-and-distribution">
+<h3>Wheel repair and distribution<a class="headerlink" href="#wheel-repair-and-distribution" title="Link to this heading">¶</a></h3>
+<p>Binary wheels are built in CI and repaired on Windows using <code class="docutils literal notranslate"><span class="pre">delvewheel</span></code> to ensure all runtime dependencies (including required DLLs) are packaged correctly. This minimizes end-user setup complexity when installing from PyPI.</p>
+</section>
+<section id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Link to this heading">¶</a></h3>
+<p>After installation, confirm that the library can enumerate devices:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvcctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;duvc-ctl version:&quot;</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="6"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Devices found:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">devices</span><span class="p">))</span>
+</span><span data-line="7"><span class="k">for</span> <span class="n">device</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="8">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">device</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>If no devices are found, verify that:</p>
+<ol class="arabic simple">
+<li><p>A camera is physically connected.</p></li>
+<li><p>The camera appears in Device Manager (devmgmt.msc).</p></li>
+<li><p>The camera works in the built-in Windows Camera app.</p></li>
+</ol>
+</section>
+<section id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h3>
+<p><strong>ImportError or missing DLLs:</strong></p>
+<ul class="simple">
+<li><p>Install the Microsoft Visual C++ Redistributable for your Visual Studio version.</p></li>
+<li><p>Verify that your Python is 64-bit if your Windows is 64-bit (or both 32-bit).</p></li>
+</ul>
+<p><strong>Build errors during <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code>:</strong></p>
+<ul class="simple">
+<li><p>Confirm that CMake is installed and visible in PATH: <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--version</span></code>.</p></li>
+<li><p>Confirm your C++ toolchain is on PATH. For Visual Studio, run the build in a Visual Studio Developer Command Prompt.</p></li>
+<li><p>Delete the build/ directory and try again: <code class="docutils literal notranslate"><span class="pre">rmdir</span> <span class="pre">/s</span> <span class="pre">/q</span> <span class="pre">build</span> <span class="pre">&amp;&amp;</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code>.</p></li>
+</ul>
+<p><strong>CMake not found:</strong></p>
+<ul class="simple">
+<li><p>Add CMake to your system PATH, or specify the full path: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span> <span class="pre">--config-settings=cmake.cmake-executable=C:\path\to\cmake.exe</span></code>.</p></li>
+</ul>
+<p><strong>No devices appear:</strong></p>
+<ul class="simple">
+<li><p>Check the device is recognized by Windows: <code class="docutils literal notranslate"><span class="pre">wmic</span> <span class="pre">logicaldisk</span> <span class="pre">get</span> <span class="pre">name</span></code> or open Device Manager (devmgmt.msc).</p></li>
+<li><p>Test the camera with the Windows Camera app to rule out driver issues.</p></li>
+<li><p>Enable debug logging to see what the library detects.</p></li>
+</ul>
+<p><strong>Platform detection warnings:</strong></p>
+<p>The module checks for Windows at import time. Non-Windows platforms will raise an ImportError or warning. duvc-ctl is Windows-only.</p>
+</section>
+</section>
+<section id="your-first-program">
+<h2>1.2 Your First Program<a class="headerlink" href="#your-first-program" title="Link to this heading">¶</a></h2>
+<p>duvc-ctl offers two distinct APIs for different needs. The Pythonic API is simpler and better for quick scripts and beginners. The Result-Based API provides explicit error handling without exceptions and is suited for production systems. Both work on the same underlying C++ engine, so you can mix them as needed.</p>
+<section id="choosing-your-approach">
+<h3>Choosing your approach<a class="headerlink" href="#choosing-your-approach" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Use Case</p></th>
+<th class="head text-left"><p>API</p></th>
+<th class="head text-left"><p>Why</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Quick script, single camera</p></td>
+<td class="text-left"><p>Pythonic</p></td>
+<td class="text-left"><p>Automatic device selection, exceptions, minimal code</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Production application</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Explicit error handling, detailed diagnostics, no exceptions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Learning the library</p></td>
+<td class="text-left"><p>Pythonic</p></td>
+<td class="text-left"><p>Simpler syntax, clearer intent, beginner-friendly</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Detailed error recovery</p></td>
+<td class="text-left"><p>Result-based</p></td>
+<td class="text-left"><p>Access error codes and recovery suggestions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Concurrent camera access</p></td>
+<td class="text-left"><p>Either</p></td>
+<td class="text-left"><p>Both are thread-safe; Result-based gives better control</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="pythonic-api-quick-start">
+<h3>Pythonic API - Quick Start<a class="headerlink" href="#pythonic-api-quick-start" title="Link to this heading">¶</a></h3>
+<p>The Pythonic API uses property-based access and automatic device management:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># Connect to first available camera</span>
+</span><span data-line="4"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="5">    <span class="c1"># Simple property read/write</span>
+</span><span data-line="6">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">75</span>
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Brightness: </span><span class="si">{</span><span class="n">cam</span><span class="o">.</span><span class="n">brightness</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8">    
+</span><span data-line="9">    <span class="c1"># Direct method calls</span>
+</span><span data-line="10">    <span class="n">cam</span><span class="o">.</span><span class="n">pan</span> <span class="o">=</span> <span class="mi">0</span>              <span class="c1"># Center camera</span>
+</span><span data-line="11">    <span class="n">cam</span><span class="o">.</span><span class="n">tilt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>           <span class="c1"># Tilt down</span>
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pan: </span><span class="si">{</span><span class="n">cam</span><span class="o">.</span><span class="n">pan</span><span class="si">}</span><span class="s2">°, Tilt: </span><span class="si">{</span><span class="n">cam</span><span class="o">.</span><span class="n">tilt</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+</span><span data-line="13">    
+</span><span data-line="14">    <span class="c1"># Relative movement</span>
+</span><span data-line="15">    <span class="n">cam</span><span class="o">.</span><span class="n">pan_relative</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>     <span class="c1"># Move 15° right</span>
+</span><span data-line="16">    <span class="n">cam</span><span class="o">.</span><span class="n">zoom_relative</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># Zoom in</span>
+</span></pre></div>
+</div>
+<p>Find a specific camera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">try</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Find by name pattern (case-insensitive substring)</span>
+</span><span data-line="5">    <span class="n">cam</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">find_camera</span><span class="p">(</span><span class="s2">&quot;Logitech&quot;</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">80</span>
+</span><span data-line="7">    <span class="n">cam</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span data-line="8"><span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">DeviceNotFoundError</span><span class="p">:</span>
+</span><span data-line="9">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera not found&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>List available properties:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Enumerate properties</span>
+</span><span data-line="5">    <span class="n">supported</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">get_supported_properties</span><span class="p">()</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Video properties:&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">[</span><span class="s1">&#39;video&#39;</span><span class="p">]:</span>
+</span><span data-line="9">        <span class="n">value</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="10">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="11">    
+</span><span data-line="12">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Camera properties:&quot;</span><span class="p">)</span>
+</span><span data-line="13">    <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">supported</span><span class="p">[</span><span class="s1">&#39;camera&#39;</span><span class="p">]:</span>
+</span><span data-line="14">        <span class="n">value</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+</span><span data-line="15">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Batch operations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="4">    <span class="c1"># Set multiple properties at once</span>
+</span><span data-line="5">    <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+</span><span data-line="6">        <span class="s1">&#39;brightness&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+</span><span data-line="7">        <span class="s1">&#39;contrast&#39;</span><span class="p">:</span> <span class="mi">65</span><span class="p">,</span>
+</span><span data-line="8">        <span class="s1">&#39;saturation&#39;</span><span class="p">:</span> <span class="mi">80</span>
+</span><span data-line="9">    <span class="p">}</span>
+</span><span data-line="10">    <span class="n">results</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">set_multiple</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</span><span data-line="11">    
+</span><span data-line="12">    <span class="c1"># Get multiple properties</span>
+</span><span data-line="13">    <span class="n">values</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">get_multiple</span><span class="p">([</span><span class="s1">&#39;brightness&#39;</span><span class="p">,</span> <span class="s1">&#39;contrast&#39;</span><span class="p">,</span> <span class="s1">&#39;saturation&#39;</span><span class="p">])</span>
+</span></pre></div>
+</div>
+<p>Handle errors:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">with</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CameraController</span><span class="p">()</span> <span class="k">as</span> <span class="n">cam</span><span class="p">:</span>
+</span><span data-line="4">    <span class="k">try</span><span class="p">:</span>
+</span><span data-line="5">        <span class="n">cam</span><span class="o">.</span><span class="n">brightness</span> <span class="o">=</span> <span class="mi">999</span>  <span class="c1"># Out of range</span>
+</span><span data-line="6">    <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">InvalidValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span data-line="7">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid value: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="8">    <span class="k">except</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropertyNotSupportedError</span><span class="p">:</span>
+</span><span data-line="9">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Brightness not supported on this camera&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="result-based-api-production-use">
+<h3>Result-Based API - Production Use<a class="headerlink" href="#result-based-api-production-use" title="Link to this heading">¶</a></h3>
+<p>The Result-Based API returns Result types instead of raising exceptions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="c1"># List devices</span>
+</span><span data-line="4"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="5"><span class="k">if</span> <span class="ow">not</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="6">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No cameras found&quot;</span><span class="p">)</span>
+</span><span data-line="7">    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1"># Open camera with explicit error handling</span>
+</span><span data-line="12"><span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="13"><span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="14">    <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="15">    
+</span><span data-line="16">    <span class="c1"># Get property - returns Result</span>
+</span><span data-line="17">    <span class="n">pan_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">)</span>
+</span><span data-line="18">    <span class="k">if</span> <span class="n">pan_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="19">        <span class="n">setting</span> <span class="o">=</span> <span class="n">pan_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="20">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pan: </span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">setting</span><span class="o">.</span><span class="n">mode</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</span><span data-line="21">    <span class="k">else</span><span class="p">:</span>
+</span><span data-line="22">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">pan_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="23"><span class="k">else</span><span class="p">:</span>
+</span><span data-line="24">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to open camera: </span><span class="si">{</span><span class="n">camera_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Set properties with range checking:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">if</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">device</span> <span class="o">=</span> <span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">]</span>
+</span><span data-line="6">    <span class="n">camera_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">open_camera</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span data-line="7">    
+</span><span data-line="8">    <span class="k">if</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="9">        <span class="n">camera</span> <span class="o">=</span> <span class="n">camera_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="10">        
+</span><span data-line="11">        <span class="c1"># Get range before setting</span>
+</span><span data-line="12">        <span class="n">range_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">)</span>
+</span><span data-line="13">        <span class="k">if</span> <span class="n">range_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="14">            <span class="n">prop_range</span> <span class="o">=</span> <span class="n">range_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="15">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pan range: </span><span class="si">{</span><span class="n">prop_range</span><span class="o">.</span><span class="n">min</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">prop_range</span><span class="o">.</span><span class="n">max</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="16">            
+</span><span data-line="17">            <span class="c1"># Set to center</span>
+</span><span data-line="18">            <span class="n">center</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">PropSetting</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">duvc</span><span class="o">.</span><span class="n">CamMode</span><span class="o">.</span><span class="n">Manual</span><span class="p">)</span>
+</span><span data-line="19">            <span class="n">set_result</span> <span class="o">=</span> <span class="n">camera</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">.</span><span class="n">CamProp</span><span class="o">.</span><span class="n">Pan</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+</span><span data-line="20">            
+</span><span data-line="21">            <span class="k">if</span> <span class="n">set_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="22">                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pan centered successfully&quot;</span><span class="p">)</span>
+</span><span data-line="23">            <span class="k">else</span><span class="p">:</span>
+</span><span data-line="24">                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to set Pan: </span><span class="si">{</span><span class="n">set_result</span><span class="o">.</span><span class="n">error</span><span class="p">()</span><span class="o">.</span><span class="n">description</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p>Get device capabilities:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="n">devices</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+</span><span data-line="4"><span class="k">if</span> <span class="n">devices</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">caps_result</span> <span class="o">=</span> <span class="n">duvc</span><span class="o">.</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="n">devices</span><span class="p">[</span><span class="o">^</span><span class="mi">0</span><span class="p">])</span>
+</span><span data-line="6">    
+</span><span data-line="7">    <span class="k">if</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">is_ok</span><span class="p">():</span>
+</span><span data-line="8">        <span class="n">capabilities</span> <span class="o">=</span> <span class="n">caps_result</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+</span><span data-line="9">        
+</span><span data-line="10">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Supported camera properties:&quot;</span><span class="p">)</span>
+</span><span data-line="11">        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">supported_camera_properties</span><span class="p">():</span>
+</span><span data-line="12">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="13">        
+</span><span data-line="14">        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Supported video properties:&quot;</span><span class="p">)</span>
+</span><span data-line="15">        <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">capabilities</span><span class="o">.</span><span class="n">supported_video_properties</span><span class="p">():</span>
+</span><span data-line="16">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="api-comparison-table">
+<h3>API Comparison Table<a class="headerlink" href="#api-comparison-table" title="Link to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Pythonic</p></th>
+<th class="head text-left"><p>Result-Based</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Device selection</p></td>
+<td class="text-left"><p>Automatic (first device or by name)</p></td>
+<td class="text-left"><p>Manual (explicit Device passed)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Error handling</p></td>
+<td class="text-left"><p>Standard Python exceptions</p></td>
+<td class="text-left"><p>Result types without exceptions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Code verbosity</p></td>
+<td class="text-left"><p>Minimal</p></td>
+<td class="text-left"><p>Explicit</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Learning curve</p></td>
+<td class="text-left"><p>Easy</p></td>
+<td class="text-left"><p>Moderate</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Production ready</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Error diagnostics</p></td>
+<td class="text-left"><p>Basic error message</p></td>
+<td class="text-left"><p>Detailed error codes and descriptions</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Thread-safe</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Performance</p></td>
+<td class="text-left"><p>Slightly lower (exception handling)</p></td>
+<td class="text-left"><p>Slightly higher (no exception overhead)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="next-steps">
+<h3>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>For simple scripts or learning, start with the <strong>Pythonic API</strong> above.</p></li>
+<li><p>For production systems that need detailed error recovery, migrate to the <strong>Result-Based API</strong>.</p></li>
+<li><p>See the Architecture section for a detailed comparison of both APIs and their design rationale.</p></li>
+<li><p>Check Common Patterns &amp; Recipes for multi-camera control, bulk operations, and advanced scenarios.</p></li>
+</ul>
+</section>
+</section>
+<section id="platform-requirements-compatibility">
+<h2>1.3 Platform Requirements &amp; Compatibility<a class="headerlink" href="#platform-requirements-compatibility" title="Link to this heading">¶</a></h2>
+<section id="windows-support">
+<h3>Windows support<a class="headerlink" href="#windows-support" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl is designed for <strong>Windows only</strong>. It does not run on Linux, macOS, or other operating systems.</p>
+<p>Supported Windows versions:</p>
+<ul class="simple">
+<li><p>Windows 7 SP1 and later (Windows 7, 8, 8.1, 10, 11, and Server editions)</p></li>
+<li><p>DirectShow, the multimedia framework used by duvc-ctl, is a standard component of all supported Windows versions</p></li>
+</ul>
+<p>Attempting to import duvc-ctl on non-Windows platforms will raise an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> at module load time:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># On Linux or macOS:</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span>
+</span><span data-line="3"><span class="c1"># ImportError: duvc-ctl is only supported on Windows</span>
+</span></pre></div>
+</div>
+</section>
+<section id="python-version-requirements">
+<h3>Python version requirements<a class="headerlink" href="#python-version-requirements" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Minimum</strong>: Python 3.8</p></li>
+<li><p><strong>Recommended</strong>: Python 3.9 or later</p></li>
+<li><p><strong>Maximum tested</strong>: Python 3.12</p></li>
+</ul>
+<p>The library uses pybind11 for C++ bindings and has no external Python dependencies beyond the standard library. Binary wheels are built for Python 3.8, 3.9, 3.10, 3.11, and 3.12 on Windows (64-bit).</p>
+<p>Check your Python version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span data-line="1">python<span class="w"> </span>--version
+</span><span data-line="2">python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import struct; print(&#39;64-bit&#39; if struct.calcsize(&#39;P&#39;) == 8 else &#39;32-bit&#39;)&quot;</span>
+</span></pre></div>
+</div>
+</section>
+<section id="architecture-compatibility">
+<h3>Architecture compatibility<a class="headerlink" href="#architecture-compatibility" title="Link to this heading">¶</a></h3>
+<p>The library is built for <strong>64-bit (x64) Windows only</strong>.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Architecture</p></th>
+<th class="head text-left"><p>Status</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>x64 (64-bit)</p></td>
+<td class="text-left"><p>Supported</p></td>
+<td class="text-left"><p>Recommended; all wheels use this</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>x86 (32-bit)</p></td>
+<td class="text-left"><p>Partially Supported</p></td>
+<td class="text-left"><p>No wheels built; compilation required</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ARM64</p></td>
+<td class="text-left"><p>Not supported</p></td>
+<td class="text-left"><p>Windows on ARM is not targeted</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you are on 64-bit Windows and have 32-bit Python, install 64-bit Python instead. Mixing 32-bit Python with 64-bit Windows is not recommended for this library.</p>
+<p>Verify your Python architecture:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
+</span><span data-line="2"><span class="nb">print</span><span class="p">(</span><span class="n">platform</span><span class="o">.</span><span class="n">architecture</span><span class="p">())</span>  <span class="c1"># Should show (&#39;64bit&#39;, &#39;WindowsPE&#39;)</span>
+</span></pre></div>
+</div>
+</section>
+<section id="runtime-dependencies">
+<h3>Runtime dependencies<a class="headerlink" href="#runtime-dependencies" title="Link to this heading">¶</a></h3>
+<p>Beyond Windows and Python, duvc-ctl requires:</p>
+<ul class="simple">
+<li><p><strong>DirectShow</strong>: Built into all supported Windows versions; no installation needed.</p></li>
+<li><p><strong>Visual C++ Redistributable</strong>: If installing from a prebuilt wheel, the matching MSVC runtime may be required. Modern wheels use delvewheel to bundle necessary DLLs, reducing this requirement. If you get a DLL error at runtime, install the Microsoft Visual C++ Redistributable for your Visual Studio version.</p></li>
+<li><p><strong>USB driver support</strong>: Windows manages UVC camera drivers automatically for standard webcams. Vendor-specific cameras may require additional drivers (check Device Manager).</p></li>
+</ul>
+</section>
+<section id="behavior-differences-by-windows-version">
+<h3>Behavior differences by Windows version<a class="headerlink" href="#behavior-differences-by-windows-version" title="Link to this heading">¶</a></h3>
+<p>Most behavior is consistent across supported Windows versions. However, there are minor differences:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Win7 SP1</p></th>
+<th class="head text-left"><p>Win8+</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Device enumeration</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>DirectShow device discovery works identically</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Property access</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>IAMCameraControl and IAMVideoProcAmp interfaces available</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Hotplug detection</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Device change notifications supported</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>DLL loading</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>DirectShow is present on all versions</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="binary-wheel-platform-tags">
+<h3>Binary wheel platform tags<a class="headerlink" href="#binary-wheel-platform-tags" title="Link to this heading">¶</a></h3>
+<p>PyPI wheels use Python’s platform tagging convention. For duvc-ctl, the tags are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc_ctl</span><span class="o">-</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">cp38</span><span class="o">-</span><span class="n">cp38</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</span><span data-line="2"><span class="n">duvc_ctl</span><span class="o">-</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">cp39</span><span class="o">-</span><span class="n">cp39</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</span><span data-line="3"><span class="n">duvc_ctl</span><span class="o">-</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">cp310</span><span class="o">-</span><span class="n">cp310</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</span><span data-line="4"><span class="n">duvc_ctl</span><span class="o">-</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">cp311</span><span class="o">-</span><span class="n">cp311</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</span><span data-line="5"><span class="n">duvc_ctl</span><span class="o">-</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">cp312</span><span class="o">-</span><span class="n">cp312</span><span class="o">-</span><span class="n">win_amd64</span><span class="o">.</span><span class="n">whl</span>
+</span></pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cpXY</span></code>: CPython version (3.8, 3.9, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">win_amd64</span></code>: Windows 64-bit (x64)</p></li>
+</ul>
+<p>pip automatically selects the correct wheel for your Python version and architecture. If pip cannot find a matching wheel, you’ll need to build from source.</p>
+</section>
+<section id="bit-python-on-64-bit-windows">
+<h3>32-bit Python on 64-bit Windows<a class="headerlink" href="#bit-python-on-64-bit-windows" title="Link to this heading">¶</a></h3>
+<p>While possible, running 32-bit Python on 64-bit Windows with duvc-ctl is not officially supported. If you must use 32-bit Python:</p>
+<ol class="arabic simple">
+<li><p>Build the extension from source (no prebuilt 32-bit wheel exists).</p></li>
+<li><p>Ensure your C++ toolchain is configured for 32-bit builds.</p></li>
+<li><p>Expect potential compatibility issues with device drivers and DirectShow.</p></li>
+</ol>
+<p>We recommend using 64-bit Python on 64-bit Windows.</p>
+</section>
+<section id="import-time-checks">
+<h3>Import-time checks<a class="headerlink" href="#import-time-checks" title="Link to this heading">¶</a></h3>
+<p>When imported, duvc-ctl performs platform detection and will warn or error if:</p>
+<ul class="simple">
+<li><p>You are not on Windows (raises <code class="docutils literal notranslate"><span class="pre">ImportError</span></code>)</p></li>
+<li><p>Your Python architecture does not match your Windows architecture (warning)</p></li>
+<li><p>DirectShow cannot be detected or accessed (warning, but import succeeds)</p></li>
+</ul>
+<p>These checks help catch configuration issues early:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Successful import (on Windows 64-bit with Python 3.8+):</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">duvc</span>
+</span><span data-line="3"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Module loaded: </span><span class="si">{</span><span class="n">duvc</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1"># Failed import (on Linux):</span>
+</span><span data-line="6"><span class="kn">import</span><span class="w"> </span><span class="nn">duvc_ctl</span>
+</span><span data-line="7"><span class="c1"># ImportError: duvc-ctl is only supported on Windows</span>
+</span></pre></div>
+</div>
+</section>
+<section id="forward-compatibility">
+<h3>Forward compatibility<a class="headerlink" href="#forward-compatibility" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl targets stability across Windows versions. However:</p>
+<ul class="simple">
+<li><p>Future Windows releases may deprecate or alter DirectShow APIs, which could affect the library. However MediaFoundation support is planned to be added in the future.</p></li>
+<li><p>Binary wheels are tested on Windows 10 and 11; older versions (Windows 7, 8) are supported but receive less frequent testing.</p></li>
+<li><p>Python 3.13+ has been tested, However due do CI/CD limitations, prebuilt wheels are not available; if you need it, build from source.</p></li>
+</ul>
+<p>For the latest supported configurations, check the project README or CI/CD matrix on GitHub.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="../index.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">duvc-ctl Python Documentation</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="02_architecture-design-overview.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">2. Architecture &amp; Design Overview</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

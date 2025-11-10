@@ -1,0 +1,13 @@
+<map id="duvc::logitech::get_logitech_property_typed" name="duvc::logitech::get_logitech_property_typed">
+<area shape="rect" id="Node000001" title="Get typed Logitech property value." alt="" coords="5,115,172,157"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1Result.html#aeae3d86ec04c3b53caef2e1b51467609" title="Get the error (assumes error)" alt="" coords="222,5,352,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,112,162,77,218,42,229,36,232,41,221,46,165,81,118,116"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc_1_1logitech.html#a91bff3336f23441c645a3ae57a858991" title="Get Logitech vendor property as raw byte vector." alt="" coords="223,56,351,99"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="162,112,207,98,208,103,163,117"/>
+<area shape="rect" id="Node000004" href="$classduvc_1_1Result.html#a6a3af8795b3d3090f17993728dbe701f" title="Check if result contains a value (success)" alt="" coords="220,123,354,149"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,133,204,133,204,139,172,139"/>
+<area shape="rect" id="Node000005" href="$namespaceduvc.html#afc6e96946d632ab859aa1aef741646f6" title="Helper to create successful void Result." alt="" coords="250,173,324,200"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="173,155,236,171,234,176,172,160"/>
+<area shape="rect" id="Node000006" href="$classduvc_1_1Result.html#a260a000aca87d38c8f9f22ad80804691" title="Get the value (assumes success)" alt="" coords="220,224,354,251"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="125,156,221,210,233,215,231,220,218,214,122,160"/>
+</map>

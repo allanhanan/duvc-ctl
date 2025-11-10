@@ -1,0 +1,5 @@
+<map id="duvc::logitech::set_logitech_property" name="duvc::logitech::set_logitech_property">
+<area shape="rect" id="Node000001" title="Set Logitech vendor property from raw byte vector." alt="" coords="220,5,348,48"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc_1_1logitech.html#a21f9f978ab54b953b60c2ea0b14ecbfc" title="Set typed Logitech property value." alt="" coords="5,5,172,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,29,172,29,172,24,204,24"/>
+</map>

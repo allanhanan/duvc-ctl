@@ -1,0 +1,244 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="camera_8cpp" kind="file" language="C++">
+    <compoundname>camera.cpp</compoundname>
+    <includes refid="camera_8h" local="no">duvc-ctl/core/camera.h</includes>
+    <includes refid="device_8h" local="no">duvc-ctl/core/device.h</includes>
+    <includes refid="connection__pool_8h" local="no">duvc-ctl/platform/windows/connection_pool.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/camera.h</label>
+        <link refid="camera_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>duvc-ctl/core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>duvc-ctl/core/result.h</label>
+        <link refid="result_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>duvc-ctl/platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>core/camera.cpp</label>
+        <link refid="camera_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="12">
+        <label>functional</label>
+      </node>
+      <node id="4">
+        <label>iostream</label>
+      </node>
+      <node id="10">
+        <label>memory</label>
+      </node>
+      <node id="5">
+        <label>optional</label>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="7">
+        <label>system_error</label>
+      </node>
+      <node id="8">
+        <label>variant</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <briefdescription>
+<para>RAII camera handle implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="camera_8h" kindref="compound">duvc-ctl/core/camera.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="device_8h" kindref="compound">duvc-ctl/core/device.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="connection__pool_8h" kindref="compound">duvc-ctl/platform/windows/connection_pool.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="classduvc_1_1Camera_1a431231e72dca369196fd8d12aa795eed" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Camera_1a431231e72dca369196fd8d12aa795eed" kindref="member">Camera::Camera</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device)<sp/>:<sp/>device_(device),<sp/>connection_(<ref refid="classduvc_1_1Result" kindref="compound">nullptr</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classduvc_1_1Camera_1afb78983227d8207306746d433c9fa570" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Camera_1a431231e72dca369196fd8d12aa795eed" kindref="member">Camera::Camera</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>)<sp/>:<sp/>connection_(<ref refid="classduvc_1_1Result" kindref="compound">nullptr</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">device_index</ref><sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/><ref refid="classduvc_1_1Result" kindref="compound">device_index</ref><sp/>&lt;<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">devices</ref>.size()))<sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>device_<sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">devices</ref>[<ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>];</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Invalid<sp/>index<sp/>results<sp/>in<sp/>invalid<sp/>camera<sp/>(device_<sp/>will<sp/>be<sp/>empty)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><ref refid="classduvc_1_1Camera_1a176bd95d30098102cf41437ace63b9cb" kindref="member">Camera::~Camera</ref>()<sp/>=<sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><ref refid="classduvc_1_1Camera_1a431231e72dca369196fd8d12aa795eed" kindref="member">Camera::Camera</ref>(<ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref><sp/>&amp;&amp;)<sp/><ref refid="classduvc_1_1Result" kindref="compound">noexcept</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">default</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref><sp/>&amp;<ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref>::<ref refid="classduvc_1_1Result" kindref="compound">operator</ref>=(<ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref><sp/>&amp;&amp;)<sp/><ref refid="classduvc_1_1Result" kindref="compound">noexcept</ref><sp/>=<sp/><ref refid="classduvc_1_1Result" kindref="compound">default</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="classduvc_1_1Camera_1a682f869dcea95cc310c86275872c00d2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref>::is_valid()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>device_.<ref refid="classduvc_1_1Camera_1a682f869dcea95cc310c86275872c00d2" kindref="member">is_valid</ref>()<sp/>&amp;&amp;<sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(device_);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="classduvc_1_1DeviceConnection" kindref="compound">DeviceConnection</ref><sp/>*Camera::get_connection()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!connection_)<sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>connection_<sp/>=<sp/>std::make_unique&lt;DeviceConnection&gt;(device_);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>connection_.get();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="classduvc_1_1Camera_1afc3cfc69da7411bb9e28c2dad29ebe6c" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;PropSetting&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1afc3cfc69da7411bb9e28c2dad29ebe6c" kindref="member">Camera::get</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropSetting&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;get(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(<ref refid="classduvc_1_1Result" kindref="compound">setting</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropSetting&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>camera<sp/>property&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="classduvc_1_1Camera_1ac9637793f602425d7e07de6d3ec954cb" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1ac9637793f602425d7e07de6d3ec954cb" kindref="member">Camera::set</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">setting</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;set(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>();</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>set<sp/>camera<sp/>property&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classduvc_1_1Camera_1a58cc117a3611bb6ebb55c9a4d8e36c28" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;PropRange&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1a58cc117a3611bb6ebb55c9a4d8e36c28" kindref="member">Camera::get_range</ref>(<ref refid="namespaceduvc_1a90ea0f47263c401ca221ec4167e11880" kindref="member">CamProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropRange&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref><sp/>range;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;get_range(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/>range))<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(range);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropRange&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>camera<sp/>property<sp/>range&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classduvc_1_1Camera_1a1a00f27c12cc852b8d17f70f48aea8f4" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;PropSetting&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1afc3cfc69da7411bb9e28c2dad29ebe6c" kindref="member">Camera::get</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropSetting&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;get(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(<ref refid="classduvc_1_1Result" kindref="compound">setting</ref>);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropSetting&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>video<sp/>property&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="classduvc_1_1Camera_1a8060e10da1fb02c13376b3d7252a3753" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;void&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1ac9637793f602425d7e07de6d3ec954cb" kindref="member">Camera::set</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1PropSetting" kindref="compound">PropSetting</ref><sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">setting</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;set(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/><ref refid="classduvc_1_1Result" kindref="compound">setting</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;void&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>set<sp/>video<sp/>property&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="classduvc_1_1Camera_1aa124a5ddf0d28cc5921543988393a907" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;PropRange&gt;</ref><sp/><ref refid="classduvc_1_1Camera_1a58cc117a3611bb6ebb55c9a4d8e36c28" kindref="member">Camera::get_range</ref>(<ref refid="namespaceduvc_1a1029d8470888c176bbf4e11e1258020f" kindref="member">VidProp</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">prop</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>=<sp/>get_connection();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref><sp/>||<sp/>!<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;is_valid())<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropRange&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><ref refid="structduvc_1_1PropRange" kindref="compound">PropRange</ref><sp/>range;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">conn</ref>-&gt;get_range(<ref refid="classduvc_1_1Result" kindref="compound">prop</ref>,<sp/>range))<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(range);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;PropRange&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a9394a903bac37d54f14165f15bcb2d5b" kindref="member">ErrorCode::PropertyNotSupported</ref>,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Failed<sp/>to<sp/>get<sp/>video<sp/>property<sp/>range&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="namespaceduvc_1ac682048b44b6b2ee33d99dd460c24f25" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;Camera&gt;</ref><sp/><ref refid="namespaceduvc_1ac682048b44b6b2ee33d99dd460c24f25" kindref="member">open_camera</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">devices</ref><sp/>=<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">device_index &lt; 0 || device_index &gt;</ref>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">int</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(<ref refid="classduvc_1_1Result" kindref="compound">devices</ref>.size()))<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;Camera&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>device<sp/>index&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ac682048b44b6b2ee33d99dd460c24f25" kindref="member">open_camera</ref>(<ref refid="classduvc_1_1Result" kindref="compound">devices</ref>[<ref refid="classduvc_1_1Result" kindref="compound">device_index</ref>]);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="namespaceduvc_1aff098bd345fe014553d8b82c5f58b89f" refkind="member"><highlight class="normal"><ref refid="classduvc_1_1Result" kindref="compound">Result&lt;Camera&gt;</ref><sp/><ref refid="namespaceduvc_1ac682048b44b6b2ee33d99dd460c24f25" kindref="member">open_camera</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structduvc_1_1Device" kindref="compound">Device</ref><sp/>&amp;device)<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!device.<ref refid="structduvc_1_1Device_1ad3e80d9ad1a9da04ede1424ff8765050" kindref="member">is_valid</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;Camera&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903a253ca7dd096ee0956cccee4d376cab8b" kindref="member">ErrorCode::InvalidArgument</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Invalid<sp/>device&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(device))<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">Err&lt;Camera&gt;</ref>(<ref refid="namespaceduvc_1a1135948cc1a8763855b3ffb4b9c66903aca4cc682495b7b98382718ed77afac35" kindref="member">ErrorCode::DeviceNotFound</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Device<sp/>not<sp/>connected&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1afc6e96946d632ab859aa1aef741646f6" kindref="member">Ok</ref>(<ref refid="classduvc_1_1Camera" kindref="compound">Camera</ref>(device));</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/camera.cpp"/>
+  </compounddef>
+</doxygen>

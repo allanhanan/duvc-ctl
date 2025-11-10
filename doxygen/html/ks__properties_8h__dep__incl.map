@@ -1,0 +1,7 @@
+<map id="platform/windows/ks_properties.h" name="platform/windows/ks_properties.h">
+<area shape="rect" id="Node000001" title="IKsPropertySet wrapper for vendor properties." alt="" coords="85,5,227,48"/>
+<area shape="rect" id="Node000002" href="$ks__properties_8cpp.html" title="IKsPropertySet implementation for vendor properties." alt="" coords="5,96,147,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,61,96,97,92,94,125,58"/>
+<area shape="rect" id="Node000003" href="$logitech_8cpp.html" title="Logitech&#45;specific property implementations." alt="" coords="170,104,304,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="187,58,228,102,224,105,183,61"/>
+</map>

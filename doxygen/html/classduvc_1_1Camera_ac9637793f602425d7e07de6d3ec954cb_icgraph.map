@@ -1,0 +1,7 @@
+<map id="duvc::Camera::set" name="duvc::Camera::set">
+<area shape="rect" id="Node000001" title="Set camera property value." alt="" coords="230,47,359,73"/>
+<area shape="rect" id="Node000002" href="$api_8cpp.html#a1e2fd3b752c6ee2b24afa9ab771aac0c" title="Set multiple camera properties." alt="" coords="5,5,182,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,49,182,44,182,39,215,44"/>
+<area shape="rect" id="Node000003" href="$api_8cpp.html#a5bc995ad18045408b7f2ba1c3b2033e6" title="Set multiple video properties." alt="" coords="11,72,176,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,76,177,82,176,77,214,71"/>
+</map>

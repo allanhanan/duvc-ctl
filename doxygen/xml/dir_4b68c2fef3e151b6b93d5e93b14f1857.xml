@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="dir_4b68c2fef3e151b6b93d5e93b14f1857" kind="dir">
+    <compoundname>platform</compoundname>
+    <innerdir refid="dir_972f138192ae14f23850fe4a6433774e">platform/windows</innerdir>
+    <innerfile refid="factory_8cpp">factory.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="platform/"/>
+  </compounddef>
+</doxygen>

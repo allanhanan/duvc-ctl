@@ -1,0 +1,7 @@
+<map id="duvc::device_notification_wndproc" name="duvc::device_notification_wndproc">
+<area shape="rect" id="Node000001" title="Window procedure for handling device change notifications." alt="" coords="435,5,600,48"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#aeb2a8092f10ef646423ec7cae410beb3" title="Register window class for device notifications." alt="" coords="217,5,387,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,29,388,29,388,24,419,24"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#a5a25a59616a173f86741ba27d587a85e" title="Create invisible window for receiving device notifications." alt="" coords="5,5,169,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="201,29,169,29,169,24,201,24"/>
+</map>

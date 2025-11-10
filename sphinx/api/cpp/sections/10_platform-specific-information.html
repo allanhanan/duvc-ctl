@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>10. Platform-Specific Information - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="11. Device Support &amp; Compatibility" href="11_device-support-compatibility.html" /><link rel="prev" title="9. Build System &amp; Integration" href="09_build-system-integration.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="10. Platform-Specific Information"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_core-api-public-headers.html">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">10. Platform-Specific Information</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="platform-specific-information">
+<h1>10. Platform-Specific Information<a class="headerlink" href="#platform-specific-information" title="Link to this heading">¶</a></h1>
+<section id="windows-specific-details">
+<h2>10.1 Windows-Specific Details<a class="headerlink" href="#windows-specific-details" title="Link to this heading">¶</a></h2>
+<p><strong>Windows API Dependencies:</strong></p>
+<p>duvc-ctl is deeply integrated with Windows platform APIs. Understanding these dependencies is essential for proper usage and troubleshooting.</p>
+<hr class="docutils" />
+<section id="required-windows-headers">
+<h3>Required Windows Headers<a class="headerlink" href="#required-windows-headers" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Core Windows headers</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="c1">           // Base Windows API</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;objbase.h&gt;</span><span class="c1">           // COM initialization</span>
+</span><span data-line="4"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;dshow.h&gt;</span><span class="c1">             // DirectShow interfaces</span>
+</span><span data-line="5"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ks.h&gt;</span><span class="c1">                // Kernel streaming</span>
+</span><span data-line="6"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ksproxy.h&gt;</span><span class="c1">           // KS proxy interfaces</span>
+</span><span data-line="7"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vidcap.h&gt;</span><span class="c1">            // Video capture structures</span>
+</span></pre></div>
+</div>
+<p><strong>Linked libraries:</strong></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c"># Required system libraries</span>
+</span><span data-line="2"><span class="err">ole32.lib</span><span class="w">          </span><span class="c"># COM runtime</span>
+</span><span data-line="3"><span class="err">oleaut32.lib</span><span class="w">       </span><span class="c"># COM automation</span>
+</span><span data-line="4"><span class="err">strmiids.lib</span><span class="w">       </span><span class="c"># DirectShow GUIDs</span>
+</span><span data-line="5"><span class="err">uuid.lib</span><span class="w">           </span><span class="c"># Interface UUIDs</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="com-initialization">
+<h3>COM Initialization<a class="headerlink" href="#com-initialization" title="Link to this heading">¶</a></h3>
+<p><strong>COM must be initialized per-thread:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Automatic RAII wrapper</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">ComInitializer</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">ComInitializer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitializeEx</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">COINIT_APARTMENTTHREADED</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">RPC_E_CHANGED_MODE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">&quot;COM initialization failed&quot;</span><span class="p">);</span>
+</span><span data-line="8"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="9"><span class="w">        </span><span class="n">initialized_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="11"><span class="w">    </span>
+</span><span data-line="12"><span class="w">    </span><span class="o">~</span><span class="n">ComInitializer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="13"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">initialized_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">            </span><span class="n">CoUninitialize</span><span class="p">();</span>
+</span><span data-line="15"><span class="w">        </span><span class="p">}</span>
+</span><span data-line="16"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="17"><span class="w">    </span>
+</span><span data-line="18"><span class="k">private</span><span class="o">:</span>
+</span><span data-line="19"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">initialized_</span><span class="p">;</span>
+</span><span data-line="20"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Library handles this automatically:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// duvc-ctl handles COM initialization internally</span>
+</span><span data-line="2"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// COM initialized if needed</span>
+</span></pre></div>
+</div>
+<p><strong>Manual control:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// If you need explicit control</span>
+</span><span data-line="2"><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitializeEx</span><span class="p">(</span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">COINIT_APARTMENTTHREADED</span><span class="p">);</span>
+</span><span data-line="3"><span class="c1">// ... use duvc-ctl ...</span>
+</span><span data-line="4"><span class="n">CoUninitialize</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="threading-model">
+<h3>Threading Model<a class="headerlink" href="#threading-model" title="Link to this heading">¶</a></h3>
+<p><strong>Single-Threaded Apartment (STA):</strong></p>
+<p>DirectShow uses STA threading. COM objects are bound to the creating thread and cannot be marshaled to other threads without explicit marshaling.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// CORRECT: Each thread initializes COM</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="nf">t1</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">ComInitializer</span><span class="w"> </span><span class="n">com</span><span class="p">;</span><span class="w">  </span><span class="c1">// COM for this thread</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Camera</span><span class="w"> </span><span class="n">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="6"><span class="p">});</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1">// WRONG: Passing camera between threads</span>
+</span><span data-line="9"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="10"><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="nf">t2</span><span class="p">([</span><span class="o">&amp;</span><span class="n">camera</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// CRASH!</span>
+</span><span data-line="12"><span class="p">});</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="windows-error-codes">
+<h3>Windows Error Codes<a class="headerlink" href="#windows-error-codes" title="Link to this heading">¶</a></h3>
+<p><strong>HRESULT values:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>HRESULT</p></th>
+<th class="head text-left"><p>Value</p></th>
+<th class="head text-left"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">S_OK</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x00000000</span></code></p></td>
+<td class="text-left"><p>Success</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">E_FAIL</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80004005</span></code></p></td>
+<td class="text-left"><p>Unspecified failure</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">E_INVALIDARG</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80070057</span></code></p></td>
+<td class="text-left"><p>Invalid argument</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">E_OUTOFMEMORY</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x8007000E</span></code></p></td>
+<td class="text-left"><p>Out of memory</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">E_POINTER</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80004003</span></code></p></td>
+<td class="text-left"><p>NULL pointer</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">E_NOTIMPL</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80004001</span></code></p></td>
+<td class="text-left"><p>Not implemented</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VFW_E_NOT_CONNECTED</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80040209</span></code></p></td>
+<td class="text-left"><p>Filter not connected</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VFW_E_CANNOT_CONNECT</span></code></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">0x80040217</span></code></p></td>
+<td class="text-left"><p>Cannot connect pins</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Decoding errors:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Use library utilities</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">error_msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">decode_hresult</span><span class="p">(</span><span class="n">hr</span><span class="p">);</span>
+</span><span data-line="3"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">error_msg</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Check error categories</span>
+</span><span data-line="6"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">is_device_error</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="c1">// Device-specific error</span>
+</span><span data-line="8"><span class="p">}</span>
+</span><span data-line="9"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">is_permission_error</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="10"><span class="w">    </span><span class="c1">// Access denied</span>
+</span><span data-line="11"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="device-paths">
+<h3>Device Paths<a class="headerlink" href="#device-paths" title="Link to this heading">¶</a></h3>
+<p><strong>DirectShow device moniker paths:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">\\?\usb#vid_046d&amp;pid_0825&amp;mi_00#7&amp;2a2f12e8&amp;0&amp;0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+</span></pre></div>
+</div>
+<p><strong>Format breakdown:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\\?\</span></code> - Win32 device namespace prefix</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb#vid_046d&amp;pid_0825</span></code> - USB Vendor ID and Product ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mi_00</span></code> - Multiple interface index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{guid}</span></code> - Device class GUID (video capture)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\global</span></code> - System-wide device</p></li>
+</ul>
+<p><strong>Parsing device info:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Extract vendor/product ID</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">path</span><span class="p">;</span>
+</span><span data-line="3"><span class="kt">size_t</span><span class="w"> </span><span class="n">vid_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;vid_&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="kt">size_t</span><span class="w"> </span><span class="n">pid_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;pid_&quot;</span><span class="p">);</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vid_pos</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">::</span><span class="n">npos</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">pid_pos</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">::</span><span class="n">npos</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">vid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">vid_pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">  </span><span class="c1">// e.g., &quot;046d&quot;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">pid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">pid_pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">  </span><span class="c1">// e.g., &quot;0825&quot;</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="system-requirements">
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading">¶</a></h3>
+<p><strong>Minimum Windows version:</strong></p>
+<ul class="simple">
+<li><p><strong>Windows 10</strong> recommended</p></li>
+<li><p><strong>Windows 8.1</strong> compatible (not tested)</p></li>
+<li><p><strong>Windows 7</strong> not supported (DirectShow API changes)</p></li>
+</ul>
+<p><strong>Required components:</strong></p>
+<ul class="simple">
+<li><p>Visual C++ Redistributable 2019/2022</p></li>
+<li><p>DirectX 9.0c or later</p></li>
+<li><p>Windows Media Feature Pack (if disabled)</p></li>
+</ul>
+<p><strong>Checking availability:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Verify DirectShow availability</span>
+</span><span data-line="2"><span class="n">HRESULT</span><span class="w"> </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoInitialize</span><span class="p">(</span><span class="k">nullptr</span><span class="p">);</span>
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">ICreateDevEnum</span><span class="o">*</span><span class="w"> </span><span class="n">pDevEnum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CoCreateInstance</span><span class="p">(</span><span class="n">CLSID_SystemDeviceEnum</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span>
+</span><span data-line="6"><span class="w">                          </span><span class="n">CLSCTX_INPROC_SERVER</span><span class="p">,</span><span class="w"> </span><span class="n">IID_PPV_ARGS</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pDevEnum</span><span class="p">));</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="8"><span class="w">        </span><span class="c1">// DirectShow available</span>
+</span><span data-line="9"><span class="w">        </span><span class="n">pDevEnum</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+</span><span data-line="10"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">CoUninitialize</span><span class="p">();</span>
+</span><span data-line="12"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="permissions-and-access">
+<h3>Permissions and Access<a class="headerlink" href="#permissions-and-access" title="Link to this heading">¶</a></h3>
+<p><strong>Administrator rights:</strong>
+Not required for UVC camera access. Standard user permissions suffice.</p>
+<p><strong>Exclusive access:</strong>
+DirectShow grants exclusive access to camera properties. If another application is controlling the camera, property changes may fail with <code class="docutils literal notranslate"><span class="pre">E_FAIL</span></code> or <code class="docutils literal notranslate"><span class="pre">VFW_E_IN_USE</span></code>.</p>
+<p><strong>Antivirus interference:</strong>
+Some antivirus software blocks camera access. Check:</p>
+<ul class="simple">
+<li><p>Windows Security → Camera privacy settings</p></li>
+<li><p>Third-party antivirus camera protection</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="wide-character-strings">
+<h3>Wide Character Strings<a class="headerlink" href="#wide-character-strings" title="Link to this heading">¶</a></h3>
+<p><strong>Windows uses UTF-16:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Device names are std::wstring</span>
+</span><span data-line="2"><span class="n">Device</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">devices</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+</span><span data-line="3"><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">device</span><span class="p">.</span><span class="n">name</span><span class="p">;</span><span class="w">  </span><span class="c1">// UTF-16</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Convert to UTF-8 for display</span>
+</span><span data-line="6"><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">utf8_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">to_utf8</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span><span data-line="7"><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Device: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">utf8_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Conversion utilities:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">namespace</span><span class="w"> </span><span class="nn">duvc</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">to_utf8</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">wstr</span><span class="p">);</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="nf">from_utf8</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="directshow-background">
+<h2>10.2 DirectShow Background<a class="headerlink" href="#directshow-background" title="Link to this heading">¶</a></h2>
+<p><strong>DirectShow is Microsoft’s multimedia framework for capture, playback, and processing.</strong></p>
+<hr class="docutils" />
+<section id="architecture-overview">
+<h3>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">¶</a></h3>
+<p><strong>Filter graph model:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span data-line="1">┌─────────────┐      ┌─────────────┐      ┌─────────────┐
+</span><span data-line="2">│ Capture     │      │ Transform   │      │ Renderer    │
+</span><span data-line="3">│ Filter      │─────▶│ Filter      │─────▶│ Filter      │
+</span><span data-line="4">│ (Camera)    │      │ (Optional)  │      │ (Display)   │
+</span><span data-line="5">└─────────────┘      └─────────────┘      └─────────────┘
+</span></pre></div>
+</div>
+<p><strong>Components:</strong></p>
+<ul class="simple">
+<li><p><strong>Filters</strong> - Processing units (capture, transform, render)</p></li>
+<li><p><strong>Pins</strong> - Connection points between filters</p></li>
+<li><p><strong>Filter Graph Manager</strong> - Coordinates filter operation</p></li>
+<li><p><strong>Media Types</strong> - Describes data format (video format, resolution)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="key-interfaces-used">
+<h3>Key Interfaces Used<a class="headerlink" href="#key-interfaces-used" title="Link to this heading">¶</a></h3>
+<p><strong>Device enumeration:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// ICreateDevEnum - Enumerate device categories</span>
+</span><span data-line="2"><span class="n">CLSID_SystemDeviceEnum</span>
+</span><span data-line="3"><span class="w">  </span><span class="err">→</span><span class="w"> </span><span class="n">ICreateDevEnum</span><span class="o">::</span><span class="n">CreateClassEnumerator</span><span class="p">(</span><span class="n">CLSID_VideoInputDeviceCategory</span><span class="p">)</span>
+</span><span data-line="4"><span class="w">    </span><span class="err">→</span><span class="w"> </span><span class="n">IEnumMoniker</span><span class="w"> </span><span class="p">(</span><span class="n">iterate</span><span class="w"> </span><span class="n">devices</span><span class="p">)</span>
+</span><span data-line="5"><span class="w">      </span><span class="err">→</span><span class="w"> </span><span class="n">IMoniker</span><span class="o">::</span><span class="n">BindToObject</span><span class="p">(</span><span class="n">IBaseFilter</span><span class="p">)</span>
+</span></pre></div>
+</div>
+<p><strong>Camera control:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// IAMCameraControl - PTZ and camera-specific properties</span>
+</span><span data-line="2"><span class="n">IBaseFilter</span><span class="o">*</span><span class="w"> </span><span class="n">pFilter</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">IAMCameraControl</span><span class="o">*</span><span class="w"> </span><span class="n">pCameraControl</span><span class="p">;</span>
+</span><span data-line="4"><span class="n">pFilter</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IAMCameraControl</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pCameraControl</span><span class="p">);</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1">// Set property</span>
+</span><span data-line="7"><span class="n">pCameraControl</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="n">CameraControl_Pan</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">CameraControl_Flags_Manual</span><span class="p">);</span>
+</span><span data-line="8"><span class="n">pCameraControl</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">(</span><span class="n">CameraControl_Pan</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">flags</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Video processing:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// IAMVideoProcAmp - Image properties</span>
+</span><span data-line="2"><span class="n">IAMVideoProcAmp</span><span class="o">*</span><span class="w"> </span><span class="n">pVideoProcAmp</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">pFilter</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IAMVideoProcAmp</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pVideoProcAmp</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Set brightness</span>
+</span><span data-line="6"><span class="n">pVideoProcAmp</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="n">VideoProcAmp_Brightness</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">VideoProcAmp_Flags_Manual</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Vendor extensions:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// IKsPropertySet - Kernel streaming properties</span>
+</span><span data-line="2"><span class="n">IKsPropertySet</span><span class="o">*</span><span class="w"> </span><span class="n">pKsPropertySet</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">pFilter</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IKsPropertySet</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pKsPropertySet</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Get/Set vendor-specific properties</span>
+</span><span data-line="6"><span class="n">GUID</span><span class="w"> </span><span class="n">propSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="cm">/* vendor GUID */</span><span class="p">};</span>
+</span><span data-line="7"><span class="n">pKsPropertySet</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">(</span><span class="n">propSet</span><span class="p">,</span><span class="w"> </span><span class="n">propId</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">dataSize</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">returned</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="property-control-flow">
+<h3>Property Control Flow<a class="headerlink" href="#property-control-flow" title="Link to this heading">¶</a></h3>
+<p><strong>Setting a camera property:</strong></p>
+<ol class="arabic simple">
+<li><p>Enumerate devices → <code class="docutils literal notranslate"><span class="pre">ICreateDevEnum</span></code></p></li>
+<li><p>Bind to device filter → <code class="docutils literal notranslate"><span class="pre">IMoniker::BindToObject</span></code></p></li>
+<li><p>Query property interface → <code class="docutils literal notranslate"><span class="pre">QueryInterface(IAMCameraControl)</span></code></p></li>
+<li><p>Check property support → <code class="docutils literal notranslate"><span class="pre">GetRange()</span></code></p></li>
+<li><p>Set property value → <code class="docutils literal notranslate"><span class="pre">Set(prop,</span> <span class="pre">value,</span> <span class="pre">flags)</span></code></p></li>
+<li><p>Verify change → <code class="docutils literal notranslate"><span class="pre">Get(prop,</span> <span class="pre">&amp;value,</span> <span class="pre">&amp;flags)</span></code></p></li>
+</ol>
+<p><strong>Code path:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// duvc-ctl wraps this flow</span>
+</span><span data-line="2"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="n">device</span><span class="p">);</span><span class="w">  </span><span class="c1">// Steps 1-3</span>
+</span><span data-line="3"><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">);</span><span class="w">  </span><span class="c1">// Step 4</span>
+</span><span data-line="4"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span><span class="w">  </span><span class="c1">// Steps 5-6</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="directshow-vs-media-foundation">
+<h3>DirectShow vs Media Foundation<a class="headerlink" href="#directshow-vs-media-foundation" title="Link to this heading">¶</a></h3>
+<p><strong>DirectShow</strong> (used by duvc-ctl):</p>
+<ul class="simple">
+<li><p>Legacy API (Windows XP+)</p></li>
+<li><p>Widely supported by hardware</p></li>
+<li><p>Filter graph model</p></li>
+<li><p>Synchronous property access</p></li>
+<li><p>Well-documented UVC support</p></li>
+</ul>
+<p><strong>Media Foundation</strong> (newer):</p>
+<ul class="simple">
+<li><p>Modern API (Windows Vista+)</p></li>
+<li><p>Async design</p></li>
+<li><p>Better performance for streaming</p></li>
+<li><p>Limited camera control compared to DirectShow</p></li>
+<li><p>Less hardware compatibility</p></li>
+</ul>
+<p><strong>Why DirectShow?</strong></p>
+<ul class="simple">
+<li><p><strong>Universal UVC support</strong> - Works with all compliant cameras</p></li>
+<li><p><strong>Direct property access</strong> - No additional drivers needed</p></li>
+<li><p><strong>Mature ecosystem</strong> - 20+ years of hardware compatibility</p></li>
+<li><p><strong>Synchronous operations</strong> - Simpler control flow for settings</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="graph-building-not-used">
+<h3>Graph Building (Not Used)<a class="headerlink" href="#graph-building-not-used" title="Link to this heading">¶</a></h3>
+<p>duvc-ctl does <strong>not</strong> build filter graphs for streaming. It only uses device filters for property control:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// duvc-ctl does NOT do this:</span>
+</span><span data-line="2"><span class="n">IGraphBuilder</span><span class="o">*</span><span class="w"> </span><span class="n">pGraph</span><span class="p">;</span>
+</span><span data-line="3"><span class="n">pGraph</span><span class="o">-&gt;</span><span class="n">AddFilter</span><span class="p">(</span><span class="n">pCaptureFilter</span><span class="p">,</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Capture&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="n">pGraph</span><span class="o">-&gt;</span><span class="n">Render</span><span class="p">(</span><span class="n">pCapturePin</span><span class="p">);</span><span class="w">  </span><span class="c1">// Build capture graph</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="c1">// duvc-ctl ONLY does this:</span>
+</span><span data-line="7"><span class="n">IAMCameraControl</span><span class="o">*</span><span class="w"> </span><span class="n">pControl</span><span class="p">;</span>
+</span><span data-line="8"><span class="n">pCaptureFilter</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IAMCameraControl</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pControl</span><span class="p">);</span>
+</span><span data-line="9"><span class="n">pControl</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="n">CameraControl_Pan</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CameraControl_Flags_Manual</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Streaming is handled by:</strong></p>
+<ul class="simple">
+<li><p>Windows Camera app</p></li>
+<li><p>OpenCV (VideoCapture)</p></li>
+<li><p>FFmpeg (dshow input)</p></li>
+<li><p>Third-party capture applications</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="uvc-camera-standards">
+<h2>10.3 UVC Camera Standards<a class="headerlink" href="#uvc-camera-standards" title="Link to this heading">¶</a></h2>
+<p><strong>USB Video Class (UVC) defines standard camera controls.</strong></p>
+<hr class="docutils" />
+<section id="uvc-specification">
+<h3>UVC Specification<a class="headerlink" href="#uvc-specification" title="Link to this heading">¶</a></h3>
+<p><strong><a class="reference external" href="http://USB.org">USB.org</a> UVC 1.5:</strong></p>
+<ul class="simple">
+<li><p>Standard published by USB Implementers Forum</p></li>
+<li><p>Defines camera control terminals and units</p></li>
+<li><p>Provides class-specific USB descriptors</p></li>
+<li><p>Maps to DirectShow <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code> and <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code></p></li>
+</ul>
+<p><strong>Key concepts:</strong></p>
+<ul class="simple">
+<li><p><strong>Control terminals</strong> - Camera-specific controls (pan, tilt, zoom)</p></li>
+<li><p><strong>Processing units</strong> - Image processing (brightness, contrast)</p></li>
+<li><p><strong>Extension units</strong> - Vendor-specific controls</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="standard-uvc-controls">
+<h3>Standard UVC Controls<a class="headerlink" href="#standard-uvc-controls" title="Link to this heading">¶</a></h3>
+<p><strong>Camera Terminal Controls (IAMCameraControl):</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>UVC Control</p></th>
+<th class="head text-left"><p>DirectShow Property</p></th>
+<th class="head text-left"><p>Units</p></th>
+<th class="head text-left"><p>Typical Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Scanning Mode</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_ScanMode</span></code></p></td>
+<td class="text-left"><p>-</p></td>
+<td class="text-left"><p>0 (Interlaced), 1 (Progressive)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Auto Exposure Mode</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Exposure</span></code></p></td>
+<td class="text-left"><p>-</p></td>
+<td class="text-left"><p>1 (Manual), 2-8 (Auto modes)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Auto Exposure Priority</p></td>
+<td class="text-left"><p>-</p></td>
+<td class="text-left"><p>-</p></td>
+<td class="text-left"><p>Camera-dependent</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Exposure Time</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Exposure</span></code></p></td>
+<td class="text-left"><p>100µs</p></td>
+<td class="text-left"><p>-13 to -1 (log scale)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Focus</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Focus</span></code></p></td>
+<td class="text-left"><p>mm</p></td>
+<td class="text-left"><p>0 to max (device-specific)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Iris</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Iris</span></code></p></td>
+<td class="text-left"><p>f-stop × 10</p></td>
+<td class="text-left"><p>Device-specific</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Zoom</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Zoom</span></code></p></td>
+<td class="text-left"><p>mm</p></td>
+<td class="text-left"><p>Device-specific</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Pan</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Pan</span></code></p></td>
+<td class="text-left"><p>degrees</p></td>
+<td class="text-left"><p>-180° to +180°</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Tilt</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Tilt</span></code></p></td>
+<td class="text-left"><p>degrees</p></td>
+<td class="text-left"><p>-180° to +180°</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Roll</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Roll</span></code></p></td>
+<td class="text-left"><p>degrees</p></td>
+<td class="text-left"><p>-180° to +180°</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Privacy Shutter</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CameraControl_Privacy</span></code></p></td>
+<td class="text-left"><p>-</p></td>
+<td class="text-left"><p>0 (Open), 1 (Closed)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Processing Unit Controls (IAMVideoProcAmp):</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>UVC Control</p></th>
+<th class="head text-left"><p>DirectShow Property</p></th>
+<th class="head text-left"><p>Typical Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Brightness</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Brightness</span></code></p></td>
+<td class="text-left"><p>0 to 255</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Contrast</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Contrast</span></code></p></td>
+<td class="text-left"><p>0 to 255</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Hue</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Hue</span></code></p></td>
+<td class="text-left"><p>-180° to +180°</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Saturation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Saturation</span></code></p></td>
+<td class="text-left"><p>0 to 255</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Sharpness</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Sharpness</span></code></p></td>
+<td class="text-left"><p>0 to 255</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Gamma</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Gamma</span></code></p></td>
+<td class="text-left"><p>100 to 500 (100 = 1.0)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>White Balance</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_WhiteBalance</span></code></p></td>
+<td class="text-left"><p>2800K to 6500K</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Backlight Compensation</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_BacklightCompensation</span></code></p></td>
+<td class="text-left"><p>0 (Off), 1 (On)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Gain</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_Gain</span></code></p></td>
+<td class="text-left"><p>0 to 255</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Color Enable</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">VideoProcAmp_ColorEnable</span></code></p></td>
+<td class="text-left"><p>0 (B&amp;W), 1 (Color)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="auto-vs-manual-modes">
+<h3>Auto vs Manual Modes<a class="headerlink" href="#auto-vs-manual-modes" title="Link to this heading">¶</a></h3>
+<p><strong>UVC defines automatic control:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Auto mode - camera adjusts automatically</span>
+</span><span data-line="2"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">});</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Manual mode - explicit value</span>
+</span><span data-line="5"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>DirectShow flags:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">CameraControl_Flags_Auto</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0001</span><span class="w">  </span><span class="c1">// Automatic adjustment</span>
+</span><span data-line="2"><span class="n">CameraControl_Flags_Manual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0002</span><span class="w">  </span><span class="c1">// Manual control</span>
+</span></pre></div>
+</div>
+<p><strong>UVC behavior:</strong></p>
+<ul class="simple">
+<li><p><strong>Auto mode</strong> - Value parameter ignored, camera firmware controls</p></li>
+<li><p><strong>Manual mode</strong> - Value parameter used, firmware uses specified value</p></li>
+<li><p><strong>Auto → Manual</strong> - Locks current auto value</p></li>
+<li><p><strong>Manual → Auto</strong> - Resumes automatic adjustment</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vendor-specific-extensions">
+<h3>Vendor-Specific Extensions<a class="headerlink" href="#vendor-specific-extensions" title="Link to this heading">¶</a></h3>
+<p><strong>Beyond UVC standard:</strong></p>
+<p>Vendors implement proprietary controls via <strong>Extension Units (XU)</strong> using <code class="docutils literal notranslate"><span class="pre">IKsPropertySet</span></code>.</p>
+<p><strong>Logitech example:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Standard UVC</span>
+</span><span data-line="2"><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Vendor extension (Logitech)</span>
+</span><span data-line="5"><span class="n">logitech</span><span class="o">::</span><span class="n">set_logitech_property</span><span class="p">(</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">LogitechProperty</span><span class="o">::</span><span class="n">RightLight</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p><strong>Common vendor extensions:</strong></p>
+<ul class="simple">
+<li><p><strong>Logitech</strong> - RightLight, LED control, face tracking</p></li>
+<li><p><strong>Microsoft LifeCam</strong> - TrueColor, noise reduction</p></li>
+<li><p><strong>Razer Kiyo</strong> - Ring light control</p></li>
+<li><p><strong>Elgato Facecam</strong> - Advanced color grading</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="uvc-compliance-levels">
+<h3>UVC Compliance Levels<a class="headerlink" href="#uvc-compliance-levels" title="Link to this heading">¶</a></h3>
+<p><strong>Not all cameras are equal:</strong></p>
+<p><strong>Full UVC 1.5:</strong></p>
+<ul class="simple">
+<li><p>All standard controls</p></li>
+<li><p>Auto/manual modes</p></li>
+<li><p>Proper range reporting</p></li>
+<li><p>Spec-compliant behavior</p></li>
+</ul>
+<p><strong>Partial UVC:</strong></p>
+<ul class="simple">
+<li><p>Subset of controls (e.g., no PTZ)</p></li>
+<li><p>Missing auto modes</p></li>
+<li><p>Incorrect range values</p></li>
+<li><p>Quirky implementations</p></li>
+</ul>
+<p><strong>Testing compliance:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Check which properties are supported</span>
+</span><span data-line="2"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Tilt</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Supports: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">to_string</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="usb-bandwidth">
+<h3>USB Bandwidth<a class="headerlink" href="#usb-bandwidth" title="Link to this heading">¶</a></h3>
+<p><strong>UVC streaming consumes USB bandwidth:</strong></p>
+<p><strong>USB 2.0 limits:</strong></p>
+<ul class="simple">
+<li><p>High-speed: 480 Mbps theoretical</p></li>
+<li><p>Practical: ~35 MB/s for video</p></li>
+<li><p>1080p30 uncompressed: ~177 MB/s (requires compression)</p></li>
+</ul>
+<p><strong>USB 3.0/3.1:</strong></p>
+<ul class="simple">
+<li><p>SuperSpeed: 5 Gbps (USB 3.0), 10 Gbps (USB 3.1)</p></li>
+<li><p>Supports uncompressed high-resolution video</p></li>
+</ul>
+<p><strong>Control bandwidth:</strong>
+Property control uses USB control transfers (separate from video data). Control operations are lightweight and don’t impact streaming performance.</p>
+</section>
+<hr class="docutils" />
+<section id="descriptor-parsing">
+<h3>Descriptor Parsing<a class="headerlink" href="#descriptor-parsing" title="Link to this heading">¶</a></h3>
+<p><strong>UVC cameras expose USB descriptors:</strong></p>
+<p>DirectShow automatically parses:</p>
+<ul class="simple">
+<li><p>Video Control Interface</p></li>
+<li><p>Video Streaming Interface</p></li>
+<li><p>Camera Terminal Descriptor</p></li>
+<li><p>Processing Unit Descriptor</p></li>
+<li><p>Extension Unit Descriptor</p></li>
+</ul>
+<p><strong>duvc-ctl abstracts this:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// No need to parse descriptors</span>
+</span><span data-line="2"><span class="n">Camera</span><span class="w"> </span><span class="nf">camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="3"><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">);</span><span class="w">  </span><span class="c1">// Descriptor info extracted</span>
+</span></pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="09_build-system-integration.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">9. Build System &amp; Integration</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="11_device-support-compatibility.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">11. Device Support &amp; Compatibility</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>

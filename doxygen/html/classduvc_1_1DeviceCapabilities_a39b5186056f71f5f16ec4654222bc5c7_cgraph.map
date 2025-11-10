@@ -1,0 +1,5 @@
+<map id="duvc::DeviceCapabilities::supports_video_property" name="duvc::DeviceCapabilities::supports_video_property">
+<area shape="rect" id="Node000001" title="Check if video property is supported." alt="" coords="5,5,177,48"/>
+<area shape="rect" id="Node000002" href="$classduvc_1_1DeviceCapabilities.html#a0e4f4584301be880886a181e88d7af8a" title="Get video property capability." alt="" coords="225,5,391,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,24,209,24,209,29,177,29"/>
+</map>

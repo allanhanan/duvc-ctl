@@ -1,0 +1,325 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="device_8cpp" kind="file" language="C++">
+    <compoundname>device.cpp</compoundname>
+    <includes refid="device_8h" local="no">duvc-ctl/core/device.h</includes>
+    <includes local="no">duvc-ctl/detail/com_helpers.h</includes>
+    <includes local="no">dbt.h</includes>
+    <includes local="no">dshow.h</includes>
+    <includes refid="connection__pool_8h" local="no">duvc-ctl/platform/windows/connection_pool.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>duvc-ctl/core/device.h</label>
+        <link refid="device_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>duvc-ctl/core/types.h</label>
+        <link refid="types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>duvc-ctl/platform/windows/connection_pool.h</label>
+        <link refid="connection__pool_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>core/device.cpp</label>
+        <link refid="device_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>dbt.h</label>
+      </node>
+      <node id="9">
+        <label>dshow.h</label>
+      </node>
+      <node id="7">
+        <label>duvc-ctl/detail/com_helpers.h</label>
+      </node>
+      <node id="5">
+        <label>functional</label>
+      </node>
+      <node id="11">
+        <label>memory</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceduvc">duvc</innernamespace>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="device_8cpp_1a284ec17741d8959fe47dd8c703dade1d" prot="public" static="no" mutable="no">
+        <type>EXTERN_C const CLSID</type>
+        <definition>EXTERN_C const CLSID CLSID_SystemDeviceEnum</definition>
+        <argsstring></argsstring>
+        <name>CLSID_SystemDeviceEnum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/device.cpp" line="15" column="22" bodyfile="core/device.cpp" bodystart="15" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" compoundref="core_8cpp" startline="173" endline="179">duvc::create_dev_enum</referencedby>
+        <referencedby refid="namespaceduvc_1a604f5ad9649c2fa6d6edc5d9d147abcf" compoundref="error__decoder_8cpp" startline="149" endline="220">duvc::get_diagnostic_info</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="device_8cpp_1aedbd74ed6727389e3d2b255c6ba63cf7" prot="public" static="no" mutable="no">
+        <type>EXTERN_C const CLSID</type>
+        <definition>EXTERN_C const CLSID CLSID_VideoInputDeviceCategory</definition>
+        <argsstring></argsstring>
+        <name>CLSID_VideoInputDeviceCategory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/device.cpp" line="16" column="22" bodyfile="core/device.cpp" bodystart="16" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" compoundref="core_8cpp" startline="181" endline="187">duvc::enum_video_devices</referencedby>
+        <referencedby refid="namespaceduvc_1abbb674b206dc193c2a1b127cb413a12f" compoundref="core_8cpp" startline="511" endline="534">duvc::register_device_change_callback</referencedby>
+        <referencedby refid="namespaceduvc_1ad18e7fc0b2f1fbefba836a42263e787c" compoundref="device__monitor_8cpp" startline="121" endline="139">duvc::register_device_notifications</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="device_8cpp_1af24146fe26976a7af040eb4d9bc7f572" prot="public" static="no" mutable="no">
+        <type>EXTERN_C const IID</type>
+        <definition>EXTERN_C const IID IID_ICreateDevEnum</definition>
+        <argsstring></argsstring>
+        <name>IID_ICreateDevEnum</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/device.cpp" line="17" column="20" bodyfile="core/device.cpp" bodystart="17" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" compoundref="core_8cpp" startline="173" endline="179">duvc::create_dev_enum</referencedby>
+        <referencedby refid="namespaceduvc_1a604f5ad9649c2fa6d6edc5d9d147abcf" compoundref="error__decoder_8cpp" startline="149" endline="220">duvc::get_diagnostic_info</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="device_8cpp_1a1cedd94f4905c1ac04826e77657c4b33" prot="public" static="no" mutable="no">
+        <type>EXTERN_C const IID</type>
+        <definition>EXTERN_C const IID IID_IPropertyBag</definition>
+        <argsstring></argsstring>
+        <name>IID_IPropertyBag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="core/device.cpp" line="18" column="20" bodyfile="core/device.cpp" bodystart="18" bodyend="-1"/>
+        <referencedby refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" compoundref="core_8cpp" startline="207" endline="221">duvc::read_device_path</referencedby>
+        <referencedby refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" compoundref="core_8cpp" startline="199" endline="205">duvc::read_friendly_name</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Device enumeration and management implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="device_8h" kindref="compound">duvc-ctl/core/device.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;duvc-ctl/detail/com_helpers.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dbt.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dshow.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="connection__pool_8h" kindref="compound">duvc-ctl/platform/windows/connection_pool.h</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DirectShow<sp/>GUIDs<sp/>-<sp/>properly<sp/>declared</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="device_8cpp_1a284ec17741d8959fe47dd8c703dade1d" refkind="member"><highlight class="normal">EXTERN_C<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CLSID<sp/><ref refid="device_8cpp_1a284ec17741d8959fe47dd8c703dade1d" kindref="member">CLSID_SystemDeviceEnum</ref>;</highlight></codeline>
+<codeline lineno="16" refid="device_8cpp_1aedbd74ed6727389e3d2b255c6ba63cf7" refkind="member"><highlight class="normal">EXTERN_C<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>CLSID<sp/><ref refid="device_8cpp_1aedbd74ed6727389e3d2b255c6ba63cf7" kindref="member">CLSID_VideoInputDeviceCategory</ref>;</highlight></codeline>
+<codeline lineno="17" refid="device_8cpp_1af24146fe26976a7af040eb4d9bc7f572" refkind="member"><highlight class="normal">EXTERN_C<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>IID<sp/><ref refid="device_8cpp_1af24146fe26976a7af040eb4d9bc7f572" kindref="member">IID_ICreateDevEnum</ref>;</highlight></codeline>
+<codeline lineno="18" refid="device_8cpp_1a1cedd94f4905c1ac04826e77657c4b33" refkind="member"><highlight class="normal">EXTERN_C<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>IID<sp/><ref refid="device_8cpp_1a1cedd94f4905c1ac04826e77657c4b33" kindref="member">IID_IPropertyBag</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">detail;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Global<sp/>device<sp/>monitoring<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><ref refid="namespaceduvc_1ac3f065ee856153757a4b8672b6a192d2" kindref="member">DeviceChangeCallback</ref><sp/><ref refid="namespaceduvc_1a1898d7edc188edc01290e8559f4bfd29" kindref="member">g_device_callback</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">HWND<sp/><ref refid="namespaceduvc_1ae49657499e48d2be4bcd6ff45253d9c5" kindref="member">g_notification_window</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">HDEVNOTIFY<sp/><ref refid="namespaceduvc_1a9fc95a638a982cfdcbdcb4806dc8e6e8" kindref="member">g_device_notify</ref><sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>DirectShow<sp/>enumeration<sp/>helpers<sp/>-<sp/>these<sp/>need<sp/>to<sp/>be<sp/>exported<sp/>for</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/>connection_pool.cpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">com_ptr&lt;ICreateDevEnum&gt;<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>com_ptr&lt;ICreateDevEnum&gt;<sp/>dev;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>CoCreateInstance(<ref refid="device_8cpp_1a284ec17741d8959fe47dd8c703dade1d" kindref="member">CLSID_SystemDeviceEnum</ref>,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CLSCTX_INPROC_SERVER,<sp/><ref refid="device_8cpp_1af24146fe26976a7af040eb4d9bc7f572" kindref="member">IID_ICreateDevEnum</ref>,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(dev.put()));</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a21b444574354018097d4489a9ff0ff9e" kindref="member">throw_hr</ref>(hr,<sp/></highlight><highlight class="stringliteral">&quot;CoCreateInstance(SystemDeviceEnum)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dev;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">com_ptr&lt;IEnumMoniker&gt;<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(ICreateDevEnum<sp/>*dev)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>com_ptr&lt;IEnumMoniker&gt;<sp/>e;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>dev-&gt;CreateClassEnumerator(<ref refid="device_8cpp_1aedbd74ed6727389e3d2b255c6ba63cf7" kindref="member">CLSID_VideoInputDeviceCategory</ref>,<sp/>e.put(),<sp/>0);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(hr<sp/>==<sp/>S_FALSE)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{};<sp/></highlight><highlight class="comment">//<sp/>No<sp/>devices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceduvc_1a21b444574354018097d4489a9ff0ff9e" kindref="member">throw_hr</ref>(hr,<sp/></highlight><highlight class="stringliteral">&quot;CreateClassEnumerator(VideoInputDeviceCategory)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>e;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="namespaceduvc_1a0dbd37821c1cae29fa72d44e3dbd0583" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>std::wstring<sp/><ref refid="namespaceduvc_1a0dbd37821c1cae29fa72d44e3dbd0583" kindref="member">read_prop_bstr</ref>(<ref refid="classduvc_1_1Result" kindref="compound">IPropertyBag</ref><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">bag</ref>,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">wchar_t</highlight><highlight class="normal"><sp/>*<ref refid="classduvc_1_1Result" kindref="compound">key</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">VARIANT</ref><sp/><ref refid="classduvc_1_1Result" kindref="compound">v</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">VariantInit</ref>(&amp;<ref refid="classduvc_1_1Result" kindref="compound">v</ref>);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>std::wstring<sp/><ref refid="classduvc_1_1Result" kindref="compound">res</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classduvc_1_1Result" kindref="compound">SUCCEEDED</ref>(<ref refid="classduvc_1_1Result" kindref="compound">bag</ref>-&gt;Read(<ref refid="classduvc_1_1Result" kindref="compound">key</ref>,<sp/>&amp;<ref refid="classduvc_1_1Result" kindref="compound">v</ref>,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">))<sp/>&amp;&amp;<sp/><ref refid="classduvc_1_1Result" kindref="compound">v</ref>.vt<sp/>==<sp/><ref refid="classduvc_1_1Result" kindref="compound">VT_BSTR</ref><sp/>&amp;&amp;<sp/><ref refid="classduvc_1_1Result" kindref="compound">v</ref>.bstrVal)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">res</ref>.assign(<ref refid="classduvc_1_1Result" kindref="compound">v</ref>.bstrVal,<sp/><ref refid="classduvc_1_1Result" kindref="compound">SysStringLen</ref>(<ref refid="classduvc_1_1Result" kindref="compound">v</ref>.bstrVal));</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><ref refid="classduvc_1_1Result" kindref="compound">VariantClear</ref>(&amp;<ref refid="classduvc_1_1Result" kindref="compound">v</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classduvc_1_1Result" kindref="compound">res</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal">std::wstring<sp/><ref refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" kindref="member">read_friendly_name</ref>(IMoniker<sp/>*mon)<sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>com_ptr&lt;IPropertyBag&gt;<sp/>bag;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>HRESULT<sp/>hr<sp/>=<sp/>mon-&gt;BindToStorage(</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/><ref refid="device_8cpp_1a1cedd94f4905c1ac04826e77657c4b33" kindref="member">IID_IPropertyBag</ref>,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bag.put()));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(FAILED(hr))</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>L</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>name<sp/>=<sp/><ref refid="namespaceduvc_1a0dbd37821c1cae29fa72d44e3dbd0583" kindref="member">read_prop_bstr</ref>(bag.get(),<sp/>L</highlight><highlight class="stringliteral">&quot;FriendlyName&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>name.empty()<sp/>?<sp/>L</highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal"><sp/>:<sp/>name;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">std::wstring<sp/><ref refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" kindref="member">read_device_path</ref>(IMoniker<sp/>*mon)<sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>com_ptr&lt;IPropertyBag&gt;<sp/>bag;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(SUCCEEDED(mon-&gt;BindToStorage(</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/><ref refid="device_8cpp_1a1cedd94f4905c1ac04826e77657c4b33" kindref="member">IID_IPropertyBag</ref>,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">reinterpret_cast&lt;</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>**</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(bag.put()))))<sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dp<sp/>=<sp/><ref refid="namespaceduvc_1a0dbd37821c1cae29fa72d44e3dbd0583" kindref="member">read_prop_bstr</ref>(bag.get(),<sp/>L</highlight><highlight class="stringliteral">&quot;DevicePath&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dp.empty())</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>dp;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Fallback<sp/>to<sp/>display<sp/>name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>LPOLESTR<sp/>disp<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>std::wstring<sp/>res;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(SUCCEEDED(mon-&gt;GetDisplayName(</highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,<sp/>&amp;disp))<sp/>&amp;&amp;<sp/>disp)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>res.assign(disp);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>CoTaskMemFree(disp);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a16607a28a7df86e823edf3abd371af92" kindref="member">is_same_device</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;d,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;name,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::wstring<sp/>&amp;path)<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!d.path.empty()<sp/>&amp;&amp;<sp/>!path.empty())<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_wcsicmp(d.path.c_str(),<sp/>path.c_str())<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!d.name.empty()<sp/>&amp;&amp;<sp/>!name.empty())<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_wcsicmp(d.name.c_str(),<sp/>name.c_str())<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">std::vector&lt;Device&gt;<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>com_apartment<sp/>com;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>std::vector&lt;Device&gt;<sp/>out;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>de<sp/>=<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>en<sp/>=<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(de.get());</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!en)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>out;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/>ULONG<sp/>fetched<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>com_ptr&lt;IMoniker&gt;<sp/>mon;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(en-&gt;Next(1,<sp/>mon.put(),<sp/>&amp;fetched)<sp/>==<sp/>S_OK<sp/>&amp;&amp;<sp/>fetched)<sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>Device<sp/>d;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>d.name<sp/>=<sp/><ref refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" kindref="member">read_friendly_name</ref>(mon.get());</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>d.path<sp/>=<sp/><ref refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" kindref="member">read_device_path</ref>(mon.get());</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>out.emplace_back(std::move(d));</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>mon.reset();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>out;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;dev)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>First<sp/>try:<sp/>Check<sp/>if<sp/>device<sp/>still<sp/>exists<sp/>in<sp/>enumeration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>com_apartment<sp/>com;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>de<sp/>=<sp/><ref refid="namespaceduvc_1ab7299b8597bf14b18b8351278c209188" kindref="member">create_dev_enum</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>en<sp/>=<sp/><ref refid="namespaceduvc_1a1a577c6cd7e4b3106d6f95c15bbceeed" kindref="member">enum_video_devices</ref>(de.get());</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!en)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>ULONG<sp/>fetched<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>com_ptr&lt;IMoniker&gt;<sp/>mon;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(en-&gt;Next(1,<sp/>mon.put(),<sp/>&amp;fetched)<sp/>==<sp/>S_OK<sp/>&amp;&amp;<sp/>fetched)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>fname<sp/>=<sp/><ref refid="namespaceduvc_1a019644436e5f0add38b6242843b79fef" kindref="member">read_friendly_name</ref>(mon.get());</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>dpath<sp/>=<sp/><ref refid="namespaceduvc_1a2c2b6f32c6871ad36ae0bf98d9374fd0" kindref="member">read_device_path</ref>(mon.get());</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="namespaceduvc_1a16607a28a7df86e823edf3abd371af92" kindref="member">is_same_device</ref>(dev,<sp/>fname,<sp/>dpath))<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Found<sp/>in<sp/>enumeration<sp/>-<sp/>now<sp/>try<sp/>lightweight<sp/>access<sp/>test</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DeviceConnection<sp/>conn(dev);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>conn.is_valid();</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(...)<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>connection<sp/>fails,<sp/>device<sp/>exists<sp/>but<sp/>might<sp/>be<sp/>busy</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>mon.reset();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//<sp/>Not<sp/>found<sp/>in<sp/>enumeration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(...)<sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight><highlight class="preprocessor">#else<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Non-Windows<sp/>stubs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceduvc" kindref="compound">duvc</ref><sp/>{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal">std::vector&lt;Device&gt;<sp/><ref refid="namespaceduvc_1a2c254074ce671320e3e57c56a9389ac1" kindref="member">list_devices</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{};<sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1ab42651167ff39abe9e70713ac6db65b9" kindref="member">is_device_connected</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Device<sp/>&amp;)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1abbb674b206dc193c2a1b127cb413a12f" kindref="member">register_device_change_callback</ref>(<ref refid="namespaceduvc_1ac3f065ee856153757a4b8672b6a192d2" kindref="member">DeviceChangeCallback</ref>)<sp/>{}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceduvc_1a2c8dcde95ee8de2b7eef20728f9274dc" kindref="member">unregister_device_change_callback</ref>()<sp/>{}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>duvc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="core/device.cpp"/>
+  </compounddef>
+</doxygen>

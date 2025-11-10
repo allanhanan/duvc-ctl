@@ -1,0 +1,7 @@
+<map id="duvc::get_diagnostic_info" name="duvc::get_diagnostic_info">
+<area shape="rect" id="Node000001" title="Get diagnostic information for troubleshooting." alt="" coords="5,13,175,40"/>
+<area shape="rect" id="Node000002" href="$namespaceduvc.html#acf69ea75ab1f31295af14cfba31261c2" title="Decode HRESULT to human&#45;readable string." alt="" coords="223,13,368,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,24,207,24,207,29,175,29"/>
+<area shape="rect" id="Node000003" href="$namespaceduvc.html#ad674a2332aaccc15fb24ab7fad6632f4" title="Decode system error code to human&#45;readable string." alt="" coords="416,5,565,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,24,401,24,401,29,368,29"/>
+</map>

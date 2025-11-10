@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="group__capabilities" kind="group">
+    <compoundname>capabilities</compoundname>
+    <title>Capability Snapshots</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Functions for capturing supported property sets. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>2. Core API - Public Headers - duvc-ctl v2.0.0 Documentation</title><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="3. Utility Functions &amp; Helpers" href="03_utility-functions-helpers.html" /><link rel="prev" title="1. Overview &amp; Getting Started" href="01_overview-getting-started.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=43bd62f4" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shibuya.css?v=14737038" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../../_static/print.css?v=20ff2c19" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/><meta property="og:title" content="2. Core API - Public Headers"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../../index.html">
+      
+      
+      <strong>duvc-ctl</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials">
+  <a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+    <iconify-icon icon="simple-icons:github"></iconify-icon>
+  </a></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../user-guide/migration.html">Migration</a></li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../c/index.html">duvc-ctl C API Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">duvc-ctl C++ API Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01_overview-getting-started.html">1. Overview &amp; Getting Started</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Core API - Public Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_utility-functions-helpers.html">3. Utility Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_platform-abstraction-layer.html">4. Platform Abstraction Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_vendor-specific-extensions.html">5. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_internal-implementation-details.html">6. Internal Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_property-reference-details.html">7. Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08_usage-patterns-best-practices.html">8. Usage Patterns &amp; Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09_build-system-integration.html">9. Build System &amp; Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10_platform-specific-information.html">10. Platform-Specific Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11_device-support-compatibility.html">11. Device Support &amp; Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_troubleshooting-debugging.html">12. Troubleshooting &amp; Debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_examples-tutorials.html">13. Examples &amp; Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="14_contributing-extending.html">14. Contributing &amp; Extending</a></li>
+<li class="toctree-l2"><a class="reference internal" href="15_faq.html">15. FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="16_appendices.html">16. Appendices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli/index.html">duvc-ctl CLI Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../python/index.html">duvc-ctl Python Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/01_quick-start-installation.html">1. Quick Start &amp; Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/02_architecture-design-overview.html">2. Architecture &amp; Design Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/03_pythonic-api-cameracontroller-class.html">3. Pythonic API - CameraController Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/04_result-based-api-explicit-error-handling.html">4. Result-Based API - Explicit Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/05_comprehensive-type-reference.html">5. Comprehensive Type Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/06_enumeration-constant-reference.html">6. Enumeration &amp; Constant Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/07_exception-hierarchy-handling.html">7. Exception Hierarchy &amp; Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/08_convenience-functions-helpers.html">8. Convenience Functions &amp; Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/09_logging-diagnostics-callbacks.html">9. Logging, Diagnostics &amp; Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/10_vendor-specific-extensions.html">10. Vendor-Specific Extensions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/11_building-contributing-pybind11-integration.html">11. Building, Contributing &amp; pybind11 Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/12_complete-property-reference-details.html">12. Complete Property Reference &amp; Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/13_common-patterns-recipes.html">13. Common Patterns &amp; Recipes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/14_troubleshooting-faqs.html">14. Troubleshooting &amp; FAQs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/15_advanced-architecture-special-methods.html">15. Advanced Architecture &amp; Special Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/16_architecture-decision-records.html">16. Architecture Decision Records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../python/sections/17_tutorials-getting-started.html">17. Tutorials &amp; Getting Started</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cpp-examples.html">C++ Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/python-examples.html">Python Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3></div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../../index.html"><span itemprop="name">duvc-ctl</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">duvc-ctl C++ API Documentation</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">2. Core API - Public Headers</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+        <article class="yue" role="main">
+          <section id="core-api-public-headers">
+<h1>2. Core API - Public Headers<a class="headerlink" href="#core-api-public-headers" title="Link to this heading">¶</a></h1>
+<section id="device-discovery-management">
+<h2>2.1 Device Discovery &amp; Management<a class="headerlink" href="#device-discovery-management" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/device.h&gt;</span></code></p>
+<section id="device-enumeration">
+<h3>Device enumeration<a class="headerlink" href="#device-enumeration" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Enumerates all video input devices currently connected to the system. Returns a vector of <code class="docutils literal notranslate"><span class="pre">Device</span></code> objects containing name and path information for each camera.</p>
+<p>The implementation uses DirectShow’s <code class="docutils literal notranslate"><span class="pre">ICreateDevEnum</span></code> interface to query the <code class="docutils literal notranslate"><span class="pre">CLSID_VideoInputDeviceCategory</span></code>. Each discovered device is represented by an <code class="docutils literal notranslate"><span class="pre">IMoniker</span></code> which provides access to device metadata through <code class="docutils literal notranslate"><span class="pre">IPropertyBag</span></code>. The function reads the <code class="docutils literal notranslate"><span class="pre">FriendlyName</span></code> property (human-readable device name) and <code class="docutils literal notranslate"><span class="pre">DevicePath</span></code> property (unique system identifier).</p>
+<p>Returns an empty vector when no cameras are present. Throws <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> if DirectShow initialization fails.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">cameras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Found &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cameras</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; cameras</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cam</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">cameras</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;  - &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Implementation notes:</strong></p>
+<ul class="simple">
+<li><p>Initializes COM apartment automatically if not already initialized</p></li>
+<li><p>Device path serves as persistent identifier across sessions</p></li>
+<li><p>Case-insensitive comparison used for device matching</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="connection-status-check">
+<h3>Connection status check<a class="headerlink" href="#connection-status-check" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Verifies whether a previously discovered device remains connected and accessible. Performs a lightweight check without the overhead of creating a full device connection.</p>
+<p>The function operates in two stages:</p>
+<ol class="arabic simple">
+<li><p>Re-enumerates devices via DirectShow and searches for a matching device (by path, falling back to name)</p></li>
+<li><p>If found, attempts a lightweight connection test using <code class="docutils literal notranslate"><span class="pre">DeviceConnection::is_valid()</span></code></p></li>
+</ol>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the device exists and is accessible, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Device</span><span class="w"> </span><span class="n">saved_camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="cm">/* previously stored */</span><span class="p">;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">is_device_connected</span><span class="p">(</span><span class="n">saved_camera</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Device available, safe to proceed</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">platform</span><span class="o">-&gt;</span><span class="n">create_connection</span><span class="p">(</span><span class="n">saved_camera</span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p>Never throws exceptions; returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on any error</p></li>
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> even if another application is using the device</p></li>
+<li><p>Only indicates device presence, not exclusive availability</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="hot-plug-detection">
+<h3>Hot-plug detection<a class="headerlink" href="#hot-plug-detection" title="Link to this heading">¶</a></h3>
+<p><strong>Callback signature:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">using</span><span class="w"> </span><span class="n">DeviceChangeCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">added</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device_path</span><span class="p">)</span><span class="o">&gt;</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p><strong>Registration functions:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">void</span><span class="w"> </span><span class="nf">register_device_change_callback</span><span class="p">(</span><span class="n">DeviceChangeCallback</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">void</span><span class="w"> </span><span class="nf">unregister_device_change_callback</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Enables notification when cameras are connected or disconnected from the system.</p>
+<p>The implementation creates a hidden message-only window (<code class="docutils literal notranslate"><span class="pre">HWND_MESSAGE</span></code>) that receives <code class="docutils literal notranslate"><span class="pre">WM_DEVICECHANGE</span></code> notifications from Windows. The window registers for <code class="docutils literal notranslate"><span class="pre">DBT_DEVTYP_DEVICEINTERFACE</span></code> notifications filtered to the video capture device category (<code class="docutils literal notranslate"><span class="pre">CLSID_VideoInputDeviceCategory</span></code>).</p>
+<p>When a device change occurs, the callback receives:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">added</span></code>: <code class="docutils literal notranslate"><span class="pre">true</span></code> for device arrival, <code class="docutils literal notranslate"><span class="pre">false</span></code> for removal</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_path</span></code>: wide-string device identifier</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">register_device_change_callback</span><span class="p">([](</span><span class="kt">bool</span><span class="w"> </span><span class="n">added</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">added</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Camera connected: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">        </span><span class="c1">// Refresh device list</span>
+</span><span data-line="5"><span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="7"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;Camera disconnected: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="9"><span class="p">});</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="c1">// Windows message loop required</span>
+</span><span data-line="12"><span class="n">MSG</span><span class="w"> </span><span class="n">msg</span><span class="p">;</span>
+</span><span data-line="13"><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">GetMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">DispatchMessage</span><span class="p">(</span><span class="o">&amp;</span><span class="n">msg</span><span class="p">);</span>
+</span><span data-line="15"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Constraints:</strong></p>
+<ul class="simple">
+<li><p>Only one callback can be active at a time; subsequent registrations replace the previous callback</p></li>
+<li><p>Application must pump Windows messages for notifications to work</p></li>
+<li><p>Callback executes on the Windows message thread; heavy operations should be dispatched to worker threads</p></li>
+<li><p>Exceptions thrown in the callback are caught and logged internally</p></li>
+</ul>
+<p><strong>Cleanup:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">unregister_device_change_callback</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Stops device monitoring, unregisters from Windows notifications, destroys the hidden window, and clears the callback function pointer.</p>
+</section>
+<hr class="docutils" />
+<section id="device-identification">
+<h3>Device identification<a class="headerlink" href="#device-identification" title="Link to this heading">¶</a></h3>
+<p>Each camera has two identifiers:</p>
+<ul class="simple">
+<li><p><strong>Name</strong>: Human-readable string (e.g., “Logitech HD Webcam C920”)</p></li>
+<li><p><strong>Path</strong>: Unique system path assigned by Windows (e.g., <code class="docutils literal notranslate"><span class="pre">\\?\usb#vid_046d&amp;pid_082d...</span></code>)</p></li>
+</ul>
+<p>The device path is more reliable for identifying specific cameras across sessions. Two cameras of the same model share the same name but have different paths.</p>
+<p>Device comparison logic:</p>
+<ol class="arabic simple">
+<li><p>Compare paths using case-insensitive string comparison (<code class="docutils literal notranslate"><span class="pre">_wcsicmp</span></code>)</p></li>
+<li><p>If path comparison fails, fall back to name comparison</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="implementation-architecture">
+<h3>Implementation architecture<a class="headerlink" href="#implementation-architecture" title="Link to this heading">¶</a></h3>
+<p><strong>Windows integration:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">device.cpp</span></code>: Uses COM interfaces (<code class="docutils literal notranslate"><span class="pre">ICreateDevEnum</span></code>, <code class="docutils literal notranslate"><span class="pre">IEnumMoniker</span></code>, <code class="docutils literal notranslate"><span class="pre">IPropertyBag</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device_monitor.cpp</span></code>: Uses Win32 window messages and <code class="docutils literal notranslate"><span class="pre">RegisterDeviceNotification()</span></code></p></li>
+<li><p>All COM operations wrapped in RAII helpers (<code class="docutils literal notranslate"><span class="pre">com_ptr</span></code>, <code class="docutils literal notranslate"><span class="pre">com_apartment</span></code>)</p></li>
+</ul>
+<p><strong>Error handling:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>: Throws <code class="docutils literal notranslate"><span class="pre">std::runtime_error</span></code> on COM initialization failures</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is_device_connected()</span></code>: Returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on any error, never throws</p></li>
+<li><p>Hot-plug callbacks: User exceptions caught and logged, do not propagate</p></li>
+</ul>
+<p><strong>Platform support:</strong> Windows only. On non-Windows platforms, functions exist as stubs that compile but return empty results.</p>
+</section>
+</section>
+<section id="camera-control-class">
+<h2>2.2 Camera Control Class<a class="headerlink" href="#camera-control-class" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/camera.h&gt;</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class provides RAII-based camera control with automatic resource management. It handles device connections, property access, and cleanup without requiring manual resource tracking.</p>
+<section id="construction-and-lifecycle">
+<h3>Construction and lifecycle<a class="headerlink" href="#construction-and-lifecycle" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">explicit</span><span class="w"> </span><span class="n">Camera</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">explicit</span><span class="w"> </span><span class="n">Camera</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_index</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Two constructors available:</p>
+<ul class="simple">
+<li><p><strong>By device reference:</strong> Accepts a <code class="docutils literal notranslate"><span class="pre">Device</span></code> object from <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code>. Stores the device but defers connection until first property access.</p></li>
+<li><p><strong>By index:</strong> Convenience constructor that calls <code class="docutils literal notranslate"><span class="pre">list_devices()</span></code> internally and selects the device at the given index. Invalid indices result in an invalid camera.</p></li>
+</ul>
+<p>The class follows move-only semantics (non-copyable, but supports move construction and move assignment). The destructor automatically releases the device connection.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Create from device list</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="3"><span class="n">Camera</span><span class="w"> </span><span class="nf">cam1</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Create by index</span>
+</span><span data-line="6"><span class="n">Camera</span><span class="w"> </span><span class="nf">cam2</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1">// Move semantics</span>
+</span><span data-line="9"><span class="n">Camera</span><span class="w"> </span><span class="n">cam3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">cam1</span><span class="p">);</span><span class="w">  </span><span class="c1">// cam1 now invalid</span>
+</span></pre></div>
+</div>
+<p><strong>Lazy connection:</strong> The underlying <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code> is created on first property access, not during construction. This allows creating <code class="docutils literal notranslate"><span class="pre">Camera</span></code> objects without immediately locking the device.</p>
+<p><strong>Validity check:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if the camera is usable (device valid and connected). Always check before property operations.</p>
+</section>
+<hr class="docutils" />
+<section id="reading-properties">
+<h3>Reading properties<a class="headerlink" href="#reading-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Reads the current value and mode (auto/manual) for a camera or video property. Returns <code class="docutils literal notranslate"><span class="pre">Result&lt;PropSetting&gt;</span></code> containing the value on success, or an error code on failure.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Camera</span><span class="w"> </span><span class="nf">cam</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">auto</span><span class="w"> </span><span class="n">brightness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">);</span>
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">brightness</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brightness</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Brightness: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">setting</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Mode: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">setting</span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;auto&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s">&quot;manual&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Error cases:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::DeviceNotFound</span></code>: Camera disconnected or connection failed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ErrorCode::PropertyNotSupported</span></code>: Property not available on this device</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="writing-properties">
+<h3>Writing properties<a class="headerlink" href="#writing-properties" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">set</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Sets a property to a new value and mode. The <code class="docutils literal notranslate"><span class="pre">PropSetting</span></code> struct contains:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: Integer value (must be within property range)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: <code class="docutils literal notranslate"><span class="pre">CamMode::Auto</span></code> or <code class="docutils literal notranslate"><span class="pre">CamMode::Manual</span></code></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">duvc</span><span class="o">::</span><span class="n">PropSetting</span><span class="w"> </span><span class="n">setting</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">};</span>
+</span><span data-line="2"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">,</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Setting auto mode:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Enable auto exposure</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">PropSetting</span><span class="w"> </span><span class="n">auto_setting</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">};</span><span class="w">  </span><span class="c1">// value ignored in auto mode</span>
+</span><span data-line="3"><span class="n">cam</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Exposure</span><span class="p">,</span><span class="w"> </span><span class="n">auto_setting</span><span class="p">);</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="querying-property-ranges">
+<h3>Querying property ranges<a class="headerlink" href="#querying-property-ranges" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_range</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Retrieves the valid range for a property. Returns <code class="docutils literal notranslate"><span class="pre">PropRange</span></code> containing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code>: Minimum valid value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>: Maximum valid value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: Increment step (typically 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_val</span></code>: Default value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_mode</span></code>: Default mode (auto or manual)</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">range_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Pan: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; to &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span>
+</span><span data-line="5"><span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (step &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">step</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span>
+</span><span data-line="7"><span class="w">    </span><span class="c1">// Use clamp() to constrain values</span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">safe_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">999</span><span class="p">);</span><span class="w">  </span><span class="c1">// Clamps to max if 999 exceeds range</span>
+</span><span data-line="9"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Range validation:</strong> Always query ranges before setting properties to avoid <code class="docutils literal notranslate"><span class="pre">InvalidValue</span></code> errors. Use <code class="docutils literal notranslate"><span class="pre">PropRange::clamp()</span></code> to constrain user input.</p>
+</section>
+<hr class="docutils" />
+<section id="factory-functions">
+<h3>Factory functions<a class="headerlink" href="#factory-functions" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="w"> </span><span class="n">open_camera</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_index</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="w"> </span><span class="n">open_camera</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Alternative to constructors that return <code class="docutils literal notranslate"><span class="pre">Result&lt;Camera&gt;</span></code> for explicit error handling. These verify device validity and connectivity before returning the camera object.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">cam_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">open_camera</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cam_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Camera</span><span class="w"> </span><span class="n">cam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">cam_result</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Use cam</span>
+</span><span data-line="5"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cam_result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="result-type-pattern">
+<h3>Result type pattern<a class="headerlink" href="#result-type-pattern" title="Link to this heading">¶</a></h3>
+<p>All property operations return <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> types instead of throwing exceptions. This enables:</p>
+<ul class="simple">
+<li><p><strong>Explicit error handling:</strong> Check <code class="docutils literal notranslate"><span class="pre">is_ok()</span></code> or <code class="docutils literal notranslate"><span class="pre">is_error()</span></code> before accessing values</p></li>
+<li><p><strong>Error propagation:</strong> Chain operations and handle errors at appropriate levels</p></li>
+<li><p><strong>Production safety:</strong> No unexpected exceptions in critical code paths</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w">  </span><span class="c1">// Safe access</span>
+</span><span data-line="4"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">();</span>
+</span><span data-line="6"><span class="w">    </span><span class="c1">// Handle error.code() and error.description()</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>See Section 2.5</strong> for complete <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> documentation.</p>
+</section>
+<hr class="docutils" />
+<section id="resource-management">
+<h3>Resource management<a class="headerlink" href="#resource-management" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class uses RAII to manage the underlying <code class="docutils literal notranslate"><span class="pre">DeviceConnection</span></code>:</p>
+<ul class="simple">
+<li><p>Connection created lazily on first property access</p></li>
+<li><p>Connection held in <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> for automatic cleanup</p></li>
+<li><p>Destructor releases connection and COM resources</p></li>
+<li><p>Move semantics prevent accidental copies</p></li>
+</ul>
+<p><strong>Thread safety:</strong> Each <code class="docutils literal notranslate"><span class="pre">Camera</span></code> instance is not thread-safe. Use separate instances for concurrent access to different cameras, or add external synchronization.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="device-capabilities">
+<h2>2.3 Device Capabilities<a class="headerlink" href="#device-capabilities" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/capability.h&gt;</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DeviceCapabilities</span></code> class creates a snapshot of all supported properties and their ranges for a camera. This allows checking what features are available before attempting operations.</p>
+<section id="capability-snapshot-structure">
+<h3>Capability snapshot structure<a class="headerlink" href="#capability-snapshot-structure" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">PropertyCapability</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">supported</span><span class="p">;</span><span class="w">           </span><span class="c1">// Property available on device</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="p">;</span><span class="w">          </span><span class="c1">// Valid range (min, max, step, defaults)</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">PropSetting</span><span class="w"> </span><span class="n">current</span><span class="p">;</span><span class="w">      </span><span class="c1">// Current value and mode</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">supports_auto</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w">  </span><span class="c1">// Auto mode available</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Each property gets a <code class="docutils literal notranslate"><span class="pre">PropertyCapability</span></code> describing its availability, valid range, current state, and whether automatic mode is supported.</p>
+</section>
+<hr class="docutils" />
+<section id="creating-capability-snapshots">
+<h3>Creating capability snapshots<a class="headerlink" href="#creating-capability-snapshots" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">explicit</span><span class="w"> </span><span class="n">DeviceCapabilities</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Constructor creates a snapshot by scanning all camera and video properties. The scan:</p>
+<ol class="arabic simple">
+<li><p>Attempts to create a <code class="docutils literal notranslate"><span class="pre">Camera</span></code> connection</p></li>
+<li><p>Iterates through all <code class="docutils literal notranslate"><span class="pre">CamProp</span></code> and <code class="docutils literal notranslate"><span class="pre">VidProp</span></code> enum values</p></li>
+<li><p>Calls <code class="docutils literal notranslate"><span class="pre">get_range()</span></code> for each property (supported if successful)</p></li>
+<li><p>Reads current value with <code class="docutils literal notranslate"><span class="pre">get()</span></code> if range query succeeded</p></li>
+<li><p>Stores results in internal maps</p></li>
+</ol>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">DeviceCapabilities</span><span class="w"> </span><span class="nf">caps</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">caps</span><span class="p">.</span><span class="n">is_device_accessible</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="c1">// Scan completed successfully</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Constructor behavior:</strong> Never throws. If the device is inaccessible, <code class="docutils literal notranslate"><span class="pre">is_device_accessible()</span></code> returns <code class="docutils literal notranslate"><span class="pre">false</span></code> and all property queries return “not supported”.</p>
+</section>
+<hr class="docutils" />
+<section id="checking-property-support">
+<h3>Checking property support<a class="headerlink" href="#checking-property-support" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">supports_camera_property</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">supports_video_property</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Quick boolean check if a property is available.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">caps</span><span class="p">.</span><span class="n">supports_camera_property</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Pan supported, safe to use</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Listing supported properties:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">CamProp</span><span class="o">&gt;</span><span class="w"> </span><span class="n">supported_camera_properties</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="2"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">VidProp</span><span class="o">&gt;</span><span class="w"> </span><span class="n">supported_video_properties</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Returns vectors of all supported property enums.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">prop</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">caps</span><span class="p">.</span><span class="n">supported_camera_properties</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Supports: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="retrieving-capability-details">
+<h3>Retrieving capability details<a class="headerlink" href="#retrieving-capability-details" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="n">PropertyCapability</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_camera_capability</span><span class="p">(</span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="2"><span class="k">const</span><span class="w"> </span><span class="n">PropertyCapability</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_video_capability</span><span class="p">(</span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span></pre></div>
+</div>
+<p>Gets full capability information for a property. Returns a reference to <code class="docutils literal notranslate"><span class="pre">PropertyCapability</span></code> (or an empty one if unsupported).</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">caps</span><span class="p">.</span><span class="n">get_camera_capability</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cap</span><span class="p">.</span><span class="n">supported</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Zoom range: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cap</span><span class="p">.</span><span class="n">range</span><span class="p">.</span><span class="n">min</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cap</span><span class="p">.</span><span class="n">range</span><span class="p">.</span><span class="n">max</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Current: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cap</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Auto available: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cap</span><span class="p">.</span><span class="n">supports_auto</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Auto mode detection:</strong> <code class="docutils literal notranslate"><span class="pre">PropertyCapability::supports_auto()</span></code> checks if <code class="docutils literal notranslate"><span class="pre">range.default_mode</span> <span class="pre">==</span> <span class="pre">CamMode::Auto</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="refreshing-capabilities">
+<h3>Refreshing capabilities<a class="headerlink" href="#refreshing-capabilities" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">refresh</span><span class="p">();</span>
+</span></pre></div>
+</div>
+<p>Re-scans all properties to update the snapshot. Useful after device reconnection or when capabilities may have changed.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">caps</span><span class="p">.</span><span class="n">refresh</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Refresh failed: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">ErrorCode::DeviceNotFound</span></code> if the device is no longer connected.</p>
+</section>
+<hr class="docutils" />
+<section id="capability-caching">
+<h3>Capability caching<a class="headerlink" href="#capability-caching" title="Link to this heading">¶</a></h3>
+<p>The class stores capability data in internal maps:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::unordered_map&lt;CamProp,</span> <span class="pre">PropertyCapability&gt;</span> <span class="pre">camera_capabilities_</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">std::unordered_map&lt;VidProp,</span> <span class="pre">PropertyCapability&gt;</span> <span class="pre">video_capabilities_</span></code></p></li>
+</ul>
+<p><strong>Performance:</strong> Scanning all properties takes time (queries every enum value via DirectShow). Create snapshots once and reuse, or cache them per device. Avoid repeated scans in tight loops.</p>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>Factory functions<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="n">DeviceCapabilities</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">device</span><span class="p">);</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">DeviceCapabilities</span><span class="o">&gt;</span><span class="w"> </span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">device_index</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Alternative to constructor that returns <code class="docutils literal notranslate"><span class="pre">Result&lt;DeviceCapabilities&gt;</span></code> with explicit error checking.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">caps_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">get_device_capabilities</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">caps_result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">caps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">caps_result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="4"><span class="w">    </span><span class="c1">// Use caps</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>Returns <code class="docutils literal notranslate"><span class="pre">ErrorCode::DeviceNotFound</span></code> if device inaccessible or <code class="docutils literal notranslate"><span class="pre">ErrorCode::InvalidArgument</span></code> for invalid device/index.</p>
+<hr class="docutils" />
+<p><strong>Use cases:</strong></p>
+<ul class="simple">
+<li><p><strong>UI generation:</strong> Build control panels dynamically based on supported properties</p></li>
+<li><p><strong>Feature detection:</strong> Check capabilities before offering features to users</p></li>
+<li><p><strong>Validation:</strong> Verify ranges before prompting for input</p></li>
+<li><p><strong>Diagnostics:</strong> Log device capabilities for debugging</p></li>
+</ul>
+<p><strong>See Section 7</strong> for complete property reference with expected ranges and behaviors.</p>
+</section>
+</section>
+<section id="core-types-enumerations">
+<h2>2.4 Core Types &amp; Enumerations<a class="headerlink" href="#core-types-enumerations" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/types.h&gt;</span></code></p>
+<section id="device-struct">
+<h3>Device struct<a class="headerlink" href="#device-struct" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">Device</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">path</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Device</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Device</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="w"> </span><span class="n">p</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">wstring</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">get_id</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="10"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Represents a camera device with identifying information.</p>
+<p><strong>Members:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Human-readable device name (e.g., “Logitech HD Webcam C920”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: Unique system device path (e.g., <code class="docutils literal notranslate"><span class="pre">\\?\usb#vid_046d&amp;pid_082d...</span></code>)</p></li>
+</ul>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">is_valid()</span></code>: Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if either name or path is non-empty</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_id()</span></code>: Returns path if available, otherwise name. Use for stable device identification across sessions.</p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Device</span><span class="w"> </span><span class="n">cam</span><span class="p">(</span><span class="sa">L</span><span class="s">&quot;My Camera&quot;</span><span class="p">,</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\\\\</span><span class="s">?</span><span class="se">\\</span><span class="s">usb#vid_1234...&quot;</span><span class="p">);</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cam</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;ID: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w">  </span><span class="c1">// Prints path</span>
+</span><span data-line="4"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="propsetting-struct">
+<h3>PropSetting struct<a class="headerlink" href="#propsetting-struct" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">PropSetting</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">CamMode</span><span class="w"> </span><span class="n">mode</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PropSetting</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">PropSetting</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="w"> </span><span class="n">m</span><span class="p">);</span>
+</span><span data-line="7"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Combines a property value with its control mode.</p>
+<p><strong>Members:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: Integer value (meaning depends on property)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: <code class="docutils literal notranslate"><span class="pre">CamMode::Auto</span></code> or <code class="docutils literal notranslate"><span class="pre">CamMode::Manual</span></code></p></li>
+</ul>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropSetting</span><span class="w"> </span><span class="n">brightness</span><span class="p">{</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">};</span>
+</span><span data-line="2"><span class="n">PropSetting</span><span class="w"> </span><span class="n">auto_exposure</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Auto</span><span class="p">};</span><span class="w">  </span><span class="c1">// value ignored in auto mode</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="proprange-struct">
+<h3>PropRange struct<a class="headerlink" href="#proprange-struct" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">struct</span><span class="w"> </span><span class="nc">PropRange</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">min</span><span class="p">;</span>
+</span><span data-line="3"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">max</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">default_val</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">CamMode</span><span class="w"> </span><span class="n">default_mode</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="n">PropRange</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">clamp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Describes valid range and defaults for a property.</p>
+<p><strong>Members:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code>: Minimum supported value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>: Maximum supported value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">step</span></code>: Increment between valid values (typically 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_val</span></code>: Factory default value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">default_mode</span></code>: Factory default mode (auto or manual)</p></li>
+</ul>
+<p><strong>Methods:</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">is_valid(int</span> <span class="pre">value)</span></code>: Checks if value is within range and aligned to step size.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropRange</span><span class="w"> </span><span class="n">range</span><span class="p">{</span><span class="mi">-180</span><span class="p">,</span><span class="w"> </span><span class="mi">180</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">};</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">45</span><span class="p">);</span><span class="w">   </span><span class="c1">// true</span>
+</span><span data-line="3"><span class="kt">bool</span><span class="w"> </span><span class="n">invalid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">is_valid</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span><span class="w"> </span><span class="c1">// false (exceeds max)</span>
+</span></pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">clamp(int</span> <span class="pre">value)</span></code>: Constrains value to valid range and rounds to nearest step.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">int</span><span class="w"> </span><span class="n">safe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">999</span><span class="p">);</span><span class="w">  </span><span class="c1">// Returns 180 (max)</span>
+</span><span data-line="2"><span class="kt">int</span><span class="w"> </span><span class="n">rounded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="mi">44</span><span class="p">);</span><span class="w"> </span><span class="c1">// Returns 44 (aligned to step=1)</span>
+</span></pre></div>
+</div>
+<p><strong>Clamping algorithm:</strong></p>
+<ul class="simple">
+<li><p>Values ≤ min return min</p></li>
+<li><p>Values ≥ max return max</p></li>
+<li><p>Values between round to nearest step: <code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">+</span> <span class="pre">round((value</span> <span class="pre">-</span> <span class="pre">min)</span> <span class="pre">/</span> <span class="pre">step)</span> <span class="pre">*</span> <span class="pre">step</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="camprop-enum">
+<h3>CamProp enum<a class="headerlink" href="#camprop-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamProp</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Pan</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Horizontal rotation</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Tilt</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Vertical rotation</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Roll</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Roll rotation</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Zoom</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Optical zoom</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Exposure</span><span class="p">,</span><span class="w">               </span><span class="c1">// Exposure time</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">Iris</span><span class="p">,</span><span class="w">                   </span><span class="c1">// Aperture setting</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">Focus</span><span class="p">,</span><span class="w">                  </span><span class="c1">// Focus position</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">ScanMode</span><span class="p">,</span><span class="w">               </span><span class="c1">// Progressive/interlaced</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">Privacy</span><span class="p">,</span><span class="w">                </span><span class="c1">// Privacy mode</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">PanRelative</span><span class="p">,</span><span class="w">            </span><span class="c1">// Relative pan</span>
+</span><span data-line="12"><span class="w">    </span><span class="n">TiltRelative</span><span class="p">,</span><span class="w">           </span><span class="c1">// Relative tilt</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">RollRelative</span><span class="p">,</span><span class="w">           </span><span class="c1">// Relative roll</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">ZoomRelative</span><span class="p">,</span><span class="w">           </span><span class="c1">// Relative zoom</span>
+</span><span data-line="15"><span class="w">    </span><span class="n">ExposureRelative</span><span class="p">,</span><span class="w">       </span><span class="c1">// Relative exposure</span>
+</span><span data-line="16"><span class="w">    </span><span class="n">IrisRelative</span><span class="p">,</span><span class="w">           </span><span class="c1">// Relative iris</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">FocusRelative</span><span class="p">,</span><span class="w">          </span><span class="c1">// Relative focus</span>
+</span><span data-line="18"><span class="w">    </span><span class="n">PanTilt</span><span class="p">,</span><span class="w">                </span><span class="c1">// Combined pan/tilt</span>
+</span><span data-line="19"><span class="w">    </span><span class="n">PanTiltRelative</span><span class="p">,</span><span class="w">        </span><span class="c1">// Relative pan/tilt</span>
+</span><span data-line="20"><span class="w">    </span><span class="n">FocusSimple</span><span class="p">,</span><span class="w">            </span><span class="c1">// Simple focus</span>
+</span><span data-line="21"><span class="w">    </span><span class="n">DigitalZoom</span><span class="p">,</span><span class="w">            </span><span class="c1">// Digital zoom level</span>
+</span><span data-line="22"><span class="w">    </span><span class="n">DigitalZoomRelative</span><span class="p">,</span><span class="w">    </span><span class="c1">// Relative digital zoom</span>
+</span><span data-line="23"><span class="w">    </span><span class="n">BacklightCompensation</span><span class="p">,</span><span class="w">  </span><span class="c1">// Backlight compensation</span>
+</span><span data-line="24"><span class="w">    </span><span class="n">Lamp</span><span class="w">                    </span><span class="c1">// Camera lamp/flash</span>
+</span><span data-line="25"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Camera control properties mapped to DirectShow’s <code class="docutils literal notranslate"><span class="pre">IAMCameraControl</span></code> interface. Controls physical camera mechanisms.</p>
+<p><strong>23 total values</strong> (not 22 as initially stated):</p>
+<ul class="simple">
+<li><p>Absolute controls: Pan, Tilt, Roll, Zoom, Exposure, Iris, Focus, ScanMode, Privacy, DigitalZoom, BacklightCompensation, Lamp (12 values)</p></li>
+<li><p>Relative controls: PanRelative, TiltRelative, RollRelative, ZoomRelative, ExposureRelative, IrisRelative, FocusRelative, PanTiltRelative, DigitalZoomRelative (9 values)</p></li>
+<li><p>Combined/special: PanTilt, FocusSimple (2 values)</p></li>
+</ul>
+<p><strong>Relative vs. absolute:</strong></p>
+<ul class="simple">
+<li><p>Absolute properties set exact positions (e.g., <code class="docutils literal notranslate"><span class="pre">Pan</span> <span class="pre">=</span> <span class="pre">45°</span></code>)</p></li>
+<li><p>Relative properties adjust by delta (e.g., <code class="docutils literal notranslate"><span class="pre">PanRelative</span> <span class="pre">=</span> <span class="pre">+10°</span></code>)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vidprop-enum">
+<h3>VidProp enum<a class="headerlink" href="#vidprop-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">VidProp</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Brightness</span><span class="p">,</span><span class="w">             </span><span class="c1">// Brightness level</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Contrast</span><span class="p">,</span><span class="w">               </span><span class="c1">// Contrast level</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Hue</span><span class="p">,</span><span class="w">                    </span><span class="c1">// Color hue</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Saturation</span><span class="p">,</span><span class="w">             </span><span class="c1">// Color saturation</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Sharpness</span><span class="p">,</span><span class="w">              </span><span class="c1">// Sharpness level</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">Gamma</span><span class="p">,</span><span class="w">                  </span><span class="c1">// Gamma correction</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">ColorEnable</span><span class="p">,</span><span class="w">            </span><span class="c1">// Color vs. monochrome</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">WhiteBalance</span><span class="p">,</span><span class="w">           </span><span class="c1">// White balance</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">BacklightCompensation</span><span class="p">,</span><span class="w">  </span><span class="c1">// Backlight compensation</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">Gain</span><span class="w">                    </span><span class="c1">// Sensor gain</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Video processing properties mapped to DirectShow’s <code class="docutils literal notranslate"><span class="pre">IAMVideoProcAmp</span></code> interface. Controls image processing parameters.</p>
+<p><strong>10 total values</strong> (confirmed).</p>
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">BacklightCompensation</span></code> appears in both <code class="docutils literal notranslate"><span class="pre">CamProp</span></code> and <code class="docutils literal notranslate"><span class="pre">VidProp</span></code>. This reflects DirectShow’s design where the property may be exposed through either interface depending on the camera.</p>
+</section>
+<hr class="docutils" />
+<section id="cammode-enum">
+<h3>CamMode enum<a class="headerlink" href="#cammode-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamMode</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Auto</span><span class="p">,</span><span class="w">    </span><span class="c1">// Automatic control by camera</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Manual</span><span class="w">   </span><span class="c1">// Manual control by application</span>
+</span><span data-line="4"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Control mode for properties. When <code class="docutils literal notranslate"><span class="pre">Auto</span></code>, the camera adjusts the property automatically. When <code class="docutils literal notranslate"><span class="pre">Manual</span></code>, the application sets explicit values.</p>
+<p><strong>Behavior:</strong></p>
+<ul class="simple">
+<li><p>Auto mode: Camera firmware controls property (e.g., auto-exposure adjusts based on lighting)</p></li>
+<li><p>Manual mode: Application specifies exact value (e.g., exposure locked to -5)</p></li>
+</ul>
+<p>Not all properties support auto mode. Check <code class="docutils literal notranslate"><span class="pre">PropertyCapability::supports_auto()</span></code> or <code class="docutils literal notranslate"><span class="pre">PropRange::default_mode</span></code> to determine availability.</p>
+</section>
+<hr class="docutils" />
+<section id="type-relationships">
+<h3>Type relationships<a class="headerlink" href="#type-relationships" title="Link to this heading">¶</a></h3>
+<p><strong>Property operations use these types together:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Get property: returns current value and mode</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="c1">// Query range: returns valid bounds</span>
+</span><span data-line="5"><span class="n">Result</span><span class="o">&lt;</span><span class="n">PropRange</span><span class="o">&gt;</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get_range</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="6">
+</span><span data-line="7"><span class="c1">// Validate and set</span>
+</span><span data-line="8"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">range</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">safe_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">value</span><span class="p">().</span><span class="n">clamp</span><span class="p">(</span><span class="n">user_input</span><span class="p">);</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">PropSetting</span><span class="w"> </span><span class="n">new_setting</span><span class="p">{</span><span class="n">safe_value</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">};</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">,</span><span class="w"> </span><span class="n">new_setting</span><span class="p">);</span>
+</span><span data-line="12"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Device identification flow:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">devices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dev</span><span class="p">.</span><span class="n">is_valid</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">wcout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dev</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot; (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dev</span><span class="p">.</span><span class="n">get_id</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sa">L</span><span class="s">&quot;)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>DirectShow mapping:</strong> These enums correspond directly to DirectShow constants:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CamProp</span></code> → <code class="docutils literal notranslate"><span class="pre">CameraControlProperty</span></code> enum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VidProp</span></code> → <code class="docutils literal notranslate"><span class="pre">VideoProcAmpProperty</span></code> enum</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CamMode</span></code> → <code class="docutils literal notranslate"><span class="pre">CameraControlFlags</span></code> (0x0001 = Auto, 0x0002 = Manual)</p></li>
+</ul>
+<p>See Section 6.4 for DirectShow integration details.</p>
+</section>
+</section>
+<section id="result-type-error-handling">
+<h2>2.5 Result Type &amp; Error Handling<a class="headerlink" href="#result-type-error-handling" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/result.h&gt;</span></code></p>
+<p>The library uses a <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> type system for error handling instead of exceptions. All operations that can fail return <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> containing either a value or an error.</p>
+<section id="result-template">
+<h3>Result template<a class="headerlink" href="#result-template" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">Result</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Result</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Result</span><span class="p">(</span><span class="n">Error</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Result</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_ok</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">value</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nf">value</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Error</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">value_or</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="w"> </span><span class="n">default_value</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">&amp;</span><span class="p">;</span>
+</span><span data-line="14"><span class="w">    </span><span class="n">T</span><span class="w"> </span><span class="nf">value_or</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">default_value</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="16"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>Checking results:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_ok</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">PropSetting</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span>
+</span><span data-line="5"><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Error</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">();</span>
+</span><span data-line="7"><span class="w">    </span><span class="c1">// Handle error</span>
+</span><span data-line="8"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Boolean conversion:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Equivalent to result.is_ok()</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Success path</span>
+</span><span data-line="3"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>Value extraction with default:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropSetting</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value_or</span><span class="p">(</span><span class="n">PropSetting</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">CamMode</span><span class="o">::</span><span class="n">Manual</span><span class="p">});</span>
+</span></pre></div>
+</div>
+<p><strong>Move semantics:</strong>
+The value can be accessed by const reference (<code class="docutils literal notranslate"><span class="pre">value()</span> <span class="pre">const</span> <span class="pre">&amp;</span></code>) or moved out (<code class="docutils literal notranslate"><span class="pre">value()</span> <span class="pre">&amp;&amp;</span></code>):</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">PropSetting</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w">              </span><span class="c1">// Copy</span>
+</span><span data-line="2"><span class="n">PropSetting</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">result</span><span class="p">).</span><span class="n">value</span><span class="p">();</span><span class="w">   </span><span class="c1">// Move</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="result-specialization">
+<h3>Result<void> specialization<a class="headerlink" href="#result-specialization" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;&gt;</span>
+</span><span data-line="2"><span class="k">class</span><span class="w"> </span><span class="nc">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Result</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">Result</span><span class="p">(</span><span class="n">Error</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">Result</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+</span><span data-line="7"><span class="w">    </span>
+</span><span data-line="8"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_ok</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="10"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">Error</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">error</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="kt">bool</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="12"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>Operations that return no value (e.g., <code class="docutils literal notranslate"><span class="pre">set</span></code> methods) use <code class="docutils literal notranslate"><span class="pre">Result&lt;void&gt;</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Pan</span><span class="p">,</span><span class="w"> </span><span class="n">setting</span><span class="p">);</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="error-class">
+<h3>Error class<a class="headerlink" href="#error-class" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">class</span><span class="w"> </span><span class="nc">Error</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="k">public</span><span class="o">:</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">Error</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">Error</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">error_code</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+</span><span data-line="5"><span class="w">    </span>
+</span><span data-line="6"><span class="w">    </span><span class="n">ErrorCode</span><span class="w"> </span><span class="nf">code</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="nf">message</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">description</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+</span><span data-line="9"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Error</span></code> class wraps error information with context.</p>
+<p><strong>Methods:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">code()</span></code>: Returns the <code class="docutils literal notranslate"><span class="pre">ErrorCode</span></code> enum value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">message()</span></code>: Returns the custom message string (may be empty)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description()</span></code>: Returns formatted string combining code name and message</p></li>
+</ul>
+<p><strong>Example usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">();</span>
+</span><span data-line="3"><span class="w">    </span>
+</span><span data-line="4"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error code: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">code</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">message</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Full: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">description</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="errorcode-enum">
+<h3>ErrorCode enum<a class="headerlink" href="#errorcode-enum" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ErrorCode</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="n">Success</span><span class="p">,</span><span class="w">                </span><span class="c1">// Operation succeeded (value 0)</span>
+</span><span data-line="3"><span class="w">    </span><span class="n">DeviceNotFound</span><span class="p">,</span><span class="w">         </span><span class="c1">// Device not found or disconnected</span>
+</span><span data-line="4"><span class="w">    </span><span class="n">DeviceBusy</span><span class="p">,</span><span class="w">             </span><span class="c1">// Device is busy or in use</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">PropertyNotSupported</span><span class="p">,</span><span class="w">   </span><span class="c1">// Property not supported by device</span>
+</span><span data-line="6"><span class="w">    </span><span class="n">InvalidValue</span><span class="p">,</span><span class="w">           </span><span class="c1">// Property value out of range</span>
+</span><span data-line="7"><span class="w">    </span><span class="n">PermissionDenied</span><span class="p">,</span><span class="w">       </span><span class="c1">// Insufficient permissions</span>
+</span><span data-line="8"><span class="w">    </span><span class="n">SystemError</span><span class="p">,</span><span class="w">            </span><span class="c1">// System/platform error</span>
+</span><span data-line="9"><span class="w">    </span><span class="n">InvalidArgument</span><span class="p">,</span><span class="w">        </span><span class="c1">// Invalid function argument</span>
+</span><span data-line="10"><span class="w">    </span><span class="n">NotImplemented</span><span class="w">          </span><span class="c1">// Feature not implemented on this platform</span>
+</span><span data-line="11"><span class="p">};</span>
+</span></pre></div>
+</div>
+<p><strong>9 error codes total</strong> (including <code class="docutils literal notranslate"><span class="pre">Success</span></code> = 0).</p>
+<p><strong>String conversion:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="nf">to_string</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Returns human-readable description:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Success</span></code> → “Success”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DeviceNotFound</span></code> → “Device not found or disconnected”</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DeviceBusy</span></code> → “Device is busy or in use”</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p><strong>Common error scenarios:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Error Code</p></th>
+<th class="head text-left"><p>Typical Causes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DeviceNotFound</span></code></p></td>
+<td class="text-left"><p>Camera unplugged, connection failed, device path invalid</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DeviceBusy</span></code></p></td>
+<td class="text-left"><p>Another application using camera exclusively</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">PropertyNotSupported</span></code></p></td>
+<td class="text-left"><p>Property not available on this camera model</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvalidValue</span></code></p></td>
+<td class="text-left"><p>Value outside property’s min/max range</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">PermissionDenied</span></code></p></td>
+<td class="text-left"><p>Windows privacy settings block camera access</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SystemError</span></code></p></td>
+<td class="text-left"><p>DirectShow/COM errors, driver issues</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">InvalidArgument</span></code></p></td>
+<td class="text-left"><p>Invalid device index, null pointer</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">NotImplemented</span></code></p></td>
+<td class="text-left"><p>Platform-specific feature on wrong OS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="helper-functions">
+<h3>Helper functions<a class="headerlink" href="#helper-functions" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="2"><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Ok</span><span class="p">();</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="7"><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Err</span><span class="p">(</span><span class="n">Error</span><span class="w"> </span><span class="n">error</span><span class="p">);</span>
+</span><span data-line="8">
+</span><span data-line="9"><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span>
+</span><span data-line="10"><span class="n">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Err</span><span class="p">(</span><span class="n">ErrorCode</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>Convenience functions for creating results:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">Result</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">compute</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">error_condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">InvalidValue</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Value too large&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="error-handling-patterns">
+<h3>Error handling patterns<a class="headerlink" href="#error-handling-patterns" title="Link to this heading">¶</a></h3>
+<p><strong>Early return on error:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">devices</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Err</span><span class="o">&lt;</span><span class="n">PropSetting</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ErrorCode</span><span class="o">::</span><span class="n">DeviceNotFound</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;No cameras available&quot;</span><span class="p">);</span>
+</span><span data-line="4"><span class="p">}</span>
+</span><span data-line="5">
+</span><span data-line="6"><span class="n">Camera</span><span class="w"> </span><span class="n">cam</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="7"><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="8"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="9"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">();</span>
+</span><span data-line="10"><span class="p">}</span>
+</span><span data-line="11">
+</span><span data-line="12"><span class="k">return</span><span class="w"> </span><span class="n">Ok</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">value</span><span class="p">());</span>
+</span></pre></div>
+</div>
+<p><strong>Switch on error codes:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">is_error</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">error</span><span class="p">().</span><span class="n">code</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="3"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ErrorCode</span><span class="o">::</span><span class="no">DeviceNotFound</span><span class="p">:</span>
+</span><span data-line="4"><span class="w">            </span><span class="c1">// Handle disconnection</span>
+</span><span data-line="5"><span class="w">            </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">ErrorCode</span><span class="o">::</span><span class="no">PropertyNotSupported</span><span class="p">:</span>
+</span><span data-line="7"><span class="w">            </span><span class="c1">// Disable UI control</span>
+</span><span data-line="8"><span class="w">            </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="9"><span class="w">        </span><span class="k">default</span><span class="o">:</span>
+</span><span data-line="10"><span class="w">            </span><span class="c1">// Log error</span>
+</span><span data-line="11"><span class="w">            </span><span class="k">break</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">    </span><span class="p">}</span>
+</span><span data-line="13"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>No exceptions thrown:</strong> All library functions return <code class="docutils literal notranslate"><span class="pre">Result&lt;T&gt;</span></code> types. The only exceptions possible are from standard library (e.g., <code class="docutils literal notranslate"><span class="pre">std::bad_variant_access</span></code> if calling <code class="docutils literal notranslate"><span class="pre">value()</span></code> on error result without checking).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="main-include-header">
+<h2>2.6 Main Include Header<a class="headerlink" href="#main-include-header" title="Link to this heading">¶</a></h2>
+<p><strong>Header:</strong> <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/duvc.hpp&gt;</span></code></p>
+<p>Single convenience header that includes all public APIs.</p>
+<section id="what-it-includes">
+<h3>What it includes<a class="headerlink" href="#what-it-includes" title="Link to this heading">¶</a></h3>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1">// Core functionality</span>
+</span><span data-line="2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/core/types.h&gt;</span><span class="c1">      // Device, PropSetting, PropRange, enums</span>
+</span><span data-line="3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/core/device.h&gt;</span><span class="c1">     // list_devices(), is_device_connected()</span>
+</span><span data-line="4"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/core/camera.h&gt;</span><span class="c1">     // Camera class</span>
+</span><span data-line="5"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/core/result.h&gt;</span><span class="c1">     // Result&lt;T&gt;, Error, ErrorCode</span>
+</span><span data-line="6"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/core/capability.h&gt;</span><span class="c1"> // DeviceCapabilities</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="c1">// Utility functions</span>
+</span><span data-line="9"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/utils/factory.h&gt;</span><span class="c1">         // open_camera(), get_device_capabilities()</span>
+</span><span data-line="10"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/utils/string_conversion.h&gt;</span><span class="c1"> // to_wstring()</span>
+</span><span data-line="11"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/utils/error_decoder.h&gt;</span><span class="c1">   // Error decoding</span>
+</span><span data-line="12">
+</span><span data-line="13"><span class="c1">// Platform interface (advanced)</span>
+</span><span data-line="14"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/platform/interface.h&gt;</span><span class="c1">    // IPlatformInterface</span>
+</span><span data-line="15">
+</span><span data-line="16"><span class="c1">// Vendor extensions</span>
+</span><span data-line="17"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/vendor/logitech.h&gt;</span><span class="c1">       // Logitech-specific properties</span>
+</span><span data-line="18">
+</span><span data-line="19"><span class="cp">#ifdef _WIN32</span>
+</span><span data-line="20"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/platform/windows_internal.h&gt;</span><span class="c1"> // Windows-specific internals</span>
+</span><span data-line="21"><span class="cp">#endif</span>
+</span></pre></div>
+</div>
+<p><strong>Usage:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;duvc-ctl/duvc.hpp&gt;</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">duvc</span><span class="o">::</span><span class="n">Camera</span><span class="w"> </span><span class="n">cam</span><span class="p">(</span><span class="n">devices</span><span class="p">);</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cam</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">CamProp</span><span class="o">::</span><span class="n">Zoom</span><span class="p">);</span>
+</span><span data-line="7"><span class="p">}</span>
+</span></pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="quick-api-wrapper-functions">
+<h3>Quick API wrapper functions<a class="headerlink" href="#quick-api-wrapper-functions" title="Link to this heading">¶</a></h3>
+<p>The header also provides simplified <code class="docutils literal notranslate"><span class="pre">bool</span></code>-returning wrapper functions for single-call operations:</p>
+<p><strong>Property get/set:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+</span><span data-line="2"><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">in</span><span class="p">);</span>
+</span><span data-line="3"><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">CamProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="c1">// Video property overloads</span>
+</span><span data-line="6"><span class="kt">bool</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+</span><span data-line="7"><span class="kt">bool</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PropSetting</span><span class="o">&amp;</span><span class="w"> </span><span class="n">in</span><span class="p">);</span>
+</span><span data-line="8"><span class="kt">bool</span><span class="w"> </span><span class="nf">get_range</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="n">VidProp</span><span class="w"> </span><span class="n">prop</span><span class="p">,</span><span class="w"> </span><span class="n">PropRange</span><span class="o">&amp;</span><span class="w"> </span><span class="n">out</span><span class="p">);</span>
+</span></pre></div>
+</div>
+<p>These wrappers internally create a <code class="docutils literal notranslate"><span class="pre">Camera</span></code> object, perform the operation, and return <code class="docutils literal notranslate"><span class="pre">true</span></code> on success or <code class="docutils literal notranslate"><span class="pre">false</span></code> on any error. They are implemented as inline functions.</p>
+<p><strong>Example:</strong></p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">auto</span><span class="w"> </span><span class="n">devices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="2"><span class="n">duvc</span><span class="o">::</span><span class="n">PropSetting</span><span class="w"> </span><span class="n">brightness</span><span class="p">;</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">duvc</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="n">devices</span><span class="p">,</span><span class="w"> </span><span class="n">duvc</span><span class="o">::</span><span class="n">VidProp</span><span class="o">::</span><span class="n">Brightness</span><span class="p">,</span><span class="w"> </span><span class="n">brightness</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="5"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Brightness: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">brightness</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</span><span data-line="6"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p><strong>When to use wrappers vs Camera API:</strong></p>
+<ul class="simple">
+<li><p><strong>Wrappers:</strong> CLI tools, scripts, simple one-off operations</p></li>
+<li><p><strong>Camera API:</strong> Applications needing detailed error information, multiple operations on same device, RAII resource management</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="namespace-organization">
+<h3>Namespace organization<a class="headerlink" href="#namespace-organization" title="Link to this heading">¶</a></h3>
+<p>All public APIs are in the <code class="docutils literal notranslate"><span class="pre">duvc</span></code> namespace:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="k">namespace</span><span class="w"> </span><span class="nn">duvc</span><span class="w"> </span><span class="p">{</span>
+</span><span data-line="2"><span class="w">    </span><span class="c1">// Types</span>
+</span><span data-line="3"><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Device</span><span class="p">;</span>
+</span><span data-line="4"><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PropSetting</span><span class="p">;</span>
+</span><span data-line="5"><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">PropRange</span><span class="p">;</span>
+</span><span data-line="6"><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamProp</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span>
+</span><span data-line="7"><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">VidProp</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span>
+</span><span data-line="8"><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">CamMode</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">};</span>
+</span><span data-line="9"><span class="w">    </span>
+</span><span data-line="10"><span class="w">    </span><span class="c1">// Classes</span>
+</span><span data-line="11"><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Camera</span><span class="p">;</span>
+</span><span data-line="12"><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">DeviceCapabilities</span><span class="p">;</span>
+</span><span data-line="13"><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Result</span><span class="p">;</span>
+</span><span data-line="14"><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Error</span><span class="p">;</span>
+</span><span data-line="15"><span class="w">    </span>
+</span><span data-line="16"><span class="w">    </span><span class="c1">// Functions</span>
+</span><span data-line="17"><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Device</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list_devices</span><span class="p">();</span>
+</span><span data-line="18"><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_device_connected</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Device</span><span class="o">&amp;</span><span class="p">);</span>
+</span><span data-line="19"><span class="w">    </span><span class="c1">// etc.</span>
+</span><span data-line="20"><span class="p">}</span>
+</span></pre></div>
+</div>
+<p>No sub-namespaces exposed in public API. Internal implementation uses <code class="docutils literal notranslate"><span class="pre">duvc::detail</span></code> for private utilities.</p>
+<hr class="docutils" />
+<p><strong>Recommended approach:</strong> Include <code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/duvc.hpp&gt;</span></code> for general use. Individual headers (<code class="docutils literal notranslate"><span class="pre">&lt;duvc-ctl/core/camera.h&gt;</span></code>, etc.) can be included selectively to reduce compile time if only specific components are needed.</p>
+</section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="01_overview-getting-started.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">1. Overview &amp; Getting Started</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="03_utility-functions-helpers.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">3. Utility Functions &amp; Helpers</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2025, allanhanan</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials">
+<a href="https://github.com/allanhanan/duvc-ctl" aria-label="GitHub">
+  <iconify-icon icon="simple-icons:github"></iconify-icon>
+</a></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=5375a926"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../../_static/shibuya.js?v=c1cf1a6b"></script></body>
+</html>
