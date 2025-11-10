@@ -1,21 +1,21 @@
-# duvc-ctl
+# duvc-ctl Documentation
 
-Windows DirectShow UVC camera control library with C++, Python and CLI surfaces for programmatic camera control on Windows.  
+Windows DirectShow UVC camera control library with C++, Python and CLI interfaces for programmatic camera control on Windows.
 
 ## Highlights
 
-- UVC camera enumeration and control.  
-- PTZ (Pan/Tilt/Zoom) operations.  
-- Camera properties (exposure, focus, iris).  
-- Video properties (brightness, contrast, saturation).  
-- C/C++ core, Python bindings, and CLI tooling for multiple workflows.  
+- UVC camera enumeration and control.
+- PTZ (Pan/Tilt/Zoom) operations.
+- Camera properties (exposure, focus, iris).
+- Video properties (brightness, contrast, saturation).
+- C/C++ core, Python bindings, and CLI tooling for multiple workflows.
 
 ## Native C/C++ Reference
 
 - See the auto-generated reference: [C/C++ API (Doxygen)](../doxygen/html/index.html)
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Getting Started
 
 user-guide/quickstart
@@ -24,8 +24,9 @@ user-guide/migration
 ```
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: API Reference
+:titlesonly:
 
 api/c/index
 api/cpp/index
@@ -34,17 +35,17 @@ api/python/index
 ```
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Examples
 
-examples/cli-examples
 examples/cpp-examples
 examples/python-examples
 ```
 
 ## Future plans
+
 ### Current version plans
-- Rust 
+- Rust
 - vcpkg
 - winget(hopefully i dont need a certificate im broke TwT)
 - Node.js

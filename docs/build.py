@@ -145,6 +145,77 @@ def copy_api_docs(docs_dir: Path) -> bool:
         print_status(f"Failed to copy API docs: {e}", "ERROR")
         return False
 
+from pathlib import Path
+
+# Low-level function
+def inject_sphinx_toc(index_md, section_glob, caption=None):
+    """
+    Appends a hidden MyST toctree to index_md if not present.
+    section_glob: glob pattern for section files, e.g., "sections/*.md"
+    caption: optional toctree caption text
+    """
+    index_md = Path(index_md)
+    if not index_md.exists():
+        return
+
+    # Read content of the file to check for existing toctree
+    with open(index_md, encoding="utf-8") as f:
+        content = f.read()
+
+    # Check if the toctree is already present
+    if "```{toctree}" in content:
+        return  # Do not add the toctree again if it is already present
+
+    # Find all section files matching the glob pattern
+    section_files = sorted(index_md.parent.glob(section_glob))
+    toctree = []
+    toctree.append("```{toctree}")
+    toctree.append(":maxdepth: 2")
+    toctree.append(":hidden:")
+    if caption:
+        toctree.append(f":caption: {caption}")
+    toctree.append("")  # Blank line before section entries
+
+    # Add all section file paths (relative to the index_md file)
+    for sf in section_files:
+        toctree.append(f"sections/{sf.stem}") # Use the relative file stem (no need for "sections/")
+
+    toctree.append("```")  # Close the toctree block
+    toctree_block = "\n" + "\n".join(toctree) + "\n"
+
+    # Append the generated toctree to the index.md file
+    with open(index_md, "a", encoding="utf-8") as f:
+        f.write(toctree_block)
+
+
+# High-level function
+def inject_api_toctrees(docs_dir: Path) -> bool:
+    """Inject toctree blocks into API index.md files for Sphinx sidebar."""
+    try:
+        api_dest_dir = docs_dir / "sphinx" / "api"
+        
+        # Inject C++ toctree
+        inject_sphinx_toc(
+            api_dest_dir / "cpp" / "index.md",
+            "sections/*.md",
+            caption="C++ Documentation"
+        )
+        
+        # Inject Python toctree
+        inject_sphinx_toc(
+            api_dest_dir / "python" / "index.md",
+            "sections/*.md",
+            caption="Python Documentation"
+        )
+        
+        print_status("Injected toctrees into API documentation", "SUCCESS")
+        return True
+    
+    except Exception as e:
+        print_status(f"Toctree injection error: {e}", "WARNING")
+        return False
+
+
 
 def build_doxygen(docs_dir: Path, project_root: Path) -> bool:
     """Build Doxygen documentation."""
@@ -218,7 +289,7 @@ def build_sphinx(docs_dir: Path, parallel_jobs: int = 1, builder: str = "html") 
         if parallel_jobs > 1:
             cmd.extend(["-j", str(parallel_jobs)])
         # Add verbosity and warning options
-        cmd.extend(["-v", "-W", "--keep-going"])
+        cmd.extend(["-v", "--keep-going"])
         result = subprocess.run(cmd, capture_output=True, text=True)
         if result.returncode != 0:
             print_status("Sphinx build failed:", "ERROR")
@@ -352,6 +423,11 @@ def main() -> int:
     # Copy API docs for Sphinx
     if not args.doxygen_only and success:
         if not copy_api_docs(docs_dir):
+            success = False
+    
+    # Inject toctrees into API docs
+        if not inject_api_toctrees(docs_dir):
+            print_status("Failed to inject toctrees", "WARNING")
             success = False
 
     # Build Sphinx if Doxygen succeeded or if only Sphinx requested

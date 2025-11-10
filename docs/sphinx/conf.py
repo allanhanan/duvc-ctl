@@ -16,6 +16,9 @@ sys.path.insert(0, str(project_root))
 source_parent = Path(__file__).parent.parent
 sys.path.insert(0, str(source_parent))
 
+scripts_dir = Path(__file__).parent / 'scripts'
+sys.path.insert(0, str(scripts_dir))
+
 
 # -- Project information -----
 project = 'duvc-ctl'
@@ -100,6 +103,8 @@ html_theme = 'shibuya'
 
 html_theme_options = {
     "github_url": "https://github.com/allanhanan/duvc-ctl",
+    "show_nav_level": 1,  # Only show top level by default
+    "navigation_depth": 4,  # But allow expanding up to 4 levels
 }
 
 html_static_path = []
@@ -209,4 +214,4 @@ def setup(app):
         # Shibuya will get an empty toc and skip its broken _fix_context_toc()
         context["toc"] = ""
     
-    app.connect("html-page-context", skip_shibuya_toc_patch, priority=-100)
+    app.connect("html-page-context", skip_shibuya_toc_patch)
