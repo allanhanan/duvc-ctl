@@ -33,6 +33,12 @@ jobs:
           choco install doxygen.install graphviz -y
           doxygen --version
       
+      - name: Fix Doxyfile paths
+        run: |
+          cd docs/doxygen
+          (Get-Content Doxyfile) -replace 'C:\\projets\\duvc-ctl\\duvc-ctl', '${{ github.workspace }}' | Set-Content Doxyfile
+        shell: pwsh
+      
       - name: Build documentation
         run: |
           cd docs
