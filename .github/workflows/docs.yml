@@ -35,18 +35,17 @@ jobs:
       - name: Install Doxygen
         run: choco install doxygen.install graphviz -y
       
-        - name: Fix Doxyfile paths for CI
-          run: |
-            $doxyfile = "docs/doxygen/Doxyfile"
-            $content = Get-Content $doxyfile -Raw
-            $workspace = $env:GITHUB_WORKSPACE -replace '\\', '/'
-            # Replace both forward and backslash variants
-            $content = $content -replace 'C:/projets/duvc-ctl/duvc-ctl', $workspace
-            $content = $content -replace 'C:\\projets\\duvc-ctl\\duvc-ctl', $workspace
-            $content | Set-Content $doxyfile -NoNewline
-            Write-Host "Workspace: $workspace"
-            Write-Host "Updated Doxyfile paths"
-          shell: pwsh
+      - name: Fix Doxyfile paths for CI
+        run: |
+          $doxyfile = "docs/doxygen/Doxyfile"
+          $content = Get-Content $doxyfile -Raw
+          $workspace = $env:GITHUB_WORKSPACE -replace '\\', '/'
+          $content = $content -replace 'C:/projets/duvc-ctl/duvc-ctl', $workspace
+          $content = $content -replace 'C:\\projets\\duvc-ctl\\duvc-ctl', $workspace
+          $content | Set-Content $doxyfile -NoNewline
+          Write-Host "Workspace: $workspace"
+          Write-Host "Updated Doxyfile paths"
+        shell: pwsh
       
       - name: Build documentation
         run: |
