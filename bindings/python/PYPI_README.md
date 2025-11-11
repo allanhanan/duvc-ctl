@@ -453,6 +453,6 @@ if result.is_ok():
 ## Links
 
 - **Releases**: https://github.com/allanhanan/duvc-ctl/releases
-- **Documentation**: https://github.com/allanhanan/duvc-ctl#readme
+- **Documentation**: https://allanhanan.github.io/duvc-ctl/sphinx/api/python/index.html
 - **Source Code**: https://github.com/allanhanan/duvc-ctl
 - **Issues**: https://github.com/allanhanan/duvc-ctl/issues
