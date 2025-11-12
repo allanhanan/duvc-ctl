@@ -5,12 +5,14 @@
 
 #ifdef _WIN32
 
+// clang-format off
+#include <windows.h>
 #include <dbt.h>
+// clang-format on
 #include <dshow.h>
 #include <duvc-ctl/core/device.h>
 #include <duvc-ctl/detail/com_helpers.h>
 #include <duvc-ctl/utils/logging.h>
-#include <windows.h>
 
 namespace duvc {
 
