@@ -1,556 +1,475 @@
-# duvc-ctl CLI Documentation
+# duvc-cli
 
-## Table of Contents
+Command-line tool for DirectShow UVC camera control on Windows.
 
-- [CLI Overview](#cli-overview)
-- [Installation \& Building](#installation--building)
-- [Command Reference](#command-reference)
-- [Usage Examples](#usage-examples)
-- [Advanced Features](#advanced-features)
-- [Error Codes](#error-codes)
-- [Troubleshooting](#troubleshooting)
+# Table of Contents
 
-***
+- [duvc-cli](#duvc-cli)
+- [Table of Contents](#table-of-contents)
+  - [Build](#build)
+  - [Syntax](#syntax)
+  - [Global Flags](#global-flags)
+  - [Commands](#commands)
+    - [list](#list)
+    - [get](#get)
+    - [set](#set)
+    - [range](#range)
+    - [reset](#reset)
+    - [snapshot](#snapshot)
+    - [capabilities](#capabilities)
+    - [status](#status)
+    - [monitor](#monitor)
+  - [Properties](#properties)
+    - [Camera (cam domain)](#camera-cam-domain)
+    - [Video (vid domain)](#video-vid-domain)
+  - [Exit Codes](#exit-codes)
+  - [Scripting](#scripting)
+    - [PowerShell](#powershell)
+    - [Bash](#bash)
+  - [Limitations](#limitations)
+  - [Testing](#testing)
+  - [Common Issues](#common-issues)
+  - [Examples](#examples)
+  - [See Also](#see-also)
 
-## CLI Overview
 
-The duvc-cli is a command-line interface for the duvc-ctl library that provides direct access to UVC camera controls through the DirectShow API. It offers a simple, scriptable interface for camera property management, device monitoring, and vendor-specific operations.
+## Build
 
-### Key Features
-
-- **Device Management**: List, monitor, and check status of connected UVC cameras
-- **Property Control**: Get, set, and query ranges for camera and video processing properties
-- **Real-time Monitoring**: Watch for device connect/disconnect events
-- **Vendor Extensions**: Access vendor-specific properties via IKsPropertySet
-- **Cross-platform**: Works with MSVC and MinGW compilers
-
-
-### Supported Domains
-
-- **cam**: Camera Control Properties (IAMCameraControl) - 24 properties
-- **vid**: Video Processing Properties (IAMVideoProcAmp) - 10 properties
-
-***
-
-## Installation \& Building
-
-### Build Requirements
-
-```cmake
-cmake_minimum_required(VERSION 3.16)
 ```
 
-
-### Building the CLI
-
-The CLI is built as part of the main duvc-ctl project:
-
-```bash
-# Configure project with CLI enabled (default)
-cmake -B build -DDUVC_BUILD_CLI=ON
-
-# Build the CLI
+cmake -B build
 cmake --build build --config Release
 
-# The executable will be at: build/bin/duvc-cli.exe
 ```
 
+Binary: `build/bin/Release/duvc-cli.exe`
 
-### Compiler-Specific Features
-
-#### MSVC Configuration
-
-```cmake
-target_compile_options(duvc-cli PRIVATE /W4 /permissive-)
-target_compile_definitions(duvc-cli PRIVATE UNICODE _UNICODE NOMINMAX)
-```
-
-
-#### MinGW Configuration
-
-```cmake
-target_link_options(duvc-cli PRIVATE -mconsole)
-target_compile_options(duvc-cli PRIVATE -Wall -Wextra)
-```
-
-
-***
-
-## Command Reference
-
-### Basic Syntax
+## Syntax
 
 ```
-duvc-cli <command> [arguments...]
-```
 
-
-### Commands Overview
-
-| Command | Purpose | Example |
-| :-- | :-- | :-- |
-| `list` | Enumerate connected devices | `duvc-cli list` |
-| `get` | Get property value | `duvc-cli get 0 vid Brightness` |
-| `set` | Set property value | `duvc-cli set 0 vid Brightness 128 manual` |
-| `range` | Get property constraints | `duvc-cli range 0 cam Exposure` |
-| `monitor` | Monitor device changes | `duvc-cli monitor 30` |
-| `status` | Check device connection | `duvc-cli status 0` |
-| `vendor` | Vendor property access | `duvc-cli vendor 0 {GUID} 1 get` |
-
-### Device Listing
-
-#### list
+duvc-cli [flags] <command> [args]
 
 ```
-duvc-cli list
+
+## Global Flags
+
+| Flag | Description |
+|------|-------------|
+| `-v, --verbose` | Detailed output with debug info |
+| `-q, --quiet` | Errors only |
+| `-j, --json` | JSON output format |
+| `-h, --help` | Show help |
+
+## Commands
+
+### list
+
+Enumerate devices.
+
+```
+duvc-cli list [--detailed|-d]
+
 ```
 
-**Purpose**: Enumerate all connected UVC cameras
+**Options:**
+- `--detailed, -d`: Show supported properties
 
-**Output Format**:
-
+**Output:**
 ```
 Devices: 2
-[^0] Logitech HD Pro Webcam C920
- \\?\usb#vid_046d&pid_082d&mi_00#7&1234abcd&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
-[^1] USB Camera
- \\?\usb#vid_1234&pid_5678&mi_00#8&abcd1234&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+[0] Integrated Camera
+    Path: \\?\usb#vid_5986&pid_215f&mi_00#7&164a69c3&0&0000#{65e8773d-8f56-11d0-a3b9-00a0c9223196}\global
+    Status: CONNECTED
+    Supported properties:
+      Camera: Exposure, Privacy, DigitalZoom (3)
+      Video: Brightness, Contrast, Hue, Saturation, Sharpness, Gamma, WhiteBalance, BacklightCompensation (8)
+[1] OBS Virtual Camera
+    Path: @device:sw:{860BB310-5D01-11D0-BD3B-00A0C911CE86}\{A3FCE0F5-3493-419F-958A-ABA1250EC20B}
+    Status: CONNECTED
+    Supported properties:
+      Camera:  (0)       
+      Video:  (0)
+```
+
+### get
+
+Read property value.
+
+```
+duvc-cli get <index> <domain> <prop>[,<prop>...]
 ```
 
 
-### Property Operations
-
-#### get
-
-```
-duvc-cli get <device_index> <domain> <property>
-```
-
-**Parameters**:
-
-- `device_index`: Device index from list (0-based)
-- `domain`: `cam` (camera) or `vid` (video processing)
-- `property`: Property name (case-insensitive)
-
-**Example**:
-
-```bash
-duvc-cli get 0 vid Brightness
-# Output: Brightness = 128 (MANUAL)
-```
-
-
-#### set
-
-```
-duvc-cli set <device_index> <domain> <property> <value> [mode]
-```
-
-**Parameters**:
-
-- `device_index`: Device index from list
+**Parameters:**
+- `index`: Device index (from `list`, 0-based)
 - `domain`: `cam` or `vid`
-- `property`: Property name
-- `value`: Integer value to set
-- `mode`: `auto` or `manual` (default: manual)
+- `prop`: Property name (comma-separated for batch)
 
-**Example**:
-
-```bash
-duvc-cli set 0 vid Brightness 200 manual
-# Output: OK
+**Example:**
 ```
 
-
-#### range
-
-```
-duvc-cli range <device_index> <domain> <property>
-```
-
-**Purpose**: Get valid range and default values for a property
-
-**Example**:
-
-```bash
-duvc-cli range 0 vid Brightness
-# Output: Brightness: min=0, max=255, step=1, default=128, mode=AUTO
-```
-
-
-### Device Management
-
-#### status
-
-```
-duvc-cli status <device_index>
-```
-
-**Purpose**: Check if a specific device is connected and accessible
-
-**Example**:
-
-```bash
-duvc-cli status 0
-# Output: Device [^0] Logitech HD Pro Webcam C920 is CONNECTED
-```
-
-
-#### monitor
-
-```
-duvc-cli monitor [seconds]
-```
-
-**Parameters**:
-
-- `seconds`: Duration to monitor (default: 30)
-
-**Purpose**: Watch for device connect/disconnect events in real-time
-
-**Example**:
-
-```bash
-duvc-cli monitor 60
-# Output:
-# Monitoring device changes for 60 seconds...
-# Press Ctrl+C to stop early.
-# 
-# [DEVICE ADDED] \\?\usb#vid_046d&pid_082d&mi_00#7&...
-# [DEVICE REMOVED] \\?\usb#vid_046d&pid_082d&mi_00#7&...
-```
-
-### Vendor Properties (Windows Only)
-
-#### vendor
-
-```
-duvc-cli vendor <device_index> <guid> <property_id> <operation> [data_hex]
-```
-
-**Parameters**:
-
-- `device_index`: Device index from list
-- `guid`: Property set GUID (with or without braces)
-- `property_id`: Property ID (integer)
-- `operation`: `get`, `set`, or `query`
-- `data_hex`: Hexadecimal data for set operations
-
-**Examples**:
-
-```bash
-# Query property support
-duvc-cli vendor 0 {82066163-7BD0-43EF-8A6F-5B8905C9A64C} 1 query
-# Output: Vendor property SUPPORTED
-
-# Get property data
-duvc-cli vendor 0 82066163-7BD0-43EF-8A6F-5B8905C9A64C 1 get
-# Output: Vendor property data: 01000000
-
-# Set property data
-duvc-cli vendor 0 {82066163-7BD0-43EF-8A6F-5B8905C9A64C} 1 set 00000000
-# Output: Vendor property set successfully.
-```
-
-
-***
-
-## Usage Examples
-
-### Basic Camera Control
-
-```bash
-# List all connected cameras
-duvc-cli list
-
-# Get current pan value
-duvc-cli get 0 cam Pan
-
-# Set pan to center position (usually 0) in manual mode
-duvc-cli set 0 cam Pan 0 manual
-
-# Get pan range to see valid values
-duvc-cli range 0 cam Pan
-```
-
-
-### Video Processing Control
-
-```bash
-# Check current brightness
 duvc-cli get 0 vid Brightness
 
-# Increase brightness
-duvc-cli set 0 vid Brightness 200 manual
+# Brightness=128 (MANUAL)
 
-# Set auto white balance
-duvc-cli set 0 vid WhiteBalance 0 auto
+duvc-cli get 0 cam Pan,Tilt
 
-# Check contrast range
-duvc-cli range 0 vid Contrast
+# Pan=0 (MANUAL)
+
+# Tilt=0 (MANUAL)
+
 ```
 
+### set
 
-### Batch Operations
+Write property value.
 
-```bash
-# Save current settings (Windows batch example)
-@echo off
-duvc-cli get 0 vid Brightness > brightness.txt
-duvc-cli get 0 vid Contrast > contrast.txt
-duvc-cli get 0 vid Saturation > saturation.txt
+```
+# Absolute value
 
-# Apply settings
+duvc-cli set <index> <domain> <prop>=<val>[,<prop>=<val>...]
+
+duvc-cli set <index> <domain> <prop> <value> [auto|manual]
+
+
+# Relative value (adds/subtracts from current)
+
+duvc-cli set --relative <index> <domain> <prop> <delta>
+
+duvc-cli set -r <index> <domain> <prop> <delta>
+
+
+# Mode only
+
+duvc-cli set <index> <domain> <prop> <auto|manual>
+
+```
+
+**Parameters:**
+- `index`: Device index
+- `domain`: `cam` or `vid`
+- `prop`: Property name
+- `value`: Integer value
+- `delta`: Signed integer for relative operations (+5, -3)
+- Mode: `auto` or `manual` (default: manual for value sets)
+
+**Examples:**
+```
+# Set absolute value
+
+duvc-cli set 0 vid Brightness 200
+
+# Set with explicit mode
+
 duvc-cli set 0 vid Brightness 180 manual
-duvc-cli set 0 vid Contrast 150 manual  
-duvc-cli set 0 vid Saturation 120 manual
 
-echo Settings applied. Press any key to restore...
-pause
+# Batch set
 
-# Restore from saved values (implementation needed)
+duvc-cli set 0 vid Brightness=180,Contrast=140
+
+# Relative operations (reads current, adds delta, writes new value)
+
+duvc-cli set --relative 0 cam Exposure +2   \# increase by 2
+duvc-cli set -r 0 cam Exposure -3           \# decrease by 3
+
+# Mode only (preserves current value)
+
+duvc-cli set 0 vid WhiteBalance auto
+
 ```
 
+**Relative Operations:**
+Uses get-modify-set pattern. More compatible than DirectShow `*Relative` properties.
+Validates result is within range before writing.
 
-### Scripting with Error Handling
+### range
 
-```bash
-#!/bin/bash
-# Linux/MinGW example
+Query valid values for property.
 
-# Check if device exists
-if ! duvc-cli status 0 > /dev/null 2>&1; then
-    echo "Camera not found or not accessible"
-    exit 1
-fi
-
-# Set multiple properties with error checking
-properties=("Brightness:180" "Contrast:140" "Saturation:130")
-
-for prop in "${properties[@]}"; do
-    IFS=':' read -r name value <<< "$prop"
-    if duvc-cli set 0 vid "$name" "$value" manual; then
-        echo "✓ Set $name to $value"
-    else
-        echo "✗ Failed to set $name"
-    fi
-done
 ```
 
+duvc-cli range <index> <domain> <prop>[,<prop>...|all]
 
-### Device Monitoring Script
-
-```bash
-# Monitor devices and log changes
-duvc-cli monitor 300 | while IFS= read -r line; do
-    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] $line" >> device_changes.log
-done
 ```
 
+**Example:**
+```
 
-***
+duvc-cli range 0 vid Brightness
 
-## Advanced Features
+# Brightness:  step=1 default=128 (AUTO)
 
-### Property Name Reference
+duvc-cli range 0 cam all
 
-#### Camera Control Properties (cam domain)
+# Exposure: [-12,-3] step=1 default=-6 (AUTO)
+
+# ...
+
+```
+
+### reset
+
+Reset properties to default.
+
+```
+
+duvc-cli reset <index> <domain|all> <prop>[,<prop>...|all]
+
+```
+
+**Examples:**
+```
+
+duvc-cli reset 0 vid Brightness       \# Reset single property
+duvc-cli reset 0 vid all              \# Reset all video properties
+duvc-cli reset 0 all                  \# Reset everything
+
+```
+
+### snapshot
+
+Dump all current values.
+
+```
+duvc-cli snapshot <index> [-o <file>]
+```
+
+**Formats:**
+- Text: `cam.Exposure=-6:MANUAL`
+- JSON: `{"device":0,"properties":{...}}`
+
+**Example:**
+```
+duvc-cli snapshot 0 -o backup.txt
+duvc-cli -j snapshot 0 -o config.json
+
+```
+
+### capabilities
+
+List supported properties with current values.
+
+```
+duvc-cli capabilities <index>
+
+```
+
+**Output:**
+```
+Capabilities: Integrated Camera
+  CAM Exposure: [-12,-3] step=1 default=-6 current=-4 (AUTO)
+  CAM Privacy: [0,1] step=1 default=0 current=0 (MANUAL)
+  CAM DigitalZoom: [0,0] step=0 default=0 current=0 (MANUAL)
+  VID Brightness: [0,255] step=1 default=128 current=128 (MANUAL)
+  VID Contrast: [0,100] step=1 default=32 current=32 (MANUAL)
+  VID Hue: [-180,180] step=1 default=0 current=0 (MANUAL)
+  VID Saturation: [0,100] step=1 default=64 current=64 (MANUAL)
+  VID Sharpness: [0,7] step=1 default=3 current=3 (MANUAL)
+  VID Gamma: [90,150] step=1 default=120 current=120 (MANUAL)
+  VID WhiteBalance: [2800,6500] step=1 default=4600 current=4604 (AUTO)
+  VID BacklightCompensation: [0,2] step=1 default=1 current=1 (MANUAL)
+
+```
+
+### status
+
+Check device connection state.
+
+```
+duvc-cli status <index>
+
+```
+
+**Output:**
+```
+Integrated Camera: CONNECTED
+```
+
+### monitor
+
+Watch for device changes or property updates.
+
+```
+# Device hotplug events
+
+duvc-cli monitor [seconds]
+
+# Property monitoring
+
+duvc-cli monitor <index> <domain> <prop> [--interval=<seconds>]
+
+```
+
+**Examples:**
+```
+duvc-cli monitor 60                           \# Watch device add/remove
+duvc-cli monitor 0 vid Brightness --interval=2  \# Poll property
+
+```
+
+## Properties
+
+### Camera (cam domain)
 
 ```
 Pan, Tilt, Roll, Zoom, Exposure, Iris, Focus, ScanMode, Privacy,
 PanRelative, TiltRelative, RollRelative, ZoomRelative, 
-ExposureRelative, IrisRelative, FocusRelative, PanTilt, 
-PanTiltRelative, FocusSimple, DigitalZoom, DigitalZoomRelative,
+ExposureRelative, IrisRelative, FocusRelative, 
+PanTilt, PanTiltRelative, FocusSimple, 
+DigitalZoom, DigitalZoomRelative, 
 BacklightCompensation, Lamp
 ```
 
+DirectShow `IAMCameraControl` interface.
 
-#### Video Processing Properties (vid domain)
+### Video (vid domain)
 
 ```
 Brightness, Contrast, Hue, Saturation, Sharpness, Gamma, 
 ColorEnable, WhiteBalance, BacklightCompensation, Gain
 ```
 
+DirectShow `IAMVideoProcAmp` interface.
 
-### Control Modes
+## Exit Codes
 
-- **auto**: Camera automatically manages the property
-- **manual**: User has direct control over the property value
+| Code | Meaning |
+|------|---------|
+| 0 | Success |
+| 1 | Invalid syntax |
+| 2 | Device not found |
+| 3 | Unknown property |
+| 4 | Operation failed |
 
+## Scripting
 
-### GUID Format Support
+### PowerShell
 
-The vendor command accepts GUIDs in multiple formats:
+```
+# Check exit code
 
-```bash
-# With braces (recommended)
-{82066163-7BD0-43EF-8A6F-5B8905C9A64C}
+.\duvc-cli.exe set 0 vid Brightness 200
+if (\$LASTEXITCODE -eq 0) {
+Write-Host "Success"
+}
 
-# Without braces (auto-converted)
-82066163-7BD0-43EF-8A6F-5B8905C9A64C
+# Parse output
+
+\$brightness = (.\duvc-cli.exe get 0 vid Brightness) -replace '.*=(\d+).*', '\$1'
+
+# JSON output
+
+\$data = .\duvc-cli.exe -j get 0 vid Brightness | ConvertFrom-Json
+\$value = \$data.properties.value
+
 ```
 
+### Bash
 
-### Hexadecimal Data Format
+```
+# Error handling
 
-Vendor property data is represented as hexadecimal strings:
+if ! duvc-cli set 0 vid Brightness 200; then
+echo "Failed to set brightness"
+exit 1
+fi
 
-```bash
-# 4-byte integer value 1
-01000000
+# Parse value
 
-# 4-byte integer value 256
-00010000
+brightness=\$(duvc-cli get 0 vid Brightness | grep -oP 'Brightness=\K\d+')
 
-# 1-byte boolean true
-01
+# JSON parsing
 
-# 8-byte data
-0123456789ABCDEF
+value=\$(duvc-cli -j get 0 vid Brightness | jq -r '.properties.value')
+
 ```
 
+## Limitations
 
-***
+1. **Windows only**: Uses DirectShow API
+2. **Property support varies by camera**: Check with `capabilities` or `range`
+3. **Relative properties**: Some cameras don't support `*Relative` DirectShow properties - use `--relative` flag instead
+4. **No streaming control**: Only affects camera settings, not capture
 
-## Error Codes
+## Testing
 
-The CLI returns specific exit codes for different error conditions:
+Capability-aware test suite included:
 
+```
+.\tests\cli\auto.ps1 -CLI ".\build\bin\Debug\duvc-cli.exe" -Verbose
 
-| Exit Code | Meaning | Example Cause |
-| :-- | :-- | :-- |
-| 0 | Success | Command completed successfully |
-| 1 | Usage Error | Invalid command syntax or arguments |
-| 2 | Device Error | Invalid device index or device not found |
-| 3 | Property Error | Unknown property name or invalid mode |
-| 4 | Operation Error | Property not supported or operation failed |
-
-### Error Code Examples
-
-```bash
-# Exit code 1 - Usage error
-duvc-cli get
-echo $?  # Output: 1
-
-# Exit code 2 - Invalid device index
-duvc-cli get 99 vid Brightness
-echo $?  # Output: 2
-
-# Exit code 3 - Unknown property
-duvc-cli get 0 vid InvalidProperty
-echo $?  # Output: 3
-
-# Exit code 4 - Property not supported
-duvc-cli get 0 cam UnsupportedProperty
-echo $?  # Output: 4
 ```
 
+Tests adapt to camera capabilities. Expected failures for unsupported properties.
 
-***
+## Common Issues
 
-## Troubleshooting
+**No devices found:**
+- Check Device Manager
+- Close other applications using camera
+- Try as Administrator
 
-### Common Issues
+**Property not supported:**
+```
+duvc-cli capabilities 0  \# List what's actually supported
 
-#### 1. No Devices Found
-
-```bash
-duvc-cli list
-# Output: Devices: 0
 ```
 
-**Solutions**:
-
-- Check if camera is connected and recognized by Windows Device Manager
-- Ensure camera is not being used by another application
-- Try running as Administrator
-
-
-#### 2. Property Not Supported
-
-```bash
-duvc-cli get 0 cam Pan
-# Output: Property not supported or failed to read.
+**Value out of range:**
 ```
 
-**Solutions**:
+duvc-cli range 0 vid Brightness  \# Check valid range first
 
-- Check if the camera supports the property: `duvc-cli range 0 cam Pan`
-- Try different property names (check spelling)
-- Some cameras only support a subset of properties
-
-
-#### 3. Failed to Set Property
-
-```bash
-duvc-cli set 0 vid Brightness 300 manual
-# Output: Failed to set property.
 ```
 
-**Solutions**:
+**Set fails but other bindings works:**
+- Camera may be in AUTO mode (blocks manual changes)
+- Switch to MANUAL first: `duvc-cli set 0 cam Exposure manual`
 
-- Check valid range: `duvc-cli range 0 vid Brightness`
-- Ensure value is within min/max bounds
-- Try with `auto` mode instead of `manual`
+## Examples
 
+```
+# Query capabilities
 
-#### 4. Device Connection Issues
+duvc-cli capabilities 0
+duvc-cli range 0 vid all
 
-```bash
-duvc-cli status 0
-# Output: Device [^0] Camera Name is DISCONNECTED
+# Basic control
+
+duvc-cli get 0 vid Brightness
+duvc-cli set 0 vid Brightness 180 manual
+duvc-cli reset 0 vid Brightness
+
+# Batch operations
+
+duvc-cli set 0 vid Brightness=180,Contrast=140,Saturation=130
+
+# Relative adjustments
+
+duvc-cli set --relative 0 cam Exposure +2
+duvc-cli set -r 0 vid Brightness -10
+
+# Save/restore
+
+duvc-cli snapshot 0 -o backup.txt
+
+# ... make changes ...
+
+# (restoration requires parsing backup file)
+
+# Automation
+
+for i in {0..5}; do
+duvc-cli set --relative 0 cam Exposure +1
+sleep 1
+done
+
 ```
 
-**Solutions**:
+## See Also
 
-- Reconnect the USB cable
-- Check for driver issues in Device Manager
-- Try different USB port
-
-
-### Debug Information
-
-#### Enable Verbose Output
-
-The CLI relies on the underlying library's logging. To enable verbose output in your application:
-
-```cpp
-duvc::set_log_callback([](duvc::LogLevel level, const std::string& message) {
-    std::cout << "[" << duvc::to_string(level) << "] " << message << "\n";
-});
-duvc::set_log_level(duvc::LogLevel::Debug);
+- API Documentation: https://allanhanan.github.io/duvc-ctl/sphinx/index.html
+- DirectShow Reference: https://learn.microsoft.com/en-us/windows/win32/directshow/
+- Test Suite: https://github.com/allanhanan/duvc-ctl/tree/main/tests/cli/auto.ps1
 ```
-
-
-#### Test Device Accessibility
-
-```bash
-# Quick test sequence
-duvc-cli list                          # Check if devices are detected
-duvc-cli status 0                      # Check specific device status
-duvc-cli range 0 vid Brightness        # Test property access
-duvc-cli get 0 vid Brightness          # Test property reading
-```
-
-
-### Performance Tips
-
-1. **Batch Operations**: Group multiple property changes to minimize overhead
-2. **Check Ranges First**: Use `range` command before setting values to avoid errors
-
-### Platform-Specific Notes
-
-#### Windows (MSVC)
-
-- Full Unicode support for device names and paths
-- Complete vendor property support via IKsPropertySet
-- Integrated with Windows Device Manager
-
-
-#### Windows (MinGW)
-
-- Console subsystem properly configured
-- Cross-platform compatibility maintained
-- All features supported
