@@ -129,31 +129,67 @@ struct PropRange {
  * @brief Represents a camera device
  */
 struct Device {
-  std::wstring name; ///< Human-readable device name
-  std::wstring path; ///< Unique device path/identifier
+    std::wstring name; ///< Human-readable device name
+    std::wstring path; ///< Unique device path/identifier
 
-  /// Default constructor
-  Device() = default;
+    /// Default constructor
+    Device() = default;
 
-  /**
-   * @brief Construct device with name and path
-   * @param n Device name
-   * @param p Device path
-   */
-  Device(std::wstring n, std::wstring p)
-      : name(std::move(n)), path(std::move(p)) {}
+    /**
+     * @brief Construct device with name and path
+     * @param n Device name
+     * @param p Device path
+     */
+    Device(std::wstring n, std::wstring p)
+        : name(std::move(n)), path(std::move(p)) {}
 
-  /**
-   * @brief Check if device has valid identifying information
-   * @return true if either name or path is non-empty
-   */
-  bool is_valid() const { return !name.empty() || !path.empty(); }
+    /**
+     * @brief Copy constructor - ensures deep copy of string data
+     * @param other Device to copy from
+     * 
+     * Explicitly defined to ensure proper deep copying when pybind11
+     * passes Device objects between Python and C++.
+     */
+    Device(const Device& other) 
+        : name(other.name), path(other.path) {}
 
-  /**
-   * @brief Get stable identifier for this device
-   * @return Path if available, otherwise name
-   */
-  const std::wstring &get_id() const { return path.empty() ? name : path; }
+    /**
+     * @brief Copy assignment operator
+     * @param other Device to copy from
+     * @return Reference to this device
+     */
+    Device& operator=(const Device& other) {
+        if (this != &other) {
+            name = other.name;
+            path = other.path;
+        }
+        return *this;
+    }
+
+    /**
+     * @brief Move constructor - transfers ownership of string data
+     * @param other Device to move from
+     */
+    Device(Device&&) noexcept = default;
+
+    /**
+     * @brief Move assignment operator
+     * @param other Device to move from
+     * @return Reference to this device
+     */
+    Device& operator=(Device&&) noexcept = default;
+
+    /**
+     * @brief Check if device has valid identifying information
+     * @return true if either name or path is non-empty
+     */
+    bool is_valid() const { return !name.empty() || !path.empty(); }
+
+    /**
+     * @brief Get stable identifier for this device
+     * @return Path if available, otherwise name
+     */
+    const std::wstring &get_id() const { return path.empty() ? name : path; }
 };
 
 } // namespace duvc

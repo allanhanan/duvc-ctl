@@ -138,18 +138,51 @@ Result<void> DeviceCapabilities::refresh() {
 }
 
 Result<DeviceCapabilities> get_device_capabilities(const Device &device) {
-  if (!device.is_valid()) {
-    return Err<DeviceCapabilities>(ErrorCode::InvalidArgument,
-                                   "Invalid device");
-  }
+    // Defensive validation: check if device strings are accessible
+    // This prevents crashes from corrupted Device objects passed from Python
+    try {
+        // Validate device before use
+        if (!device.is_valid()) {
+            return Err<DeviceCapabilities>(ErrorCode::InvalidArgument, "Invalid device");
+        }
+        
+        // Force access to string internals to catch corruption early
+        // If strings are corrupted (e.g., from bad pybind11 copy), this will throw
+        const auto* name_ptr = device.name.data();
+        const auto* path_ptr = device.path.data();
+        size_t name_len = device.name.size();
+        size_t path_len = device.path.size();
+        
+        // Validate pointers are not null if strings are non-empty
+        if ((name_len > 0 && !name_ptr) || (path_len > 0 && !path_ptr)) {
+            return Err<DeviceCapabilities>(ErrorCode::InvalidArgument, 
+                       "Device has corrupted string data (null pointer with non-zero size)");
+        }
+        
+        // Validate we can actually read the strings without crashing
+        // This will fault if the internal string buffer pointer is invalid
+        if (!device.name.empty()) {
+            [[maybe_unused]] volatile wchar_t first_char = device.name[0];
+        }
+        if (!device.path.empty()) {
+            [[maybe_unused]] volatile wchar_t first_char = device.path[0];
+        }
+        
+    } catch (const std::exception& e) {
+        return Err<DeviceCapabilities>(ErrorCode::InvalidArgument, 
+                   std::string("Device object has corrupted memory: ") + e.what());
+    } catch (...) {
+        return Err<DeviceCapabilities>(ErrorCode::InvalidArgument, 
+                   "Device object has corrupted memory (unknown exception)");
+    }
 
-  DeviceCapabilities capabilities(device);
-  if (!capabilities.is_device_accessible()) {
-    return Err<DeviceCapabilities>(ErrorCode::DeviceNotFound,
-                                   "Device not accessible");
-  }
+    // Device validation passed - safe to proceed
+    DeviceCapabilities capabilities(device);
+    if (!capabilities.is_device_accessible()) {
+        return Err<DeviceCapabilities>(ErrorCode::DeviceNotFound, "Device not accessible");
+    }
 
-  return Ok(std::move(capabilities));
+    return Ok(std::move(capabilities));
 }
 
 Result<DeviceCapabilities> get_device_capabilities(int device_index) {

@@ -89,6 +89,14 @@ This compiles the extension in place and allows you to edit Python files without
 
 Binary wheels are built in CI and repaired on Windows using `delvewheel` to ensure all runtime dependencies (including required DLLs) are packaged correctly. This minimizes end-user setup complexity when installing from PyPI.
 
+#### Using cibuildwheel
+
+cibuildwheel uses the configured pyproject.toml that takes care of the cmake config, building and repairing wheel automatically
+
+```bash
+python -m cibuildwheel --output-dir dist
+```
+
 #### Verification
 
 After installation, confirm that the library can enumerate devices:

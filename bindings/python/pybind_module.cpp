@@ -603,6 +603,7 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
              return Device(utf8_to_wstring(name), utf8_to_wstring(path));
            }),
            "Create device with name and path", py::arg("name"), py::arg("path"))
+      .def(py::init<const Device&>(), "Copy constructor", py::arg("other"))
 
       .def_property_readonly(
           "name", [](const Device &d) { return wstring_to_utf8(d.name); },
@@ -625,11 +626,12 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
            [](const Device &a, const Device &b) { return a.path != b.path; })
       .def("__hash__",
            [](const Device &d) { return std::hash<std::wstring>{}(d.path); })
-      .def("__copy__", [](const Device &self) { return Device(self); })
-      .def("__deepcopy__",
-           [](const Device &self, py::dict) {
-             return Device(self); // Device is simple, deep = shallow
-           })
+      .def("__copy__", [](const Device &self) { 
+          return Device(self);  // Call copy constructor
+      })
+      .def("__deepcopy__", [](const Device &self, py::dict) { 
+          return Device(self);  // Call copy constructor  
+      }, py::arg("memo"))
       .def("__str__",
            [](const Device &d) {
              return wstring_to_utf8(d.name); // Simple, user-friendly name
@@ -1136,14 +1138,16 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
             return self->is_valid(); // Alias for is_valid()
           },
           "Alias for is_valid() - check if camera is valid and connected")
-      .def(
+      .def_property_readonly(
           "device",
-          [](const std::shared_ptr<Camera> &self) -> std::shared_ptr<Device> {
-            return std::make_shared<Device>(
-                self->device()); // Return shared_ptr<Device> (move or copy if
-                                 // possible)
+          [](const std::shared_ptr<Camera> &self) {
+              // Force deep copy of Device with explicit string construction
+              const Device& dev = self->device();
+              Device copy;
+              copy.name = std::wstring(dev.name.c_str());  // Force new allocation
+              copy.path = std::wstring(dev.path.c_str());  // Force new allocation
+              return copy;
           },
-          py::return_value_policy::reference_internal,
           "Get the underlying device information")
       // Camera property operations
       .def(
@@ -1630,8 +1634,22 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   // =========================================================================
 
   // Device Management Functions
-  m.def("list_devices", &list_devices,
-        "Enumerate all available video input devices");
+  m.def("list_devices", []() {
+      // Get devices from C++ function
+      auto devices = list_devices();
+      
+      // Force explicit copy of each Device to ensure strings are deep-copied
+      // This prevents pybind11 from creating shallow copies or moving strings
+      std::vector<Device> result;
+      result.reserve(devices.size());
+      
+      for (const auto& dev : devices) {
+          // Explicitly call copy constructor
+          result.emplace_back(dev);
+      }
+      return result;
+  }, "Enumerate all available video devices");
+
   m.def("is_device_connected", &is_device_connected, py::arg("device"),
         "Check if a device is currently connected and accessible");
 
@@ -1711,21 +1729,26 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
       py::arg("wide_string_as_utf8"), "Convert wide string to UTF-8");
 
   // Logging API with GIL management for callbacks
-  m.def(
-      "set_log_callback",
-      [](py::function callback) {
-        static py::function stored_log_callback; // Keep callback alive
-        stored_log_callback = callback;
-        set_log_callback([](LogLevel level, const std::string &message) {
-          py::gil_scoped_acquire gil;
-          try {
-            stored_log_callback(level, message);
-          } catch (const py::error_already_set &) {
-            PyErr_Clear();
-          }
-        });
-      },
-      py::arg("callback"), "Set global log callback function");
+  m.def("set_log_callback", [](std::optional<py::function> callback) {
+      static py::function stored_log_callback;
+
+      if (!callback) {
+          // Clear callback
+          stored_log_callback = py::function();
+          set_log_callback(nullptr);  // Assuming C++ accepts nullptr to clear the callback
+      } else {
+          // Set callback
+          stored_log_callback = callback.value();
+          set_log_callback([](LogLevel level, const std::string& message) {
+              py::gil_scoped_acquire gil;
+              try {
+                  stored_log_callback(level, message);
+              } catch (const py::error_already_set&) {
+                  PyErr_Clear();
+              }
+          });
+      }
+  }, py::arg("callback") = py::none(), "Set global log callback function (pass None to clear)");
 
   m.def("set_log_level", &set_log_level, py::arg("level"),
         "Set minimum log level");

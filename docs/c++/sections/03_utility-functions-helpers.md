@@ -36,7 +36,7 @@ Returns level name: "DEBUG", "INFO", "WARNING", "ERROR", or "CRITICAL".
 ```cpp
 using LogCallback = std::function<void(LogLevel level, const std::string& message)>;
 
-void set_log_callback(LogCallback callback);
+void set_log_callback(std::optional<py::function> callback);    
 ```
 
 Registers a callback function to receive all log messages. The callback receives the severity level and message string.
@@ -53,7 +53,7 @@ duvc::set_log_callback([](duvc::LogLevel level, const std::string& msg) {
 
 **Callback behavior:**
 
-- Pass `nullptr` to disable custom logging (reverts to default handler)
+- Pass `std::nullopt` to disable custom logging (reverts to default handler)
 - Callback invoked with mutex held (implementation is thread-safe)
 - If callback throws an exception, the system catches it and logs an error using the default handler
 - Callback should be fast; slow operations may block library threads
