@@ -728,6 +728,7 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   /// Part of DeviceCapabilities returned by get_device_capabilities().
   py::class_<PropertyCapability>(m, "PropertyCapability", py::module_local(),
                                  "Property capability information")
+      .def(py::init<>())
       .def_readwrite("supported", &PropertyCapability::supported,
                      "Property is supported by device")
       .def_readwrite("range", &PropertyCapability::range,
@@ -743,20 +744,22 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
 
   /// @brief Error context with code and description
   ///
+  /// Low-level error context from Result<T>.error().
+  /// For Pythonic exceptions, use DuvcError from duvc_ctl.exceptions.
   /// Holds error code (enum) and human-readable message.
   /// Returned by Result<T>.error() when operation fails.
   /// In Result-Based API, check error code; Pythonic API maps to exceptions.
-  py::class_<Error>(m, "DuvcError", py::module_local(),
-                    "Error information with context")
+  py::class_<Error>(m, "ErrorInfo", py::module_local(),
+                    "Error information with error code and description")
       .def(py::init<ErrorCode, std::string>(), py::arg("code"),
-           py::arg("message") = "", "Create error with ErrorCode and message")
+           py::arg("message") = "", "Create ErrorInfo with ErrorCode and message")
       .def(py::init([](int error_code, const std::string &message) {
              std::error_code ec =
                  std::make_error_code(static_cast<std::errc>(error_code));
              return Error(ec, message);
            }),
            py::arg("error_code"), py::arg("message") = "",
-           "Create error with std::error_code and message")
+           "Create ErrorInfo with std::error_code and message")
       .def("code", &Error::code, "Get error code")
       .def("message", &Error::message, "Get error message")
       .def("description", &Error::description, "Get full error description")
@@ -765,7 +768,7 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
              return e.description(); // Just the error message for users
            })
       .def("__repr__", [](const Error &e) {
-        return "<DuvcError(code=" + std::to_string(static_cast<int>(e.code())) +
+        return "<ErrorInfo(code=" + std::to_string(static_cast<int>(e.code())) +
                ", description='" + e.description() + "')>";
       });
 

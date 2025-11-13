@@ -218,7 +218,7 @@ def open_camera_or_throw(device: Device | int) -> Camera:
     """Open camera or raise exception. Returns Camera (not Result)."""
 ```
 
-**Behavior**: Internally calls `open_camera()`, checks `is_ok()`, and either returns the value or raises a `DuvcError` subclass.
+**Behavior**: Internally calls `open_camera()`, checks `is_ok()`, and either returns the value or raises a `ErrorInfo` subclass.
 
 **Raised exceptions**:
 
@@ -949,7 +949,7 @@ def result_to_exception(result):
     elif code == 0x06:
         raise duvc.PermissionError(error.description())
     else:
-        raise duvc.DuvcError(error.description())
+        raise duvc.ErrorInfo(error.description())
 ```
 
 

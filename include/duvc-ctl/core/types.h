@@ -183,7 +183,7 @@ struct Device {
      * @brief Check if device has valid identifying information
      * @return true if either name or path is non-empty
      */
-    bool is_valid() const { return !name.empty() || !path.empty(); }
+    bool is_valid() const { return !name.empty() && !path.empty(); }
 
     /**
      * @brief Get stable identifier for this device

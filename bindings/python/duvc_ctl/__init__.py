@@ -726,6 +726,9 @@ __all__ = [
     "SystemError", "InvalidArgumentError", "NotImplementedError",
     "ERROR_CODE_TO_EXCEPTION", "create_exception_from_error_code",
 
+    # Result based API error
+    "ErrorInfo",
+
     # Convenience utility functions
     "devices",
     "find_device_by_name", "find_devices_by_name", "get_device_info",
