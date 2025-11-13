@@ -354,21 +354,15 @@ if camera_result.is_ok():
 
 **Reconection pattern**: If `is_valid()` returns False, device likely disconnected. Create new Camera object via `open_camera()` or reconnect manually.
 
-#### `device()` property accessor
+#### `device` property
 
 Get the underlying `Device` object associated with this camera connection.
-
-```python
-@property
-def device(self) -> Device:
-    """Return the Device this camera is connected to."""
-```
 
 **Usage**:
 
 ```python
 camera = camera_result.value()
-device = camera.device()
+device = camera.device
 print(f"Camera: {device.name}")
 print(f"Path: {device.path}")
 print(f"Index: {device.index}")
@@ -380,7 +374,7 @@ print(f"Index: {device.index}")
 # Session 1
 devices = duvc.list_devices()
 camera = duvc.open_camera(devices[0]).value()
-saved_path = camera.device().path
+saved_path = camera.device.path
 
 # Session 2
 devices_later = duvc.list_devices()
@@ -1099,12 +1093,12 @@ print(f"Supported {len(props)} video properties")
 ```
 
 
-#### `device()` property accessor
+#### `device` property
 
-Returns the Device object these capabilities describe. Useful when you're working with multiple devices and need to track which device a capabilities object refers to.
+Gets the Device object these capabilities describe. Useful when you're working with multiple devices and need to track which device a capabilities object refers to.
 
 ```python
-device = caps.device()
+device = caps.device
 print(f"These capabilities are for: {device.name}")
 ```
 
