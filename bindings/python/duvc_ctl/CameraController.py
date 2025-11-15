@@ -265,14 +265,49 @@ class CameraController:
     # ========================================================================
 
     def _get_dynamic_range(self, property_name: str, fallback_min: int = 0, fallback_max: int = 100) -> tuple:
-        """Get actual device range for property, with fallback defaults."""
+        """Get actual device range for property, or (None, None) if invalid/unknown.
+        
+        Args:
+            property_name: Property name to query (e.g., 'brightness', 'exposure')
+            fallback_min: Default min value (unused, kept for API compatibility)
+            fallback_max: Default max value (unused, kept for API compatibility)
+        
+        Returns:
+            tuple: (min, max) from device if valid, or (None, None) to skip validation
+            
+        Note:
+            Returns (None, None) when:
+            - Device range query fails
+            - Range is invalid (min > max, max <= 0, or None values)
+            - Property not supported by device
+        """
         try:
             prop_range = self.get_property_range(property_name)
             if prop_range:
-                return (prop_range.get('min', fallback_min), prop_range.get('max', fallback_max))
-        except:
-            pass
-        return (fallback_min, fallback_max)
+                device_min = prop_range.get('min')
+                device_max = prop_range.get('max')
+                
+                # Validate that range is sensible
+                if (device_min is not None and device_max is not None and
+                    device_min <= device_max and device_max > 0):
+                    # Valid device range
+                    return (device_min, device_max)
+                
+                # Log invalid range from device
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.warning(
+                    f"Invalid range for '{property_name}' from device: "
+                    f"min={device_min}, max={device_max}. Skipping validation."
+                )
+        except Exception as e:
+            # Log query errors at debug level
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.debug(f"Could not query range for '{property_name}': {e}")
+        
+        # Return None to signal "unknown range, don't validate"
+        return (None, None)
 
     @property
     def brightness(self) -> int:
@@ -591,14 +626,32 @@ class CameraController:
             raise DuvcSystemError(f"Unexpected error reading {prop_name}: {e}")
     
     def _set_video_property(self, prop, prop_name: str, value: int, min_val: Optional[int] = None, max_val: Optional[int] = None) -> None:
-        """Set video property using core Result<T> API."""
+        """Set video property using core Result<T> API with optional range validation.
+        
+        Args:
+            prop: Video property enum (VidProp)
+            prop_name: Human-readable property name for error messages
+            value: Value to set
+            min_val: Optional minimum allowed value (None = skip min validation)
+            max_val: Optional maximum allowed value (None = skip max validation)
+        
+        Raises:
+            InvalidValueError: If value is outside the valid range
+            PropertyNotSupportedError: If property not supported by device
+            DuvcSystemError: For unexpected errors
+            
+        Note:
+            Validation is skipped if min_val or max_val is None, allowing hardware
+            to be the final arbiter when device ranges are unknown or invalid.
+        """
         self._ensure_connected()
         
-        # Validate range
-        if min_val is not None and value < min_val:
-            raise InvalidValueError(f"{prop_name} must be >= {min_val}, got {value}")
-        if max_val is not None and value > max_val:
-            raise InvalidValueError(f"{prop_name} must be <= {max_val}, got {value}")
+        # Validate range only if both min and max are known (not None)
+        if min_val is not None and max_val is not None:
+            if value < min_val:
+                raise InvalidValueError(f"{prop_name} must be >= {min_val}, got {value}")
+            if value > max_val:
+                raise InvalidValueError(f"{prop_name} must be <= {max_val}, got {value}")
         
         try:
             setting = PropSetting(value, CamMode.Manual)
@@ -611,7 +664,7 @@ class CameraController:
             if isinstance(e, (PropertyNotSupportedError, InvalidValueError)):
                 raise
             raise DuvcSystemError(f"Unexpected error setting {prop_name}: {e}")
-    
+  
     def _get_camera_property(self, prop, prop_name: str) -> int:
         """Get camera property using core Result<T> API."""
         self._ensure_connected()
@@ -626,10 +679,38 @@ class CameraController:
             if isinstance(e, PropertyNotSupportedError):
                 raise
             raise DuvcSystemError(f"Unexpected error reading {prop_name}: {e}")
-    
-    def _set_camera_property(self, prop, prop_name: str, value: int) -> None:
-        """Set camera property using core Result<T> API."""
+        
+    def _set_camera_property(self, prop, prop_name: str, value: int, 
+                            min_val: Optional[int] = None, 
+                            max_val: Optional[int] = None) -> None:
+        """Set camera property using core Result<T> API with optional range validation.
+        
+        Args:
+            prop: Camera property enum (CamProp)
+            prop_name: Human-readable property name for error messages
+            value: Value to set
+            min_val: Optional minimum allowed value (None = skip min validation)
+            max_val: Optional maximum allowed value (None = skip max validation)
+        
+        Raises:
+            InvalidValueError: If value is outside the valid range
+            PropertyNotSupportedError: If property not supported by device
+            DuvcSystemError: For unexpected errors
+            
+        Note:
+            Validation is skipped if min_val or max_val is None, allowing hardware
+            to be the final arbiter when device ranges are unknown or invalid.
+        """
         self._ensure_connected()
+        
+        # Validate range only if both min and max are known (not None)
+        if min_val is not None and max_val is not None:
+            if value < min_val:
+                raise InvalidValueError(f"{prop_name} must be >= {min_val}, got {value}")
+            if value > max_val:
+                raise InvalidValueError(f"{prop_name} must be <= {max_val}, got {value}")
+        
+        # Set the property value via C++ core API
         try:
             setting = PropSetting(value, CamMode.Manual)
             result = self._core_camera.set(prop, setting)
@@ -638,7 +719,8 @@ class CameraController:
                     f"Cannot set {prop_name}: {result.error().description()}"
                 )
         except Exception as e:
-            if isinstance(e, PropertyNotSupportedError):
+            # Re-raise known exceptions, wrap others
+            if isinstance(e, (PropertyNotSupportedError, InvalidValueError)):
                 raise
             raise DuvcSystemError(f"Unexpected error setting {prop_name}: {e}")
 
