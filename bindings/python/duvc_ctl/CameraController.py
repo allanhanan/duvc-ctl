@@ -59,12 +59,13 @@ class CameraController:
         result = duvc_ctl.open_camera(device)
     """
     
-    def __init__(self, device_index: Optional[int] = None, device_name: Optional[str] = None):
+    def __init__(self, device: Optional[Device] = None, device_index: Optional[int] = None, device_name: Optional[str] = None):
         """Connect to a camera device.
         
         Args:
             device_index: Specific device by index (default: 0, first available)
             device_name: Device by name substring match, case-insensitive
+            device: Device object from list_devices()
             
         Raises:
             DeviceNotFoundError: No cameras found or specified device not found
@@ -75,7 +76,7 @@ class CameraController:
         self._core_camera: Optional[CoreCamera] = None
         self._device: Optional[Device] = None
         self._is_closed = False
-        self._connect(device_index, device_name)
+        self._connect(device, device_index, device_name)
 
         # Property range constants
         BRIGHTNESS_MIN = 0
@@ -149,43 +150,79 @@ class CameraController:
             'focus': 'auto'
         }
     
-    def _connect(self, device_index: Optional[int], device_name: Optional[str]) -> None:
-        """Establish connection to camera using core C++ APIs."""
-        # Use ONLY the core C++ list_devices function
-        devices_list = list_devices()
-        if not devices_list:
-            raise DeviceNotFoundError(
-                "No cameras detected. Please check:\n"
-                "• Camera is connected and powered on\n"
-                "• Camera drivers are installed\n"
-            )
+    def _connect(self, device: Optional[Device], device_index: Optional[int], device_name: Optional[str]) -> None:
+        """Establish connection to camera using core C++ APIs.
         
-        # Device selection logic - implement ourselves
-        if device_index is not None:
-            if device_index >= len(devices_list):
-                available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
+        Priority: device > device_index > device_name > first available
+        """
+        # Priority 1: Direct Device object provided
+        if device is not None:
+            if not device.is_valid():
                 raise DeviceNotFoundError(
-                    f"Device index {device_index} not found.\n"
-                    f"Available cameras:\n" + "\n".join(available)
+                    f"Invalid device object: {device.name}\n"
+                    "Please provide a valid Device from list_devices()"
                 )
-            self._device = devices_list[device_index]
-        elif device_name is not None:
-            # Implement our own device finding
-            matching_devices = []
-            for device in devices_list:
-                if device_name.lower() in device.name.lower():
-                    matching_devices.append(device)
+            current_devices = list_devices()
+            device_paths = {d.path for d in current_devices}
             
-            if not matching_devices:
-                available = [d.name for d in devices_list]
+            if device.path not in device_paths:
+                available = [f"{i}: {d.name}" for i, d in enumerate(current_devices)]
                 raise DeviceNotFoundError(
-                    f"No camera matching '{device_name}' found.\n"
-                    f"Available: {', '.join(available)}"
+                    f"Device '{device.name}' not found in current enumeration.\n"
+                    f"The device may have been disconnected or the Device object is invalid.\n"
+                    f"Available cameras:\n" + "\n".join(available) if available else "No cameras detected."
                 )
-            self._device = matching_devices[0]
-        else:
-            self._device = devices_list[0]  # First available
+            
+            self._device = device
         
+        # Priority 2-4: Need to enumerate devices
+        else:
+            # Use ONLY the core C++ list_devices function
+            devices_list = list_devices()
+            if not devices_list:
+                raise DeviceNotFoundError(
+                    "No cameras detected. Please check:\n"
+                    "• Camera is connected and powered on\n"
+                    "• Camera drivers are installed\n"
+                )
+            
+            # Priority 2: Device index specified
+            if device_index is not None:
+                if device_index >= len(devices_list):
+                    available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
+                    raise DeviceNotFoundError(
+                        f"Device index {device_index} not found.\n"
+                        f"Available cameras:\n" + "\n".join(available)
+                    )
+                self._device = devices_list[device_index]
+            
+            # Priority 3: Device name pattern specified
+            elif device_name is not None:
+                # Implement our own device finding by name substring
+                matching_devices = []
+                for dev in devices_list:
+                    if device_name.lower() in dev.name.lower():
+                        matching_devices.append(dev)
+                
+                if not matching_devices:
+                    available = [d.name for d in devices_list]
+                    raise DeviceNotFoundError(
+                        f"No camera matching '{device_name}' found.\n"
+                        f"Available: {', '.join(available)}"
+                    )
+                self._device = matching_devices[0]
+            
+            # Priority 4: Default to first available
+            else:
+                available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
+                raise ValueError(
+                    "No device specified. Provide one of:\n"
+                    "• device=Device object from list_devices()\n"
+                    "• device_index=0 (zero-based index)\n"
+                    "• device_name='Camera Name' (substring match)\n"
+                    f"\nAvailable cameras:\n" + "\n".join(available)
+                )
+            
         # Open camera using ONLY the core C++ API
         result = open_camera(self._device)
         if not result.is_ok():
@@ -198,6 +235,7 @@ class CameraController:
                 "• Hardware issue"
             )
         self._core_camera = result.value()
+
     
     # Context manager support
     def __enter__(self) -> 'CameraController':

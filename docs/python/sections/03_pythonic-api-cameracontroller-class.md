@@ -1,11 +1,11 @@
 ## 3. Pythonic API - CameraController Class
 
 
-### 3.1 Initialization \& Device Connection
+### 3.1 Initialization & Device Connection
 
-The `CameraController` constructor automatically discovers and connects to a camera device. Three initialization modes are supported: automatic (first device), selection by index, or selection by name pattern.
+The `CameraController` constructor automatically discovers and connects to a camera device. Four initialization modes are supported: automatic (first device), selection by index, selection by name pattern, and direct connection using a `Device` object.
 
-#### Constructor signatures and modes
+#### Constructor Signatures and Modes
 
 **Auto-detect first camera:**
 
@@ -25,25 +25,33 @@ cam = duvc_ctl.CameraController(device_index=1)  # Second camera
 cam = duvc_ctl.CameraController(device_name="Logitech")
 ```
 
-Constructor exceptions (all raised immediately):
+**Select by Device object (from `list_devices()`):**
 
-- `DeviceNotFoundError`: No cameras found or specified device not found
-- `SystemError`: Connection failed (device in use, permissions, hardware issue)
+```python
+devices = duvc_ctl.list_devices()
+device = devices[0]  # Select first available device
+cam = duvc_ctl.CameraController(device=device)
+```
 
+#### Constructor Exceptions
 
-#### Device selection strategy
+- `DeviceNotFoundError`: No cameras found or specified device not found.
+- `DuvcSystemError`: Connection failed (device in use, permissions, hardware issue).
 
-The `_connect()` method implements priority-based device selection:
+#### Device Selection Strategy
 
-1. If `device_index` provided: Use device at that index (0-based). Raises `DeviceNotFoundError` with enumerated list if out of range.
-2. If `device_name` provided: Search for substring match (case-insensitive). Returns first match.
-3. Default: Use first device in list (index 0).
+The `_connect()` method implements a **priority-based device selection strategy**:
 
-Only one parameter should be specified; if both are provided, `device_index` takes precedence.
+1. **Device object provided**: If a `Device` object is passed, it takes the highest priority. The object must be valid (i.e., properly initialized by `list_devices()`).
+2. **Device index provided**: If `device_index` is provided, the camera at the given index (0-based) is selected. If the index is out of range, an error is raised with a full list of available devices.
+3. **Device name provided**: If `device_name` is provided, a case-insensitive substring search is performed to find the first matching device.
+4. **Default behavior**: If neither `device`, `device_index`, nor `device_name` is provided, the first available device is selected.
 
-#### Name matching algorithm
+**Note**: Only one of `device`, `device_index`, or `device_name` should be provided. If multiple are given, the `device` object takes precedence, followed by `device_index`, then `device_name`.
 
-Device name matching uses **case-insensitive substring search**:
+#### Name Matching Algorithm
+
+Device name matching uses a **case-insensitive substring search**:
 
 ```python
 # Matches: "Logitech C920", "LOGITECH Webcam", "logitech hd pro"
@@ -53,9 +61,9 @@ cam = duvc_ctl.CameraController(device_name="Logitech")
 cam = duvc_ctl.CameraController(device_name="USB")
 ```
 
-When multiple devices match, the **first match is selected**. Use `device_index` if you need specific control over multiple matching devices.
+When multiple devices match, the **first match is selected**. Use `device_index` or the Device object approach if you need specific control over multiple matching devices.
 
-#### Error messages with device enumeration
+#### Error Messages with Device Enumeration
 
 **No cameras detected:**
 
@@ -102,7 +110,7 @@ except duvc_ctl.DeviceNotFoundError as e:
 ```python
 try:
     cam = duvc_ctl.CameraController(device_index=0)
-except duvc_ctl.SystemError as e:
+except duvc_ctl.DuvcSystemError as e:
     print(e)
     # Output:
     # Failed to connect to 'Logitech C920': Access denied
@@ -112,32 +120,90 @@ except duvc_ctl.SystemError as e:
     # • Hardware issue
 ```
 
-
-#### Internal `_connect()` implementation
+#### Internal `_connect()` Method
 
 The `_connect()` method orchestrates device discovery and connection:
 
-1. Calls `list_devices()` to enumerate all connected cameras (uses core C++ API).
-2. Applies device selection logic (index, name match, or first device).
-3. Calls `open_camera(device)` using the Result-based API.
-4. If `open_camera()` returns error, wraps it with helpful context.
-5. Stores connection handle (`_core_camera`) and device metadata (`_device`).
-6. Initializes internal state variables.
+```python
+def _connect(self, device: Optional[Device], device_index: Optional[int], device_name: Optional[str]) -> None:
+    """Establish connection to camera using core C++ APIs.
+    
+    Priority: device > device_index > device_name > first available
+    """
+    # Priority 1: Direct Device object provided
+    if device is not None:
+        if not device.is_valid():
+            raise DeviceNotFoundError(
+                f"Invalid device object: {device.name}\n"
+                "Please provide a valid Device from list_devices()"
+            )
+        self._device = device
+    
+    # Priority 2-4: Need to enumerate devices
+    else:
+        devices_list = list_devices()
+        if not devices_list:
+            raise DeviceNotFoundError(
+                "No cameras detected. Please check:\n"
+                "• Camera is connected and powered on\n"
+                "• Camera drivers are installed\n"
+            )
+        
+        # Priority 2: Device index specified
+        if device_index is not None:
+            if device_index >= len(devices_list):
+                available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
+                raise DeviceNotFoundError(
+                    f"Device index {device_index} not found.\n"
+                    f"Available cameras:\n" + "\n".join(available)
+                )
+            self._device = devices_list[device_index]
+        
+        # Priority 3: Device name pattern specified
+        elif device_name is not None:
+            matching_devices = []
+            for dev in devices_list:
+                if device_name.lower() in dev.name.lower():
+                    matching_devices.append(dev)
+            
+            if not matching_devices:
+                available = [d.name for d in devices_list]
+                raise DeviceNotFoundError(
+                    f"No camera matching '{device_name}' found.\n"
+                    f"Available: {', '.join(available)}"
+                )
+            self._device = matching_devices[0]
+        
+        # Priority 4: Default to first available
+        else:
+            self._device = devices_list[0]
+    
+    # Open camera using ONLY the core C++ API
+    result = open_camera(self._device)
+    if not result.is_ok():
+        error_desc = result.error().description()
+        raise DuvcSystemError(
+            f"Failed to connect to '{self._device.name}': {error_desc}\n"
+            "This might be because:\n"
+            "• Camera is in use by another application\n"
+            "• Insufficient permissions\n"
+            "• Hardware issue"
+        )
+    self._core_camera = result.value()
+```
 
-All parameter validation and error messaging are implemented in Python; the C++ layer provides only core enumeration and connection operations.
+#### Internal State Initialization
 
-#### Internal state initialization
-
-After successful `_connect()`, the constructor initializes:
+After a successful connection, the constructor initializes the following internal state:
 
 - **`_lock`**: `threading.Lock()` for thread-safe access to shared state.
-- **`_core_camera`**: Reference to underlying C++ `Camera` object (Result API).
-- **`_device`**: Reference to `Device` object that was connected.
-- **`_is_closed`**: Boolean flag initialized to `False` (tracks close state).
+- **`_core_camera`**: Reference to the underlying C++ `Camera` object (Result API).
+- **`_device`**: The connected `Device` object.
+- **`_is_closed`**: Boolean flag initialized to `False` (tracks the closed state of the camera).
 
 These variables are used by all subsequent operations (property access, validation, cleanup). The lock protects against concurrent access from multiple threads.
 
-#### Device metadata access after connection
+#### Device Metadata Access After Connection
 
 Once construction succeeds, device information is immediately available:
 
@@ -151,15 +217,15 @@ print(cam.is_connected)  # Always True after successful construction
 
 These are read-only properties; `device_path` is a stable identifier suitable for reconnection attempts.
 
-#### Connection validation
+#### Connection Validation
 
 The constructor validates the connection by:
 
-1. Checking `is_device_connected(device)` returns True.
+1. Checking `is_device_connected(device)` returns `True`.
 2. Calling `open_camera()` and verifying success.
-3. Storing the Camera object for future operations.
+3. Storing the `Camera` object for future operations.
 
-If any step fails, a `DeviceNotFoundError` or `SystemError` is raised with diagnostic context. **Once construction completes successfully, the camera is guaranteed to be connected and ready.** No additional checks are needed before property operations.
+If any step fails, a `DeviceNotFoundError` or `DuvcSystemError` is raised with diagnostic context. **Once construction completes successfully, the camera is guaranteed to be connected and ready.** No additional checks are needed before property operations.
 
 ### 3.2 Context Manager \& Lifecycle
 

@@ -195,6 +195,33 @@ try:
 except duvc.DeviceNotFoundError:
     print("Camera not found")
 ```
+**Connect using Device object**
+
+The most explicit and reliable method:
+
+```python
+import duvc_ctl as duvc
+
+#Enumerate all devices
+devices = duvc.list_devices()
+
+if devices:
+# Show available cameras
+for i, device in enumerate(devices):
+print(f"[{i}] {device.name} - {device.path}")
+
+# Connect to first device
+with duvc.CameraController(device=devices) as cam:
+    cam.brightness = 75
+    print(f"Connected to: {cam.device_name}")
+else:
+print("No cameras found")
+```
+**Why use Device objects?**
+- Full control over which camera to use
+- Access to device metadata (name, path, ID)
+- Works seamlessly with `list_devices()` enumeration
+- Required for advanced scenarios (multi-camera, reconnection)
 
 List available properties:
 
