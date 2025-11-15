@@ -287,7 +287,7 @@ struct PyGUID {
     char buffer[40];
     snprintf(
         buffer, sizeof(buffer),
-        "{%08lX-%04hX-%04hX-%02hhX%02hhX-%02hhX%02hhX%02hhX%02hhX%02hhX%02hhX}",
+        "%08lX-%04hX-%04hX-%02hhX%02hhX-%02hhX%02hhX%02hhX%02hhX%02hhX%02hhX",
         guid.Data1, guid.Data2, guid.Data3, guid.Data4[0], guid.Data4[1],
         guid.Data4[2], guid.Data4[3], guid.Data4[4], guid.Data4[5],
         guid.Data4[6], guid.Data4[7]);
@@ -1337,9 +1337,17 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
       .def("supported_video_properties",
            &DeviceCapabilities::supported_video_properties,
            "Get list of supported video properties")
-      .def("device", &DeviceCapabilities::device,
-           py::return_value_policy::reference_internal,
-           "Get the device this capability snapshot is for")
+      .def_property_readonly(
+          "device",
+          [](const DeviceCapabilities& caps) -> Device {
+              const Device& dev = caps.device();
+              // Force deep copy of Device strings
+              Device copy;
+              copy.name = std::wstring(dev.name.c_str());  // Force new allocation
+              copy.path = std::wstring(dev.path.c_str());  // Force new allocation
+              return copy;
+          },
+          "Get the device this capability snapshot is for")
       .def("is_device_accessible", &DeviceCapabilities::is_device_accessible,
            "Check if device is connected and accessible")
       .def("refresh", &DeviceCapabilities::refresh,

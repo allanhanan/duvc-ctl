@@ -58,6 +58,66 @@ class CameraController:
     For lower-level Result<T> API control, import and use core functions directly:
         result = duvc_ctl.open_camera(device)
     """
+
+    SMART_DEFAULTS = {
+        'brightness': 128,       # Mid-range for 0-255 devices
+        'contrast': 50,          # Neutral for 0-100 devices
+        'saturation': 50,        # Neutral
+        'hue': 0,                # No shift
+        'sharpness': 50,         # Moderate
+        'gamma': 100,            # Linear (gamma=1.0)
+        'white_balance': 'auto', # Automatic
+        'exposure': 'auto',      # Automatic
+        'focus': 'auto',         # Continuous AF
+        'pan': 0,                # Center
+        'tilt': 0,               # Center
+        'zoom': 100,             # 1x (no zoom)
+        'privacy': False,        # Shutter open
+        'backlight_compensation': 0,
+        'gain': 0,
+        'color_enable': True,
+        'digital_zoom': 100
+    }
+
+    BUILT_IN_PRESETS = {
+        'daylight': {
+            'brightness': 60,
+            'contrast': 50,
+            'saturation': 45,
+            'white_balance': 5500,  # Daylight color temperature (K)
+            'exposure': -2,          # Slightly reduce exposure for bright outdoor
+            'gamma': 100
+        },
+        'indoor': {
+            'brightness': 45,
+            'contrast': 55,
+            'saturation': 40,
+            'white_balance': 3200,  # Warm indoor lighting (tungsten)
+            'exposure': 0,           # Neutral exposure
+            'gamma': 110,            # Slightly boost midtones
+            'sharpness': 60          # Moderate sharpness
+        },
+        'night': {
+            'brightness': 75,        # Boost brightness for low light
+            'contrast': 65,          # Higher contrast to compensate
+            'saturation': 30,        # Desaturate (night colors are muted)
+            'white_balance': 'auto', # Let camera handle mixed/dim lighting
+            'exposure': 3,           # Increase exposure for darkness
+            'gamma': 140,            # Boost shadows
+            'gain': 16               # Amplify signal (may add noise)
+        },
+        'conference': {
+            'brightness': 50,
+            'contrast': 45,
+            'saturation': 50,
+            'white_balance': 'auto', # Offices have varied lighting
+            'exposure': 'auto',      # Automatic for stable video
+            'sharpness': 85,         # High sharpness for clarity
+            'gamma': 100,
+            'focus': 'auto'          # Continuous AF for moving people
+        }
+    }
+    
     
     def __init__(self, device: Optional[Device] = None, device_index: Optional[int] = None, device_name: Optional[str] = None):
         """Connect to a camera device.
@@ -107,49 +167,7 @@ class CameraController:
         ZOOM_MAX = 1000
         ZOOM_DEFAULT = 100  # No zoom
         
-        # Preset configurations (moved from method)
-        BUILT_IN_PRESETS = {
-            'daylight': {
-                'brightness': 60,
-                'contrast': 50,
-                'white_balance': 'auto',
-                'exposure': 'auto'
-            },
-            'indoor': {
-                'brightness': 75,
-                'contrast': 60,
-                'white_balance': 3200,
-                'exposure': 'auto'
-            },
-            'night': {
-                'brightness': 80,
-                'contrast': 70,
-                'gain': 80,
-                'exposure': 'auto'
-            },
-            'conference': {
-                'brightness': 70,
-                'contrast': 55,
-                'white_balance': 'auto',
-                'pan': PAN_CENTER,
-                'tilt': TILT_CENTER,
-                'zoom': ZOOM_DEFAULT
-            }
-        }
         
-        # Smart defaults (moved from method)
-        _SMART_DEFAULTS = {
-            'brightness': BRIGHTNESS_DEFAULT,
-            'contrast': CONTRAST_DEFAULT,
-            'saturation': SATURATION_DEFAULT,
-            'pan': PAN_CENTER,
-            'tilt': TILT_CENTER,
-            'zoom': ZOOM_DEFAULT,
-            'white_balance': 'auto',
-            'exposure': 'auto',
-            'focus': 'auto'
-        }
-    
     def _connect(self, device: Optional[Device], device_index: Optional[int], device_name: Optional[str]) -> None:
         """Establish connection to camera using core C++ APIs.
         
@@ -728,64 +746,49 @@ class CameraController:
     # CONVENIENCE METHODS 
     # ========================================================================
     
-    def reset_to_defaults(self):
-        """Reset all supported properties to default/auto mode.
+    def reset_to_defaults(self) -> None:
+        """Reset all supported properties to factory defaults.
         
-        Attempts to reset common properties. Warnings issued for unsupported
-        properties; partial success does not raise exceptions.
+        Dynamically queries device capabilities and attempts to reset all supported
+        camera and video properties to their factory defaults. Partial success is
+        expected; some properties (e.g., Privacy on integrated cameras) may be
+        hardware-locked and fail silently.
+        
+        No exceptions raised; failures are logged at debug level. Use
+        `reset_device_to_defaults(device)` for detailed per-property results.
+        
+        Examples:
+            >>> with CameraController() as cam:
+            ...     cam.reset_to_defaults()
+            ...     # All supported properties reset to defaults
+            
+        Notes:
+            - Internally calls `reset_device_to_defaults(device)` from the
+            Result-based API for core functionality.
+            - Returns None; use the Result-based API for success/failure details.
+            - Some hardware (e.g., integrated webcams) may have read-only properties.
         """
         self._ensure_connected()
+        from duvc_ctl import reset_device_to_defaults  # Import here to avoid circular dep
         
-        # List of common properties to reset to auto mode
-        reset_properties = [
-            # Video properties
-            (VidProp.Brightness, CamMode.Auto, "brightness"),
-            (VidProp.Contrast, CamMode.Auto, "contrast"),
-            (VidProp.Saturation, CamMode.Auto, "saturation"),
-            (VidProp.Hue, CamMode.Auto, "hue"),
-            (VidProp.Sharpness, CamMode.Auto, "sharpness"),
-            (VidProp.WhiteBalance, CamMode.Auto, "white_balance"),
-            (VidProp.Gain, CamMode.Auto, "gain"),
+        try:
+            results = reset_device_to_defaults(self._device)
+            successes = sum(1 for v in results.values() if v)
+            failures = [k for k, v in results.items() if not v]
             
-            # Camera properties
-            (CamProp.Exposure, CamMode.Auto, "exposure"),
-            (CamProp.Focus, CamMode.Auto, "focus"),
-            (CamProp.Iris, CamMode.Auto, "iris"),
-            (CamProp.Pan, CamMode.Auto, "pan"),
-            (CamProp.Tilt, CamMode.Auto, "tilt"),
-            (CamProp.Zoom, CamMode.Auto, "zoom"),
-        ]
-        
-        failed_props = []
-        success_count = 0
-        
-        for prop, mode, name in reset_properties:
-            try:
-                # Try to get the range first to set to default value
-                range_result = self._core_camera.get_range(prop)
-                if range_result.is_ok():
-                    range_info = range_result.value()
-                    # Use the default value from range if available
-                    setting = PropSetting(getattr(range_info, 'default', 0), mode)
-                else:
-                    # Fallback to auto mode with value 0
-                    setting = PropSetting(0, mode)
-                
-                result = self._core_camera.set(prop, setting)
-                if result.is_ok():
-                    success_count += 1
-                else:
-                    failed_props.append(name)
-                    
-            except Exception:
-                failed_props.append(name)
-        
-        if failed_props:
-            warnings.warn(
-                f"Reset completed with {success_count} properties successful. "
-                f"Could not reset: {', '.join(failed_props)} "
-                f"(these properties may not be supported by your camera)"
-            )
+            if failures:
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.debug(
+                    f"Reset completed with {successes}/{len(results)} properties. "
+                    f"Failed: {', '.join(failures)} (may be hardware-locked or unsupported)"
+                )
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.warning(f"reset_to_defaults encountered error: {e}")
+            raise
+
     
     def center_camera(self):
         """Move pan/tilt to center position.
@@ -1286,8 +1289,8 @@ class CameraController:
     def set_smart_default(self, property_name: str) -> None:
         """Set property to intelligent default based on property type."""
         
-        if property_name in self._SMART_DEFAULTS:
-            self.set(property_name, self._SMART_DEFAULTS[property_name])
+        if property_name in self.SMART_DEFAULTS:
+            self.set(property_name, self.SMART_DEFAULTS[property_name])
         else:
             # Fallback to auto mode for unknown properties
             self.set(property_name, 'auto')
@@ -1544,14 +1547,6 @@ class CameraController:
     def set_focus_relative(self, value: Union[int, str], mode: str = "manual") -> None:
         """Set relative focus adjustment - convenience shortcut for set('focus_relative', value)."""
         self.set('focus_relative', value, mode)
-
-    def set_pan_tilt(self, value: Union[int, str], mode: str = "manual") -> None:
-        """Set combined pan/tilt - convenience shortcut for set('pan_tilt', value)."""
-        self.set('pan_tilt', value, mode)
-
-    def set_pan_tilt_relative(self, value: Union[int, str], mode: str = "manual") -> None:
-        """Set relative pan/tilt movement - convenience shortcut for set('pan_tilt_relative', value)."""
-        self.set('pan_tilt_relative', value, mode)
 
     def set_focus_simple(self, value: Union[int, str], mode: str = "manual") -> None:
         """Set simple focus control - convenience shortcut for set('focus_simple', value)."""

@@ -100,7 +100,7 @@ def main():
         
         # Feature: Context manager (recommended)
         subsection("1.3 Connect via Context Manager")
-        with duvc_ctl.CameraController() as cam:
+        with duvc_ctl.CameraController(device_index=0) as cam:
             print(f"✓ Connected to: {cam.device_name}")
             print(f"  Device path: {cam.device_path}")
             print(f"  Connected: {cam.is_connected}")

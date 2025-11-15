@@ -52,7 +52,9 @@ except ImportError as e:
 from .exceptions import (
     DuvcError, DuvcErrorCode, DeviceNotFoundError, DeviceBusyError,
     PropertyNotSupportedError, InvalidValueError, PermissionDeniedError,
-    SystemError, InvalidArgumentError, NotImplementedError,
+    SystemError, InvalidArgumentError, NotImplementedError, 
+    PropertyValueOutOfRangeError, PropertyModeNotSupportedError, BulkOperationError,
+    ConnectionHealthError,
     ERROR_CODE_TO_EXCEPTION, create_exception_from_error_code
 )
 
@@ -148,8 +150,13 @@ def _normalize_guid(g: Union[str, bytes, _uuid.UUID, GUID]) -> GUID:
         return guid_from_uuid(g)
     if isinstance(g, str):
         return guid_from_uuid(_uuid.UUID(g))
-    if isinstance(g, (bytes, bytearray)) and len(g) == 16:
-        return GUID(bytes(g))
+    if isinstance(g, bytes):
+        if len(g) == 16:
+            # Convert bytes to Python UUID then to string GUID
+            u = _uuid.UUID(bytes=g)
+            return GUID(str(u).upper())
+        else:
+            raise ValueError(f"Invalid bytes length for GUID: {len(g)}")
 
     raise TypeError(f"Unsupported GUID type: {type(g)}")
 
@@ -437,55 +444,76 @@ def get_device_info(device: Device) -> DeviceInfo:
     return info
 
 def reset_device_to_defaults(device: Device) -> Dict[str, bool]:
-    """Reset all device properties to their default values.
-    
-    Queries property ranges to get defaults, then sets each property.
-    Individual failures do not stop processing of remaining properties.
+    """
+    Reset supported properties to factory defaults using capabilities query.
     
     Args:
-        device: Target device
-        
+        device: Single Device instance.
+    
     Returns:
-        Dict mapping property names to success status (True = set, False = failed)
+        Dict[str, bool]: {prop.name: success} for each supported property.
+    
+    Raises:
+        TypeError: Invalid input.
     """
-    results: Dict[str, bool] = {}
+    if isinstance(device, list):
+        raise TypeError("Expects single Device, not list.")
+    if not isinstance(device, Device):
+        raise TypeError(f"Expected Device, got {type(device)}.")
 
+    results: Dict[str, bool] = {}
     caps_result = get_device_capabilities(device)
     if not caps_result.is_ok():
         return results
-
     caps = caps_result.value()
-    camera = Camera(device)
-    if not camera.is_valid():
+
+    camera_result = open_camera(device)
+    if not camera_result.is_ok():
         return results
+    camera = camera_result.value()
 
-    # Reset camera properties
-    for prop in caps.supported_camera_properties():
-        try:
-            range_result = camera.get_range(prop)
-            if range_result.is_ok():
-                range_info = range_result.value()
-                setting = PropSetting(range_info.default_val, range_info.default_mode)
+    try:
+        # Camera properties
+        for prop in caps.supported_camera_properties():
+            prop_name = prop.name
+            try:
+                range_result = camera.get_range(prop)
+                if range_result.is_ok():
+                    prop_range = range_result.value()
+                    default_val = prop_range.default_val  # PROPERTY, NOT METHOD
+                    default_mode = prop_range.default_mode  # PROPERTY, NOT METHOD
+                    setting = PropSetting(default_val, default_mode)
+                else:
+                    setting = PropSetting(0, CamMode.Auto)
+                
                 set_result = camera.set(prop, setting)
-                results[f"cam_{to_string(prop)}"] = set_result.is_ok()
-            else:
-                results[f"cam_{to_string(prop)}"] = False
-        except Exception:
-            results[f"cam_{to_string(prop)}"] = False
+                results[prop_name] = set_result.is_ok()
+            except Exception:
+                results[prop_name] = False
 
-    # Reset video properties  
-    for prop in caps.supported_video_properties():
-        try:
-            range_result = camera.get_range(prop)
-            if range_result.is_ok():
-                range_info = range_result.value()
-                setting = PropSetting(range_info.default_val, range_info.default_mode)
+        # Video properties
+        for prop in caps.supported_video_properties():
+            prop_name = prop.name
+            try:
+                range_result = camera.get_range(prop)
+                if range_result.is_ok():
+                    prop_range = range_result.value()
+                    default_val = prop_range.default_val  # PROPERTY, NOT METHOD
+                    default_mode = prop_range.default_mode  # PROPERTY, NOT METHOD
+                    setting = PropSetting(default_val, default_mode)
+                else:
+                    setting = PropSetting(0, CamMode.Auto)
+                
                 set_result = camera.set(prop, setting)
-                results[f"vid_{to_string(prop)}"] = set_result.is_ok()
-            else:
-                results[f"vid_{to_string(prop)}"] = False
+                results[prop_name] = set_result.is_ok()
+            except Exception:
+                results[prop_name] = False
+
+    finally:
+        try:
+            camera.close()
         except Exception:
-            results[f"vid_{to_string(prop)}"] = False
+            pass
 
     return results
 
@@ -725,6 +753,8 @@ __all__ = [
     "PropertyNotSupportedError", "InvalidValueError", "PermissionDeniedError", 
     "SystemError", "InvalidArgumentError", "NotImplementedError",
     "ERROR_CODE_TO_EXCEPTION", "create_exception_from_error_code",
+    "PropertyValueOutOfRangeError", "PropertyModeNotSupportedError", "BulkOperationError",
+    "ConnectionHealthError",
 
     # Result based API error
     "ErrorInfo",
