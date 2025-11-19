@@ -22,10 +22,12 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 
+#include <atomic>
 #include <functional>
 #include <iomanip>
 #include <memory>
 #include <optional>
+#include <Python.h>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -66,8 +68,33 @@
 #include "duvc-ctl/vendor/logitech.h"
 #endif
 
+// pybind11 namespace alias
 namespace py = pybind11;
 using namespace duvc;
+
+// ========================================
+// Device Callback Shutdown Detection
+// ========================================
+/**
+ * @brief Thread-safe flag for active callbacks
+ * Starts false; set true on register, false on unregister/shutdown.
+ */
+static std::atomic<bool> g_python_callback_active{false};
+
+/**
+ * @brief Stored callback function (file-scope for safe cleanup)
+ */
+static py::function stored_callback;
+
+/**
+ * @brief Safe cleanup: Disable flag and clear callback during finalization
+ * Used by atexit and unregister for reference release while GIL held.
+ */
+static void callback_cleanup() noexcept {
+    g_python_callback_active.store(false);
+    stored_callback = py::function();  // Explicit clear releases PyObject refs safely
+}
+
 
 // Forward declarations for opaque RAII types (file scope - required for
 // PYBIND11_MAKE_OPAQUE)
@@ -603,7 +630,7 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
              return Device(utf8_to_wstring(name), utf8_to_wstring(path));
            }),
            "Create device with name and path", py::arg("name"), py::arg("path"))
-      .def(py::init<const Device&>(), "Copy constructor", py::arg("other"))
+      .def(py::init<const Device &>(), "Copy constructor", py::arg("other"))
 
       .def_property_readonly(
           "name", [](const Device &d) { return wstring_to_utf8(d.name); },
@@ -626,12 +653,16 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
            [](const Device &a, const Device &b) { return a.path != b.path; })
       .def("__hash__",
            [](const Device &d) { return std::hash<std::wstring>{}(d.path); })
-      .def("__copy__", [](const Device &self) { 
-          return Device(self);  // Call copy constructor
-      })
-      .def("__deepcopy__", [](const Device &self, py::dict) { 
-          return Device(self);  // Call copy constructor  
-      }, py::arg("memo"))
+      .def("__copy__",
+           [](const Device &self) {
+             return Device(self); // Call copy constructor
+           })
+      .def(
+          "__deepcopy__",
+          [](const Device &self, py::dict) {
+            return Device(self); // Call copy constructor
+          },
+          py::arg("memo"))
       .def("__str__",
            [](const Device &d) {
              return wstring_to_utf8(d.name); // Simple, user-friendly name
@@ -752,7 +783,8 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   py::class_<Error>(m, "ErrorInfo", py::module_local(),
                     "Error information with error code and description")
       .def(py::init<ErrorCode, std::string>(), py::arg("code"),
-           py::arg("message") = "", "Create ErrorInfo with ErrorCode and message")
+           py::arg("message") = "",
+           "Create ErrorInfo with ErrorCode and message")
       .def(py::init([](int error_code, const std::string &message) {
              std::error_code ec =
                  std::make_error_code(static_cast<std::errc>(error_code));
@@ -1144,12 +1176,12 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
       .def_property_readonly(
           "device",
           [](const std::shared_ptr<Camera> &self) {
-              // Force deep copy of Device with explicit string construction
-              const Device& dev = self->device();
-              Device copy;
-              copy.name = std::wstring(dev.name.c_str());  // Force new allocation
-              copy.path = std::wstring(dev.path.c_str());  // Force new allocation
-              return copy;
+            // Force deep copy of Device with explicit string construction
+            const Device &dev = self->device();
+            Device copy;
+            copy.name = std::wstring(dev.name.c_str()); // Force new allocation
+            copy.path = std::wstring(dev.path.c_str()); // Force new allocation
+            return copy;
           },
           "Get the underlying device information")
       // Camera property operations
@@ -1339,13 +1371,13 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
            "Get list of supported video properties")
       .def_property_readonly(
           "device",
-          [](const DeviceCapabilities& caps) -> Device {
-              const Device& dev = caps.device();
-              // Force deep copy of Device strings
-              Device copy;
-              copy.name = std::wstring(dev.name.c_str());  // Force new allocation
-              copy.path = std::wstring(dev.path.c_str());  // Force new allocation
-              return copy;
+          [](const DeviceCapabilities &caps) -> Device {
+            const Device &dev = caps.device();
+            // Force deep copy of Device strings
+            Device copy;
+            copy.name = std::wstring(dev.name.c_str()); // Force new allocation
+            copy.path = std::wstring(dev.path.c_str()); // Force new allocation
+            return copy;
           },
           "Get the device this capability snapshot is for")
       .def("is_device_accessible", &DeviceCapabilities::is_device_accessible,
@@ -1645,45 +1677,70 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   // =========================================================================
 
   // Device Management Functions
-  m.def("list_devices", []() {
-      // Get devices from C++ function
-      auto devices = list_devices();
-      
-      // Force explicit copy of each Device to ensure strings are deep-copied
-      // This prevents pybind11 from creating shallow copies or moving strings
-      std::vector<Device> result;
-      result.reserve(devices.size());
-      
-      for (const auto& dev : devices) {
+  m.def(
+      "list_devices",
+      []() {
+        // Get devices from C++ function
+        auto devices = list_devices();
+
+        // Force explicit copy of each Device to ensure strings are deep-copied
+        // This prevents pybind11 from creating shallow copies or moving strings
+        std::vector<Device> result;
+        result.reserve(devices.size());
+
+        for (const auto &dev : devices) {
           // Explicitly call copy constructor
           result.emplace_back(dev);
-      }
-      return result;
-  }, "Enumerate all available video devices");
+        }
+        return result;
+      },
+      "Enumerate all available video devices");
 
   m.def("is_device_connected", &is_device_connected, py::arg("device"),
         "Check if a device is currently connected and accessible");
 
-  // Device change callbacks with proper GIL management
+  // Device change callbacks with GIL management
   m.def(
       "register_device_change_callback",
       [](py::function callback) {
-        static py::function stored_callback; // Keep callback alive
-        stored_callback = callback;
-        register_device_change_callback(
-            [](bool added, const std::wstring &device_path) {
-              py::gil_scoped_acquire gil;
-              try {
-                stored_callback(added, wstring_to_utf8(device_path));
-              } catch (const py::error_already_set &) {
-                PyErr_Clear(); // Clear Python exception state
-              }
-            });
+          if (!callback) {
+              throw std::invalid_argument("Callback cannot be None");
+          }
+          stored_callback = std::move(callback);  // Store in file-scope static
+          g_python_callback_active.store(true);
+          register_device_change_callback(
+              [](bool added, const std::wstring &device_path) {
+                  // Skip if inactive, no callback, or Python finalizing
+                  if (!g_python_callback_active.load() || !stored_callback || Py_IsInitialized() == 0) {
+                      return;
+                  }
+                  py::gil_scoped_acquire gil;
+                  // Re-check after GIL (race-safe during shutdown)
+                  if (!stored_callback) {
+                      return;
+                  }
+                  try {
+                      stored_callback(added, wstring_to_utf8(device_path));
+                  } catch (const py::error_already_set &) {
+                      PyErr_Clear();
+                  } catch (...) {
+                      // Suppress non-Python exceptions to avoid native crash
+                  }
+              });
       },
-      py::arg("callback"), "Register callback for device hotplug events");
+      py::arg("callback"), "Register callback for device hotplug events"
+  );
 
-  m.def("unregister_device_change_callback", &unregister_device_change_callback,
-        "Unregister device change callback");
+  m.def(
+      "unregister_device_change_callback",
+      []() {
+          unregister_device_change_callback();  // Native cleanup first
+          g_python_callback_active.store(false);
+          stored_callback = py::function();  // Clear file-scope callback (safe Py_DECREF)
+          callback_cleanup();  // Ensure full state reset
+      },
+      "Unregister callback and release resources"
+  );
 
   // Camera Operations
   m.def("open_camera", py::overload_cast<int>(&open_camera),
@@ -1740,26 +1797,31 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
       py::arg("wide_string_as_utf8"), "Convert wide string to UTF-8");
 
   // Logging API with GIL management for callbacks
-  m.def("set_log_callback", [](std::optional<py::function> callback) {
-      static py::function stored_log_callback;
+  m.def(
+      "set_log_callback",
+      [](std::optional<py::function> callback) {
+        static py::function stored_log_callback;
 
-      if (!callback) {
+        if (!callback) {
           // Clear callback
           stored_log_callback = py::function();
-          set_log_callback(nullptr);  // Assuming C++ accepts nullptr to clear the callback
-      } else {
+          set_log_callback(
+              nullptr); // Assuming C++ accepts nullptr to clear the callback
+        } else {
           // Set callback
           stored_log_callback = callback.value();
-          set_log_callback([](LogLevel level, const std::string& message) {
-              py::gil_scoped_acquire gil;
-              try {
-                  stored_log_callback(level, message);
-              } catch (const py::error_already_set&) {
-                  PyErr_Clear();
-              }
+          set_log_callback([](LogLevel level, const std::string &message) {
+            py::gil_scoped_acquire gil;
+            try {
+              stored_log_callback(level, message);
+            } catch (const py::error_already_set &) {
+              PyErr_Clear();
+            }
           });
-      }
-  }, py::arg("callback") = py::none(), "Set global log callback function (pass None to clear)");
+        }
+      },
+      py::arg("callback") = py::none(),
+      "Set global log callback function (pass None to clear)");
 
   m.def("set_log_level", &set_log_level, py::arg("level"),
         "Set minimum log level");
@@ -2377,15 +2439,15 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   // Define aliases via Python objects (avoids registration issues)
   // DeviceChangeCallback: Callable[[bool, str], None]
   py::list device_change_args = py::list();
-  device_change_args.append(builtins.attr("bool"));  // builtins.bool
-  device_change_args.append(builtins.attr("str"));   // builtins.str
-  m.attr("DeviceChangeCallback") = Callable[py::make_tuple(
-      device_change_args, py::none())];
-      
+  device_change_args.append(builtins.attr("bool")); // builtins.bool
+  device_change_args.append(builtins.attr("str"));  // builtins.str
+  m.attr("DeviceChangeCallback") =
+      Callable[py::make_tuple(device_change_args, py::none())];
+
   // LogCallback: Callable[[LogLevel, str], None]
   py::list log_callback_args = py::list();
-  log_callback_args.append(m.attr("LogLevel"));      // module LogLevel enum
-  log_callback_args.append(builtins.attr("str"));    // builtins.str
+  log_callback_args.append(m.attr("LogLevel"));   // module LogLevel enum
+  log_callback_args.append(builtins.attr("str")); // builtins.str
   m.attr("LogCallback") = Callable[py::make_tuple(
       log_callback_args, py::none())]; // Callable[[LogLevel, str], None]
 
@@ -2402,6 +2464,21 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
 
   // Exception registration
   py::register_exception<std::runtime_error>(m, "DuvcRuntimeError");
+
+// Safe shutdown cleanup via atexit (runs before Py_Finalize)
+static bool atexit_registered = false;
+if (!atexit_registered) {
+    atexit_registered = true;
+    try {
+        py::module_ atexit_mod = py::module_::import("atexit");
+        // CRITICAL: Wrap lambda with py::cpp_function for Python callable conversion
+        atexit_mod.attr("register")(py::cpp_function([]() {
+            callback_cleanup();  // Clear flag and callback while GIL held
+        }));
+    } catch (const py::error_already_set&) {
+        PyErr_Clear();  // Graceful fail if atexit unavailable
+    }
+}
 
   // Platform identification
 #ifdef _WIN32

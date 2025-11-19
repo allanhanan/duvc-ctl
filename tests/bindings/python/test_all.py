@@ -163,6 +163,7 @@ def run_test_suite(
     test_file: str,
     test_name: str,
     verbose: bool = False,
+    camera_index: int = 0,
     no_hardware: bool = False,
     plugins: Dict[str, bool] = None
 ) -> Dict:
@@ -190,6 +191,8 @@ def run_test_suite(
     else:
         cmd.append("-q")
     
+    cmd.append(f"--camera-index={camera_index}")
+
     # Add hardware marker
     if no_hardware:
         cmd.extend(["-m", "not hardware"])
@@ -294,6 +297,7 @@ def run_test_suite(
 def run_all_tests(
     test_files: Optional[List[str]] = None,
     verbose: bool = False,
+    camera_index: int = 0,
     no_hardware: bool = False,
     generate_html: bool = True,
     generate_json: bool = True,
@@ -324,6 +328,7 @@ def run_all_tests(
             test_file,
             test_name,
             verbose=verbose,
+            camera_index=camera_index,
             no_hardware=no_hardware,
             plugins=plugins
         )
@@ -468,6 +473,12 @@ def main():
         help='Skip hardware tests (run only @pytest.mark.hardware tests)'
     )
     parser.add_argument(
+        '--camera-index',
+        type=int,
+        default=0,
+        help='Camera index to use for testing (default: 0)'
+    )
+    parser.add_argument(
         '-v', '--verbose',
         action='store_true',
         help='Verbose output'
@@ -509,6 +520,7 @@ def main():
         results = run_all_tests(
             test_files=args.test_files,
             verbose=args.verbose,
+            camera_index=args.camera_index,
             no_hardware=args.no_hardware,
             generate_html=generate_html,
             generate_json=generate_json,
