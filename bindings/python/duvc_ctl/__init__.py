@@ -45,6 +45,32 @@ except ImportError as e:
         msg += "\n\nNote: duvc-ctl uses DirectShow APIs and requires Windows."
     raise ImportError(f"{msg}\nOriginal error: {e}") from e
 
+# Top-level aliases for Logitech extensions
+if sys.platform == "win32":
+    try:
+        # Alias the enum and functions from logitech submodule
+        LogitechProperty = _duvc_ctl.logitech.Property
+        get_logitech_property = _duvc_ctl.logitech.get_property
+        set_logitech_property = _duvc_ctl.logitech.set_property
+        supports_logitech_properties = _duvc_ctl.logitech.supports_properties
+        
+        # Export to __all__ for 'from duvc_ctl import *' and dir(duvc_ctl)
+        logitech_items = [
+            "LogitechProperty", 
+            "get_logitech_property", 
+            "set_logitech_property", 
+            "supports_logitech_properties"
+        ]
+        for item in logitech_items:
+            if item not in __all__:
+                __all__.append(item)
+    except (ImportError, AttributeError):
+        # Fallback if logitech submodule unavailable (e.g., build without extensions)
+        LogitechProperty = None
+        get_logitech_property = None
+        set_logitech_property = None
+        supports_logitech_properties = None
+
 # =============================================================================
 # EXCEPTION HIERARCHY
 # =============================================================================
