@@ -34,6 +34,21 @@ public:
    */
   explicit Camera(int device_index);
 
+  /**
+   * @brief Create camera handle by device path
+   * @param device_path Windows device instance path (case-insensitive)
+   * 
+   * Opens a camera using its unique Windows device path. This is the most
+   * precise method for multi-camera setups where firmware variations cause
+   * duplicate names or VID/PID combinations.
+   * 
+   * @throws std::runtime_error if device not found or invalid
+   * 
+   * @see find_device_by_path()
+   */
+  explicit Camera(const std::wstring &device_path);
+
+
   /// Destructor - automatically releases device connection
   ~Camera();
 
@@ -120,5 +135,17 @@ Result<Camera> open_camera(int device_index);
  * @return Result containing Camera or error
  */
 Result<Camera> open_camera(const Device &device);
+
+/**
+ * @brief Create camera from device path
+ * @param device_path Windows device instance path
+ * @return Result containing Camera or error
+ * 
+ * Most precise method for opening cameras when multiple devices share
+ * the same name or VID/PID due to firmware variations.
+ * 
+ * @see find_device_by_path()
+ */
+Result<Camera> open_camera(const std::wstring &device_path);
 
 } // namespace duvc

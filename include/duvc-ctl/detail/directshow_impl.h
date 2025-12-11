@@ -159,6 +159,16 @@ class DirectShowDeviceConnection;
 std::unique_ptr<IDeviceConnection>
 create_directshow_connection(const Device &device);
 
+// Forward declaration for Device (in parent namespace)
+namespace duvc { class Device; }
+
+/**
+ * @brief Open IBaseFilter from Device by enumerating and matching
+ * @param dev Device to find and bind
+ * @return com_ptr to IBaseFilter (refcount +1) or empty on failure
+ */
+[[nodiscard]] com_ptr<IBaseFilter> open_device_filter(const duvc::Device& dev); 
+
 } // namespace duvc::detail
 
 #endif // _WIN32

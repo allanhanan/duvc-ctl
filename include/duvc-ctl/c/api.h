@@ -328,6 +328,22 @@ duvc_result_t duvc_log_critical(const char *message);
 duvc_result_t duvc_list_devices(duvc_device_t ***devices, size_t *count);
 
 /**
+ * @brief Find device by unique Windows device path
+ * @param device_path_utf8 UTF-8 encoded Windows device path
+ * @param[out] device Pointer to receive found device handle
+ * @return DUVC_SUCCESS on success, DUVC_ERROR_DEVICE_NOT_FOUND if not found
+ * 
+ * Provides precise device selection when multiple cameras share names/VID/PID.
+ * The device path format is: USB\VID_XXXX&PID_XXXX&MI_XX#...#{GUID}
+ * 
+ * @note Device is managed by library - do not free manually
+ * @see duvc_list_devices() to obtain device paths
+ * @see duvc_get_device_path() to extract path from device
+ */
+duvc_result_t duvc_find_device_by_path(const char *device_path_utf8,
+                                       duvc_device_t **device);
+
+/**
  * @brief Free device list
  * @param devices Device array to free
  * @param count Number of devices in array

@@ -9,8 +9,7 @@
  * exceptions
  *
  * All types use py::module_local() for proper isolation when multiple modules
- * import duvc-ctl. Camera class uses PYBIND11_MAKE_OPAQUE due to move-only
- * semantics (non-copyable RAII).
+ * import duvc-ctl. 
  */
 
 #include <pybind11/buffer_info.h>
@@ -70,6 +69,25 @@
 
 // pybind11 namespace alias
 namespace py = pybind11;
+
+namespace duvc {
+
+    // Static container to hold strong references to all KsPropertySet instances
+    static std::vector<std::shared_ptr<KsPropertySet>> ks_property_set_instances;
+
+    // Cleanup function to be called at module exit (registered via atexit)
+    void cleanup_ks_property_sets() {
+        ks_property_set_instances.clear();  // Clear all references when Python exits
+    }
+
+    // Register cleanup function via atexit to ensure it's called when Python exits
+    void register_cleanup() {
+        std::cout << "Cleaning up KsPropertySets..." << std::endl;
+        std::atexit(cleanup_ks_property_sets);
+    }
+
+} // end namespace duvc
+
 using namespace duvc;
 
 // ========================================
@@ -460,6 +478,9 @@ Core features:
 
 For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based API.
   )pbdoc";
+
+  // Register the cleanup function to ensure it's called at Python exit for ksproperties
+  register_cleanup();
 
   // =========================================================================
   // Core Enums (All Values Must Be Exposed)
@@ -1162,6 +1183,14 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
            py::return_value_policy::take_ownership,
            "Create camera handle by device index")
       .def(
+        py::init([](const std::string &device_path_utf8) {
+          auto device_path = utf8_to_wstring(device_path_utf8);
+          return std::make_shared<Camera>(device_path);
+        }),
+        py::arg("device_path"),
+        py::return_value_policy::take_ownership,
+        "Create camera handle by unique Windows device path")
+      .def(
           "is_valid",
           [](const std::shared_ptr<Camera> &self) {
             return self->is_valid(); // Access via ->
@@ -1574,102 +1603,99 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   /// @brief Windows KsProperty interface wrapper for vendor extensions
   ///
   /// Pybind11 binding for KsPropertySet C++ class that accesses Windows
-  /// KsProperty interface. Converts flexible Python GUID inputs via
-  /// guid_from_pyobj(). Generic get/set methods return raw bytes; typed
-  /// specializations (get_property_int, get_property_bool, etc.) provide typed
-  /// accessors for common data types. Handles GUID parsing and type marshalling
-  /// between Python and KsProperty calls.
-
-  /// @brief Windows KsProperty interface wrapper for vendor extensions
-  ///
-  /// Pybind11 binding for KsPropertySet C++ class that accesses Windows
   /// KsProperty interface. Handles GUID parsing and type marshalling between
-  /// Python and KsProperty calls. Provides access to Windows KsProperty
-  /// interface for vendor-specific camera properties not exposed through
-  /// standard DirectShow interfaces.
+  /// Python and KsProperty calls. **Device must be opened before use.**
   py::class_<KsPropertySet>(m, "KsPropertySet", py::module_local(),
-                            "KsPropertySet wrapper for vendor properties")
-      .def(py::init<const Device &>(), py::arg("device"),
-           "Create KsPropertySet from device")
-      .def("is_valid", &KsPropertySet::is_valid,
-           "Check if property set is valid")
+                              "KsPropertySet wrapper for vendor properties")
+      .def(py::init([](Device device) {
+          // Force deep copy: ensures fresh_device has valid wstrings regardless of input
+          std::string name_utf8 = wstring_to_utf8(device.name);
+          std::string path_utf8 = wstring_to_utf8(device.path);
+          Device fresh_device(utf8_to_wstring(name_utf8), utf8_to_wstring(path_utf8));
+          
+          if (!fresh_device.is_valid()) {
+              throw std::invalid_argument(
+                  "Invalid device: Device must be opened via open_camera() first");
+          }
+          try {
+              return KsPropertySet(fresh_device);
+          } catch (const std::invalid_argument &) {
+              throw;
+          } catch (const std::runtime_error &) {
+              throw;
+          } catch (const std::exception &e) {
+              throw std::runtime_error(std::string("KsPropertySet error: ") + e.what());
+          }
+      }), py::arg("device"), py::keep_alive<1, 2>(), "Create KsPropertySet (requires opened device)")
+      .def("is_valid", &KsPropertySet::is_valid)
       .def(
           "query_support",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.query_support(guid, prop_id);
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.query_support(guid, prop_id);
           },
-          py::arg("property_set"), py::arg("property_id"),
-          "Query property support capabilities")
+          py::arg("property_set"), py::arg("property_id"))
       .def(
           "get_property",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.get_property(guid, prop_id);
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.get_property(guid, prop_id);
           },
-          py::arg("property_set"), py::arg("property_id"),
-          "Get property data as raw bytes")
+          py::arg("property_set"), py::arg("property_id"))
       .def(
           "set_property",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id,
-             const std::vector<uint8_t> &data) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.set_property(guid, prop_id, data);
+            const std::vector<uint8_t> &data) {
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.set_property(guid, prop_id, data);
           },
-          py::arg("property_set"), py::arg("property_id"), py::arg("data"),
-          "Set property data from raw bytes")
-      // Template function specializations for common types
+          py::arg("property_set"), py::arg("property_id"), py::arg("data"))
       .def(
           "get_property_int",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.get_property_typed<int>(guid, prop_id);
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.get_property_typed<int>(guid, prop_id);
           },
-          py::arg("property_set"), py::arg("property_id"),
-          "Get property as integer")
+          py::arg("property_set"), py::arg("property_id"))
       .def(
           "set_property_int",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id,
-             int value) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.set_property_typed<int>(guid, prop_id, value);
+            int value) {
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.set_property_typed<int>(guid, prop_id, value);
           },
-          py::arg("property_set"), py::arg("property_id"), py::arg("value"),
-          "Set property from integer")
+          py::arg("property_set"), py::arg("property_id"), py::arg("value"))
       .def(
           "get_property_uint32",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.get_property_typed<uint32_t>(guid, prop_id);
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.get_property_typed<uint32_t>(guid, prop_id);
           },
-          py::arg("property_set"), py::arg("property_id"),
-          "Get property as uint32")
+          py::arg("property_set"), py::arg("property_id"))
       .def(
           "set_property_uint32",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id,
-             uint32_t value) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.set_property_typed<uint32_t>(guid, prop_id, value);
+            uint32_t value) {
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.set_property_typed<uint32_t>(guid, prop_id, value);
           },
-          py::arg("property_set"), py::arg("property_id"), py::arg("value"),
-          "Set property from uint32")
+          py::arg("property_set"), py::arg("property_id"), py::arg("value"))
       .def(
           "get_property_bool",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.get_property_typed<bool>(guid, prop_id);
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.get_property_typed<bool>(guid, prop_id);
           },
-          py::arg("property_set"), py::arg("property_id"),
-          "Get property as boolean")
+          py::arg("property_set"), py::arg("property_id"))
       .def(
           "set_property_bool",
           [](KsPropertySet &ks, const py::object &guid_obj, uint32_t prop_id,
-             bool value) {
-            GUID guid = guid_from_pyobj(guid_obj);
-            return ks.set_property_typed<bool>(guid, prop_id, value);
+            bool value) {
+              GUID guid = guid_from_pyobj(guid_obj);
+              return ks.set_property_typed<bool>(guid, prop_id, value);
           },
-          py::arg("property_set"), py::arg("property_id"), py::arg("value"),
-          "Set property from boolean");
+          py::arg("property_set"), py::arg("property_id"), py::arg("value"));
+
 #endif
 
   // =========================================================================
@@ -1677,27 +1703,67 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
   // =========================================================================
 
   // Device Management Functions
-  m.def(
-      "list_devices",
-      []() {
+m.def(
+    "list_devices",
+    []() {
         // Get devices from C++ function
         auto devices = list_devices();
 
-        // Force explicit copy of each Device to ensure strings are deep-copied
-        // This prevents pybind11 from creating shallow copies or moving strings
+        // Force explicit deep copy of each Device to ensure wstrings are owned
+        // This prevents pybind11 from creating shallow copies or dangling pointers
         std::vector<Device> result;
         result.reserve(devices.size());
 
         for (const auto &dev : devices) {
-          // Explicitly call copy constructor
-          result.emplace_back(dev);
+            // UTF-8 round-trip: Forces deep copy of wstrings (name/path)
+            std::string name_utf8 = wstring_to_utf8(dev.name);
+            std::string path_utf8 = wstring_to_utf8(dev.path);
+            Device fresh_dev(utf8_to_wstring(name_utf8), utf8_to_wstring(path_utf8));
+            result.emplace_back(std::move(fresh_dev));  // Move the fresh, owned Device
         }
         return result;
-      },
-      "Enumerate all available video devices");
+    },
+    "Enumerate all available video devices");
 
   m.def("is_device_connected", &is_device_connected, py::arg("device"),
         "Check if a device is currently connected and accessible");
+
+  // Device lookup by path
+  m.def(
+      "find_device_by_path",
+      [](const std::string &device_path_utf8) {
+        // Convert UTF-8 path to wide string for Windows API
+        auto device_path = utf8_to_wstring(device_path_utf8);
+        return find_device_by_path(device_path);
+      },
+      py::arg("device_path"),
+      R"pbdoc(
+        Find device by unique Windows device path.
+
+        Performs an exact match lookup to find a camera by its Windows device instance path.
+        This is the most precise way to select a camera when multiple devices have identical
+        names or VID/PID combinations.
+
+        Args:
+            device_path (str): Windows device path to search for (e.g., 
+                'USB\\VID_0C45&PID_6366&MI_00#7&183af011&0&0000#{GUID}')
+
+        Returns:
+            Device: The matching device object with name and path populated
+
+        Raises:
+            RuntimeError: If device enumeration fails or device path not found
+
+        Example:
+            >>> devices = duvc.list_devices()
+            >>> if devices:
+            ...     target = duvc.find_device_by_path(devices[0].path)
+            ...     camera = duvc.Camera(target)
+            
+        Note:
+            Device paths are case-insensitive and can be obtained from the Device.path
+            property returned by list_devices().
+              )pbdoc");
 
   // Device change callbacks with GIL management
   m.def(
@@ -1747,7 +1813,14 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
         py::arg("device_index"), "Create camera handle from device index");
   m.def("open_camera", py::overload_cast<const Device &>(&open_camera),
         py::arg("device"), "Create camera handle from device object");
-
+  m.def(
+    "open_camera",
+    [](const std::string &device_path_utf8) {
+      auto device_path = utf8_to_wstring(device_path_utf8);
+      return open_camera(device_path);
+    },
+    py::arg("device_path"),
+    "Open camera by Windows device path");
   // Capability Operations
   m.def("get_device_capabilities",
         py::overload_cast<const Device &>(&get_device_capabilities),

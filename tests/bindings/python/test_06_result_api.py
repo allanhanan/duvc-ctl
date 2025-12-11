@@ -299,6 +299,27 @@ class TestOpenCameraWithHardware:
         
         assert isinstance(result, CameraResult)
         assert result.is_ok()
+
+    def test_opencamera_with_path_success(self, test_device):
+        """Open camera using Device.path (string)"""
+        if test_device is None:
+            pytest.skip("No test device available")
+        result = open_camera(test_device.path)
+        assert hasattr(result, "is_ok")
+        assert result.is_ok()
+        cam = result.value()
+        assert isinstance(cam, Camera)
+        # Path persistence
+        assert cam.device.path == test_device.path
+
+    def test_opencamera_with_invalid_path_error(self):
+        """Opening camera with invalid path returns error result"""
+        result = open_camera("USB\\VID_0000&PID_0000\\NON_EXISTENT")
+        assert result.is_error()
+        error = result.error()
+        code = error.code()
+        assert code in (ErrorCode.DeviceNotFound, ErrorCode.SystemError)
+
     
     def test_open_camera_value_returns_camera(self, test_device):
         """Test CameraResult.value() returns Camera object."""

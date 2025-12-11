@@ -83,6 +83,18 @@ def camera_controller(test_device) -> Optional[CameraController]:
     except Exception as e:
         pytest.skip(f"Could not create CameraController: {e}")
 
+@pytest.fixture(scope="session")
+def cameracontroller_by_path(test_device):
+    """CameraController connected via device_path keyword."""
+    if test_device is None:
+        pytest.skip("No test device available")
+    try:
+        controller = CameraController(device_path=test_device.path)
+        yield controller
+        controller.close()
+    except Exception as e:
+        pytest.skip(f"Could not create CameraController by path: {e}")
+
 
 # ============================================================================
 # WITHOUT CAMERA TESTS - Interface verification
@@ -387,7 +399,7 @@ class TestListPropertiesMethod:
 
 
 @pytest.mark.hardware
-class TestDeviceNameProperty:
+class Test_DeviceNameProperty:
     """Test device_name property."""
     
     def test_device_name_returns_string(self, camera_controller):
@@ -412,7 +424,7 @@ class TestDeviceNameProperty:
 
 
 @pytest.mark.hardware
-class TestDevicePathProperty:
+class Test_DevicePathProperty:
     """Test device_path property."""
     
     def test_device_path_returns_string(self, camera_controller):
@@ -458,6 +470,30 @@ class TestIsConnectedProperty:
         
         # Camera should be connected if we got this far
         assert connected == True
+
+@pytest.mark.hardware
+class TestCameraControllerConstructors:
+    def test_init_with_device_path(self, test_device):
+        if test_device is None:
+            pytest.skip("No test device")
+        cam = CameraController(device_path=test_device.path)
+        assert cam.is_connected
+        assert cam.device_path == test_device.path
+        assert cam.device_name == test_device.name
+        cam.close()
+
+    def test_init_with_device_object(self, test_device):
+        if test_device is None:
+            pytest.skip("No test device")
+        cam = CameraController(device=test_device)
+        assert cam.is_connected
+        assert cam.device_path == test_device.path
+        assert cam.device_name == test_device.name
+        cam.close()
+
+    def test_init_with_empty_path_raises(self):
+        with pytest.raises(ValueError):
+            CameraController(device_path="")
 
 
 @pytest.mark.hardware

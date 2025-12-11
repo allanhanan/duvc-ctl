@@ -787,7 +787,7 @@ __all__ = [
 
     # Convenience utility functions
     "devices",
-    "find_device_by_name", "find_devices_by_name", "get_device_info",
+    "find_device_by_name", "find_devices_by_name", "find_device_by_path", "get_device_info",
     "reset_device_to_defaults", "get_supported_properties", 
     "set_property_safe", "get_property_safe",
 

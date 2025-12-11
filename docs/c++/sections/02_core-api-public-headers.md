@@ -66,6 +66,93 @@ if (duvc::is_device_connected(saved_camera)) {
 
 ***
 
+#### find_device_by_path() - lookup by Windows device path
+
+Find device by Windows device path (case-insensitive matching).
+
+```cpp
+Device find_device_by_path(const std::wstring& path);
+```
+
+Searches the list of connected devices for one matching the given Windows device path. Path comparison is case-insensitive using `wcsicmp`. This function re-enumerates devices using DirectShow to ensure the latest list is queried.
+
+**Parameters:**
+- `path` (const std::wstring&) – Windows device path (e.g., `L"\\?\USB#VID_046D&PID_082D#..."`). Can be in any case.
+
+**Returns:**
+- Device object if found with the matching path
+
+**Throws:**
+- `std::runtime_error` – If DirectShow enumeration fails
+- `std::runtime_error` – If no matching device found (path not in any connected camera)
+
+**Implementation notes:**
+- Uses case-insensitive string comparison (`wcsicmp`) for flexible path matching
+- Re-enumerates devices via `list_devices()` to reflect current hardware state
+- If path not found after enumeration, throws exception with descriptive error message
+- Useful for recovering a device reference when saved path is available
+
+**Usage patterns:**
+
+```cpp
+// Save device path on first run
+auto devices = duvc::list_devices();
+std::wstring saved_path = devices[0].path;
+
+// Later session - reconnect using saved path
+try {
+    duvc::Device device = duvc::find_device_by_path(saved_path);
+    duvc::Camera cam(device);
+    // Use camera...
+} catch (const std::runtime_error& e) {
+    std::cerr << "Device not found at saved path: " << e.what() << std::endl;
+}
+```
+
+**Multi-camera scenario:**
+
+```cpp
+// Multiple cameras with same name - use path for disambiguation
+std::vector<duvc::Device> devices = duvc::list_devices();
+std::map<std::wstring, std::wstring> device_map;  // path -> name
+
+for (const auto& dev : devices) {
+    device_map[dev.path] = dev.name;
+}
+
+// Reconnect all stored devices
+for (const auto& [path, name] : device_map) {
+    try {
+        auto device = duvc::find_device_by_path(path);
+        auto cam = duvc::Camera(device);
+        std::wcout << L"Connected: " << cam.get_device().name << std::endl;
+    } catch (...) {
+        std::wcout << L"Device " << name << L" not found" << std::endl;
+    }
+}
+```
+
+**Error handling:**
+
+```cpp
+// Graceful fallback to enumeration if saved path unavailable
+std::wstring saved_path = get_saved_camera_path();
+
+duvc::Device device;
+try {
+    device = duvc::find_device_by_path(saved_path);
+} catch (const std::runtime_error&) {
+    // Camera not at saved path, use first available
+    auto devices = duvc::list_devices();
+    if (devices.empty()) {
+        throw std::runtime_error("No cameras available");
+    }
+    device = devices[0];
+}
+
+duvc::Camera cam(device);
+```
+
 #### Hot-plug detection
 
 **Callback signature:**
@@ -312,6 +399,73 @@ if (cam_result.is_ok()) {
 
 
 ***
+
+#### open_camera() with device path – factory function
+
+```cpp
+ResultCamera open_camera(const std::wstring& path);
+```
+
+Opens a camera by Windows device path. Convenience function combining `find_device_by_path()` and camera construction with explicit error handling.
+
+**Parameters:**
+- `path` (const std::wstring&) – Device path (case-insensitive)
+
+**Returns:**
+- `ResultCamera` – On success, contains valid Camera object; on error, contains error details
+
+**Error codes:**
+- `ErrorCode::DeviceNotFound` – Device not found at given path
+- `ErrorCode::DeviceBusy` – Device already in use by another application
+- `ErrorCode::SystemError` – DirectShow or platform error
+
+**Usage:**
+
+```cpp
+// Result-based error handling
+auto cam_result = duvc::open_camera(L"\\?\USB#VID_046D&PID_082D...");
+
+if (cam_result.is_ok()) {
+    auto cam = std::move(cam_result.value());
+    auto result = cam.get(duvc::VidProp::Brightness);
+    if (result.is_ok()) {
+        std::cout << "Brightness: " << result.value().value << std::endl;
+    }
+} else {
+    std::cerr << "Failed to open camera: " << cam_result.error().description() << std::endl;
+}
+```
+
+**Persistent reconnection pattern:**
+
+```cpp
+// Save on first run
+std::wstring camera_path = devices[0].path;
+config.set("camera_path", camera_path);
+
+// Reconnect on next run
+std::wstring saved_path = config.get("camera_path");
+auto cam_result = duvc::open_camera(saved_path);
+
+if (cam_result.is_ok()) {
+    auto cam = std::move(cam_result.value());
+    // Use camera
+} else {
+    // Fallback to first available camera
+    auto fallback_result = duvc::open_camera(0);  // By index
+}
+```
+
+**Implementation:**
+- Internally calls `find_device_by_path()` to locate device
+- Constructs Camera and performs basic validity checks
+- Returns Result type for explicit error handling instead of exceptions
+
+**Advantages over exception-based approach:**
+- No exceptions thrown – returns error codes in Result
+- Explicit error checking required – prevents silent failures
+- Error context included – full error description available
+- Chainable for error propagation
 
 #### Result type pattern
 

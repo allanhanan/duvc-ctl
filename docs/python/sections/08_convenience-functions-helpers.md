@@ -136,6 +136,79 @@ if not logitechs:
 
 ***
 
+#### find_device_by_path() - lookup by Windows device path
+
+Find device by Windows device path. Case-insensitive matching. Useful for reliably reconnecting to a specific camera across application restarts.
+
+```python
+def find_device_by_path(path: str) -> Device:
+    """
+    Find device by Windows device path.
+    
+    Args:
+        path: Windows device path (case-insensitive, e.g., "\\?\\USB#VID_046D&PID_082D...")
+        
+    Returns:
+        Device if found
+        
+    Raises:
+        Exception: If path not found or invalid (generalized exception for broad error handling)
+    """
+```
+
+**Usage**:
+
+```python
+import duvc_ctl as duvc
+
+# Save device path on first run
+devices = duvc.list_devices()
+if devices:
+    saved_path = devices[0].path
+    print(f"Device path: {saved_path}")
+
+# Later session - reconnect using saved path
+try:
+    device = duvc.find_device_by_path(saved_path)
+    print(f"Reconnected to: {device.name}")
+except Exception as e:
+    print(f"Device not found at path: {e}")
+
+# Case-insensitive - these are equivalent
+device1 = duvc.find_device_by_path(saved_path)
+device2 = duvc.find_device_by_path(saved_path.upper())
+device3 = duvc.find_device_by_path(saved_path.lower())
+```
+
+**Multi-camera scenario** - maintain stable device references:
+
+```python
+import duvc_ctl as duvc
+import json
+
+# Discovery and save
+camera_map = {}
+for dev in duvc.list_devices():
+    camera_map[dev.name] = dev.path
+
+# Save to file for next run
+with open("camera_paths.json", "w") as f:
+    json.dump(camera_map, f)
+
+# Later - reconnect all
+loaded_paths = json.load(open("camera_paths.json"))
+for name, path in loaded_paths.items():
+    try:
+        device = duvc.find_device_by_path(path)
+        camera = duvc.CameraController(device=device)
+        print(f"✅ Connected: {camera.device_name}")
+    except Exception:
+        print(f"❌ {name} not found at {path}")
+```
+
+**Path format**: Windows device paths follow the pattern `\\?\\USB#VID_XXXX&PID_XXXX#SERIAL...`. These are stable identifiers that persist across sessions.
+
+
 #### iter_devices() - lazy device iteration
 
 Generator yielding devices one at a time. Memory-efficient for large device counts.

@@ -553,6 +553,40 @@ duvc_result_t duvc_list_devices(duvc_device_t ***devices, size_t *count) {
   }
 }
 
+duvc_result_t duvc_find_device_by_path(const char *device_path_utf8,
+                                       duvc_device_t **device) {
+  if (!device_path_utf8 || !device)
+    return DUVC_ERROR_INVALID_ARGUMENT;
+  if (!g_initialized.load()) {
+    g_last_error_details = "Library not initialized";
+    return DUVC_ERROR_SYSTEM_ERROR;
+  }
+
+  try {
+    // Convert UTF-8 to wide string
+    std::wstring device_path = duvc::to_wstring(std::string(device_path_utf8));
+    
+    // Find device by path
+    duvc::Device found_device = duvc::find_device_by_path(device_path);
+    
+    // Store device and return pointer
+    std::lock_guard<std::mutex> lock(g_device_storage_mutex);
+    auto stored_device = std::make_unique<duvc::Device>(std::move(found_device));
+    *device = reinterpret_cast<duvc_device_t *>(stored_device.get());
+    g_device_storage.push_back(std::move(stored_device));
+    
+    return DUVC_SUCCESS;
+    
+  } catch (const std::exception &e) {
+    g_last_error_details =
+        std::string("Failed to find device by path: ") + e.what();
+    return DUVC_ERROR_DEVICE_NOT_FOUND;
+  } catch (...) {
+    g_last_error_details = "Unknown error while finding device by path";
+    return DUVC_ERROR_SYSTEM_ERROR;
+  }
+}
+
 void duvc_free_device_list(duvc_device_t **devices, size_t count) {
   (void)count; // Unused parameter
 

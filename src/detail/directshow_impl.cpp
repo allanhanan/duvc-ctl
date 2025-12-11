@@ -6,6 +6,8 @@
 #ifdef _WIN32
 
 #include <duvc-ctl/core/result.h>
+#include <duvc-ctl/core/types.h>
+#include <duvc-ctl/platform/windows/directshow.h>
 #include <duvc-ctl/detail/directshow_impl.h>
 #include <duvc-ctl/platform/interface.h>
 #include <duvc-ctl/utils/error_decoder.h>
@@ -104,7 +106,7 @@ long DirectShowMapper::map_camera_mode_to_flags(CamMode mode,
 }
 
 CamMode DirectShowMapper::map_flags_to_camera_mode(long flags,
-                                                   bool is_camera_control) {
+                                                  bool is_camera_control) {
   (void)is_camera_control; // Same logic for both
   return (flags & 0x0001L) ? CamMode::Auto : CamMode::Manual;
 }
@@ -115,7 +117,7 @@ DirectShowEnumerator::DirectShowEnumerator() : com_() {
                                 CLSCTX_INPROC_SERVER, IID_ICreateDevEnum,
                                 reinterpret_cast<void **>(dev_enum_.put()));
   if (FAILED(hr)) {
-    DUVC_LOG_ERROR("Failed to create DirectShow device enumerator");
+    ::duvc::log_error("Failed to create DirectShow device enumerator");
     throw std::runtime_error("Failed to create DirectShow device enumerator");
   }
 }
@@ -139,27 +141,27 @@ std::vector<Device> DirectShowEnumerator::enumerate_devices() {
   }
 
   if (FAILED(hr)) {
-    DUVC_LOG_ERROR("Failed to create video device enumerator");
+    ::duvc::log_error("Failed to create video device enumerator");
     return devices;
   }
 
   ULONG fetched = 0;
   com_ptr<IMoniker> moniker;
   while (enum_moniker->Next(1, moniker.put(), &fetched) == S_OK &&
-         fetched > 0) {
+        fetched > 0) {
     try {
       Device device = read_device_info(moniker.get());
       if (!device.name.empty() || !device.path.empty()) {
         devices.push_back(std::move(device));
       }
     } catch (const std::exception &e) {
-      DUVC_LOG_WARNING("Failed to read device info: " + std::string(e.what()));
+      ::duvc::log_warning("Failed to read device info: " + std::string(e.what()));
     }
 
     moniker.reset();
   }
 
-  DUVC_LOG_INFO("Enumerated " + std::to_string(devices.size()) +
+  ::duvc::log_info("Enumerated " + std::to_string(devices.size()) +
                 " video devices");
   return devices;
 }
@@ -189,7 +191,7 @@ Device DirectShowEnumerator::read_device_info(IMoniker *moniker) {
   com_ptr<IPropertyBag> prop_bag;
   HRESULT hr =
       moniker->BindToStorage(nullptr, nullptr, IID_IPropertyBag,
-                             reinterpret_cast<void **>(prop_bag.put()));
+                            reinterpret_cast<void **>(prop_bag.put()));
 
   if (SUCCEEDED(hr) && prop_bag) {
     // Read friendly name
@@ -290,7 +292,7 @@ com_ptr<IBaseFilter> DirectShowFilter::create_filter(const Device &device) {
   ULONG fetched = 0;
   com_ptr<IMoniker> moniker;
   while (enum_moniker->Next(1, moniker.put(), &fetched) == S_OK &&
-         fetched > 0) {
+        fetched > 0) {
     Device current_device = enumerator.read_device_info(moniker.get());
 
     // Check if this is the device we're looking for
@@ -305,7 +307,7 @@ com_ptr<IBaseFilter> DirectShowFilter::create_filter(const Device &device) {
       // Found the device - bind to filter
       com_ptr<IBaseFilter> filter;
       hr = moniker->BindToObject(nullptr, nullptr, IID_IBaseFilter,
-                                 reinterpret_cast<void **>(filter.put()));
+                                reinterpret_cast<void **>(filter.put()));
 
       if (SUCCEEDED(hr)) {
         return filter;
@@ -356,17 +358,17 @@ public:
   }
 
   Result<void> set_camera_property(CamProp prop,
-                                   const PropSetting &setting) override {
+                                  const PropSetting &setting) override {
     auto cam_ctrl = filter_.get_camera_control();
     if (!cam_ctrl) {
       return Err<void>(ErrorCode::PropertyNotSupported,
-                       "Camera control not available");
+                      "Camera control not available");
     }
 
     long prop_id = DirectShowMapper::map_camera_property(prop);
     if (prop_id < 0) {
       return Err<void>(ErrorCode::PropertyNotSupported,
-                       "Property not supported");
+                      "Property not supported");
     }
 
     long flags = DirectShowMapper::map_camera_mode_to_flags(setting.mode, true);
@@ -446,13 +448,13 @@ public:
     auto vid_proc = filter_.get_video_proc_amp();
     if (!vid_proc) {
       return Err<void>(ErrorCode::PropertyNotSupported,
-                       "Video processing not available");
+                      "Video processing not available");
     }
 
     long prop_id = DirectShowMapper::map_video_property(prop);
     if (prop_id < 0) {
       return Err<void>(ErrorCode::PropertyNotSupported,
-                       "Property not supported");
+                      "Property not supported");
     }
 
     long flags =
@@ -518,15 +520,63 @@ create_directshow_connection(const Device &device) {
 // -----------------------------------------------------------------------------
 // Public helper needed by vendor utilities
 // -----------------------------------------------------------------------------
-namespace duvc {
-
-detail::com_ptr<IBaseFilter> open_device_filter(const Device &dev) {
-  detail::DirectShowFilter f(dev);
-  if (f.is_valid())
-    return f.extract(); //  <-- move, no copy
-  return {};
+namespace duvc::detail {
+[[nodiscard]] com_ptr<IBaseFilter> open_device_filter(const Device& dev) {
+    if (!dev.is_valid()) {
+        ::duvc::log_error("Invalid device provided to open_device_filter");
+        return {};
+    }
+    
+    com_apartment com;
+    DirectShowEnumerator enumerator;
+    com_ptr<IEnumMoniker> enum_moniker;
+    
+    HRESULT hr = enumerator.dev_enum_->CreateClassEnumerator(
+        CLSID_VideoInputDeviceCategory, enum_moniker.put(), 0);
+    if (FAILED(hr) || !enum_moniker) {
+        ::duvc::log_error("Failed to create video device enumerator");
+        return {};
+    }
+    
+    ULONG fetched = 0;
+    com_ptr<IMoniker> moniker;
+    while (enum_moniker->Next(1, moniker.put(), &fetched) == S_OK && fetched > 0) {
+        Device current_device = enumerator.read_device_info(moniker.get());
+        
+        // Match by path first (more reliable), then by name
+        bool match = false;
+        if (!dev.path.empty() && !current_device.path.empty()) {
+            match = (_wcsicmp(dev.path.c_str(), current_device.path.c_str()) == 0);
+        } else if (!dev.name.empty() && !current_device.name.empty()) {
+            match = (_wcsicmp(dev.name.c_str(), current_device.name.c_str()) == 0);
+        }
+        
+        if (match) {
+            // Found the device - bind to filter
+            com_ptr<IBaseFilter> filter;
+            hr = moniker->BindToObject(nullptr, nullptr, IID_IBaseFilter,
+                                      reinterpret_cast<void**>(filter.put()));
+            if (SUCCEEDED(hr) && filter) {
+                ::duvc::log_debug("Successfully bound IBaseFilter for device");
+                return filter;
+            } else {
+                ::duvc::log_error("BindToObject failed for matching device");
+            }
+            break;
+        }
+        moniker.reset();
+    }
+    
+    ::duvc::log_error("Matching device not found in enumeration");
+    return {};
 }
+} // namespace duvc::detail
 
+namespace duvc {
+detail::com_ptr<IBaseFilter> open_device_filter(const Device &dev) {
+    return detail::open_device_filter(dev);
+}
 } // namespace duvc
+
 
 #endif // _WIN32

@@ -35,6 +35,7 @@ from ._duvc_ctl import (
     # Core functions that will stay
     list_devices, 
     open_camera,
+    find_device_by_path,
     
     # Core types 
     VidProp, CamProp, CamMode, PropSetting,
@@ -119,11 +120,12 @@ class CameraController:
     }
     
     
-    def __init__(self, device: Optional[Device] = None, device_index: Optional[int] = None, device_name: Optional[str] = None):
+    def __init__(self, device: Optional[Device] = None, device_path: Optional[str] = None, device_index: Optional[int] = None, device_name: Optional[str] = None):
         """Connect to a camera device.
         
         Args:
             device_index: Specific device by index (default: 0, first available)
+            device_path: str Windows device path (unique identifier)
             device_name: Device by name substring match, case-insensitive
             device: Device object from list_devices()
             
@@ -136,7 +138,7 @@ class CameraController:
         self._core_camera: Optional[CoreCamera] = None
         self._device: Optional[Device] = None
         self._is_closed = False
-        self._connect(device, device_index, device_name)
+        self._connect(device, device_path, device_index, device_name)
 
         # Property range constants
         BRIGHTNESS_MIN = 0
@@ -168,10 +170,10 @@ class CameraController:
         ZOOM_DEFAULT = 100  # No zoom
         
         
-    def _connect(self, device: Optional[Device], device_index: Optional[int], device_name: Optional[str]) -> None:
+    def _connect(self, device: Optional[Device], device_path: Optional[str], device_index: Optional[int], device_name: Optional[str]) -> None:
         """Establish connection to camera using core C++ APIs.
         
-        Priority: device > device_index > device_name > first available
+        Priority: device > device_path > device_index > device_name > first available
         """
         # Priority 1: Direct Device object provided
         if device is not None:
@@ -192,8 +194,13 @@ class CameraController:
                 )
             
             self._device = device
-        
-        # Priority 2-4: Need to enumerate devices
+
+        # Priority 2: Device path specified
+        elif device_path:
+            target_device = find_device_by_path(device_path)
+            self._device = target_device       
+
+        # Priority 3-4: Need to enumerate devices
         else:
             # Use ONLY the core C++ list_devices function
             devices_list = list_devices()
@@ -204,7 +211,7 @@ class CameraController:
                     "• Camera drivers are installed\n"
                 )
             
-            # Priority 2: Device index specified
+            # Priority 3: Device index specified
             if device_index is not None:
                 if device_index >= len(devices_list):
                     available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
@@ -214,7 +221,7 @@ class CameraController:
                     )
                 self._device = devices_list[device_index]
             
-            # Priority 3: Device name pattern specified
+            # Priority 4: Device name pattern specified
             elif device_name is not None:
                 # Implement our own device finding by name substring
                 matching_devices = []
@@ -230,7 +237,7 @@ class CameraController:
                     )
                 self._device = matching_devices[0]
             
-            # Priority 4: Default to first available
+            # Priority 5: No device specified
             else:
                 available = [f"{i}: {d.name}" for i, d in enumerate(devices_list)]
                 raise ValueError(

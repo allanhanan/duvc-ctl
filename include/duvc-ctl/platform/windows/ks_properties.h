@@ -1,102 +1,109 @@
-#pragma once
-
-/**
- * @file ks_properties.h
- * @brief IKsPropertySet wrapper for vendor properties
- */
-
-#ifdef _WIN32
-
-#include <duvc-ctl/core/result.h>
-#include <duvc-ctl/core/types.h>
-#include <duvc-ctl/detail/com_helpers.h>
-#include <vector>
-#include <windows.h>
-
-struct IKsPropertySet;
-
-namespace duvc {
-
-/**
- * @brief RAII wrapper for IKsPropertySet interface
- */
-class KsPropertySet {
-public:
-  /**
-   * @brief Create KsPropertySet from device
-   * @param device Device to get property set from
-   */
-  explicit KsPropertySet(const Device &device);
-
-  /// Destructor
-  ~KsPropertySet();
-
-  // Non-copyable but movable
-  KsPropertySet(const KsPropertySet &) = delete;
-  KsPropertySet &operator=(const KsPropertySet &) = delete;
-  KsPropertySet(KsPropertySet &&) noexcept;
-  KsPropertySet &operator=(KsPropertySet &&) noexcept;
+  #pragma once
 
   /**
-   * @brief Check if property set is valid
-   * @return true if property set can be used
+   * @file ks_properties.h
+   * @brief IKsPropertySet wrapper for vendor properties
    */
-  bool is_valid() const;
+
+  #ifdef _WIN32
+
+  #include <dshow.h>
+  #include <ks.h>
+  #include <ksproxy.h>
+  #include <duvc-ctl/core/result.h>
+  #include <duvc-ctl/core/types.h>
+  #include <duvc-ctl/detail/com_helpers.h>
+  #include <vector>
+  #include <windows.h>
+
+  struct IKsPropertySet;
+
+  namespace duvc {
 
   /**
-   * @brief Query property support
-   * @param property_set Property set GUID
-   * @param property_id Property ID
-   * @return Result containing support flags or error
+   * @brief RAII wrapper for IKsPropertySet interface
    */
-  Result<uint32_t> query_support(const GUID &property_set,
-                                 uint32_t property_id);
+  class KsPropertySet {
+  public:
+    /**
+     * @brief Create KsPropertySet from device
+     * @param device Device to get property set from
+     */
+    explicit KsPropertySet(const Device &device);
 
-  /**
-   * @brief Get property data
-   * @param property_set Property set GUID
-   * @param property_id Property ID
-   * @return Result containing property data or error
-   */
-  Result<std::vector<uint8_t>> get_property(const GUID &property_set,
-                                            uint32_t property_id);
+    /// Destructor
+    ~KsPropertySet();
 
-  /**
-   * @brief Set property data
-   * @param property_set Property set GUID
-   * @param property_id Property ID
-   * @param data Property data to set
-   * @return Result indicating success or error
-   */
-  Result<void> set_property(const GUID &property_set, uint32_t property_id,
-                            const std::vector<uint8_t> &data);
+    // Non-copyable but movable
+    KsPropertySet(const KsPropertySet &) = delete;
+    KsPropertySet &operator=(const KsPropertySet &) = delete;
+    KsPropertySet(KsPropertySet &&) noexcept;
+    KsPropertySet &operator=(KsPropertySet &&) noexcept;
 
-  /**
-   * @brief Get typed property value
-   * @tparam T Property value type
-   * @param property_set Property set GUID
-   * @param property_id Property ID
-   * @return Result containing typed value or error
-   */
-  template <typename T>
-  Result<T> get_property_typed(const GUID &property_set, uint32_t property_id);
+    /**
+     * @brief Check if property set is valid
+     * @return true if property set can be used
+     */
+    bool is_valid() const;
 
-  /**
-   * @brief Set typed property value
-   * @tparam T Property value type
-   * @param property_set Property set GUID
-   * @param property_id Property ID
-   * @param value Property value to set
-   * @return Result indicating success or error
-   */
-  template <typename T>
-  Result<void> set_property_typed(const GUID &property_set,
-                                  uint32_t property_id, const T &value);
+    /**
+     * @brief Query property support
+     * @param property_set Property set GUID
+     * @param property_id Property ID
+     * @return Result containing support flags or error
+     */
+    Result<uint32_t> query_support(const GUID &property_set,
+                                  uint32_t property_id);
 
-private:
-  detail::com_ptr<IKsPropertySet> property_set_;
-};
+    /**
+     * @brief Get property data
+     * @param property_set Property set GUID
+     * @param property_id Property ID
+     * @return Result containing property data or error
+     */
+    Result<std::vector<uint8_t>> get_property(const GUID &property_set,
+                                              uint32_t property_id);
 
-} // namespace duvc
+    /**
+     * @brief Set property data
+     * @param property_set Property set GUID
+     * @param property_id Property ID
+     * @param data Property data to set
+     * @return Result indicating success or error
+     */
+    Result<void> set_property(const GUID &property_set, uint32_t property_id,
+                              const std::vector<uint8_t> &data);
 
-#endif // _WIN32
+    /**
+     * @brief Get typed property value
+     * @tparam T Property value type
+     * @param property_set Property set GUID
+     * @param property_id Property ID
+     * @return Result containing typed value or error
+     */
+    template <typename T>
+    Result<T> get_property_typed(const GUID &property_set, uint32_t property_id);
+
+    /**
+     * @brief Set typed property value
+     * @tparam T Property value type
+     * @param property_set Property set GUID
+     * @param property_id Property ID
+     * @param value Property value to set
+     * @return Result indicating success or error
+     */
+    template <typename T>
+    Result<void> set_property_typed(const GUID &property_set,
+                                    uint32_t property_id, const T &value);
+
+  private:
+    Device device_;
+    detail::com_ptr<IBaseFilter> basefilter_;  // keeps DLL loaded
+    // Helper to get property set interface on-demand
+    detail::com_ptr<IKsPropertySet> get_property_set() const;
+    HMODULE mfksproxy_dll_ = nullptr;   
+  };
+
+  } // namespace duvc
+
+  #endif // _WIN32

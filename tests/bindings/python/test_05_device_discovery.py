@@ -7,6 +7,7 @@ Tests high-level device finding and discovery functions exposed by duvc-ctl.
 Functions Tested:
   - find_device_by_name() - Find device by substring match
   - find_devices_by_name() - Find all devices matching substring
+  -find_device_by_path() - Find device by exact path match
   - list_cameras() - Pythonic device listing (alias for list_devices)
   - find_camera() - Pythonic device finding (alias for find_device_by_name)
   - get_camera_info() - Get comprehensive device metadata
@@ -244,7 +245,6 @@ class TestFindDevicesByNameFunction:
         assert isinstance(result1, list)
         assert isinstance(result2, list)
 
-
 class TestListCamerasFunction:
     """Test list_cameras() function - Returns List[str] of camera names."""
     
@@ -387,7 +387,7 @@ class TestPropertyInfoStructure:
         assert hasattr(duvc_ctl, 'PropertyInfo')
 
 
-class TestDeviceInfoStructure:
+class Test_DeviceInfoStructure:
     """Test DeviceInfo TypedDict structure."""
     
     def test_device_info_fields(self):
@@ -490,6 +490,33 @@ class TestFindDevicesByNameWithHardware:
         
         # It's okay if no specific manufacturer found
         # Just verify the function works
+
+@pytest.mark.hardware
+class TestFindDeviceByPathWithHardware:
+    def test_finddevicebypath_round_trip(self, test_device):
+        from duvc_ctl import find_device_by_path
+        if test_device is None:
+            pytest.skip("No test device")
+        found = find_device_by_path(test_device.path)
+        assert found is not None
+        assert found.path == test_device.path
+        assert found.name == test_device.name
+
+    def test_finddevicebypath_case_insensitive_with_hardware(self, test_device):
+        from duvc_ctl import find_device_by_path
+        if test_device is None:
+            pytest.skip("No test device")
+        upper = test_device.path.upper()
+        lower = test_device.path.lower()
+        up = find_device_by_path(upper)
+        lo = find_device_by_path(lower)
+        assert up is not None and lo is not None
+        assert up.path == lo.path == test_device.path
+
+    def test_finddevicebypath_invalid_raises(self):
+        from duvc_ctl import find_device_by_path, DuvcRuntimeError
+        with pytest.raises(DuvcRuntimeError):
+            find_device_by_path("USB\\VID_0000&PID_0000\\TOTALLY_FAKE")
 
 
 @pytest.mark.hardware

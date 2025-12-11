@@ -19,6 +19,16 @@ Camera::Camera(int device_index) : connection_(nullptr) {
   // Invalid index results in invalid camera (device_ will be empty)
 }
 
+Camera::Camera(const std::wstring &device_path) : connection_(nullptr) {
+  device_ = find_device_by_path(device_path);
+  
+  // Validate device was found and has valid identifiers
+  if (!device_.is_valid()) {
+    throw std::runtime_error(
+        "Device found by path but failed validation");
+  }
+}
+
 Camera::~Camera() = default;
 
 Camera::Camera(Camera &&) noexcept = default;
@@ -136,6 +146,28 @@ Result<Camera> open_camera(const Device &device) {
   }
 
   return Ok(Camera(device));
+}
+
+Result<Camera> open_camera(const std::wstring &device_path) {
+  try {
+    Device device = find_device_by_path(device_path);
+    
+    if (!device.is_valid()) {
+      return Err<Camera>(ErrorCode::InvalidArgument, 
+                         "Found device has invalid identifiers");
+    }
+    
+    if (!is_device_connected(device)) {
+      return Err<Camera>(ErrorCode::DeviceNotFound, 
+                         "Device not connected");
+    }
+    
+    return Ok(Camera(device));
+    
+  } catch (const std::exception &e) {
+    return Err<Camera>(ErrorCode::DeviceNotFound, 
+                       std::string("Failed to open camera by path: ") + e.what());
+  }
 }
 
 } // namespace duvc

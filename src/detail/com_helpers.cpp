@@ -18,8 +18,12 @@ com_apartment::com_apartment() {
   }
 }
 
-com_apartment::~com_apartment() {
+com_apartment::~com_apartment() noexcept {
   if (SUCCEEDED(hr_)) {
+    CoFreeUnusedLibraries();  // Frees global COM resources (moniker factories, CLSIDs)
+    // No need for CoRevokeClassObject - CoFreeUnused covers activations
+  }
+  if (hr_ != S_FALSE) {
     CoUninitialize();
   }
 }

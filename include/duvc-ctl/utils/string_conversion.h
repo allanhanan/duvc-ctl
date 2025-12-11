@@ -66,6 +66,12 @@ std::string to_utf8(const std::wstring &wstr);
  */
 std::string to_utf8(const std::wstring &wstr);
 
-std::string to_utf8(const std::wstring &wstr);
+/**
+ * @brief Converts a UTF-8 string to a wide string (UTF-16 on Windows)
+ * @param str UTF-8 encoded string to convert
+ * @return Wide string (UTF-16 encoded on Windows)
+ */
+std::wstring to_wstring(const std::string &str);
+
 
 } // namespace duvc

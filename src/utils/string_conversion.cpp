@@ -193,4 +193,26 @@ std::string to_utf8(const std::wstring &wstr) {
   return str_to;
 }
 
+std::wstring to_wstring(const std::string &str) {
+#ifdef _WIN32
+  if (str.empty())
+    return std::wstring();
+  
+  int size = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);
+  if (size <= 0)
+    return std::wstring();
+  
+  std::wstring result(size - 1, L'\0');
+  MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, &result[0], size);
+  return result;
+#else
+  std::wstring result;
+  result.reserve(str.size());
+  for (char c : str) {
+    result.push_back(static_cast<wchar_t>(static_cast<unsigned char>(c)));
+  }
+  return result;
+#endif
+}
+
 } // namespace duvc

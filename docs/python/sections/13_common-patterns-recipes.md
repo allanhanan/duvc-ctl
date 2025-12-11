@@ -279,6 +279,127 @@ for prop in caps.supported_video_properties:
         print(f"  {prop}: <unavailable>")
 ```
 
+#### Persistent Device Reconnection
+
+**Problem**: You need to reliably reconnect to a specific camera across application sessions, even if multiple cameras of the same model are connected.
+
+**Solution**: Store and use the device path, which is a stable identifier.
+
+```python
+import duvc_ctl as duvc
+import json
+import os
+
+class CameraSession:
+    """Manage persistent camera connection across sessions."""
+    
+    CONFIG_FILE = "camera_config.json"
+    
+    @classmethod
+    def save_current_camera(cls, camera_controller):
+        """Save current camera's path for later reconnection."""
+        config = {
+            'device_name': camera_controller.device_name,
+            'device_path': camera_controller.device_path,
+            'timestamp': __import__('datetime').datetime.now().isoformat()
+        }
+        with open(cls.CONFIG_FILE, 'w') as f:
+            json.dump(config, f)
+    
+    @classmethod
+    def reconnect_to_saved_camera(cls):
+        """Attempt to reconnect to previously saved camera."""
+        if not os.path.exists(cls.CONFIG_FILE):
+            return None
+        
+        with open(cls.CONFIG_FILE) as f:
+            config = json.load(f)
+        
+        try:
+            camera = duvc_ctl.CameraController(device_path=config['device_path'])
+            return camera
+        except Exception as e:
+            print(f"Failed to reconnect: {e}")
+            return None
+
+# Usage
+if __name__ == "__main__":
+    # First run
+    cam = duvc_ctl.CameraController()
+    print(f"Connected to: {cam.device_name}")
+    CameraSession.save_current_camera(cam)
+    
+    # ... time passes ...
+    
+    # Later run
+    cam = CameraSession.reconnect_to_saved_camera()
+    if cam and cam.is_connected:
+        print(f"Reconnected to: {cam.device_name}")
+    else:
+        print("Saved camera not available, using first available")
+        cam = duvc_ctl.CameraController()
+```
+
+#### Multi-Camera Management with Path Lookup
+
+For systems with multiple cameras, maintain a mapping of paths to use consistent identifiers.
+
+```python
+import duvc_ctl as duvc
+
+class MultiCameraManager:
+    """Manage multiple cameras with stable path references."""
+    
+    def __init__(self):
+        self.cameras = {}  # path -> CameraController
+    
+    def discover_and_register(self):
+        """Find all cameras and store by path."""
+        for device in duvc.list_devices():
+            try:
+                cam = duvc.CameraController(device=device)
+                self.cameras[cam.device_path] = cam
+                print(f"Registered: {cam.device_name}")
+            except Exception as e:
+                print(f"Failed: {e}")
+    
+    def get_camera_by_name(self, name_substring):
+        """Find camera by name substring among connected cameras."""
+        for path, cam in self.cameras.items():
+            if name_substring.lower() in cam.device_name.lower():
+                return cam
+        return None
+    
+    def verify_all_connected(self):
+        """Check connection status of all cameras."""
+        results = {}
+        for path, cam in self.cameras.items():
+            results[cam.device_name] = cam.is_connected
+        return results
+    
+    def close_all(self):
+        """Close all camera connections."""
+        for cam in self.cameras.values():
+            cam.close()
+        self.cameras.clear()
+
+# Usage
+manager = MultiCameraManager()
+manager.discover_and_register()
+
+# Access specific camera by name
+cam1 = manager.get_camera_by_name("Logitech")
+if cam1:
+    cam1.brightness = 150
+
+# Check all cameras still connected
+status = manager.verify_all_connected()
+for name, connected in status.items():
+    print(f"{name}: {'True' if connected else 'False'}")
+
+manager.close_all()
+```
+
 ### 13.2 Bulk \& Property Operations
 
 Efficient multi-property access patterns with intelligent failure handling.
