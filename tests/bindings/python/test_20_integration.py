@@ -441,8 +441,6 @@ class TestResultAPIErrorHandlingWorkflow:
                 # Error shouldn't be INVALID_VALUE
                 pass
 
-
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestMixedAPIWorkflow:
     """Test workflows mixing CameraController and Result-based API."""
@@ -490,7 +488,7 @@ class TestMixedAPIWorkflow:
         assert len(devices) > 0
         
         # 3. Create connection
-        conn_result = platform.create_connection(devices)
+        conn_result = platform.create_connection(devices[0])
         
         if conn_result.is_ok():
             connection = conn_result.value()

@@ -42,6 +42,7 @@ from duvc_ctl import (
     # Exceptions
     DeviceNotFoundError,
 )
+duvc_ctl.set_log_level(duvc_ctl.LogLevel.Debug)
 
 
 # ============================================================================
@@ -188,7 +189,6 @@ class TestPlatformFactoryFunction:
         assert platform1 is not None
         assert platform2 is not None
 
-@pytest.mark.skipif(True, reason="Skipping temporary: admist other fixes")
 class TestPythonSubclassingSupport:
     """Test Python can subclass abstract interfaces."""
     
@@ -256,7 +256,6 @@ class TestPythonSubclassingSupport:
 # WITH CAMERA TESTS - Integration with real platform implementation
 # ============================================================================
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestPlatformInterfaceListDevices:
     """Test IPlatformInterface.list_devices() with real implementation."""
@@ -306,7 +305,6 @@ class TestPlatformInterfaceListDevices:
             assert hasattr(dev, 'name')
             assert hasattr(dev, 'path')
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestPlatformInterfaceIsDeviceConnected:
     """Test IPlatformInterface.is_device_connected() with real implementation."""
@@ -355,7 +353,6 @@ class TestPlatformInterfaceIsDeviceConnected:
         assert isinstance(connected, bool)
         assert connected == False
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestPlatformInterfaceCreateConnection:
     """Test IPlatformInterface.create_connection() with real implementation."""
@@ -400,7 +397,6 @@ class TestPlatformInterfaceCreateConnection:
         # Should return error result
         assert result.is_error()
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestDeviceConnectionIsValid:
     """Test IDeviceConnection.is_valid() with real implementation."""
@@ -440,7 +436,6 @@ class TestDeviceConnectionIsValid:
         
         assert connection.is_valid() == True
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestDeviceConnectionCameraProperties:
     """Test IDeviceConnection camera property methods."""
@@ -546,7 +541,6 @@ class TestDeviceConnectionCameraProperties:
             prop_range = range_result.value()
             assert isinstance(prop_range, PropRange)
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestDeviceConnectionVideoProperties:
     """Test IDeviceConnection video property methods."""
@@ -651,7 +645,6 @@ class TestDeviceConnectionVideoProperties:
             assert isinstance(prop_range, PropRange)
 
 
-@pytest.mark.skipif(True, reason="Skipping temporary: unstable test")
 @pytest.mark.hardware
 class TestPlatformInterfaceIntegration:
     """Test complete workflow using platform interface."""
@@ -674,7 +667,7 @@ class TestPlatformInterfaceIntegration:
         assert len(devices) > 0
         
         # 3. Check device connection
-        first_device = devices
+        first_device = devices[0]
         connected_result = platform.is_device_connected(first_device)
         assert connected_result.is_ok()
         assert connected_result.value() == True

@@ -86,13 +86,14 @@ public:
    */
   bool is_device_available(const Device &device);
 
-  com_ptr<ICreateDevEnum> dev_enum_;
-
   /// Read device properties from moniker
   Device read_device_info(IMoniker *moniker);
 
 private:
   com_apartment com_;
+  
+public:
+  com_ptr<ICreateDevEnum> dev_enum_;
 };
 
 /**
