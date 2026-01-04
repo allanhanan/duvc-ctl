@@ -1,0 +1,12 @@
+duvc-ctl provides CMake targets:
+
+    find_package(duvc CONFIG REQUIRED)
+    target_link_libraries(main PRIVATE duvc::core)
+
+Or for static linking:
+
+    target_link_libraries(main PRIVATE duvc::core-static)
+
+Or for shared linking:
+
+    target_link_libraries(main PRIVATE duvc::core-shared)
