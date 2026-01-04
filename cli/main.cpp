@@ -32,6 +32,10 @@ using duvc::PropRange;
 using duvc::PropSetting;
 using duvc::VidProp;
 
+// Version information
+static constexpr const wchar_t* DUVC_CLI_VERSION = L"2.0.0";
+
+
 // ============================================================================
 // GLOBAL STATE
 // ============================================================================
@@ -1335,6 +1339,7 @@ static void print_usage() {
       << L"  -q, --quiet           Minimal output (errors only)\n"
       << L"  -j, --json            Output in JSON format\n"
       << L"  -h, --help            Show this help\n\n"
+      << L" --version              Show version information\n\n"
       << L"Commands:\n"
       << L"  list [--detailed|-d]  List devices (--detailed shows "
          L"capabilities)\n"
@@ -1407,6 +1412,9 @@ int main(int argc, char **argv) {
     } else if (arg == L"-h" || arg == L"--help") {
       print_usage();
       return 0;
+    } else if (arg == L"--version") {
+        std::wcout << L"duvc-cli version " << DUVC_CLI_VERSION << L"\n";
+        return 0;
     } else {
       break;
     }

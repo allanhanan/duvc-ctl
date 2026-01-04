@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>duvc-cli</id>
+    <version>2.0.0</version>
+    <packageSourceUrl>https://github.com/allanhanan/duvc-ctl</packageSourceUrl>
+    <owners>allanhanan</owners>
+    <title>DUVC CLI - DirectShow UVC Camera Control CLI</title>
+    <authors>allanhanan</authors>
+    <licenseUrl>https://github.com/allanhanan/duvc-ctl/blob/main/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/allanhanan/duvc-ctl</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+Command-line tool for controlling USB cameras on Windows using DirectShow UVC interface.
+
+Features:
+- List connected USB cameras
+- get/set Camera and Video properties (exposure, focus, brightness, contrast, saturation)
+- PTZ (Pan/Tilt/Zoom) operations
+- No special drivers required, works with standard UVC cameras out of the box
+
+Usage:
+  duvc-cli list-devices
+  duvc-cli get-property --device-id 0 --property zoom
+  duvc-cli set-property --device-id 0 --property zoom --value 50
+
+Requirements:
+- Windows 7 or later
+- USB camera with UVC support (supported by almost all usb cameras)
+    </description>
+    <summary>CLI tool for USB camera control on Windows</summary>
+    <releaseNotes>https://github.com/allanhanan/duvc-ctl/releases</releaseNotes>
+    <copyright>Copyright (c) 2024-2026 allanhanan</copyright>
+    <tags>camera properties uvc directshow windows cli automation</tags>
+    <projectSourceUrl>https://github.com/allanhanan/duvc-ctl</projectSourceUrl>
+    <docsUrl>https://allanhanan.github.io/duvc-ctl/sphinx/index.html</docsUrl>
+    <bugTrackerUrl>https://github.com/allanhanan/duvc-ctl/issues</bugTrackerUrl>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
