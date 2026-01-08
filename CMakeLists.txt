@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 # Project Definition
 # ============================================================================
 project(duvc-ctl 
-    VERSION 2.0.0
+    VERSION 2.0.1
     DESCRIPTION "DirectShow UVC Camera Control Library"
     HOMEPAGE_URL "https://github.com/allanhanan/duvc-ctl"
     LANGUAGES CXX C
