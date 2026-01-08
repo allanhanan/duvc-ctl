@@ -1,0 +1,230 @@
+name: Build and Publish to Chocolatey
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version override (leave empty to auto-detect from .nuspec)'
+        required: false
+        type: string
+  
+  release:
+    types: [published]
+
+env:
+  CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (!contains(github.event.release.tag_name, '-'))
+    outputs:
+      should_publish: ${{ steps.check.outputs.should_publish }}
+      version: ${{ steps.check.outputs.version }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract and validate version
+        id: check
+        shell: bash
+        run: |
+          # Extract version from nuspec
+          NUSPEC_VERSION=$(grep -oP '<version>\K[0-9]+\.[0-9]+\.[0-9]+' chocolatey/duvc-cli/duvc-cli.nuspec || echo "")
+          
+          if [[ -z "$NUSPEC_VERSION" ]]; then
+            echo "! Failed to extract version from nuspec"
+            exit 1
+          fi
+          
+          echo "Version in nuspec: $NUSPEC_VERSION"
+          
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ -n "${{ github.event.inputs.version }}" ]]; then
+              VERSION="${{ github.event.inputs.version }}"
+              echo "Using manual override: $VERSION"
+            else
+              VERSION="$NUSPEC_VERSION"
+              echo "Using nuspec version: $VERSION"
+            fi
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+          else
+            TAG="${{ github.event.release.tag_name }}"
+            
+            if [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              TAG_VERSION="${TAG#v}"
+              
+              if [[ "$TAG_VERSION" != "$NUSPEC_VERSION" ]]; then
+                echo "! Warning: Tag version ($TAG_VERSION) differs from nuspec ($NUSPEC_VERSION)"
+                echo "Using tag version: $TAG_VERSION"
+              fi
+              
+              echo "should_publish=true" >> $GITHUB_OUTPUT
+              echo "version=$TAG_VERSION" >> $GITHUB_OUTPUT
+              echo "✓ Stable release detected: $TAG"
+            else
+              echo "should_publish=false" >> $GITHUB_OUTPUT
+              echo "Skipping pre-release: $TAG"
+            fi
+          fi
+
+  build-and-publish:
+    name: Build and Publish to Chocolatey
+    runs-on: windows-latest
+    needs: check-version
+    if: needs.check-version.outputs.should_publish == 'true'
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build x64
+        shell: pwsh
+        run: |
+          Write-Host "Building x64 binary..."
+          cmake -B build\x64 `
+            -G "Visual Studio 17 2022" `
+            -A x64 `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DDUVC_BUILD_SHARED=OFF `
+            -DDUVC_BUILD_CLI=ON `
+            -DDUVC_BUILD_STATIC=ON
+          
+          cmake --build build\x64 --config Release --target duvc-cli
+          
+          if (-not (Test-Path "build\x64\bin\Release\duvc-cli.exe")) {
+            Write-Error "✗ x64 binary not found"
+            exit 1
+          }
+          Write-Host "✓ x64 binary built successfully"
+
+      - name: Build x86
+        shell: pwsh
+        run: |
+          Write-Host "Building x86 binary..."
+          cmake -B build\x86 `
+            -G "Visual Studio 17 2022" `
+            -A Win32 `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DDUVC_BUILD_SHARED=OFF `
+            -DDUVC_BUILD_CLI=ON `
+            -DDUVC_BUILD_STATIC=ON
+          
+          cmake --build build\x86 --config Release --target duvc-cli
+          
+          if (-not (Test-Path "build\x86\bin\Release\duvc-cli.exe")) {
+            Write-Error "✗ x86 binary not found"
+            exit 1
+          }
+          Write-Host "✓ x86 binary built successfully"
+
+      - name: Test CLI binaries
+        shell: pwsh
+        run: |
+          Write-Host "Testing x64 binary..."
+          $output64 = & "build\x64\bin\Release\duvc-cli.exe" --version 2>&1
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "✗ x64 binary failed: $output64"
+            exit 1
+          }
+          Write-Host "x64 output: $output64"
+          Write-Host "✓ x64 binary test passed"
+          
+          Write-Host "`nTesting x86 binary..."
+          $output86 = & "build\x86\bin\Release\duvc-cli.exe" --version 2>&1
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "✗ x86 binary failed: $output86"
+            exit 1
+          }
+          Write-Host "x86 output: $output86"
+          Write-Host "✓ x86 binary test passed"
+
+      - name: Prepare Chocolatey package
+        shell: pwsh
+        run: |
+          $version = "${{ needs.check-version.outputs.version }}"
+          Write-Host "Preparing Chocolatey package v$version..."
+          
+          Copy-Item "build\x64\bin\Release\duvc-cli.exe" "chocolatey\duvc-cli\tools\duvc-cli-x64.exe" -Force
+          Copy-Item "build\x86\bin\Release\duvc-cli.exe" "chocolatey\duvc-cli\tools\duvc-cli-x86.exe" -Force
+          
+          if (-not (Test-Path "chocolatey\duvc-cli\tools\duvc-cli-x64.exe")) {
+            Write-Error "✗ Failed to copy x64 binary"
+            exit 1
+          }
+          if (-not (Test-Path "chocolatey\duvc-cli\tools\duvc-cli-x86.exe")) {
+            Write-Error "✗ Failed to copy x86 binary"
+            exit 1
+          }
+          
+          $nuspecPath = "chocolatey\duvc-cli\duvc-cli.nuspec"
+          [xml]$nuspec = Get-Content $nuspecPath
+          $nuspec.package.metadata.version = $version
+          $nuspec.Save($nuspecPath)
+          
+          Write-Host "✓ Binaries copied and nuspec updated"
+          Write-Host "   x64: $(Get-Item 'chocolatey\duvc-cli\tools\duvc-cli-x64.exe' | Select -ExpandProperty Length) bytes"
+          Write-Host "   x86: $(Get-Item 'chocolatey\duvc-cli\tools\duvc-cli-x86.exe' | Select -ExpandProperty Length) bytes"
+
+      - name: Pack Chocolatey package
+        shell: pwsh
+        run: |
+          Write-Host "Packing Chocolatey package..."
+          cd chocolatey\duvc-cli
+          choco pack duvc-cli.nuspec
+          
+          $nupkg = Get-ChildItem *.nupkg | Select -First 1
+          if (-not $nupkg) {
+            Write-Error "✗ Failed to create .nupkg"
+            exit 1
+          }
+          
+          Write-Host "✓ Package created: $($nupkg.Name)"
+          Write-Host "   Size: $($nupkg.Length) bytes"
+
+      - name: Publish to Chocolatey
+        shell: pwsh
+        run: |
+          Write-Host "Publishing to Chocolatey Community Repository..."
+          
+          $nupkg = Get-ChildItem chocolatey\duvc-cli\*.nupkg | Select -First 1
+          
+          if ([string]::IsNullOrWhiteSpace($env:CHOCOLATEY_API_KEY)) {
+            Write-Error "✗ CHOCOLATEY_API_KEY not set"
+            exit 1
+          }
+          
+          choco push $nupkg.FullName `
+            --source https://push.chocolatey.org/ `
+            --key $env:CHOCOLATEY_API_KEY `
+            --force
+          
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "✗ Failed to publish to Chocolatey (exit code: $LASTEXITCODE)"
+            exit $LASTEXITCODE
+          }
+          
+          Write-Host "✓ Successfully published to Chocolatey"
+
+      - name: Upload binaries to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build\x64\bin\Release\duvc-cli.exe
+            build\x86\bin\Release\duvc-cli.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build summary
+        shell: pwsh
+        run: |
+          Write-Host "`n========================================"
+          Write-Host "✓ Chocolatey Publishing Complete"
+          Write-Host "========================================"
+          Write-Host "Version: ${{ needs.check-version.outputs.version }}"
+          Write-Host "Package: duvc-cli.${{ needs.check-version.outputs.version }}.nupkg"
+          Write-Host "`nPackage page:"
+          Write-Host "  https://community.chocolatey.org/packages/duvc-cli"
