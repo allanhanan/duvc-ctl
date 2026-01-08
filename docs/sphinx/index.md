@@ -12,7 +12,7 @@ Windows DirectShow UVC camera control library with C++, Python and CLI interface
 
 ## Native C/C++ Reference
 
-- See the auto-generated reference: [C/C++ API (Doxygen)](../doxygen/html/index.html)
+- See the auto-generated reference: [C/C++ API (Doxygen)](https://allanhanan.github.io/duvc-ctl/doxygen/html/index.html)
 
 ```{toctree}
 :maxdepth: 1
