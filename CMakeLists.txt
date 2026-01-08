@@ -315,7 +315,7 @@ if(DUVC_INSTALL AND DUVC_CORE_TARGETS)
     
     # Install CMake config files
     if(DUVC_INSTALL_CMAKE_CONFIG)
-        set(CONFIG_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/duvc)
+        set(CONFIG_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR}/cmake/duvc-ctl)
         
         # Generate version file
         write_basic_package_version_file(

@@ -89,7 +89,7 @@ target_include_directories(your_target PRIVATE path/to/duvc-ctl/include)
 target_link_libraries(your_target PRIVATE path/to/duvc-ctl/lib/duvc-core.lib)
 ```
 
-**Package managers** (planned):
+**Package managers** (Conan planned):
 
 - vcpkg: `vcpkg install duvc-ctl`
 - Conan: `conan install duvc-ctl/2.0.0`

@@ -8,7 +8,7 @@ if(WIN32)
 endif()
 
 # Include targets file
-if(NOT TARGET duvc::duvc)
+if(NOT TARGET duvc::core-shared AND NOT TARGET duvc::core-static)
     include("${CMAKE_CURRENT_LIST_DIR}/duvc-targets.cmake")
 endif()
 

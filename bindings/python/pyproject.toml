@@ -16,7 +16,7 @@ readme = "PYPI_README.md"
 license = { file = "../../LICENSE" }
 requires-python = ">=3.8"
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
@@ -86,7 +86,7 @@ DUVC_BUILD_C_API = "OFF"
 
 [tool.cibuildwheel]
 # Only build for Windows since this is Windows-only
-build = "cp3{8,9,10,11,12}-win_amd64"
+build = "cp3{8,9,10,11,12,13}-win_amd64"
 skip = "pp*"  # Skip PyPy builds
 
 [tool.cibuildwheel.windows]

@@ -1,15 +1,13 @@
-vcpkg_check_linkage(ONLY_DYNAMIC_LIBRARY ONLY_DYNAMIC_CRT)
-
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO allanhanan/duvc-ctl
     REF "v${VERSION}"
-    SHA512 0
+    SHA512 09252aa6f6ed96ca0d225543b48afe443dc69e57c193a4fc1b2b46d5f7ef8b5dcbfbfd700edba8db0db890e51071b70358a256da1ae6248f881d88b1e21a573c
     HEAD_REF main
 )
 
-vcpkg_cmake_configure(
-    SOURCE_PATH "${SOURCE_PATH}"
+vcpkg_configure_cmake(
+    SOURCE_PATH ${SOURCE_PATH}
     OPTIONS
         -DDUVC_BUILD_SHARED=ON
         -DDUVC_BUILD_STATIC=ON
@@ -23,15 +21,15 @@ vcpkg_cmake_configure(
         -DDUVC_INSTALL_CMAKE_CONFIG=ON
 )
 
-vcpkg_cmake_install()
+vcpkg_install_cmake()
 
-vcpkg_cmake_config_fixup(CONFIG_PATH lib/cmake/duvc)
+vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/duvc-ctl)
 
 vcpkg_copy_pdbs()
 
-file(REMOVE_RECURSE 
+file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/debug/include"
     "${CURRENT_PACKAGES_DIR}/debug/share"
 )
 
-vcpkg_install_copyright(FILE_LIST "${SOURCE_PATH}/LICENSE")
+file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)
