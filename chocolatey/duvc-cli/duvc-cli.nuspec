@@ -7,7 +7,7 @@
     <owners>allanhanan</owners>
     <title>DUVC CLI - DirectShow UVC Camera Control CLI</title>
     <authors>allanhanan</authors>
-    <license type="expression">MIT</license>
+    <licenseUrl>https://github.com/allanhanan/duvc-ctl/blob/main/LICENSE</licenseUrl>
     <projectUrl>https://github.com/allanhanan/duvc-ctl</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
