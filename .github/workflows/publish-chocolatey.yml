@@ -171,25 +171,18 @@ jobs:
       - name: Generate VERIFICATION.txt
         shell: pwsh
         run: |
-          Write-Host "Generating VERIFICATION.txt with SHA256 hashes..."
-
           $hash64 = (Get-FileHash "chocolatey\duvc-cli\tools\duvc-cli-x64.exe" -Algorithm SHA256).Hash
           $hash86 = (Get-FileHash "chocolatey\duvc-cli\tools\duvc-cli-x86.exe" -Algorithm SHA256).Hash
 
-          $verification = @"
-VERIFICATION
-Verification is intended to assist the Chocolatey moderators and community
-in verifying that this package's contents are trustworthy.
-
-1. Download source from https://github.com/allanhanan/duvc-ctl
-2. Build using instructions in README.
-3. Compare SHA256 checksums:
-
-   duvc-cli-x64.exe SHA256: $hash64
-   duvc-cli-x86.exe SHA256: $hash86
-
-If the checksums match, the binaries are verified.
-"@
+          $verification = "VERIFICATION`n" +
+                          "Verification is intended to assist the Chocolatey moderators and community`n" +
+                          "in verifying that this package's contents are trustworthy.`n`n" +
+                          "1. Download source from https://github.com/allanhanan/duvc-ctl`n" +
+                          "2. Build using instructions in README.`n" +
+                          "3. Compare SHA256 checksums:`n`n" +
+                          "   duvc-cli-x64.exe SHA256: $hash64`n" +
+                          "   duvc-cli-x86.exe SHA256: $hash86`n`n" +
+                          "If the checksums match, the binaries are verified.`n"
 
           $verification | Set-Content "chocolatey\duvc-cli\tools\VERIFICATION.txt" -Encoding UTF8
 
