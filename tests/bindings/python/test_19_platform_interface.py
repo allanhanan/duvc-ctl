@@ -19,7 +19,7 @@ Platform Interface Features Tested:
   Platform Factory (1):
     - create_platform_interface() - Get platform implementation
 
-Total: 10 platform interface operations
+Total: 10 platform interface operations + others i got too lazy to add those here mb
 
 Test Organization:
   1. Without Camera Tests - Interface verification and type checking
@@ -643,6 +643,69 @@ class TestDeviceConnectionVideoProperties:
         if range_result.is_ok():
             prop_range = range_result.value()
             assert isinstance(prop_range, PropRange)
+
+@pytest.mark.hardware
+class TestPlatformDeviceIsolation:
+    """
+    Regression test: ensure device connections are isolated.
+
+    Setting a property on one device must NOT affect another device,
+    even if devices have similar names or share the same driver.
+    """
+
+    def test_video_property_isolation_between_devices(self, available_devices):
+        if len(available_devices) < 2:
+            pytest.skip("Need at least 2 devices for isolation test")
+
+        from duvc_ctl import create_platform_interface, CamMode
+
+        platform = create_platform_interface()
+
+        dev0 = available_devices[0]
+        dev1 = available_devices[1]
+
+        # Create two independent connections
+        res0 = platform.create_connection(dev0)
+        res1 = platform.create_connection(dev1)
+
+        if not res0.is_ok() or not res1.is_ok():
+            pytest.skip("Could not open both devices")
+
+        conn0 = res0.value()
+        conn1 = res1.value()
+
+        assert conn0.is_valid()
+        assert conn1.is_valid()
+
+        # Read initial brightness values
+        b0_res = conn0.get_video_property(VidProp.Brightness)
+        b1_res = conn1.get_video_property(VidProp.Brightness)
+
+        if not b0_res.is_ok() or not b1_res.is_ok():
+            pytest.skip("Brightness not supported on both devices")
+
+        b0_initial = b0_res.value().value
+        b1_initial = b1_res.value().value
+
+        # Apply a distinctive value to device 0
+        test_value = b0_initial - 32 if b0_initial >= 32 else b0_initial + 32
+
+        set_res = conn0.set_video_property(
+            VidProp.Brightness,
+            PropSetting(test_value, CamMode.Manual),
+        )
+
+        assert set_res.is_ok()
+
+        # Re-read device 1 — MUST NOT change
+        b1_after = conn1.get_video_property(VidProp.Brightness).value().value
+
+        assert (
+            b1_after == b1_initial
+        ), (
+            "Device isolation broken: "
+            "setting brightness on device 0 modified device 1"
+        )
 
 
 @pytest.mark.hardware

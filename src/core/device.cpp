@@ -138,19 +138,13 @@ std::wstring read_device_path(IMoniker *mon) {
     return res;
 }
 
-bool is_same_device(const Device &d, const std::wstring &name,
+// ONLY use device path to verify
+bool is_same_device(const Device &d, const std::wstring & /*name*/,
                     const std::wstring &path) {
-  if (!d.path.empty() && !path.empty()) {
-    if (_wcsicmp(d.path.c_str(), path.c_str()) == 0)
-      return true;
-  }
+  if (d.path.empty() || path.empty())
+    return false;
 
-  if (!d.name.empty() && !name.empty()) {
-    if (_wcsicmp(d.name.c_str(), name.c_str()) == 0)
-      return true;
-  }
-
-  return false;
+  return _wcsicmp(d.path.c_str(), path.c_str()) == 0;
 }
 
 std::vector<Device> list_devices() {
@@ -168,6 +162,13 @@ std::vector<Device> list_devices() {
     Device d;
     d.name = read_friendly_name(mon.get());
     d.path = read_device_path(mon.get());
+
+    // Skip completely invalid entries
+    if (d.name.empty() && d.path.empty()) {
+        mon.reset();
+        continue;
+    }
+
     out.emplace_back(std::move(d));
     mon.reset();
   }
@@ -232,10 +233,12 @@ Device duvc::find_device_by_path(const std::wstring &device_path) {
     while (en->Next(1, reinterpret_cast<IMoniker**>(mon.put()), &fetched) == S_OK && fetched) {
         std::wstring dpath = read_device_path(mon.get());
         if (!dpath.empty()) {
-            dpath.erase(dpath.find_last_not_of(L"\r\n \t\0") + 1);
+            auto pos = dpath.find_last_not_of(L"\r\n \t\0");
+            if (pos != std::wstring::npos)
+                dpath.erase(pos + 1);
         }
         std::wstring fname = read_friendly_name(mon.get());
-        if (dpath == device_path || _wcsicmp(dpath.c_str(), device_path.c_str()) == 0) {
+        if (_wcsicmp(dpath.c_str(), device_path.c_str()) == 0) {
             Device result;
             result.name = std::move(fname);
             result.path = std::move(dpath);

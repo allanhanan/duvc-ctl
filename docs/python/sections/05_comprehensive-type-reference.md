@@ -10,7 +10,7 @@ Represents a physical camera connected to the system. Returned by `list_devices(
 
 **Fields**:
 
-- `name` (str): Human-readable device name from DirectShow. Example: `"Logitech C920 HD Webcam"`. Useful for UI display; not guaranteed unique if multiple identical cameras are connected.
+- `name` (str): Human-readable device name from DirectShow. Example: `"Logitech C920 HD Webcam"`. Useful for UI display; not guaranteed unique if multiple identical cameras are connected, defaults to lowest index of the device with same name.
 - `path` (str): Unique device identifier. Windows: `\\?\USB#VID_046D&PID_082F#...` or similar. Used for persistent device identification across sessions and reboots. More reliable than name for identification.
 
 **Methods**:

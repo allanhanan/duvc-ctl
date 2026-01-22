@@ -94,6 +94,13 @@ target_link_libraries(your_target PRIVATE path/to/duvc-ctl/lib/duvc-core.lib)
 - vcpkg: `vcpkg install duvc-ctl`
 - Conan: `conan install duvc-ctl/2.0.0`
 
+CMake usage:
+```
+find_package(duvc CONFIG REQUIRED)
+target_link_libraries(your_app PRIVATE duvc::core-shared)  # Shared (default)
+# Or: target_link_libraries(your_app PRIVATE duvc::core-static)  # Static
+```
+
 
 #### Include headers
 

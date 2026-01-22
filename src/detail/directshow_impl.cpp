@@ -170,13 +170,9 @@ bool DirectShowEnumerator::is_device_available(const Device &device) {
   auto devices = enumerate_devices();
 
   for (const auto &dev : devices) {
-    // Match by path first (more reliable), then by name
+    // Match by path only, do not rely on name
     if (!device.path.empty() && !dev.path.empty()) {
       if (_wcsicmp(device.path.c_str(), dev.path.c_str()) == 0) {
-        return true;
-      }
-    } else if (!device.name.empty() && !dev.name.empty()) {
-      if (_wcsicmp(device.name.c_str(), dev.name.c_str()) == 0) {
         return true;
       }
     }
@@ -299,8 +295,6 @@ com_ptr<IBaseFilter> DirectShowFilter::create_filter(const Device &device) {
     bool match = false;
     if (!device.path.empty() && !current_device.path.empty()) {
       match = (_wcsicmp(device.path.c_str(), current_device.path.c_str()) == 0);
-    } else if (!device.name.empty() && !current_device.name.empty()) {
-      match = (_wcsicmp(device.name.c_str(), current_device.name.c_str()) == 0);
     }
 
     if (match) {
@@ -543,12 +537,10 @@ namespace duvc::detail {
     while (enum_moniker->Next(1, moniker.put(), &fetched) == S_OK && fetched > 0) {
         Device current_device = enumerator.read_device_info(moniker.get());
         
-        // Match by path first (more reliable), then by name
+        // Match by path only, do not rely on name
         bool match = false;
         if (!dev.path.empty() && !current_device.path.empty()) {
             match = (_wcsicmp(dev.path.c_str(), current_device.path.c_str()) == 0);
-        } else if (!dev.name.empty() && !current_device.name.empty()) {
-            match = (_wcsicmp(dev.name.c_str(), current_device.name.c_str()) == 0);
         }
         
         if (match) {

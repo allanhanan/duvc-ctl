@@ -117,9 +117,9 @@ static com_ptr<IBaseFilter> open_device_filter(const Device &dev) {
   ULONG fetched = 0;
   com_ptr<IMoniker> mon;
   while (en->Next(1, mon.put(), &fetched) == S_OK && fetched) {
-    auto fname = read_friendly_name(mon.get());
     auto dpath = read_device_path(mon.get());
-    if (is_same_device(dev, fname, dpath)) {
+    if (!dev.path.empty() && !dpath.empty() &&
+        _wcsicmp(dev.path.c_str(), dpath.c_str()) == 0) {
       return bind_to_filter(mon.get());
     }
     mon.reset();
