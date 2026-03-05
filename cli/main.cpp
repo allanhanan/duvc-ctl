@@ -168,7 +168,8 @@ static constexpr VideoPropertyMap VID_PROP_MAP[] = {
     {L"ColorEnable", VidProp::ColorEnable},
     {L"WhiteBalance", VidProp::WhiteBalance},
     {L"BacklightCompensation", VidProp::BacklightCompensation},
-    {L"Gain", VidProp::Gain}};
+    {L"Gain", VidProp::Gain},
+    {L"DigitalMultiplier", VidProp::DigitalMultiplier}};
 
 static std::optional<CamProp> parse_cam_prop(const std::wstring &s) {
   for (auto &m : CAM_PROP_MAP)
@@ -1369,7 +1370,8 @@ static void print_usage() {
       << L"  BacklightCompensation, Lamp\n\n"
       << L"Video Properties:\n"
       << L"  Brightness, Contrast, Hue, Saturation, Sharpness, Gamma,\n"
-      << L"  ColorEnable, WhiteBalance, BacklightCompensation, Gain\n\n"
+      << L"  ColorEnable, WhiteBalance, BacklightCompensation, Gain,\n"
+      << L"  DigitalMultiplier\n\n"
       << L"Examples:\n"
       << L"  duvc-cli list --detailed\n"
       << L"  duvc-cli get 0 cam Pan,Tilt,Zoom --json\n"

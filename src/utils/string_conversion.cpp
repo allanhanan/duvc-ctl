@@ -85,6 +85,8 @@ const char *to_string(VidProp p) {
     return "BacklightCompensation";
   case VidProp::Gain:
     return "Gain";
+  case VidProp::DigitalMultiplier:
+    return "DigitalMultiplier";
   default:
     return "Unknown";
   }
@@ -169,6 +171,8 @@ const wchar_t *to_wstring(VidProp p) {
     return L"BacklightCompensation";
   case VidProp::Gain:
     return L"Gain";
+  case VidProp::DigitalMultiplier:
+    return L"DigitalMultiplier";
   default:
     return L"Unknown";
   }

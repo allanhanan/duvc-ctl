@@ -91,6 +91,8 @@ long DirectShowMapper::map_video_property(VidProp prop) {
     return 8L; // VideoProcAmp_BacklightCompensation
   case VidProp::Gain:
     return 9L; // VideoProcAmp_Gain
+  case VidProp::DigitalMultiplier:
+    return 10L; // VideoProcAmp_DigitalMultiplier
   default:
     return -1;
   }

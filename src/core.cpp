@@ -66,6 +66,7 @@
 #define VideoProcAmp_WhiteBalance             7
 #define VideoProcAmp_BacklightCompensation    8
 #define VideoProcAmp_Gain                     9
+#define VideoProcAmp_DigitalMultiplier        10
 #define VideoProcAmp_Flags_Auto               0x0001
 #define VideoProcAmp_Flags_Manual             0x0002
 #endif
@@ -317,6 +318,7 @@ static long vidprop_to_dshow(VidProp p) {
         case VidProp::WhiteBalance: return VideoProcAmp_WhiteBalance;
         case VidProp::BacklightCompensation: return VideoProcAmp_BacklightCompensation;
         case VidProp::Gain: return VideoProcAmp_Gain;
+        case VidProp::DigitalMultiplier: return VideoProcAmp_DigitalMultiplier;
         default: return -1;
     }
 }
@@ -745,6 +747,7 @@ const char* to_string(VidProp p) {
         case VidProp::WhiteBalance: return "WhiteBalance";
         case VidProp::BacklightCompensation: return "BacklightCompensation";
         case VidProp::Gain: return "Gain";
+        case VidProp::DigitalMultiplier: return "DigitalMultiplier";
         default: return "Unknown";
     }
 }
@@ -761,6 +764,7 @@ const wchar_t* to_wstring(VidProp p) {
         case VidProp::WhiteBalance: return L"WhiteBalance";
         case VidProp::BacklightCompensation: return L"BacklightCompensation";
         case VidProp::Gain: return L"Gain";
+        case VidProp::DigitalMultiplier: return L"DigitalMultiplier";
         default: return L"Unknown";
     }
 }

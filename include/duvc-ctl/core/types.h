@@ -57,7 +57,8 @@ enum class VidProp {
   ColorEnable,           ///< Color vs. monochrome mode
   WhiteBalance,          ///< White balance adjustment
   BacklightCompensation, ///< Backlight compensation level
-  Gain                   ///< Sensor gain level
+  Gain,                  ///< Sensor gain level
+  DigitalMultiplier
 };
 
 /**
