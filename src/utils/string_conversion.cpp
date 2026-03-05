@@ -87,6 +87,8 @@ const char *to_string(VidProp p) {
     return "Gain";
   case VidProp::DigitalMultiplier:
     return "DigitalMultiplier";
+  case VidProp::DigitalMultiplierLimit:
+    return "DigitalMultiplierLimit";
   default:
     return "Unknown";
   }
@@ -173,6 +175,8 @@ const wchar_t *to_wstring(VidProp p) {
     return L"Gain";
   case VidProp::DigitalMultiplier:
     return L"DigitalMultiplier";
+  case VidProp::DigitalMultiplierLimit:
+    return L"DigitalMultiplierLimit";
   default:
     return L"Unknown";
   }

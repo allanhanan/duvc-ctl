@@ -58,7 +58,8 @@ enum class VidProp {
   WhiteBalance,          ///< White balance adjustment
   BacklightCompensation, ///< Backlight compensation level
   Gain,                  ///< Sensor gain level
-  DigitalMultiplier
+  DigitalMultiplier,
+  DigitalMultiplierLimit
 };
 
 /**

@@ -18,7 +18,7 @@ enum class VidProp {
     Brightness, Contrast, Hue, Saturation,
     Sharpness, Gamma, ColorEnable, WhiteBalance,
     BacklightCompensation, Gain,
-    DigitalMultiplier
+    DigitalMultiplier, DigitalMultiplierLimit
 };
 
 enum class CamMode { Auto, Manual };
