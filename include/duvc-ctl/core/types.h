@@ -61,6 +61,7 @@ enum class VidProp {
   DigitalMultiplier,
   DigitalMultiplierLimit,
   WhiteBalanceComponent,
+  PowerLineFrequency,
 };
 
 /**
@@ -149,11 +150,11 @@ struct Device {
     /**
      * @brief Copy constructor - ensures deep copy of string data
      * @param other Device to copy from
-     * 
+     *
      * Explicitly defined to ensure proper deep copying when pybind11
      * passes Device objects between Python and C++.
      */
-    Device(const Device& other) 
+    Device(const Device& other)
         : name(other.name), path(other.path) {}
 
     /**

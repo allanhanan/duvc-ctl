@@ -58,6 +58,7 @@
 #define VideoProcAmp_DigitalMultiplier 10
 #define VideoProcAmp_DigitalMultiplierLimit 11
 #define VideoProcAmp_WhiteBalanceComponent 12
+#define VideoProcAmp_PowerLineFrequency 13
 #define VideoProcAmp_Flags_Auto 0x0001
 #define VideoProcAmp_Flags_Manual 0x0002
 #endif
@@ -213,6 +214,8 @@ static long vidprop_to_dshow(VidProp p) {
     return VideoProcAmp_DigitalMultiplierLimit;
   case VidProp::WhiteBalanceComponent:
     return VideoProcAmp_WhiteBalanceComponent;
+  case VidProp::PowerLineFrequency:
+    return VideoProcAmp_PowerLineFrequency;
   default:
     return -1;
   }

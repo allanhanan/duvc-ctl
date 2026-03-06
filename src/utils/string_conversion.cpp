@@ -91,6 +91,8 @@ const char *to_string(VidProp p) {
     return "DigitalMultiplierLimit";
   case VidProp::WhiteBalanceComponent:
     return "WhiteBalanceComponent";
+  case VidProp::PowerLineFrequency:
+    return "PowerLineFrequency";
   default:
     return "Unknown";
   }
@@ -181,6 +183,8 @@ const wchar_t *to_wstring(VidProp p) {
     return L"DigitalMultiplierLimit";
   case VidProp::WhiteBalanceComponent:
     return L"WhiteBalanceComponent";
+  case VidProp::PowerLineFrequency:
+    return L"PowerLineFrequency";
   default:
     return L"Unknown";
   }
