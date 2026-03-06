@@ -95,6 +95,8 @@ long DirectShowMapper::map_video_property(VidProp prop) {
     return 10L; // VideoProcAmp_DigitalMultiplier
   case VidProp::DigitalMultiplierLimit:
     return 11L; // VideoProcAmp_DigitalMultiplierLimit
+  case VidProp::WhiteBalanceComponent:
+    return 12L; // VideoProcAmp_WhiteBalanceComponent
   default:
     return -1;
   }

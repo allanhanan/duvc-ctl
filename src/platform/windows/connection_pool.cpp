@@ -57,6 +57,7 @@
 #define VideoProcAmp_Gain 9
 #define VideoProcAmp_DigitalMultiplier 10
 #define VideoProcAmp_DigitalMultiplierLimit 11
+#define VideoProcAmp_WhiteBalanceComponent 12
 #define VideoProcAmp_Flags_Auto 0x0001
 #define VideoProcAmp_Flags_Manual 0x0002
 #endif
@@ -210,6 +211,8 @@ static long vidprop_to_dshow(VidProp p) {
     return VideoProcAmp_DigitalMultiplier;
   case VidProp::DigitalMultiplierLimit:
     return VideoProcAmp_DigitalMultiplierLimit;
+  case VidProp::WhiteBalanceComponent:
+    return VideoProcAmp_WhiteBalanceComponent;
   default:
     return -1;
   }

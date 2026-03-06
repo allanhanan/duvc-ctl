@@ -89,6 +89,8 @@ const char *to_string(VidProp p) {
     return "DigitalMultiplier";
   case VidProp::DigitalMultiplierLimit:
     return "DigitalMultiplierLimit";
+  case VidProp::WhiteBalanceComponent:
+    return "WhiteBalanceComponent";
   default:
     return "Unknown";
   }
@@ -177,6 +179,8 @@ const wchar_t *to_wstring(VidProp p) {
     return L"DigitalMultiplier";
   case VidProp::DigitalMultiplierLimit:
     return L"DigitalMultiplierLimit";
+  case VidProp::WhiteBalanceComponent:
+    return L"WhiteBalanceComponent";
   default:
     return L"Unknown";
   }
