@@ -777,7 +777,7 @@ This graceful degradation ensures operations work even with older or non-standar
 
 Property mappings enable flexible string-based access (`cam.set('brightness', 80)`) while maintaining strong C++ typing internally. All properties map to enums defined in the C++ core.
 
-#### `_VIDEO_PROPERTIES` dictionary (10 core properties)
+#### `_VIDEO_PROPERTIES` dictionary (14 core properties)
 
 Maps video property names to `VidProp` C++ enums. Video properties control image appearance (brightness, color, processing).
 
@@ -794,6 +794,10 @@ _VIDEO_PROPERTIES = {
     'white_balance': VidProp.WhiteBalance,
     'video_backlight_compensation': VidProp.BacklightCompensation,
     'gain': VidProp.Gain,
+    'digital_multiplier': VidProp.DigitalMultiplier,
+    'digital_multiplier_limit': VidProp.DigitalMultiplierLimit,
+    'white_balance_component': VidProp.WhiteBalanceComponent,
+    'power_line_frequency': VidProp.PowerLineFrequency,
     
     # Aliases (user-friendly shortcuts)
     'wb': VidProp.WhiteBalance,
@@ -802,6 +806,9 @@ _VIDEO_PROPERTIES = {
     'colorenable': VidProp.ColorEnable,
     'sat': VidProp.Saturation,
     'bright': VidProp.Brightness,
+    'digital_zoom': VidProp.DigitalMultiplier,
+    'dig_mult': VidProp.DigitalMultiplier,
+    'power_freq': VidProp.PowerLineFrequency,
 }
 ```
 
@@ -820,6 +827,10 @@ _VIDEO_PROPERTIES = {
 | white_balance | int/str | wb, whitebalance | Color temperature (Kelvin or 'auto') | 2700–6500K or 'auto' |
 | video_backlight_compensation | bool | — | Backlighting adjustment | — (boolean) |
 | gain | int | — | Sensor amplification (low to high) | 0–100 (device-specific) |
+| digital_multiplier | int | digital_zoom, dig_mult | Post-sensor digital magnification | 1–4× or higher (device-specific) |
+| digital_multiplier_limit | int | — | Maximum allowed digital multiplier value | Device-dependent (read-only typically) |
+| white_balance_component | int | — | White balance per color component | Device-dependent (advanced control) |
+| power_line_frequency | int | power_freq | AC mains flicker elimination frequency | 0=disabled, 1=50Hz, 2=60Hz |
 
 #### `_CAMERA_PROPERTIES` dictionary (11 core physical properties)
 

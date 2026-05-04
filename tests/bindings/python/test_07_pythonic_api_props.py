@@ -141,6 +141,22 @@ class TestCameraControllerVideoPropertyInterfaces:
         """Test gain property getter/setter exist."""
         assert hasattr(CameraController, 'gain')
 
+    def test_digital_multiplier_property_exists(self):
+        """Test digital_multiplier property getter/setter exist."""
+        assert hasattr(CameraController, 'digital_multiplier')
+
+    def test_digital_multiplier_limit_property_exists(self):
+        """Test digital_multiplier_limit property getter/setter exist."""
+        assert hasattr(CameraController, 'digital_multiplier_limit')
+
+    def test_white_balance_component_property_exists(self):
+        """Test white_balance_component property getter/setter exist."""
+        assert hasattr(CameraController, 'white_balance_component')
+
+    def test_power_line_frequency_property_exists(self):
+        """Test power_line_frequency property getter/setter exist."""
+        assert hasattr(CameraController, 'power_line_frequency')
+
 
 class TestCameraControllerCameraPropertyInterfaces:
     """Test CameraController camera property interfaces exist."""

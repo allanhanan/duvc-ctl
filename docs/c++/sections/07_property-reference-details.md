@@ -191,9 +191,10 @@ if (range_result.is_ok()) {
 
 **Header:** `<duvc-ctl/core/types.h>`
 **Enum:** `VidProp`
-**DirectShow Interface:** `IAMVideoProcAmp`
+**DirectShow Interface:** `IAMVideoProcAmp` and extended video properties
 
-All 10 video processing properties with descriptions and behaviors. These control **digital image processing**, not camera hardware. Actual ranges are **device-specific** and must be queried via `camera.get_range(prop)` or `DeviceCapabilities`.
+All 14 video processing properties with descriptions and behaviors. These control **digital image processing**, not camera hardware. Actual ranges are **device-specific** and must be queried via `camera.get_range(prop)` or `DeviceCapabilities`.
+
 
 ***
 
@@ -362,7 +363,107 @@ Sensor gain level. Digital/analog amplification of sensor signal (ISO equivalent
 
 ***
 
-### Property Range Querying
+#### VidProp::DigitalMultiplier
+
+Post-sensor digital magnification multiplier. Provides software-based zoom without changing lens focus, reducing effective resolution.
+
+- **Unit:** Multiplier (e.g., 1x, 2x, 4x)
+- **Typical range:** 1 to 4 (or device-dependent)
+- **Default:** 1 (1x magnification, no zoom)
+- **Auto mode:** **Not supported** (manual only)
+- **Effect:** Higher multiplier = magnified image, but lower resolution. Opposite of hardware zoom.
+- **Technical:** Applied post-capture, reducing pixel density
+
+**Relationship to Zoom and DigitalMultiplierLimit:**
+
+- `CamProp::Zoom` — hardware optical zoom (preferred, maintains resolution)
+- `VidProp::DigitalMultiplier` — post-sensor digital magnification (reduces resolution)
+- `VidProp::DigitalMultiplierLimit` — maximum allowed multiplier for this device
+
+**Usage note:** Use hardware zoom (`CamProp::Zoom`) when available. Digital multiplier is useful for fine magnification when optical zoom is insufficient or unavailable.
+
+***
+
+#### VidProp::DigitalMultiplierLimit
+
+Maximum allowed value for `VidProp::DigitalMultiplier` on the current device. Read-only property that indicates device capability.
+
+- **Unit:** Multiplier limit (e.g., 4 = maximum 4x digital zoom)
+- **Typical range:** 1 to 4 or higher (device-specific)
+- **Default:** Device-dependent
+- **Auto mode:** **Not applicable** (read-only)
+- **Effect:** Constrains valid values for `DigitalMultiplier`
+- **Technical:** Device-reported limitation; attempting to exceed causes error
+
+**Usage note:** Query this property to determine valid range for `DigitalMultiplier` before setting. Safe to ignore if `DigitalMultiplier` is not supported (property will return error).
+
+***
+
+#### VidProp::WhiteBalanceComponent
+
+Advanced white balance adjustment by individual color component (Red, Green, Blue). Allows per-component fine-tuning.
+
+- **Unit:** Component adjustment (device-specific scale, typically ±127)
+- **Typical range:** -127 to +127 or device-specific
+- **Default:** 0 (neutral, no adjustment)
+- **Auto mode:** Device-dependent
+- **Effect:** Adjusts red, green, or blue channels independently for color balance
+- **Technical:** Post-capture color correction applied per component
+
+**Relationship to WhiteBalance:**
+
+- `VidProp::WhiteBalance` — overall color temperature (2700K–6500K)
+- `VidProp::WhiteBalanceComponent` — fine-grained per-channel adjustment (advanced)
+
+**Usage pattern:**
+
+```cpp
+// Set overall white balance first
+auto wb_result = camera.set(VidProp::WhiteBalance, PropSetting(5500, CamMode::Manual));
+
+// Fine-tune with component adjustment if supported
+auto comp_result = camera.set(VidProp::WhiteBalanceComponent, PropSetting(20, CamMode::Manual));
+```
+
+**Usage note:** Only available on advanced cameras with per-component white balance support. Not typically needed for consumer cameras.
+
+***
+
+#### VidProp::PowerLineFrequency
+
+AC power line frequency setting for flicker elimination in artificial lighting.
+
+- **Unit:** Frequency selector (0=disabled, 1=50Hz, 2=60Hz)
+- **Typical range:** 0 to 2 (discrete values, not continuous)
+- **Default:** Device-dependent (typically 60Hz for US/Americas, 50Hz for EU/Asia)
+- **Auto mode:** **Not supported** (manual selection only)
+- **Effect:** Eliminates flicker in footage captured under AC lighting (fluorescent, LED)
+- **Technical:** Synchronizes sensor integration time to mains frequency
+
+**Regional settings:**
+
+- **50Hz**: EU, Asia, Africa, Middle East, Australia
+- **60Hz**: US, Canada, Central/South America, Japan, Taiwan
+- **0/Disabled**: Disable flicker reduction
+
+**Usage pattern:**
+
+```cpp
+// Match your local AC mains frequency
+camera.set(VidProp::PowerLineFrequency, PropSetting(2, CamMode::Manual)); // 60Hz (US)
+// OR
+camera.set(VidProp::PowerLineFrequency, PropSetting(1, CamMode::Manual)); // 50Hz (EU)
+```
+
+**Flicker characteristics:**
+
+- **50Hz flicker**: 10 ms period (visible in 100+ FPS footage)
+- **60Hz flicker**: 8.33 ms period (visible in 120+ FPS footage)
+- **Mismatched setting**: Banding/flicker visible if frequency does not match mains
+
+**Usage note:** Essential for professional video capture indoors. Set according to your country's AC mains. Query device before setting to verify support (some cameras don't support this feature).
+
+***
 
 ```cpp
 auto range_result = camera.get_range(VidProp::Brightness);

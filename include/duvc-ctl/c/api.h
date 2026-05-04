@@ -86,10 +86,10 @@ typedef enum {
   DUVC_VID_PROP_WHITE_BALANCE,          /**< White balance adjustment */
   DUVC_VID_PROP_BACKLIGHT_COMPENSATION, /**< Backlight compensation level */
   DUVC_VID_PROP_GAIN,                   /**< Sensor gain level */
-  DUVC_VID_PROP_DIGITAL_MULTIPLIER,
-  DUVC_VID_PROP_DIGITAL_MULTIPLIER_LIMIT,
-  DUVC_VID_PROP_WHITE_BALANCE_COMPONENT,
-  DUVC_VID_PROP_POWER_LINE_FREQUENCY
+  DUVC_VID_PROP_DIGITAL_MULTIPLIER,        /**< Digital multiplier level */
+  DUVC_VID_PROP_DIGITAL_MULTIPLIER_LIMIT, /**< Maximum digital multiplier level */  
+  DUVC_VID_PROP_WHITE_BALANCE_COMPONENT,  /**< White balance component adjustment */
+  DUVC_VID_PROP_POWER_LINE_FREQUENCY     /**< Power line frequency (anti-flicker setting) */
 } duvc_vid_prop_t;
 
 /**

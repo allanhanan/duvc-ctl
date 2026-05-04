@@ -58,10 +58,10 @@ enum class VidProp {
   WhiteBalance,          ///< White balance adjustment
   BacklightCompensation, ///< Backlight compensation level
   Gain,                  ///< Sensor gain level
-  DigitalMultiplier,
-  DigitalMultiplierLimit,
-  WhiteBalanceComponent,
-  PowerLineFrequency,
+  DigitalMultiplier,     ///< Digital multiplier level
+  DigitalMultiplierLimit, ///< Maximum digital multiplier level
+  WhiteBalanceComponent, ///< White balance component adjustment
+  PowerLineFrequency,    ///< Power line frequency (anti-flicker setting)
 };
 
 /**

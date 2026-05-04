@@ -3,7 +3,7 @@
 
 ### 12.1 Video Properties Reference
 
-All 10 DirectShow video (image) properties with technical ranges, device-specific behaviors, and range query details. Typically adjust capture appearance without hardware reconfiguration.
+All 14 DirectShow video (image) properties with technical ranges, device-specific behaviors, and range query details. Typically adjust capture appearance without hardware reconfiguration.
 
 **Reference table:**
 
@@ -20,6 +20,10 @@ All 10 DirectShow video (image) properties with technical ranges, device-specifi
 | **Gain (Master)** | 0–255 | 128 | Yes | Analog amplification. Higher = more noise, but captures low-light detail. |
 | **Whitebalance (Color Temp)** | 2700–6500 K | 4000 | Varies | Some cameras only report temperature in auto mode. |
 | **Color Effects** | 0–6 | 0 | Manual | `0`=Normal, `1`=Sepia, `2`=Monochrome, `3`=Negative, `4`=Posterize, `5`=Solarize, `6`=Vivid. Not all modes available on all devices. |
+| **Digital Multiplier** | 1–4× (device) | 1 | Yes | Post-sensor digital magnification. Higher values reduce effective resolution but increase perceived zoom. |
+| **Digital Multiplier Limit** | Device-dependent | Device | Yes | Maximum allowed value for Digital Multiplier property on this device. |
+| **White Balance Component** | Device-dependent | 0 | Yes | White balance adjustment per color component (Red, Green, Blue). Device-specific implementation varies. |
+| **Power Line Frequency** | 0=Disabled, 1=50Hz, 2=60Hz | 60 Hz | Manual | AC mains flicker elimination. Set to match your local power line frequency (US/Americas=60Hz, EU/Asia=50Hz). |
 
 
 ***
