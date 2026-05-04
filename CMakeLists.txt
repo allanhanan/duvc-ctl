@@ -1,6 +1,5 @@
 # CMakeLists.txt - Professional CMake for duvc-ctl
 cmake_minimum_required(VERSION 3.16)
-    VERSION 2.1.0
 # ============================================================================
 # Project Definition
 # ============================================================================
