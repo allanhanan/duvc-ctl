@@ -339,6 +339,10 @@ class CameraController:
             print("4. White Balance")
             print("5. Hue")
             print("6. Gamma")
+            print("7. Digital Multiplier")
+            print("8. Digital Multiplier Limit")
+            print("9. White Balance Component")
+            print("10. Power Line Frequency")
             print("0. Back to main menu")
 
             try:
@@ -357,6 +361,14 @@ class CameraController:
                     self.control_single_property("video", duvc.VidProp.Hue, "Hue")
                 elif choice == 6:
                     self.control_single_property("video", duvc.VidProp.Gamma, "Gamma")
+                elif choice == 7:
+                    self.control_single_property("video", duvc.VidProp.DigitalMultiplier, "Digital Multiplier")
+                elif choice == 8:
+                    self.control_single_property("video", duvc.VidProp.DigitalMultiplierLimit, "Digital Multiplier Limit")
+                elif choice == 9:
+                    self.control_single_property("video", duvc.VidProp.WhiteBalanceComponent, "White Balance Component")
+                elif choice == 10:
+                    self.control_single_property("video", duvc.VidProp.PowerLineFrequency, "Power Line Frequency")
                 else:
                     print("Invalid option!")
             except ValueError:
@@ -409,6 +421,10 @@ class CameraController:
             (duvc.VidProp.WhiteBalance, "WhiteBalance"),
             (duvc.VidProp.Hue, "Hue"),
             (duvc.VidProp.Gamma, "Gamma"),
+            (duvc.VidProp.DigitalMultiplier, "Digital Multiplier"),
+            (duvc.VidProp.DigitalMultiplierLimit, "Digital Multiplier Limit"),
+            (duvc.VidProp.WhiteBalanceComponent, "White Balance Component"),
+            (duvc.VidProp.PowerLineFrequency, "Power Line Frequency"),
         ]
 
         print("\nCamera Properties:")
@@ -438,6 +454,8 @@ class CameraController:
         print("\nVideo Properties:")
         print("11. Brightness  12. Contrast  13. Saturation")
         print("14. White Balance  15. Hue  16. Gamma")
+        print("17. Digital Multiplier  18. Digital Multiplier Limit")
+        print("19. White Balance Component  20. Power Line Frequency")
 
         try:
             choice = int(input("\nEnter property number: "))
@@ -456,6 +474,10 @@ class CameraController:
                 14: ("video", duvc.VidProp.WhiteBalance, "White Balance"),
                 15: ("video", duvc.VidProp.Hue, "Hue"),
                 16: ("video", duvc.VidProp.Gamma, "Gamma"),
+                17: ("video", duvc.VidProp.DigitalMultiplier, "Digital Multiplier"),
+                18: ("video", duvc.VidProp.DigitalMultiplierLimit, "Digital Multiplier Limit"),
+                19: ("video", duvc.VidProp.WhiteBalanceComponent, "White Balance Component"),
+                20: ("video", duvc.VidProp.PowerLineFrequency, "Power Line Frequency"),
             }
 
             if choice in prop_map:

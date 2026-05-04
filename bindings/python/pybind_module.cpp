@@ -543,6 +543,14 @@ For Pythonic API, use duvc_ctl module. For low-level control, use Result-Based A
       .value("BacklightCompensation", VidProp::BacklightCompensation,
              "Backlight compensation level")
       .value("Gain", VidProp::Gain, "Sensor gain/amplification")
+      .value("DigitalMultiplier", VidProp::DigitalMultiplier,
+             "Digital multiplier level")
+      .value("DigitalMultiplierLimit", VidProp::DigitalMultiplierLimit,
+             "Maximum digital multiplier level")
+      .value("WhiteBalanceComponent", VidProp::WhiteBalanceComponent,
+             "White balance component adjustment")
+      .value("PowerLineFrequency", VidProp::PowerLineFrequency,
+             "Power line frequency (anti-flicker setting)")
       .export_values();
 
   /// @brief Property control mode
@@ -2500,7 +2508,7 @@ m.def(
   // =========================================================================
 
   // Module metadata
-  m.attr("__version__") = "2.0.0";
+  m.attr("__version__") = "2.1.0";
   m.attr("__author__") = "allanhanan";
   m.attr("__email__") = "allan.hanan04@gmail.com";
 

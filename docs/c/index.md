@@ -206,7 +206,7 @@ const char* duvc_get_version_string(void);
 ```
 
 **Description**: Get runtime library version as string
-**Returns**: Null-terminated version string (e.g., "2.0.0")
+**Returns**: Null-terminated version string (e.g., "2.1.0")
 **Note**: Returned string is statically allocated
 
 #### `duvc_check_abi_compatibility`
@@ -318,7 +318,11 @@ typedef enum {
     DUVC_VID_PROP_COLOR_ENABLE,         /**< Color vs. monochrome mode */
     DUVC_VID_PROP_WHITE_BALANCE,        /**< White balance adjustment */
     DUVC_VID_PROP_BACKLIGHT_COMPENSATION, /**< Backlight compensation level */
-    DUVC_VID_PROP_GAIN                  /**< Sensor gain level */
+    DUVC_VID_PROP_GAIN,                 /**< Sensor gain level */
+    DUVC_VID_PROP_DIGITAL_MULTIPLIER,   /**< Post-sensor digital magnification */
+    DUVC_VID_PROP_DIGITAL_MULTIPLIER_LIMIT, /**< Maximum digital multiplier value */
+    DUVC_VID_PROP_WHITE_BALANCE_COMPONENT, /**< White balance component adjustment */
+    DUVC_VID_PROP_POWER_LINE_FREQUENCY  /**< AC power line frequency (50/60Hz) */
 } duvc_vid_prop_t;
 ```
 

@@ -38,7 +38,7 @@
 
 ***
 
-#### VidProp - Video/image properties (10 total values)
+#### VidProp - Video/image properties (14 total values)
 
 | Property | Enum Constant | Type | Range | Description |
 | :-- | :-- | :-- | :-- | :-- |
@@ -52,6 +52,10 @@
 | WhiteBalance | `duvc.VidProp.WhiteBalance` | int | Device-dependent | White balance temperature or preset |
 | BacklightCompensation | `duvc.VidProp.BacklightCompensation` | int | 0-255 | Backlight compensation compensation strength |
 | Gain | `duvc.VidProp.Gain` | int | 0-255 | Signal amplification (0=minimum) |
+| DigitalMultiplier | `duvc.VidProp.DigitalMultiplier` | int | Device-dependent | Post-sensor digital magnification multiplier |
+| DigitalMultiplierLimit | `duvc.VidProp.DigitalMultiplierLimit` | int | Device-dependent | Maximum allowed digital multiplier value |
+| WhiteBalanceComponent | `duvc.VidProp.WhiteBalanceComponent` | int | Device-dependent | White balance adjustment by color component |
+| PowerLineFrequency | `duvc.VidProp.PowerLineFrequency` | int | 0-2 | AC power line frequency (0=disabled, 1=50Hz, 2=60Hz) |
 
 
 ***

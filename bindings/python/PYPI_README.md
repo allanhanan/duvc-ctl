@@ -273,7 +273,8 @@ ScanMode, Lamp, BacklightCompensation, DigitalZoom
 **VidProp** (Video Properties)
 ```python
 Brightness, Contrast, Hue, Saturation, Sharpness, Gamma,
-ColorEnable, WhiteBalance, BacklightCompensation, Gain
+ColorEnable, WhiteBalance, BacklightCompensation, Gain,
+DigitalMultiplier, DigitalMultiplierLimit, WhiteBalanceComponent, PowerLineFrequency
 ```
 
 ### Control Modes

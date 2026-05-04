@@ -61,7 +61,7 @@ void DeviceCapabilities::scan_capabilities() {
   }
 
   // Scan all video properties
-  for (int i = 0; i <= static_cast<int>(VidProp::Gain); ++i) {
+  for (int i = 0; i <= static_cast<int>(VidProp::PowerLineFrequency); ++i) {
     VidProp prop = static_cast<VidProp>(i);
     PropertyCapability capability;
 

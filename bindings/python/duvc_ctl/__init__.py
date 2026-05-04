@@ -23,7 +23,7 @@ from typing import List, Optional, Dict, Any, Union, Tuple, Callable, TypedDict,
 # MODULE METADATA
 # =============================================================================
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 __author__ = "allanhanan"
 __email__ = "allan.hanan04@gmail.com"
 __license__ = "MIT"

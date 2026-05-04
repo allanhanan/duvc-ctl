@@ -47,7 +47,7 @@ extern "C" {
 /**
  * @brief Version string in semantic versioning format
  */
-#define DUVC_ABI_VERSION_STRING "2.0.0"
+#define DUVC_ABI_VERSION_STRING "2.1.0"
 
 /**
  * @brief Get runtime library version
@@ -59,7 +59,7 @@ uint32_t duvc_get_version(void);
 /**
  * @brief Get runtime library version string
  *
- * @return Null-terminated version string (e.g., "2.0.0")
+ * @return Null-terminated version string (e.g., "2.1.0")
  * @note Returned string is statically allocated and should not be freed
  */
 const char *duvc_get_version_string(void);

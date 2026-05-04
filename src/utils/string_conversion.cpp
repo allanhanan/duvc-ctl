@@ -85,6 +85,14 @@ const char *to_string(VidProp p) {
     return "BacklightCompensation";
   case VidProp::Gain:
     return "Gain";
+  case VidProp::DigitalMultiplier:
+    return "DigitalMultiplier";
+  case VidProp::DigitalMultiplierLimit:
+    return "DigitalMultiplierLimit";
+  case VidProp::WhiteBalanceComponent:
+    return "WhiteBalanceComponent";
+  case VidProp::PowerLineFrequency:
+    return "PowerLineFrequency";
   default:
     return "Unknown";
   }
@@ -169,6 +177,14 @@ const wchar_t *to_wstring(VidProp p) {
     return L"BacklightCompensation";
   case VidProp::Gain:
     return L"Gain";
+  case VidProp::DigitalMultiplier:
+    return L"DigitalMultiplier";
+  case VidProp::DigitalMultiplierLimit:
+    return L"DigitalMultiplierLimit";
+  case VidProp::WhiteBalanceComponent:
+    return L"WhiteBalanceComponent";
+  case VidProp::PowerLineFrequency:
+    return L"PowerLineFrequency";
   default:
     return L"Unknown";
   }

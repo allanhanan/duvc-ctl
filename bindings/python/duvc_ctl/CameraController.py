@@ -443,6 +443,50 @@ class CameraController:
         min_val, max_val = self._get_dynamic_range("gain", 0, 100)
         self._set_video_property(VidProp.Gain, "gain", value, min_val, max_val)
 
+    @property
+    def digital_multiplier(self) -> int:
+        """Digital multiplier level (uses device range)."""
+        return self._get_video_property(VidProp.DigitalMultiplier, "digital_multiplier")
+
+    @digital_multiplier.setter
+    def digital_multiplier(self, value: int):
+        """Set digital multiplier using actual device range."""
+        min_val, max_val = self._get_dynamic_range("digital_multiplier", 0, 100)
+        self._set_video_property(VidProp.DigitalMultiplier, "digital_multiplier", value, min_val, max_val)
+
+    @property
+    def digital_multiplier_limit(self) -> int:
+        """Digital multiplier limit (uses device range)."""
+        return self._get_video_property(VidProp.DigitalMultiplierLimit, "digital_multiplier_limit")
+
+    @digital_multiplier_limit.setter
+    def digital_multiplier_limit(self, value: int):
+        """Set digital multiplier limit using actual device range."""
+        min_val, max_val = self._get_dynamic_range("digital_multiplier_limit", 0, 100)
+        self._set_video_property(VidProp.DigitalMultiplierLimit, "digital_multiplier_limit", value, min_val, max_val)
+
+    @property
+    def white_balance_component(self) -> int:
+        """White balance component adjustment (uses device range)."""
+        return self._get_video_property(VidProp.WhiteBalanceComponent, "white_balance_component")
+
+    @white_balance_component.setter
+    def white_balance_component(self, value: int):
+        """Set white balance component using actual device range."""
+        min_val, max_val = self._get_dynamic_range("white_balance_component", 0, 100)
+        self._set_video_property(VidProp.WhiteBalanceComponent, "white_balance_component", value, min_val, max_val)
+
+    @property
+    def power_line_frequency(self) -> int:
+        """Power line frequency setting (uses device range)."""
+        return self._get_video_property(VidProp.PowerLineFrequency, "power_line_frequency")
+
+    @power_line_frequency.setter
+    def power_line_frequency(self, value: int):
+        """Set power line frequency using actual device range."""
+        min_val, max_val = self._get_dynamic_range("power_line_frequency", 0, 100)
+        self._set_video_property(VidProp.PowerLineFrequency, "power_line_frequency", value, min_val, max_val)
+
     # ========================================================================
     # CAMERA PROPERTIES (CamProp)
     # ========================================================================
@@ -888,6 +932,10 @@ class CameraController:
             (VidProp.WhiteBalance, "white_balance"),
             (VidProp.BacklightCompensation, "video_backlight_compensation"),
             (VidProp.Gain, "gain"),
+            (VidProp.DigitalMultiplier, "digital_multiplier"),
+            (VidProp.DigitalMultiplierLimit, "digital_multiplier_limit"),
+            (VidProp.WhiteBalanceComponent, "white_balance_component"),
+            (VidProp.PowerLineFrequency, "power_line_frequency"),
         ]
         
         for prop, name in video_props:
@@ -927,6 +975,10 @@ class CameraController:
             'white_balance': VidProp.WhiteBalance,
             'video_backlight_compensation': VidProp.BacklightCompensation,
             'gain': VidProp.Gain,
+            'digital_multiplier': VidProp.DigitalMultiplier,
+            'digital_multiplier_limit': VidProp.DigitalMultiplierLimit,
+            'white_balance_component': VidProp.WhiteBalanceComponent,
+            'power_line_frequency': VidProp.PowerLineFrequency,
             
             # Camera properties
             'pan': CamProp.Pan,
@@ -1038,6 +1090,10 @@ class CameraController:
         'white_balance': VidProp.WhiteBalance,
         'video_backlight_compensation': VidProp.BacklightCompensation,
         'gain': VidProp.Gain,
+        'digital_multiplier': VidProp.DigitalMultiplier,
+        'digital_multiplier_limit': VidProp.DigitalMultiplierLimit,
+        'white_balance_component': VidProp.WhiteBalanceComponent,
+        'power_line_frequency': VidProp.PowerLineFrequency,
         # Aliases
         'wb': VidProp.WhiteBalance,
         'color': VidProp.ColorEnable,

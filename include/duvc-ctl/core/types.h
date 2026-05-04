@@ -57,7 +57,11 @@ enum class VidProp {
   ColorEnable,           ///< Color vs. monochrome mode
   WhiteBalance,          ///< White balance adjustment
   BacklightCompensation, ///< Backlight compensation level
-  Gain                   ///< Sensor gain level
+  Gain,                  ///< Sensor gain level
+  DigitalMultiplier,     ///< Digital multiplier level
+  DigitalMultiplierLimit, ///< Maximum digital multiplier level
+  WhiteBalanceComponent, ///< White balance component adjustment
+  PowerLineFrequency,    ///< Power line frequency (anti-flicker setting)
 };
 
 /**
@@ -146,11 +150,11 @@ struct Device {
     /**
      * @brief Copy constructor - ensures deep copy of string data
      * @param other Device to copy from
-     * 
+     *
      * Explicitly defined to ensure proper deep copying when pybind11
      * passes Device objects between Python and C++.
      */
-    Device(const Device& other) 
+    Device(const Device& other)
         : name(other.name), path(other.path) {}
 
     /**

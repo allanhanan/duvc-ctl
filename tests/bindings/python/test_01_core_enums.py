@@ -201,15 +201,17 @@ class TestVidPropEnum:
     """Test VidProp enum - IAMVideoProcAmp properties."""
     
     def test_all_vidprop_values_exist(self):
-        """Verify all 10 expected VidProp enum values are exposed."""
+        """Verify all 14 expected VidProp enum values are exposed."""
         # From pybind_module.cpp lines exposing VidProp enum
         expected_props = [
             'Brightness', 'Contrast', 'Hue', 'Saturation', 'Sharpness',
             'Gamma', 'ColorEnable', 'WhiteBalance', 
-            'BacklightCompensation', 'Gain'
+            'BacklightCompensation', 'Gain', 'DigitalMultiplier',
+            'DigitalMultiplierLimit', 'WhiteBalanceComponent',
+            'PowerLineFrequency'
         ]
         
-        assert len(expected_props) == 10, "Expected 10 VidProp values"
+        assert len(expected_props) == 14, "Expected 14 VidProp values"
         
         for prop_name in expected_props:
             assert hasattr(VidProp, prop_name), f"VidProp.{prop_name} not found"
