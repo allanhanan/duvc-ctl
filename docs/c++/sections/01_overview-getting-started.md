@@ -92,7 +92,7 @@ target_link_libraries(your_target PRIVATE path/to/duvc-ctl/lib/duvc-core.lib)
 **Package managers** (Conan planned):
 
 - vcpkg: `vcpkg install duvc-ctl`
-- Conan: `conan install duvc-ctl/2.0.0`
+- Conan: `conan install duvc-ctl/2.1.0`
 
 CMake usage:
 ```

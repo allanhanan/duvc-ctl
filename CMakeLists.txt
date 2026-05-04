@@ -1,11 +1,11 @@
 # CMakeLists.txt - Professional CMake for duvc-ctl
 cmake_minimum_required(VERSION 3.16)
-
+    VERSION 2.1.0
 # ============================================================================
 # Project Definition
 # ============================================================================
 project(duvc-ctl 
-    VERSION 2.0.1
+    VERSION 2.1.0
     DESCRIPTION "DirectShow UVC Camera Control Library"
     HOMEPAGE_URL "https://github.com/allanhanan/duvc-ctl"
     LANGUAGES CXX C

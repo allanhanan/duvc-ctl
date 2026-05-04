@@ -33,7 +33,7 @@ using duvc::PropSetting;
 using duvc::VidProp;
 
 // Version information
-static constexpr const wchar_t* DUVC_CLI_VERSION = L"2.0.0";
+static constexpr const wchar_t* DUVC_CLI_VERSION = L"2.1.0";
 
 
 // ============================================================================

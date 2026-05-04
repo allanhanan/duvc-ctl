@@ -234,7 +234,7 @@ def build_doxygen(docs_dir: Path, project_root: Path) -> bool:
         content = content.replace("@PROJECT_SOURCE_DIR@", str(project_root))
         content = content.replace("@PROJECT_BINARY_DIR@", str(project_root))
         content = content.replace("@PROJECT_NAME@", "duvc-ctl")
-        content = content.replace("@PROJECT_VERSION@", "2.0.0")
+        content = content.replace("@PROJECT_VERSION@", "2.1.0")
         content = content.replace("@DOXYGEN_SOURCE_DIR@", str(doxygen_dir))
         
         with open(doxyfile, 'w') as f:
@@ -319,7 +319,7 @@ def create_index_html(docs_dir: Path) -> None:
     </head>
     <body>
         <h1>Windows DirectShow UVC Camera Control Library</h1>
-        <p>Version 2.0.0</p>
+        <p>Version 2.1.0</p>
         
         <h2>User Guide and API Reference</h2>
         <a href="sphinx/index.html">Complete user guide, API reference, examples, and tutorials for all language bindings (Python, C, C++).</a>

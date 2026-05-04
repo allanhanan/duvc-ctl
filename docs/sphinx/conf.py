@@ -24,8 +24,8 @@ sys.path.insert(0, str(scripts_dir))
 project = 'duvc-ctl'
 copyright = '2025, allanhanan'
 author = 'allanhanan'
-version = '2.0.0'
-release = '2.0.0'
+version = '2.1.0'
+release = '2.1.0'
 
 # -- General configuration ---
 extensions = [

@@ -206,7 +206,7 @@ const char* duvc_get_version_string(void);
 ```
 
 **Description**: Get runtime library version as string
-**Returns**: Null-terminated version string (e.g., "2.0.0")
+**Returns**: Null-terminated version string (e.g., "2.1.0")
 **Note**: Returned string is statically allocated
 
 #### `duvc_check_abi_compatibility`

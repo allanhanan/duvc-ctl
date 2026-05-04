@@ -2508,7 +2508,7 @@ m.def(
   // =========================================================================
 
   // Module metadata
-  m.attr("__version__") = "2.0.0";
+  m.attr("__version__") = "2.1.0";
   m.attr("__author__") = "allanhanan";
   m.attr("__email__") = "allan.hanan04@gmail.com";
 
