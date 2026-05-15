@@ -135,11 +135,12 @@ duvc-ctl set --device 0 --property tilt --value 0
 
 ### Current Version
 - [ ] Rust bindings
-- [ ] vcpkg package
+- [x] vcpkg package
 - [ ] winget package
 - [ ] Node.js bindings
 - [ ] Go bindings
-- [ ] Chocolatey package
+- [x] Chocolatey package
+- [ ] C# bindings
 
 ### Future Versions
 - [ ] Connection pooling with thread safety improvements
