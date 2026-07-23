@@ -79,20 +79,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup MSBuild (VS 2022)
-        uses: microsoft/setup-msbuild@v2
-
-      - name: Setup Developer Command Prompt
-        uses: ilammy/msvc-dev-cmd@v1
-        with:
-          arch: x64
-
-      - name: Verify toolchain
-        shell: pwsh
-        run: |
-          cl 2>&1 | Select-Object -First 2
-          cmake --version
-
       - name: Build x64
         shell: pwsh
         run: |
