@@ -109,6 +109,10 @@ struct PropRange {
    * @return true if value is within range and aligned to step
    */
   bool is_valid(int value) const {
+    if (step <= 0) {
+      return false;
+    }
+
     return value >= min && value <= max && ((value - min) % step == 0);
   }
 
@@ -118,6 +122,14 @@ struct PropRange {
    * @return Nearest valid value within range
    */
   int clamp(int value) const {
+    if (step <= 0) {
+      if (value <= min)
+        return min;
+      if (value >= max)
+        return max;
+      return value;
+    }
+
     if (value <= min)
       return min;
     if (value >= max)
